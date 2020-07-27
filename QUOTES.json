@@ -1,26 +1,26 @@
 {
-    quotes: [{
-        text: "Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned."
+    "quotes": [{
+        "text": "Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned."
     },
     {
-        text: "Everything changes, nothing remains without change."
+        "text": "Everything changes, nothing remains without change."
     },
     {
-        text: "Everything is changeable, everything appears and disappears there is no blissful peace until one passes beyond the agony of life and death."
+        "text": "Everything is changeable, everything appears and disappears there is no blissful peace until one passes beyond the agony of life and death."
     },
     {
-        text: "Let yourself be open and life will be easier. A spoon of salt in a glass of water makes the water undrinkable. A spoon of salt in a lake is almost unnoticed."
+        "text": "Let yourself be open and life will be easier. A spoon of salt in a glass of water makes the water undrinkable. A spoon of salt in a lake is almost unnoticed."
     },
     {
-        text : "All that we are is the result of what we have thought."
+        "text": "All that we are is the result of what we have thought."
     },
     {
-        text: "Anger will never disappear so long as thoughts of resentment are cherished in the mind. Anger will disappear just as soon as thoughts of resentment are forgotten."
+        "text": "Anger will never disappear so long as thoughts of resentment are cherished in the mind. Anger will disappear just as soon as thoughts of resentment are forgotten."
     },
     {
-        text: "Neither fire nor wind, birth nor death can erase our good deeds."
+        "text": "Neither fire nor wind, birth nor death can erase our good deeds."
     },
     {
-        text: "Times of luxury do not last long, but pass away very quickly nothing in this world can be long enjoyed."
+        "text": "Times of luxury do not last long, but pass away very quickly nothing in this world can be long enjoyed."
     }]
 }
