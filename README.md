@@ -6,7 +6,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 
 - Free and Open Source
 
-## Features that are WIP
+## Upcoming Features
 
 - Dark Mode
 
