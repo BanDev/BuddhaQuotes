@@ -1,4 +1,8 @@
-# Buddha Quotes [![pipeline status](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg)](https://gitlab.com/bandev/buddha-quotes/-/commits/master)
+[![pipeline status](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg)](https://gitlab.com/bandev/buddha-quotes/-/commits/master)
+
+# Buddha Quotes
+
+![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)
 
 A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
 
