@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="material.min.css">
+    <script src="material.min.js"></script>
+</head>
+<body>
+    <style>
+    body{
+        background-image: url('buddha.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 33%;
+        background-position: right bottom;
+    }
+
+    .podbar {
+        bottom:30px;
+        left: 30px;
+        position:fixed;
+        z-index:150;
+        _position:absolute;
+        _top:expression(eval(document.documentElement.scrollTop+
+            (document.documentElement.clientHeight-this.offsetHeight)));
+    }
+
+    .quote{
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-size: 25px;
+        line-height: 33px;
+        font-family: verdana;
+        color: black;
+    }
+
+    .by{
+        margin-top: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-size: 20px;
+        font-family: verdana;
+        color: black;
+    }
+    </style>
+    <div class="quote" id="demo"></div>
+    <div class="by">~ Buddha</div>
+    <!-- Colored FAB button -->
+
+<button onclick="rnd()" class="podbar mdl-js-ripple-effect mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+    <img src="refresh.png" height="40px" width="auto">
+  </button>
+
+    <script>
+    rnd();
+    function rnd(){
+        num = Math.floor(Math.random() * 8) + 1;
+        text = "";
+        switch(num){
+            case 1:
+                text = "Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned.";
+                break;
+            case 2:
+                text = "Everything changes, nothing remains without change.";
+                break;
+            case 3:
+                text = "Everything is changeable, everything appears and disappears there is no blissful peace until one passes beyond the agony of life and death.";
+                break;
+            case 4:
+                text = "Let yourself be open and life will be easier. A spoon of salt in a glass of water makes the water undrinkable. A spoon of salt in a lake is almost unnoticed.";
+                break;
+            case 5:
+                text = "All that we are is the result of what we have thought.";
+                break;
+            case 6:
+                text = "Anger will never disappear so long as thoughts of resentment are cherished in the mind. Anger will disappear just as soon as thoughts of resentment are forgotten.";
+                break;
+            case 7:
+                text = "Neither fire nor wind, birth nor death can erase our good deeds.";
+                break;
+            case 8:
+                text = "Times of luxury do not last long, but pass away very quickly nothing in this world can be long enjoyed.";
+                break;
+        }
+        document.getElementById("demo").innerHTML = text;
+    }
+    </script>
+</body>
+</html>
