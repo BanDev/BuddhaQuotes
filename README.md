@@ -4,10 +4,11 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 
 ## Features
 
-- Free and Open Source
 - Over 200 quotes!
+- Free and Open Source
 - No ads
 - No trackers
+- Small file size < 5MB!
 
 ## Upcoming Features
 
