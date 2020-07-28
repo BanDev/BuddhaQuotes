@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,6 +24,9 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+
+
+
 
         int nightModeFlags =
                 this.getResources().getConfiguration().uiMode &
