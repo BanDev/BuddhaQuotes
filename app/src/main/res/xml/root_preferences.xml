@@ -1,0 +1,21 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="App">
+
+        <Preference
+            app:key="activity"
+            app:title="About">
+            <intent
+                android:targetPackage="org.bandev.buddhaquotes"
+                android:targetClass="org.bandev.buddhaquotes.about">
+                <extra
+                    android:name="example_key"
+                    android:value="example_value"/>
+            </intent>
+        </Preference>
+
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

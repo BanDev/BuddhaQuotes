@@ -16,7 +16,12 @@
         background-position: right bottom;
     }
 
+    .quote .letter {
+  display: inline-block;
+  line-height: 1em;
+}
     .podbar {
+        transform:scale(1.25);
         bottom:30px;
         left: 30px;
         position:fixed;
@@ -24,8 +29,21 @@
         _position:absolute;
         _top:expression(eval(document.documentElement.scrollTop+
             (document.documentElement.clientHeight-this.offsetHeight)));
+            }
+            .spin{animation-name: spin;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
     }
 
+    @keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
     .quote{
         margin-top: 15px;
         margin-left: 15px;
@@ -46,14 +64,49 @@
     }
     </style>
     <div class="quote" id="demo"></div>
-    <div class="by">~ Buddha</div>
+    <div class="by" id="by">~ Buddha</div>
     <!-- Colored FAB button -->
 
-<button onclick="rnd()" class="podbar mdl-js-ripple-effect mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-    <img src="refresh.png" height="40px" width="auto">
+<button onclick="animate2();" class="podbar mdl-js-ripple-effect mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+    <img src="refresh.svg" id="spinner" height="40px" width="auto">
   </button>
 
     <script>
+fade();
+fade_b();
+function fade() {
+    var op = 0.05;  // initial opacity
+    document.getElementById("demo").style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        document.getElementById("demo").style.opacity = op;
+        document.getElementById("demo").style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.05;
+    }, 10);
+}
+function fade_b() {
+    var op = 0.05;  // initial opacity
+    document.getElementById("by").style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        document.getElementById("by").style.opacity = op;
+        document.getElementById("by").style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.05;
+    }, 10);
+}
+
+    function animate2(){
+        fade();
+        fade_b();
+        document.getElementById("spinner").classList.add("spin");
+        rnd();
+        setTimeout(() => {  document.getElementById("spinner").classList.remove("spin");}, 500);
+
+    }
     rnd();
     function rnd(){
         num = Math.floor(Math.random() * 8) + 1;
@@ -85,7 +138,9 @@
                 break;
         }
         document.getElementById("demo").innerHTML = text;
+        document.getElementById("demo").style.opacity = "0";
     }
     </script>
+
 </body>
 </html>
