@@ -1,4 +1,7 @@
-[![pipeline status](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg)](https://gitlab.com/bandev/buddha-quotes/-/commits/master)
+<p>
+  <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
+<img src="https://img.shields.io/badge/Licence-GNU%20GPLv3-blue"/>
+</p>
 
 # Buddha Quotes
 
