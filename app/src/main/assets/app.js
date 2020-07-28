@@ -36,7 +36,7 @@ function animate_spinner(){
     fade();
     fade_by();
     //Disable animation, just send the user straight to the rnd(); function.
-    document.getElementById("button").onclick = function() {rnd();};
+    document.getElementById("button").onclick = function() {NewQuote();};
     document.getElementById("spinner").classList.add("spin");
     NewQuote();
     //Wait 500ms and then remove the animation, then re-enable the spinner animation.

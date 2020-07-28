@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity{
         browser.getSettings().setJavaScriptEnabled(true);
         browser.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
     }
+
     //Create The Options Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

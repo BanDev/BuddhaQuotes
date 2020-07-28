@@ -39,6 +39,7 @@ public class about extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
     @Override
     public boolean onSupportNavigateUp(){
         finish();

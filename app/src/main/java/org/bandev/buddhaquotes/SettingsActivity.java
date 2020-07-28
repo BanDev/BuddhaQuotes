@@ -30,8 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         int nightModeFlags =
-                this.getResources().getConfiguration().uiMode &
-                        Configuration.UI_MODE_NIGHT_MASK;
+                this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
                 break;
@@ -52,19 +51,13 @@ public class SettingsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
-
-
-
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-
         }
-
-
     }
 
     @Override
@@ -72,5 +65,4 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
         return true;
     }
-
 }
