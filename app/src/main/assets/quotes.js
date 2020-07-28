@@ -1,5 +1,5 @@
 function getQuote(){
-    QUOTE_MAX_NUM = 194
+    QUOTE_MAX_NUM = 200;
     num = Math.floor(Math.random() * QUOTE_MAX_NUM) + 1;
     text = "";
     switch(num){

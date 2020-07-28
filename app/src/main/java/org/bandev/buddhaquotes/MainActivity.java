@@ -10,7 +10,6 @@ import android.view.View;
 import android.webkit.WebView;
 import androidx.appcompat.widget.Toolbar;
 
-
 public class MainActivity extends AppCompatActivity{
 
     @Override
@@ -19,6 +18,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Is user using night mode
         int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;

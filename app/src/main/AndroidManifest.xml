@@ -13,19 +13,18 @@
         <activity
             android:name=".about"
             android:label="About"
-            android:theme="@style/AppThemeBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".settings"
             android:label="Settings" />
         <activity
             android:name=".SettingsActivity"
             android:label="Settings"
-            android:theme="@style/AppThemeBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
