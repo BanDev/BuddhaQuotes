@@ -2,6 +2,7 @@
   <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
 <img src="https://img.shields.io/badge/Licence-GNU%20GPLv3-blue"/>
 </p>
+
 # Buddha Quotes
 
 ![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)
