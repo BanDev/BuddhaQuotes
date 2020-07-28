@@ -1,6 +1,8 @@
 package org.bandev.buddhaquotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.menu_main_setting:
                 Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
-                MainActivity.this.startActivity(myIntent);
+                MainActivity.this.startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

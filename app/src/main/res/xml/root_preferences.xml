@@ -3,8 +3,6 @@
 
 
     <PreferenceCategory app:title="Display">
-
-
         <Preference
             app:key="settingsopener"
             app:title="Toggle Dark Mode">
@@ -19,7 +17,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory app:title="App">
-
         <Preference
             app:key="activity"
             app:title="About">
