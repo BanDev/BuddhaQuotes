@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".about"
-            android:theme="@style/AppThemeBar"
-            android:label="About"></activity>
+        <activity android:name=".settingsopener"></activity>
+        <activity
+            android:name=".about"
+            android:label="About"
+            android:theme="@style/AppThemeBar" />
         <activity
             android:name=".settings"
             android:label="Settings" />
@@ -23,6 +25,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,6 +1,23 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <PreferenceCategory app:title="Display">
+
+
+        <Preference
+            app:key="settingsopener"
+            app:title="Toggle Dark Mode">
+            <intent
+                android:targetPackage="org.bandev.buddhaquotes"
+                android:targetClass="org.bandev.buddhaquotes.settingsopener">
+                <extra
+                    android:name="example_key"
+                    android:value="example_value"/>
+            </intent>
+        </Preference>
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="App">
 
         <Preference
@@ -14,8 +31,6 @@
                     android:value="example_value"/>
             </intent>
         </Preference>
-
-
-
     </PreferenceCategory>
+
 </PreferenceScreen>

@@ -8,6 +8,10 @@
 </head>
 <body>
     <style>
+    @media (prefers-color-scheme: dark) {
+  body { background-color: black; color:  white; }
+}
+
     body{
         background-image: url('buddha.png');
         background-repeat: no-repeat;
@@ -62,6 +66,9 @@
         font-family: verdana;
         color: black;
     }
+
+    html, body {margin: 0; height: 100%; overflow: hidden}
+
     </style>
     <div class="quote" id="demo"></div>
     <div class="by" id="by">~ Buddha</div>
@@ -96,7 +103,7 @@ function fade_b() {
         document.getElementById("by").style.opacity = op;
         document.getElementById("by").style.filter = 'alpha(opacity=' + op * 100 + ")";
         op += op * 0.05;
-    }, 5);
+    }, 10);
 }
 
     function animate2(){
