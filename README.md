@@ -1,7 +1,7 @@
 <p>
   <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
-<img src="https://img.shields.io/badge/Licence-GNU%20GPLv3-blue"/>
-<img src="https://img.shields.io/badge/bandev%20guarantee-%E2%9C%93%20all-brightgreen"/>
+<img src="https://img.shields.io/badge/licence-GNU%20GPLv3-blue"/>
+<img src="https://img.shields.io/badge/bandev%20promise-%E2%9C%93%20-brightgreen"/>
 </p>
 
 # Buddha Quotes
