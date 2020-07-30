@@ -1,32 +1,38 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <PreferenceCategory app:title="Display">
-        <Preference
-            app:key="settingsopener"
-            app:title="Toggle Dark Mode">
-            <intent
-                android:targetPackage="org.bandev.buddhaquotes"
-                android:targetClass="org.bandev.buddhaquotes.settingsopener">
-                <extra
-                    android:name="example_key"
-                    android:value="example_value"/>
-            </intent>
-        </Preference>
+    <PreferenceCategory app:title="Appearance">
+
+        <ListPreference
+            android:id="@+id/list"
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:icon="@drawable/ic_baseline_palette_24"
+            app:key="theme"
+            app:title="App Theme"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="App">
+    <PreferenceCategory app:title="Information" >
         <Preference
-            app:key="activity"
-            app:title="About">
+            android:key="about"
+            android:title="About"
+            app:icon="@drawable/ic_baseline_info_24">
             <intent
-                android:targetPackage="org.bandev.buddhaquotes"
-                android:targetClass="org.bandev.buddhaquotes.about">
-                <extra
-                    android:name="example_key"
-                    android:value="example_value"/>
-            </intent>
+                android:action="org.bandev.buddhaquotes.about"
+                android:targetClass="org.bandev.buddhaquotes.about"
+                android:targetPackage="org.bandev.buddhaquotes" />
+        </Preference>
+        <Preference
+            android:key="about"
+            android:title="Licence"
+            app:icon="@drawable/ic_baseline_gavel_24">
+            <intent
+                android:action="org.bandev.buddhaquotes.licenses"
+                android:targetClass="org.bandev.buddhaquotes.licenses"
+                android:targetPackage="org.bandev.buddhaquotes" />
         </Preference>
     </PreferenceCategory>
 
