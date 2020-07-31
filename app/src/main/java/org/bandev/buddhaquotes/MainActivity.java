@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -27,14 +29,7 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Settings", 0);
-        Boolean darkmode = sharedPreferences.getBoolean("dark_mode", false);
 
-        if (darkmode){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
 
         //Is user using night mode
         int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
@@ -53,10 +48,21 @@ public class MainActivity extends AppCompatActivity{
         }
 
         //Load webview
-        WebView browser = (WebView) findViewById(R.id.webview);
+
+        final WebView browser = (WebView) findViewById(R.id.webview);
+        final ProgressBar progress = findViewById(R.id.loader);
+        browser.setVisibility(View.GONE);
         browser.loadUrl("file:///android_asset/index.html");
         browser.getSettings().setJavaScriptEnabled(true);
         browser.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        browser.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                browser.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
+            }
+        });
     }
 
     //Create The Options Menu
@@ -72,6 +78,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.menu_main_setting:
                 Intent myIntent = new Intent(MainActivity.this, settings.class);
                 MainActivity.this.startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

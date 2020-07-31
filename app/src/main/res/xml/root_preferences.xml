@@ -27,13 +27,27 @@
         </Preference>
         <Preference
             android:key="about"
-            android:title="Licence"
+            android:title="App Licence"
+            android:summary="GPLv3"
             app:icon="@drawable/ic_baseline_gavel_24">
             <intent
                 android:action="org.bandev.buddhaquotes.licenses"
                 android:targetClass="org.bandev.buddhaquotes.licenses"
+                android:targetPackage="org.bandev.buddhaquotes" >
+                <extra android:name="from" android:value="main" />
+            </intent>
+        </Preference>
+        <Preference
+            android:key="about"
+            android:title="Open Source Libraries"
+            app:icon="@drawable/ic_baseline_library_books_24">
+            <intent
+                android:action="org.bandev.buddhaquotes.oss_libraries"
+                android:targetClass="org.bandev.buddhaquotes.oss_libraries"
                 android:targetPackage="org.bandev.buddhaquotes" />
         </Preference>
     </PreferenceCategory>
+
+
 
 </PreferenceScreen>

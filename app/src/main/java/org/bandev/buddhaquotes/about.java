@@ -50,7 +50,7 @@ public class about extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent i = new Intent(this, settings.class);
-                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(about.this).toBundle());
+                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -60,8 +60,8 @@ public class about extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp(){
         Intent i = new Intent(this, settings.class);
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(about.this).toBundle());
-        finish();
+        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
         return true;
     }
 

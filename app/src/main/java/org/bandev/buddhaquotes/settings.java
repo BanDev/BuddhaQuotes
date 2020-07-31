@@ -98,7 +98,7 @@ public class settings extends AppCompatActivity {
     public boolean onSupportNavigateUp(){
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i, ActivityOptions.makeSceneTransitionAnimation(settings.this).toBundle());
-        finish();
+
         return true;
     }
 
@@ -108,7 +108,7 @@ public class settings extends AppCompatActivity {
         // add your animation
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i, ActivityOptions.makeSceneTransitionAnimation(settings.this).toBundle());
-        finish();
+
     }
 
     @Override

@@ -15,15 +15,31 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
 public class licenses extends AppCompatActivity {
-
+    Boolean from_settings = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_licenses);
+        String url2;
+        Bundle b = getIntent().getExtras();// or other values
+
+        switch(b.getString("from")){
+            case "Material Design Lite":
+                url2 = "file:///android_asset/mdl.html";
+                break;
+            case "Material Design Icons":
+                url2 = "file:///android_asset/mdi.html";
+                break;
+            default:
+                url2 = "file:///android_asset/license.html";
+                from_settings = true;
+                break;
+        }
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -49,7 +65,7 @@ public class licenses extends AppCompatActivity {
         final ProgressBar progress = findViewById(R.id.loader);
 
         final WebView browser = (WebView) findViewById(R.id.webview);
-        browser.loadUrl("file:///android_asset/license.html");
+        browser.loadUrl(url2);
         browser.setVisibility(View.GONE);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -65,9 +81,15 @@ public class licenses extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent i = new Intent(this, settings.class);
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(licenses.this).toBundle());
-        finish();
+        if(from_settings){
+            Intent i = new Intent(this, settings.class);
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        }else {
+            Intent i = new Intent(this, oss_libraries.class);
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        }
         return true;
     }
 
@@ -75,17 +97,30 @@ public class licenses extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         // add your animation
-        Intent i = new Intent(this, settings.class);
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(licenses.this).toBundle());
-        finish();
+        if(from_settings){
+            Intent i = new Intent(this, settings.class);
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        }else {
+            Intent i = new Intent(this, oss_libraries.class);
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent i = new Intent(this, settings.class);
-                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(licenses.this).toBundle());
+                if(from_settings){
+                    Intent i = new Intent(this, settings.class);
+                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                }else {
+                    Intent i = new Intent(this, oss_libraries.class);
+                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
