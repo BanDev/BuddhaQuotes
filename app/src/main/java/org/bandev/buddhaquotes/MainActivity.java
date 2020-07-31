@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity{
             case R.id.menu_main_setting:
                 Intent myIntent = new Intent(MainActivity.this, settings.class);
                 MainActivity.this.startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
-                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
