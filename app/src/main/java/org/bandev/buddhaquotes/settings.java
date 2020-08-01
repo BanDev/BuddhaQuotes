@@ -67,11 +67,14 @@ public class settings extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            SharedPreferences pref = getContext().getSharedPreferences("Settings", 0); // 0 - for private mode
+            SharedPreferences pref = getContext().getSharedPreferences("Settings", 0);
             final SharedPreferences.Editor editor = pref.edit();
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             PreferenceScreen screen = getPreferenceScreen();
             final ListPreference listPreference = (ListPreference) findPreference("theme");
+            if(listPreference.getValue() == null){
+                listPreference.setValueIndex(0); //set to index of your deafult value
+            }
             listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -86,6 +89,35 @@ public class settings extends AppCompatActivity {
                     if (theme.equals("Dark")) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         editor.putBoolean("dark_mode", true);
+                        editor.commit();
+                    }
+                    return true;
+                }
+            });
+            final ListPreference textSize = (ListPreference) findPreference("size");
+            if(textSize.getValue() == null){
+                textSize.setValueIndex(1); //set to index of your default value
+            }
+            textSize.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    textSize.setValue(newValue.toString());
+                    String size = String.valueOf(textSize.getEntry());
+                    Log.d("debug", size);
+                    if (size.equals("Small")) {
+                        editor.putString("text_size", "sm");
+                        editor.commit();
+                    }
+                    if (size.equals("Medium")) {
+                        editor.putString("text_size", "md");
+                        editor.commit();
+                    }
+                    if (size.equals("Large")) {
+                        editor.putString("text_size", "lg");
+                        editor.commit();
+                    }
+                    if (size.equals("Extra")) {
+                        editor.putString("text_size", "xlg");
                         editor.commit();
                     }
                     return true;

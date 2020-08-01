@@ -13,6 +13,15 @@
             app:title="App Theme"
             app:useSimpleSummaryProvider="true" />
 
+        <ListPreference
+            android:id="@+id/textSize"
+            app:entries="@array/size_entries"
+            app:entryValues="@array/size_values"
+            app:icon="@drawable/ic_baseline_text_fields_24"
+            app:key="size"
+            app:title="Text Size"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="Information" >
@@ -26,7 +35,7 @@
                 android:targetPackage="org.bandev.buddhaquotes" />
         </Preference>
         <Preference
-            android:key="about"
+            android:key="license"
             android:title="App Licence"
             android:summary="GPLv3"
             app:icon="@drawable/ic_baseline_gavel_24">
@@ -38,7 +47,7 @@
             </intent>
         </Preference>
         <Preference
-            android:key="about"
+            android:key="oss_license"
             android:title="Open Source Libraries"
             app:icon="@drawable/ic_baseline_library_books_24">
             <intent
