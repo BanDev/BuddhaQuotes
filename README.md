@@ -25,9 +25,9 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 
 ## Screenshots
 
-<img src="screenshots/Screenshot_20200801-214828.jpg" alt="Quotes in light mode" width="250"/>
-<img src="screenshots/Screenshot_20200801-214847.jpg" alt="Quotes in light mode" width="250"/>
-<img src="screenshots/Screenshot_20200801-214856.jpg" alt="Quotes in light mode" width="250"/>
-<img src="screenshots/Screenshot_20200801-214838.jpg" alt="Quotes in light mode" width="250"/>
-<img src="screenshots/Screenshot_20200801-214852.jpg" alt="Quotes in light mode" width="250"/>
-<img src="screenshots/Screenshot_20200801-214859.jpg" alt="Quotes in light mode" width="250"/>
+<img src="screenshots/Screenshot_20200801-214828.jpg" alt="Quotes in light mode" width="180"/>
+<img src="screenshots/Screenshot_20200801-214847.jpg" alt="Quotes in light mode" width="180"/>
+<img src="screenshots/Screenshot_20200801-214856.jpg" alt="Quotes in light mode" width="180"/>
+<img src="screenshots/Screenshot_20200801-214838.jpg" alt="Quotes in light mode" width="180"/>
+<img src="screenshots/Screenshot_20200801-214852.jpg" alt="Quotes in light mode" width="180"/>
+<img src="screenshots/Screenshot_20200801-214859.jpg" alt="Quotes in light mode" width="180"/>
