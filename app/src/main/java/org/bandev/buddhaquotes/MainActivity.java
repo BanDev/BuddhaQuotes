@@ -127,9 +127,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         // listener.
     }
 
-
-
-
     void newQuote(){
         String text = quote.random();
         textview.setText(text);
@@ -157,6 +154,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 Intent myIntent = new Intent(MainActivity.this, settings.class);
                 MainActivity.this.startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
                 return true;
+            case android.R.id.home:
+                Intent intent2 = new Intent(MainActivity.this, favourites.class);
+                MainActivity.this.startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
             default:
                 return super.onOptionsItemSelected(item);
         }
