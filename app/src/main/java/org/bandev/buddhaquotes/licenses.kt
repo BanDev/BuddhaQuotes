@@ -24,6 +24,7 @@ class licenses : AppCompatActivity() {
         val b = intent.extras // or other values
         when (b!!.getString("from")) {
             "Kotlin" -> url2 = "file:///android_asset/kotlin.txt"
+            "Androidx" -> url2 = "file:///android_asset/androidx.txt"
             "Material Design Icons" -> url2 = "file:///android_asset/mdi.txt"
             else -> {
                 url2 = "file:///android_asset/license.txt"
