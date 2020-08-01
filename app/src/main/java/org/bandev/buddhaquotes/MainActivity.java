@@ -71,9 +71,6 @@ public class MainActivity extends AppCompatActivity{
             case "lg":
                 font_size = "50";
                 break;
-            case "xlg":
-                font_size = "60";
-                break;
             default:
                 font_size = "40";
                 break;

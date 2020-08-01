@@ -29,9 +29,6 @@ public class licenses extends AppCompatActivity {
         Bundle b = getIntent().getExtras();// or other values
 
         switch(b.getString("from")){
-            case "Material Design Lite":
-                url2 = "file:///android_asset/mdl.html";
-                break;
             case "Material Design Icons":
                 url2 = "file:///android_asset/mdi.html";
                 break;

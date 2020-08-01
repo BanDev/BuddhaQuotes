@@ -58,9 +58,8 @@ public class oss_libraries extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // TODO Auto-generated method stub
-                String value=adapter.getItem(position);
 
+                String value=adapter.getItem(position);
                 Intent intent = new Intent(oss_libraries.this, licenses.class);
                 Bundle b = new Bundle();
                 b.putString("from", value); //Your id

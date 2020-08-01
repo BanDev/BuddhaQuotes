@@ -1,7 +1,7 @@
 package org.bandev.buddhaquotes;
 
 public class Quote {
-    int maxQuote = 200;
+    int maxQuote = 201;
     public String random(){
         int num = (int)getRandomIntegerBetweenRange(0,maxQuote);
         String text = "";
