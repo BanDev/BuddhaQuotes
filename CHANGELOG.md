@@ -1,5 +1,7 @@
 # Changelog
 
+### 1.2 (Unreleased)
+
 ### 1.1 (01/08/2020)
 
 #### Added:
@@ -14,6 +16,6 @@
 - Improved dark mode
 - Code optimisations
 - Buddha image changed
-- Fixed the flicker after changing app theme
+- Fixed flicker after changing app theme
 
 ### 1.0 (28/07/2020) - Release
