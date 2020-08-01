@@ -19,5 +19,5 @@
 
     <string-array name="array_technology">
         <item>Material Design Icons</item>
-    </string-array>
+        <item>Kotlin</item></string-array>
 </resources>

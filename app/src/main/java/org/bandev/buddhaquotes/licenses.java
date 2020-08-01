@@ -29,6 +29,9 @@ public class licenses extends AppCompatActivity {
         Bundle b = getIntent().getExtras();// or other values
 
         switch(b.getString("from")){
+            case "Kotlin":
+                url2 = "file:///android_asset/kotlin.txt";
+                break;
             case "Material Design Icons":
                 url2 = "file:///android_asset/mdi.txt";
                 break;
