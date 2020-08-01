@@ -8,7 +8,7 @@
 
 #### Changed:
 
-- Ported all the code to Java
+- Ported all the code to Java or Kotlin
 - Major code optimisations
 - Fixed flicker bug remaining on some devices
 
