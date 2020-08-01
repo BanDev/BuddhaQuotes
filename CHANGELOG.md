@@ -4,11 +4,11 @@
 
 #### Added:
 
-- 
+- Favourites
 
 #### Changed:
 
-- Ported all the code to Java or Kotlin
+- Converted all the code to Java or Kotlin
 - Major code optimisations
 - Fixed flicker bug remaining on some devices
 
