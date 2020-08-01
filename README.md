@@ -23,6 +23,11 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 - Completely offline
 - Small file size < 5MB!
 
-## Upcoming Features
+## Screenshots
 
-- Favourited quotes
+<img src="screenshots/Screenshot_20200801-214828.jpg" alt="Quotes in light mode" width="193"/>
+<img src="screenshots/Screenshot_20200801-214847.jpg" alt="Quotes in light mode" width="193"/>
+<img src="screenshots/Screenshot_20200801-214856.jpg" alt="Quotes in light mode" width="193"/>
+<img src="screenshots/Screenshot_20200801-214838.jpg" alt="Quotes in light mode" width="193"/>
+<img src="screenshots/Screenshot_20200801-214852.jpg" alt="Quotes in light mode" width="193"/>
+<img src="screenshots/Screenshot_20200801-214859.jpg" alt="Quotes in light mode" width="193"/>
