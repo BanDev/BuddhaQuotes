@@ -30,10 +30,10 @@ public class licenses extends AppCompatActivity {
 
         switch(b.getString("from")){
             case "Material Design Icons":
-                url2 = "file:///android_asset/mdi.html";
+                url2 = "file:///android_asset/mdi.txt";
                 break;
             default:
-                url2 = "file:///android_asset/license.html";
+                url2 = "file:///android_asset/license.txt";
                 from_settings = true;
                 break;
         }
