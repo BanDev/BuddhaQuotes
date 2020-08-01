@@ -21,12 +21,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".about"
+            android:label="About" />
+        <activity
             android:name=".settings"
             android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".about"
-            android:label="About"
-            android:theme="@style/AppTheme" />
         <activity android:name=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
