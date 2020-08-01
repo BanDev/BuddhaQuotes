@@ -3,12 +3,15 @@ package org.bandev.buddhaquotes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.webkit.WebSettingsCompat;
+import androidx.webkit.WebViewFeature;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +44,10 @@ public class licenses extends AppCompatActivity {
                 break;
         }
 
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        }
+
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -48,10 +55,14 @@ public class licenses extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        final WebView browser = (WebView) findViewById(R.id.webview);
+        final ProgressBar progress = findViewById(R.id.loader);
         int nightModeFlags = this.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         switch (nightModeFlags) {
             case Configuration.UI_MODE_NIGHT_YES:
+                if(WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                    WebSettingsCompat.setForceDark(browser.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+                }
                 break;
             case Configuration.UI_MODE_NIGHT_NO:
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -62,9 +73,10 @@ public class licenses extends AppCompatActivity {
                 break;
         }
 
-        final ProgressBar progress = findViewById(R.id.loader);
 
-        final WebView browser = (WebView) findViewById(R.id.webview);
+
+
+
         browser.loadUrl(url2);
         browser.setVisibility(View.GONE);
         browser.getSettings().setJavaScriptEnabled(true);

@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,6 +64,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_baseline_stars_24);
+        myToolbar.setNavigationIcon(drawable);
+        setSupportActionBar(myToolbar);
+
 
         textview = findViewById(R.id.text);
         fab = findViewById(R.id.refresh);
@@ -82,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 break;
         }
         Log.d("text_size", font_size);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        }
 
         textview.setTextSize(Float.parseFloat(font_size));
 

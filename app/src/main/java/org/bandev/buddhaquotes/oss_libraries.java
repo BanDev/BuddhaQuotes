@@ -8,6 +8,7 @@ import android.app.ActivityOptions;
 import android.app.LauncherActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,6 +69,10 @@ public class oss_libraries extends AppCompatActivity {
 
             }
         });
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        }
 
     }
 

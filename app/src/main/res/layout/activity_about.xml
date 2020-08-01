@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".about">
 
     <androidx.appcompat.widget.Toolbar
@@ -11,10 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="0dp"
         android:paddingEnd="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
             android:id="@+id/tv_toolbar_custom"
@@ -46,8 +46,8 @@
         android:layout_height="91dp"
         android:layout_marginTop="16dp"
         android:text="Buddha Quotes"
-        android:textColor="?android:attr/textColorPrimary"
         android:textAlignment="center"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +56,12 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:textColor="?android:attr/textColorPrimary"
         android:layout_width="270dp"
         android:layout_height="44dp"
         android:layout_marginTop="60dp"
         android:text="App Promise"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,12 +72,12 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="271dp"
-        android:textColor="?android:attr/textColorPrimary"
         android:layout_height="32dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="112dp"
         android:text="No trackers"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -85,12 +85,12 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="262dp"
-        android:textColor="?android:attr/textColorPrimary"
         android:layout_height="31dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="120dp"
         android:text="No ads"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -98,12 +98,12 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="262dp"
-        android:textColor="?android:attr/textColorPrimary"
         android:layout_height="31dp"
         android:layout_marginTop="276dp"
         android:layout_marginEnd="120dp"
         android:text="Complete privacy"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -112,11 +112,11 @@
         android:id="@+id/textView7"
         android:layout_width="262dp"
         android:layout_height="31dp"
-        android:textColor="?android:attr/textColorPrimary"
         android:layout_marginTop="332dp"
         android:layout_marginEnd="120dp"
         android:text="Offline app"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -127,9 +127,9 @@
         android:layout_height="31dp"
         android:layout_marginTop="384dp"
         android:layout_marginEnd="120dp"
-        android:textColor="?android:attr/textColorPrimary"
         android:text="Free &amp; Open Source"
         android:textAlignment="viewStart"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -175,7 +175,7 @@
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@drawable/bd_round" />
+        app:srcCompat="@drawable/picture2" />
 
     <ImageView
         android:id="@+id/imageView3"

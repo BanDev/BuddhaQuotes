@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -21,6 +22,10 @@ class about : AppCompatActivity() {
         val actionBar = supportActionBar
         assert(supportActionBar != null //null check
         )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = resources.getColor(R.color.colorPrimary)
+        }
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
