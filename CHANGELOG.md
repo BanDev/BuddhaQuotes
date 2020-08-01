@@ -2,6 +2,16 @@
 
 ### 1.2 (Unreleased)
 
+#### Added:
+
+- 
+
+#### Changed:
+
+- Ported all the code to Java
+- Major code optimisations
+- Fixed flicker bug remaining on some devices
+
 ### 1.1 (01/08/2020)
 
 #### Added:
