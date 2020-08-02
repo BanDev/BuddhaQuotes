@@ -46,6 +46,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static java.util.Locale.US;
@@ -59,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     Quote quote = new Quote();
     FloatingActionButton fab;
     FloatingActionButton fab2;
+    List<String> list;
+    String[] favs;
+    String[] array;
     String font_size;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
         final SharedPreferences pref = this.getSharedPreferences("Favs", 0);
         final SharedPreferences.Editor editor = pref.edit();
-        final String[] favs = {pref.getString("fav", "")};
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,12 +138,12 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(!done) {
-                    String[] array = favs[0].split("//VADER//");
                     if (favs[0] != "") {
                         favs[0] = textview.getText() + "//VADER//" + favs[0];
                     } else {
-                        favs[0] = (String) textview.getText();
+                        favs[0] = (String) textview.getText() + "//VADER//";
                     }
                     Toast.makeText(MainActivity.this, "Added to favourites", Toast.LENGTH_SHORT).show();
                     editor.putString("fav", favs[0]);
@@ -148,7 +152,25 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                     done = true;
                     fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.heart_full_white));
                 }else{
-                    Toast.makeText(MainActivity.this, "You Already Like This", Toast.LENGTH_SHORT).show();
+                    fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.like_white_empty));
+                    favs = new String[]{pref.getString("fav", "")};
+
+                    String[] array = favs[0].split("//VADER//");
+                    List<String> list = new ArrayList<String>(Arrays.asList(array));
+                    String text = (String)textview.getText();
+                    list.remove(text);
+                    array = list.toArray(new String[0]);
+
+                    String sb = "";
+
+                    for(int i = 0; i < array.length; i++) {
+                        sb = sb + array[i] + "//VADER//";
+                    }
+                    Log.d("Array", sb);
+                    editor.putString("fav", sb);
+                    editor.commit();
+                    Toast.makeText(MainActivity.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -166,6 +188,16 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         textview.setText(text);
         done = false;
         fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_baseline_stars_24));
+        final SharedPreferences pref = this.getSharedPreferences("Favs", 0);
+        final SharedPreferences.Editor editor = pref.edit();
+        favs = new String[]{pref.getString("fav", "")};
+        array = favs[0].split("//VADER//");
+
+        list = Arrays.asList(array);
+        if(list.contains(textview.getText())){
+            done = true;
+            fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.heart_full_white));
+        }
     }
 
 

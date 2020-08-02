@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="0dp"
+        android:elevation="4dp"
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
         android:textAlignment="center"
