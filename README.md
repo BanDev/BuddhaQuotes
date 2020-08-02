@@ -15,7 +15,8 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 ## Features
 
 - Dark mode
-- Over 200 quotes!
+- Over 250 quotes!
+- Favourite quotes
 - Free and Open Source
 - No ads
 - No trackers
