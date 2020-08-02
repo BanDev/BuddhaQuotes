@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
@@ -59,5 +60,18 @@ class favourites : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
+        return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // add your animation
+        overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
     }
 }

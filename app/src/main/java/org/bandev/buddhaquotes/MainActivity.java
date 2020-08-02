@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 if(!done) {
                     String[] array = favs[0].split("//VADER//");
                     if (favs[0] != "") {
-                        favs[0] = favs[0] + "//VADER//" + textview.getText();
+                        favs[0] = textview.getText() + "//VADER//" + favs[0];
                     } else {
                         favs[0] = (String) textview.getText();
                     }
