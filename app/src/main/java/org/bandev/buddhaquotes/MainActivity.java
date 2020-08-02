@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
+import androidx.preference.ListPreference;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -43,15 +44,21 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import static java.util.Locale.US;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
 
+    Boolean done;
+
     TextView textview;
     Quote quote = new Quote();
     FloatingActionButton fab;
+    FloatingActionButton fab2;
     String font_size;
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
@@ -64,13 +71,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_baseline_stars_24);
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.heart_black);
         myToolbar.setNavigationIcon(drawable);
         setSupportActionBar(myToolbar);
 
 
         textview = findViewById(R.id.text);
         fab = findViewById(R.id.refresh);
+        fab2 = findViewById(R.id.fav2);
 
 
 
@@ -112,10 +120,36 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 break;
         }
         newQuote();
+
+        final SharedPreferences pref = this.getSharedPreferences("Favs", 0);
+        final SharedPreferences.Editor editor = pref.edit();
+        final String[] favs = {pref.getString("fav", "")};
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 newQuote();
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!done) {
+                    String[] array = favs[0].split("//VADER//");
+                    if (favs[0] != "") {
+                        favs[0] = favs[0] + "//VADER//" + textview.getText();
+                    } else {
+                        favs[0] = (String) textview.getText();
+                    }
+                    Toast.makeText(MainActivity.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+                    editor.putString("fav", favs[0]);
+                    editor.commit();
+                    Log.d("Array", favs[0]);
+                    done = true;
+                    fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.heart_full_white));
+                }else{
+                    Toast.makeText(MainActivity.this, "You Already Like This", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -130,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     void newQuote(){
         String text = quote.random();
         textview.setText(text);
+        done = false;
+        fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.ic_baseline_stars_24));
     }
 
 
@@ -152,11 +188,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         switch (item.getItemId()) {
             case R.id.menu_main_setting:
                 Intent myIntent = new Intent(MainActivity.this, settings.class);
-                MainActivity.this.startActivity(myIntent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                MainActivity.this.startActivity(myIntent);
+                this.overridePendingTransition(R.anim.anim_slide_in_left,
+                        R.anim.anim_slide_out_left);
                 return true;
             case android.R.id.home:
                 Intent intent2 = new Intent(MainActivity.this, favourites.class);
-                MainActivity.this.startActivity(intent2, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                MainActivity.this.startActivity(intent2);
+                this.overridePendingTransition(R.anim.anim_slide_in_right,
+                        R.anim.anim_slide_out_right);
             default:
                 return super.onOptionsItemSelected(item);
         }

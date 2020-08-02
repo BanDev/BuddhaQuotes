@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         android:paddingEnd="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -29,5 +30,17 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:gravity="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,4 +68,17 @@
         app:maxImageSize="40dp"
         app:srcCompat="@drawable/ic_baseline_refresh_24" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fav2"
+        android:layout_width="56dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintStart_toEndOf="@+id/refresh"
+        app:maxImageSize="30dp"
+        app:srcCompat="@drawable/ic_baseline_stars_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,7 +33,6 @@ class oss_libraries : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         val listview = findViewById<View>(R.id.listView) as ListView
-        val textView = findViewById<View>(R.id.textView) as TextView
         val listItem = resources.getStringArray(R.array.array_technology)
         val adapter = ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listItem)

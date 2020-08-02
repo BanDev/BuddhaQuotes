@@ -153,7 +153,9 @@ public class settings extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent i = new Intent(this, MainActivity.class);
-                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(settings.this).toBundle());
+                startActivity(i);
+                this.overridePendingTransition(R.anim.anim_slide_in_right,
+                        R.anim.anim_slide_out_right);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
