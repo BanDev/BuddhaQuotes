@@ -5,12 +5,14 @@
 #### Added:
 
 - Favourites
+- ~50 more quotes
 
 #### Changed:
 
 - Converted all the code to Java or Kotlin
 - Major code optimisations
 - Fixed flicker bug remaining on some devices
+- Corrected quotes typos
 
 ### 1.1 (01/08/2020)
 
