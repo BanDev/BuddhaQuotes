@@ -5,13 +5,12 @@
 #### Added:
 
 - Favourites
-- ~50 more quotes
+- ~110 more quotes
 
 #### Changed:
 
 - Converted all the code to Java or Kotlin
 - Major code optimisations
-- Fixed flicker bug remaining on some devices
 - Corrected quotes typos
 
 ### 1.1 (01/08/2020)
@@ -28,6 +27,4 @@
 - Improved dark mode
 - Code optimisations
 - Buddha image changed
-- Fixed flicker after changing app theme
-
 ### 1.0 (28/07/2020) - Release
