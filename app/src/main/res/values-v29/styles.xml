@@ -5,6 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:forceDarkAllowed">true</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>

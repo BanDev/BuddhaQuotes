@@ -7,4 +7,5 @@
     <item name="background">@color/colorPrimary</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    <item name="android:windowLightStatusBar">false</item>
 </style></resources>

@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 
@@ -23,5 +24,6 @@
         <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

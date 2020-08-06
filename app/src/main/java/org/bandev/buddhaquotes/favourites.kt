@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.system.Os.remove
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -38,7 +39,7 @@ class favourites : AppCompatActivity() {
         val pref = getSharedPreferences("Favs", 0)
         val editor = pref.edit()
         val favs = arrayOf(pref.getString("fav", ""))
-        val array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+        var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
         val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
         listview.adapter = adapter
         listview.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->

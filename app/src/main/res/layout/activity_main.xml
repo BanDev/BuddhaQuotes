@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/main">
 
     <ImageView
         android:id="@+id/imageView11"
@@ -16,22 +17,24 @@
         app:srcCompat="@drawable/buddha" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:paddingStart="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="80dp"
         android:paddingEnd="20dp"
         android:text="TextView"
         android:textAlignment="textStart"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -40,6 +43,7 @@
         android:paddingEnd="10dp"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
@@ -69,7 +73,7 @@
         app:srcCompat="@drawable/ic_baseline_refresh_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fav2"
+        android:id="@+id/favourite"
         android:layout_width="73dp"
         android:layout_height="55dp"
         android:layout_marginBottom="16dp"
