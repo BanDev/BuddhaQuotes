@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -15,9 +15,9 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Splash" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="android:background">@drawable/launch_theme</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>

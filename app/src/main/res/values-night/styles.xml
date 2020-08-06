@@ -3,7 +3,6 @@
     <!-- Customize your theme here. -->
     <item name="android:navigationBarColor">@color/colorPrimary</item>
     <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimarySurface">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimary</item>
     <item name="background">@color/colorPrimary</item>
     <item name="colorAccent">@color/colorAccent</item>

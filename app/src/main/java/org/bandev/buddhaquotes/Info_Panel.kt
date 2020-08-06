@@ -1,29 +1,43 @@
 package org.bandev.buddhaquotes
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import java.security.AccessController.getContext
 
-class favourites : AppCompatActivity() {
+class Info_Panel : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favourites)
-        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setContentView(R.layout.activity_info__panel)
+
+
+
+
+        val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         }
+        val intent = getIntent()
+        val quote = intent.getStringExtra("quote")
+        val textview = findViewById<TextView>(R.id.text)
+        textview.setText(quote)
+
+
+        //Is user using night mode
         val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -34,24 +48,25 @@ class favourites : AppCompatActivity() {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
-        val listview = findViewById<View>(R.id.listView) as ListView
-        val pref = getSharedPreferences("Favs", 0)
-        val editor = pref.edit()
-        val favs = arrayOf(pref.getString("fav", ""))
-        val array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
-        val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
-        listview.adapter = adapter
-        listview.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
-            val value = adapter.getItem(position)
-            val intent = Intent(this@favourites, Info_Panel::class.java)
-            val b = Bundle()
-            b.putString("quote", value) //Your id
-            intent.putExtras(b) //Put your id to your next Intent
-            startActivity(intent)
-            overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right)
+        val contextView = findViewById<View>(R.id.view)
+
+        val fab = findViewById<FloatingActionButton>(R.id.delete)
+
+        fab.setOnClickListener {
+
+            // Respond to FAB click
+            Snackbar.make(contextView, "Removed From Favourites", Snackbar.LENGTH_SHORT)
+                    .setAction("Add Back") {
+                        // Responds to click on the action
+                    }
+                    .show()
         }
+
+
+
+
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.fav_menu, menu)
@@ -61,8 +76,8 @@ class favourites : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back -> {
-                val myIntent = Intent(this@favourites, MainActivity::class.java)
-                this@favourites.startActivity(myIntent)
+                val myIntent = Intent(this@Info_Panel, favourites::class.java)
+                this@Info_Panel.startActivity(myIntent)
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left)
                 true

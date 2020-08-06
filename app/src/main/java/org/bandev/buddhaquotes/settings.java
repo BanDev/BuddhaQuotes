@@ -24,7 +24,7 @@ import static android.app.UiModeManager.MODE_NIGHT_NO;
 import static android.app.UiModeManager.MODE_NIGHT_YES;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 
-public class settings extends AppCompatActivity {
+public class  settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +133,8 @@ public class settings extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp(){
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(settings.this).toBundle());
+        this.overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right);
 
         return true;
     }
@@ -143,8 +143,8 @@ public class settings extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         // add your animation
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(settings.this).toBundle());
+        this.overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right);
 
     }
 

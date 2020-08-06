@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes;
 
+import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -150,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                     editor.commit();
                     Log.d("Array", favs[0]);
                     done = true;
-                    fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.heart_full_white));
+                            fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.heart_full_white));
                 }else{
                     fab2.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, R.drawable.like_white_empty));
                     favs = new String[]{pref.getString("fav", "")};
