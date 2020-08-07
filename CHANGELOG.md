@@ -9,7 +9,7 @@
 
 #### Changed:
 
-- Converted all the code to Java or Kotlin
+- Converted or rewrote all code to Java or Kotlin
 - Major code optimisations
 - Corrected quotes typos
 
