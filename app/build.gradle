@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.bandev.myapplication"
+        applicationId "org.bandev.buddhaquotes"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -47,5 +47,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 }
