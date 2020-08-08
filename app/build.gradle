@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    lintOptions {
-        abortOnError false
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
 
@@ -18,11 +16,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.bandev.buddhaquotes"
+        applicationId "org.bandev.myapplication"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 1001
-        versionName "1.1"
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +28,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -49,8 +48,4 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-}
-repositories {
-    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-    mavenCentral()
 }

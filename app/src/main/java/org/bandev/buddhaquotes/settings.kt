@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes
 
+import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
@@ -7,12 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceScreen
 
 class settings : AppCompatActivity() {
 
@@ -47,9 +51,33 @@ class settings : AppCompatActivity() {
         assert(supportActionBar != null //null check
         )
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+
     }
 
+
     class SettingsFragment : PreferenceFragmentCompat() {
+
+        override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+            val key = preference?.key
+            if (key == "about") {
+                val i = Intent(getActivity(), about::class.java)
+                startActivity(i)
+            } else if(key == "license"){
+                val i = Intent(getActivity(), licenses::class.java)
+                val b = Bundle()
+                b.putString("from", "settings") //Your id
+                i.putExtras(b)
+                startActivity(i)
+            } else if(key == "oss_libraries"){
+                val i = Intent(getActivity(), oss_libraries::class.java)
+                val b = Bundle()
+                b.putString("from", "settings") //Your id
+                i.putExtras(b)
+                startActivity(i)
+            }
+            return true
+        }
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()

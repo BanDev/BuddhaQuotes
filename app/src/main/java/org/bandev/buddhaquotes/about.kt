@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar
 class about : AppCompatActivity() {
     var identifier: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
@@ -42,16 +44,25 @@ class about : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 val i = Intent(this, settings::class.java)
-                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivity(i)
+                overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // add your animation
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        val i = Intent(this, settings::class.java)
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
         return true
     }
 }

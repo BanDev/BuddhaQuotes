@@ -29,31 +29,20 @@
             android:key="about"
             android:title="About"
             app:icon="@drawable/ic_baseline_info_24">
-            <intent
-                android:action="org.bandev.buddhaquotes.about"
-                android:targetClass="org.bandev.buddhaquotes.about"
-                android:targetPackage="org.bandev.buddhaquotes" />
+
         </Preference>
         <Preference
             android:key="license"
             android:title="App Licence"
             android:summary="GPLv3"
             app:icon="@drawable/ic_baseline_gavel_24">
-            <intent
-                android:action="org.bandev.buddhaquotes.licenses"
-                android:targetClass="org.bandev.buddhaquotes.licenses"
-                android:targetPackage="org.bandev.buddhaquotes" >
-                <extra android:name="from" android:value="main" />
-            </intent>
+
         </Preference>
         <Preference
-            android:key="oss_license"
+            android:key="oss_libraries"
             android:title="Open Source Libraries"
             app:icon="@drawable/ic_baseline_library_books_24">
-            <intent
-                android:action="org.bandev.buddhaquotes.oss_libraries"
-                android:targetClass="org.bandev.buddhaquotes.oss_libraries"
-                android:targetPackage="org.bandev.buddhaquotes" />
+
         </Preference>
     </PreferenceCategory>
 

@@ -1,9 +1,2 @@
-pluginManagement {
-    repositories {
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-        mavenCentral()
-        maven { url 'https://plugins.gradle.org/m2/' }
-    }
-}
 include ':app'
-rootProject.name = "Buddha Quotes"
+rootProject.name = "My Application"

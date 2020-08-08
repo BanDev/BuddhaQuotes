@@ -18,6 +18,8 @@ import androidx.webkit.WebViewFeature
 class licenses : AppCompatActivity() {
     var from_settings = false
     override fun onCreate(savedInstanceState: Bundle?) {
+        overridePendingTransition(R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_licenses)
         val url2: String
@@ -26,9 +28,14 @@ class licenses : AppCompatActivity() {
             "Kotlin" -> url2 = "file:///android_asset/kotlin.txt"
             "Androidx" -> url2 = "file:///android_asset/androidx.txt"
             "Material Design Icons" -> url2 = "file:///android_asset/mdi.txt"
-            else -> {
+            "Settings" -> {
                 url2 = "file:///android_asset/license.txt"
                 from_settings = true
+            }
+            else ->{
+                url2 = "file:///android_asset/license.txt"
+                from_settings = true
+
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -67,10 +74,16 @@ class licenses : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         if (from_settings) {
             val i = Intent(this, settings::class.java)
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(i)
+            overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right)
         } else {
             val i = Intent(this, oss_libraries::class.java)
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val b = Bundle()
+            b.putString("from", "licenses") //Your id
+            i.putExtras(b)
+            startActivity(i)
+
         }
         return true
     }
@@ -80,10 +93,15 @@ class licenses : AppCompatActivity() {
         // add your animation
         if (from_settings) {
             val i = Intent(this, settings::class.java)
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(i)
+            overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right)
         } else {
             val i = Intent(this, oss_libraries::class.java)
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val b = Bundle()
+            b.putString("from", "licenses") //Your id
+            i.putExtras(b)
+            startActivity(i)
         }
     }
 
@@ -92,10 +110,15 @@ class licenses : AppCompatActivity() {
             android.R.id.home -> {
                 if (from_settings) {
                     val i = Intent(this, settings::class.java)
-                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                    startActivity(i)
+                    overridePendingTransition(R.anim.anim_slide_in_right,
+                        R.anim.anim_slide_out_right)
                 } else {
                     val i = Intent(this, oss_libraries::class.java)
-                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                    val b = Bundle()
+                    b.putString("from", "licenses") //Your id
+                    i.putExtras(b)
+                    startActivity(i)
                 }
                 true
             }

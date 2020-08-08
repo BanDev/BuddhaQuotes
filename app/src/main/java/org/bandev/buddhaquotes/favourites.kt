@@ -1,11 +1,9 @@
 package org.bandev.buddhaquotes
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.system.Os.remove
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import java.util.*
 
 class favourites : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,13 +43,17 @@ class favourites : AppCompatActivity() {
         listview.adapter = adapter
         listview.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->
             val value = adapter.getItem(position)
-            val intent = Intent(this@favourites, Info_Panel::class.java)
-            val b = Bundle()
-            b.putString("quote", value) //Your id
-            intent.putExtras(b) //Put your id to your next Intent
-            startActivity(intent)
-            overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right)
+            if(value.toString() != "") {
+                val intent = Intent(this@favourites, Info_Panel::class.java)
+                val b = Bundle()
+                b.putString("quote", value.toString()) //Your id
+                intent.putExtras(b) //Put your id to your next Intent
+                startActivity(intent)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
+            }
         }
     }
 
@@ -85,3 +88,4 @@ class favourites : AppCompatActivity() {
                 R.anim.anim_slide_out_left)
     }
 }
+

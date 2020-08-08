@@ -98,7 +98,9 @@ class MainActivity : AppCompatActivity() {
                 array = list.toTypedArray()
                 var sb = ""
                 for (i in array.indices) {
-                    sb = sb + array[i] + "//VADER//"
+                    if(array[i] != "") {
+                        sb = sb + array[i] + "//VADER//"
+                    }
                 }
                 Log.d("Array", sb)
                 editor.putString("fav", sb)

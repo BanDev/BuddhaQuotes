@@ -17,6 +17,13 @@ import androidx.appcompat.widget.Toolbar
 
 class oss_libraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val b = intent.extras // or other values
+        when (b!!.getString("from")) {
+            "settings" -> overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
+            "licenses" -> overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oss_libraries)
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
@@ -51,30 +58,29 @@ class oss_libraries : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val i = Intent(this, settings::class.java)
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
-        return true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                val i = Intent(this, settings::class.java)
+                startActivity(i)
+                overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val i = Intent(this, settings::class.java)
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                val i = Intent(this, settings::class.java)
-                startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
+        return true
     }
 }
