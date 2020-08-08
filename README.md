@@ -6,7 +6,7 @@
 
 # Buddha Quotes
 
-![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png)
+![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp)
 
 A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
 
