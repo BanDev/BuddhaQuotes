@@ -9,8 +9,7 @@
 
 #### Changed:
 
-- Converted or rewrote all code to Java or Kotlin
-- Major code optimisations
+- Rewrote all code in Kotlin
 - Corrected quotes typos
 
 ### 1.1 (01/08/2020)
