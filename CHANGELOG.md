@@ -11,6 +11,8 @@
 
 - Rewrote all code in Kotlin
 - Corrected quotes typos
+- Converted all PNGs to WebP
+- File size decreased to ~1.7MB
 
 ### 1.1 (01/08/2020)
 
