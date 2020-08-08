@@ -29,9 +29,6 @@ class Info_Panel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info__panel)
 
-
-
-
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
