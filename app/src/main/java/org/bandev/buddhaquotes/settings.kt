@@ -33,13 +33,6 @@ class settings : AppCompatActivity() {
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val sharedPreferences = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-        if (darkmode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
         val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         when (nightModeFlags) {
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -85,7 +78,7 @@ class settings : AppCompatActivity() {
             val screen = preferenceScreen
             val listPreference = findPreference<Preference>("theme") as ListPreference?
             if (listPreference!!.value == null) {
-                listPreference.setValueIndex(0) //set to index of your deafult value
+                listPreference.setValueIndex(2) //set to index of your deafult value
             }
             listPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
                 listPreference.value = newValue.toString()
@@ -94,11 +87,19 @@ class settings : AppCompatActivity() {
                 if (theme == "Light") {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     editor.putBoolean("dark_mode", false)
+                    editor.putBoolean("sys", false)
                     editor.commit()
                 }
                 if (theme == "Dark") {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     editor.putBoolean("dark_mode", true)
+                    editor.putBoolean("sys", false)
+                    editor.commit()
+                }
+                if (theme == "Follow system default") {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    editor.putBoolean("dark_mode", false)
+                    editor.putBoolean("sys", true)
                     editor.commit()
                 }
                 true

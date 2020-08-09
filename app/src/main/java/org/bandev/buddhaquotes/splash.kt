@@ -3,6 +3,8 @@ package org.bandev.buddhaquotes
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
@@ -11,7 +13,10 @@ class splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-        if (darkmode) {
+        val sys = sharedPreferences.getBoolean("sys", true)
+        if (sys){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        }else if (darkmode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

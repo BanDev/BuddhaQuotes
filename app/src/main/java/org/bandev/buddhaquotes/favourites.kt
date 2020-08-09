@@ -39,6 +39,7 @@ class favourites : AppCompatActivity() {
         val editor = pref.edit()
         val favs = arrayOf(pref.getString("fav", ""))
         var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+        array = array.distinct().toTypedArray()
         val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
         listview.adapter = adapter
         listview.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, l ->

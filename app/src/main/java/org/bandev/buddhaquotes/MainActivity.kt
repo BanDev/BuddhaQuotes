@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -17,6 +18,7 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,7 +57,9 @@ class MainActivity : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.navigationBarColor = resources.getColor(R.color.colorPrimary)
+        }
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         Settings = getSharedPreferences("Settings", 0);
         var text_size: String? = Settings?.getString("text_size", "md")
@@ -72,30 +76,34 @@ class MainActivity : AppCompatActivity() {
         val Favourites = getSharedPreferences("Favs", 0)
         val editor = Favourites.edit()
 
+
+
         //When Favourite Is Clicked
         favourite!!.setOnClickListener(View.OnClickListener {
             if (!done!!) {
+                favourite!!.isEnabled = false
                 //If It Is Not Liked Already
                 if (favs[0] != "") {
                     favs[0] = QuoteView!!.getText().toString() + "//VADER//" + favs[0]
                 } else {
                     favs[0] = QuoteView!!.getText() as String + "//VADER//"
                 }
-                Toast.makeText(this@MainActivity, "Added to favourites", Toast.LENGTH_SHORT).show()
                 editor.putString("fav", favs[0])
                 editor.commit()
                 Log.d("Array", favs[0]!!)
                 done = true
                 favourite!!.setImageDrawable(ContextCompat.getDrawable(this@MainActivity, R.drawable.heart_full_white))
+                favourite!!.isEnabled = true
             } else {
                 //If It Is Already Liked
-                favourite!!.setImageDrawable(ContextCompat.getDrawable(this@MainActivity, R.drawable.like_white_empty))
+                favourite!!.isEnabled = false
                 favs = arrayOf<String?>(Favourites.getString("fav", ""))!!
                 var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
                 val list: MutableList<String> = ArrayList(Arrays.asList(*array))
                 val text = QuoteView!!.getText() as String
                 list.remove(text)
                 array = list.toTypedArray()
+                array = array.distinct().toTypedArray()
                 var sb = ""
                 for (i in array.indices) {
                     if(array[i] != "") {
@@ -105,11 +113,13 @@ class MainActivity : AppCompatActivity() {
                 Log.d("Array", sb)
                 editor.putString("fav", sb)
                 editor.commit()
-                Toast.makeText(this@MainActivity, "Removed from favourites", Toast.LENGTH_SHORT).show()
+                done = false
+                favourite!!.setImageDrawable(ContextCompat.getDrawable(this@MainActivity, R.drawable.like_white_empty))
+                favourite!!.isEnabled = true
             }
         })
 
-        //Get The First Quote
+        /* Get The First Quote */
         newQuote()
     }
 
