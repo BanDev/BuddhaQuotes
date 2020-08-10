@@ -70,6 +70,7 @@ class favourites : AppCompatActivity() {
                 this@favourites.startActivity(myIntent)
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -77,16 +78,22 @@ class favourites : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val myIntent = Intent(this@favourites, MainActivity::class.java)
+        this@favourites.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left)
+            R.anim.anim_slide_out_left)
+        finish()
         return true
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
+        val myIntent = Intent(this@favourites, MainActivity::class.java)
+        this@favourites.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left)
+            R.anim.anim_slide_out_left)
+        finish()
     }
 }
 

@@ -47,6 +47,7 @@ class about : AppCompatActivity() {
                 startActivity(i)
                 overridePendingTransition(R.anim.anim_slide_in_right,
                     R.anim.anim_slide_out_right)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -56,13 +57,19 @@ class about : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
+        val i = Intent(this, settings::class.java)
+        startActivity(i)
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
+        finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val i = Intent(this, settings::class.java)
+        startActivity(i)
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
+        finish()
         return true
     }
 }

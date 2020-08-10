@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".licenses">
+    tools:context=".oss_libraries">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"

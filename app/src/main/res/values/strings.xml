@@ -19,6 +19,7 @@
 
     <string-array name="array_technology">
         <item>Material Design Icons</item>
+        <item>Material Design Android</item>
         <item>Kotlin</item>
         <item>Androidx</item>
     </string-array>

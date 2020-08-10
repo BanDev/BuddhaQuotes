@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -57,10 +58,7 @@ class settings : AppCompatActivity() {
                 val i = Intent(getActivity(), about::class.java)
                 startActivity(i)
             } else if(key == "license"){
-                val i = Intent(getActivity(), licenses::class.java)
-                val b = Bundle()
-                b.putString("from", "settings") //Your id
-                i.putExtras(b)
+                val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE"))
                 startActivity(i)
             } else if(key == "oss_libraries"){
                 val i = Intent(getActivity(), oss_libraries::class.java)
@@ -134,16 +132,22 @@ class settings : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val myIntent = Intent(this@settings, MainActivity::class.java)
+        this@settings.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right)
+            R.anim.anim_slide_out_right)
+        finish()
         return true
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
+        val myIntent = Intent(this@settings, MainActivity::class.java)
+        this@settings.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_right,
                 R.anim.anim_slide_out_right)
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -153,6 +157,7 @@ class settings : AppCompatActivity() {
                 startActivity(i)
                 overridePendingTransition(R.anim.anim_slide_in_right,
                         R.anim.anim_slide_out_right)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

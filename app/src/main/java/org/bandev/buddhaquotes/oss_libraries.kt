@@ -1,17 +1,15 @@
 package org.bandev.buddhaquotes
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
@@ -45,13 +43,19 @@ class oss_libraries : AppCompatActivity() {
         val adapter = ArrayAdapter(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listItem)
         listview.adapter = adapter
+        var url = "";
         listview.onItemClickListener = OnItemClickListener { adapterView, view, position, l ->
             val value = adapter.getItem(position)
-            val intent = Intent(this@oss_libraries, licenses::class.java)
-            val b = Bundle()
-            b.putString("from", value) //Your id
-            intent.putExtras(b) //Put your id to your next Intent
-            startActivity(intent)
+            when(value){
+                "Material Design Icons" -> url = "https://github.com/google/material-design-icons/blob/master/LICENSE"
+                "Kotlin" -> url = "https://github.com/JetBrains/kotlin/blob/c5aa35e016aed6f83392e2f2b32fc0a088ee3b83/license/LICENSE.txt"
+                "Androidx" -> url = "https://github.com/androidx/androidx/blob/androidx-master-dev/LICENSE.txt"
+                "Material Design Android" -> url = "https://github.com/material-components/material-components-android/blob/master/LICENSE"
+            }
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(i)
+            overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.navigationBarColor = resources.getColor(R.color.colorPrimary)
@@ -65,6 +69,7 @@ class oss_libraries : AppCompatActivity() {
                 startActivity(i)
                 overridePendingTransition(R.anim.anim_slide_in_right,
                     R.anim.anim_slide_out_right)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -76,11 +81,13 @@ class oss_libraries : AppCompatActivity() {
         // add your animation
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
+        finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
+        finish()
         return true
     }
 }

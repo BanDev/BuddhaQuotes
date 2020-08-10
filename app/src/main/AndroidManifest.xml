@@ -11,7 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Info_Panel"></activity>
         <activity android:name=".oss_libraries" />
-        <activity android:name=".licenses" />
         <activity android:name=".favourites" />
         <activity
             android:name=".splash"

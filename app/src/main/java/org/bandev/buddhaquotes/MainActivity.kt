@@ -61,12 +61,12 @@ class MainActivity : AppCompatActivity() {
             window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         }
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
-        Settings = getSharedPreferences("Settings", 0);
+        Settings = getSharedPreferences("Settings", 0)
         var text_size: String? = Settings?.getString("text_size", "md")
         when (text_size) {
             "sm" -> font_size = "30"
-            "lg" -> font_size = "50";
-            else -> font_size = "40";
+            "lg" -> font_size = "50"
+            else -> font_size = "40"
         }
         QuoteView!!.setTextSize(font_size!!.toFloat());
 
@@ -161,5 +161,16 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        this.finishAffinity();
+        return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // add your animation
+        this.finishAffinity();
     }
 }

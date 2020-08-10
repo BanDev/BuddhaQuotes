@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,8 @@ class Info_Panel : AppCompatActivity() {
     var list: List<String?>? = null
     lateinit var favs: Array<String?>
     lateinit var array: Array<String?>
+    var Settings: SharedPreferences? = null
+    var font_size:String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,15 @@ class Info_Panel : AppCompatActivity() {
         val quote = intent.getStringExtra("quote")
         val textview = findViewById<TextView>(R.id.text)
         textview.setText(quote)
+
+        Settings = getSharedPreferences("Settings", 0)
+        var text_size: String? = Settings?.getString("text_size", "md")
+        when (text_size) {
+            "sm" -> font_size = "30"
+            "lg" -> font_size = "50"
+            else -> font_size = "40"
+        }
+        textview!!.setTextSize(font_size!!.toFloat());
 
         //Is user using night mode
         val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
@@ -81,12 +93,12 @@ class Info_Panel : AppCompatActivity() {
             Log.d("Array", sb)
             editor.putString("fav", sb)
             editor.commit()
-            Toast.makeText(this@Info_Panel, "Removed from favourites", Toast.LENGTH_SHORT).show()
 
             val myIntent = Intent(this@Info_Panel, favourites::class.java)
             this@Info_Panel.startActivity(myIntent)
             overridePendingTransition(R.anim.anim_slide_in_left,
                     R.anim.anim_slide_out_left)
+            finish()
 
         }
 
@@ -108,6 +120,7 @@ class Info_Panel : AppCompatActivity() {
                 this@Info_Panel.startActivity(myIntent)
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -115,15 +128,21 @@ class Info_Panel : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        this@Info_Panel.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left)
+        finish()
         return true
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
+        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        this@Info_Panel.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left)
+        finish()
     }
 }

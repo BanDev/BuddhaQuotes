@@ -23,5 +23,6 @@ class splash : AppCompatActivity() {
         }
         val i = Intent(this, MainActivity::class.java)
         startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        finish()
     }
 }

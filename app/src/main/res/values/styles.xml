@@ -18,7 +18,7 @@
 
     <style name="Splash" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorAccent</item>
         <item name="android:background">@drawable/launch_theme</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
