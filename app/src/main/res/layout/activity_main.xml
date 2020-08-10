@@ -61,8 +61,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/refresh"
-        android:layout_width="73dp"
-        android:layout_height="55dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:scaleType="center"
@@ -71,12 +71,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="36dp"
         app:srcCompat="@drawable/ic_baseline_refresh_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
-        android:layout_width="73dp"
-        android:layout_height="55dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:scaleType="center"
@@ -85,6 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_stars_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

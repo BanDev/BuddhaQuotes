@@ -52,8 +52,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/delete"
-        android:layout_width="73dp"
-        android:layout_height="55dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
@@ -66,6 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="36dp"
         app:srcCompat="@drawable/ic_baseline_delete_outline_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
