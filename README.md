@@ -1,18 +1,16 @@
-<div align="center">
-<img src="Logo.png"/>
-</div>
-<div align="center">
+<p>
 <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
 <img src="https://img.shields.io/badge/licence-GNU%20GPLv3-blue"/>
 <img src="https://img.shields.io/badge/bandev%20promise-%E2%9C%93%20-brightgreen"/>
-</div>
-<div align="center">
-A collaborative project to create a Free and Open Source Buddha Quotes<br> app for Android with a focus on privacy.
-</div>
-<div align="center">
-<a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="60px"/></a>
-</div>
+</p>
 
+# Buddha Quotes
+
+![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp)
+
+A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
+
+<p><a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="65px"/></a></p>
 
 ## Features
 
