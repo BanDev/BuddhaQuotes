@@ -1,6 +1,6 @@
 # Changelog
 
-### 1.2 (Unreleased)
+### 1.2 (10/08/2020)
 
 #### Added:
 
