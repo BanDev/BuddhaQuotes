@@ -5,7 +5,7 @@
 
 A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
 
-<p><a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="65px"/></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="60px"/></a></p>
 
 ## Features
 
