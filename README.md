@@ -1,11 +1,10 @@
-
 # Buddha Quotes
 
 ![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp)
 
 A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
 
-<p><a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="60px"/></a></p>
+<p><a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes"><img src="google-play-badge__2_.png" height="65px"/></a></p>
 
 ## Features
 
@@ -31,3 +30,8 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 [<img src="Screenshots/Screenshot_20200810-170514.jpg" width=160>](Screenshots/Screenshot_20200810-170514.jpg)
 [<img src="Screenshots/Screenshot_20200810-170501.jpg" width=160>](Screenshots/Screenshot_20200810-170501.jpg)
 [<img src="Screenshots/Screenshot_20200810-170503.jpg" width=160>](Screenshots/Screenshot_20200810-170503.jpg)
+
+## License
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+
+FreeTube is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  
