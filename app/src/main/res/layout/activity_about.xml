@@ -140,7 +140,7 @@
         android:layout_width="249dp"
         android:layout_height="53dp"
         android:layout_marginTop="68dp"
-        android:text="v1.2.0"
+        android:text="v1.2.2"
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
