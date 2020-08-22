@@ -1,0 +1,11 @@
+1.2 (10/08/2020)
+
+Added:
+    - Favourites
+    - ~110 more quotes
+
+Changed:
+    - Rewrote all code in Kotlin
+    - Corrected quotes typos
+    - Converted all PNGs to WebP
+    - File size decreased to ~1.7MB
