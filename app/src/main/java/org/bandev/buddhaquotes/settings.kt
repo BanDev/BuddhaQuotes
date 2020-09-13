@@ -49,18 +49,22 @@ class settings : AppCompatActivity() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             val key = preference?.key
-            if (key == "about") {
-                val i = Intent(activity, about::class.java)
-                startActivity(i)
-            } else if(key == "license"){
-                val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE"))
-                startActivity(i)
-            } else if(key == "oss_libraries"){
-                val i = Intent(activity, oss_libraries::class.java)
-                val b = Bundle()
-                b.putString("from", "settings") //Your id
-                i.putExtras(b)
-                startActivity(i)
+            when (key) {
+                "about" -> {
+                    val i = Intent(activity, about::class.java)
+                    startActivity(i)
+                }
+                "license" -> {
+                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE"))
+                    startActivity(i)
+                }
+                "oss_libraries" -> {
+                    val i = Intent(activity, oss_libraries::class.java)
+                    val b = Bundle()
+                    b.putString("from", "settings") //Your id
+                    i.putExtras(b)
+                    startActivity(i)
+                }
             }
             return true
         }
@@ -71,7 +75,7 @@ class settings : AppCompatActivity() {
             val screen = preferenceScreen
             val listPreference = findPreference<Preference>("theme") as ListPreference?
             if (listPreference!!.value == null) {
-                listPreference.setValueIndex(2) //set to index of your deafult value
+                listPreference.setValueIndex(2) //set to index of your default value
             }
             listPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
                 listPreference.value = newValue.toString()
