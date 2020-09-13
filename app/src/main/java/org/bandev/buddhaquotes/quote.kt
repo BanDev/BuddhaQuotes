@@ -1,7 +1,7 @@
 package org.bandev.buddhaquotes
 
 class Quote {
-    var maxQuote = 311
+    private var maxQuote = 311
     fun random(): String {
         val num = getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
         var text = ""
