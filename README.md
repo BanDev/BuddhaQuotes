@@ -9,7 +9,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
             height="80">](https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes)
 [<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
       alt="Direct download"
-            height="80">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/release/Buddha%20Quotes%20v1.2.2%20.apk)
+            height="80">](https://gitlab.com/bandev/buddha-quotes/-/releases)
 
 ## Features
 
