@@ -13,7 +13,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 
 ## Features
 
-- Dark mode
+- AMOLED mode
 - Over 310 quotes!
 - Favourite quotes
 - Free and Open Source
