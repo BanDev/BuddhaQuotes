@@ -21,7 +21,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 - No trackers
 - No non-free dependencies like Google services
 - Completely offline
-- Small file size < 2MB!
+- Small file size < 5MB!
 
 ## Screenshots
 
