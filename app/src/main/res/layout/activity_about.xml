@@ -18,7 +18,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
-            android:id="@+id/tv_toolbar_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="About"
@@ -39,10 +38,10 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_round" />
+        app:srcCompat="@drawable/ic_launcher_round"
+        android:contentDescription="TODO" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="283dp"
         android:layout_height="91dp"
         android:layout_marginTop="16dp"
@@ -56,14 +55,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="270dp"
         android:layout_height="44dp"
         android:layout_marginTop="60dp"
         android:text="App Promise"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
@@ -71,7 +69,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="271dp"
         android:layout_height="32dp"
         android:layout_marginTop="164dp"
@@ -84,7 +81,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="262dp"
         android:layout_height="31dp"
         android:layout_marginTop="220dp"
@@ -97,7 +93,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView6"
         android:layout_width="262dp"
         android:layout_height="31dp"
         android:layout_marginTop="276dp"
@@ -110,7 +105,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView7"
         android:layout_width="262dp"
         android:layout_height="31dp"
         android:layout_marginTop="332dp"
@@ -123,7 +117,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView8"
         android:layout_width="262dp"
         android:layout_height="31dp"
         android:layout_marginTop="384dp"
@@ -158,7 +151,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <View
-        android:id="@+id/divider2"
         android:layout_width="409dp"
         android:layout_height="1dp"
         android:layout_marginTop="140dp"
@@ -176,65 +168,66 @@
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@drawable/picture2" />
+        app:srcCompat="@drawable/picture2"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView5"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView6"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="276dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView7"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="332dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 
     <ImageView
-        android:id="@+id/imageView8"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="384dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        android:contentDescription="TODO" />
 </androidx.constraintlayout.widget.ConstraintLayout>

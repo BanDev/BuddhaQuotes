@@ -1,36 +1,32 @@
 package org.bandev.buddhaquotes
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class about : AppCompatActivity() {
-    var identifier: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left)
+        overridePendingTransition(
+            R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left
+        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         val actionBar = supportActionBar
-        assert(supportActionBar != null //null check
-        )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = resources.getColor(R.color.colorPrimary)
+        if (BuildConfig.DEBUG && supportActionBar == null) {
+            error("Assertion failed")
         }
+
+        window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        when (nightModeFlags) {
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
             Configuration.UI_MODE_NIGHT_NO ->                 //No

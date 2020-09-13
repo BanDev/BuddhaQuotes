@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity"
-    android:id="@+id/main">
+    tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView11"
         android:layout_width="179dp"
         android:layout_height="342dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/buddha" />
+        app:srcCompat="@drawable/buddha"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/quote"
@@ -47,7 +46,6 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
-            android:id="@+id/tv_toolbar_custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Buddha Quotes"

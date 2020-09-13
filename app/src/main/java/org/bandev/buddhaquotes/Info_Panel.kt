@@ -3,30 +3,22 @@ package org.bandev.buddhaquotes
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import java.security.AccessController.getContext
 import java.util.*
 
 class Info_Panel : AppCompatActivity() {
 
-    var list: List<String?>? = null
-    lateinit var favs: Array<String?>
-    lateinit var array: Array<String?>
-    var Settings: SharedPreferences? = null
-    var font_size:String ?= null
+    private lateinit var favs: Array<String?>
+    private var Settings: SharedPreferences? = null
+    private var font_size:String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,26 +27,23 @@ class Info_Panel : AppCompatActivity() {
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.navigationBarColor = resources.getColor(R.color.colorPrimary)
-        }
-        val intent = getIntent()
+        window.navigationBarColor = resources.getColor(R.color.colorPrimary)
+        val intent = intent
         val quote = intent.getStringExtra("quote")
         val textview = findViewById<TextView>(R.id.text)
-        textview.setText(quote)
+        textview.text = quote
 
         Settings = getSharedPreferences("Settings", 0)
-        var text_size: String? = Settings?.getString("text_size", "md")
-        when (text_size) {
-            "sm" -> font_size = "30"
-            "lg" -> font_size = "50"
-            else -> font_size = "40"
+        val text_size: String? = Settings?.getString("text_size", "md")
+        font_size = when (text_size) {
+            "sm" -> "30"
+            "lg" -> "50"
+            else -> "40"
         }
-        textview!!.setTextSize(font_size!!.toFloat());
+        textview!!.textSize = font_size!!.toFloat()
 
         //Is user using night mode
-        val nightModeFlags = this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        when (nightModeFlags) {
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
             Configuration.UI_MODE_NIGHT_NO ->                 //No
@@ -67,9 +56,9 @@ class Info_Panel : AppCompatActivity() {
         val editor = Favourites.edit()
 
         val contextView = findViewById<View>(R.id.view)
-        favs = arrayOf<String?>(Favourites.getString("fav", ""))!!
-        var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
-        val list: MutableList<String> = ArrayList(Arrays.asList(*array))
+        favs = arrayOf(Favourites.getString("fav", ""))
+        val array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+        val list: MutableList<String> = ArrayList(listOf(*array))
 
 
         val fab = findViewById<FloatingActionButton>(R.id.delete)
@@ -77,10 +66,10 @@ class Info_Panel : AppCompatActivity() {
 
 
         fab.setOnClickListener {
-            favs = arrayOf<String?>(Favourites.getString("fav", ""))!!
+            favs = arrayOf(Favourites.getString("fav", ""))
             var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
-            val list: MutableList<String> = ArrayList(Arrays.asList(*array))
-            val text = textview!!.getText() as String
+            val list: MutableList<String> = ArrayList(listOf(*array))
+            val text = textview.text as String
             list.remove(text)
             Log.d("Array", list.toString())
             array = list.toTypedArray()
@@ -92,7 +81,7 @@ class Info_Panel : AppCompatActivity() {
             }
             Log.d("Array", sb)
             editor.putString("fav", sb)
-            editor.commit()
+            editor.apply()
 
             val myIntent = Intent(this@Info_Panel, favourites::class.java)
             this@Info_Panel.startActivity(myIntent)
