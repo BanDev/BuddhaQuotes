@@ -5,12 +5,10 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class about : AppCompatActivity() {
-    private var Quote_Number:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(

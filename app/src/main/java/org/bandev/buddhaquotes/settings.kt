@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -17,13 +16,13 @@ import androidx.preference.PreferenceFragmentCompat
 
 class settings : AppCompatActivity() {
 
-    var Quote_Number:Int = 0
+    private var Quote_Number:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        Quote_Number = getIntent().getExtras()!!.getString("quote")!!.toInt()
+        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportFragmentManager

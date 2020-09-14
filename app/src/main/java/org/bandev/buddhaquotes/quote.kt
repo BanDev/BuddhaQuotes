@@ -4,11 +4,10 @@ class Quote {
     var Quote_Number_Global = 0
     private var maxQuote = 311
     fun random(Quote_Number: Int): String {
-        val num: Int
-        if(Quote_Number == 0){
-            num = getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
+        val num: Int = if(Quote_Number == 0){
+            getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
         }else{
-            num = Quote_Number
+            Quote_Number
         }
         var text = ""
         when (num) {
