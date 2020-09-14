@@ -5,24 +5,27 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class about : AppCompatActivity() {
+    private var Quote_Number:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left
         )
+
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val actionBar = supportActionBar
-        if (BuildConfig.DEBUG && supportActionBar == null) {
-            error("Assertion failed")
-        }
+
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -40,6 +43,9 @@ class about : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 val i = Intent(this, settings::class.java)
+                val mBundle = Bundle()
+                mBundle.putString("quote", "0")
+                i.putExtras(mBundle)
                 startActivity(i)
                 overridePendingTransition(R.anim.anim_slide_in_right,
                     R.anim.anim_slide_out_right)
@@ -54,6 +60,9 @@ class about : AppCompatActivity() {
         super.onBackPressed()
         // add your animation
         val i = Intent(this, settings::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", "0")
+        i.putExtras(mBundle)
         startActivity(i)
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
@@ -62,6 +71,9 @@ class about : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val i = Intent(this, settings::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", "0")
+        i.putExtras(mBundle)
         startActivity(i)
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)

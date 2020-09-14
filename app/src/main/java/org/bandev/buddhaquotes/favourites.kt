@@ -9,13 +9,18 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class favourites : AppCompatActivity() {
+    private var Quote_Number:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
+
+        Quote_Number = getIntent().getExtras()!!.getString("quote")!!.toInt()
+
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -61,6 +66,9 @@ class favourites : AppCompatActivity() {
         return when (item.itemId) {
             R.id.back -> {
                 val myIntent = Intent(this@favourites, MainActivity::class.java)
+                val mBundle = Bundle()
+                mBundle.putString("quote", Quote_Number.toString())
+                myIntent.putExtras(mBundle)
                 this@favourites.startActivity(myIntent)
                 overridePendingTransition(R.anim.anim_slide_in_left,
                         R.anim.anim_slide_out_left)
@@ -73,6 +81,9 @@ class favourites : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@favourites, MainActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", Quote_Number.toString())
+        myIntent.putExtras(mBundle)
         this@favourites.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left)
@@ -84,6 +95,9 @@ class favourites : AppCompatActivity() {
         super.onBackPressed()
         // add your animation
         val myIntent = Intent(this@favourites, MainActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", Quote_Number.toString())
+        myIntent.putExtras(mBundle)
         this@favourites.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left)

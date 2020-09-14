@@ -30,10 +30,7 @@ class oss_libraries : AppCompatActivity() {
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val actionBar = supportActionBar
-        if (BuildConfig.DEBUG && supportActionBar == null) {
-            error("Assertion failed")
-        }
+
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {

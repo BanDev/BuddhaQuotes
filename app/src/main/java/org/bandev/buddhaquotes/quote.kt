@@ -1,9 +1,15 @@
 package org.bandev.buddhaquotes
 
 class Quote {
+    var Quote_Number_Global = 0
     private var maxQuote = 311
-    fun random(): String {
-        val num = getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
+    fun random(Quote_Number: Int): String {
+        val num: Int
+        if(Quote_Number == 0){
+            num = getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
+        }else{
+            num = Quote_Number
+        }
         var text = ""
         when (num) {
             1 -> text = "Everything changes, nothing remains without change."
@@ -318,6 +324,7 @@ class Quote {
             310 -> text = "Many do not realise that we here must die. For those who realise this, quarrels end."
             311 -> text = "Perhaps the deepest reason why we are afraid of death is because we do not know who we are."
         }
+        Quote_Number_Global = num
         return text
     }
 

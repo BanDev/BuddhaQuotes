@@ -8,4 +8,4 @@
     android:paddingLeft="25dp"
     android:paddingBottom="17dp"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:gravity="right"/>
+    android:gravity="end"/>

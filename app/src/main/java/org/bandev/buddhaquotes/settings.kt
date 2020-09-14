@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -16,9 +17,14 @@ import androidx.preference.PreferenceFragmentCompat
 
 class settings : AppCompatActivity() {
 
+    var Quote_Number:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
+
+        Quote_Number = getIntent().getExtras()!!.getString("quote")!!.toInt()
+
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportFragmentManager
             .beginTransaction()
@@ -34,10 +40,6 @@ class settings : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-        val actionBar = supportActionBar
-        if (BuildConfig.DEBUG && supportActionBar == null) {
-            error("Assertion failed")
         }
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -131,6 +133,10 @@ class settings : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@settings, MainActivity::class.java)
+
+        val mBundle = Bundle()
+        mBundle.putString("quote", Quote_Number.toString())
+        myIntent.putExtras(mBundle)
         this@settings.startActivity(myIntent)
         overridePendingTransition(R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right)
@@ -142,7 +148,11 @@ class settings : AppCompatActivity() {
         super.onBackPressed()
         // add your animation
         val myIntent = Intent(this@settings, MainActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", Quote_Number.toString())
+        myIntent.putExtras(mBundle)
         this@settings.startActivity(myIntent)
+
         overridePendingTransition(R.anim.anim_slide_in_right,
                 R.anim.anim_slide_out_right)
         finish()
@@ -152,6 +162,9 @@ class settings : AppCompatActivity() {
         return when (item.itemId) {
             android.R.id.home -> {
                 val i = Intent(this, MainActivity::class.java)
+                val mBundle = Bundle()
+                mBundle.putString("quote", Quote_Number.toString())
+                i.putExtras(mBundle)
                 startActivity(i)
                 overridePendingTransition(R.anim.anim_slide_in_right,
                         R.anim.anim_slide_out_right)
