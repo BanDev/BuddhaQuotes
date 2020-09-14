@@ -37,6 +37,6 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 [<img src="Screenshots/Screenshot_20200810-170503.jpg" width=160>](Screenshots/Screenshot_20200810-170503.jpg)
 
 ## License
-[![GNU GPLv3 Image](Screenshots/gpl-v3-logo.svg)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-or-later.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 
 Buddha Quotes is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  
