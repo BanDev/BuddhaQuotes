@@ -20,6 +20,9 @@ class splash : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         val i = Intent(this, MainActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("quote", "0")
+        i.putExtras(mBundle)
         startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         finish()
     }
