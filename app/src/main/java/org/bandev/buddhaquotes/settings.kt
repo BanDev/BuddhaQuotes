@@ -48,8 +48,7 @@ class settings : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            val key = preference?.key
-            when (key) {
+            when (preference?.key) {
                 "about" -> {
                     val i = Intent(activity, about::class.java)
                     startActivity(i)
