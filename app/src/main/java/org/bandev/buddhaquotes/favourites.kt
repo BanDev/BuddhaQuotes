@@ -31,7 +31,6 @@ class favourites : AppCompatActivity() {
 
         val listview = findViewById<View>(R.id.listView) as ListView
         val pref = getSharedPreferences("Favs", 0)
-        val editor = pref.edit()
         val favs = arrayOf(pref.getString("fav", ""))
         var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
         array = array.distinct().toTypedArray()
