@@ -1,15 +1,16 @@
 # Buddha Quotes ![](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg) ![](https://img.shields.io/badge/license-GPL--3.0%2B-informational)
 
-![](https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp)
+[<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" 
+      height="170">]()
 
 A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" 
       alt="Download from Google Play"
-            height="80">](https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes)
+            height="75">](https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes)
 [<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
       alt="Direct download"
-            height="80">](https://gitlab.com/bandev/buddha-quotes/-/releases)
+            height="75">](https://gitlab.com/bandev/buddha-quotes/-/releases)
 
 ## Features
 
