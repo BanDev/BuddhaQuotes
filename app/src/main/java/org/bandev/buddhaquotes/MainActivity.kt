@@ -1,6 +1,5 @@
 package org.bandev.buddhaquotes
 
-import android.R.attr.key
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -11,8 +10,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -39,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Quote_Number = getIntent().getExtras()!!.getString("quote")!!.toInt()
+        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
 
         //Define UI Variables
         setContentView(R.layout.activity_main)
