@@ -2,14 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <PreferenceCategory app:title="Appearance">
+    <PreferenceCategory app:title="@string/appearance">
 
         <ListPreference
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
             app:icon="@drawable/ic_baseline_palette_24"
             app:key="theme"
-            app:title="App Theme"
+            app:title="@string/app_theme"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
@@ -17,28 +17,28 @@
             app:entryValues="@array/size_values"
             app:icon="@drawable/ic_baseline_text_fields_24"
             app:key="size"
-            app:title="Text Size"
+            app:title="@string/text_size"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Information" >
+    <PreferenceCategory app:title="@string/information" >
         <Preference
-            android:key="about"
+            android:key="@string/about"
             android:title="About"
             app:icon="@drawable/ic_baseline_info_24">
 
         </Preference>
         <Preference
             android:key="license"
-            android:title="App Licence"
-            android:summary="GPLv3"
+            android:title="@string/app_license"
+            android:summary="@string/gplv3"
             app:icon="@drawable/ic_baseline_gavel_24">
 
         </Preference>
         <Preference
             android:key="oss_libraries"
-            android:title="Open Source Libraries"
+            android:title="@string/open_source_libraries"
             app:icon="@drawable/ic_baseline_library_books_24">
 
         </Preference>

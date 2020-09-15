@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings"
             android:textAlignment="viewStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="24sp"

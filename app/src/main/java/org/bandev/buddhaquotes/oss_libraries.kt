@@ -50,13 +50,13 @@ class oss_libraries : AppCompatActivity() {
         var url = ""
         listview.onItemClickListener = OnItemClickListener { adapterView, view, position, l ->
             when (adapter.getItem(position)) {
-                "Material Design Icons" -> url =
+                "@string/material_design_icons" -> url =
                     "https://github.com/google/material-design-icons/blob/master/LICENSE"
-                "Kotlin" -> url =
+                "@string/kotlin" -> url =
                     "https://github.com/JetBrains/kotlin/blob/c5aa35e016aed6f83392e2f2b32fc0a088ee3b83/license/LICENSE.txt"
-                "Androidx" -> url =
+                "@string/androidx" -> url =
                     "https://github.com/androidx/androidx/blob/androidx-master-dev/LICENSE.txt"
-                "Material Design Android" -> url =
+                "@string/material_design_android" -> url =
                     "https://github.com/material-components/material-components-android/blob/master/LICENSE"
             }
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(url))

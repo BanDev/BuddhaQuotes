@@ -50,12 +50,12 @@ class settings : AppCompatActivity() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
-                "about" -> {
+                "About" -> {
                     val i = Intent(activity, about::class.java)
                     startActivity(i)
                 }
                 "license" -> {
-                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE"))
+                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md"))
                     startActivity(i)
                 }
                 "oss_libraries" -> {

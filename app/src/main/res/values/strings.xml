@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Buddha Quotes</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="version">v.1.2.2</string>
@@ -22,10 +22,10 @@
 
     <!-- OSS Libraries -->
     <string name="oss_libraries">OSS Libraries</string>
-    <string name="material_design_icons">Material Design Icons</string>
-    <string name="material_design_android">Material Design Android</string>
-    <string name="kotlin">Kotlin</string>
-    <string name="androidx">Androidx</string>
+    <string name="material_design_icons" tools:keep="@string/material_design_icons">Material Design Icons</string>
+    <string name="material_design_android" tools:keep="@string/material_design_android">Material Design Android</string>
+    <string name="kotlin" tools:keep="@string/kotlin">Kotlin</string>
+    <string name="androidx" tools:keep="@string/androidx">Androidx</string>
 
     <!-- Settings -->
     <string name="settings">Settings</string>
