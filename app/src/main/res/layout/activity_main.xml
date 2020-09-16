@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/buddha"
-        android:contentDescription="The Buddha" />
+        android:contentDescription="@string/the_buddha" />
 
     <TextView
         android:id="@+id/quote"
@@ -22,7 +22,7 @@
         android:paddingStart="20dp"
         android:paddingTop="80dp"
         android:paddingEnd="20dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textAlignment="textStart"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"

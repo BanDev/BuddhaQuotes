@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".Info_Panel" />
-        <activity android:name=".oss_libraries" />
-        <activity android:name=".favourites" />
+        <activity android:name=".InfoPanel" />
+        <activity android:name=".OSSLibraries" />
+        <activity android:name=".Favourites" />
         <activity
-            android:name=".splash"
+            android:name=".Splash"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".about"
+            android:name=".About"
             android:label="About" />
         <activity
-            android:name=".settings"
+            android:name=".Settings"
             android:label="@string/title_activity_settings" />
         <activity android:name=".MainActivity">
             <meta-data

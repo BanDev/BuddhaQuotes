@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".Info_Panel"
+    tools:context=".InfoPanel"
     android:background="@color/colorPrimary"
     android:id="@+id/view">
 
@@ -16,7 +16,7 @@
         android:paddingStart="20dp"
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textAlignment="viewEnd"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"
@@ -33,6 +33,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="15dp"
+            android:paddingStart="15dp"
             android:text="@string/favourited_quote"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"

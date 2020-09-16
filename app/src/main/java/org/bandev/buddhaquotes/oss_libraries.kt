@@ -12,10 +12,10 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
-class oss_libraries : AppCompatActivity() {
+class OSSLibraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val b = intent.extras // or other values
-        when (b!!.getString("from")) {
+        when ((b ?: return).getString("from")) {
             "settings" -> overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -29,9 +29,9 @@ class oss_libraries : AppCompatActivity() {
         setContentView(R.layout.activity_oss_libraries)
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
@@ -72,10 +72,12 @@ class oss_libraries : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, settings::class.java)
+                val i = Intent(this, Settings::class.java)
                 startActivity(i)
-                overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
                 finish()
                 true
             }
@@ -86,14 +88,18 @@ class oss_libraries : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
         return true
     }
