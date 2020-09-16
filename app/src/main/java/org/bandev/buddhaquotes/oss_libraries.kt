@@ -12,7 +12,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
-class oss_libraries : AppCompatActivity() {
+class OSSLibraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val b = intent.extras // or other values
         when ((b ?: return).getString("from")) {
@@ -72,7 +72,7 @@ class oss_libraries : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, settings::class.java)
+                val i = Intent(this, Settings::class.java)
                 startActivity(i)
                 overridePendingTransition(
                     R.anim.anim_slide_in_right,

@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_setting -> {
-                val myIntent = Intent(this@MainActivity, settings::class.java)
+                val myIntent = Intent(this@MainActivity, Settings!!::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", Quote_Number.toString())
                 myIntent.putExtras(mBundle)

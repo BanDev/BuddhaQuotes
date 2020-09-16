@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".Info_Panel"
+    tools:context=".InfoPanel"
     android:background="@color/colorPrimary"
     android:id="@+id/view">
 
