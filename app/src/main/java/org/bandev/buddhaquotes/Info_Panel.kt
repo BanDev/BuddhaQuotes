@@ -14,11 +14,11 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
-class InfoPanel : AppCompatActivity() {
+class Info_Panel : AppCompatActivity() {
 
     private lateinit var favs: Array<String?>
-    private var settings: SharedPreferences? = null
-    private var fontsize: String? = null
+    private var Settings: SharedPreferences? = null
+    private var font_size:String ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,21 +26,21 @@ class InfoPanel : AppCompatActivity() {
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         val intent = intent
         val quote = intent.getStringExtra("quote")
         val textview = findViewById<TextView>(R.id.text)
         textview.text = quote
 
-        settings = getSharedPreferences("Settings", 0)
-        val textsize: String? = settings?.getString("text_size", "md")
-        fontsize = when (textsize) {
+        Settings = getSharedPreferences("Settings", 0)
+        val text_size: String? = Settings?.getString("text_size", "md")
+        font_size = when (text_size) {
             "sm" -> "30"
             "lg" -> "50"
             else -> "40"
         }
-        (textview ?: return).textSize = (fontsize ?: return).toFloat()
+        textview!!.textSize = font_size!!.toFloat()
 
         //Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -52,12 +52,12 @@ class InfoPanel : AppCompatActivity() {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
-        val favourites = getSharedPreferences("Favs", 0)
-        val editor = favourites.edit()
+        val Favourites = getSharedPreferences("Favs", 0)
+        val editor = Favourites.edit()
 
         val contextView = findViewById<View>(R.id.view)
-        favs = arrayOf(favourites.getString("fav", ""))
-        val array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
+        favs = arrayOf(Favourites.getString("fav", ""))
+        val array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
         val list: MutableList<String> = ArrayList(listOf(*array))
 
 
@@ -66,9 +66,8 @@ class InfoPanel : AppCompatActivity() {
 
 
         fab.setOnClickListener {
-            favs = arrayOf(favourites.getString("fav", ""))
-            var array =
-                (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
+            favs = arrayOf(Favourites.getString("fav", ""))
+            var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
             val list: MutableList<String> = ArrayList(listOf(*array))
             val text = textview.text as String
             list.remove(text)
@@ -76,7 +75,7 @@ class InfoPanel : AppCompatActivity() {
             array = list.toTypedArray()
             var sb = ""
             for (i in array.indices) {
-                if (array[i] != "") {
+                if(array[i] != "") {
                     sb = sb + array[i] + "//VADER//"
                 }
             }
@@ -84,15 +83,15 @@ class InfoPanel : AppCompatActivity() {
             editor.putString("fav", sb)
             editor.apply()
 
-            val myIntent = Intent(this@InfoPanel, Favourites::class.java)
-            this@InfoPanel.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
+            val myIntent = Intent(this@Info_Panel, favourites::class.java)
+            this@Info_Panel.startActivity(myIntent)
+            overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left)
             finish()
 
         }
+
+
 
 
     }
@@ -106,12 +105,10 @@ class InfoPanel : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back -> {
-                val myIntent = Intent(this@InfoPanel, Favourites::class.java)
-                this@InfoPanel.startActivity(myIntent)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
+                val myIntent = Intent(this@Info_Panel, favourites::class.java)
+                this@Info_Panel.startActivity(myIntent)
+                overridePendingTransition(R.anim.anim_slide_in_left,
+                        R.anim.anim_slide_out_left)
                 finish()
                 true
             }
@@ -120,12 +117,10 @@ class InfoPanel : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@InfoPanel, Favourites::class.java)
-        this@InfoPanel.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
+        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        this@Info_Panel.startActivity(myIntent)
+        overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
         finish()
         return true
     }
@@ -133,12 +128,10 @@ class InfoPanel : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@InfoPanel, Favourites::class.java)
-        this@InfoPanel.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
+        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        this@Info_Panel.startActivity(myIntent)
+        overridePendingTransition(R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left)
         finish()
     }
 }

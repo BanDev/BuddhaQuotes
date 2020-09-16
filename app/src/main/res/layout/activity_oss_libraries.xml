@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".OSSLibraries">
+    tools:context=".oss_libraries">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -14,7 +14,6 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:paddingEnd="10dp"
-        android:paddingStart="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
