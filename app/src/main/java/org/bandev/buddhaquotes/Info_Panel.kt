@@ -26,7 +26,7 @@ class Info_Panel : AppCompatActivity() {
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         val intent = intent
         val quote = intent.getStringExtra("quote")
@@ -40,7 +40,7 @@ class Info_Panel : AppCompatActivity() {
             "lg" -> "50"
             else -> "40"
         }
-        textview!!.textSize = font_size!!.toFloat()
+        (textview ?: return).textSize = (font_size ?: return).toFloat()
 
         //Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -57,7 +57,7 @@ class Info_Panel : AppCompatActivity() {
 
         val contextView = findViewById<View>(R.id.view)
         favs = arrayOf(Favourites.getString("fav", ""))
-        val array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+        val array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
         val list: MutableList<String> = ArrayList(listOf(*array))
 
 
@@ -67,7 +67,7 @@ class Info_Panel : AppCompatActivity() {
 
         fab.setOnClickListener {
             favs = arrayOf(Favourites.getString("fav", ""))
-            var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+            var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
             val list: MutableList<String> = ArrayList(listOf(*array))
             val text = textview.text as String
             list.remove(text)
