@@ -14,15 +14,15 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 
-class settings : AppCompatActivity() {
+class Settings : AppCompatActivity() {
 
-    private var Quote_Number:Int = 0
+    private var quotenumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
+        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportFragmentManager
@@ -31,7 +31,7 @@ class settings : AppCompatActivity() {
             .commit()
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
@@ -40,7 +40,7 @@ class settings : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
 
     }
@@ -51,15 +51,18 @@ class settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> {
-                    val i = Intent(activity, about::class.java)
+                    val i = Intent(activity, About::class.java)
                     startActivity(i)
                 }
                 "license" -> {
-                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md"))
+                    val i = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md")
+                    )
                     startActivity(i)
                 }
                 "oss_libraries" -> {
-                    val i = Intent(activity, oss_libraries::class.java)
+                    val i = Intent(activity, OSSLibraries::class.java)
                     val b = Bundle()
                     b.putString("from", "settings") //Your id
                     i.putExtras(b)
@@ -68,77 +71,82 @@ class settings : AppCompatActivity() {
             }
             return true
         }
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
             val listPreference = findPreference<Preference>("theme") as ListPreference?
-            if (listPreference!!.value == null) {
+            if ((listPreference ?: return).value == null) {
                 listPreference.setValueIndex(2) //set to index of your default value
             }
-            listPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-                listPreference.value = newValue.toString()
-                val theme = listPreference.entry.toString()
-                Log.d("debug", theme)
-                if (theme == "Light") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    editor.putBoolean("dark_mode", false)
-                    editor.putBoolean("sys", false)
-                    editor.apply()
+            listPreference.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    listPreference.value = newValue.toString()
+                    val theme = listPreference.entry.toString()
+                    Log.d("debug", theme)
+                    if (theme == "Light") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        editor.putBoolean("dark_mode", false)
+                        editor.putBoolean("sys", false)
+                        editor.apply()
+                    }
+                    if (theme == "Dark") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        editor.putBoolean("dark_mode", true)
+                        editor.putBoolean("sys", false)
+                        editor.commit()
+                    }
+                    if (theme == "Follow system default") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        editor.putBoolean("dark_mode", false)
+                        editor.putBoolean("sys", true)
+                        editor.commit()
+                    }
+                    true
                 }
-                if (theme == "Dark") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    editor.putBoolean("dark_mode", true)
-                    editor.putBoolean("sys", false)
-                    editor.commit()
-                }
-                if (theme == "Follow system default") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    editor.putBoolean("dark_mode", false)
-                    editor.putBoolean("sys", true)
-                    editor.commit()
-                }
-                true
-            }
             val textSize = findPreference<Preference>("size") as ListPreference?
-            if (textSize!!.value == null) {
+            if ((textSize ?: return).value == null) {
                 textSize.setValueIndex(1) //set to index of your default value
             }
-            textSize.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-                textSize.value = newValue.toString()
-                val size = textSize.entry.toString()
-                Log.d("debug", size)
-                if (size == "Small") {
-                    editor.putString("text_size", "sm")
-                    editor.commit()
+            textSize.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    textSize.value = newValue.toString()
+                    val size = textSize.entry.toString()
+                    Log.d("debug", size)
+                    if (size == "Small") {
+                        editor.putString("text_size", "sm")
+                        editor.commit()
+                    }
+                    if (size == "Medium") {
+                        editor.putString("text_size", "md")
+                        editor.commit()
+                    }
+                    if (size == "Large") {
+                        editor.putString("text_size", "lg")
+                        editor.commit()
+                    }
+                    if (size == "Extra") {
+                        editor.putString("text_size", "xlg")
+                        editor.commit()
+                    }
+                    true
                 }
-                if (size == "Medium") {
-                    editor.putString("text_size", "md")
-                    editor.commit()
-                }
-                if (size == "Large") {
-                    editor.putString("text_size", "lg")
-                    editor.commit()
-                }
-                if (size == "Extra") {
-                    editor.putString("text_size", "xlg")
-                    editor.commit()
-                }
-                true
-            }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, MainActivity::class.java)
 
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
-        this@settings.startActivity(myIntent)
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        this@Settings.startActivity(myIntent)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
         return true
     }
@@ -146,14 +154,16 @@ class settings : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, MainActivity::class.java)
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
-        this@settings.startActivity(myIntent)
+        this@Settings.startActivity(myIntent)
 
-        overridePendingTransition(R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
     }
 
@@ -162,11 +172,13 @@ class settings : AppCompatActivity() {
             android.R.id.home -> {
                 val i = Intent(this, MainActivity::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", Quote_Number.toString())
+                mBundle.putString("quote", quotenumber.toString())
                 i.putExtras(mBundle)
                 startActivity(i)
-                overridePendingTransition(R.anim.anim_slide_in_right,
-                        R.anim.anim_slide_out_right)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
                 finish()
                 true
             }

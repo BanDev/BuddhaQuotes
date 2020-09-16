@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".about">
+    tools:context=".About">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -14,6 +14,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_round"
-        android:contentDescription="Buddha Quotes Logo" />
+        android:contentDescription="@string/buddha_quotes_logo" />
 
     <TextView
         android:layout_width="283dp"
@@ -172,7 +173,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider"
         app:srcCompat="@drawable/picture2"
-        android:contentDescription="BanDev logo" />
+        android:contentDescription="@string/bandev_logo" />
 
     <ImageView
         android:layout_width="39dp"
@@ -182,7 +183,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 
     <ImageView
         android:layout_width="39dp"
@@ -192,7 +193,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 
     <ImageView
         android:layout_width="39dp"
@@ -202,7 +203,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 
     <ImageView
         android:layout_width="39dp"
@@ -212,7 +213,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 
     <ImageView
         android:layout_width="39dp"
@@ -222,7 +223,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 
     <ImageView
         android:layout_width="39dp"
@@ -232,5 +233,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="Tick" />
+        android:contentDescription="@string/tick" />
 </androidx.constraintlayout.widget.ConstraintLayout>
