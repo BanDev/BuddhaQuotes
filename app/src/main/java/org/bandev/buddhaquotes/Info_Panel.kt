@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
 
-class Info_Panel : AppCompatActivity() {
+class InfoPanel : AppCompatActivity() {
 
     private lateinit var favs: Array<String?>
     private var Settings: SharedPreferences? = null
@@ -84,8 +84,8 @@ class Info_Panel : AppCompatActivity() {
             editor.putString("fav", sb)
             editor.apply()
 
-            val myIntent = Intent(this@Info_Panel, Favourites::class.java)
-            this@Info_Panel.startActivity(myIntent)
+            val myIntent = Intent(this@InfoPanel, Favourites::class.java)
+            this@InfoPanel.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -106,8 +106,8 @@ class Info_Panel : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back -> {
-                val myIntent = Intent(this@Info_Panel, Favourites::class.java)
-                this@Info_Panel.startActivity(myIntent)
+                val myIntent = Intent(this@InfoPanel, Favourites::class.java)
+                this@InfoPanel.startActivity(myIntent)
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
                     R.anim.anim_slide_out_left
@@ -120,8 +120,8 @@ class Info_Panel : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@Info_Panel, Favourites::class.java)
-        this@Info_Panel.startActivity(myIntent)
+        val myIntent = Intent(this@InfoPanel, Favourites::class.java)
+        this@InfoPanel.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left
@@ -133,8 +133,8 @@ class Info_Panel : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@Info_Panel, Favourites::class.java)
-        this@Info_Panel.startActivity(myIntent)
+        val myIntent = Intent(this@InfoPanel, Favourites::class.java)
+        this@InfoPanel.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left

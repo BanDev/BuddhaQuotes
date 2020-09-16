@@ -44,7 +44,7 @@ class Favourites : AppCompatActivity() {
             AdapterView.OnItemClickListener { adapterView, view, position, l ->
                 val value = adapter.getItem(position)
                 if (value.toString() != "") {
-                    val intent = Intent(this@Favourites, Info_Panel::class.java)
+                    val intent = Intent(this@Favourites, InfoPanel::class.java)
                     val b = Bundle()
                     b.putString("quote", value.toString()) //Your id
                     intent.putExtras(b) //Put your id to your next Intent
