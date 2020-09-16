@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        quotenumber = quote.Quote_Number_Global
+        quotenumber = quote.quotenumberglobal
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
