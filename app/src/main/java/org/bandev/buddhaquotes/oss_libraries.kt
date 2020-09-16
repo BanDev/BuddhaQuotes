@@ -74,8 +74,10 @@ class oss_libraries : AppCompatActivity() {
             android.R.id.home -> {
                 val i = Intent(this, settings::class.java)
                 startActivity(i)
-                overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
                 finish()
                 true
             }
@@ -86,14 +88,18 @@ class oss_libraries : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
         return true
     }

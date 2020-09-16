@@ -16,7 +16,7 @@ import androidx.preference.PreferenceFragmentCompat
 
 class settings : AppCompatActivity() {
 
-    private var Quote_Number:Int = 0
+    private var Quote_Number: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +55,10 @@ class settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "license" -> {
-                    val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md"))
+                    val i = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md")
+                    )
                     startActivity(i)
                 }
                 "oss_libraries" -> {
@@ -68,6 +71,7 @@ class settings : AppCompatActivity() {
             }
             return true
         }
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
@@ -77,56 +81,58 @@ class settings : AppCompatActivity() {
             if ((listPreference ?: return).value == null) {
                 listPreference.setValueIndex(2) //set to index of your default value
             }
-            listPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-                listPreference.value = newValue.toString()
-                val theme = listPreference.entry.toString()
-                Log.d("debug", theme)
-                if (theme == "Light") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    editor.putBoolean("dark_mode", false)
-                    editor.putBoolean("sys", false)
-                    editor.apply()
+            listPreference.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    listPreference.value = newValue.toString()
+                    val theme = listPreference.entry.toString()
+                    Log.d("debug", theme)
+                    if (theme == "Light") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        editor.putBoolean("dark_mode", false)
+                        editor.putBoolean("sys", false)
+                        editor.apply()
+                    }
+                    if (theme == "Dark") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        editor.putBoolean("dark_mode", true)
+                        editor.putBoolean("sys", false)
+                        editor.commit()
+                    }
+                    if (theme == "Follow system default") {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        editor.putBoolean("dark_mode", false)
+                        editor.putBoolean("sys", true)
+                        editor.commit()
+                    }
+                    true
                 }
-                if (theme == "Dark") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    editor.putBoolean("dark_mode", true)
-                    editor.putBoolean("sys", false)
-                    editor.commit()
-                }
-                if (theme == "Follow system default") {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    editor.putBoolean("dark_mode", false)
-                    editor.putBoolean("sys", true)
-                    editor.commit()
-                }
-                true
-            }
             val textSize = findPreference<Preference>("size") as ListPreference?
             if ((textSize ?: return).value == null) {
                 textSize.setValueIndex(1) //set to index of your default value
             }
-            textSize.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
-                textSize.value = newValue.toString()
-                val size = textSize.entry.toString()
-                Log.d("debug", size)
-                if (size == "Small") {
-                    editor.putString("text_size", "sm")
-                    editor.commit()
+            textSize.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    textSize.value = newValue.toString()
+                    val size = textSize.entry.toString()
+                    Log.d("debug", size)
+                    if (size == "Small") {
+                        editor.putString("text_size", "sm")
+                        editor.commit()
+                    }
+                    if (size == "Medium") {
+                        editor.putString("text_size", "md")
+                        editor.commit()
+                    }
+                    if (size == "Large") {
+                        editor.putString("text_size", "lg")
+                        editor.commit()
+                    }
+                    if (size == "Extra") {
+                        editor.putString("text_size", "xlg")
+                        editor.commit()
+                    }
+                    true
                 }
-                if (size == "Medium") {
-                    editor.putString("text_size", "md")
-                    editor.commit()
-                }
-                if (size == "Large") {
-                    editor.putString("text_size", "lg")
-                    editor.commit()
-                }
-                if (size == "Extra") {
-                    editor.putString("text_size", "xlg")
-                    editor.commit()
-                }
-                true
-            }
         }
     }
 
@@ -137,8 +143,10 @@ class settings : AppCompatActivity() {
         mBundle.putString("quote", Quote_Number.toString())
         myIntent.putExtras(mBundle)
         this@settings.startActivity(myIntent)
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
         return true
     }
@@ -152,8 +160,10 @@ class settings : AppCompatActivity() {
         myIntent.putExtras(mBundle)
         this@settings.startActivity(myIntent)
 
-        overridePendingTransition(R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
     }
 
@@ -165,8 +175,10 @@ class settings : AppCompatActivity() {
                 mBundle.putString("quote", Quote_Number.toString())
                 i.putExtras(mBundle)
                 startActivity(i)
-                overridePendingTransition(R.anim.anim_slide_in_right,
-                        R.anim.anim_slide_out_right)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
                 finish()
                 true
             }
