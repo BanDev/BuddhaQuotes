@@ -18,7 +18,7 @@ class InfoPanel : AppCompatActivity() {
 
     private lateinit var favs: Array<String?>
     private var Settings: SharedPreferences? = null
-    private var font_size: String? = null
+    private var FontSize: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +34,13 @@ class InfoPanel : AppCompatActivity() {
         textview.text = quote
 
         Settings = getSharedPreferences("Settings", 0)
-        val text_size: String? = Settings?.getString("text_size", "md")
-        font_size = when (text_size) {
+        val textsize: String? = Settings?.getString("text_size", "md")
+        FontSize = when (textsize) {
             "sm" -> "30"
             "lg" -> "50"
             else -> "40"
         }
-        (textview ?: return).textSize = (font_size ?: return).toFloat()
+        (textview ?: return).textSize = (FontSize ?: return).toFloat()
 
         //Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -52,11 +52,11 @@ class InfoPanel : AppCompatActivity() {
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
-        val Favourites = getSharedPreferences("Favs", 0)
-        val editor = Favourites.edit()
+        val favourites = getSharedPreferences("Favs", 0)
+        val editor = favourites.edit()
 
         val contextView = findViewById<View>(R.id.view)
-        favs = arrayOf(Favourites.getString("fav", ""))
+        favs = arrayOf(favourites.getString("fav", ""))
         val array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
         val list: MutableList<String> = ArrayList(listOf(*array))
 
@@ -66,7 +66,7 @@ class InfoPanel : AppCompatActivity() {
 
 
         fab.setOnClickListener {
-            favs = arrayOf(Favourites.getString("fav", ""))
+            favs = arrayOf(favourites.getString("fav", ""))
             var array =
                 (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
             val list: MutableList<String> = ArrayList(listOf(*array))

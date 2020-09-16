@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
 
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         Settings = getSharedPreferences("Settings", 0)
-        val text_size: String? = Settings?.getString("text_size", "md")
-        font_size = when (text_size) {
+        val textsize: String? = Settings?.getString("text_size", "md")
+        font_size = when (textsize) {
             "sm" -> "30"
             "lg" -> "50"
             else -> "40"
@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
         //When Refresh Is Clicked
         (refresh ?: return).setOnClickListener { newQuote(0) }
 
-        val Favourites = getSharedPreferences("Favs", 0)
-        val editor = Favourites.edit()
+        val favourites = getSharedPreferences("Favs", 0)
+        val editor = favourites.edit()
 
 
         //When Favourite Is Clicked
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 //If It Is Already Liked
                 (favourite ?: return@setOnClickListener).isEnabled = false
-                favs = arrayOf(Favourites.getString("fav", ""))
+                favs = arrayOf(favourites.getString("fav", ""))
                 var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex())
                     .toTypedArray()
                 val list: MutableList<String> = ArrayList(listOf(*array))

@@ -14,7 +14,7 @@
         <activity android:name=".OSSLibraries" />
         <activity android:name=".Favourites" />
         <activity
-            android:name=".splash"
+            android:name=".Splash"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
