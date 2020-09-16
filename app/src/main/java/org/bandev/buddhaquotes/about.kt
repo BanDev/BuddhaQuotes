@@ -22,11 +22,11 @@ class about : AppCompatActivity() {
         setContentView(R.layout.activity_about)
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
 
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
@@ -45,10 +45,8 @@ class about : AppCompatActivity() {
                 mBundle.putString("quote", "0")
                 i.putExtras(mBundle)
                 startActivity(i)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
+                overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right)
                 finish()
                 true
             }
@@ -64,10 +62,8 @@ class about : AppCompatActivity() {
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)
         startActivity(i)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
         finish()
     }
 
@@ -77,10 +73,8 @@ class about : AppCompatActivity() {
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)
         startActivity(i)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
+        overridePendingTransition(R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right)
         finish()
         return true
     }
