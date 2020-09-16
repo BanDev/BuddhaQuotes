@@ -20,36 +20,36 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private var done: Boolean? = null
-    private var Quote_Number: Int = 0
-    private var QuoteView: TextView? = null
+    private var quotenumber: Int = 0
+    private var quoteview: TextView? = null
     private val quote = Quote()
     private var refresh: FloatingActionButton? = null
     private var favourite: FloatingActionButton? = null
     private var list: List<String?>? = null
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String?>
-    private var font_size: String? = null
-    private var heart_black: Drawable? = null
+    private var fontsize: String? = null
+    private var heartblack: Drawable? = null
     var toolbar: Toolbar? = null
-    private var Settings: SharedPreferences? = null
+    private var settings: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
+        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         //Define UI Variables
         setContentView(R.layout.activity_main)
         refresh = findViewById(R.id.refresh)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
-        heart_black = ContextCompat.getDrawable(this, R.drawable.heart_black)
-        QuoteView = findViewById(R.id.quote)
+        heartblack = ContextCompat.getDrawable(this, R.drawable.heart_black)
+        quoteview = findViewById(R.id.quote)
 
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        toolbar?.navigationIcon = heart_black
+        toolbar?.navigationIcon = heartblack
 
         //If Using Night Mode, Change Some Stuff
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -61,14 +61,14 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
 
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
-        Settings = getSharedPreferences("Settings", 0)
-        val textsize: String? = Settings?.getString("text_size", "md")
-        font_size = when (textsize) {
+        settings = getSharedPreferences("Settings", 0)
+        val textsize: String? = settings?.getString("text_size", "md")
+        fontsize = when (textsize) {
             "sm" -> "30"
             "lg" -> "50"
             else -> "40"
         }
-        (QuoteView ?: return).textSize = (font_size ?: return).toFloat()
+        (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
 
         //When Refresh Is Clicked
         (refresh ?: return).setOnClickListener { newQuote(0) }
@@ -83,10 +83,10 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 //If It Is Not Liked Already
                 if (favs[0] != "") {
-                    favs[0] = (QuoteView
+                    favs[0] = (quoteview
                         ?: return@setOnClickListener).text.toString() + "//VADER//" + favs[0]
                 } else {
-                    favs[0] = (QuoteView ?: return@setOnClickListener).text as String + "//VADER//"
+                    favs[0] = (quoteview ?: return@setOnClickListener).text as String + "//VADER//"
                 }
                 editor.putString("fav", favs[0])
                 editor.apply()
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex())
                     .toTypedArray()
                 val list: MutableList<String> = ArrayList(listOf(*array))
-                val text = (QuoteView ?: return@setOnClickListener).text as String
+                val text = (quoteview ?: return@setOnClickListener).text as String
                 list.remove(text)
                 array = list.toTypedArray()
                 array = array.distinct().toTypedArray()
@@ -131,15 +131,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         /* Get The First Quote */
-        if (Quote_Number == null) {
-            Quote_Number = 0
+        if (quotenumber == null) {
+            quotenumber = 0
         }
-        newQuote(Quote_Number)
+        newQuote(quotenumber)
     }
 
     private fun newQuote(Quote_Number_Local: Int) {
         val text = quote.random(Quote_Number_Local)
-        (QuoteView ?: return).text = text
+        (quoteview ?: return).text = text
         done = false
         (favourite ?: return).setImageDrawable(
             ContextCompat.getDrawable(
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         favs = arrayOf(pref.getString("fav", ""))
         array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
         list = listOf(*array)
-        if ((list as MutableList<String?>).contains((QuoteView ?: return).text)) {
+        if ((list as MutableList<String?>).contains((quoteview ?: return).text)) {
             done = true
             (favourite ?: return).setImageDrawable(
                 ContextCompat.getDrawable(
@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-        Quote_Number = quote.Quote_Number_Global
+        quotenumber = quote.Quote_Number_Global
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -171,9 +171,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_setting -> {
-                val myIntent = Intent(this@MainActivity, Settings!!::class.java)
+                val myIntent = Intent(this@MainActivity, settings!!::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", Quote_Number.toString())
+                mBundle.putString("quote", quotenumber.toString())
                 myIntent.putExtras(mBundle)
                 this@MainActivity.startActivity(myIntent)
                 overridePendingTransition(
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
             android.R.id.home -> {
                 val intent2 = Intent(this@MainActivity, Favourites::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", Quote_Number.toString())
+                mBundle.putString("quote", quotenumber.toString())
                 intent2.putExtras(mBundle)
                 this@MainActivity.startActivity(intent2)
                 overridePendingTransition(
