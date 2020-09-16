@@ -6,5 +6,5 @@
         android:icon="@drawable/ic_baseline_settings_24"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:title="Settings" />
+        android:title="@string/settings" />
 </menu>
