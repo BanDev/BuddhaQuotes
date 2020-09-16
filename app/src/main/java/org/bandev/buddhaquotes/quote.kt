@@ -9,7 +9,7 @@
 package org.bandev.buddhaquotes
 
 class Quote {
-    var Quote_Number_Global = 0
+    var quotenumberglobal: Int = 0
     private var maxQuote = 311
     fun random(Quote_Number: Int): String {
         val num: Int = if (Quote_Number == 0) {
@@ -539,7 +539,7 @@ class Quote {
             311 -> text =
                 "Perhaps the deepest reason why we are afraid of death is because we do not know who we are."
         }
-        Quote_Number_Global = num
+        quotenumberglobal = num
         return text
     }
 

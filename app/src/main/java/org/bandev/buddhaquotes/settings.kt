@@ -16,13 +16,13 @@ import androidx.preference.PreferenceFragmentCompat
 
 class Settings : AppCompatActivity() {
 
-    private var Quote_Number: Int = 0
+    private var quotenumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
+        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportFragmentManager
@@ -140,7 +140,7 @@ class Settings : AppCompatActivity() {
         val myIntent = Intent(this@Settings, MainActivity::class.java)
 
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
         this@Settings.startActivity(myIntent)
         overridePendingTransition(
@@ -156,7 +156,7 @@ class Settings : AppCompatActivity() {
         // add your animation
         val myIntent = Intent(this@Settings, MainActivity::class.java)
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
         this@Settings.startActivity(myIntent)
 
@@ -172,7 +172,7 @@ class Settings : AppCompatActivity() {
             android.R.id.home -> {
                 val i = Intent(this, MainActivity::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", Quote_Number.toString())
+                mBundle.putString("quote", quotenumber.toString())
                 i.putExtras(mBundle)
                 startActivity(i)
                 overridePendingTransition(
