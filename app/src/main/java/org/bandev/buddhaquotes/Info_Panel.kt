@@ -17,8 +17,8 @@ import java.util.*
 class InfoPanel : AppCompatActivity() {
 
     private lateinit var favs: Array<String?>
-    private var Settings: SharedPreferences? = null
-    private var FontSize: String? = null
+    private var settings: SharedPreferences? = null
+    private var fontsize: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +33,14 @@ class InfoPanel : AppCompatActivity() {
         val textview = findViewById<TextView>(R.id.text)
         textview.text = quote
 
-        Settings = getSharedPreferences("Settings", 0)
-        val textsize: String? = Settings?.getString("text_size", "md")
-        FontSize = when (textsize) {
+        settings = getSharedPreferences("Settings", 0)
+        val textsize: String? = settings?.getString("text_size", "md")
+        fontsize = when (textsize) {
             "sm" -> "30"
             "lg" -> "50"
             else -> "40"
         }
-        (textview ?: return).textSize = (FontSize ?: return).toFloat()
+        (textview ?: return).textSize = (fontsize ?: return).toFloat()
 
         //Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {

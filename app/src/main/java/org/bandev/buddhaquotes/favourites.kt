@@ -13,12 +13,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 class Favourites : AppCompatActivity() {
-    private var Quote_Number: Int = 0
+    private var quotenumber: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
+        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
@@ -67,7 +67,7 @@ class Favourites : AppCompatActivity() {
             R.id.back -> {
                 val myIntent = Intent(this@Favourites, MainActivity::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", Quote_Number.toString())
+                mBundle.putString("quote", quotenumber.toString())
                 myIntent.putExtras(mBundle)
                 this@Favourites.startActivity(myIntent)
                 overridePendingTransition(
@@ -84,7 +84,7 @@ class Favourites : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
         this@Favourites.startActivity(myIntent)
         overridePendingTransition(
@@ -100,7 +100,7 @@ class Favourites : AppCompatActivity() {
         // add your animation
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
-        mBundle.putString("quote", Quote_Number.toString())
+        mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
         this@Favourites.startActivity(myIntent)
         overridePendingTransition(
