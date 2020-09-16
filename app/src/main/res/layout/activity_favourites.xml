@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".Favourites">
+    tools:context=".favourites">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -14,7 +14,6 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:paddingEnd="10dp"
-        android:paddingStart="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingEnd="15dp"
-            android:paddingStart="15dp"
             android:text="@string/favourites"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
