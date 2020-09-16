@@ -183,7 +183,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this@MainActivity, favourites::class.java)
+                val intent2 = Intent(this@MainActivity, Favourites::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", Quote_Number.toString())
                 intent2.putExtras(mBundle)
