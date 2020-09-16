@@ -12,7 +12,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
-class favourites : AppCompatActivity() {
+class Favourites : AppCompatActivity() {
     private var Quote_Number: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class favourites : AppCompatActivity() {
             AdapterView.OnItemClickListener { adapterView, view, position, l ->
                 val value = adapter.getItem(position)
                 if (value.toString() != "") {
-                    val intent = Intent(this@favourites, Info_Panel::class.java)
+                    val intent = Intent(this@Favourites, Info_Panel::class.java)
                     val b = Bundle()
                     b.putString("quote", value.toString()) //Your id
                     intent.putExtras(b) //Put your id to your next Intent
@@ -65,11 +65,11 @@ class favourites : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back -> {
-                val myIntent = Intent(this@favourites, MainActivity::class.java)
+                val myIntent = Intent(this@Favourites, MainActivity::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", Quote_Number.toString())
                 myIntent.putExtras(mBundle)
-                this@favourites.startActivity(myIntent)
+                this@Favourites.startActivity(myIntent)
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
                     R.anim.anim_slide_out_left
@@ -82,11 +82,11 @@ class favourites : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@favourites, MainActivity::class.java)
+        val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", Quote_Number.toString())
         myIntent.putExtras(mBundle)
-        this@favourites.startActivity(myIntent)
+        this@Favourites.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left
@@ -98,11 +98,11 @@ class favourites : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@favourites, MainActivity::class.java)
+        val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", Quote_Number.toString())
         myIntent.putExtras(mBundle)
-        this@favourites.startActivity(myIntent)
+        this@Favourites.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left

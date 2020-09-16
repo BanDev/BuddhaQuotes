@@ -12,7 +12,7 @@
         android:fullBackupContent="@xml/backup_descriptor">
         <activity android:name=".Info_Panel" />
         <activity android:name=".oss_libraries" />
-        <activity android:name=".favourites" />
+        <activity android:name=".Favourites" />
         <activity
             android:name=".splash"
             android:theme="@style/Splash">
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".about"
+            android:name=".About"
             android:label="About" />
         <activity
             android:name=".settings"

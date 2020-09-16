@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
-class about : AppCompatActivity() {
+class About : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(

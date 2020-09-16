@@ -84,7 +84,7 @@ class Info_Panel : AppCompatActivity() {
             editor.putString("fav", sb)
             editor.apply()
 
-            val myIntent = Intent(this@Info_Panel, favourites::class.java)
+            val myIntent = Intent(this@Info_Panel, Favourites::class.java)
             this@Info_Panel.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
@@ -106,7 +106,7 @@ class Info_Panel : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.back -> {
-                val myIntent = Intent(this@Info_Panel, favourites::class.java)
+                val myIntent = Intent(this@Info_Panel, Favourites::class.java)
                 this@Info_Panel.startActivity(myIntent)
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -120,7 +120,7 @@ class Info_Panel : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        val myIntent = Intent(this@Info_Panel, Favourites::class.java)
         this@Info_Panel.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
@@ -133,7 +133,7 @@ class Info_Panel : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@Info_Panel, favourites::class.java)
+        val myIntent = Intent(this@Info_Panel, Favourites::class.java)
         this@Info_Panel.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,

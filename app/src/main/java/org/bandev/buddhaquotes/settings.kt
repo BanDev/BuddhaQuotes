@@ -51,7 +51,7 @@ class settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> {
-                    val i = Intent(activity, about::class.java)
+                    val i = Intent(activity, About::class.java)
                     startActivity(i)
                 }
                 "license" -> {
