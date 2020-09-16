@@ -18,7 +18,7 @@ class Info_Panel : AppCompatActivity() {
 
     private lateinit var favs: Array<String?>
     private var Settings: SharedPreferences? = null
-    private var font_size:String ?= null
+    private var font_size: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +67,8 @@ class Info_Panel : AppCompatActivity() {
 
         fab.setOnClickListener {
             favs = arrayOf(Favourites.getString("fav", ""))
-            var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
+            var array =
+                (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
             val list: MutableList<String> = ArrayList(listOf(*array))
             val text = textview.text as String
             list.remove(text)
@@ -75,7 +76,7 @@ class Info_Panel : AppCompatActivity() {
             array = list.toTypedArray()
             var sb = ""
             for (i in array.indices) {
-                if(array[i] != "") {
+                if (array[i] != "") {
                     sb = sb + array[i] + "//VADER//"
                 }
             }
@@ -85,13 +86,13 @@ class Info_Panel : AppCompatActivity() {
 
             val myIntent = Intent(this@Info_Panel, favourites::class.java)
             this@Info_Panel.startActivity(myIntent)
-            overridePendingTransition(R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left)
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
             finish()
 
         }
-
-
 
 
     }
@@ -107,8 +108,10 @@ class Info_Panel : AppCompatActivity() {
             R.id.back -> {
                 val myIntent = Intent(this@Info_Panel, favourites::class.java)
                 this@Info_Panel.startActivity(myIntent)
-                overridePendingTransition(R.anim.anim_slide_in_left,
-                        R.anim.anim_slide_out_left)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left
+                )
                 finish()
                 true
             }
@@ -119,8 +122,10 @@ class Info_Panel : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Info_Panel, favourites::class.java)
         this@Info_Panel.startActivity(myIntent)
-        overridePendingTransition(R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left)
+        overridePendingTransition(
+            R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left
+        )
         finish()
         return true
     }
@@ -130,8 +135,10 @@ class Info_Panel : AppCompatActivity() {
         // add your animation
         val myIntent = Intent(this@Info_Panel, favourites::class.java)
         this@Info_Panel.startActivity(myIntent)
-        overridePendingTransition(R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left)
+        overridePendingTransition(
+            R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left
+        )
         finish()
     }
 }

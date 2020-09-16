@@ -45,8 +45,10 @@ class about : AppCompatActivity() {
                 mBundle.putString("quote", "0")
                 i.putExtras(mBundle)
                 startActivity(i)
-                overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
                 finish()
                 true
             }
@@ -62,8 +64,10 @@ class about : AppCompatActivity() {
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)
         startActivity(i)
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
     }
 
@@ -73,8 +77,10 @@ class about : AppCompatActivity() {
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)
         startActivity(i)
-        overridePendingTransition(R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right)
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
         finish()
         return true
     }
