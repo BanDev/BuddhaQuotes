@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
+        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         //Define UI Variables
         setContentView(R.layout.activity_main)
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         toolbar?.navigationIcon = heart_black
 
         //If Using Night Mode, Change Some Stuff
@@ -66,10 +66,10 @@ class MainActivity : AppCompatActivity() {
             "lg" -> "50"
             else -> "40"
         }
-        QuoteView!!.textSize = font_size!!.toFloat()
+        (QuoteView ?: return).textSize = (font_size ?: return).toFloat()
 
         //When Refresh Is Clicked
-        refresh!!.setOnClickListener { newQuote(0) }
+        (refresh ?: return).setOnClickListener { newQuote(0) }
 
         val Favourites = getSharedPreferences("Favs", 0)
         val editor = Favourites.edit()
@@ -77,33 +77,33 @@ class MainActivity : AppCompatActivity() {
 
 
         //When Favourite Is Clicked
-        favourite!!.setOnClickListener {
-            if (!done!!) {
-                favourite!!.isEnabled = false
+        (favourite ?: return).setOnClickListener {
+            if (!(done ?: return@setOnClickListener)) {
+                (favourite ?: return@setOnClickListener).isEnabled = false
                 //If It Is Not Liked Already
                 if (favs[0] != "") {
-                    favs[0] = QuoteView!!.text.toString() + "//VADER//" + favs[0]
+                    favs[0] = (QuoteView ?: return@setOnClickListener).text.toString() + "//VADER//" + favs[0]
                 } else {
-                    favs[0] = QuoteView!!.text as String + "//VADER//"
+                    favs[0] = (QuoteView ?: return@setOnClickListener).text as String + "//VADER//"
                 }
                 editor.putString("fav", favs[0])
                 editor.apply()
-                Log.d("Array", favs[0]!!)
+                Log.d("Array", favs[0] ?: return@setOnClickListener)
                 done = true
-                favourite!!.setImageDrawable(
+                (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(
                         this@MainActivity,
                         R.drawable.heart_full_white
                     )
                 )
-                favourite!!.isEnabled = true
+                (favourite ?: return@setOnClickListener).isEnabled = true
             } else {
                 //If It Is Already Liked
-                favourite!!.isEnabled = false
+                (favourite ?: return@setOnClickListener).isEnabled = false
                 favs = arrayOf(Favourites.getString("fav", ""))
-                var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+                var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex()).toTypedArray()
                 val list: MutableList<String> = ArrayList(listOf(*array))
-                val text = QuoteView!!.text as String
+                val text = (QuoteView ?: return@setOnClickListener).text as String
                 list.remove(text)
                 array = list.toTypedArray()
                 array = array.distinct().toTypedArray()
@@ -117,13 +117,13 @@ class MainActivity : AppCompatActivity() {
                 editor.putString("fav", sb)
                 editor.commit()
                 done = false
-                favourite!!.setImageDrawable(
+                (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(
                         this@MainActivity,
                         R.drawable.like_white_empty
                     )
                 )
-                favourite!!.isEnabled = true
+                (favourite ?: return@setOnClickListener).isEnabled = true
             }
         }
 
@@ -136,9 +136,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun newQuote(Quote_Number_Local: Int) {
             val text = quote.random(Quote_Number_Local)
-            QuoteView!!.text = text
+            (QuoteView ?: return).text = text
             done = false
-            favourite!!.setImageDrawable(
+            (favourite ?: return).setImageDrawable(
                 ContextCompat.getDrawable(
                     this@MainActivity,
                     R.drawable.ic_baseline_stars_24
@@ -146,11 +146,11 @@ class MainActivity : AppCompatActivity() {
             )
             val pref = getSharedPreferences("Favs", 0)
             favs = arrayOf(pref.getString("fav", ""))
-            array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+            array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
             list = listOf(*array)
-            if ((list as MutableList<String?>).contains(QuoteView!!.text)) {
+            if ((list as MutableList<String?>).contains((QuoteView ?: return).text)) {
                 done = true
-                favourite!!.setImageDrawable(
+                (favourite ?: return).setImageDrawable(
                     ContextCompat.getDrawable(
                         this@MainActivity,
                         R.drawable.heart_full_white

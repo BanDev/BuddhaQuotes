@@ -18,11 +18,11 @@ class favourites : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
+        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -36,7 +36,7 @@ class favourites : AppCompatActivity() {
         val listview = findViewById<View>(R.id.listView) as ListView
         val pref = getSharedPreferences("Favs", 0)
         val favs = arrayOf(pref.getString("fav", ""))
-        var array = favs[0]!!.split("//VADER//".toRegex()).toTypedArray()
+        var array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
         array = array.distinct().toTypedArray()
         val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
         listview.adapter = adapter

@@ -22,11 +22,11 @@ class about : AppCompatActivity() {
         setContentView(R.layout.activity_about)
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
 
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }

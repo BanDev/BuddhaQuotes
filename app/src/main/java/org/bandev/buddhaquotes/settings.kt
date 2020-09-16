@@ -22,7 +22,7 @@ class settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        Quote_Number = intent.extras!!.getString("quote")!!.toInt()
+        Quote_Number = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         supportFragmentManager
@@ -31,7 +31,7 @@ class settings : AppCompatActivity() {
             .commit()
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
@@ -40,7 +40,7 @@ class settings : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
 
     }
@@ -74,7 +74,7 @@ class settings : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
             val listPreference = findPreference<Preference>("theme") as ListPreference?
-            if (listPreference!!.value == null) {
+            if ((listPreference ?: return).value == null) {
                 listPreference.setValueIndex(2) //set to index of your default value
             }
             listPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
@@ -102,7 +102,7 @@ class settings : AppCompatActivity() {
                 true
             }
             val textSize = findPreference<Preference>("size") as ListPreference?
-            if (textSize!!.value == null) {
+            if ((textSize ?: return).value == null) {
                 textSize.setValueIndex(1) //set to index of your default value
             }
             textSize.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference, newValue ->
