@@ -15,10 +15,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.r0adkll.slidr.Slidr
-import com.r0adkll.slidr.model.SlidrInterface
-
-
 
 
 class settings : AppCompatActivity() {
