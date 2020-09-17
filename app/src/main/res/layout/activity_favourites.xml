@@ -27,6 +27,7 @@
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
             android:text="@string/favourites"
+            android:fontFamily="@font/mt_bold"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="24sp"

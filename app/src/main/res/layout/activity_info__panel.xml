@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:paddingEnd="15dp"
             android:paddingStart="15dp"
+            android:fontFamily="@font/mt_bold"
             android:text="@string/favourited_quote"
             android:textAlignment="textEnd"
             android:textColor="?android:attr/textColorPrimary"
