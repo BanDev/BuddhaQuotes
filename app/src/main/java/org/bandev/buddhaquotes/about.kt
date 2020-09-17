@@ -2,7 +2,6 @@ package org.bandev.buddhaquotes
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.opengl.ETC1.getHeight
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -43,9 +42,9 @@ class About : AppCompatActivity() {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param = myToolbar!!.layoutParams as ViewGroup.MarginLayoutParams
+        val param = myToolbar.layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
-        myToolbar!!.layoutParams = param
+        myToolbar.layoutParams = param
 
         val view = View(this)
         view.doOnLayout {
@@ -65,10 +64,6 @@ class About : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-    }
-
-    fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        return false
     }
 
 
