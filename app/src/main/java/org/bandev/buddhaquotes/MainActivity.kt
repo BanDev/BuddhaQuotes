@@ -3,32 +3,11 @@ package org.bandev.buddhaquotes
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.os.Build.VERSION
 import android.os.Bundle
-
-import android.text.InputType
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-
-import android.webkit.URLUtil
-import android.widget.Button
-import android.widget.EditText
-
-import androidx.core.view.doOnLayout
-import androidx.preference.PreferenceManager
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import java.util.*
 import android.view.*
-
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -38,9 +17,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_info__panel.*
 import java.util.*
-import android.view.WindowInsets
 
 
 class MainActivity : AppCompatActivity() {
@@ -88,9 +65,9 @@ class MainActivity : AppCompatActivity() {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param = toolbar!!.layoutParams as ViewGroup.MarginLayoutParams
-        param.setMargins(0,statusBarHeight,0,0)
-        toolbar!!.layoutParams = param
+        val param = (toolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        (toolbar ?: return).layoutParams = param
 
         val view = View(this)
         view.doOnLayout {
@@ -110,21 +87,21 @@ class MainActivity : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param2 = favourite!!.layoutParams as ViewGroup.MarginLayoutParams
-        param2.setMargins(0, 0,0,navBarHeight)
-        favourite!!.layoutParams = param2
+        val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param2.setMargins(0, 0, 0, navBarHeight)
+        (favourite ?: return).layoutParams = param2
 
-        val param3 = refresh!!.layoutParams as ViewGroup.MarginLayoutParams
-        param3.setMargins(0, 0,0,navBarHeight)
-        refresh!!.layoutParams = param3
+        val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param3.setMargins(0, 0, 0, navBarHeight)
+        (refresh ?: return).layoutParams = param3
 
         //If Using Night Mode, Change Some Stuff
-       // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-    //        Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-     //           View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-      //      Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-      //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-     //   }
+        // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        //        Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
+        //           View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        //      Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
+        //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        //   }
         window.navigationBarColor = resources.getColor(R.color.transparent)
 
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
@@ -225,7 +202,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
+        with(sharedPref.edit()) {
             putInt("Quote_Number", quote.quotenumberglobal)
             commit()
         }
@@ -240,7 +217,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_main_setting -> {
-                val myIntent = Intent(this@MainActivity, org.bandev.buddhaquotes.settings::class.java)
+                val myIntent =
+                    Intent(this@MainActivity, org.bandev.buddhaquotes.settings::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", quotenumber.toString())
                 myIntent.putExtras(mBundle)

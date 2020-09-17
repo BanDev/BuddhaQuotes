@@ -1,3 +1,5 @@
+@file:Suppress("ClassName")
+
 package org.bandev.buddhaquotes
 
 import android.content.Intent
