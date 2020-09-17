@@ -1,15 +1,23 @@
 package org.bandev.buddhaquotes
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.Configuration
+import android.opengl.ETC1.getHeight
+import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.WindowCompat
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
+
 
 class About : AppCompatActivity() {
 
+    @SuppressLint("ClickableViewAccessibility")
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         overridePendingTransition(
             R.anim.anim_slide_in_left,
@@ -25,17 +33,44 @@ class About : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
 
 
-        window.navigationBarColor = resources.getColor(R.color.colorPrimary)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-            }
-            Configuration.UI_MODE_NIGHT_NO ->                 //No
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED ->                 //Who knows? Assume they are not
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
+
+        val param = myToolbar!!.layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        myToolbar!!.layoutParams = param
+
+        val view = View(this)
+        view.doOnLayout {
+            view.windowInsetsController?.show(WindowInsets.Type.ime())
+            // You can also access it from Window
+            window.insetsController?.show(WindowInsets.Type.ime())
+        }
+
+        view.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
+
+        var navBarHeight = 0
+        val resourceId2 = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+        if (resourceId2 > 0) {
+            navBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+
     }
+
+    fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        return false
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -84,4 +119,9 @@ class About : AppCompatActivity() {
         finish()
         return true
     }
+
+
 }
+
+
+

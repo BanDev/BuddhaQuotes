@@ -13,8 +13,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
-        android:paddingEnd="10dp"
         android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/about"
             android:fontFamily="@font/mt_bold"
+            android:text="@string/about"
             android:textAlignment="viewStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="24sp"
@@ -34,208 +34,22 @@
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="102dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_round"
-        android:contentDescription="@string/buddha_quotes_logo" />
-
-    <TextView
-        android:layout_width="328dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/mt_bold"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="36sp"
-        android:textStyle="bold"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
-    <TextView
-        android:layout_width="270dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/mt_bold"
-        android:text="@string/about_app_promise"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="271dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="112dp"
-        android:fontFamily="@font/mt_reg"
-        android:text="@string/about_no_trackers"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            <include layout="@layout/about_content_long"></include>
+        </LinearLayout>
+    </ScrollView>
 
-    <TextView
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/about_no_ads"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/about_complete_privacy"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="332dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/about_offline_app"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="384dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/about_free_and_open_source"
-        android:textAlignment="viewStart"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="249dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/version"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <View
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="140dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="71dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@drawable/picture2"
-        android:contentDescription="@string/bandev_logo" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="332dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="384dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24"
-        android:contentDescription="@string/tick" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,14 +15,21 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.r0adkll.slidr.Slidr
+import com.r0adkll.slidr.model.SlidrInterface
+
+
+
 
 class settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
+
 
         quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
