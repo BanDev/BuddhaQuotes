@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Buddha Quotes</string>
-    <string name="version">v.1.2.2</string>
+    <string name="version">v.1.3</string>
 
     <!-- About page -->
     <string name="about">About</string>
@@ -11,10 +11,10 @@
     <string name="about_offline_app">Offline app</string>
     <string name="about_free_and_open_source">Free and Open Source</string>
     <string name="about_info">App Info</string>
-    <string name="about_info_paragraph">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
+    <string name="about_info_paragraph">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
 </string>
     <string name="about_contributors">Contributors</string>
-    <string name="about_rusco_exe">"@Rusco_exe"</string>
+    <string name="about_fennec">"@Fennec_exe"</string>
     <string name="about_jwdevey">"@jwdevey"</string>
     <string name="about_izzysoft">"@IzzySoft"</string>
     <string name="about_poussinou">"@Poussinou"</string>
