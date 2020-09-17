@@ -40,7 +40,7 @@ class About : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, Settings::class.java)
+                val i = Intent(this, settings::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", "0")
                 i.putExtras(mBundle)
@@ -59,7 +59,7 @@ class About : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val i = Intent(this, Settings::class.java)
+        val i = Intent(this, settings::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)
@@ -72,7 +72,7 @@ class About : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val i = Intent(this, Settings::class.java)
+        val i = Intent(this, settings::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", "0")
         i.putExtras(mBundle)

@@ -72,7 +72,7 @@ class OSSLibraries : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, Settings::class.java)
+                val i = Intent(this, settings::class.java)
                 startActivity(i)
                 overridePendingTransition(
                     R.anim.anim_slide_in_right,

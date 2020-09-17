@@ -26,7 +26,7 @@
             android:name=".About"
             android:label="About" />
         <activity
-            android:name=".Settings"
+            android:name=".settings"
             android:label="@string/title_activity_settings" />
         <activity android:name=".MainActivity">
             <meta-data
