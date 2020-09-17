@@ -19,8 +19,6 @@ import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrInterface
 
 
-
-
 class settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
