@@ -1,4 +1,4 @@
-# Buddha Quotes ![Pipeline](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg) ![License](https://img.shields.io/badge/license-GPL--3.0%2B-informational) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+# Buddha Quotes [![Pipeline](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg)](https://gitlab.com/bandev/buddha-quotes/-/pipelines) [![License](https://img.shields.io/badge/license-GPL--3.0%2B-informational)](https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
 [<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" 
       height="170">]()
