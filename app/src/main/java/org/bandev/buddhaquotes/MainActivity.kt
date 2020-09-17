@@ -8,11 +8,8 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-<<<<<<< Updated upstream
-=======
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
->>>>>>> Stashed changes
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +19,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-<<<<<<< Updated upstream
-=======
 import com.plattysoft.leonids.ParticleSystem
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrInterface
->>>>>>> Stashed changes
 import java.util.*
 
 
