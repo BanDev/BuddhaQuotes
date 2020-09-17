@@ -1,3 +1,5 @@
+@file:Suppress("Annotator", "Annotator", "Annotator")
+
 package org.bandev.buddhaquotes
 
 import android.content.Context
