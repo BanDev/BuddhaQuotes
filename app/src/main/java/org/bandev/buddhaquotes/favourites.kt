@@ -18,7 +18,6 @@ class Favourites : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
@@ -66,9 +65,6 @@ class Favourites : AppCompatActivity() {
         return when (item.itemId) {
             R.id.back -> {
                 val myIntent = Intent(this@Favourites, MainActivity::class.java)
-                val mBundle = Bundle()
-                mBundle.putString("quote", quotenumber.toString())
-                myIntent.putExtras(mBundle)
                 this@Favourites.startActivity(myIntent)
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -83,9 +79,6 @@ class Favourites : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", quotenumber.toString())
-        myIntent.putExtras(mBundle)
         this@Favourites.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,
@@ -100,8 +93,6 @@ class Favourites : AppCompatActivity() {
         // add your animation
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
-        mBundle.putString("quote", quotenumber.toString())
-        myIntent.putExtras(mBundle)
         this@Favourites.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_left,

@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about"
+            android:fontFamily="@font/mt_bold"
             android:textAlignment="viewStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="24sp"
@@ -46,9 +47,10 @@
         android:contentDescription="@string/buddha_quotes_logo" />
 
     <TextView
-        android:layout_width="283dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="328dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/mt_bold"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorPrimary"
@@ -62,6 +64,7 @@
         android:layout_width="270dp"
         android:layout_height="44dp"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/mt_bold"
         android:text="@string/about_app_promise"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
@@ -77,6 +80,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="164dp"
         android:layout_marginEnd="112dp"
+        android:fontFamily="@font/mt_reg"
         android:text="@string/about_no_trackers"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
