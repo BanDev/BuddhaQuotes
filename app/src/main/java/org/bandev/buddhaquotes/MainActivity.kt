@@ -20,8 +20,6 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
-import com.r0adkll.slidr.Slidr
-import com.r0adkll.slidr.model.SlidrInterface
 import java.util.*
 
 
@@ -133,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                 like.setSpeedRange(0.0625f, 0.0625f)
                 like.setFadeOut(100)
                 like.setScaleRange(0.5f, 1f)
-                like.oneShot(favourite, 5);
+                like.oneShot(favourite, 5)
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 //If It Is Not Liked Already
                 if (favs[0] != "") {
@@ -157,8 +155,8 @@ class MainActivity : AppCompatActivity() {
                 //If It Is Already Liked
                 //val like = ParticleSystem(this, 5, R.drawable.heart_black, 600)
                 //like.setSpeedRange(0.0625f, 0.0625f)
-               // like.setFadeOut(100)
-               // like.oneShot(favourite, 5);
+                // like.setFadeOut(100)
+                // like.oneShot(favourite, 5);
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 favs = arrayOf(favourites.getString("fav", ""))
                 var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex())
@@ -198,8 +196,8 @@ class MainActivity : AppCompatActivity() {
             0F, 360f,
             Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
         )
-        rotateAnimation.setDuration(2.toLong() * 250)
-        refresh!!.startAnimation(rotateAnimation)
+        rotateAnimation.duration = 2.toLong() * 250
+        (refresh ?: return).startAnimation(rotateAnimation)
         val text = quote.random(Quote_Number_Local)
         (quoteview ?: return).text = text
         done = false
