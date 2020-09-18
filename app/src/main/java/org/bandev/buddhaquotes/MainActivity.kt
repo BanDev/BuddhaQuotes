@@ -118,7 +118,15 @@ class MainActivity : AppCompatActivity() {
         (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
 
         //When Refresh Is Clicked
-        (refresh ?: return).setOnClickListener { newQuote(0) }
+        (refresh ?: return).setOnClickListener {
+
+            val rotateAnimation = RotateAnimation(
+                0F, 360f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+            )
+            rotateAnimation.duration = 2.toLong() * 250
+            refresh!!.startAnimation(rotateAnimation)
+            newQuote(0) }
 
         val favourites = getSharedPreferences("Favs", 0)
         val editor = favourites.edit()
@@ -192,12 +200,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun newQuote(Quote_Number_Local: Int) {
 
-        val rotateAnimation = RotateAnimation(
-            0F, 360f,
-            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
-        )
-        rotateAnimation.duration = 2.toLong() * 250
-        (refresh ?: return).startAnimation(rotateAnimation)
+
         val text = quote.random(Quote_Number_Local)
         (quoteview ?: return).text = text
         done = false

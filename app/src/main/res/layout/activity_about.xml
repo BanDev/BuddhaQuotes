@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".About">
+    tools:context=".About"
+    android:id="@+id/context_view">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -35,12 +37,14 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/my_toolbar"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
         <LinearLayout
@@ -49,6 +53,7 @@
             android:orientation="vertical">
 
             <include layout="@layout/about_content_long" />
+
         </LinearLayout>
     </ScrollView>
 
