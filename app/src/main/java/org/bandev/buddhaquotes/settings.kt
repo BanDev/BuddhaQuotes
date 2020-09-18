@@ -18,7 +18,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 
 
-
 class settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
