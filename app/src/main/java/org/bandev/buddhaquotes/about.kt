@@ -10,18 +10,12 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnScrollChangedListener
 import android.view.WindowInsets
 import android.widget.ScrollView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.snackbar.Snackbar
-import com.plattysoft.leonids.ParticleSystem
-import kotlinx.android.synthetic.main.activity_about.*
-import kotlinx.android.synthetic.main.activity_info__panel.*
 
 
 class About : AppCompatActivity() {
@@ -37,10 +31,10 @@ class About : AppCompatActivity() {
         setContentView(R.layout.activity_about)
 
         val scrollview:ScrollView = findViewById(R.id.scroll)
-        scrollview.getViewTreeObserver()
-            .addOnScrollChangedListener(OnScrollChangedListener {
-                if (scrollview.getChildAt(0).getBottom()
-                    <= scrollview.getHeight() + scrollview.getScrollY()
+        scrollview.viewTreeObserver
+            .addOnScrollChangedListener({
+                if (scrollview.getChildAt(0).bottom
+                    <= scrollview.height + scrollview.scrollY
                 ) {
 
                 } else {
