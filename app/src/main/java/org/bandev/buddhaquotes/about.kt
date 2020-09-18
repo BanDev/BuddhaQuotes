@@ -4,13 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver.OnScrollChangedListener
+import android.view.WindowInsets
+import android.widget.ScrollView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import com.google.android.material.snackbar.Snackbar
+import com.plattysoft.leonids.ParticleSystem
+import kotlinx.android.synthetic.main.activity_about.*
+import kotlinx.android.synthetic.main.activity_info__panel.*
 
 
 class About : AppCompatActivity() {
@@ -22,11 +33,24 @@ class About : AppCompatActivity() {
             R.anim.anim_slide_in_left,
             R.anim.anim_slide_out_left
         )
-
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+
+        val scrollview:ScrollView = findViewById(R.id.scroll)
+        scrollview.getViewTreeObserver()
+            .addOnScrollChangedListener(OnScrollChangedListener {
+                if (scrollview.getChildAt(0).getBottom()
+                    <= scrollview.getHeight() + scrollview.getScrollY()
+                ) {
+
+                } else {
+                    //scroll view is not at bottom
+                }
+            })
+
+
+
+
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
