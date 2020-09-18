@@ -127,8 +127,9 @@ class MainActivity : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
             )
             rotateAnimation.duration = 2.toLong() * 250
-            refresh!!.startAnimation(rotateAnimation)
-            newQuote(0) }
+            (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
+            newQuote(0)
+        }
 
         val favourites = getSharedPreferences("Favs", 0)
         val editor = favourites.edit()
