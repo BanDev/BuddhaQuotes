@@ -58,6 +58,9 @@
     <string name="the_buddha">The Buddha</string>
     <string name="forward_arrow">Return</string>
 
+    <!-- Licenses page -->
+    <string name="licenses">Licenses</string>
+
     <!-- Miscellaneous  -->
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="textview">TextView</string>

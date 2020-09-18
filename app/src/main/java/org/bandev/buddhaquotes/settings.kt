@@ -60,10 +60,9 @@ class settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "license" -> {
-                    val i = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md")
-                    )
+                        val i = Intent(activity, License::class.java)
+                    startActivity(i)
+
                     startActivity(i)
                 }
                 "oss_libraries" -> {
