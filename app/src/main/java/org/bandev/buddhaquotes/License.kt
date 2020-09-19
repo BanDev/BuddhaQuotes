@@ -3,16 +3,22 @@ package org.bandev.buddhaquotes
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.widget.TextView
+import androidx.annotation.RawRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import java.io.*
 
 class License : AppCompatActivity() {
+
+    var stream:InputStream? = null
 
     //Say that you need a snazzy phone to use the app (Android Ver > R)
     @RequiresApi(Build.VERSION_CODES.R)
@@ -60,5 +66,30 @@ class License : AppCompatActivity() {
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
         }
+
+        //Identify the TextView and then start loading the licenses into it
+        var textview:TextView = findViewById(R.id.license)
+        stream = File("Licenses/app.txt").inputStream()
+        val bytes = ByteArray(32)
+        loadFileIntoTextView((stream as FileInputStream).read(bytes), textview)
+    }
+
+    private fun loadFileIntoTextView(@RawRes fileId: Int, textView: TextView) {
+        val sb = StringBuilder()
+        val br = BufferedReader(InputStreamReader(resources.openRawResource(fileId)))
+
+        try {
+            var line: String? = br.readLine()
+            while (line != null) {
+                sb.append(line)
+                sb.append('\n')
+                line = br.readLine()
+            }
+        } catch (e: IOException) {
+            Log.w("LicenseActivity", e)
+        }
+
+        stream?.close()
+        textView.text = sb.toString()
     }
 }
