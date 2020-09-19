@@ -47,6 +47,7 @@
     <string name="large_text_size">Large</string>
     <string name="information">Information</string>
     <!-- 'About' is declared on line 7  -->
+    <string name="help">Help</string>
     <string name="app_license">App License</string>
     <string name="gplv3">GPLv3</string>
     <string name="open_source_libraries">Open Source Libraries</string>

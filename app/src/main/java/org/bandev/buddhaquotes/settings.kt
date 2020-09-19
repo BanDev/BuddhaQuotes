@@ -4,7 +4,6 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -53,13 +52,13 @@ class settings : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            if(preference?.key == "About"){
+            if (preference?.key == "About") {
                 val i = Intent(activity, About::class.java)
                 startActivity(i)
-            }else if(preference?.key == "license"){
+            } else if (preference?.key == "license") {
                 OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
                 startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
-            }else if(preference?.key == "oss_libraries"){
+            } else if (preference?.key == "oss_libraries") {
                 OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
                 startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
             }

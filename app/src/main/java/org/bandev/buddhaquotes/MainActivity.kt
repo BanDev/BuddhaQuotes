@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         (favourite ?: return).setOnClickListener {
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_black, 600)
-                like.setSpeedRange(0.0625f, 0.0625f)
+                like.setSpeedRange(0.0750f, 0.0750f)
                 like.setFadeOut(100)
                 like.setScaleRange(0.5f, 1f)
                 like.oneShot(favourite, 5)

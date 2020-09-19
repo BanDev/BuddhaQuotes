@@ -30,6 +30,12 @@
 
         </Preference>
         <Preference
+            android:key="@string/help"
+            android:title="Help"
+            app:icon="@drawable/ic_help_circle_24">
+
+        </Preference>
+        <Preference
             android:key="license"
             android:title="@string/app_license"
             android:summary="@string/gplv3"
