@@ -60,6 +60,7 @@
 
     <!-- Licenses page -->
     <string name="licenses">Licenses</string>
+    <string name="licenses_license">GPL-3.0+</string>
 
     <!-- Miscellaneous  -->
     <string name="title_activity_settings">SettingsActivity</string>

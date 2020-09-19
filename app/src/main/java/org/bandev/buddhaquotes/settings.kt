@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class settings : AppCompatActivity() {
 
@@ -53,24 +53,15 @@ class settings : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            when (preference?.key) {
-                "About" -> {
-                    val i = Intent(activity, About::class.java)
-                    startActivity(i)
-                }
-                "license" -> {
-                        val i = Intent(activity, License::class.java)
-                    startActivity(i)
-
-                    startActivity(i)
-                }
-                "oss_libraries" -> {
-                    val i = Intent(activity, OSSLibraries::class.java)
-                    val b = Bundle()
-                    b.putString("from", "settings") //Your id
-                    i.putExtras(b)
-                    startActivity(i)
-                }
+            if(preference?.key == "About"){
+                val i = Intent(activity, About::class.java)
+                startActivity(i)
+            }else if(preference?.key == "license"){
+                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
+                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+            }else if(preference?.key == "oss_libraries"){
+                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
+                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
             }
             return true
         }
@@ -78,6 +69,7 @@ class settings : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
+
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
             val listPreference = findPreference<Preference>("theme") as ListPreference?
