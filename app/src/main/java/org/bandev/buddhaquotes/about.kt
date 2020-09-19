@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver.OnScrollChangedListener
 import android.view.WindowInsets
 import android.widget.ScrollView
 import androidx.annotation.RequiresApi
@@ -30,9 +29,9 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        val scrollview:ScrollView = findViewById(R.id.scroll)
+        val scrollview: ScrollView = findViewById(R.id.scroll)
         scrollview.viewTreeObserver
-            .addOnScrollChangedListener({
+            .addOnScrollChangedListener {
                 if (scrollview.getChildAt(0).bottom
                     <= scrollview.height + scrollview.scrollY
                 ) {
@@ -40,9 +39,7 @@ class About : AppCompatActivity() {
                 } else {
                     //scroll view is not at bottom
                 }
-            })
-
-
+            }
 
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar

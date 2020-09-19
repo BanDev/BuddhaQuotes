@@ -18,7 +18,7 @@ import java.io.*
 
 class License : AppCompatActivity() {
 
-    var stream:InputStream? = null
+    private var stream: InputStream? = null
 
     //Say that you need a snazzy phone to use the app (Android Ver > R)
     @RequiresApi(Build.VERSION_CODES.R)
@@ -68,7 +68,7 @@ class License : AppCompatActivity() {
         }
 
         //Identify the TextView and then start loading the licenses into it
-        var textview:TextView = findViewById(R.id.license)
+        val textview: TextView = findViewById(R.id.license)
         stream = File("Licenses/app.txt").inputStream()
         val bytes = ByteArray(32)
         loadFileIntoTextView((stream as FileInputStream).read(bytes), textview)
