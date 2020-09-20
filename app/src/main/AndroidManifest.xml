@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.bandev.buddhaquotes">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -11,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".License"></activity>
+        <activity android:name=".Slide_2"></activity>
+        <activity
+            android:name=".Slide_1"
+            android:theme="@style/slides" />
+        <activity android:name=".License" />
         <activity android:name=".InfoPanel" />
         <activity android:name=".OSSLibraries" />
         <activity android:name=".Favourites" />
@@ -28,6 +34,9 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/OSS_Theme"
             tools:ignore="MissingClass" />
+        <activity
+            android:name=".Help"
+            android:label="Help" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/OSS_Theme"

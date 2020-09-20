@@ -61,6 +61,9 @@ class settings : AppCompatActivity() {
             } else if (preference?.key == "oss_libraries") {
                 OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
                 startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+            } else if (preference?.key == "help") {
+                val i = Intent(activity, Slide_1::class.java)
+                startActivity(i)
             }
             return true
         }
