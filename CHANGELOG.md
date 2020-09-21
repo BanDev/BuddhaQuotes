@@ -16,7 +16,7 @@
 - License page with the GNU GPLv3 formatted rather than linking to the website (W.I.P)
 - App is now fullscreen for the devices that have a gesture bar
 - Lots of code cleanup and optimisations
-- Various bug fixes and typo fixes
+- Various bug fixes and typo corrections
 
 ### 1.2 (10/08/2020)
 
@@ -44,4 +44,5 @@
 - Improved dark mode
 - Code optimisations
 - Buddha image changed
+
 ### 1.0 (28/07/2020) - Release
