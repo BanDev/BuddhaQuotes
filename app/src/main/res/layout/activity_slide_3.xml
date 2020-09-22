@@ -9,42 +9,42 @@
     tools:context=".Slide_1">
 
     <Button
-        android:id="@+id/night"
+        android:id="@+id/button"
         style="Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
-        android:layout_marginStart="80dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="Im in!"
+        android:text="Continue"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/night"
+        app:icon="@drawable/ic_baseline_navigate_next_24"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/day"
-        style="Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="0dp"
-        android:fontFamily="@font/mt_bold"
-        android:letterSpacing="0.0"
-        android:text="Nope"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:cornerRadius="11dp"
-        app:icon="@drawable/day"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:stepSize="10.0"
+        android:value="10"
+        android:valueFrom="0.0"
+        android:valueTo="20.0"
+        app:labelBehavior="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:thumbColor="@color/colorAccent"
+        app:tickColorActive="#D3D3D3"
+        app:tickColorInactive="#D3D3D3"
+        app:trackColorActive="#D3D3D3"
+        app:trackColorInactive="#D3D3D3" />
 
     <TextView
         android:id="@+id/textView18"
@@ -54,7 +54,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Display too bright?"
+        android:text="Text hard to read?"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -68,12 +68,26 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Why not try dark mode"
+        android:text="Select a text size below"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.0"
+        android:text="The quick brown fox jumps over the lazy dog"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/slider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -82,6 +96,6 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_highlight_24" />
+        app:srcCompat="@drawable/text_yellow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

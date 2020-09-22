@@ -41,7 +41,7 @@ class settings : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
@@ -103,14 +103,24 @@ class settings : AppCompatActivity() {
                     }
                     true
                 }
+
+
             val textSize = findPreference<Preference>("size") as ListPreference?
-            if ((textSize ?: return).value == null) {
-                textSize.setValueIndex(1) //set to index of your default value
+
+            val size2 = pref.getString("text_size", "md")
+
+            if (size2 == "md") {
+                textSize?.setValueIndex(1) //set to index of your default value
+            }else if(size2 == "sm"){
+                textSize?.setValueIndex(0)
+            }else if(size2 == "lg"){
+                textSize?.setValueIndex(2)
             }
-            textSize.onPreferenceChangeListener =
+
+            textSize?.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
-                    textSize.value = newValue.toString()
-                    val size = textSize.entry.toString()
+                    textSize?.value = newValue.toString()
+                    val size = textSize?.entry.toString()
                     Log.d("debug", size)
                     if (size == "Small") {
                         editor.putString("text_size", "sm")

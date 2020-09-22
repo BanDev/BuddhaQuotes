@@ -9,42 +9,23 @@
     tools:context=".Slide_1">
 
     <Button
-        android:id="@+id/night"
+        android:id="@+id/button"
         style="Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
-        android:layout_marginStart="80dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="Im in!"
+        android:text="Open App"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/night"
+        app:icon="@drawable/ic_baseline_open_in_new_24"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/day"
-        style="Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="0dp"
-        android:fontFamily="@font/mt_bold"
-        android:letterSpacing="0.0"
-        android:text="Nope"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:cornerRadius="11dp"
-        app:icon="@drawable/day"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
@@ -54,7 +35,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Display too bright?"
+        android:text="All done!"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -68,7 +49,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Why not try dark mode"
+        android:text="You're ready to start now"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +63,6 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_highlight_24" />
+        app:srcCompat="@drawable/ic_baseline_done_all_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
