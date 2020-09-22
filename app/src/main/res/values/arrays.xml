@@ -6,6 +6,12 @@
         <item>@string/follow_system_default</item>
     </string-array>
 
+    <array name="initial_slider_values">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </array>
+
     <string-array name="theme_values">
         <item>light</item>
         <item>dark</item>

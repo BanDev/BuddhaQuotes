@@ -2,20 +2,17 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
-import android.widget.Switch
-import android.widget.TextView
+import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_slide_2.*
+import kotlinx.android.synthetic.main.activity_info__panel.*
 
 class Slide_2 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
@@ -23,22 +20,12 @@ class Slide_2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_2)
 
-        var next: FloatingActionButton = findViewById(R.id.next)
-
-        next.setOnClickListener {
-            val myIntent =
-                Intent(this@Slide_2, Slide_2::class.java)
-            this@Slide_2.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
-        }
-
-        val sw1:Switch = findViewById(R.id.switch1)
 
 
-        val sharedPreferences = getSharedPreferences("Settings", 0)
+        val night: Button = findViewById(R.id.night)
+        val day: Button = findViewById(R.id.day)
+
+        /*val sharedPreferences = getSharedPreferences("Settings", 0)
         val darkmode = sharedPreferences.getBoolean("dark_mode", false)
         val sys = sharedPreferences.getBoolean("sys", true)
         val text:TextView = findViewById(R.id.text)
@@ -58,26 +45,43 @@ class Slide_2 : AppCompatActivity() {
                 sw1.isChecked = true
                 text.text = "Light"
             }
+        }*/
+
+
+        night?.setOnClickListener {
+            val pref = this.getSharedPreferences("Settings", 0)
+            val editor = pref.edit()
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            editor.putBoolean("dark_mode", true)
+            editor.putBoolean("sys", false)
+            editor.commit()
+
+            val myIntent = Intent(this@Slide_2, Slide_3::class.java)
+            this@Slide_2.startActivity(myIntent)
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
+        }
+
+        day?.setOnClickListener {
+            val pref = this.getSharedPreferences("Settings", 0)
+            val editor = pref.edit()
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            editor.putBoolean("dark_mode", false)
+            editor.putBoolean("sys", false)
+            editor.commit()
+
+            val myIntent = Intent(this@Slide_2, Slide_3::class.java)
+            this@Slide_2.startActivity(myIntent)
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
 
-        sw1?.setOnCheckedChangeListener({ _ , isChecked ->
-            val pref = this.getSharedPreferences("Settings", 0)
-            val editor = pref.edit()
-            if(isChecked){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                editor.putBoolean("dark_mode", false)
-                editor.putBoolean("sys", false)
-                text.text = "Light"
-                editor.commit()
-            }else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                editor.putBoolean("dark_mode", true)
-                editor.putBoolean("sys", false)
-                text.text = "Dark"
-                editor.commit()
-            }
-        })
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
