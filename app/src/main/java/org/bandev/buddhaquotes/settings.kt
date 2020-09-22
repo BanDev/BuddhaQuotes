@@ -41,7 +41,7 @@ class settings : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
@@ -111,9 +111,9 @@ class settings : AppCompatActivity() {
 
             if (size2 == "md") {
                 textSize?.setValueIndex(1) //set to index of your default value
-            }else if(size2 == "sm"){
+            } else if (size2 == "sm") {
                 textSize?.setValueIndex(0)
-            }else if(size2 == "lg"){
+            } else if (size2 == "lg") {
                 textSize?.setValueIndex(2)
             }
 

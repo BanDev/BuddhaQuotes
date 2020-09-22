@@ -1,8 +1,6 @@
 package org.bandev.buddhaquotes
 
-import android.graphics.Color
 import android.os.Bundle
-import androidx.annotation.ColorRes
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
