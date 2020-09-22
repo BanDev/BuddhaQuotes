@@ -1,22 +1,15 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global.getString
-import android.util.TypedValue
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import androidx.preference.ListPreference
-import androidx.preference.Preference
 import com.google.android.material.slider.Slider
 
 class Slide_3 : AppCompatActivity() {
@@ -51,9 +44,9 @@ class Slide_3 : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        var slider:Slider = findViewById(R.id.slider)
-        var button: Button = findViewById(R.id.button)
-        var text2: TextView = findViewById(R.id.text)
+        val slider: Slider = findViewById(R.id.slider)
+        val button: Button = findViewById(R.id.button)
+        val text2: TextView = findViewById(R.id.text)
 
         slider.addOnChangeListener { slider, value, fromUser ->
             // Responds to when slider's value is changed
@@ -65,23 +58,23 @@ class Slide_3 : AppCompatActivity() {
                 else -> 40f
             }
 
-            text2.setTextSize(fontsize);
+            text2.textSize = fontsize
 
-            val string:String = when(fontsize){
+            val string: String = when (fontsize) {
                 30f -> "sm"
                 50f -> "lg"
                 else -> "md"
             }
             editor.putString("text_size", string)
-            editor.commit()
+            editor.apply()
         }
 
-        button?.setOnClickListener {
-            if(slider.value == 10f){
+        button.setOnClickListener {
+            if (slider.value == 10f) {
                 val pref = this.getSharedPreferences("Settings", 0)
                 val editor = pref.edit()
                 editor.putString("text_size", "md")
-                editor.commit()
+                editor.apply()
             }
 
             val myIntent = Intent(this@Slide_3, Slide_4::class.java)

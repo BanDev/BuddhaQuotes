@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import kotlinx.android.synthetic.main.activity_info__panel.*
 
 class Slide_2 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
@@ -48,13 +47,13 @@ class Slide_2 : AppCompatActivity() {
         }*/
 
 
-        night?.setOnClickListener {
+        night.setOnClickListener {
             val pref = this.getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             editor.putBoolean("dark_mode", true)
             editor.putBoolean("sys", false)
-            editor.commit()
+            editor.apply()
 
             val myIntent = Intent(this@Slide_2, Slide_3::class.java)
             this@Slide_2.startActivity(myIntent)
@@ -64,13 +63,13 @@ class Slide_2 : AppCompatActivity() {
             )
         }
 
-        day?.setOnClickListener {
+        day.setOnClickListener {
             val pref = this.getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             editor.putBoolean("dark_mode", false)
             editor.putBoolean("sys", false)
-            editor.commit()
+            editor.apply()
 
             val myIntent = Intent(this@Slide_2, Slide_3::class.java)
             this@Slide_2.startActivity(myIntent)
