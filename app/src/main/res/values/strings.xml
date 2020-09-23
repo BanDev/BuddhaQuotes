@@ -76,6 +76,10 @@
     <string name="licenses_limitations">Limitations</string>
     <string name="licenses_liability">Liability</string>
     <string name="licenses_warranty">Warranty</string>
+    <string name="licenses_full_license">Full License</string>
+    <string name="green_circle">Green circle</string>
+    <string name="blue_circle">Blue circle</string>
+    <string name="red_circle">Red circle</string>
 
     <!-- Miscellaneous  -->
     <string name="title_activity_settings">SettingsActivity</string>

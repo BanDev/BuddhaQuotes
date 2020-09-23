@@ -20,7 +20,6 @@ class Slide_2 : AppCompatActivity() {
         setContentView(R.layout.activity_slide_2)
 
 
-
         val night: Button = findViewById(R.id.night)
         val day: Button = findViewById(R.id.day)
 
