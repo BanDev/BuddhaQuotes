@@ -52,18 +52,23 @@ class settings : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            if (preference?.key == "About") {
-                val i = Intent(activity, About::class.java)
-                startActivity(i)
-            } else if (preference?.key == "license") {
-                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
-                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
-            } else if (preference?.key == "oss_libraries") {
-                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
-                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
-            } else if (preference?.key == "help") {
-                val i = Intent(activity, Slide_1::class.java)
-                startActivity(i)
+            when (preference?.key) {
+                "About" -> {
+                    val i = Intent(activity, About::class.java)
+                    startActivity(i)
+                }
+                "license" -> {
+                    OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
+                    startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                }
+                "oss_libraries" -> {
+                    OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
+                    startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                }
+                "help" -> {
+                    val i = Intent(activity, Slide_1::class.java)
+                    startActivity(i)
+                }
             }
             return true
         }
@@ -107,14 +112,16 @@ class settings : AppCompatActivity() {
 
             val textSize = findPreference<Preference>("size") as ListPreference?
 
-            val size2 = pref.getString("text_size", "md")
-
-            if (size2 == "md") {
-                textSize?.setValueIndex(1) //set to index of your default value
-            } else if (size2 == "sm") {
-                textSize?.setValueIndex(0)
-            } else if (size2 == "lg") {
-                textSize?.setValueIndex(2)
+            when (pref.getString("text_size", "md")) {
+                "md" -> {
+                    textSize?.setValueIndex(1) //set to index of your default value
+                }
+                "sm" -> {
+                    textSize?.setValueIndex(0)
+                }
+                "lg" -> {
+                    textSize?.setValueIndex(2)
+                }
             }
 
             textSize?.onPreferenceChangeListener =
