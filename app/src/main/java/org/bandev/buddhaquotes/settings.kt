@@ -14,7 +14,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class settings : AppCompatActivity() {
 
@@ -56,11 +55,11 @@ class settings : AppCompatActivity() {
                 val i = Intent(activity, About::class.java)
                 startActivity(i)
             } else if (preference?.key == "license") {
-                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
-                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                val i = Intent(activity, License::class.java)
+                startActivity(i)
             } else if (preference?.key == "oss_libraries") {
-                OssLicensesMenuActivity.setActivityTitle("Third-Party Licenses")
-                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                val i = Intent(activity, OSSLibraries::class.java)
+                startActivity(i)
             } else if (preference?.key == "help") {
                 val i = Intent(activity, Slide_1::class.java)
                 startActivity(i)

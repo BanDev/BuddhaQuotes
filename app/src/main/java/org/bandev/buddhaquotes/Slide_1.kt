@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
@@ -19,11 +20,11 @@ class Slide_1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_1)
 
-        var next: FloatingActionButton = findViewById(R.id.next)
+        var button: Button = findViewById(R.id.button)
 
-        next.setOnClickListener {
+        button.setOnClickListener {
             val myIntent =
-                Intent(this@Slide_1, Slide_2::class.java)
+                Intent(this@Slide_1, Bandevpromise::class.java)
             this@Slide_1.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,

@@ -14,17 +14,6 @@ import androidx.appcompat.widget.Toolbar
 
 class OSSLibraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val b = intent.extras // or other values
-        when ((b ?: return).getString("from")) {
-            "settings" -> overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
-            "licenses" -> overridePendingTransition(
-                R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right
-            )
-        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oss_libraries)
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
@@ -50,21 +39,19 @@ class OSSLibraries : AppCompatActivity() {
         var url = ""
         listview.onItemClickListener = OnItemClickListener { adapterView, view, position, l ->
             when (adapter.getItem(position)) {
-                "@string/material_design_icons" -> url =
+                "Material Design Icons" -> url =
                     "https://github.com/google/material-design-icons/blob/master/LICENSE"
-                "@string/kotlin" -> url =
+                "Material Design Android" -> url =
                     "https://github.com/JetBrains/kotlin/blob/c5aa35e016aed6f83392e2f2b32fc0a088ee3b83/license/LICENSE.txt"
-                "@string/androidx" -> url =
+                "Kotlin" -> url =
                     "https://github.com/androidx/androidx/blob/androidx-master-dev/LICENSE.txt"
-                "@string/material_design_android" -> url =
+                "Androidx" -> url =
                     "https://github.com/material-components/material-components-android/blob/master/LICENSE"
+                "Leonids" -> url =
+                    "https://github.com/plattysoft/Leonids/blob/master/LICENSE"
             }
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(i)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
         }
         window.navigationBarColor = resources.getColor(R.color.colorPrimary)
     }
@@ -72,12 +59,6 @@ class OSSLibraries : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, settings::class.java)
-                startActivity(i)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
                 finish()
                 true
             }
@@ -88,18 +69,12 @@ class OSSLibraries : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
+
         finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
+
         finish()
         return true
     }

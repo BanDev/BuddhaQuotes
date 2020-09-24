@@ -26,12 +26,6 @@ class License : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license)
 
-        //The code for the weird slide in from left animation
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
-
         //Setup toolbar which is the top bar thingy
         val mToolBar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(mToolBar)

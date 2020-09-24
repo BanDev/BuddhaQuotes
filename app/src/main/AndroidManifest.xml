@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Slide_4"></activity>
+        <activity android:name=".more"></activity>
+        <activity android:name=".Likes" />
+        <activity android:name=".Bandevpromise" />
+        <activity android:name=".Slide_4" />
         <activity android:name=".Slide_3" />
         <activity android:name=".Slide_2" />
         <activity
@@ -32,17 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/OSS_Theme"
-            tools:ignore="MissingClass" />
-        <activity
-            android:name=".Help"
-            android:label="Help" />
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/OSS_Theme"
-            tools:ignore="MissingClass" />
         <activity
             android:name=".About"
             android:label="About" />

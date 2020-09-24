@@ -22,10 +22,6 @@ class About : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
@@ -80,15 +76,6 @@ class About : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val i = Intent(this, settings::class.java)
-                val mBundle = Bundle()
-                mBundle.putString("quote", "0")
-                i.putExtras(mBundle)
-                startActivity(i)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
                 finish()
                 true
             }
@@ -99,28 +86,10 @@ class About : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val i = Intent(this, settings::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", "0")
-        i.putExtras(mBundle)
-        startActivity(i)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
         finish()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val i = Intent(this, settings::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", "0")
-        i.putExtras(mBundle)
-        startActivity(i)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
         finish()
         return true
     }
