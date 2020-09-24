@@ -1,5 +1,7 @@
 package org.bandev.buddhaquotes
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RawRes
 import androidx.annotation.RequiresApi
@@ -27,9 +30,16 @@ class License : AppCompatActivity() {
         setContentView(R.layout.activity_license)
 
         //Setup toolbar which is the top bar thingy
-        val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
+        val myToolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+
+        var button: Button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md"))
+            startActivity(i)
+        }
 
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)

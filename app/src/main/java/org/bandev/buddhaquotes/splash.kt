@@ -23,11 +23,22 @@ class Splash : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        val i = Intent(this, MainActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", "0")
-        i.putExtras(mBundle)
-        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        finish()
+
+        val editor = sharedPreferences.edit()
+
+        if(sharedPreferences.getBoolean("first_time", true)){
+            editor.putBoolean("first_time", false)
+            editor.commit()
+            val i = Intent(this, Slide_1::class.java)
+            startActivity(i)
+            finish()
+        }else{
+            val i = Intent(this, MainActivity::class.java)
+            val mBundle = Bundle()
+            mBundle.putString("quote", "0")
+            i.putExtras(mBundle)
+            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            finish()
+        }
     }
 }
