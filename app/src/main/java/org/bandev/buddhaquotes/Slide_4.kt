@@ -41,9 +41,9 @@ class Slide_4 : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        var button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.button)
 
-        button?.setOnClickListener {
+        button.setOnClickListener {
 
             val myIntent = Intent(this@Slide_4, MainActivity::class.java)
             this@Slide_4.startActivity(myIntent)
