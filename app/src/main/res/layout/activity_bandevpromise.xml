@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:elevation="0dp"
     tools:context=".Slide_1">
 
@@ -14,20 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="Continue"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
-        android:textColorHighlight="@color/colorAccent"
-        android:textColorHint="@color/colorAccent"
-        android:textColorLink="@color/colorAccent"
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/ic_baseline_navigate_next_24"
-        app:iconTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,8 +35,8 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Buddha Quotes"
-        android:textColor="@color/colorPrimary"
+        android:text="You're data is safe!"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +49,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Free, Safe &amp; Open Source"
-        android:textColor="@color/colorPrimary"
+        android:text="With the bandev promise"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +58,11 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="76dp"
-        android:layout_height="75dp"
+        android:layout_width="47dp"
+        android:layout_height="62dp"
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/launch_theme" />
+        app:srcCompat="@drawable/ic_baseline_lock_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
