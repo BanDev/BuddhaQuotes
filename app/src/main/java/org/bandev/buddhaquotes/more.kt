@@ -71,7 +71,7 @@ class more : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
             )
             if(counter < 50){
-                text.text = "Another Quote ... (" + counter + ")";
+                text.text = "Another Quote ... (" + (counter+1) + ")";
             }else{
                 text.text = "Thats a lot of refreshes";
             }
