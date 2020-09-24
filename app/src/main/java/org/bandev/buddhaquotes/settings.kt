@@ -40,7 +40,7 @@ class settings : AppCompatActivity() {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
@@ -51,18 +51,23 @@ class settings : AppCompatActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            if (preference?.key == "About") {
-                val i = Intent(activity, About::class.java)
-                startActivity(i)
-            } else if (preference?.key == "license") {
-                val i = Intent(activity, License::class.java)
-                startActivity(i)
-            } else if (preference?.key == "oss_libraries") {
-                val i = Intent(activity, OSSLibraries::class.java)
-                startActivity(i)
-            } else if (preference?.key == "help") {
-                val i = Intent(activity, Slide_1::class.java)
-                startActivity(i)
+            when (preference?.key) {
+                "About" -> {
+                    val i = Intent(activity, About::class.java)
+                    startActivity(i)
+                }
+                "license" -> {
+                    val i = Intent(activity, License::class.java)
+                    startActivity(i)
+                }
+                "oss_libraries" -> {
+                    val i = Intent(activity, OSSLibraries::class.java)
+                    startActivity(i)
+                }
+                "help" -> {
+                    val i = Intent(activity, Slide_1::class.java)
+                    startActivity(i)
+                }
             }
             return true
         }
@@ -79,15 +84,15 @@ class settings : AppCompatActivity() {
 
             val listPreference = findPreference<Preference>("theme") as ListPreference?
 
-            if(sys){
+            if (sys) {
                 listPreference?.setValueIndex(2)
-            }else if (dark) {
+            } else if (dark) {
                 listPreference?.setValueIndex(1) //set to index of your default value
-            }else if(!dark){
+            } else if (!dark) {
                 listPreference?.setValueIndex(0)
             }
 
-            listPreference!!.onPreferenceChangeListener =
+            (listPreference ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference.value = newValue.toString()
                     val theme = listPreference.entry.toString()
@@ -116,14 +121,16 @@ class settings : AppCompatActivity() {
 
             val textSize = findPreference<Preference>("size") as ListPreference?
 
-            val size2 = pref.getString("text_size", "md")
-
-            if (size2 == "md") {
-                textSize?.setValueIndex(1) //set to index of your default value
-            }else if(size2 == "sm"){
-                textSize?.setValueIndex(0)
-            }else if(size2 == "lg"){
-                textSize?.setValueIndex(2)
+            when (pref.getString("text_size", "md")) {
+                "md" -> {
+                    textSize?.setValueIndex(1) //set to index of your default value
+                }
+                "sm" -> {
+                    textSize?.setValueIndex(0)
+                }
+                "lg" -> {
+                    textSize?.setValueIndex(2)
+                }
             }
 
             textSize?.onPreferenceChangeListener =
