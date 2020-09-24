@@ -71,13 +71,23 @@ class settings : AppCompatActivity() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
 
+            val dark = pref.getBoolean("dark_mode", false)
+            val sys = pref.getBoolean("sys", false)
+
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
+
             val listPreference = findPreference<Preference>("theme") as ListPreference?
-            if ((listPreference ?: return).value == null) {
-                listPreference.setValueIndex(2) //set to index of your default value
+
+            if(sys){
+                listPreference?.setValueIndex(2)
+            }else if (dark) {
+                listPreference?.setValueIndex(1) //set to index of your default value
+            }else if(!dark){
+                listPreference?.setValueIndex(0)
             }
-            listPreference.onPreferenceChangeListener =
+
+            listPreference!!.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference.value = newValue.toString()
                     val theme = listPreference.entry.toString()
