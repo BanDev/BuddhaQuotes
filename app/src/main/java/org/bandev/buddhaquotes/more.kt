@@ -1,7 +1,6 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
@@ -9,12 +8,11 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.plattysoft.leonids.ParticleSystem
 
 class more : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +45,7 @@ class more : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        var button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.button)
 
         button?.setOnClickListener {
 
@@ -63,19 +61,19 @@ class more : AppCompatActivity() {
 
         val text: TextView = findViewById(R.id.text)
 
-        var counter = 0;
+        var counter = 0
 
         (favourite ?: return).setOnClickListener {
             val rotateAnimation = RotateAnimation(
                 0F, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
             )
-            if(counter < 50){
-                text.text = "Another Quote ... (" + (counter+1) + ")";
-            }else{
-                text.text = "Thats a lot of refreshes";
+            if (counter < 50) {
+                text.text = "Another Quote ... (" + (counter + 1) + ")"
+            } else {
+                text.text = "That's a lot of refreshes"
             }
-            counter++;
+            counter++
             rotateAnimation.duration = 2.toLong() * 250
             favourite.startAnimation(rotateAnimation)
         }

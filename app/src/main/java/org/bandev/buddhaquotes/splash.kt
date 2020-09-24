@@ -26,13 +26,13 @@ class Splash : AppCompatActivity() {
 
         val editor = sharedPreferences.edit()
 
-        if(sharedPreferences.getBoolean("first_time", true)){
+        if (sharedPreferences.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
-            editor.commit()
+            editor.apply()
             val i = Intent(this, Slide_1::class.java)
             startActivity(i)
             finish()
-        }else{
+        } else {
             val i = Intent(this, MainActivity::class.java)
             val mBundle = Bundle()
             mBundle.putString("quote", "0")

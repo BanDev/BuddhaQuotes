@@ -41,9 +41,9 @@ class Bandevpromise : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        var button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.button)
 
-        button?.setOnClickListener {
+        button.setOnClickListener {
 
             val myIntent = Intent(this@Bandevpromise, Likes::class.java)
             this@Bandevpromise.startActivity(myIntent)
