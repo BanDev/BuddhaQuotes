@@ -39,7 +39,7 @@
 
     <!-- Help/Welcome page -->
     <string name="quick_brown_fox">The quick brown fox jumps over the lazy dog</string>
-    <string name="slide_1_continue">Continue</string>
+    <string name="slides_continue">Continue</string>
     <!-- Slide 1 -->
     <string name="slide_1_free_libre_open_source">Free, Libre &amp; Open Source</string>
     <!-- Slide 2 -->
@@ -51,8 +51,6 @@
     <!-- Slide 4 -->
     <string name="slide_4_need_more">Need some more?</string>
     <string name="slide_4_hit_refresh">Just hit refresh</string>
-    <string name="slide_4_another_quote">Another Quote …</string>
-    <string name="slide_4_lots_refreshes">That\'s a lot of refreshes</string>
     <!-- Slide 5 -->
     <string name="slide_5_too_bright">Display too bright?</string>
     <string name="slide_5_try_dark">Why not try dark mode</string>
