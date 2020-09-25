@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Buddha Quotes</string>
     <string name="version">v.1.3</string>
 
@@ -45,24 +45,30 @@
     <!-- Slide 2 -->
     <string name="slide_2_privacy_focused">Privacy focused!</string>
     <string name="slide_2_bandev_promise">With the BanDev promise</string>
+    <string name="slide_2_lock">Lock</string>
     <!-- Slide 3 -->
     <string name="slide_3_see_one_you_like">See one you like?</string>
     <string name="slide_3_press_heart_button">Press the heart button</string>
+    <string name="slide_3_heart_outline">Heart outline</string>
     <!-- Slide 4 -->
     <string name="slide_4_need_more">Need some more?</string>
     <string name="slide_4_hit_refresh">Just hit refresh</string>
+    <string name="slide_4_refresh">Refresh</string>
     <!-- Slide 5 -->
     <string name="slide_5_too_bright">Display too bright?</string>
     <string name="slide_5_try_dark">Why not try dark mode</string>
     <string name="slide_5_nope">Nope</string>
     <string name="slide_5_im_in">I\'m in!</string>
+    <string name="slide_5_torch">Torch</string>
     <!-- Slide 6 -->
     <string name="slide_6_hard_to_read">Text hard to read?</string>
     <string name="slide_6_select_size">Select a text size below</string>
+    <string name="slide_6_text_size">Text size</string>
     <!-- Slide 7 -->
     <string name="slide_7_all_done">All done!</string>
     <string name="slide_7_ready">You\'re ready to start now</string>
     <string name="slide_7_open_app">Open app</string>
+    <string name="slide_7_double_tick">Double tick</string>
 
     <!-- Favourites page -->
     <string name="favourites">Favourites</string>

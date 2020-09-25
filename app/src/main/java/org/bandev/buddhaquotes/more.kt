@@ -47,7 +47,7 @@ class more : AppCompatActivity() {
 
         val button: Button = findViewById(R.id.button)
 
-        button?.setOnClickListener {
+        button.setOnClickListener {
 
             val myIntent = Intent(this@more, Slide_2::class.java)
             this@more.startActivity(myIntent)
@@ -63,7 +63,7 @@ class more : AppCompatActivity() {
 
         var counter = 0
 
-        (favourite ?: return).setOnClickListener {
+        favourite.setOnClickListener {
             val rotateAnimation = RotateAnimation(
                 0F, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f

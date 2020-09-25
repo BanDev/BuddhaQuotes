@@ -46,7 +46,7 @@ class Likes : AppCompatActivity() {
 
         val button: Button = findViewById(R.id.button)
 
-        button?.setOnClickListener {
+        button.setOnClickListener {
 
             val myIntent = Intent(this@Likes, more::class.java)
             this@Likes.startActivity(myIntent)
@@ -62,22 +62,22 @@ class Likes : AppCompatActivity() {
         var done = false
 
 
-        (favourite ?: return).setOnClickListener {
-            if (!(done ?: return@setOnClickListener)) {
+        favourite.setOnClickListener {
+            if (!done) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_black, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)
                 like.setFadeOut(100)
                 like.setScaleRange(0.5f, 1f)
                 like.oneShot(favourite, 5)
-                (favourite ?: return@setOnClickListener).isEnabled = false
+                favourite.isEnabled = false
                 //If It Is Not Liked Already
-                (favourite ?: return@setOnClickListener).setImageDrawable(
+                favourite.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@Likes,
                         R.drawable.heart_full_white
                     )
                 )
-                (favourite ?: return@setOnClickListener).isEnabled = true
+                favourite.isEnabled = true
                 done = true
             } else {
                 //If It Is Already Liked
@@ -85,15 +85,15 @@ class Likes : AppCompatActivity() {
                 //like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);
-                (favourite ?: return@setOnClickListener).isEnabled = false
+                favourite.isEnabled = false
                 done = false
-                (favourite ?: return@setOnClickListener).setImageDrawable(
+                favourite.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@Likes,
                         R.drawable.like_white_empty
                     )
                 )
-                (favourite ?: return@setOnClickListener).isEnabled = true
+                favourite.isEnabled = true
             }
         }
     }
