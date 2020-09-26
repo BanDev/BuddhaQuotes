@@ -18,7 +18,7 @@
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="Continue"
+        android:text="@string/slides_continue"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textColorHighlight="@color/colorAccent"
@@ -40,7 +40,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Buddha Quotes"
+        android:text="@string/app_name"
         android:textColor="@color/colorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Free, Safe &amp; Open Source"
+        android:text="@string/slide_1_free_libre_open_source"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +68,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/launch_theme" />
+        app:srcCompat="@drawable/launch_theme"
+        android:contentDescription="@string/buddha_quotes_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

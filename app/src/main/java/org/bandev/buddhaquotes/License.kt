@@ -3,22 +3,18 @@ package org.bandev.buddhaquotes
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.Button
-import android.widget.TextView
-import androidx.annotation.RawRes
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import java.io.*
 
 class License : AppCompatActivity() {
 
@@ -34,10 +30,13 @@ class License : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
 
-        var button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md"))
+            val i = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md")
+            )
             startActivity(i)
         }
 
