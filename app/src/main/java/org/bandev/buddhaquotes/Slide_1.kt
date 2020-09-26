@@ -70,6 +70,9 @@ class Slide_1 : AppCompatActivity() {
         //           View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         //      Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
         //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+
+        
         //   }
         window.navigationBarColor = resources.getColor(R.color.transparent)
         window.statusBarColor = resources.getColor(R.color.colorAccent)
