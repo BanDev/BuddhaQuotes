@@ -18,7 +18,7 @@
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="Continue"
+        android:text="@string/slides_continue"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
@@ -54,7 +54,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Text hard to read?"
+        android:text="@string/slide_6_hard_to_read"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Select a text size below"
+        android:text="@string/slide_6_select_size"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="The quick brown fox jumps over the lazy dog"
+        android:text="@string/quick_brown_fox"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/slider"
@@ -96,6 +96,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/text_yellow" />
+        app:srcCompat="@drawable/text_yellow"
+        android:contentDescription="@string/text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

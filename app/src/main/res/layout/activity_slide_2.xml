@@ -19,7 +19,7 @@
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="I'm in!"
+        android:text="@string/slide_5_im_in"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
@@ -38,7 +38,7 @@
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="Nope"
+        android:text="@string/slide_5_nope"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
@@ -54,7 +54,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Display too bright?"
+        android:text="@string/slide_5_too_bright"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="Why not try dark mode"
+        android:text="@string/slide_5_try_dark"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +82,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_highlight_24" />
+        app:srcCompat="@drawable/ic_baseline_highlight_24"
+        android:contentDescription="@string/slide_5_torch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

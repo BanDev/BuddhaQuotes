@@ -2,17 +2,15 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class Slide_1 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
@@ -20,7 +18,7 @@ class Slide_1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_1)
 
-        var button: Button = findViewById(R.id.button)
+        val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
             val myIntent =
@@ -58,13 +56,13 @@ class Slide_1 : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-       // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
-     //   param2.setMargins(0, 0, 0, navBarHeight)
-     //   (favourite ?: return).layoutParams = param2
+        // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        //   param2.setMargins(0, 0, 0, navBarHeight)
+        //   (favourite ?: return).layoutParams = param2
 
-    //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
-   //     param3.setMargins(0, 0, 0, navBarHeight)
-    //    (refresh ?: return).layoutParams = param3
+        //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        //     param3.setMargins(0, 0, 0, navBarHeight)
+        //    (refresh ?: return).layoutParams = param3
 
         //If Using Night Mode, Change Some Stuff
         // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
