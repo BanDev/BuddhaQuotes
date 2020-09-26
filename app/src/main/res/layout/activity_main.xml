@@ -61,32 +61,45 @@
         android:id="@+id/refresh"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:layout_marginStart="20dp"
         android:clickable="true"
         android:scaleType="center"
         app:backgroundTint="@color/colorAccent"
-        app:tint="@android:color/white"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="36dp"
-        app:srcCompat="@drawable/ic_baseline_refresh_24" />
+        app:srcCompat="@drawable/ic_baseline_refresh_24"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
         android:layout_width="56dp"
-        app:tint="@android:color/white"
         android:layout_height="56dp"
+        android:layout_marginStart="20dp"
         android:clickable="true"
         android:scaleType="center"
         app:backgroundTint="@color/colorAccent"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
-        app:srcCompat="@drawable/ic_baseline_stars_24" />
+        app:srcCompat="@drawable/ic_baseline_stars_24"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/share"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="20dp"
+        android:clickable="true"
+        android:scaleType="center"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/favourite"
+        app:maxImageSize="33dp"
+        app:srcCompat="@drawable/ic_baseline_share_24"
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
