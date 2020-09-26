@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var quotenumber: Int = 0
     private var quoteview: TextView? = null
     private val quote = Quote()
+    private var share: FloatingActionButton? = null
     private var refresh: FloatingActionButton? = null
     private var favourite: FloatingActionButton? = null
     private var list: List<String?>? = null
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         //Define UI Variables
         setContentView(R.layout.activity_main)
         refresh = findViewById(R.id.refresh)
+        share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
         heartblack = ContextCompat.getDrawable(this, R.drawable.heart_black)
@@ -86,6 +88,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        findViewById<FloatingActionButton>(R.id.share).setOnClickListener{
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, quoteview?.text)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
+
         var navBarHeight = 0
         val resourceId2 = resources.getIdentifier("navigation_bar_height", "dimen", "android")
         if (resourceId2 > 0) {
@@ -99,6 +112,10 @@ class MainActivity : AppCompatActivity() {
         val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param3.setMargins(0, 0, 0, navBarHeight)
         (refresh ?: return).layoutParams = param3
+
+        val param4 = (share ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param4.setMargins(0, 0, 0, navBarHeight)
+        (share ?: return).layoutParams = param4
 
         //If Using Night Mode, Change Some Stuff
         // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
