@@ -9,11 +9,12 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 
-class Slide_2 : AppCompatActivity() {
+class Slide2 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +55,8 @@ class Slide_2 : AppCompatActivity() {
             editor.putBoolean("sys", false)
             editor.apply()
 
-            val myIntent = Intent(this@Slide_2, Slide_3::class.java)
-            this@Slide_2.startActivity(myIntent)
+            val myIntent = Intent(this@Slide2, Slide3::class.java)
+            this@Slide2.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -70,8 +71,8 @@ class Slide_2 : AppCompatActivity() {
             editor.putBoolean("sys", false)
             editor.apply()
 
-            val myIntent = Intent(this@Slide_2, Slide_3::class.java)
-            this@Slide_2.startActivity(myIntent)
+            val myIntent = Intent(this@Slide2, Slide3::class.java)
+            this@Slide2.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -122,8 +123,8 @@ class Slide_2 : AppCompatActivity() {
         //      Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
         //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         //   }
-        window.navigationBarColor = resources.getColor(R.color.transparent)
-        window.statusBarColor = resources.getColor(R.color.colorPrimary)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
 
     }
 }

@@ -29,7 +29,7 @@ class Splash : AppCompatActivity() {
         if (sharedPreferences.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            val i = Intent(this, Slide_1::class.java)
+            val i = Intent(this, Slide1::class.java)
             startActivity(i)
             finish()
         } else {

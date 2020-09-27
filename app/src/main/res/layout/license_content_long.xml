@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
-        app:srcCompat="@drawable/gplv3" />
+        app:srcCompat="@mipmap/gplv3" />
 
     <TextView
         android:id="@+id/textView"

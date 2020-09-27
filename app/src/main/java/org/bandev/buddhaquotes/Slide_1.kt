@@ -8,11 +8,12 @@ import android.view.WindowInsets
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 
-class Slide_1 : AppCompatActivity() {
+class Slide1 : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,8 @@ class Slide_1 : AppCompatActivity() {
 
         button.setOnClickListener {
             val myIntent =
-                Intent(this@Slide_1, Bandevpromise::class.java)
-            this@Slide_1.startActivity(myIntent)
+                Intent(this@Slide1, Bandevpromise::class.java)
+            this@Slide1.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -72,10 +73,9 @@ class Slide_1 : AppCompatActivity() {
         //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
 
-        
         //   }
-        window.navigationBarColor = resources.getColor(R.color.transparent)
-        window.statusBarColor = resources.getColor(R.color.colorAccent)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.colorAccent, null)
 
     }
 }

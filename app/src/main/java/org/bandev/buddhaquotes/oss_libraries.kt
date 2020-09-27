@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 
 class OSSLibraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +54,7 @@ class OSSLibraries : AppCompatActivity() {
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(i)
         }
-        window.navigationBarColor = resources.getColor(R.color.colorPrimary)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
