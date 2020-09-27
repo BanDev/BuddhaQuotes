@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -34,12 +35,14 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
+        var done = false;
+
         val scrollview: ScrollView = findViewById(R.id.scroll)
         scrollview.viewTreeObserver
             .addOnScrollChangedListener {
                 if (scrollview.getChildAt(0).bottom
                     <= scrollview.height + scrollview.scrollY
-                ) {
+                    && !done) {
                     viewKonfetti.build()
                         .addColors(Color.parseColor("#a864fd"), Color.parseColor("#29cdff"), Color.parseColor("#78ff44"), Color.parseColor("#ff718d"), Color.parseColor("#fdff6a"))
                         .setDirection(0.0, 359.0)
@@ -56,6 +59,7 @@ class About : AppCompatActivity() {
 
                     Snackbar.make(contextView, "Thanks for reading!", Snackbar.LENGTH_SHORT)
                         .show()
+                    done = true
                 } else {
                     //scroll view is not at bottom
                 }
