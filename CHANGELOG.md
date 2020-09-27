@@ -6,14 +6,15 @@
 
 - Refresh animation
 - Heart particles when a quote is favourited
-- Welcome page (W.I.P)
-- 'Help' page (W.I.P)
+- Welcome page
+- 'Help' page
+- Share button and functionality
 
 #### Changed
 
 - 'About' page has been redesigned
 - Open Source Libraries page is more robust
-- License page with the GNU GPLv3 formatted rather than linking to the website (W.I.P)
+- License page with the GNU GPLv3 presented with permissions, conditions and limitations
 - App is now fullscreen for the devices that have a gesture bar
 - Lots of code cleanup and optimisations
 - Various bug fixes and typo corrections
