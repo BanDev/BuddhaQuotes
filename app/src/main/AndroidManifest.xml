@@ -15,11 +15,11 @@
         <activity android:name=".more" />
         <activity android:name=".Likes" />
         <activity android:name=".Bandevpromise" />
-        <activity android:name=".Slide_4" />
-        <activity android:name=".Slide_3" />
-        <activity android:name=".Slide_2" />
+        <activity android:name=".Slide4" />
+        <activity android:name=".Slide3" />
+        <activity android:name=".Slide2" />
         <activity
-            android:name=".Slide_1"
+            android:name=".Slide1"
             android:theme="@style/slides" />
         <activity android:name=".License" />
         <activity android:name=".InfoPanel" />

@@ -65,7 +65,7 @@ class settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "help" -> {
-                    val i = Intent(activity, Slide_1::class.java)
+                    val i = Intent(activity, Slide1::class.java)
                     startActivity(i)
                 }
             }

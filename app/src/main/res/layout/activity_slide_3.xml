@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:elevation="0dp"
-    tools:context=".Slide_1">
+    tools:context=".Slide1">
 
     <Button
         android:id="@+id/button"
@@ -97,6 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/text_yellow"
-        android:contentDescription="@string/text_size" />
+        android:contentDescription="@string/slide_6_text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

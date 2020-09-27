@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        findViewById<FloatingActionButton>(R.id.share).setOnClickListener{
+        findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, quoteview?.text)
@@ -124,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         //      Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
         //          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         //   }
-        window.navigationBarColor = resources.getColor(R.color.transparent)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)
