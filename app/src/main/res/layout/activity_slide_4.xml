@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:elevation="0dp"
-    tools:context=".Slide_1">
+    tools:context=".Slide1">
 
     <Button
         android:id="@+id/button"

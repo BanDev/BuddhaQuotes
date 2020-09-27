@@ -1,18 +1,22 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.slider.Slider
 
-class Slide_3 : AppCompatActivity() {
+class Slide3 : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_3)
@@ -77,8 +81,8 @@ class Slide_3 : AppCompatActivity() {
                 editor.apply()
             }
 
-            val myIntent = Intent(this@Slide_3, Slide_4::class.java)
-            this@Slide_3.startActivity(myIntent)
+            val myIntent = Intent(this@Slide3, Slide4::class.java)
+            this@Slide3.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -88,8 +92,8 @@ class Slide_3 : AppCompatActivity() {
 
 
 
-        window.navigationBarColor = resources.getColor(R.color.transparent)
-        window.statusBarColor = resources.getColor(R.color.colorPrimary)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
     }
 
 

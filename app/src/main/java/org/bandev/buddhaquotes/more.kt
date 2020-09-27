@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
@@ -8,6 +9,7 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
@@ -15,6 +17,7 @@ import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class more : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_more)
@@ -49,7 +52,7 @@ class more : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            val myIntent = Intent(this@more, Slide_2::class.java)
+            val myIntent = Intent(this@more, Slide2::class.java)
             this@more.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
