@@ -19,7 +19,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 - Favourite quotes
 - Free, libre and open source
 - No ads
-- No trackers (scanned with [ClassyShark3xodus](https://bitbucket.org/oF2pks/fdroid-classyshark3xodus/src/master/))
+- No trackers (verified using [ClassyShark3xodus](https://bitbucket.org/oF2pks/fdroid-classyshark3xodus/src/master/))
 - No non-free dependencies like Google services
 - Completely offline
 - Small file size!
