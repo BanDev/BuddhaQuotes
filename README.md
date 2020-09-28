@@ -26,16 +26,36 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 
 ## Screenshots
 
-[<img src="Screenshots/Screenshot_20200810-170430.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170430.jpg)
-[<img src="Screenshots/Screenshot_20200810-170440.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170440.jpg)
-[<img src="Screenshots/Screenshot_20200810-170445.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170445.jpg)
-[<img src="Screenshots/Screenshot_20200810-170434.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170434.jpg)
-[<img src="Screenshots/Screenshot_20200810-170454.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170454.jpg)
-[<img src="Screenshots/Screenshot_20200810-170506.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170506.jpg)
-[<img src="Screenshots/Screenshot_20200810-170511.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170511.jpg)
-[<img src="Screenshots/Screenshot_20200810-170514.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170514.jpg)
-[<img src="Screenshots/Screenshot_20200810-170501.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170501.jpg)
-[<img src="Screenshots/Screenshot_20200810-170503.jpg" width=160>](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200810-170503.jpg)
+[<img src="Screenshots/Screenshot_20200928-224012.jpg"
+      alt="Main page on light mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg)
+[<img src="Screenshots/Screenshot_20200928-224016.jpg"
+      alt="Favourites page on light mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg)
+[<img src="Screenshots/Screenshot_20200928-224019.jpg"
+      alt="Favourited quote on light mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224019.jpg)
+[<img src="Screenshots/Screenshot_20200928-224022.jpg"
+      alt="Settings page on light mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg)
+[<img src="Screenshots/Screenshot_20200928-224039.jpg"
+      alt="About page on light mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg)
+[<img src="Screenshots/Screenshot_20200928-224050.jpg"
+      alt="Main page on dark mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg)
+[<img src="Screenshots/Screenshot_20200928-224052.jpg"
+      alt="Favourites page on dark mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg)
+[<img src="Screenshots/Screenshot_20200928-224054.jpg"
+      alt="Favourited quote on dark mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224054.jpg)
+[<img src="Screenshots/Screenshot_20200928-224057.jpg"
+      alt="Settings page on dark mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg)
+[<img src="Screenshots/Screenshot_20200928-224100.jpg"
+      alt="About page on dark mode"
+            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg)
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
