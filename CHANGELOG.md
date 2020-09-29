@@ -1,6 +1,7 @@
 # Changelog
+##### All notable changes to Buddha Quotes will be documented in this file.
 
-### 1.3 (Unreleased)
+### 1.3 - (Unreleased)
 
 #### Added
 
@@ -19,7 +20,7 @@
 - Lots of code cleanup and optimisations
 - Various bug fixes and typo corrections
 
-### 1.2 (10/08/2020)
+### 1.2 - (2020-08-10)
 
 #### Added:
 
@@ -32,7 +33,7 @@
 - Corrected quotes typos
 - Converted all PNGs to WebP
 
-### 1.1 (01/08/2020)
+### 1.1 - (2020-08-01)
 
 #### Added:
 
@@ -46,4 +47,4 @@
 - Code optimisations
 - Buddha image changed
 
-### 1.0 (28/07/2020) - Release
+### 1.0 - (2020-07-28)
