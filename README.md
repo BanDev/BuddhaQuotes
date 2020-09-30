@@ -13,7 +13,6 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
             height="75">](https://gitlab.com/bandev/buddha-quotes/-/releases)
 
 ## Features
-
 - AMOLED mode
 - Over 310 quotes!
 - Favourite quotes
@@ -56,6 +55,9 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 [<img src="Screenshots/Screenshot_20200928-224100.jpg"
       alt="About page on dark mode"
             width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg)
+
+## Contributing
+Looking to contribute to Buddha Quotes? That's great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our [contributing guidelines](https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md) to get started.
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
