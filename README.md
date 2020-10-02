@@ -1,16 +1,33 @@
-# Buddha Quotes [![Pipeline](https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg)](https://gitlab.com/bandev/buddha-quotes/-/pipelines) [![License](https://img.shields.io/badge/license-GPL--3.0%2B-informational)](https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md) [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+<div align="center">
+<h1>Buddha Quotes</h1>
 
-[<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" 
-      height="170">]()
+  <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" height="150" />
+    </div>
 
-A collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy.
-
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" 
-      alt="Download from Google Play"
-            height="75">](https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes)
-[<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
-      alt="Direct download"
-            height="75">](https://bandev.computub.com/Buddha_Quotes/apk/latest.apk)
+<div align="center">
+    <strong>A collaborative project to create a Free and Open Source Buddha Quotes app</strong>
+    </div>
+    <br>
+    <div align="center">
+      <a href="https://gitlab.com/bandev/buddha-quotes/-/pipelines" target="_blank">
+      <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
+      </a>
+      <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md" target="_blank">
+      <img src="https://img.shields.io/badge/license-GPL--3.0%2B-informational"/>
+      </a>
+      </div>
+      <div align="center">
+      <a href="https://github.com/KotlinBy/awesome-kotlin" target="_blank">
+      <img src="https://kotlin.link/awesome-kotlin.svg"/>
+      </a>
+      </div>
+      <br>
+<div align="center">
+<a href="https://gitlab.com/bandev/buddha-quotes/-/pipelines" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="70" />
+<a href="https://bandev.computub.com/Buddha_Quotes/apk/latest.apk" target="_blank">
+<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png" height="70" />
+</div>
 
 ## Features
 - AMOLED mode
@@ -24,7 +41,6 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
 - Small file size!
 
 ## Screenshots
-
 [<img src="Screenshots/Screenshot_20200928-224012.jpg"
       alt="Main page on light mode"
             width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg)
