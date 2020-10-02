@@ -23,7 +23,7 @@
       </div>
       <br>
 <div align="center">
-<a href="https://gitlab.com/bandev/buddha-quotes/-/pipelines" target="_blank">
+<a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="70" />
 <a href="https://bandev.computub.com/Buddha_Quotes/apk/latest.apk" target="_blank">
 <img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png" height="70" />
