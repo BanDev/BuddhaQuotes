@@ -87,10 +87,6 @@ class InfoPanel : AppCompatActivity() {
 
             val myIntent = Intent(this@InfoPanel, Favourites::class.java)
             this@InfoPanel.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
             finish()
 
         }
@@ -109,10 +105,6 @@ class InfoPanel : AppCompatActivity() {
             R.id.back -> {
                 val myIntent = Intent(this@InfoPanel, Favourites::class.java)
                 this@InfoPanel.startActivity(myIntent)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
                 finish()
                 true
             }
@@ -123,10 +115,6 @@ class InfoPanel : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@InfoPanel, Favourites::class.java)
         this@InfoPanel.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
         finish()
         return true
     }
@@ -136,10 +124,6 @@ class InfoPanel : AppCompatActivity() {
         // add your animation
         val myIntent = Intent(this@InfoPanel, Favourites::class.java)
         this@InfoPanel.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
         finish()
     }
 }
