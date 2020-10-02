@@ -30,36 +30,14 @@
 </div>
 
 ## Screenshots
-[<img src="Screenshots/Screenshot_20200928-224012.jpg"
-      alt="Main page on light mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg)
-[<img src="Screenshots/Screenshot_20200928-224016.jpg"
-      alt="Favourites page on light mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg)
-[<img src="Screenshots/Screenshot_20200928-224019.jpg"
-      alt="Favourited quote on light mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224019.jpg)
-[<img src="Screenshots/Screenshot_20200928-224022.jpg"
-      alt="Settings page on light mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg)
-[<img src="Screenshots/Screenshot_20200928-224039.jpg"
-      alt="About page on light mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg)
-[<img src="Screenshots/Screenshot_20200928-224050.jpg"
-      alt="Main page on dark mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg)
-[<img src="Screenshots/Screenshot_20200928-224052.jpg"
-      alt="Favourites page on dark mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg)
-[<img src="Screenshots/Screenshot_20200928-224054.jpg"
-      alt="Favourited quote on dark mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224054.jpg)
-[<img src="Screenshots/Screenshot_20200928-224057.jpg"
-      alt="Settings page on dark mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg)
-[<img src="Screenshots/Screenshot_20200928-224100.jpg"
-      alt="About page on dark mode"
-            width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg)
+
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg" width="160"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg" width="160"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg" width="160"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg" width="160"/> 	|
+|:-----:	|:-----:	|:-----:	|:-----:	|
+| Light 	| Dark 	| Light 	| Dark 	|
+
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg" width="160"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg" width="160"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg" width="160"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg" width="160"/> 	|
+|:-----:	|:-----:	|:-----:	|:-----:	|
+| Light 	| Dark 	| Light 	| Dark 	|
 
 ## Features
 - AMOLED mode
