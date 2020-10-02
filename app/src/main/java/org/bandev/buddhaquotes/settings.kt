@@ -63,7 +63,7 @@ class settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "oss_libraries" -> {
-                    getContext()?.let {
+                    context?.let {
                         LibsBuilder()
                             .withAboutIconShown(true)
                             .withAboutVersionShown(false)

@@ -68,8 +68,6 @@ class About : AppCompatActivity() {
                     Snackbar.make(contextView, "Thanks for reading!", Snackbar.LENGTH_SHORT)
                         .show()
                     done = true
-                } else {
-                    //scroll view is not at bottom
                 }
             }
 
