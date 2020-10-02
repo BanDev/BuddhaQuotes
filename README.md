@@ -10,7 +10,7 @@ A collaborative project to create a Free and Open Source Buddha Quotes app for A
             height="75">](https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes)
 [<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
       alt="Direct download"
-            height="75">](https://gitlab.com/bandev/buddha-quotes/-/releases)
+            height="75">](https://bandev.computub.com/Buddha_Quotes/apk/latest.apk)
 
 ## Features
 - AMOLED mode
