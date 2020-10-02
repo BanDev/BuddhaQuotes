@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
 
 class settings : AppCompatActivity() {
 
@@ -61,8 +63,12 @@ class settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "oss_libraries" -> {
-                    val i = Intent(activity, OSSLibraries::class.java)
-                    startActivity(i)
+                    getContext()?.let {
+                        LibsBuilder()
+                            .withAboutIconShown(true)
+                            .withAboutVersionShown(false)
+                            .start(it)
+                    } // start the activity
                 }
                 "help" -> {
                     val i = Intent(activity, Slide1::class.java)
