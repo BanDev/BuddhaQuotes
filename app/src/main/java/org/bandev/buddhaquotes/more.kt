@@ -72,7 +72,8 @@ class more : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
             )
             if (counter < 50) {
-                text.text = getString(R.string.more_counter_left) + (counter + 1) + getString(R.string.more_counter_right)
+                text.text =
+                    getString(R.string.more_counter_left) + (counter + 1) + getString(R.string.more_counter_right)
             } else {
                 text.text = getString(R.string.more_lots_of_refreshes)
             }
