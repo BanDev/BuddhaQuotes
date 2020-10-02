@@ -48,10 +48,6 @@ class Favourites : AppCompatActivity() {
                     b.putString("quote", value.toString()) //Your id
                     intent.putExtras(b) //Put your id to your next Intent
                     startActivity(intent)
-                    overridePendingTransition(
-                        R.anim.anim_slide_in_right,
-                        R.anim.anim_slide_out_right
-                    )
                 }
             }
     }
