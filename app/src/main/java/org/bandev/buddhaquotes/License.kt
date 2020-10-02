@@ -1,7 +1,6 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -33,10 +32,8 @@ class License : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val i = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md")
-            )
+            val i =
+                Intent(this, FullLicense::class.java)
             startActivity(i)
         }
 
