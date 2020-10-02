@@ -31,11 +31,11 @@
 
 ## Screenshots
 
-| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg" width="160"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg" width="160"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg" width="160"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg" width="160"/> 	|
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg" width="180"/> 	|
 |:-----:	|:-----:	|:-----:	|:-----:	|
 | Light 	| Dark 	| Light 	| Dark 	|
 
-| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg" width="160"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg" width="160"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg" width="160"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg" width="160"/> 	|
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg" width="180"/> 	|
 |:-----:	|:-----:	|:-----:	|:-----:	|
 | Light 	| Dark 	| Light 	| Dark 	|
 
