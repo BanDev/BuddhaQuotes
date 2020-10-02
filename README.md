@@ -29,17 +29,6 @@
 <img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png" height="70" />
 </div>
 
-## Features
-- AMOLED mode
-- Over 310 quotes!
-- Favourite quotes
-- Free, libre and open source
-- No ads
-- No trackers (verified using [ClassyShark3xodus](https://bitbucket.org/oF2pks/fdroid-classyshark3xodus/src/master/))
-- No non-free dependencies like Google services
-- Completely offline
-- Small file size!
-
 ## Screenshots
 [<img src="Screenshots/Screenshot_20200928-224012.jpg"
       alt="Main page on light mode"
@@ -71,6 +60,17 @@
 [<img src="Screenshots/Screenshot_20200928-224100.jpg"
       alt="About page on dark mode"
             width="160">](https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg)
+
+## Features
+- AMOLED mode
+- Over 310 quotes!
+- Favourite quotes
+- Free, libre and open source
+- No ads
+- No trackers (verified using [ClassyShark3xodus](https://bitbucket.org/oF2pks/fdroid-classyshark3xodus/src/master/))
+- No non-free dependencies like Google services
+- Completely offline
+- Small file size!
 
 ## Contributing
 Looking to contribute to Buddha Quotes? That's great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our [contributing guidelines](https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md) to get started.
