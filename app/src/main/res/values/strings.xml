@@ -69,7 +69,10 @@
     <string name="slide_7_ready">You\'re ready to start now</string>
     <string name="slide_7_open_app">Open app</string>
     <string name="slide_7_double_tick">Double tick</string>
-
+    <!-- More -->
+    <string name="more_lots_of_refreshes">That\'s a lot of refreshes</string>
+    <string name="more_counter_left">Another Quote ... (</string>
+    <string name="more_counter_right">)</string>
     <!-- Favourites page -->
     <string name="favourites">Favourites</string>
 

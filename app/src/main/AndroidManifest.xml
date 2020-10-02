@@ -23,7 +23,6 @@
             android:theme="@style/slides" />
         <activity android:name=".License" />
         <activity android:name=".InfoPanel" />
-        <activity android:name=".OSSLibraries" />
         <activity android:name=".Favourites" />
         <activity
             android:name=".Splash"

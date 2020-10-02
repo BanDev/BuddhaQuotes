@@ -72,9 +72,9 @@ class more : AppCompatActivity() {
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
             )
             if (counter < 50) {
-                text.text = "Another Quote ... (" + (counter + 1) + ")"
+                text.text = getString(R.string.more_counter_left) + (counter + 1) + getString(R.string.more_counter_right)
             } else {
-                text.text = "That's a lot of refreshes"
+                text.text = getString(R.string.more_lots_of_refreshes)
             }
             counter++
             rotateAnimation.duration = 2.toLong() * 250
@@ -82,3 +82,4 @@ class more : AppCompatActivity() {
         }
     }
 }
+
