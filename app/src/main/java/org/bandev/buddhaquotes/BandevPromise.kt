@@ -12,7 +12,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 
-class Bandevpromise : AppCompatActivity() {
+class BandevPromise : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +48,8 @@ class Bandevpromise : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            val myIntent = Intent(this@Bandevpromise, Likes::class.java)
-            this@Bandevpromise.startActivity(myIntent)
+            val myIntent = Intent(this@BandevPromise, Likes::class.java)
+            this@BandevPromise.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left

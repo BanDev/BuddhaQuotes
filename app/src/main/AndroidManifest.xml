@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".FullLicense" />
-        <activity android:name=".more" />
+        <activity android:name=".More" />
         <activity android:name=".Likes" />
-        <activity android:name=".Bandevpromise" />
+        <activity android:name=".BandevPromise" />
         <activity android:name=".Slide4" />
         <activity android:name=".Slide3" />
         <activity android:name=".Slide2" />
@@ -38,7 +38,7 @@
             android:name=".About"
             android:label="About" />
         <activity
-            android:name=".settings"
+            android:name=".Settings"
             android:label="@string/title_activity_settings" />
         <activity android:name=".MainActivity">
             <meta-data

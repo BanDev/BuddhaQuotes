@@ -23,7 +23,7 @@ class Slide1 : AppCompatActivity() {
 
         button.setOnClickListener {
             val myIntent =
-                Intent(this@Slide1, Bandevpromise::class.java)
+                Intent(this@Slide1, BandevPromise::class.java)
             this@Slide1.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,

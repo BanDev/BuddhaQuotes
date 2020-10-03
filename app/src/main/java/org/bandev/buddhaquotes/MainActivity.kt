@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var done: Boolean? = null
     private var quotenumber: Int = 0
     private var quoteview: TextView? = null
-    private val quote = Quote()
+    private val quote = Quotes()
     private var share: FloatingActionButton? = null
     private var refresh: FloatingActionButton? = null
     private var favourite: FloatingActionButton? = null
@@ -261,7 +261,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.menu_main_setting -> {
                 val myIntent =
-                    Intent(this@MainActivity, org.bandev.buddhaquotes.settings::class.java)
+                    Intent(this@MainActivity, Settings::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", quotenumber.toString())
                 myIntent.putExtras(mBundle)

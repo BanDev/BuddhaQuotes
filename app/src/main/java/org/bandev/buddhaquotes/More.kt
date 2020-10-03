@@ -16,7 +16,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class more : AppCompatActivity() {
+class More : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +52,8 @@ class more : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            val myIntent = Intent(this@more, Slide2::class.java)
-            this@more.startActivity(myIntent)
+            val myIntent = Intent(this@More, Slide2::class.java)
+            this@More.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left

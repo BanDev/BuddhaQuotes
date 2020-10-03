@@ -51,7 +51,7 @@ class Likes : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            val myIntent = Intent(this@Likes, more::class.java)
+            val myIntent = Intent(this@Likes, More::class.java)
             this@Likes.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
