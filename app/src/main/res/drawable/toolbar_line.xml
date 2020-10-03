@@ -8,8 +8,8 @@
         <shape>
             <solid android:color="?attr/colorPrimary" />
             <stroke
-                android:width="3px"
-                android:color="#A9A9A9" />
+                android:width="1px"
+                android:color="?android:attr/textColorPrimary" />
         </shape>
     </item>
 </layer-list>
