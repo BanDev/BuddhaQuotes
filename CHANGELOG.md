@@ -1,6 +1,14 @@
 # Changelog
 ##### All notable changes to Buddha Quotes will be documented in this file.
 
+### 1.4 - (Unreleased)
+
+#### Changed
+
+- 30 more quotes
+- Banner on About page stretches to the top of the screen
+- Fixed refresh animation bug
+
 ### 1.3 - (2020-10-02)
 
 #### Added
