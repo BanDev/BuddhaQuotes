@@ -20,11 +20,9 @@ class Settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-
 
         quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
@@ -38,16 +36,15 @@ class Settings : AppCompatActivity() {
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            Configuration.UI_MODE_NIGHT_NO ->
+                window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            Configuration.UI_MODE_NIGHT_UNDEFINED ->
+                window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
-
     }
-
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -92,7 +89,7 @@ class Settings : AppCompatActivity() {
             if (sys) {
                 listPreference?.setValueIndex(2)
             } else if (dark) {
-                listPreference?.setValueIndex(1) //set to index of your default value
+                listPreference?.setValueIndex(1) // Set to index of your default value
             } else if (!dark) {
                 listPreference?.setValueIndex(0)
             }
@@ -123,12 +120,11 @@ class Settings : AppCompatActivity() {
                     true
                 }
 
-
             val textSize = findPreference<Preference>("size") as ListPreference?
 
             when (pref.getString("text_size", "md")) {
                 "md" -> {
-                    textSize?.setValueIndex(1) //set to index of your default value
+                    textSize?.setValueIndex(1) // Set to index of your default value
                 }
                 "sm" -> {
                     textSize?.setValueIndex(0)

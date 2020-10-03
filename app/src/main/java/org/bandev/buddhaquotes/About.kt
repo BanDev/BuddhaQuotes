@@ -24,7 +24,6 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_about.*
 import nl.dionsegijn.konfetti.models.Size
 
-
 class About : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
@@ -39,8 +38,8 @@ class About : AppCompatActivity() {
         scrollview.viewTreeObserver
             .addOnScrollChangedListener {
                 if (scrollview.getChildAt(0).bottom
-                    <= scrollview.height + scrollview.scrollY
-                    && !done
+                    <= scrollview.height + scrollview.scrollY &&
+                    !done
                 ) {
                     viewKonfetti.build()
                         .addColors(
@@ -71,11 +70,9 @@ class About : AppCompatActivity() {
                 }
             }
 
-
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
@@ -102,8 +99,6 @@ class About : AppCompatActivity() {
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
         }
-
-
     }
 
     private fun vibratePhone() {
@@ -114,7 +109,6 @@ class About : AppCompatActivity() {
             vibrator.vibrate(200)
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -136,9 +130,4 @@ class About : AppCompatActivity() {
         finish()
         return true
     }
-
-
 }
-
-
-

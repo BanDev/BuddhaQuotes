@@ -43,13 +43,13 @@ class InfoPanel : AppCompatActivity() {
         }
         (textview ?: return).textSize = (fontsize ?: return).toFloat()
 
-        //Is user using night mode
+        // Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
-            Configuration.UI_MODE_NIGHT_NO ->                 //No
+            Configuration.UI_MODE_NIGHT_NO -> // No
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED ->                 //Who knows? Assume they are not
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> // Who knows? Assume they are not
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
@@ -61,10 +61,7 @@ class InfoPanel : AppCompatActivity() {
         val array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
         val list: MutableList<String> = ArrayList(listOf(*array))
 
-
         val fab = findViewById<FloatingActionButton>(R.id.delete)
-
-
 
         fab.setOnClickListener {
             favs = arrayOf(favourites.getString("fav", ""))
@@ -88,12 +85,8 @@ class InfoPanel : AppCompatActivity() {
             val myIntent = Intent(this@InfoPanel, Favourites::class.java)
             this@InfoPanel.startActivity(myIntent)
             finish()
-
         }
-
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.fav_menu, menu)
