@@ -16,7 +16,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
 
-class settings : AppCompatActivity() {
+class Settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
 
@@ -165,12 +165,12 @@ class settings : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, MainActivity::class.java)
 
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
-        this@settings.startActivity(myIntent)
+        this@Settings.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right
@@ -182,11 +182,11 @@ class settings : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, MainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
-        this@settings.startActivity(myIntent)
+        this@Settings.startActivity(myIntent)
 
         overridePendingTransition(
             R.anim.anim_slide_in_right,
