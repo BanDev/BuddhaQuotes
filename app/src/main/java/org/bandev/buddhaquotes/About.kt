@@ -17,6 +17,7 @@ import android.widget.ScrollView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -73,9 +74,8 @@ class About : AppCompatActivity() {
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
+        window.statusBarColor = ContextCompat.getColor(this@About, R.color.colorAccent)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         var statusBarHeight = 0

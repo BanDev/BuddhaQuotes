@@ -92,7 +92,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, quoteview?.text)
+
+                val text = quoteview?.text.toString() + " ~Buddha"
+
+                putExtra(Intent.EXTRA_TEXT, text)
                 type = "text/plain"
             }
 
