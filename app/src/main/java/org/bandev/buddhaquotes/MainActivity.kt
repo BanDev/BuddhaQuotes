@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
 
-                val text = quoteview?.text.toString() + " ~Buddha"
+                val text = quoteview?.text.toString() + "\n\n~Buddha"
 
                 putExtra(Intent.EXTRA_TEXT, text)
                 type = "text/plain"
