@@ -17,14 +17,13 @@ import androidx.core.view.updatePadding
 
 class License : AppCompatActivity() {
 
-
-    //Say that you need a snazzy phone to use the app (Android Ver > R)
+    // Say that you need a snazzy phone to use the app (Android Ver > R)
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license)
 
-        //Setup toolbar which is the top bar thingy
+        // Setup toolbar which is the top bar thingy
         val myToolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
@@ -36,7 +35,6 @@ class License : AppCompatActivity() {
                 Intent(this, FullLicense::class.java)
             startActivity(i)
         }
-
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 

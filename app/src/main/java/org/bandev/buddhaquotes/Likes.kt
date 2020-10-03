@@ -61,9 +61,7 @@ class Likes : AppCompatActivity() {
 
         val favourite: FloatingActionButton = findViewById(R.id.favourite)
 
-
         var done = false
-
 
         favourite.setOnClickListener {
             if (!done) {
@@ -73,7 +71,7 @@ class Likes : AppCompatActivity() {
                 like.setScaleRange(0.5f, 1f)
                 like.oneShot(favourite, 5)
                 favourite.isEnabled = false
-                //If It Is Not Liked Already
+                // If It Is Not Liked Already
                 favourite.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@Likes,
@@ -83,9 +81,9 @@ class Likes : AppCompatActivity() {
                 favourite.isEnabled = true
                 done = true
             } else {
-                //If It Is Already Liked
-                //val like = ParticleSystem(this, 5, R.drawable.heart_black, 600)
-                //like.setSpeedRange(0.0625f, 0.0625f)
+                // If It Is Already Liked
+                // val like = ParticleSystem(this, 5, R.drawable.heart_black, 600)
+                // like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);
                 favourite.isEnabled = false

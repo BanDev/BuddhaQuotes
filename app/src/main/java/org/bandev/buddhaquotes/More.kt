@@ -68,8 +68,12 @@ class More : AppCompatActivity() {
 
         favourite.setOnClickListener {
             val rotateAnimation = RotateAnimation(
-                0F, 360f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+                0F,
+                360f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f
             )
             if (counter < 50) {
                 text.text =
@@ -83,4 +87,3 @@ class More : AppCompatActivity() {
         }
     }
 }
-

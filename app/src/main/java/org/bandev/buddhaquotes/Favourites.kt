@@ -18,7 +18,6 @@ class Favourites : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
@@ -26,9 +25,9 @@ class Favourites : AppCompatActivity() {
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_YES -> {
             }
-            Configuration.UI_MODE_NIGHT_NO ->                 //No
+            Configuration.UI_MODE_NIGHT_NO -> // No
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED ->                 //Who knows? Assume they are not
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> // Who knows? Assume they are not
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
@@ -45,8 +44,8 @@ class Favourites : AppCompatActivity() {
                 if (value.toString() != "") {
                     val intent = Intent(this@Favourites, InfoPanel::class.java)
                     val b = Bundle()
-                    b.putString("quote", value.toString()) //Your id
-                    intent.putExtras(b) //Put your id to your next Intent
+                    b.putString("quote", value.toString()) // Your id
+                    intent.putExtras(b) // Put your id to your next Intent
                     startActivity(intent)
                 }
             }
@@ -97,4 +96,3 @@ class Favourites : AppCompatActivity() {
         finish()
     }
 }
-
