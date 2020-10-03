@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     private var list: List<String?>? = null
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String?>
+    var no_anim = false;
+    var first_press = true
     private var fontsize: String? = null
     private var heartblack: Drawable? = null
     var toolbar: Toolbar? = null
@@ -63,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+
+
         toolbar?.navigationIcon = heartblack
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -140,15 +144,24 @@ class MainActivity : AppCompatActivity() {
         }
         (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
 
+        val rotateAnimation = RotateAnimation(
+            0F, 360f,
+            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+
+        )
+
         //When Refresh Is Clicked
         (refresh ?: return).setOnClickListener {
+            if(first_press){
+                rotateAnimation.duration = 2.toLong() * 250
+                (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
+                first_press = false;
+            }else if(rotateAnimation.hasEnded()){
+                no_anim = true;
+                rotateAnimation.duration = 2.toLong() * 250
+                (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
+            }
 
-            val rotateAnimation = RotateAnimation(
-                0F, 360f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
-            )
-            rotateAnimation.duration = 2.toLong() * 250
-            (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
             newQuote(0)
         }
 
@@ -220,7 +233,10 @@ class MainActivity : AppCompatActivity() {
 
         /* Get The First Quote */
         newQuote(quotenumber)
+
     }
+
+
 
     private fun newQuote(Quote_Number_Local: Int) {
 
@@ -253,6 +269,7 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
         quotenumber = quote.quotenumberglobal
+        no_anim = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

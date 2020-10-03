@@ -32,9 +32,9 @@
 </string>
     <string name="about_contributors">Contributors</string>
     <string name="about_fennec">"@Fennec_exe"</string>
-    <string name="about_jwdevey">"@jwdevey"</string>
+    <string name="about_jack">"@jack.txt"</string>
     <string name="about_izzysoft">"@IzzySoft"</string>
-    <string name="about_poussinou">"@Poussinou"</string>
+    <string name="about_licaon">"@licaon-kter"</string>
     <string name="tick">Tick</string>
 
     <!-- Help/Welcome page -->
