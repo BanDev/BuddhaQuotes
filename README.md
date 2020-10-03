@@ -41,7 +41,7 @@
 
 ## Features
 - AMOLED mode
-- Over 310 quotes!
+- Over 340 quotes!
 - Favourite quotes
 - Free, libre and open source
 - No ads
