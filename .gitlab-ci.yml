@@ -54,6 +54,8 @@ before_script:
 lintDebug:
   interruptible: true
   stage: build
+  artifacts:
+    expire_in: 20 seconds
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
@@ -74,3 +76,5 @@ debugTests:
   stage: test
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
+  artifacts:
+    expire_in: 20 seconds
