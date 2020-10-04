@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
     private var list: List<String?>? = null
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String?>
-    var no_anim = false;
-    var first_press = true
+    private var noanim = false
+    private var firstpress = true
     private var fontsize: String? = null
     private var heartblack: Drawable? = null
     var toolbar: Toolbar? = null
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-
+        window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
 
         toolbar?.navigationIcon = heartblack
 
@@ -152,12 +152,12 @@ class MainActivity : AppCompatActivity() {
 
         //When Refresh Is Clicked
         (refresh ?: return).setOnClickListener {
-            if(first_press){
+            if (firstpress) {
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
-                first_press = false;
-            }else if(rotateAnimation.hasEnded()){
-                no_anim = true;
+                firstpress = false
+            } else if (rotateAnimation.hasEnded()) {
+                noanim = true
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
             }
@@ -237,7 +237,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun newQuote(Quote_Number_Local: Int) {
 
 
@@ -269,7 +268,7 @@ class MainActivity : AppCompatActivity() {
             commit()
         }
         quotenumber = quote.quotenumberglobal
-        no_anim = false
+        noanim = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

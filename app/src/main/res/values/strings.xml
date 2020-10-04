@@ -82,7 +82,6 @@
     <!-- Main page -->
 
     <!-- OSS Libraries -->
-    <string name="oss_libraries">OSS Libraries</string>
 
     <!-- Miscellaneous Content descriptions  -->
     <string name="buddha_quotes_logo">Buddha Quotes logo</string>
@@ -115,12 +114,6 @@
     <!-- Miscellaneous  -->
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="textview">TextView</string>
+    <string name="MainActivity">Main Activity</string>
 
-    <string-array name="array_technology">
-        <item>Material Design Icons</item>
-        <item>Material Design Android</item>
-        <item>Kotlin</item>
-        <item>Androidx</item>
-        <item>Leonids</item>
-    </string-array>
 </resources>
