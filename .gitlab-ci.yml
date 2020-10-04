@@ -64,6 +64,7 @@ assembleDebug:
   script:
     - ./gradlew assembleDebug
   artifacts:
+    expire_in: 20
     paths:
       - app/build/outputs/
 
