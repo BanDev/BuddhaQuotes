@@ -54,11 +54,10 @@
 
     <View
         android:id="@+id/myRectangleView"
-        android:layout_width="431dp"
+        android:layout_width="411dp"
         android:layout_height="100dp"
         android:background="@layout/rectangle"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

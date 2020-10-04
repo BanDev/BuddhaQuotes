@@ -36,11 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:elevation="4dp"
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -68,7 +69,7 @@
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="36dp"
+        app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_baseline_refresh_24"
         app:tint="@android:color/white" />
 

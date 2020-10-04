@@ -7,7 +7,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -34,14 +33,10 @@ class Settings : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+            } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-            }
-            Configuration.UI_MODE_NIGHT_NO ->
-                window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED ->
-                window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } // Night mode is active, we're using dark theme
         }
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
     }
