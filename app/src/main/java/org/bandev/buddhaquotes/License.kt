@@ -11,6 +11,7 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -37,7 +38,7 @@ class License : AppCompatActivity() {
         }
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
+        window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAccent)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         var statusBarHeight = 0

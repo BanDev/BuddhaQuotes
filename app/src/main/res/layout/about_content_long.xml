@@ -230,7 +230,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
-        android:id="@+id/textView14"
         android:layout_width="262dp"
         android:layout_height="61dp"
         android:layout_marginTop="20dp"
@@ -276,7 +275,6 @@
         app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginEnd="28dp"
@@ -286,7 +284,6 @@
         app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginEnd="28dp"
@@ -296,7 +293,6 @@
         app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView5"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginEnd="28dp"

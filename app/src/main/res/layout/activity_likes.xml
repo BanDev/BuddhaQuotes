@@ -89,7 +89,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <ImageView
-        android:id="@+id/imageView6"
         android:layout_width="47dp"
         android:layout_height="62dp"
         app:layout_constraintBottom_toTopOf="@+id/textView18"

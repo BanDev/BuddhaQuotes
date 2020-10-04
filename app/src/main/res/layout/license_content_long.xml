@@ -258,7 +258,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/green_circle"
@@ -269,7 +268,6 @@
         app:srcCompat="@drawable/ic_baseline_green_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView8"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/blue_circle"
@@ -280,7 +278,6 @@
         app:srcCompat="@drawable/ic_baseline_blue_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView10"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/blue_circle"
@@ -291,7 +288,6 @@
         app:srcCompat="@drawable/ic_baseline_blue_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView11"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/blue_circle"
@@ -302,7 +298,6 @@
         app:srcCompat="@drawable/ic_baseline_blue_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView9"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/red_circle"
@@ -313,7 +308,6 @@
         app:srcCompat="@drawable/ic_baseline_red_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView13"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/red_circle"
@@ -324,7 +318,6 @@
         app:srcCompat="@drawable/ic_baseline_red_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView12"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/blue_circle"
@@ -335,7 +328,6 @@
         app:srcCompat="@drawable/ic_baseline_blue_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
@@ -347,7 +339,6 @@
         app:srcCompat="@drawable/ic_baseline_green_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView5"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/green_circle"
@@ -358,7 +349,6 @@
         app:srcCompat="@drawable/ic_baseline_green_circle_24" />
 
     <ImageView
-        android:id="@+id/imageView7"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:contentDescription="@string/green_circle"

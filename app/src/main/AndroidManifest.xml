@@ -22,7 +22,10 @@
         <activity
             android:name=".Slide1"
             android:theme="@style/slides" />
-        <activity android:name=".License" />
+        <activity
+            android:name=".License"
+            android:label="License"
+            android:theme="@style/license" />
         <activity android:name=".InfoPanel" />
         <activity android:name=".Favourites" />
         <activity
@@ -36,12 +39,15 @@
         </activity>
         <activity
             android:name=".About"
-            android:label="About"
-            android:theme="@style/about"/>
+            android:label="@string/about"
+            android:theme="@style/about" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/MainActivity"
+            android:theme="@style/MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

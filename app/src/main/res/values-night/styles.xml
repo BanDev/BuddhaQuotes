@@ -9,17 +9,4 @@
     <item name="android:windowLightStatusBar">false</item>
 </style>
 
-    <style name="OSS_Theme" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#000</item>
-        <item name="colorPrimaryDark">#000</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">
-            #000
-        </item>
-        <item name="colorSurface">#000</item>
-        <item name="backgroundColor">#000</item>
-    </style>
-
 </resources>
