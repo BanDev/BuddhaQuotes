@@ -403,7 +403,7 @@ class Quotes {
             226 -> text =
                 "Every experience, no matter how bad it seems, holds within it a blessing of some kind. The goal is to find it"
             227 -> text =
-                "Let us rise up and be thankful, for if we didn’t learn a lot at least we learned a little, and if we didn’t learn a little, at least we didn’t get sick, and if we got sick, at least we didn’t die; so, let us all be thankful"
+                "Let us rise up and be thankful, for if we didn’t learn a lot at least we learned a little, and if we didn’t learn a little, at least we didn’t get sick, and if we get sick, at least we didn’t die; so, let us all be thankful"
             228 -> text = "Friendship is the only cure for hatred, the only guarantee of peace"
             229 -> text = "Happiness comes when your work and words are of benefit to others"
             230 -> text =

@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_about.*
 import nl.dionsegijn.konfetti.models.Size
 
@@ -33,7 +32,7 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        var done = false
+        val done = false
 
         val scrollview: ScrollView = findViewById(R.id.scroll)
         scrollview.viewTreeObserver
@@ -62,12 +61,7 @@ class About : AppCompatActivity() {
                         .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
                         .streamFor(100, 1000L)
                     vibratePhone()
-                    vibratePhone()
                     val contextView = findViewById<View>(R.id.context_view)
-
-                    Snackbar.make(contextView, "Thanks for reading!", Snackbar.LENGTH_SHORT)
-                        .show()
-                    done = true
                 }
             }
 
@@ -123,7 +117,7 @@ class About : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
+        // Add your animation
         finish()
     }
 

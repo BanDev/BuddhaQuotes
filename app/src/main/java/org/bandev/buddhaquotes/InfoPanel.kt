@@ -45,12 +45,10 @@ class InfoPanel : AppCompatActivity() {
 
         // Is user using night mode
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+            } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-            }
-            Configuration.UI_MODE_NIGHT_NO -> // No
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> // Who knows? Assume they are not
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } // Night mode is active, we're using dark theme
         }
 
         val favourites = getSharedPreferences("Favs", 0)
@@ -114,7 +112,7 @@ class InfoPanel : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
+        // Add your animation
         val myIntent = Intent(this@InfoPanel, Favourites::class.java)
         this@InfoPanel.startActivity(myIntent)
         finish()

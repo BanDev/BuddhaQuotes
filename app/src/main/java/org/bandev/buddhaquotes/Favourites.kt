@@ -23,12 +23,10 @@ class Favourites : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+            } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-            }
-            Configuration.UI_MODE_NIGHT_NO -> // No
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> // Who knows? Assume they are not
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } // Night mode is active, we're using dark theme
         }
 
         val listview = findViewById<View>(R.id.listView) as ListView

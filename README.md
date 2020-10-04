@@ -25,8 +25,10 @@
 <div align="center">
 <a href="https://play.google.com/store/apps/details?id=org.bandev.buddhaquotes" target="_blank">
 <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="70" />
+</a>
 <a href="https://bandev.computub.com/Buddha_Quotes/apk/latest.apk" target="_blank">
 <img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png" height="70" />
+</a>
 </div>
 
 ## Screenshots

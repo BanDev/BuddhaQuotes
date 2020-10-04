@@ -42,6 +42,7 @@
         android:layout_width="173dp"
         android:layout_height="168dp"
         android:contentDescription="@string/buddha_quotes_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.996"
         app:layout_constraintStart_toStartOf="parent"
