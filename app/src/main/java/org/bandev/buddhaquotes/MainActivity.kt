@@ -132,7 +132,6 @@ class MainActivity : AppCompatActivity() {
         //    Configuration.UI_MODE_NIGHT_YES -> {
         //    } // Night mode is active, we're using dark theme
         //}
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
 
         //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)
