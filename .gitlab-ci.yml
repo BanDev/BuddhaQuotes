@@ -54,12 +54,12 @@ before_script:
 lintDebug:
   interruptible: true
   stage: build
-  artifacts:
-    paths: 
-       -app/build/tests/
-    expire_in: 20 seconds
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+  artifacts:
+    paths: 
+       - app/output/lintDebug/
+    expire_in: 20 seconds
 
 # Make Project
 assembleDebug:
@@ -70,7 +70,7 @@ assembleDebug:
   artifacts:
     expire_in: 20 seconds
     paths:
-       - app/build/outputs/
+       - app/output/assembleDebug/
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
@@ -79,6 +79,6 @@ debugTests:
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
   artifacts:
-    paths: 
-	-app/build/tests/
     expire_in: 20 seconds
+    paths:
+       - app/output/debugTests/
