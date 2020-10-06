@@ -9,40 +9,40 @@
     tools:context=".Slide1">
 
     <Button
-        android:id="@+id/night"
-        style="Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="59dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="0dp"
-        android:fontFamily="@font/mt_bold"
-        android:letterSpacing="0.0"
-        android:text="@string/slide_5_im_in"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:cornerRadius="11dp"
-        app:icon="@drawable/night"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/day"
         style="Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="70dp"
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="@string/slide_5_nope"
+        android:text="@string/slide_5_light"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/day"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/night"
+        style="Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/colorAccent"
+        android:elevation="0dp"
+        android:fontFamily="@font/mt_bold"
+        android:letterSpacing="0.0"
+        android:text="@string/slide_5_dark"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="11dp"
+        app:icon="@drawable/night"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -78,10 +78,10 @@
     <ImageView
         android:layout_width="47dp"
         android:layout_height="62dp"
+        android:contentDescription="@string/slide_5_torch"
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_highlight_24"
-        android:contentDescription="@string/slide_5_torch" />
+        app:srcCompat="@drawable/ic_baseline_highlight_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
