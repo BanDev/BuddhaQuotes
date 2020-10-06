@@ -8,16 +8,22 @@ import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
 import android.util.Log
 import android.view.*
+import android.view.WindowInsets.Type.navigationBars
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.Type.navigationBars
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -112,7 +118,8 @@ class MainActivity : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
+
+       /* val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param2.setMargins(0, 0, 0, navBarHeight)
         (favourite ?: return).layoutParams = param2
 
@@ -123,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         val param4 = (share ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param4.setMargins(0, 0, 0, navBarHeight)
         (share ?: return).layoutParams = param4
-
+*/
         //If Using Night Mode, Change Some Stuff
         // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
         //    Configuration.UI_MODE_NIGHT_NO -> {
