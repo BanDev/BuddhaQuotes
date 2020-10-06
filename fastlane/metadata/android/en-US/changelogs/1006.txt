@@ -1,0 +1,5 @@
+1.3.2 - (2020-10-06)
+
+Changed
+
+- Minor bug fix for devices with a navigation bar
