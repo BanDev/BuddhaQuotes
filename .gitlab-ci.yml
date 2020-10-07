@@ -59,7 +59,7 @@ lintDebug:
   artifacts:
     name: lintDebug
     paths: 
-      - app/output/lintDebug/
+      - app/build/outputs/
     expire_in: 1 second
     when: always
 
@@ -72,7 +72,7 @@ assembleDebug:
   artifacts:
     name: assembleDebug
     paths:
-      - app/output/assembleDebug/
+      - app/build/outputs/
     expire_in: 1 second
     when: always
 
@@ -85,6 +85,6 @@ debugTests:
   artifacts:
     name: debugTests
     paths:
-      - app/output/debugTests/
+      - app/build/outputs/
     expire_in: 1 second
     when: always
