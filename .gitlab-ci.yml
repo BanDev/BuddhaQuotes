@@ -57,9 +57,11 @@ lintDebug:
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
   artifacts:
+    name: lintDebug
     paths: 
-       - app/output/lintDebug/
-    expire_in: 20 seconds
+      - app/output/lintDebug/
+    expire_in: 1 second
+    when: always
 
 # Make Project
 assembleDebug:
@@ -68,9 +70,11 @@ assembleDebug:
   script:
     - ./gradlew assembleDebug
   artifacts:
-    expire_in: 20 seconds
+    name: assembleDebug
     paths:
-       - app/output/assembleDebug/
+      - app/output/assembleDebug/
+    expire_in: 1 second
+    when: always
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
@@ -79,6 +83,8 @@ debugTests:
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
   artifacts:
-    expire_in: 20 seconds
+    name: debugTests
     paths:
-       - app/output/debugTests/
+      - app/output/debugTests/
+    expire_in: 1 second
+    when: always
