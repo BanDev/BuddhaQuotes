@@ -9,6 +9,7 @@
 package org.bandev.buddhaquotes
 
 class Quotes {
+
     var quotenumberglobal: Int = 0
     private var maxQuote = 311
     fun random(Quote_Number: Int): String {

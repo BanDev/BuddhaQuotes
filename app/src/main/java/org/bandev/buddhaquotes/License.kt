@@ -18,7 +18,6 @@ import androidx.core.view.updatePadding
 
 class License : AppCompatActivity() {
 
-    // Say that you need a snazzy phone to use the app (Android Ver > R)
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

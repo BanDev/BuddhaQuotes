@@ -6,6 +6,7 @@ import android.view.View
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 
 class FullLicense : AppCompatActivity() {
 
@@ -18,6 +19,8 @@ class FullLicense : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
+        window.statusBarColor = ContextCompat.getColor(this@FullLicense, R.color.colorTop)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.arrow_back_white_18dp)
 
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView

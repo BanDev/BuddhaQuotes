@@ -16,6 +16,7 @@ import androidx.core.view.updatePadding
 import com.google.android.material.slider.Slider
 
 class Slide3 : AppCompatActivity() {
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

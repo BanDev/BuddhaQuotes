@@ -8,22 +8,16 @@ import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
 import android.util.Log
 import android.view.*
-import android.view.WindowInsets.Type.navigationBars
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsCompat.Type.navigationBars
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -70,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorPrimary)
+        window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
 
         toolbar?.navigationIcon = heartblack
 
@@ -119,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-       /* val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        /* val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param2.setMargins(0, 0, 0, navBarHeight)
         (favourite ?: return).layoutParams = param2
 

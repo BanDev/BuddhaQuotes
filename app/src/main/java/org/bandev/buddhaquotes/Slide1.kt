@@ -14,6 +14,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 
 class Slide1 : AppCompatActivity() {
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
