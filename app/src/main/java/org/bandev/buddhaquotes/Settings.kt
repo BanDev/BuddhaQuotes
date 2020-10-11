@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -31,14 +32,16 @@ class Settings : AppCompatActivity() {
             .commit()
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
+        window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.arrow_back_white_18dp)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
             } // Night mode is active, we're using dark theme
         }
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

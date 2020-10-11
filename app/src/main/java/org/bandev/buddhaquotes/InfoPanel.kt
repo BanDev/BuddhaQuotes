@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
@@ -23,10 +24,11 @@ class InfoPanel : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_info__panel)
+        setContentView(R.layout.activity_info_panel)
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
+        window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
         val intent = intent

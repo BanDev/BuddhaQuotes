@@ -11,15 +11,18 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 
 class Favourites : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
         setSupportActionBar(myToolbar)
+        window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
