@@ -66,7 +66,7 @@ class Likes : AppCompatActivity() {
 
         favourite.setOnClickListener {
             if (!done) {
-                val like = ParticleSystem(this, 5, R.drawable.heart_full_black, 600)
+                val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)
                 like.setFadeOut(100)
                 like.setScaleRange(0.5f, 1f)
@@ -83,7 +83,7 @@ class Likes : AppCompatActivity() {
                 done = true
             } else {
                 // If It Is Already Liked
-                // val like = ParticleSystem(this, 5, R.drawable.heart_black, 600)
+                // val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
                 // like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);

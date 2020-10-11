@@ -38,7 +38,7 @@ class License : AppCompatActivity() {
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAccent)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.arrow_back_white_18dp)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         var statusBarHeight = 0

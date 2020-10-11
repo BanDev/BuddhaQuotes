@@ -1,5 +1,3 @@
-@file:Suppress("ClassName")
-
 package org.bandev.buddhaquotes
 
 import android.content.Intent
@@ -31,17 +29,12 @@ class Settings : AppCompatActivity() {
             .replace(R.id.settings, SettingsFragment())
             .commit()
         val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+
         setSupportActionBar(myToolbar)
-        window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.arrow_back_white_18dp)
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
-            } // Night mode is active, we're using dark theme
-        }
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+        window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {

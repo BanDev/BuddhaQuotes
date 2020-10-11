@@ -42,7 +42,7 @@
 | Light 	| Dark 	| Light 	| Dark 	|
 
 ## Features
-- AMOLED mode
+- Dark mode
 - Over 340 quotes!
 - Favourite quotes
 - Free, libre and open source
