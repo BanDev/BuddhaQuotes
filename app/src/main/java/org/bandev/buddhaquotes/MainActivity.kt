@@ -58,12 +58,13 @@ class MainActivity : AppCompatActivity() {
         share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
-        heartblack = ContextCompat.getDrawable(this, R.drawable.heart_black)
+        heartblack = ContextCompat.getDrawable(this, R.drawable.heart_white)
         quoteview = findViewById(R.id.quote)
 
         //Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
 
         toolbar?.navigationIcon = heartblack
@@ -171,7 +172,7 @@ class MainActivity : AppCompatActivity() {
         //When Favourite Is Clicked
         (favourite ?: return).setOnClickListener {
             if (!(done ?: return@setOnClickListener)) {
-                val like = ParticleSystem(this, 5, R.drawable.heart_full_black, 600)
+                val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)
                 like.setFadeOut(100)
                 like.setScaleRange(0.5f, 1f)
@@ -197,7 +198,7 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).isEnabled = true
             } else {
                 //If It Is Already Liked
-                //val like = ParticleSystem(this, 5, R.drawable.heart_black, 600)
+                //val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
                 //like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);

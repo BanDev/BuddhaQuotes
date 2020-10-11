@@ -20,7 +20,7 @@ class FullLicense : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         window.statusBarColor = ContextCompat.getColor(this@FullLicense, R.color.colorTop)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.arrow_back_white_18dp)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
 
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView
