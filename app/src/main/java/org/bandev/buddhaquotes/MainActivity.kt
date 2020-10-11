@@ -93,18 +93,26 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        var Allowed = true;
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
-            val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
+            if(Allowed) {
+                Allowed = false;
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
 
-                val text = quoteview?.text.toString() + "\n\n~Buddha"
+                    val text = quoteview?.text.toString() + "\n\n~Buddha"
 
-                putExtra(Intent.EXTRA_TEXT, text)
-                type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, text)
+                    type = "text/plain"
+
+                }
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
             }
+            Thread.sleep(1_000)  // wait for 1 second
+            Allowed = true
 
-            val shareIntent = Intent.createChooser(sendIntent, null)
-            startActivity(shareIntent)
         }
 
         var navBarHeight = 0
