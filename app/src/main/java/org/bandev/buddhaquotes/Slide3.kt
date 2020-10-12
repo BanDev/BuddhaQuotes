@@ -22,7 +22,6 @@ class Slide3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_3)
 
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         var statusBarHeight = 0
@@ -90,12 +89,7 @@ class Slide3 : AppCompatActivity() {
             )
         }
 
-
-
-
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
     }
-
-
 }

@@ -52,7 +52,6 @@ class More : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-
             val myIntent = Intent(this@More, Slide2::class.java)
             this@More.startActivity(myIntent)
             overridePendingTransition(
