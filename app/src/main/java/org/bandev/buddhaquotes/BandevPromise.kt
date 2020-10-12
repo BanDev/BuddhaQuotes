@@ -48,7 +48,6 @@ class BandevPromise : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-
             val myIntent = Intent(this@BandevPromise, Likes::class.java)
             this@BandevPromise.startActivity(myIntent)
             overridePendingTransition(

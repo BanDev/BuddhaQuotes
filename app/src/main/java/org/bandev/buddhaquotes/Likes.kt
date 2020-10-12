@@ -51,7 +51,6 @@ class Likes : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-
             val myIntent = Intent(this@Likes, More::class.java)
             this@Likes.startActivity(myIntent)
             overridePendingTransition(

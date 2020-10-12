@@ -2,12 +2,12 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -48,7 +48,6 @@ class Slide4 : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-
             val myIntent = Intent(this@Slide4, MainActivity::class.java)
             this@Slide4.startActivity(myIntent)
         }

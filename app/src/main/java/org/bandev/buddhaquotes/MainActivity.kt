@@ -1,5 +1,3 @@
-@file:Suppress("Annotator", "Annotator", "Annotator")
-
 package org.bandev.buddhaquotes
 
 import android.content.Context
@@ -23,7 +21,6 @@ import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val quotenumber = sharedPref.getInt("Quote_Number", 0)
 
-        //Define UI Variables
+        // Define UI Variables
         setContentView(R.layout.activity_main)
         refresh = findViewById(R.id.refresh)
         share = findViewById(R.id.share)
@@ -61,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         heartblack = ContextCompat.getDrawable(this, R.drawable.heart_white)
         quoteview = findViewById(R.id.quote)
 
-        //Sets Up Toolbar And Adds Icons Etc
+        // Sets Up Toolbar And Adds Icons Etc
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
@@ -93,10 +90,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var Allowed = true;
+        var allowed = true
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
-            if(Allowed) {
-                Allowed = false;
+            if (allowed) {
+                allowed = false
                 val sendIntent: Intent = Intent().apply {
                     action = Intent.ACTION_SEND
 
@@ -104,15 +101,13 @@ class MainActivity : AppCompatActivity() {
 
                     putExtra(Intent.EXTRA_TEXT, text)
                     type = "text/plain"
-
                 }
 
                 val shareIntent = Intent.createChooser(sendIntent, null)
                 startActivity(shareIntent)
             }
-            Thread.sleep(1_000)  // wait for 1 second
-            Allowed = true
-
+            Thread.sleep(1_000) // wait for 1 second
+            allowed = true
         }
 
         var navBarHeight = 0
@@ -120,7 +115,6 @@ class MainActivity : AppCompatActivity() {
         if (resourceId2 > 0) {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
-
 
         /* val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param2.setMargins(0, 0, 0, navBarHeight)
@@ -134,15 +128,15 @@ class MainActivity : AppCompatActivity() {
         param4.setMargins(0, 0, 0, navBarHeight)
         (share ?: return).layoutParams = param4
 */
-        //If Using Night Mode, Change Some Stuff
+        // If Using Night Mode, Change Some Stuff
         // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
         //    Configuration.UI_MODE_NIGHT_NO -> {
         //    } // Night mode is not active, we're using the light theme
         //    Configuration.UI_MODE_NIGHT_YES -> {
         //    } // Night mode is active, we're using dark theme
-        //}
+        // }
 
-        //Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
+        // Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)
         val textsize: String? = settings?.getString("text_size", "md")
         fontsize = when (textsize) {
@@ -153,12 +147,16 @@ class MainActivity : AppCompatActivity() {
         (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
 
         val rotateAnimation = RotateAnimation(
-            0F, 360f,
-            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+            0F,
+            360f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
 
         )
 
-        //When Refresh Is Clicked
+        // When Refresh Is Clicked
         (refresh ?: return).setOnClickListener {
             if (firstpress) {
                 rotateAnimation.duration = 2.toLong() * 250
@@ -176,8 +174,7 @@ class MainActivity : AppCompatActivity() {
         val favourites = getSharedPreferences("Favs", 0)
         val editor = favourites.edit()
 
-
-        //When Favourite Is Clicked
+        // When Favourite Is Clicked
         (favourite ?: return).setOnClickListener {
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
@@ -186,10 +183,12 @@ class MainActivity : AppCompatActivity() {
                 like.setScaleRange(0.5f, 1f)
                 like.oneShot(favourite, 5)
                 (favourite ?: return@setOnClickListener).isEnabled = false
-                //If It Is Not Liked Already
+                // If It Is Not Liked Already
                 if (favs[0] != "") {
-                    favs[0] = (quoteview
-                        ?: return@setOnClickListener).text.toString() + "//VADER//" + favs[0]
+                    favs[0] = (
+                            quoteview
+                                ?: return@setOnClickListener
+                            ).text.toString() + "//VADER//" + favs[0]
                 } else {
                     favs[0] = (quoteview ?: return@setOnClickListener).text as String + "//VADER//"
                 }
@@ -205,9 +204,9 @@ class MainActivity : AppCompatActivity() {
                 )
                 (favourite ?: return@setOnClickListener).isEnabled = true
             } else {
-                //If It Is Already Liked
-                //val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
-                //like.setSpeedRange(0.0625f, 0.0625f)
+                // If It Is Already Liked
+                // val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
+                // like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);
                 (favourite ?: return@setOnClickListener).isEnabled = false
@@ -241,13 +240,9 @@ class MainActivity : AppCompatActivity() {
 
         /* Get The First Quote */
         newQuote(quotenumber)
-
     }
 
-
     private fun newQuote(Quote_Number_Local: Int) {
-
-
         val text = quote.random(Quote_Number_Local)
         (quoteview ?: return).text = text
         done = false
@@ -326,4 +321,3 @@ class MainActivity : AppCompatActivity() {
         this.finishAffinity()
     }
 }
-
