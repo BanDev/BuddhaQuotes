@@ -58,6 +58,10 @@
 ## Contributing
 Looking to contribute to Buddha Quotes? That's great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our [contributing guidelines](https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md) to get started.
 
+## Acknowledgements
+
+- [Launcher Icon](https://www.flaticon.com/authors/freepik) - Freepik via Flaticon
+
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
 Buddha Quotes is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  
