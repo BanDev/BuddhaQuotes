@@ -61,13 +61,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-    <ImageView
-        android:layout_width="76dp"
-        android:layout_height="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/launch_theme"
-        android:contentDescription="@string/buddha_quotes_logo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_stars_24"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
     <Button
         android:id="@+id/button"
