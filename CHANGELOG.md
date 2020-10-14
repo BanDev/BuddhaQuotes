@@ -1,5 +1,27 @@
 # Changelog
-##### All notable changes to Buddha Quotes will be documented in this file.
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### 1.4 - (Unreleased)
+
+#### Added
+
+- Support for devices running Android 7 (Thank you to [@Elephantastique](https://gitlab.com/Elephantastique) for raising this)
+
+#### Changed
+
+- Redone App Introduction using AppIntro library (W.I.P)
+- New logo
+- New colour scheme
+- Bug fixes and optimisations
+
+### 1.3.2 - (2020-10-06)
+
+#### Changed
+
+- Minor bug fix
 
 ### 1.3.1 - (2020-10-06)
 
