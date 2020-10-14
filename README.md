@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Buddha Quotes</h1>
 
-  <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" height="150" />
+  <img src="Screenshots/buddha.svg" height="150" />
     </div>
 
 <div align="center">
