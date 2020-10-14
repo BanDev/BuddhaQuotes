@@ -72,7 +72,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_baseline_refresh_24"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
@@ -88,7 +90,9 @@
         app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_stars_24"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
@@ -104,6 +108,8 @@
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_share_24"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

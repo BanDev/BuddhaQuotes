@@ -73,6 +73,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="36dp"
         app:srcCompat="@drawable/ic_baseline_delete_outline_24"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="TODO" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
