@@ -10,7 +10,7 @@
     <item>
 
         <bitmap
-            android:src="@mipmap/buddha_splash"
+            android:src="@mipmap/buddha_no_background"
             android:gravity="center" />
 
     </item>
