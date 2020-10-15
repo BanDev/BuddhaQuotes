@@ -4,10 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -34,6 +40,26 @@ class Settings : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+
+        val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        (myToolbar ?: return).layoutParams = param
+
+        val view = View(this)
+
+
+        view.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -105,6 +131,23 @@ class Settings : AppCompatActivity() {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                         editor.putBoolean("dark_mode", false)
                         editor.putBoolean("sys", true)
+                        editor.commit()
+                    }
+                    true
+                }
+
+            val funMode = findPreference<Preference>("fun") as ListPreference?
+            (funMode ?: return).onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    funMode.value = newValue.toString()
+                    val AreTheyCool = funMode.entry.toString()
+                    Log.d("debug", AreTheyCool)
+                    if (AreTheyCool == "Yes, I like The Cool Shapes :)") {
+                        editor.putBoolean("fun_mode", true)
+                        editor.apply()
+                    }
+                    if (AreTheyCool == "Think Of The Overdraw!!! :(") {
+                        editor.putBoolean("fun_mode", false)
                         editor.commit()
                     }
                     true

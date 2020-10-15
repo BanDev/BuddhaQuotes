@@ -2,7 +2,9 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorAccent">#ff4155</color>
-    <color name="colorAlsoAccent">#333
+    <color name="colorAlsoAccent">#E80054
     </color>
-    <color name="colorTop">#222222</color>
+    <color name="colorTop">#333</color>
+    <color name="colorWaveLight">#222222</color>
+    <color name="colorWaveDark">#333</color>
 </resources>

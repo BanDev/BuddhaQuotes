@@ -20,6 +20,14 @@
             app:title="@string/text_size"
             app:useSimpleSummaryProvider="true" />
 
+        <ListPreference
+            app:entries="@array/fun_entries"
+            app:entryValues="@array/fun_values"
+            app:icon="@drawable/sentiment_satisfied_alt_black_18dp"
+            app:key="fun"
+            app:title="Fun Mode"
+            app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/information" >

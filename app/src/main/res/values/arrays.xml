@@ -12,6 +12,16 @@
         <item>sys</item>
     </string-array>
 
+    <string-array name="fun_entries">
+        <item>Yes, I like The Cool Shapes :)</item>
+        <item>Think Of The Overdraw!!! :(</item>
+    </string-array>
+
+    <string-array name="fun_values">
+        <item>y</item>
+        <item>n</item>
+    </string-array>
+
     <string-array name="size_entries">
         <item>@string/small_text_size</item>
         <item>@string/medium_text_size</item>

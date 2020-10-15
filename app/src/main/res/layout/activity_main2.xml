@@ -4,27 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/full_screen_waves"
     tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="179dp"
         android:layout_height="342dp"
+        android:contentDescription="@string/the_buddha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/buddha"
-        android:contentDescription="@string/the_buddha" />
+        app:srcCompat="@mipmap/buddha" />
 
     <TextView
         android:id="@+id/quote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mt_reg"
         android:paddingStart="20dp"
         android:paddingTop="80dp"
         android:paddingEnd="20dp"
         android:text="@string/textview"
-        android:fontFamily="@font/mt_reg"
         android:textAlignment="textStart"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,10 +36,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-
-        android:background="@color/colorTop"
-
-
+        android:background="@android:color/transparent"
 
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
@@ -69,16 +67,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="TODO"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="#FFFFFF"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_baseline_refresh_24"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="TODO" />
+        app:tint="@color/colorAccent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
@@ -87,16 +85,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="TODO"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="#FFFFFF"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_stars_24"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="TODO" />
+        app:tint="@color/colorAccent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
@@ -105,15 +103,15 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="TODO"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="#FFFFFF"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_baseline_share_24"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="TODO" />
+        app:tint="@color/colorAccent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
