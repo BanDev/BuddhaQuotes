@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Changed
 
-- Redone App Introduction using AppIntro library (W.I.P)
 - New logo
 - New colour scheme
 - Bug fixes and optimisations
