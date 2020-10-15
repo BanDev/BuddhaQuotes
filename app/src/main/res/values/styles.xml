@@ -42,6 +42,10 @@
         </item>
     </style>
 
+    <style name="prefHeader">
+        <item name="fontFamily">@font/mt_bold</item>
+    </style>
+
     <style name="license" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
