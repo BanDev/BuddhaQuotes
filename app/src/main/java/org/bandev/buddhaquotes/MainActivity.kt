@@ -14,10 +14,13 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import androidx.preference.ListPreference
+import androidx.preference.Preference
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import java.util.*
@@ -50,7 +53,16 @@ class MainActivity : AppCompatActivity() {
         val quotenumber = sharedPref.getInt("Quote_Number", 0)
 
         // Define UI Variables
-        setContentView(R.layout.activity_main)
+
+        val pref = this.getSharedPreferences("Settings", 0)
+        val funMode = pref.getBoolean("fun_mode", false)
+        if(funMode){
+            setContentView(R.layout.activity_main2)
+            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
+        }else{
+            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
+        }
+
         refresh = findViewById(R.id.refresh)
         share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
@@ -62,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
+
 
         toolbar?.navigationIcon = heartblack
 

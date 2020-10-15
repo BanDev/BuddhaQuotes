@@ -67,7 +67,7 @@ class About : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        window.statusBarColor = ContextCompat.getColor(this@About, R.color.colorAccent)
+        window.statusBarColor = ContextCompat.getColor(this@About, R.color.colorAlsoAccent)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
