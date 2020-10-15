@@ -14,13 +14,10 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import androidx.preference.ListPreference
-import androidx.preference.Preference
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import java.util.*
@@ -56,10 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         val pref = this.getSharedPreferences("Settings", 0)
         val funMode = pref.getBoolean("fun_mode", false)
-        if(funMode){
+        if (funMode) {
             setContentView(R.layout.activity_main2)
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
-        }else{
+        } else {
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
         }
 
@@ -152,9 +149,9 @@ class MainActivity : AppCompatActivity() {
         settings = getSharedPreferences("Settings", 0)
         val textsize: String? = settings?.getString("text_size", "md")
         fontsize = when (textsize) {
-            "sm" -> "30"
-            "lg" -> "50"
-            else -> "40"
+            "sm" -> "25"
+            "lg" -> "35"
+            else -> "30"
         }
         (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
 

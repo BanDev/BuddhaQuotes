@@ -6,13 +6,11 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
@@ -51,7 +49,7 @@ class Settings : AppCompatActivity() {
 
         val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
-        (myToolbar ?: return).layoutParams = param
+        myToolbar.layoutParams = param
 
         val view = View(this)
 
@@ -140,13 +138,13 @@ class Settings : AppCompatActivity() {
             (funMode ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     funMode.value = newValue.toString()
-                    val AreTheyCool = funMode.entry.toString()
-                    Log.d("debug", AreTheyCool)
-                    if (AreTheyCool == "Yes, I like The Cool Shapes :)") {
+                    val areTheyCool = funMode.entry.toString()
+                    Log.d("debug", areTheyCool)
+                    if (areTheyCool == "Yes, I like The Cool Shapes :)") {
                         editor.putBoolean("fun_mode", true)
                         editor.apply()
                     }
-                    if (AreTheyCool == "Think Of The Overdraw!!! :(") {
+                    if (areTheyCool == "Think Of The Overdraw!!! :(") {
                         editor.putBoolean("fun_mode", false)
                         editor.commit()
                     }
@@ -182,10 +180,6 @@ class Settings : AppCompatActivity() {
                     }
                     if (size == "Large") {
                         editor.putString("text_size", "lg")
-                        editor.commit()
-                    }
-                    if (size == "Extra") {
-                        editor.putString("text_size", "xlg")
                         editor.commit()
                     }
                     true

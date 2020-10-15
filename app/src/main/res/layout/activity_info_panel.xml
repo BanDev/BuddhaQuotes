@@ -74,6 +74,6 @@
         app:srcCompat="@drawable/ic_baseline_delete_outline_24"
         app:tint="@android:color/white"
         android:focusable="true"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/favourite_quote_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
