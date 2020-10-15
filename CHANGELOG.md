@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - New logo
 - New colour scheme
+- Changed text size to be smaller ('Medium' is now the size of the previous 'Small', etc)
 - Bug fixes and optimisations
 
 ### 1.3.2 - (2020-10-06)
