@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -388,6 +387,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
         app:srcCompat="@drawable/ic_gplv3"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/licenses_license" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

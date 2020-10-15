@@ -39,7 +39,7 @@
         <Preference
             android:key="About"
             android:title="@string/about"
-            android:summary="View App Details"
+            android:summary="@string/view_app_details"
             android:layout="@layout/pref_single"
             app:icon="@drawable/ic_baseline_info_24">
 
@@ -47,7 +47,7 @@
         <Preference
             android:key="help"
             android:title="@string/help"
-            android:summary="Go Through Tutorial Again"
+            android:summary="@string/app_introduction"
             android:layout="@layout/pref_single"
             app:icon="@drawable/ic_help_circle_24">
 
@@ -63,17 +63,10 @@
         <Preference
             android:key="oss_libraries"
             android:title="@string/open_source_libraries"
-            android:summary="The Libraries We Use"
+            android:summary="@string/libraries_used"
             android:layout="@layout/pref_single"
             app:icon="@drawable/ic_baseline_library_books_24">
 
-        </Preference>
-        <Preference
-            android:key="more"
-            android:title="More From BanDev"
-            android:summary="We Make Other Things Too"
-            android:layout="@layout/pref_single"
-            app:icon="@drawable/picture2">
         </Preference>
     </PreferenceCategory>
 

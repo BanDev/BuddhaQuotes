@@ -78,7 +78,7 @@
         app:srcCompat="@drawable/ic_baseline_refresh_24"
         app:tint="@android:color/white"
         android:focusable="true"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/refresh" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
@@ -96,7 +96,7 @@
         app:srcCompat="@drawable/ic_baseline_stars_24"
         app:tint="@android:color/white"
         android:focusable="true"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/favourite" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
@@ -114,6 +114,6 @@
         app:srcCompat="@drawable/ic_baseline_share_24"
         app:tint="@android:color/white"
         android:focusable="true"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/share" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

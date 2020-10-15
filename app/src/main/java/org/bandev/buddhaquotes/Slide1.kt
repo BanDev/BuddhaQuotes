@@ -1,7 +1,6 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.View
