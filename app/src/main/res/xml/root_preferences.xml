@@ -68,6 +68,16 @@
             app:icon="@drawable/ic_baseline_library_books_24">
 
         </Preference>
+        <!--
+        <Preference
+            android:key="bandev"
+            android:title="More From BanDev"
+            android:summary="We Make Other Things Too"
+            android:layout="@layout/pref_single"
+            app:icon="@drawable/picture2">
+        </Preference>
+
+        -->
     </PreferenceCategory>
 
 

@@ -30,7 +30,7 @@ class InfoPanel : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         val intent = intent
         val quote = intent.getStringExtra("quote")
         val textview = findViewById<TextView>(R.id.text)
@@ -39,9 +39,9 @@ class InfoPanel : AppCompatActivity() {
         settings = getSharedPreferences("Settings", 0)
         val textsize: String? = settings?.getString("text_size", "md")
         fontsize = when (textsize) {
-            "sm" -> "30"
-            "lg" -> "50"
-            else -> "40"
+            "sm" -> "25"
+            "lg" -> "35"
+            else -> "30"
         }
         (textview ?: return).textSize = (fontsize ?: return).toFloat()
 

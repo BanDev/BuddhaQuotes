@@ -84,6 +84,10 @@ class Settings : AppCompatActivity() {
                     val i = Intent(activity, Slide1::class.java)
                     startActivity(i)
                 }
+                "bandev" -> {
+                    val i = Intent(activity, bandev::class.java)
+                    startActivity(i)
+                }
             }
             return true
         }

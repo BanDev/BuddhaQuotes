@@ -9,6 +9,7 @@ import android.view.WindowInsets
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -20,20 +21,31 @@ class BandevPromise : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bandevpromise)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
+        }
+
+        val button: Button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val myIntent = Intent(this@BandevPromise, Likes::class.java)
+            this@BandevPromise.startActivity(myIntent)
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
+        }
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
         val view = View(this)
@@ -54,15 +66,15 @@ class BandevPromise : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val button: Button = findViewById(R.id.button)
+        // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        //   param2.setMargins(0, 0, 0, navBarHeight)
+        //   (favourite ?: return).layoutParams = param2
 
-        button.setOnClickListener {
-            val myIntent = Intent(this@BandevPromise, Likes::class.java)
-            this@BandevPromise.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
-        }
+        //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        //     param3.setMargins(0, 0, 0, navBarHeight)
+        //    (refresh ?: return).layoutParams = param3
+
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
     }
 }

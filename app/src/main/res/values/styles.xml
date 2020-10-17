@@ -12,15 +12,7 @@
 
     </style>
 
-    <style name="slides" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">
-            @android:color/transparent
-        </item>
-    </style>
+
 
     <style name="MainActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
