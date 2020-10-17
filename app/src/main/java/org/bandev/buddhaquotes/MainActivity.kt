@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
+
         }
 
         refresh = findViewById(R.id.refresh)
@@ -144,6 +146,17 @@ class MainActivity : AppCompatActivity() {
         //    Configuration.UI_MODE_NIGHT_YES -> {
         //    } // Night mode is active, we're using dark theme
         // }
+
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }// Night mode is active, we're using dark theme
+
+            // }
 
         // Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)

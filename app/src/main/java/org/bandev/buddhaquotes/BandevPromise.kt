@@ -54,7 +54,14 @@ class BandevPromise : AppCompatActivity() {
             // You can also access it from Window
             window.insetsController?.show(WindowInsets.Type.ime())
         }
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
 
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
         view.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets

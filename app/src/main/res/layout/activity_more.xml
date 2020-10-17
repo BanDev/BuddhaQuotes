@@ -67,7 +67,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_4_want_another"
+        android:text="@string/slide_4_another_quote"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"

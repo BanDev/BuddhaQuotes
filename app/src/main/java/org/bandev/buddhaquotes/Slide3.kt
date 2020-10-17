@@ -81,6 +81,14 @@ class Slide3 : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         }
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
 
         button.setOnClickListener {
             if (slider.value == 10f) {

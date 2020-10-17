@@ -32,6 +32,14 @@ class More : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         }
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -86,16 +94,27 @@ class More : AppCompatActivity() {
         val text: TextView = findViewById(R.id.text)
 
         var counter = 0
+        val rotateAnimation = RotateAnimation(
+            0F,
+            360f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
 
-        favourite.setOnClickListener {
-            val rotateAnimation = RotateAnimation(
-                0F,
-                360f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f
-            )
+        var noanim = true
+        (favourite ?: return).setOnClickListener {
+            if (noanim) {
+                rotateAnimation.duration = 2.toLong() * 250
+                (favourite ?: return@setOnClickListener).startAnimation(rotateAnimation)
+                noanim = false
+            } else if (rotateAnimation.hasEnded()) {
+                rotateAnimation.duration = 2.toLong() * 250
+                (favourite ?: return@setOnClickListener).startAnimation(rotateAnimation)
+                noanim = true
+            }
+
             if (counter < 50) {
                 text.text =
                     getString(R.string.more_counter_left) + (counter + 1)
@@ -103,8 +122,7 @@ class More : AppCompatActivity() {
                 text.text = getString(R.string.more_lots_of_refreshes) + (counter + 1)
             }
             counter++
-            rotateAnimation.duration = 2.toLong() * 250
-            favourite.startAnimation(rotateAnimation)
         }
+
     }
 }
