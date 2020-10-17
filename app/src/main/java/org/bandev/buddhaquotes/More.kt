@@ -104,14 +104,14 @@ class More : AppCompatActivity() {
         )
 
         var noanim = true
-        (favourite ?: return).setOnClickListener {
+        favourite.setOnClickListener {
             if (noanim) {
                 rotateAnimation.duration = 2.toLong() * 250
-                (favourite ?: return@setOnClickListener).startAnimation(rotateAnimation)
+                favourite.startAnimation(rotateAnimation)
                 noanim = false
             } else if (rotateAnimation.hasEnded()) {
                 rotateAnimation.duration = 2.toLong() * 250
-                (favourite ?: return@setOnClickListener).startAnimation(rotateAnimation)
+                favourite.startAnimation(rotateAnimation)
                 noanim = true
             }
 

@@ -156,7 +156,7 @@ class MainActivity : AppCompatActivity() {
             }
         }// Night mode is active, we're using dark theme
 
-            // }
+        // }
 
         // Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)
