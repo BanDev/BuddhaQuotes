@@ -23,6 +23,7 @@ class License : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license)
+        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         // Setup toolbar which is the top bar thingy
         val myToolbar = findViewById<View>(R.id.toolbar) as Toolbar
@@ -37,13 +38,6 @@ class License : AppCompatActivity() {
             startActivity(i)
         }
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-        }
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAlsoAccent)

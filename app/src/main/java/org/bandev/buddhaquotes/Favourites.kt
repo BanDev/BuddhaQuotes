@@ -24,15 +24,9 @@ class Favourites : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
-        }
 
         val listview = findViewById<View>(R.id.listView) as ListView
         val pref = getSharedPreferences("Favs", 0)

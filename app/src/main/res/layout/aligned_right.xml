@@ -6,6 +6,7 @@
     android:paddingTop="17dp"
     android:paddingRight="25dp"
     android:paddingLeft="25dp"
+    android:fontFamily="@font/mt_reg"
     android:paddingBottom="17dp"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="end"/>

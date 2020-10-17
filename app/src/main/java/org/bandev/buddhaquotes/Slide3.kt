@@ -99,6 +99,6 @@ class Slide3 : AppCompatActivity() {
         }
 
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
     }
 }
