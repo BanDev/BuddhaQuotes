@@ -25,6 +25,22 @@ class Slide2 : AppCompatActivity() {
         val night: Button = findViewById(R.id.night)
         val day: Button = findViewById(R.id.day)
 
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+        }
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
+
         /*val sharedPreferences = getSharedPreferences("Settings", 0)
         val darkmode = sharedPreferences.getBoolean("dark_mode", false)
         val sys = sharedPreferences.getBoolean("sys", true)

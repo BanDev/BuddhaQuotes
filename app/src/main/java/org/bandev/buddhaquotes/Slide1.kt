@@ -52,6 +52,7 @@ class Slide1 : AppCompatActivity() {
             insets
         }
 
+
         var navBarHeight = 0
         val resourceId2 = resources.getIdentifier("navigation_bar_height", "dimen", "android")
         if (resourceId2 > 0) {

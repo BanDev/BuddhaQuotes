@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -24,7 +25,14 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
 
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
         quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         supportFragmentManager

@@ -62,7 +62,14 @@ class Slide4 : AppCompatActivity() {
         //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
         //     param3.setMargins(0, 0, 0, navBarHeight)
         //    (refresh ?: return).layoutParams = param3
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
 
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            }
+        }
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
