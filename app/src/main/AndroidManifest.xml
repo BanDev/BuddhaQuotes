@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".bandev"
+            android:name=".Bandev"
             android:label="@string/title_activity_bandev"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

@@ -93,7 +93,7 @@ class Settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "bandev" -> {
-                    val i = Intent(activity, bandev::class.java)
+                    val i = Intent(activity, Bandev::class.java)
                     startActivity(i)
                 }
             }

@@ -3,16 +3,14 @@ package org.bandev.buddhaquotes
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
-class bandev : AppCompatActivity() {
+class Bandev : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.statusBarColor = ContextCompat.getColor(this@bandev, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this@Bandev, R.color.white)
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
