@@ -43,8 +43,9 @@
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/mt_reg"
         android:gravity="center"
         android:letterSpacing="0.0"
         android:text="@string/slide_2_bandev_promise"

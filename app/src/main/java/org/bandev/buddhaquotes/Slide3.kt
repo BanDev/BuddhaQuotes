@@ -58,16 +58,16 @@ class Slide3 : AppCompatActivity() {
             val pref = this.getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             val fontsize = when (value) {
-                0f -> 30f
-                20f -> 50f
-                else -> 40f
+                0f -> 25f
+                20f -> 35f
+                else -> 30f
             }
 
             text2.textSize = fontsize
 
             val string: String = when (fontsize) {
-                30f -> "sm"
-                50f -> "lg"
+                25f -> "sm"
+                35f -> "lg"
                 else -> "md"
             }
             editor.putString("text_size", string)

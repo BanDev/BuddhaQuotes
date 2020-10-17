@@ -16,6 +16,7 @@
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
         android:text="@string/textview"
+        android:fontFamily="@font/mt_reg"
         android:textAlignment="viewEnd"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"

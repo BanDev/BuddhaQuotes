@@ -48,6 +48,7 @@
         android:gravity="center"
         android:letterSpacing="0.0"
         android:text="@string/slide_7_ready"
+        android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
