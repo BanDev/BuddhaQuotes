@@ -12,11 +12,6 @@
         android:roundIcon="@drawable/ic_buddha"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".Bandev"
-            android:label="@string/title_activity_bandev"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
         <activity android:name=".FullLicense" />
         <activity android:name=".More" />
         <activity android:name=".Likes" />
@@ -24,9 +19,7 @@
         <activity android:name=".Slide4" />
         <activity android:name=".Slide3" />
         <activity android:name=".Slide2" />
-        <activity
-            android:name=".Slide1"
-            />
+        <activity android:name=".Slide1" />
         <activity
             android:name=".License"
             android:label="License"

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -25,13 +26,15 @@ class Favourites : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
         }
 

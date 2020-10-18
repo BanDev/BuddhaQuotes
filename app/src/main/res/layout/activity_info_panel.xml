@@ -47,7 +47,7 @@
             android:paddingEnd="15dp"
             android:text="@string/favourited_quote"
             android:textAlignment="textEnd"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"

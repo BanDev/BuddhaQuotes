@@ -27,7 +27,7 @@
             android:paddingEnd="15dp"
             android:text="@string/favourites"
             android:textAlignment="textEnd"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"

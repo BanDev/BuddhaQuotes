@@ -13,7 +13,6 @@
         android:layout_height="59dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/colorAccent"
-        android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"

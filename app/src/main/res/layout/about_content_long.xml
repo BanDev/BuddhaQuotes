@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,7 +42,7 @@
 
         android:layout_width="0dp"
         android:layout_height="170dp"
-        android:background="@layout/rectangle"
+        android:background="@drawable/rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +54,7 @@
         android:layout_marginTop="28dp"
         android:fontFamily="@font/mt_bold"
         android:text="@string/app_name"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -310,7 +309,7 @@
         android:layout_width="150dp"
         android:layout_height="53dp"
         android:text="@string/version"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
@@ -388,7 +387,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginEnd="16dp"
-        android:contentDescription="@string/the_buddha"
+        android:contentDescription="@string/buddha_quotes_logo"
         app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
         app:layout_constraintEnd_toEndOf="@+id/myRectangleView"
         app:layout_constraintStart_toEndOf="@+id/textView"

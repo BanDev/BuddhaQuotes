@@ -58,7 +58,7 @@
         android:id="@+id/myRectangleView"
         android:layout_width="411dp"
         android:layout_height="100dp"
-        android:background="@layout/rectangle"
+        android:background="@drawable/rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,7 +70,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/mt_bold"
         android:text="@string/licenses_license"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
@@ -390,13 +390,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="144dp"
+        android:layout_height="72dp"
+        android:contentDescription="@string/licenses_license"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
-        app:srcCompat="@drawable/ic_gplv3"
-        android:contentDescription="@string/licenses_license" />
+        app:layout_constraintVertical_bias="1"
+        app:srcCompat="@drawable/ic_gplv3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
