@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -56,9 +57,17 @@ class MainActivity : AppCompatActivity() {
         val funMode = pref.getBoolean("fun_mode", false)
         if (funMode) {
             setContentView(R.layout.activity_main2)
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
+            if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
+                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
+            }else{
+                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+            }
         } else {
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
+            if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
+                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
+            }else{
+                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+            }
 
         }
 

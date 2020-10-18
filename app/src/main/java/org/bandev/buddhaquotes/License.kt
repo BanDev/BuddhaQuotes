@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -47,7 +48,11 @@ class License : AppCompatActivity() {
         }
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAlsoAccent)
+        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
+            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
+        }else{
+            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        }
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
