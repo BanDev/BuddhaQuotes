@@ -79,7 +79,7 @@ class Likes : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val myIntent = Intent(this@Likes, More::class.java)
+            val myIntent = Intent(this@Likes, Refresh::class.java)
             this@Likes.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,

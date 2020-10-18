@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".FullLicense" />
-        <activity android:name=".More" />
+        <activity android:name=".Refresh" />
         <activity android:name=".Likes" />
         <activity android:name=".BandevPromise" />
         <activity android:name=".Slide4" />

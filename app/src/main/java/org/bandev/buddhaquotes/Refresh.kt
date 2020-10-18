@@ -18,7 +18,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class More : AppCompatActivity() {
+class Refresh : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +81,8 @@ class More : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val myIntent = Intent(this@More, Slide2::class.java)
-            this@More.startActivity(myIntent)
+            val myIntent = Intent(this@Refresh, Slide2::class.java)
+            this@Refresh.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -117,9 +117,9 @@ class More : AppCompatActivity() {
 
             if (counter < 50) {
                 text.text =
-                    getString((R.string.more_counter_left) + (counter + 1))
+                    getString(R.string.more_counter_left) + (counter + 1)
             } else {
-                text.text = getString((R.string.more_lots_of_refreshes) + (counter + 1))
+                text.text = getString(R.string.more_lots_of_refreshes) + (counter + 1)
             }
             counter++
         }
