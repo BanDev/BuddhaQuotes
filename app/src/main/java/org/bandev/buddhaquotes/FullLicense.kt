@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowInsetsController
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -14,13 +15,15 @@ class FullLicense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_license)
-        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
         }
         // Toolbar

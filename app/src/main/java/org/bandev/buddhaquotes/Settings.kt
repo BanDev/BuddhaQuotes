@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -27,10 +28,13 @@ class Settings : AppCompatActivity() {
         setContentView(R.layout.settings_activity)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
         }
         quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
@@ -90,10 +94,6 @@ class Settings : AppCompatActivity() {
                 }
                 "help" -> {
                     val i = Intent(activity, Slide1::class.java)
-                    startActivity(i)
-                }
-                "bandev" -> {
-                    val i = Intent(activity, Bandev::class.java)
                     startActivity(i)
                 }
             }

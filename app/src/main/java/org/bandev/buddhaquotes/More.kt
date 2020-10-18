@@ -117,9 +117,9 @@ class More : AppCompatActivity() {
 
             if (counter < 50) {
                 text.text =
-                    getString(R.string.more_counter_left) + (counter + 1)
+                    getString((R.string.more_counter_left) + (counter + 1))
             } else {
-                text.text = getString(R.string.more_lots_of_refreshes) + (counter + 1)
+                text.text = getString((R.string.more_lots_of_refreshes) + (counter + 1))
             }
             counter++
         }
