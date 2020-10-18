@@ -48,28 +48,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
-        val quotenumber = sharedPref.getInt("Quote_Number", 0)
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
+            }
+        }
 
-        // Define UI Variables
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.black, null)
+        }
 
         val pref = this.getSharedPreferences("Settings", 0)
         val funMode = pref.getBoolean("fun_mode", false)
         if (funMode) {
             setContentView(R.layout.activity_main2)
-            if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-            }else{
-                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+            } else {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
             }
+            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
-            if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
-                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-            }else{
-                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-            }
-
+            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
         }
+
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+        val quotenumber = sharedPref.getInt("Quote_Number", 0)
 
         refresh = findViewById(R.id.refresh)
         share = findViewById(R.id.share)
@@ -82,7 +97,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
 
         toolbar?.navigationIcon = heartblack
 
@@ -146,26 +160,7 @@ class MainActivity : AppCompatActivity() {
 
         val param4 = (share ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param4.setMargins(0, 0, 0, navBarHeight)
-        (share ?: return).layoutParams = param4
-*/
-        // If Using Night Mode, Change Some Stuff
-        // when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        //    Configuration.UI_MODE_NIGHT_NO -> {
-        //    } // Night mode is not active, we're using the light theme
-        //    Configuration.UI_MODE_NIGHT_YES -> {
-        //    } // Night mode is active, we're using dark theme
-        // }
-
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-            }
-        }// Night mode is active, we're using dark theme
-
-        // }
+        (share ?: return).layoutParams = param4 */
 
         // Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
         settings = getSharedPreferences("Settings", 0)

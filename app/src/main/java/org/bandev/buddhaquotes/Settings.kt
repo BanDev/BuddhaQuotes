@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
+import org.bandev.buddhaquotes.slides.Slide1
 
 class Settings : AppCompatActivity() {
 
@@ -37,6 +39,13 @@ class Settings : AppCompatActivity() {
                 }
             }
         }
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        }
+
         quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
 
         supportFragmentManager

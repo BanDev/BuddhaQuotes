@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.slides
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.Button
@@ -17,6 +18,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.bandev.buddhaquotes.R
 
 class Refresh : AppCompatActivity() {
 
@@ -30,15 +32,24 @@ class Refresh : AppCompatActivity() {
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
         }
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -67,15 +78,6 @@ class Refresh : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //   param2.setMargins(0, 0, 0, navBarHeight)
-        //   (favourite ?: return).layoutParams = param2
-
-        //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //     param3.setMargins(0, 0, 0, navBarHeight)
-        //    (refresh ?: return).layoutParams = param3
-
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         val button: Button = findViewById(R.id.button)

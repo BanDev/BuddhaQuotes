@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.slides
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
+import org.bandev.buddhaquotes.R
 
 class Likes : AppCompatActivity() {
 
@@ -25,18 +27,28 @@ class Likes : AppCompatActivity() {
         setContentView(R.layout.activity_likes)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.black, null)
+        }
+
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -73,7 +85,6 @@ class Likes : AppCompatActivity() {
         //     param3.setMargins(0, 0, 0, navBarHeight)
         //    (refresh ?: return).layoutParams = param3
 
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         val button: Button = findViewById(R.id.button)

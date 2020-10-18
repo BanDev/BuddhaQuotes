@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".FullLicense" />
-        <activity android:name=".Refresh" />
-        <activity android:name=".Likes" />
-        <activity android:name=".BandevPromise" />
-        <activity android:name=".Slide4" />
-        <activity android:name=".Slide3" />
-        <activity android:name=".Slide2" />
-        <activity android:name=".Slide1" />
+        <activity android:name=".slides.Refresh" />
+        <activity android:name=".slides.Likes" />
+        <activity android:name=".slides.BandevPromise" />
+        <activity android:name=".slides.Slide4" />
+        <activity android:name=".slides.Slide3" />
+        <activity android:name=".slides.Slide2" />
+        <activity android:name=".slides.Slide1" />
         <activity
             android:name=".License"
             android:label="License"

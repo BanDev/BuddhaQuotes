@@ -25,11 +25,6 @@ class Favourites : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){
-            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-        }else{
-            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-        }
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -40,6 +35,13 @@ class Favourites : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         val listview = findViewById<View>(R.id.listView) as ListView

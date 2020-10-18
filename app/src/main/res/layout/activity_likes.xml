@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Slide1">
+    tools:context=".slides.Slide1">
 
     <TextView
         android:id="@+id/text"
@@ -52,10 +52,12 @@
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/ic_baseline_navigate_next_24"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

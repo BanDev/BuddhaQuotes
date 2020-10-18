@@ -1,7 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <PreferenceCategory
         android:layout="@layout/pref_header"
         app:title="@string/appearance">
@@ -36,50 +35,35 @@
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/information" android:layout="@layout/pref_header">
+
         <Preference
             android:key="About"
             android:title="@string/about"
             android:summary="@string/view_app_details"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_info_24">
+            app:icon="@drawable/ic_baseline_info_24" />
 
-        </Preference>
         <Preference
             android:key="help"
             android:title="@string/help"
             android:summary="@string/app_introduction"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_help_circle_24">
+            app:icon="@drawable/ic_help_circle_24" />
 
-        </Preference>
         <Preference
             android:key="license"
             android:title="@string/app_license"
             android:summary="@string/gplv3"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_gavel_24">
+            app:icon="@drawable/ic_baseline_gavel_24" />
 
-        </Preference>
         <Preference
             android:key="oss_libraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_library_books_24">
+            app:icon="@drawable/ic_baseline_library_books_24" />
 
-        </Preference>
-        <!--
-        <Preference
-            android:key="bandev"
-            android:title="More From BanDev"
-            android:summary="We Make Other Things Too"
-            android:layout="@layout/pref_single"
-            app:icon="@drawable/picture2">
-        </Preference>
-
-        -->
     </PreferenceCategory>
-
-
 
 </PreferenceScreen>

@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:background="@drawable/full_screen_waves"
     android:elevation="0dp"
-    tools:context=".Slide1">
+    tools:context=".slides.Slide1">
 
     <ImageView
-        android:id="@+id/imageView5"
         android:layout_width="54dp"
         android:layout_height="97dp"
         android:contentDescription="@string/slide_5_torch"
