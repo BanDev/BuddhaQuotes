@@ -4,6 +4,7 @@
     <color name="colorAccent">#ff4155</color>
     <color name="colorAlsoAccent">#E80054</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000</color>
     <color name="colorTop">#E80054</color>
     <color name="colorWaveLight">#ff4155</color>
     <color name="colorWaveDark">#E80054</color>

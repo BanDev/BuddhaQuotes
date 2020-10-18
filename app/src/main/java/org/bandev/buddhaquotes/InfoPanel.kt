@@ -31,7 +31,12 @@ class InfoPanel : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N){
+            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
+        }else{
+            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        }
+
         val intent = intent
         val quote = intent.getStringExtra("quote")
         val textview = findViewById<TextView>(R.id.text)
