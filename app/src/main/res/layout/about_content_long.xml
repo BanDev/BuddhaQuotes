@@ -326,7 +326,7 @@
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myRectangleView"
-        app:srcCompat="@drawable/picture2" />
+        app:srcCompat="@drawable/ic_bandev_logo" />
 
     <ImageView
         android:id="@+id/imageView4"
