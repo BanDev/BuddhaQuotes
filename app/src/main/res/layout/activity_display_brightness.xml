@@ -4,26 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Slide1">
+    tools:context=".slides.Slide1">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/day"
         style="Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="59dp"
+        android:layout_marginStart="70dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_open_app"
+        android:text="@string/slide_5_light"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_baseline_open_in_new_24"
+        app:icon="@drawable/day"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/night"
+        style="Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/colorAccent"
+        android:elevation="0dp"
+        android:fontFamily="@font/mt_bold"
+        android:letterSpacing="0.0"
+        android:text="@string/slide_5_dark"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:cornerRadius="11dp"
+        app:icon="@drawable/night"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView18"
@@ -33,7 +56,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_all_done"
+        android:text="@string/slide_5_too_bright"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -47,7 +70,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_ready"
+        android:text="@string/slide_5_try_dark"
         android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
@@ -58,10 +81,10 @@
     <ImageView
         android:layout_width="47dp"
         android:layout_height="62dp"
+        android:contentDescription="@string/slide_5_torch"
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_done_all_24"
-        android:contentDescription="@string/slide_7_double_tick" />
+        app:srcCompat="@drawable/ic_baseline_highlight_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

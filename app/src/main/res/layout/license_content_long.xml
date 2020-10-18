@@ -378,18 +378,18 @@
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/licenses_full_license"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/ic_baseline_gavel_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="144dp"
         android:layout_height="72dp"
         android:contentDescription="@string/licenses_license"

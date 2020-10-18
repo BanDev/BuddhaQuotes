@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -26,16 +27,30 @@ class InfoPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_panel)
+        window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
+
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
+            }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+        } else {
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.black, null)
+        }
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N){
-            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-        }else{
-            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-        }
 
         val intent = intent
         val quote = intent.getStringExtra("quote")
@@ -49,26 +64,8 @@ class InfoPanel : AppCompatActivity() {
             "lg" -> "35"
             else -> "30"
         }
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-            }
-        }
-        (textview ?: return).textSize = (fontsize ?: return).toFloat()
 
-        // Is user using night mode
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
-            } // Night mode is active, we're using dark theme
-        }
+        (textview ?: return).textSize = (fontsize ?: return).toFloat()
 
         val favourites = getSharedPreferences("Favs", 0)
         val editor = favourites.edit()

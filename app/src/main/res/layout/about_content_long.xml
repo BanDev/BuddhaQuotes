@@ -185,7 +185,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/textView20"
         android:layout_width="340dp"
         android:layout_height="84dp"
         android:layout_marginTop="20dp"
@@ -329,7 +328,6 @@
         app:srcCompat="@drawable/ic_bandev_logo" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="39dp"
         android:layout_height="35dp"
         android:layout_marginEnd="28dp"
