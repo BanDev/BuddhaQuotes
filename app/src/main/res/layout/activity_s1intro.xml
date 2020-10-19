@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".slides.Slide1">
+    android:background="@drawable/full_screen_waves"
+    android:elevation="0dp"
+    tools:context=".slides.S1Intro">
+
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="97dp"
+        android:contentDescription="@string/slide_5_torch"
+        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/buddha" />
 
     <Button
         android:id="@+id/button"
@@ -12,16 +26,20 @@
         android:layout_width="wrap_content"
         android:layout_height="59dp"
         android:layout_marginBottom="60dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/white"
+        android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
-        android:textColor="@color/white"
         android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/ic_baseline_navigate_next_24"
-        app:iconTint="@color/white"
+        app:iconTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,35 +52,27 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_2_privacy_focused"
-        android:textColor="?android:attr/textColorPrimary"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="365dp"
-        android:layout_height="47dp"
+        android:layout_width="336dp"
+        android:layout_height="34dp"
         android:fontFamily="@font/mt_reg"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_2_bandev_promise"
-        android:textColor="?android:attr/textColorPrimary"
+        android:text="@string/slide_1_free_libre_open_source"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-    <ImageView
-        android:layout_width="47dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_lock_24"
-        android:contentDescription="@string/slide_2_lock" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

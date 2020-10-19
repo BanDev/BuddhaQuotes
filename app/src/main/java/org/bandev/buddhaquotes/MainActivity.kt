@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         heartblack = ContextCompat.getDrawable(this, R.drawable.heart_white)
         quoteview = findViewById(R.id.quote)
 
-        // Sets Up Toolbar And Adds Icons Etc
+        // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
@@ -150,19 +150,7 @@ class MainActivity : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        /* val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        param2.setMargins(0, 0, 0, navBarHeight)
-        (favourite ?: return).layoutParams = param2
-
-        val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        param3.setMargins(0, 0, 0, navBarHeight)
-        (refresh ?: return).layoutParams = param3
-
-        val param4 = (share ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        param4.setMargins(0, 0, 0, navBarHeight)
-        (share ?: return).layoutParams = param4 */
-
-        // Get Text Size From Shared Preferences  (Was Set In Settings, Defaults To Medium (40px)) & Sets It
+        // Get text size from shared preferences (was set in settings, defaults to medium (30px)) and sets it
         settings = getSharedPreferences("Settings", 0)
         val textsize: String? = settings?.getString("text_size", "md")
         fontsize = when (textsize) {
@@ -182,7 +170,7 @@ class MainActivity : AppCompatActivity() {
 
         )
 
-        // When Refresh Is Clicked
+        // When refresh is pressed
         (refresh ?: return).setOnClickListener {
             if (firstpress) {
                 rotateAnimation.duration = 2.toLong() * 250
@@ -200,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         val favourites = getSharedPreferences("Favs", 0)
         val editor = favourites.edit()
 
-        // When Favourite Is Clicked
+        // When favourite is pressed
         (favourite ?: return).setOnClickListener {
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
@@ -230,7 +218,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 (favourite ?: return@setOnClickListener).isEnabled = true
             } else {
-                // If It Is Already Liked
+                // If it is already liked
                 // val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
                 // like.setSpeedRange(0.0625f, 0.0625f)
                 // like.setFadeOut(100)
@@ -264,7 +252,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        /* Get The First Quote */
+        // Get the first quote
         newQuote(quotenumber)
     }
 
@@ -343,7 +331,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
         this.finishAffinity()
     }
 }

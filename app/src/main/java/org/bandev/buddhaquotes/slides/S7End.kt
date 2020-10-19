@@ -7,32 +7,24 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
-import android.view.animation.Animation
-import android.view.animation.RotateAnimation
 import android.widget.Button
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.bandev.buddhaquotes.MainActivity
 import org.bandev.buddhaquotes.R
 
-class Refresh : AppCompatActivity() {
+class S7End : AppCompatActivity() {
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_more)
+        setContentView(R.layout.activity_s7end)
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -78,53 +70,13 @@ class Refresh : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val myIntent = Intent(this@Refresh, Slide2::class.java)
-            this@Refresh.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
+            val myIntent = Intent(this@S7End, MainActivity::class.java)
+            this@S7End.startActivity(myIntent)
         }
 
-        val favourite: FloatingActionButton = findViewById(R.id.favourite)
-
-        val text: TextView = findViewById(R.id.text)
-
-        var counter = 0
-        val rotateAnimation = RotateAnimation(
-            0F,
-            360f,
-            Animation.RELATIVE_TO_SELF,
-            0.5f,
-            Animation.RELATIVE_TO_SELF,
-            0.5f
-        )
-
-        var noanim = true
-        favourite.setOnClickListener {
-            if (noanim) {
-                rotateAnimation.duration = 2.toLong() * 250
-                favourite.startAnimation(rotateAnimation)
-                noanim = false
-            } else if (rotateAnimation.hasEnded()) {
-                rotateAnimation.duration = 2.toLong() * 250
-                favourite.startAnimation(rotateAnimation)
-                noanim = true
-            }
-
-            if (counter < 50) {
-                text.text =
-                    getString(R.string.more_counter_left) + (counter + 1)
-            } else {
-                text.text = getString(R.string.more_lots_of_refreshes) + (counter + 1)
-            }
-            counter++
-        }
-
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
     }
 }

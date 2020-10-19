@@ -19,7 +19,7 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
-import org.bandev.buddhaquotes.slides.Slide1
+import org.bandev.buddhaquotes.slides.S1Intro
 
 class Settings : AppCompatActivity() {
 
@@ -27,7 +27,8 @@ class Settings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_activity)
+        setContentView(R.layout.activity_settings)
+
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -39,6 +40,7 @@ class Settings : AppCompatActivity() {
                 }
             }
         }
+
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
             window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
         } else {
@@ -102,7 +104,7 @@ class Settings : AppCompatActivity() {
                     } // start the activity
                 }
                 "help" -> {
-                    val i = Intent(activity, Slide1::class.java)
+                    val i = Intent(activity, S1Intro::class.java)
                     startActivity(i)
                 }
             }

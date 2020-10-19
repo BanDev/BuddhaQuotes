@@ -8,31 +8,21 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.widget.Button
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import com.google.android.material.slider.Slider
 import org.bandev.buddhaquotes.R
 
-class Slide3 : AppCompatActivity() {
+class S2Promise : AppCompatActivity() {
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_text_size)
-
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        setContentView(R.layout.activity_s2promise)
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -51,6 +41,17 @@ class Slide3 : AppCompatActivity() {
         } else {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.black, null)
+        }
+
+        val button: Button = findViewById(R.id.button)
+
+        button.setOnClickListener {
+            val myIntent = Intent(this@S2Promise, S3Favourite::class.java)
+            this@S2Promise.startActivity(myIntent)
+            overridePendingTransition(
+                R.anim.anim_slide_in_left,
+                R.anim.anim_slide_out_left
+            )
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -79,45 +80,6 @@ class Slide3 : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val slider: Slider = findViewById(R.id.slider)
-        val button: Button = findViewById(R.id.button)
-        val text2: TextView = findViewById(R.id.text)
-
-        slider.addOnChangeListener { slider, value, fromUser ->
-            // Responds to when slider's value is changed
-            val pref = this.getSharedPreferences("Settings", 0)
-            val editor = pref.edit()
-            val fontsize = when (value) {
-                0f -> 25f
-                20f -> 35f
-                else -> 30f
-            }
-
-            text2.textSize = fontsize
-
-            val string: String = when (fontsize) {
-                25f -> "sm"
-                35f -> "lg"
-                else -> "md"
-            }
-            editor.putString("text_size", string)
-            editor.apply()
-        }
-
-        button.setOnClickListener {
-            if (slider.value == 10f) {
-                val pref = this.getSharedPreferences("Settings", 0)
-                val editor = pref.edit()
-                editor.putString("text_size", "md")
-                editor.apply()
-            }
-
-            val myIntent = Intent(this@Slide3, Slide4::class.java)
-            this@Slide3.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
-        }
+        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
     }
 }

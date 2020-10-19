@@ -27,7 +27,6 @@ class InfoPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info_panel)
-        window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -40,6 +39,7 @@ class InfoPanel : AppCompatActivity() {
                 }
             }
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
@@ -51,6 +51,7 @@ class InfoPanel : AppCompatActivity() {
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        window.statusBarColor = ContextCompat.getColor(this@InfoPanel, R.color.colorTop)
 
         val intent = intent
         val quote = intent.getStringExtra("quote")

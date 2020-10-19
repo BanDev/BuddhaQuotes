@@ -383,6 +383,7 @@
         android:textSize="18sp"
         app:cornerRadius="11dp"
         app:icon="@drawable/ic_baseline_gavel_24"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

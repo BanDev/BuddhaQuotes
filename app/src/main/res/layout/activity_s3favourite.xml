@@ -4,7 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".slides.Slide1">
+    tools:context=".slides.S1Intro">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.0"
+        android:text="@string/quick_brown_fox"
+        android:textColor="?android:attr/textColorPrimary"
+        android:fontFamily="@font/mt_reg"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/favourite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/favourite"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        android:scaleType="center"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="1dp"
+        app:iconTint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="33dp"
+        app:srcCompat="@drawable/ic_baseline_stars_24"
+        app:tint="@android:color/white"
+        android:focusable="true"
+        android:contentDescription="@string/favourite" />
 
     <Button
         android:id="@+id/button"
@@ -16,12 +51,12 @@
         android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_open_app"
+        android:text="@string/slides_continue"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_baseline_open_in_new_24"
+        app:icon="@drawable/ic_baseline_navigate_next_24"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +70,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_all_done"
+        android:text="@string/slide_3_see_one_you_like"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -49,7 +84,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_7_ready"
+        android:text="@string/slide_3_press_heart_button"
         android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
@@ -63,7 +98,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_done_all_24"
-        android:contentDescription="@string/slide_7_double_tick" />
+        app:srcCompat="@drawable/like_yellow"
+        android:contentDescription="@string/slide_3_heart_outline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
