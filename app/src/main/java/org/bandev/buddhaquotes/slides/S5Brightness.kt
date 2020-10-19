@@ -17,19 +17,13 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import org.bandev.buddhaquotes.R
 
-class Slide2 : AppCompatActivity() {
+class S5Brightness : AppCompatActivity() {
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_display_brightness)
-
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
+        setContentView(R.layout.activity_s5brightness)
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -84,8 +78,8 @@ class Slide2 : AppCompatActivity() {
             editor.putBoolean("sys", false)
             editor.apply()
 
-            val myIntent = Intent(this@Slide2, Slide3::class.java)
-            this@Slide2.startActivity(myIntent)
+            val myIntent = Intent(this@S5Brightness, S6TextSize::class.java)
+            this@S5Brightness.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -100,8 +94,8 @@ class Slide2 : AppCompatActivity() {
             editor.putBoolean("sys", false)
             editor.apply()
 
-            val myIntent = Intent(this@Slide2, Slide3::class.java)
-            this@Slide2.startActivity(myIntent)
+            val myIntent = Intent(this@S5Brightness, S6TextSize::class.java)
+            this@S5Brightness.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left

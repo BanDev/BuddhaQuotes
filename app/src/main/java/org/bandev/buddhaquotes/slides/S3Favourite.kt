@@ -19,12 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.R
 
-class Likes : AppCompatActivity() {
+class S3Favourite : AppCompatActivity() {
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_likes)
+        setContentView(R.layout.activity_s3favourite)
+
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -36,19 +38,13 @@ class Likes : AppCompatActivity() {
                 }
             }
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
         } else {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.black, null)
-        }
-
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -90,8 +86,8 @@ class Likes : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
-            val myIntent = Intent(this@Likes, Refresh::class.java)
-            this@Likes.startActivity(myIntent)
+            val myIntent = Intent(this@S3Favourite, S4Refresh::class.java)
+            this@S3Favourite.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
@@ -113,7 +109,7 @@ class Likes : AppCompatActivity() {
                 // If It Is Not Liked Already
                 favourite.setImageDrawable(
                     ContextCompat.getDrawable(
-                        this@Likes,
+                        this@S3Favourite,
                         R.drawable.heart_full_white
                     )
                 )
@@ -129,7 +125,7 @@ class Likes : AppCompatActivity() {
                 done = false
                 favourite.setImageDrawable(
                     ContextCompat.getDrawable(
-                        this@Likes,
+                        this@S3Favourite,
                         R.drawable.like_white_empty
                     )
                 )

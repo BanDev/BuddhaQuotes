@@ -21,10 +21,6 @@ class Favourites : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
 
-        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
-        setSupportActionBar(myToolbar)
-        window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -36,6 +32,7 @@ class Favourites : AppCompatActivity() {
                 }
             }
         }
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
@@ -43,6 +40,11 @@ class Favourites : AppCompatActivity() {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.black, null)
         }
+
+        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(myToolbar)
+        window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
 
         val listview = findViewById<View>(R.id.listView) as ListView
         val pref = getSharedPreferences("Favs", 0)

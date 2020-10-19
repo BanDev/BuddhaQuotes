@@ -1,6 +1,5 @@
 package org.bandev.buddhaquotes
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
@@ -23,7 +22,6 @@ import nl.dionsegijn.konfetti.models.Size
 
 class About : AppCompatActivity() {
 
-    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +38,7 @@ class About : AppCompatActivity() {
                 }
             }
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)

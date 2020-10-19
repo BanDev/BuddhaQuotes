@@ -4,42 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".slides.Slide1">
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:letterSpacing="0.0"
-        android:text="@string/quick_brown_fox"
-        android:fontFamily="@font/mt_reg"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/favourite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/favourite"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="40dp"
-        android:clickable="true"
-        android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
-        app:elevation="1dp"
-        app:iconTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="@string/refresh" />
+    tools:context=".slides.S1Intro">
 
     <Button
         android:id="@+id/button"
@@ -48,6 +13,7 @@
         android:layout_height="59dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/colorAccent"
+        android:elevation="0dp"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
@@ -61,6 +27,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider"
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:stepSize="10.0"
+        android:value="10"
+        android:valueFrom="0.0"
+        android:valueTo="20.0"
+        app:labelBehavior="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:thumbColor="@color/colorAccent"
+        app:tickColorActive="#D3D3D3"
+        app:tickColorInactive="#D3D3D3"
+        app:trackColorActive="#D3D3D3"
+        app:trackColorInactive="#D3D3D3" />
+
     <TextView
         android:id="@+id/textView18"
         android:layout_width="0dp"
@@ -69,7 +54,7 @@
         android:fontFamily="@font/mt_bold"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_4_another_quote"
+        android:text="@string/slide_6_hard_to_read"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -83,7 +68,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:letterSpacing="0.0"
-        android:text="@string/slide_4_hit_refresh"
+        android:text="@string/slide_6_select_size"
         android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
@@ -91,14 +76,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:letterSpacing="0.0"
+        android:text="@string/quick_brown_fox"
+        android:fontFamily="@font/mt_reg"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/slider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
     <ImageView
         android:layout_width="47dp"
         android:layout_height="62dp"
-        app:tint="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
-        android:contentDescription="@string/slide_4_refresh" />
+        app:srcCompat="@drawable/text_yellow"
+        android:contentDescription="@string/slide_6_text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
