@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_main_setting"
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:icon="@drawable/ic_settings_24"
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="@string/settings" />

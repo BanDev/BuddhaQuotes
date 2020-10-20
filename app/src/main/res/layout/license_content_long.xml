@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -305,7 +304,7 @@
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toTopOf="@+id/textView29"
-        app:srcCompat="@drawable/ic_baseline_red_circle_24" />
+        app:srcCompat="@drawable/ic_red_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -315,7 +314,7 @@
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toTopOf="@+id/textView28"
-        app:srcCompat="@drawable/ic_baseline_red_circle_24" />
+        app:srcCompat="@drawable/ic_red_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -383,7 +382,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_baseline_gavel_24"
+        app:icon="@drawable/ic_gavel_24"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -402,6 +401,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857"
-        app:srcCompat="@drawable/ic_gplv3" />
+        app:srcCompat="@drawable/gplv3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

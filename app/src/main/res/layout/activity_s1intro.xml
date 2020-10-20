@@ -38,7 +38,7 @@
         android:textColorLink="@color/colorAccent"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_baseline_navigate_next_24"
+        app:icon="@drawable/ic_navigate_next_24"
         app:iconTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
