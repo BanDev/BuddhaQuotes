@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(
                         this@MainActivity,
-                        R.drawable.like_white_empty
+                        R.drawable.heart_white
                     )
                 )
                 (favourite ?: return@setOnClickListener).isEnabled = true
@@ -263,7 +263,7 @@ class MainActivity : AppCompatActivity() {
         (favourite ?: return).setImageDrawable(
             ContextCompat.getDrawable(
                 this@MainActivity,
-                R.drawable.ic_baseline_stars_24
+                R.drawable.heart_white
             )
         )
         val pref = getSharedPreferences("Favs", 0)

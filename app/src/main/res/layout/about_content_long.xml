@@ -333,17 +333,8 @@
         android:layout_marginEnd="28dp"
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
-
-    <ImageView
-        android:layout_width="39dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="28dp"
-        android:contentDescription="@string/tick"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/check_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -352,7 +343,7 @@
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView9"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/check_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -361,7 +352,7 @@
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView10"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/check_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -370,7 +361,7 @@
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/check_circle_24" />
 
     <ImageView
         android:layout_width="39dp"
@@ -379,7 +370,7 @@
         android:contentDescription="@string/tick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_baseline_check_circle_24" />
+        app:srcCompat="@drawable/check_circle_24" />
 
     <ImageView
         android:layout_width="140dp"

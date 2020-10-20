@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
+        app:srcCompat="@drawable/ic_refresh_24"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/refresh" />
@@ -93,7 +93,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
-        app:srcCompat="@drawable/ic_baseline_stars_24"
+        app:srcCompat="@drawable/heart_white"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/favourite" />
@@ -111,7 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
-        app:srcCompat="@drawable/ic_baseline_share_24"
+        app:srcCompat="@drawable/ic_share_24"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/share" />

@@ -126,7 +126,7 @@ class S3Favourite : AppCompatActivity() {
                 favourite.setImageDrawable(
                     ContextCompat.getDrawable(
                         this@S3Favourite,
-                        R.drawable.like_white_empty
+                        R.drawable.heart_white
                     )
                 )
                 favourite.isEnabled = true

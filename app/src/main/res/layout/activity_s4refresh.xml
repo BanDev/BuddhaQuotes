@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
+        app:srcCompat="@drawable/ic_refresh_24"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/refresh" />
@@ -55,7 +55,7 @@
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_baseline_navigate_next_24"
+        app:icon="@drawable/ic_navigate_next_24"
         app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_refresh_24"
+        app:srcCompat="@drawable/ic_refresh_24"
         android:contentDescription="@string/slide_4_refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

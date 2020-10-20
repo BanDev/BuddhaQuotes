@@ -8,7 +8,7 @@
         <ListPreference
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
-            app:icon="@drawable/ic_baseline_palette_24"
+            app:icon="@drawable/ic_palette_24"
             app:key="theme"
             app:title="@string/app_theme"
             android:layout="@layout/pref_single"
@@ -17,7 +17,7 @@
         <ListPreference
             app:entries="@array/size_entries"
             app:entryValues="@array/size_values"
-            app:icon="@drawable/ic_baseline_text_fields_24"
+            app:icon="@drawable/ic_text_fields_24"
             app:key="size"
             app:title="@string/text_size"
             android:layout="@layout/pref_single"
@@ -26,7 +26,7 @@
         <ListPreference
             app:entries="@array/fun_entries"
             app:entryValues="@array/fun_values"
-            app:icon="@drawable/sentiment_satisfied_alt_black_18dp"
+            app:icon="@drawable/ic_party_popper"
             app:key="fun"
             android:layout="@layout/pref_single"
             app:title="Fun Mode"
@@ -41,7 +41,7 @@
             android:title="@string/about"
             android:summary="@string/view_app_details"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_info_24" />
+            app:icon="@drawable/ic_info_24" />
 
         <Preference
             android:key="help"
@@ -55,14 +55,14 @@
             android:title="@string/app_license"
             android:summary="@string/gplv3"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_gavel_24" />
+            app:icon="@drawable/ic_gavel_24" />
 
         <Preference
             android:key="oss_libraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_baseline_library_books_24" />
+            app:icon="@drawable/ic_library_books_24" />
 
     </PreferenceCategory>
 
