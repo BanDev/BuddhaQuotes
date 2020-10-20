@@ -29,6 +29,9 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+
+
+
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
@@ -48,7 +51,36 @@ class Settings : AppCompatActivity() {
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
         }
 
-        quotenumber = ((intent.extras ?: return).getString("quote") ?: return).toInt()
+        if(intent.extras!!.getBoolean("switch")){
+            val sharedPreferences = getSharedPreferences("Settings", 0)
+            val darkmode = sharedPreferences.getBoolean("dark_mode", false)
+            val sys = sharedPreferences.getBoolean("sys", true)
+            when {
+                sys -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    overridePendingTransition(
+                        R.anim.fade_out,
+                        R.anim.fade_in
+                    )
+                }
+                darkmode -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    overridePendingTransition(
+                        R.anim.fade_out,
+                        R.anim.fade_in
+                    )
+                }
+                else -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    overridePendingTransition(
+                        R.anim.fade_out,
+                        R.anim.fade_in
+                    )
+                }
+            }
+        }
+
+
 
         supportFragmentManager
             .beginTransaction()
@@ -127,9 +159,12 @@ class Settings : AppCompatActivity() {
                 listPreference?.setValueIndex(2)
             } else if (dark) {
                 listPreference?.setValueIndex(1) // Set to index of your default value
+                listPreference?.setIcon(R.drawable.night_settings)
             } else if (!dark) {
                 listPreference?.setValueIndex(0)
+                listPreference?.setIcon(R.drawable.day_settings)
             }
+
 
             (listPreference ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
@@ -137,22 +172,46 @@ class Settings : AppCompatActivity() {
                     val theme = listPreference.entry.toString()
                     Log.d("debug", theme)
                     if (theme == "Light") {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                         editor.putBoolean("dark_mode", false)
                         editor.putBoolean("sys", false)
                         editor.apply()
+
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("switch", true)
+                        intent2.putExtras(mBundle)
+
+                        startActivity(intent2)
+                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     }
                     if (theme == "Dark") {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                         editor.putBoolean("dark_mode", true)
                         editor.putBoolean("sys", false)
                         editor.commit()
+
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("switch", true)
+                        intent2.putExtras(mBundle)
+
+                        startActivity(intent2)
+
+                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
                     if (theme == "Follow system default") {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                         editor.putBoolean("dark_mode", false)
                         editor.putBoolean("sys", true)
                         editor.commit()
+
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("switch", true)
+                        intent2.putExtras(mBundle)
+
+
+                        startActivity(intent2)
+
+                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                     }
                     true
                 }
