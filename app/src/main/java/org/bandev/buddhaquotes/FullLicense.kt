@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.webkit.WebSettingsCompat
+import androidx.webkit.WebViewFeature
 
 class FullLicense : AppCompatActivity() {
 
@@ -47,6 +49,23 @@ class FullLicense : AppCompatActivity() {
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView
         webview.loadUrl("file:///android_asset/Licenses/app.txt")
+
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    WebSettingsCompat.setForceDark(
+                        webview.settings,
+                        WebSettingsCompat.FORCE_DARK_OFF
+                    )
+                }
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    WebSettingsCompat.setForceDark(
+                        webview.settings,
+                        WebSettingsCompat.FORCE_DARK_ON
+                    )
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,7 +80,6 @@ class FullLicense : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // Add your animation
         finish()
     }
 
