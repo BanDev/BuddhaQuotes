@@ -38,7 +38,7 @@
 
         android:background="@color/colorTop"
 
-
+        android:elevation="4dp"
 
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
