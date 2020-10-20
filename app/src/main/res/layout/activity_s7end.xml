@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_baseline_done_all_24"
+        app:srcCompat="@drawable/ic_done_all_24"
         android:contentDescription="@string/slide_7_double_tick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
