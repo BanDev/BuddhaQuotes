@@ -9,21 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 
 - Support for devices running Android 7 (Thank you to [@Elephantastique](https://gitlab.com/Elephantastique) for raising this)
+- 'Fun mode' with colourful UI
 
 #### Changed
 
 - New logo
 - New colour scheme
 - Redesigned settings UI
+- Transitional animation between light and dark mode
+- Drawable overhaul with optimisations, colour changes, and dark mode variations
+- Full License page now supports dark mode
 - Custom font is now used throughout the app
+- Sliding speed between pages 1.5x faster
 - Text size is generally smaller ('Medium' is now the size of the previous 'Small', etc)
-- Bug fixes and optimisations
+- Lots of bug fixes and optimisations
 
 ### 1.3.2 - (2020-10-06)
 
 #### Changed
 
-- Minor bug fix
+- Minor bug fix for devices with a navigation bar
 
 ### 1.3.1 - (2020-10-06)
 
