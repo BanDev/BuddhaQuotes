@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Buddha Quotes</h1>
 
-  <img src="Screenshots/buddha.svg" height="150" />
+  <img src="assets/buddha.svg" height="150" />
     </div>
 
 <div align="center">
@@ -36,11 +36,11 @@
 
 ## Screenshots
 
-| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224012.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224050.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224016.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224052.jpg" width="180"/> 	|
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/1.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/3.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/2.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/4.jpg" width="180"/> 	|
 |:-----:	|:-----:	|:-----:	|:-----:	|
 | Light 	| Dark 	| Light 	| Dark 	|
 
-| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224022.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224057.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224039.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/Screenshots/Screenshot_20200928-224100.jpg" width="180"/> 	|
+| <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/5.jpg" width="180"/>	|<img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/6.jpg" width="180"/>|   <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/7.jpg" width="180"/>  	|    <img src="https://gitlab.com/bandev/buddha-quotes/-/raw/master/assets/8.jpg" width="180"/> 	|
 |:-----:	|:-----:	|:-----:	|:-----:	|
 | Light 	| Dark 	| Light 	| Dark 	|
 
