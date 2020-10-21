@@ -91,7 +91,7 @@ class S4Refresh : AppCompatActivity() {
 
         val text: TextView = findViewById(R.id.text)
 
-        var counter = 0
+        var counter = 1
         val rotateAnimation = RotateAnimation(
             0F,
             360f,
@@ -115,9 +115,12 @@ class S4Refresh : AppCompatActivity() {
 
             if (counter < 50) {
                 text.text =
-                    getString(R.string.more_counter_left) + (counter + 1)
+                    getString(R.string.more_counter_left, counter)
+                counter + 1
             } else {
-                text.text = getString(R.string.more_lots_of_refreshes) + (counter + 1)
+                text.text =
+                    getString(R.string.more_lots_of_refreshes, counter)
+                counter + 1
             }
             counter++
         }

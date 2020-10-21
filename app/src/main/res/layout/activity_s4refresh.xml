@@ -99,6 +99,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_refresh_24"
-        android:contentDescription="@string/slide_4_refresh" />
+        android:contentDescription="@string/refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
