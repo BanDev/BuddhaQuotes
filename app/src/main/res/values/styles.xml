@@ -13,6 +13,12 @@
         <item name="android:textColor">#fff</item>
     </style>
 
+    <style name="toolbarText">
+        <item name="fontFamily">@font/mt_bold</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="ScrollingActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>

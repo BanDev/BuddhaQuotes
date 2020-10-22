@@ -6,12 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowInsets
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,6 +22,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.android.synthetic.main.activity_info_panel.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
@@ -40,10 +39,17 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         setSupportActionBar(findViewById(R.id.toolbar))
         window.statusBarColor = ContextCompat.getColor(this@ScrollingActivity, R.color.colorTop)
-        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = "Scroll Mode"
+        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = "Your List"
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
+
+
+        if (intent.getBooleanExtra("safe", false)) {
+            insertItem(intent.getStringExtra("quote")!!.toInt())
+        }
+
+
 
         toolbar.navigationIcon = back;
 
@@ -70,6 +76,44 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         view.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
+        }
+    }
+
+    fun insertItem(num: Int) {
+        val index = 0
+        val quote = Quotes()
+        val text = quote.random(num)
+        val newItem = ExampleItem(
+            text,
+            R.drawable.like,
+        )
+
+        scrollingList.add(index, newItem)
+        adapter.notifyItemInserted(index)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.scroll_mode_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.add -> {
+                val intent2 = Intent(this, AddList::class.java)
+                this.startActivity(intent2)
+                true
+            }
+            android.R.id.home -> {
+                val intent2 = Intent(this, ScrollingActivity::class.java)
+                this.startActivity(intent2)
+                overridePendingTransition(
+                    R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right
+                )
+                super.onOptionsItemSelected(item)
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -103,7 +147,15 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         startActivity(shareIntent)
     }
 
-    private fun generateDummyList(size: Int): List<ExampleItem> {
+    override fun onBinClick(position: Int) {
+        vibratePhone()
+
+        scrollingList.removeAt(position)
+        adapter.notifyItemRemoved(position)
+
+    }
+
+    private fun generateDummyList(size: Int): ArrayList<ExampleItem> {
 
         val list = ArrayList<ExampleItem>()
         val quote = Quotes()
@@ -124,21 +176,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.back -> {
-                val myIntent = Intent(this@ScrollingActivity, MainActivity::class.java)
-                this@ScrollingActivity.startActivity(myIntent)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@ScrollingActivity, MainActivity::class.java)
