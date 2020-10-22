@@ -29,7 +29,14 @@ class About : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.black, null)
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
@@ -37,14 +44,6 @@ class About : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         val done = false

@@ -19,24 +19,51 @@ class FullLicense : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_license)
 
+        // Webview
+        val webview = findViewById<View>(R.id.webview) as WebView
+        webview.loadUrl("file:///android_asset/Licenses/app.txt")
+
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                }
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                    WebSettingsCompat.setForceDark(
+                        webview.settings,
+                        WebSettingsCompat.FORCE_DARK_OFF
+                    )
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                 } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
+                when {
+                    WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK) -> {
+                        WebSettingsCompat.setForceDark(
+                            webview.settings,
+                            WebSettingsCompat.FORCE_DARK_ON
+                        )
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    }
+                    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O -> {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    }
+                    else -> {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                    }
+                }
             }
-        }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
@@ -46,26 +73,6 @@ class FullLicense : AppCompatActivity() {
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
         window.statusBarColor = ContextCompat.getColor(this@FullLicense, R.color.colorTop)
 
-        // Webview
-        val webview = findViewById<View>(R.id.webview) as WebView
-        webview.loadUrl("file:///android_asset/Licenses/app.txt")
-
-        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
-            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    WebSettingsCompat.setForceDark(
-                        webview.settings,
-                        WebSettingsCompat.FORCE_DARK_OFF
-                    )
-                }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    WebSettingsCompat.setForceDark(
-                        webview.settings,
-                        WebSettingsCompat.FORCE_DARK_ON
-                    )
-                }
-            }
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

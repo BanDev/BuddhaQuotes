@@ -40,7 +40,8 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/textView20"
         app:layout_constraintStart_toStartOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/go"

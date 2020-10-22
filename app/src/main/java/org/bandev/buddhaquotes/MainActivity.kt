@@ -50,8 +50,17 @@ class MainActivity : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.black, null)
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -60,24 +69,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
-        }
-
         val pref = this.getSharedPreferences("Settings", 0)
         val funMode = pref.getBoolean("fun_mode", false)
         if (funMode) {
             setContentView(R.layout.activity_main2)
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-            } else {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.transparent, null)
-            }
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
