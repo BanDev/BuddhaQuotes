@@ -98,6 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/text_yellow"
-        android:contentDescription="@string/slide_6_text_size" />
+        android:contentDescription="@string/text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,25 +64,21 @@
     <!-- Slide 4 -->
     <string name="slide_4_another_quote">Another quote?</string>
     <string name="slide_4_hit_refresh">Just hit refresh</string>
-    <string name="slide_4_refresh">Refresh</string>
     <!-- Slide 5 -->
     <string name="slide_5_too_bright">Display too bright?</string>
     <string name="slide_5_try_dark">Why not try dark mode</string>
-    <string name="slide_5_light">Light</string>
-    <string name="slide_5_dark">Dark</string>
     <string name="slide_5_torch">Torch</string>
     <!-- Slide 6 -->
     <string name="slide_6_hard_to_read">Text hard to read?</string>
     <string name="slide_6_select_size">Select a text size below</string>
-    <string name="slide_6_text_size">Text size</string>
     <!-- Slide 7 -->
     <string name="slide_7_all_done">All done!</string>
     <string name="slide_7_ready">You\'re ready to start now</string>
     <string name="slide_7_open_app">Open app</string>
     <string name="slide_7_double_tick">Double tick</string>
     <!-- More -->
-    <string name="more_counter_left">Another Quote …\u0020</string>
-    <string name="more_lots_of_refreshes">That\'s a lot of refreshes …\u0020</string>
+    <string name="more_counter_left">Another Quote …\u0020 %1$d</string>
+    <string name="more_lots_of_refreshes">That\'s a lot of refreshes …\u0020 %1$d</string>
     <!-- Favourites page -->
     <string name="favourites">Favourites</string>
 

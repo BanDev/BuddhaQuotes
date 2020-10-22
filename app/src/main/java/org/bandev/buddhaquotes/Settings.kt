@@ -51,7 +51,7 @@ class Settings : AppCompatActivity() {
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
         }
 
-        if(intent.extras!!.getBoolean("switch")){
+        if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)
             val darkmode = sharedPreferences.getBoolean("dark_mode", false)
             val sys = sharedPreferences.getBoolean("sys", true)
