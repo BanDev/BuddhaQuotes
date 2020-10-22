@@ -6,36 +6,32 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.*
-import android.widget.LinearLayout
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.WindowInsets
 import androidx.annotation.RequiresApi
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.activity_info_panel.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
-    val scrollingList = generateDummyList(50)
-    val adapter = ScrollingAdapter(scrollingList, this)
+    private val scrollingList = generateDummyList(50)
+    private val adapter = ScrollingAdapter(scrollingList, this)
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
-        var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
-        var toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         window.statusBarColor = ContextCompat.getColor(this@ScrollingActivity, R.color.colorTop)
@@ -46,12 +42,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
 
         if (intent.getBooleanExtra("safe", false)) {
-            insertItem(intent.getStringExtra("quote")!!.toInt())
+            insertItem((intent.getStringExtra("quote") ?: return).toInt())
         }
 
 
 
-        toolbar.navigationIcon = back;
+        toolbar.navigationIcon = back
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -79,7 +75,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    fun insertItem(num: Int) {
+    private fun insertItem(num: Int) {
         val index = 0
         val quote = Quotes()
         val text = quote.random(num)
@@ -120,9 +116,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onLikeClick(position: Int) {
         val clickedItem = scrollingList[position]
 
-        if(clickedItem.resource == R.drawable.heart_full_red){
+        if (clickedItem.resource == R.drawable.heart_full_red) {
             clickedItem.resource = R.drawable.like
-        }else{
+        } else {
             clickedItem.resource = R.drawable.heart_full_red
         }
 
@@ -169,7 +165,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     private fun vibratePhone() {
         val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.EFFECT_HEAVY_CLICK))
         } else {
             vibrator.vibrate(200)
