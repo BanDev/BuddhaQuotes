@@ -37,6 +37,7 @@ class ScrollingAdapter(
         val text_quote: TextView = itemView.quote
         val icon_like: ImageView = itemView.like
         val share: ImageView = itemView.share
+        val bin: ImageView = itemView.bin
 
         init {
             icon_like.setOnClickListener(this)
@@ -45,6 +46,13 @@ class ScrollingAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onShareClick(position)
+                }
+            }
+
+            bin.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onBinClick(position)
                 }
             }
         }
@@ -70,6 +78,8 @@ class ScrollingAdapter(
         fun onLikeClick(position: Int)
 
         fun onShareClick(position: Int)
+
+        fun onBinClick(position: Int)
     }
 
 }

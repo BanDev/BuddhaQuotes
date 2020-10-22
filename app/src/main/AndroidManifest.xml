@@ -16,6 +16,12 @@
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/ScrollingActivity"></activity>
+
+        <activity
+            android:name=".AddList"
+            android:label="addList"
+            android:theme="@style/ScrollingActivity"></activity>
+
         <activity android:name=".FullLicense" />
         <activity
             android:name=".slides.S1Intro"
