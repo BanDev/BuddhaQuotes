@@ -309,7 +309,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this@MainActivity, Favourites::class.java)
+                val intent2 = Intent(this@MainActivity, ScrollingActivity::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", quotenumber.toString())
                 intent2.putExtras(mBundle)
