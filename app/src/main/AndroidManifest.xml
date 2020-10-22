@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.bandev.buddhaquotes" >
+    package="org.bandev.buddhaquotes">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -11,7 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_buddha"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/ScrollingActivity"></activity>
         <activity android:name=".FullLicense" />
         <activity
             android:name=".slides.S1Intro"
@@ -30,7 +34,7 @@
             android:theme="@style/slide5" />
         <activity
             android:name=".slides.S6TextSize"
-            android:theme="@style/slide6"/>
+            android:theme="@style/slide6" />
         <activity
             android:name=".slides.S7End"
             android:theme="@style/slide7" />
@@ -42,7 +46,7 @@
         <activity android:name=".Favourites" />
         <activity
             android:name=".Splash"
-            android:theme="@style/Splash" >
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,11 +60,11 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
-            android:theme="@style/settings"/>
+            android:theme="@style/settings" />
         <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
-            android:theme="@style/MainActivity" >
+            android:theme="@style/MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

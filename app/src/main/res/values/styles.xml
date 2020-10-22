@@ -8,6 +8,19 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="toolbarTextScroller">
+        <item name="fontFamily">@font/mt_bold</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="ScrollingActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
