@@ -29,12 +29,16 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-
-
-
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.black, null)
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
@@ -42,13 +46,6 @@ class Settings : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
-        }
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
-            window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.black, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
@@ -79,8 +76,6 @@ class Settings : AppCompatActivity() {
                 }
             }
         }
-
-
 
         supportFragmentManager
             .beginTransaction()
