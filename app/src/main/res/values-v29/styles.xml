@@ -2,17 +2,12 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed">true</item>
-        <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">
-            @color/colorPrimary
-        </item>
-
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
     <style name="WindowAnimationTransition">
@@ -24,7 +19,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 

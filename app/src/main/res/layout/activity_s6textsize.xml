@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/text_yellow"
+        app:srcCompat="@drawable/ic_text_accent_24"
         android:contentDescription="@string/text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
