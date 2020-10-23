@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "org.bandev.buddhaquotes"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1007
         versionName "v1.4.0"

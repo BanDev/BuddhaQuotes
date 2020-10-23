@@ -24,8 +24,6 @@ class S1Intro : AppCompatActivity() {
         setContentView(R.layout.activity_s1intro)
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
@@ -33,14 +31,6 @@ class S1Intro : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         val button: Button = findViewById(R.id.button)
@@ -56,6 +46,7 @@ class S1Intro : AppCompatActivity() {
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         var statusBarHeight = 0

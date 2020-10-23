@@ -27,8 +27,26 @@ class S5Brightness : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    window.statusBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.statusBarColor =
+                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
+                window.statusBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -37,38 +55,8 @@ class S5Brightness : AppCompatActivity() {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
-        }
-
         val night: Button = findViewById(R.id.night)
         val day: Button = findViewById(R.id.day)
-
-        /*val sharedPreferences = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-        val sys = sharedPreferences.getBoolean("sys", true)
-        val text:TextView = findViewById(R.id.text)
-        when {
-            sys -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sw1.isChecked = false
-                text.text = "Dark"
-            }
-            darkmode -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sw1.isChecked = false
-                text.text = "Dark"
-            }
-            else -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sw1.isChecked = true
-                text.text = "Light"
-            }
-        }*/
 
         night.setOnClickListener {
             val pref = this.getSharedPreferences("Settings", 0)
@@ -128,15 +116,5 @@ class S5Brightness : AppCompatActivity() {
         if (resourceId2 > 0) {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
-
-        // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //   param2.setMargins(0, 0, 0, navBarHeight)
-        //   (favourite ?: return).layoutParams = param2
-
-        //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //     param3.setMargins(0, 0, 0, navBarHeight)
-        //    (refresh ?: return).layoutParams = param3
-
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
     }
 }
