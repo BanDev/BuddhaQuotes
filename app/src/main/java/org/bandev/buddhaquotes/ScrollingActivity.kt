@@ -6,48 +6,43 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
-import android.view.*
-import android.widget.LinearLayout
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.WindowInsets
 import androidx.annotation.RequiresApi
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.activity_info_panel.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
-    lateinit var scrollingList: ArrayList<ExampleItem>
-    lateinit var adapter: ScrollingAdapter
+    private lateinit var scrollingList: ArrayList<ExampleItem>
+    private lateinit var adapter: ScrollingAdapter
 
-    var list_tmp = ""
+    private var list_tmp = ""
 
-    lateinit var pref_list: List<String>
+    private lateinit var pref_list: List<String>
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
-        var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
-        var toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
-        var list = intent.getStringExtra("list")!!.toString()
+        val list = (intent.getStringExtra("list") ?: return).toString()
         list_tmp = list
 
         val pref = getSharedPreferences("List_system", 0)
         val pref_string = pref.getString(list_tmp, "Nothing Here")
-        pref_list = pref_string!!.split("//")
+        pref_list = (pref_string ?: return).split("//")
 
         scrollingList = generateDummyList(1)
         adapter = ScrollingAdapter(scrollingList, this)
@@ -60,10 +55,10 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
         if (intent.getBooleanExtra("safe", false)) {
-            insertItem(intent.getStringExtra("quote")!!.toInt())
+            insertItem((intent.getStringExtra("quote") ?: return).toInt())
         }
 
-        toolbar.navigationIcon = back;
+        toolbar.navigationIcon = back
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -91,7 +86,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    fun insertItem(num: Int) {
+    private fun insertItem(num: Int) {
         val index = 0
         val quote = Quotes()
         val text = quote.random(num)
@@ -132,9 +127,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onLikeClick(position: Int) {
         val clickedItem = scrollingList[position]
 
-        if(clickedItem.resource == R.drawable.heart_full_red){
+        if (clickedItem.resource == R.drawable.heart_full_red) {
             clickedItem.resource = R.drawable.like
-        }else{
+        } else {
             clickedItem.resource = R.drawable.heart_full_red
         }
 
@@ -167,12 +162,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     }
 
-    private fun generateDummyList(max:Int): ArrayList<ExampleItem> {
+    private fun generateDummyList(max: Int): ArrayList<ExampleItem> {
 
         val list = ArrayList<ExampleItem>()
 
         var i = 0
-        while (i != max){
+        while (i != max) {
             val item = ExampleItem(pref_list[i], R.drawable.like)
             list += item
             i++
