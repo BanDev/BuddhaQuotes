@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -27,8 +28,12 @@ import kotlinx.android.synthetic.main.content_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
-    val scrollingList = generateDummyList(50)
-    val adapter = ScrollingAdapter(scrollingList, this)
+    lateinit var scrollingList: ArrayList<ExampleItem>
+    lateinit var adapter: ScrollingAdapter
+
+    var list_tmp = ""
+
+    lateinit var pref_list: List<String>
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +43,14 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         var toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
         var list = intent.getStringExtra("list")!!.toString()
+        list_tmp = list
 
+        val pref = getSharedPreferences("List_system", 0)
+        val pref_string = pref.getString(list_tmp, "Nothing Here")
+        pref_list = pref_string!!.split("//")
+
+        scrollingList = generateDummyList(1)
+        adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         window.statusBarColor = ContextCompat.getColor(this@ScrollingActivity, R.color.colorTop)
@@ -101,10 +113,15 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         return when (item.itemId) {
             R.id.add -> {
                 val intent2 = Intent(this, AddList::class.java)
+                val b = Bundle()
+                b.putString("list", list_tmp) // Your id
+                intent2.putExtras(b)
                 this.startActivity(intent2)
                 true
             }
             android.R.id.home -> {
+                val intent2 = Intent(this, Favourites::class.java)
+                this.startActivity(intent2)
                 finish()
                 super.onOptionsItemSelected(item)
             }
@@ -150,20 +167,15 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     }
 
-    private fun generateDummyList(size: Int): ArrayList<ExampleItem> {
+    private fun generateDummyList(max:Int): ArrayList<ExampleItem> {
 
         val list = ArrayList<ExampleItem>()
-        val quote = Quotes()
 
-        var list_tmp = intent.getStringExtra("list")!!.toString()
-
-        val pref = getSharedPreferences("List_system", 0)
-        val pref_string = pref.getString(list_tmp, "Nothing Here")
-        val pref_list = pref_string!!.split("//")
-
-        for (text in pref_list) {
-            val item = ExampleItem(text, R.drawable.like)
+        var i = 0
+        while (i != max){
+            val item = ExampleItem(pref_list[i], R.drawable.like)
             list += item
+            i++
         }
         return list
     }
