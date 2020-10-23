@@ -24,6 +24,8 @@ class AddList : AppCompatActivity() {
         //Set status bar colors
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
+        var list = intent.getStringExtra("list")!!.toString()
+
         //Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
         toolbar = findViewById(R.id.toolbar)
@@ -39,6 +41,7 @@ class AddList : AppCompatActivity() {
             val intent2 = Intent(this, ScrollingActivity::class.java)
             val mBundle = Bundle()
             mBundle.putString("quote", num)
+            mBundle.putString("list", list)
             mBundle.putBoolean("safe", true)
             intent2.putExtras(mBundle)
             this.startActivity(intent2)
