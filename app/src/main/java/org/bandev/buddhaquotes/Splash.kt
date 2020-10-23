@@ -32,8 +32,6 @@ class Splash : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -24,7 +24,7 @@ class AddList : AppCompatActivity() {
         //Set status bar colors
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
-        var list = intent.getStringExtra("list")!!.toString()
+        val list = (intent.getStringExtra("list") ?: return).toString()
 
         //Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
