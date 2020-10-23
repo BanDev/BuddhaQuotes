@@ -29,22 +29,32 @@ class S3Favourite : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    window.statusBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                } else {
+                    window.statusBarColor =
+                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                }
+            }
             Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
+                window.statusBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -72,16 +82,6 @@ class S3Favourite : AppCompatActivity() {
         if (resourceId2 > 0) {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
-
-        // val param2 = (favourite ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //   param2.setMargins(0, 0, 0, navBarHeight)
-        //   (favourite ?: return).layoutParams = param2
-
-        //    val param3 = (refresh ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        //     param3.setMargins(0, 0, 0, navBarHeight)
-        //    (refresh ?: return).layoutParams = param3
-
-        window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         val button: Button = findViewById(R.id.button)
 

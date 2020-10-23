@@ -51,6 +51,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:fillViewport="true"
+        android:forceHasOverlappingRendering="false"
         android:scrollbarStyle="outsideOverlay"
         app:layout_anchorGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"

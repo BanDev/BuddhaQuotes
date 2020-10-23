@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 
-class AddList : AppCompatActivity(){
+class AddList : AppCompatActivity() {
 
     lateinit var toolbar: MaterialToolbar
-    lateinit var back: Drawable
-    lateinit var go: Button
-    lateinit var number: EditText
-    var num: String = ""
+    private lateinit var back: Drawable
+    private lateinit var go: Button
+    private lateinit var number: EditText
+    private var num: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +25,9 @@ class AddList : AppCompatActivity(){
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
         //Setup toolbar
-        back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)!!
+        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
         toolbar = findViewById(R.id.toolbar)
-        toolbar.setTitle("Add to List")
+        toolbar.title = "Add to List"
         toolbar.navigationIcon = back
 
         //Setup button & onclick

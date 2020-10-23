@@ -16,8 +16,10 @@ class ScrollingAdapter(
     ) : RecyclerView.Adapter<ScrollingAdapter.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recylcer_card,
-            parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.recylcer_card,
+            parent, false
+        )
 
         return ScrollingViewHolder(itemView)
     }
@@ -29,13 +31,14 @@ class ScrollingAdapter(
         holder.icon_like.setImageResource(currentItem.resource)
     }
 
-    override fun getItemCount() = scrollingList.size
+    override fun getItemCount(): Int = scrollingList.size
 
-    inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
+    inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener, View.OnLongClickListener {
         val text_quote: TextView = itemView.quote
         val icon_like: ImageView = itemView.like
-        val share: ImageView = itemView.share
-        val bin: ImageView = itemView.bin
+        private val share: ImageView = itemView.share
+        private val bin: ImageView = itemView.bin
 
         init {
             icon_like.setOnClickListener(this)
