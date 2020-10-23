@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -14,9 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import com.google.android.material.appbar.MaterialToolbar
 
 class Favourites : AppCompatActivity() {
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourites)
@@ -41,15 +44,18 @@ class Favourites : AppCompatActivity() {
                 ResourcesCompat.getColor(resources, R.color.black, null)
         }
 
-        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
+        var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
+
+        myToolbar.navigationIcon = back
 
         val listview = findViewById<View>(R.id.listView) as ListView
-        val pref = getSharedPreferences("Favs", 0)
-        val favs = arrayOf(pref.getString("fav", ""))
-        var array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
+        val pref = getSharedPreferences("List_system", 0)
+        val favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
+        var array = (favs[0] ?: return).split("//".toRegex()).toTypedArray()
         array = array.distinct().toTypedArray()
         val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
         listview.adapter = adapter
@@ -57,9 +63,9 @@ class Favourites : AppCompatActivity() {
             AdapterView.OnItemClickListener { adapterView, view, position, l ->
                 val value = adapter.getItem(position)
                 if (value.toString() != "") {
-                    val intent = Intent(this@Favourites, InfoPanel::class.java)
+                    val intent = Intent(this@Favourites, ScrollingActivity::class.java)
                     val b = Bundle()
-                    b.putString("quote", value.toString()) // Your id
+                    b.putString("list", value.toString()) // Your id
                     intent.putExtras(b) // Put your id to your next Intent
                     startActivity(intent)
                 }
@@ -73,13 +79,15 @@ class Favourites : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.back -> {
+            R.id.add -> {
+                val myIntent = Intent(this@Favourites, CreateNewList::class.java)
+                this@Favourites.startActivity(myIntent)
+                finish()
+                true
+            }
+            android.R.id.home -> {
                 val myIntent = Intent(this@Favourites, MainActivity::class.java)
                 this@Favourites.startActivity(myIntent)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
                 finish()
                 true
             }

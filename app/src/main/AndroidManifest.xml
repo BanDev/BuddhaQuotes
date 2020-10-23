@@ -21,6 +21,10 @@
             android:name=".AddList"
             android:label="addList"
             android:theme="@style/ScrollingActivity"></activity>
+        <activity
+            android:name=".CreateNewList"
+            android:label="createNewList"
+            android:theme="@style/ScrollingActivity"></activity>
 
         <activity android:name=".FullLicense" />
         <activity
