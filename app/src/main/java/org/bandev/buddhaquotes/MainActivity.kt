@@ -309,15 +309,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this@MainActivity, ScrollingActivity::class.java)
+                val intent2 = Intent(this@MainActivity, Favourites::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", quotenumber.toString())
                 intent2.putExtras(mBundle)
                 this@MainActivity.startActivity(intent2)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
                 super.onOptionsItemSelected(item)
             }
             else -> super.onOptionsItemSelected(item)

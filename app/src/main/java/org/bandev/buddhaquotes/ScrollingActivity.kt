@@ -37,25 +37,25 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
         var toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
+        var list = intent.getStringExtra("list")!!.toString()
+
+
         setSupportActionBar(findViewById(R.id.toolbar))
         window.statusBarColor = ContextCompat.getColor(this@ScrollingActivity, R.color.colorTop)
-        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = "Your List"
+        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = list
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
 
         if (intent.getBooleanExtra("safe", false)) {
             insertItem(intent.getStringExtra("quote")!!.toInt())
         }
 
-
-
         toolbar.navigationIcon = back;
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.setHasFixedSize(true)
+        recycler_view.setHasFixedSize(false)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -105,12 +105,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this, ScrollingActivity::class.java)
-                this.startActivity(intent2)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
+                finish()
                 super.onOptionsItemSelected(item)
             }
             else -> super.onOptionsItemSelected(item)
@@ -160,8 +155,14 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         val list = ArrayList<ExampleItem>()
         val quote = Quotes()
 
-        for (i in 0 until size) {
-            val item = ExampleItem(quote.random(0), R.drawable.like)
+        var list_tmp = intent.getStringExtra("list")!!.toString()
+
+        val pref = getSharedPreferences("List_system", 0)
+        val pref_string = pref.getString(list_tmp, "Nothing Here")
+        val pref_list = pref_string!!.split("//")
+
+        for (text in pref_list) {
+            val item = ExampleItem(text, R.drawable.like)
             list += item
         }
         return list
@@ -178,12 +179,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@ScrollingActivity, MainActivity::class.java)
-        this@ScrollingActivity.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
+
         finish()
         return true
     }
@@ -191,13 +187,8 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@ScrollingActivity, MainActivity::class.java)
-        val mBundle = Bundle()
-        this@ScrollingActivity.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
+
         finish()
     }
 }
+

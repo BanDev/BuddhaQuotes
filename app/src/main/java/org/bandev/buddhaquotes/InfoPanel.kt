@@ -110,7 +110,7 @@ class InfoPanel : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.back -> {
+            R.id.add -> {
                 val myIntent = Intent(this@InfoPanel, Favourites::class.java)
                 this@InfoPanel.startActivity(myIntent)
                 finish()

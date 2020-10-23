@@ -3,12 +3,10 @@ package org.bandev.buddhaquotes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.recylcer_card.view.*
-import java.util.regex.Pattern.quote
 
 class ScrollingAdapter(
 
@@ -72,6 +70,7 @@ class ScrollingAdapter(
             // Return true to indicate the click was handled
             return true
         }
+
     }
 
     interface OnItemClickFinder {
