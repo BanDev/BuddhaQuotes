@@ -98,7 +98,6 @@ class About : AppCompatActivity() {
         val view = View(this)
         view.doOnLayout {
             view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
             window.insetsController?.show(WindowInsets.Type.ime())
         }
 
@@ -110,7 +109,7 @@ class About : AppCompatActivity() {
 
     private fun vibratePhone() {
         val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             vibrator.vibrate(200)

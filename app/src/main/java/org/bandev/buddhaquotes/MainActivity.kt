@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         val pref = this.getSharedPreferences("Settings", 0)
         val funMode = pref.getBoolean("fun_mode", false)
         if (funMode) {
@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         val view = View(this)
         view.doOnLayout {
             view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
             window.insetsController?.show(WindowInsets.Type.ime())
         }
 
@@ -122,24 +121,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var allowed = true
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
-            if (allowed) {
-                allowed = false
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
 
-                    val text = quoteview?.text.toString() + "\n\n ~Buddha"
+                val text = quoteview?.text.toString() + "\n\n~Gautama Buddha"
 
-                    putExtra(Intent.EXTRA_TEXT, text)
-                    type = "text/plain"
-                }
-
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                startActivity(shareIntent)
+                putExtra(Intent.EXTRA_TEXT, text)
+                type = "text/plain"
             }
-            Thread.sleep(1_000) // wait for 1 second
-            allowed = true
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
 
         var navBarHeight = 0
