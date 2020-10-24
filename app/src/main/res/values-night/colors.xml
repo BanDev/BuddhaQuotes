@@ -9,6 +9,7 @@
     <color name="colorTop">#333333</color>
     <color name="colorWaveLight">#222222</color>
     <color name="colorWaveDark">#333333</color>
+    <color name="background">#121212</color>
     <color name="transparent">@android:color/transparent</color>
 
 </resources>

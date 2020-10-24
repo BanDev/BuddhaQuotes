@@ -21,6 +21,7 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
+
     <style name="license" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
