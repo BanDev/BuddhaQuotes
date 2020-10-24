@@ -40,7 +40,7 @@ class CreateNewList : AppCompatActivity() {
             //Add new list to MASTER_LIST & create a list for itself
             val pref = getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            editor.putString(text, "Nothing Here")
+            editor.putString(text, "")
             editor.putString(
                 "MASTER_LIST",
                 (pref.getString("MASTER_LIST", "Favourites") + "//" + text)
