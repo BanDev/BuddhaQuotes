@@ -1,6 +1,5 @@
 package org.bandev.buddhaquotes
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -14,8 +13,8 @@ import com.google.android.material.appbar.MaterialToolbar
 class CreateNewList : AppCompatActivity() {
 
     lateinit var toolbar: MaterialToolbar
-    lateinit var back: Drawable
-    lateinit var go: Button
+    private lateinit var back: Drawable
+    private lateinit var go: Button
     lateinit var name: EditText
     var text: String = ""
 
@@ -27,9 +26,9 @@ class CreateNewList : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
         //Setup toolbar
-        back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)!!
+        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
         toolbar = findViewById(R.id.toolbar)
-        toolbar.setTitle("Create New List")
+        toolbar.title = "Create New List"
         toolbar.navigationIcon = back
 
         //Setup button & onclick
@@ -42,8 +41,11 @@ class CreateNewList : AppCompatActivity() {
             val pref = getSharedPreferences("List_system", 0)
             val editor = pref.edit()
             editor.putString(text, "Nothing Here")
-            editor.putString("MASTER_LIST", (pref.getString("MASTER_LIST", "Favourites") + "//" + text))
-            editor.commit()
+            editor.putString(
+                "MASTER_LIST",
+                (pref.getString("MASTER_LIST", "Favourites") + "//" + text)
+            )
+            editor.apply()
 
             //Leave & take users back to favourites
             val myIntent = Intent(this, Favourites::class.java)

@@ -48,35 +48,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                } else {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.black, null)
-                }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.transparent, null)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-            }
-        }
-
         val pref = this.getSharedPreferences("Settings", 0)
         val funMode = pref.getBoolean("fun_mode", false)
         if (funMode) {
             setContentView(R.layout.activity_main2)
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.transparent)
+            window.statusBarColor =
+                ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
+            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    } else {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.black, null)
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                }
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                }
+            }
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
         }
 
@@ -112,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         val view = View(this)
         view.doOnLayout {
             view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
             window.insetsController?.show(WindowInsets.Type.ime())
         }
 
@@ -121,24 +121,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        var allowed = true
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
-            if (allowed) {
-                allowed = false
-                val sendIntent: Intent = Intent().apply {
-                    action = Intent.ACTION_SEND
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
 
-                    val text = quoteview?.text.toString() + "\n\n ~Buddha"
+                val text = quoteview?.text.toString() + "\n\n~Gautama Buddha"
 
-                    putExtra(Intent.EXTRA_TEXT, text)
-                    type = "text/plain"
-                }
-
-                val shareIntent = Intent.createChooser(sendIntent, null)
-                startActivity(shareIntent)
+                putExtra(Intent.EXTRA_TEXT, text)
+                type = "text/plain"
             }
-            Thread.sleep(1_000) // wait for 1 second
-            allowed = true
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
 
         var navBarHeight = 0

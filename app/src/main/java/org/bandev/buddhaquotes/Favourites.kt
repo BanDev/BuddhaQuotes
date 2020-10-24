@@ -12,7 +12,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.appbar.MaterialToolbar
@@ -47,8 +46,8 @@ class Favourites : AppCompatActivity() {
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
-        supportActionBar!!.setDefaultDisplayHomeAsUpEnabled(true)
-        var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
+        (supportActionBar ?: return).setDefaultDisplayHomeAsUpEnabled(true)
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
 
         myToolbar.navigationIcon = back
 
