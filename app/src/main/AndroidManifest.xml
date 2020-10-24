@@ -12,20 +12,33 @@
         android:roundIcon="@drawable/ic_buddha"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <activity android:name=".WidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/ScrollingActivity"></activity>
-
+            android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".AddList"
             android:label="addList"
-            android:theme="@style/ScrollingActivity"></activity>
+            android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".CreateNewList"
             android:label="createNewList"
-            android:theme="@style/ScrollingActivity"></activity>
-
+            android:theme="@style/ScrollingActivity" />
         <activity android:name=".FullLicense" />
         <activity
             android:name=".slides.S1Intro"
