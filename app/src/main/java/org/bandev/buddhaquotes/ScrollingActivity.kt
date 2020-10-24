@@ -6,16 +6,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.*
-import android.widget.LinearLayout
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toolbar
 import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -23,7 +16,6 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
-import kotlinx.android.synthetic.main.activity_info_panel.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
@@ -47,9 +39,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         val pref = getSharedPreferences("List_system", 0)
         val pref_string = pref.getString(list_tmp, "Nothing Here")
-        pref_list = pref_string!!.split("//")
+        pref_list = pref_string!!.split("//").toMutableList()
 
-        scrollingList = generateDummyList(1)
+        (pref_list as MutableList<String>).removeAt(0)
+
+
+        scrollingList = generateDummyList(pref_list.size)
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -59,9 +54,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        if (intent.getBooleanExtra("safe", false)) {
-            insertItem(intent.getStringExtra("quote")!!.toInt())
-        }
 
         toolbar.navigationIcon = back;
 
@@ -91,10 +83,8 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    fun insertItem(num: Int) {
+    fun insertItem(text: String) {
         val index = 0
-        val quote = Quotes()
-        val text = quote.random(num)
         val newItem = ExampleItem(
             text,
             R.drawable.like,
@@ -167,7 +157,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     }
 
-    private fun generateDummyList(max:Int): ArrayList<ExampleItem> {
+    private fun generateDummyList(max: Int): ArrayList<ExampleItem> {
 
         val list = ArrayList<ExampleItem>()
 
