@@ -5,9 +5,12 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
+import java.util.*
 
 class AddList : AppCompatActivity() {
 
@@ -16,6 +19,7 @@ class AddList : AppCompatActivity() {
     private lateinit var go: Button
     private lateinit var number: EditText
     private var num: String = ""
+    private var quote = Quotes()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +44,20 @@ class AddList : AppCompatActivity() {
 
             val intent2 = Intent(this, ScrollingActivity::class.java)
             val mBundle = Bundle()
-            mBundle.putString("quote", num)
+
+            val pref = getSharedPreferences("List_system", 0)
+            val editor = pref.edit()
+            val list_arr = pref.getString(list, "Nothing Here")
+            val list_arr_final = LinkedList(list_arr?.split("//"))
+            list_arr_final.push(quote.random(num.toInt()))
+            val string_out = list_arr_final.joinToString(separator = "//")
+
+            Toast.makeText(this, string_out, LENGTH_SHORT).show()
+
+            editor.putString(list, string_out)
+            editor.commit()
+
             mBundle.putString("list", list)
-            mBundle.putBoolean("safe", true)
             intent2.putExtras(mBundle)
             this.startActivity(intent2)
             overridePendingTransition(
