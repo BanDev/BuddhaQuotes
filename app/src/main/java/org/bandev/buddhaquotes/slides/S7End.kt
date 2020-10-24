@@ -27,6 +27,11 @@ class S7End : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
@@ -47,11 +52,6 @@ class S7End : AppCompatActivity() {
                     ResourcesCompat.getColor(resources, R.color.transparent, null)
                 window.statusBarColor =
                     ResourcesCompat.getColor(resources, R.color.transparent, null)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
             }
         }
 

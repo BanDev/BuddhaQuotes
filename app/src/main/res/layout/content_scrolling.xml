@@ -14,6 +14,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:padding="10dp"
-        tools:listitem="@layout/recylcer_card" />
+        tools:listitem="@layout/recycler_card" />
 
 </androidx.core.widget.NestedScrollView>

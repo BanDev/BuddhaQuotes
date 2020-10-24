@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -25,7 +26,12 @@ class FullLicense : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
@@ -40,11 +46,6 @@ class FullLicense : AppCompatActivity() {
                 }
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
                 when {
                     WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK) -> {
                         WebSettingsCompat.setForceDark(
@@ -54,7 +55,7 @@ class FullLicense : AppCompatActivity() {
                         window.navigationBarColor =
                             ResourcesCompat.getColor(resources, R.color.transparent, null)
                     }
-                    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O -> {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
                         window.navigationBarColor =
                             ResourcesCompat.getColor(resources, R.color.transparent, null)
                     }

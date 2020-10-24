@@ -48,7 +48,7 @@
             android:title="@string/help"
             android:summary="@string/app_introduction"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_help_circle_24" />
+            app:icon="@drawable/ic_help_24" />
 
         <Preference
             android:key="license"

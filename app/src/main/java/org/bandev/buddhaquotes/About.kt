@@ -29,19 +29,17 @@ class About : AppCompatActivity() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.black, null)
-                }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
         }
@@ -100,7 +98,6 @@ class About : AppCompatActivity() {
         val view = View(this)
         view.doOnLayout {
             view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
             window.insetsController?.show(WindowInsets.Type.ime())
         }
 
@@ -112,7 +109,7 @@ class About : AppCompatActivity() {
 
     private fun vibratePhone() {
         val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
             vibrator.vibrate(200)
