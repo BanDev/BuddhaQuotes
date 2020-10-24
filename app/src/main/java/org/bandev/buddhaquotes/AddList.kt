@@ -47,7 +47,7 @@ class AddList : AppCompatActivity() {
 
             val pref = getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            val list_arr = pref.getString(list, "Nothing Here")
+            val list_arr = pref.getString(list, "")
             val list_arr_final = LinkedList(list_arr?.split("//"))
             list_arr_final.push(quote.random(num.toInt()))
             val string_out = list_arr_final.joinToString(separator = "//")

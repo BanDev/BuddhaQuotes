@@ -20,6 +20,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import java.util.*
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     private var firstpress = true
     private var fontsize: String? = null
     private var heartblack: Drawable? = null
-    var toolbar: Toolbar? = null
+    var toolbar: MaterialToolbar? = null
     private var settings: SharedPreferences? = null
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -88,12 +90,11 @@ class MainActivity : AppCompatActivity() {
         share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
-        heartblack = ContextCompat.getDrawable(this, R.drawable.heart_white)
+        heartblack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
         quoteview = findViewById(R.id.quote)
 
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
         toolbar?.navigationIcon = heartblack
@@ -188,6 +189,17 @@ class MainActivity : AppCompatActivity() {
                 like.oneShot(favourite, 5)
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 // If It Is Not Liked Already
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val list_arr = pref.getString("Favourites", "")
+                val list_arr_final = LinkedList(list_arr?.split("//"))
+                list_arr_final.push(quoteview!!.text.toString())
+                val string_out = list_arr_final.joinToString(separator = "//")
+                editor.putString("Favourites", string_out)
+                editor.commit()
+
+
                 if (favs[0] != "") {
                     favs[0] = (
                             quoteview

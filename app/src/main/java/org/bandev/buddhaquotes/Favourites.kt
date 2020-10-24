@@ -11,12 +11,38 @@ import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.android.synthetic.main.content_scrolling.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class Favourites : AppCompatActivity() {
+class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
+
+    lateinit var scrollingList: ArrayList<ListMenuItem>
+    lateinit var adapter: ListMenuAdapter
+    lateinit var favs: Array<String?>
+    lateinit var array: Array<String>
+    override fun onLikeClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShareClick(position: Int) {
+        val intent2 = Intent(this, ScrollingActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("list", array[position])
+        intent2.putExtras(mBundle)
+        this.startActivity(intent2)
+    }
+
+    override fun onBinClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,24 +77,39 @@ class Favourites : AppCompatActivity() {
 
         myToolbar.navigationIcon = back
 
-        val listview = findViewById<View>(R.id.listView) as ListView
+
+
+
+
         val pref = getSharedPreferences("List_system", 0)
-        val favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
-        var array = (favs[0] ?: return).split("//".toRegex()).toTypedArray()
+        favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
+        array = (favs[0] ?: return).split("//".toRegex()).toTypedArray()
         array = array.distinct().toTypedArray()
-        val adapter = ArrayAdapter(this, R.layout.aligned_right, array)
-        listview.adapter = adapter
-        listview.onItemClickListener =
-            AdapterView.OnItemClickListener { adapterView, view, position, l ->
-                val value = adapter.getItem(position)
-                if (value.toString() != "") {
-                    val intent = Intent(this@Favourites, ScrollingActivity::class.java)
-                    val b = Bundle()
-                    b.putString("list", value.toString()) // Your id
-                    intent.putExtras(b) // Put your id to your next Intent
-                    startActivity(intent)
-                }
-            }
+
+        scrollingList = generateDummyList(array.size)
+        adapter = ListMenuAdapter(scrollingList, this)
+
+        recycler_view.adapter = adapter
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.setHasFixedSize(false)
+
+    }
+
+    private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
+
+        val list = ArrayList<ListMenuItem>()
+
+        var i = 0
+        while (i != max){
+
+            val pref = getSharedPreferences("List_system", 0)
+            val array2 = pref.getString(array[i], "")!!.split("//")
+            val count: Int = array2.count() - 1
+            val item = ListMenuItem(array[i], "$count items")
+            list += item
+            i++
+        }
+        return list
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

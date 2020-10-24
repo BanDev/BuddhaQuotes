@@ -38,13 +38,13 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         list_tmp = list
 
         val pref = getSharedPreferences("List_system", 0)
-        val pref_string = pref.getString(list_tmp, "Nothing Here")
+        val pref_string = pref.getString(list_tmp, "")
         pref_list = pref_string!!.split("//").toMutableList()
 
-        (pref_list as MutableList<String>).removeAt(0)
-
+        //(pref_list as MutableList<String>).removeAt(0)
 
         scrollingList = generateDummyList(pref_list.size)
+
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -162,8 +162,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         val list = ArrayList<ExampleItem>()
 
         var i = 0
+        var item: ExampleItem
         while (i != max){
-            val item = ExampleItem(pref_list[i], R.drawable.like)
+
+            item = ExampleItem(pref_list[i], R.drawable.like)
+
             list += item
             i++
         }
