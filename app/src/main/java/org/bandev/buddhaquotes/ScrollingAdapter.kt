@@ -29,6 +29,10 @@ class ScrollingAdapter(
 
         holder.text_quote.text = currentItem.quote
         holder.icon_like.setImageResource(currentItem.resource)
+
+        if(currentItem.no_like){
+            holder.icon_like.setImageResource(R.drawable.heart_full_red)
+        }
     }
 
     override fun getItemCount(): Int = scrollingList.size
@@ -42,7 +46,6 @@ class ScrollingAdapter(
 
         init {
             icon_like.setOnClickListener(this)
-            itemView.setOnLongClickListener(this)
             share.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -53,7 +56,7 @@ class ScrollingAdapter(
             bin.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position)
+                    listener.onBinClick(position, text_quote.text.toString())
                 }
             }
         }
@@ -61,14 +64,14 @@ class ScrollingAdapter(
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position)
+                listener.onLikeClick(position, text_quote.text.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position)
+                listener.onLikeClick(position, text_quote.text.toString())
             }
             // Return true to indicate the click was handled
             return true
@@ -77,11 +80,11 @@ class ScrollingAdapter(
     }
 
     interface OnItemClickFinder {
-        fun onLikeClick(position: Int)
+        fun onLikeClick(position: Int, text: String)
 
         fun onShareClick(position: Int)
 
-        fun onBinClick(position: Int)
+        fun onBinClick(position: Int, text: String)
     }
 
 }

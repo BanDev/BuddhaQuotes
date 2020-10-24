@@ -199,18 +199,6 @@ class MainActivity : AppCompatActivity() {
                 editor.putString("Favourites", string_out)
                 editor.commit()
 
-
-                if (favs[0] != "") {
-                    favs[0] = (
-                            quoteview
-                                ?: return@setOnClickListener
-                            ).text.toString() + "//VADER//" + favs[0]
-                } else {
-                    favs[0] = (quoteview ?: return@setOnClickListener).text as String + "//VADER//"
-                }
-                editor.putString("fav", favs[0])
-                editor.apply()
-                Log.d("Array", favs[0] ?: return@setOnClickListener)
                 done = true
                 (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(
@@ -226,22 +214,14 @@ class MainActivity : AppCompatActivity() {
                 // like.setFadeOut(100)
                 // like.oneShot(favourite, 5);
                 (favourite ?: return@setOnClickListener).isEnabled = false
-                favs = arrayOf(favourites.getString("fav", ""))
-                var array = (favs[0] ?: return@setOnClickListener).split("//VADER//".toRegex())
-                    .toTypedArray()
-                val list: MutableList<String> = ArrayList(listOf(*array))
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val list_arr = pref.getString("Favourites", "")
+                val list_arr_final = LinkedList(list_arr?.split("//"))
                 val text = (quoteview ?: return@setOnClickListener).text as String
-                list.remove(text)
-                array = list.toTypedArray()
-                array = array.distinct().toTypedArray()
-                var sb = ""
-                for (i in array.indices) {
-                    if (array[i] != "") {
-                        sb = sb + array[i] + "//VADER//"
-                    }
-                }
-                Log.d("Array", sb)
-                editor.putString("fav", sb)
+                list_arr_final.remove(text)
+                val string_out = list_arr_final.joinToString(separator = "//")
+                editor.putString("Favourites", string_out)
                 editor.commit()
                 done = false
                 (favourite ?: return@setOnClickListener).setImageDrawable(
@@ -268,11 +248,13 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.heart_white
             )
         )
-        val pref = getSharedPreferences("Favs", 0)
-        favs = arrayOf(pref.getString("fav", ""))
-        array = (favs[0] ?: return).split("//VADER//".toRegex()).toTypedArray()
-        list = listOf(*array)
-        if ((list as MutableList<String?>).contains((quoteview ?: return).text)) {
+
+        val pref = getSharedPreferences("List_system", 0)
+        val editor = pref.edit()
+        val list_arr = pref.getString("Favourites", "")
+        val list_arr_final = LinkedList(list_arr?.split("//"))
+
+        if ((list_arr_final as MutableList<String?>).contains((quoteview ?: return).text)) {
             done = true
             (favourite ?: return).setImageDrawable(
                 ContextCompat.getDrawable(

@@ -1,9 +1,13 @@
 package org.bandev.buddhaquotes
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -22,14 +26,14 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
+    override fun onLikeClick(position: Int, text: String) {
+        TODO("Not yet implemented")
+    }
 
     lateinit var scrollingList: ArrayList<ListMenuItem>
     lateinit var adapter: ListMenuAdapter
     lateinit var favs: Array<String?>
     lateinit var array: Array<String>
-    override fun onLikeClick(position: Int) {
-        TODO("Not yet implemented")
-    }
 
     override fun onShareClick(position: Int) {
         val intent2 = Intent(this, ScrollingActivity::class.java)
@@ -37,11 +41,50 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         mBundle.putString("list", array[position])
         intent2.putExtras(mBundle)
         this.startActivity(intent2)
+        finish()
     }
 
-    override fun onBinClick(position: Int) {
-        TODO("Not yet implemented")
+    override fun onBinClick(position: Int, text: String) {
+        vibratePhone()
+
+        scrollingList.removeAt(position)
+        adapter.notifyItemRemoved(position)
+
+        val pref = getSharedPreferences("List_system", 0)
+        val editor = pref.edit()
+        val list_arr = pref.getString("MASTER_LIST", "Favourites")
+        val list_arr_final = LinkedList(list_arr?.split("//"))
+        list_arr_final.remove(text)
+        val string_out = list_arr_final.joinToString(separator = "//")
+        editor.putString("MASTER_LIST", string_out)
+        editor.commit()
     }
+
+    private fun vibratePhone() {
+        val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        50,
+                        VibrationEffect.EFFECT_HEAVY_CLICK
+                    )
+                )
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        50,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            }
+            else -> {
+                vibrator.vibrate(50)
+            }
+        }
+    }
+
 
 
     @SuppressLint("RestrictedApi")
@@ -101,11 +144,20 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         var i = 0
         while (i != max){
-
+            var special = false
             val pref = getSharedPreferences("List_system", 0)
             val array2 = pref.getString(array[i], "")!!.split("//")
-            val count: Int = array2.count() - 1
-            val item = ListMenuItem(array[i], "$count items")
+            val count: Int = array2.count()
+            if(array[i] == "Favourites"){
+                special = true
+            }
+            var summary = ""
+            if(count != 1){
+                summary = "$count items"
+            }else{
+                summary = "$count item"
+            }
+            val item = ListMenuItem(array[i], summary, special)
             list += item
             i++
         }
@@ -138,10 +190,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
         this@Favourites.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
+
         finish()
         return true
     }
@@ -152,10 +201,6 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         val myIntent = Intent(this@Favourites, MainActivity::class.java)
         val mBundle = Bundle()
         this@Favourites.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
         finish()
     }
 }

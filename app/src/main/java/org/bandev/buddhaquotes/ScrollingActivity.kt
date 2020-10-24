@@ -17,6 +17,8 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
@@ -88,6 +90,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         val newItem = ExampleItem(
             text,
             R.drawable.like,
+            false
         )
 
         scrollingList.add(index, newItem)
@@ -119,17 +122,40 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    override fun onLikeClick(position: Int) {
-        val clickedItem = scrollingList[position]
+    override fun onLikeClick(position: Int, text: String) {
+        if(list_tmp != "Favourites"){
+            val clickedItem = scrollingList[position]
 
-        if(clickedItem.resource == R.drawable.heart_full_red){
-            clickedItem.resource = R.drawable.like
-        }else{
-            clickedItem.resource = R.drawable.heart_full_red
+            if(clickedItem.resource == R.drawable.heart_full_red){
+                clickedItem.resource = R.drawable.like
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val list_arr = pref.getString("Favourites", "")
+                val list_arr_final = LinkedList(list_arr?.split("//"))
+                list_arr_final.remove(text)
+                val string_out = list_arr_final.joinToString(separator = "//")
+                editor.putString("Favourites", string_out)
+                editor.commit()
+
+            }else{
+                clickedItem.resource = R.drawable.heart_full_red
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val list_arr = pref.getString("Favourites", "")
+                val list_arr_final = LinkedList(list_arr?.split("//"))
+                list_arr_final.push(text)
+                val string_out = list_arr_final.joinToString(separator = "//")
+                editor.putString("Favourites", string_out)
+                editor.commit()
+
+            }
+
+            vibratePhone()
+            adapter.notifyItemChanged(position)
         }
 
-        vibratePhone()
-        adapter.notifyItemChanged(position)
     }
 
     override fun onShareClick(position: Int) {
@@ -149,11 +175,20 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         startActivity(shareIntent)
     }
 
-    override fun onBinClick(position: Int) {
+    override fun onBinClick(position: Int, text: String) {
         vibratePhone()
 
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
+
+        val pref = getSharedPreferences("List_system", 0)
+        val editor = pref.edit()
+        val list_arr = pref.getString(list_tmp, "")
+        val list_arr_final = LinkedList(list_arr?.split("//"))
+        list_arr_final.remove(text)
+        val string_out = list_arr_final.joinToString(separator = "//")
+        editor.putString(list_tmp, string_out)
+        editor.commit()
 
     }
 
@@ -163,9 +198,22 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         var i = 0
         var item: ExampleItem
-        while (i != max){
 
-            item = ExampleItem(pref_list[i], R.drawable.like)
+        val pref = getSharedPreferences("List_system", 0)
+        val list_arr = pref.getString("Favourites", "")
+        val list_arr_final = LinkedList(list_arr?.split("//"))
+
+
+        while (i != max){
+            var special = false
+            if(list_tmp == "Favourites"){
+                special = true
+            }
+            if ((list_arr_final as MutableList<String?>).contains(pref_list[i])) {
+                item = ExampleItem(pref_list[i], R.drawable.heart_full_red, special)
+            }else{
+                item = ExampleItem(pref_list[i], R.drawable.like, special)
+            }
 
             list += item
             i++
@@ -175,24 +223,42 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     private fun vibratePhone() {
         val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= 26) {
-            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.EFFECT_HEAVY_CLICK))
-        } else {
-            vibrator.vibrate(200)
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        50,
+                        VibrationEffect.EFFECT_HEAVY_CLICK
+                    )
+                )
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(
+                        50,
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            }
+            else -> {
+                vibrator.vibrate(50)
+            }
         }
     }
 
 
     override fun onSupportNavigateUp(): Boolean {
 
-        finish()
+        val intent2 = Intent(this, Favourites::class.java)
+        this.startActivity(intent2)
         return true
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-
+        val intent2 = Intent(this, Favourites::class.java)
+        this.startActivity(intent2)
         finish()
     }
 }
