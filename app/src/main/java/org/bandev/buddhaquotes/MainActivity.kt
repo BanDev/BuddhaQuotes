@@ -7,21 +7,18 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import java.util.*
@@ -192,11 +189,11 @@ class MainActivity : AppCompatActivity() {
 
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
-                val list_arr = pref.getString("Favourites", "")
-                val list_arr_final = LinkedList(list_arr?.split("//"))
-                list_arr_final.push((quoteview ?: return@setOnClickListener).text.toString())
-                val string_out = list_arr_final.joinToString(separator = "//")
-                editor.putString("Favourites", string_out)
+                val listArr = pref.getString("Favourites", "")
+                val listArrFinal = LinkedList(listArr?.split("//"))
+                listArrFinal.push((quoteview ?: return@setOnClickListener).text.toString())
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
                 editor.apply()
 
                 done = true
@@ -216,12 +213,12 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
-                val list_arr = pref.getString("Favourites", "")
-                val list_arr_final = LinkedList(list_arr?.split("//"))
+                val listArr = pref.getString("Favourites", "")
+                val listArrFinal = LinkedList(listArr?.split("//"))
                 val text = (quoteview ?: return@setOnClickListener).text as String
-                list_arr_final.remove(text)
-                val string_out = list_arr_final.joinToString(separator = "//")
-                editor.putString("Favourites", string_out)
+                listArrFinal.remove(text)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
                 editor.apply()
                 done = false
                 (favourite ?: return@setOnClickListener).setImageDrawable(
@@ -251,10 +248,10 @@ class MainActivity : AppCompatActivity() {
 
         val pref = getSharedPreferences("List_system", 0)
         val editor = pref.edit()
-        val list_arr = pref.getString("Favourites", "")
-        val list_arr_final = LinkedList(list_arr?.split("//"))
+        val listArr = pref.getString("Favourites", "")
+        val listArrFinal = LinkedList(listArr?.split("//"))
 
-        if ((list_arr_final as MutableList<String?>).contains((quoteview ?: return).text)) {
+        if ((listArrFinal as MutableList<String?>).contains((quoteview ?: return).text)) {
             done = true
             (favourite ?: return).setImageDrawable(
                 ContextCompat.getDrawable(

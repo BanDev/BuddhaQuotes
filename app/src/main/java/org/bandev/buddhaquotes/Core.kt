@@ -29,11 +29,11 @@ class Core(val context: Context) {
         fun newItemInt(list: String, num: Int) {
             val pref = context.getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.push(quote.random(num))
-            val string_out = list_arr_final.joinToString(separator = "//")
-            editor.putString(list, string_out)
+            val listArr = pref.getString(list, "")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.push(quote.random(num))
+            val stringOut = listArrFinal.joinToString(separator = "//")
+            editor.putString(list, stringOut)
             editor.apply()
         }
 
@@ -67,11 +67,11 @@ class Core(val context: Context) {
         fun removeItem(list: String, num: Int) {
             val pref = context.getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.remove(quote.random(num))
-            val string_out = list_arr_final.joinToString(separator = "//")
-            editor.putString(list, string_out)
+            val listArr = pref.getString(list, "")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.remove(quote.random(num))
+            val stringOut = listArrFinal.joinToString(separator = "//")
+            editor.putString(list, stringOut)
             editor.apply()
         }
 
@@ -86,11 +86,11 @@ class Core(val context: Context) {
             val pref = context.getSharedPreferences("List_system", 0)
             val editor = pref.edit()
             editor.putString(text, "")
-            val list_arr = pref.getString("MASTER_LIST", "Favourites")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.add(text)
-            val string_out = list_arr_final.joinToString(separator = "//")
-            editor.putString("MASTER_LIST", string_out)
+            val listArr = pref.getString("MASTER_LIST", "Favourites")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.add(text)
+            val stringOut = listArrFinal.joinToString(separator = "//")
+            editor.putString("MASTER_LIST", stringOut)
             editor.apply()
         }
 
@@ -105,11 +105,11 @@ class Core(val context: Context) {
             val pref = context.getSharedPreferences("List_system", 0)
             val editor = pref.edit()
             editor.putString(text, "")
-            val list_arr = pref.getString("MASTER_LIST", "Favourites")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.remove(text)
-            val string_out = list_arr_final.joinToString(separator = "//")
-            editor.putString("MASTER_LIST", string_out)
+            val listArr = pref.getString("MASTER_LIST", "Favourites")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.remove(text)
+            val stringOut = listArrFinal.joinToString(separator = "//")
+            editor.putString("MASTER_LIST", stringOut)
             editor.apply()
         }
 
@@ -124,10 +124,9 @@ class Core(val context: Context) {
 
         fun writeList(list: String, seperator: String): String {
             val pref = context.getSharedPreferences("List_system", 0)
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            val string_out = list_arr_final.joinToString(separator = seperator)
-            return string_out
+            val listArr = pref.getString(list, "")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            return listArrFinal.joinToString(separator = seperator)
         }
         
     }

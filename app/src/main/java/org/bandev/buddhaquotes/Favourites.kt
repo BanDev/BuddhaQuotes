@@ -12,10 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -52,11 +48,11 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         val pref = getSharedPreferences("List_system", 0)
         val editor = pref.edit()
-        val list_arr = pref.getString("MASTER_LIST", "Favourites")
-        val list_arr_final = LinkedList(list_arr?.split("//"))
-        list_arr_final.remove(text)
-        val string_out = list_arr_final.joinToString(separator = "//")
-        editor.putString("MASTER_LIST", string_out)
+        val listArr = pref.getString("MASTER_LIST", "Favourites")
+        val listArrFinal = LinkedList(listArr?.split("//"))
+        listArrFinal.remove(text)
+        val stringOut = listArrFinal.joinToString(separator = "//")
+        editor.putString("MASTER_LIST", stringOut)
         editor.apply()
     }
 
