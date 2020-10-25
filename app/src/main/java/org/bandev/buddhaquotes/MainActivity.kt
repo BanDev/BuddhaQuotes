@@ -11,7 +11,6 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -26,8 +25,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private var done: Boolean? = null
-    private var quotenumber: Int = 0
-    private var quoteview: TextView? = null
+    private var quoteNumber: Int = 0
+    private var quoteView: TextView? = null
     private val quote = Quotes()
     private var share: FloatingActionButton? = null
     private var refresh: FloatingActionButton? = null
@@ -35,14 +34,13 @@ class MainActivity : AppCompatActivity() {
     private var list: List<String?>? = null
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String?>
-    private var noanim = false
-    private var firstpress = true
-    private var fontsize: String? = null
-    private var heartblack: Drawable? = null
+    private var noAnim = false
+    private var firstPress = true
+    private var fontSize: String? = null
+    private var heartBlack: Drawable? = null
     var toolbar: MaterialToolbar? = null
     private var settings: SharedPreferences? = null
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -87,14 +85,14 @@ class MainActivity : AppCompatActivity() {
         share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
-        heartblack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
-        quoteview = findViewById(R.id.quote)
+        heartBlack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
+        quoteView = findViewById(R.id.quote)
 
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        toolbar?.navigationIcon = heartblack
+        toolbar?.navigationIcon = heartBlack
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -110,8 +108,12 @@ class MainActivity : AppCompatActivity() {
 
         val view = View(this)
         view.doOnLayout {
-            view.windowInsetsController?.show(WindowInsets.Type.ime())
-            window.insetsController?.show(WindowInsets.Type.ime())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
         }
 
         view.setOnApplyWindowInsetsListener { view, insets ->
@@ -123,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
 
-                val text = quoteview?.text.toString() + "\n\n~Gautama Buddha"
+                val text = quoteView?.text.toString() + "\n\n~Gautama Buddha"
 
                 putExtra(Intent.EXTRA_TEXT, text)
                 type = "text/plain"
@@ -141,12 +143,12 @@ class MainActivity : AppCompatActivity() {
         // Get text size from shared preferences (was set in settings, defaults to medium (30px)) and sets it
         settings = getSharedPreferences("Settings", 0)
         val textsize: String? = settings?.getString("text_size", "md")
-        fontsize = when (textsize) {
+        fontSize = when (textsize) {
             "sm" -> "25"
             "lg" -> "35"
             else -> "30"
         }
-        (quoteview ?: return).textSize = (fontsize ?: return).toFloat()
+        (quoteView ?: return).textSize = (fontSize ?: return).toFloat()
 
         val rotateAnimation = RotateAnimation(
             0F,
@@ -160,12 +162,12 @@ class MainActivity : AppCompatActivity() {
 
         // When refresh is pressed
         (refresh ?: return).setOnClickListener {
-            if (firstpress) {
+            if (firstPress) {
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
-                firstpress = false
+                firstPress = false
             } else if (rotateAnimation.hasEnded()) {
-                noanim = true
+                noAnim = true
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
             }
@@ -191,7 +193,7 @@ class MainActivity : AppCompatActivity() {
                 val editor = pref.edit()
                 val listArr = pref.getString("Favourites", "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
-                listArrFinal.push((quoteview ?: return@setOnClickListener).text.toString())
+                listArrFinal.push((quoteView ?: return@setOnClickListener).text.toString())
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
                 editor.apply()
@@ -215,7 +217,7 @@ class MainActivity : AppCompatActivity() {
                 val editor = pref.edit()
                 val listArr = pref.getString("Favourites", "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
-                val text = (quoteview ?: return@setOnClickListener).text as String
+                val text = (quoteView ?: return@setOnClickListener).text as String
                 listArrFinal.remove(text)
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
@@ -237,7 +239,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun newQuote(Quote_Number_Local: Int) {
         val text = quote.random(Quote_Number_Local)
-        (quoteview ?: return).text = text
+        (quoteView ?: return).text = text
         done = false
         (favourite ?: return).setImageDrawable(
             ContextCompat.getDrawable(
@@ -251,7 +253,7 @@ class MainActivity : AppCompatActivity() {
         val listArr = pref.getString("Favourites", "")
         val listArrFinal = LinkedList(listArr?.split("//"))
 
-        if ((listArrFinal as MutableList<String?>).contains((quoteview ?: return).text)) {
+        if ((listArrFinal as MutableList<String?>).contains((quoteView ?: return).text)) {
             done = true
             (favourite ?: return).setImageDrawable(
                 ContextCompat.getDrawable(
@@ -265,8 +267,8 @@ class MainActivity : AppCompatActivity() {
             putInt("Quote_Number", quote.quotenumberglobal)
             commit()
         }
-        quotenumber = quote.quotenumberglobal
-        noanim = false
+        quoteNumber = quote.quotenumberglobal
+        noAnim = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -280,7 +282,7 @@ class MainActivity : AppCompatActivity() {
                 val myIntent =
                     Intent(this@MainActivity, Settings::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", quotenumber.toString())
+                mBundle.putString("quote", quoteNumber.toString())
                 myIntent.putExtras(mBundle)
                 this@MainActivity.startActivity(myIntent)
                 overridePendingTransition(
@@ -292,7 +294,7 @@ class MainActivity : AppCompatActivity() {
             android.R.id.home -> {
                 val intent2 = Intent(this@MainActivity, Favourites::class.java)
                 val mBundle = Bundle()
-                mBundle.putString("quote", quotenumber.toString())
+                mBundle.putString("quote", quoteNumber.toString())
                 intent2.putExtras(mBundle)
                 this@MainActivity.startActivity(intent2)
                 super.onOptionsItemSelected(item)

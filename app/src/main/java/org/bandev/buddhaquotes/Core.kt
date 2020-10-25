@@ -48,12 +48,12 @@ class Core(val context: Context) {
         fun newItemString(list: String, quote: String) {
             val pref = context.getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.push(quote)
-            val string_out = list_arr_final.joinToString(separator = "//")
-            editor.putString(list, string_out)
-            editor.commit()
+            val listArr = pref.getString(list, "")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.push(quote)
+            val stringOut = listArrFinal.joinToString(separator = "//")
+            editor.putString(list, stringOut)
+            editor.apply()
         }
 
         /**

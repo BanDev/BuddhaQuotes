@@ -15,9 +15,9 @@ import android.widget.RemoteViews
  */
 class Widget : AppWidgetProvider() {
 
-    var WIDGET_BUTTON = "org.bandev.buddhaquotes.WIDGET_BUTTON"
-    var WIDGET_LIKE = "org.bandev.buddhaquotes.WIDGET_LIKE"
-    var QUOTE_CURRENT = "Test"
+    var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
+    var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
+    private var quoteCurrent: String = "Test"
     private val views: RemoteViews? = null
     private var x = 0
 
@@ -34,8 +34,8 @@ class Widget : AppWidgetProvider() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action.equals(WIDGET_BUTTON, ignoreCase = true)) {
-            var views = RemoteViews(context.packageName, R.layout.widget)
+        if (intent.action.equals(widgetButton, ignoreCase = true)) {
+            val views = RemoteViews(context.packageName, R.layout.widget)
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
@@ -44,11 +44,11 @@ class Widget : AppWidgetProvider() {
                 )
             )
             x++
-            QUOTE_CURRENT = Quotes().random(0)
-            views.setTextViewText(R.id.appwidget_text, QUOTE_CURRENT)
+            quoteCurrent = Quotes().random(0)
+            views.setTextViewText(R.id.appwidget_text, quoteCurrent)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
-        }else if (intent.action.equals(WIDGET_LIKE, ignoreCase = true)) {
-            var views = RemoteViews(context.packageName, R.layout.widget)
+        } else if (intent.action.equals(widgetLike, ignoreCase = true)) {
+            val views = RemoteViews(context.packageName, R.layout.widget)
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
@@ -57,7 +57,7 @@ class Widget : AppWidgetProvider() {
                 )
             )
             x++
-            Core(context).Lists().newItemString("Favourites", QUOTE_CURRENT)
+            Core(context).Lists().newItemString("Favourites", quoteCurrent)
             views.setImageViewResource(R.id.like, R.drawable.heart_full_red)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         }
@@ -93,7 +93,7 @@ internal fun updateAppWidget(
     views.setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
     //views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
 
-     views.setTextViewText(R.id.appwidget_text, Quotes().random(0))
+    views.setTextViewText(R.id.appwidget_text, Quotes().random(0))
 
     getPenIntent(context)
     // Instruct the widget manager to update the widget
@@ -102,12 +102,12 @@ internal fun updateAppWidget(
 
 fun getPenIntent(context: Context): PendingIntent {
     val intent = Intent(context, Widget::class.java)
-    intent.action = Widget().WIDGET_BUTTON
+    intent.action = Widget().widgetButton
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
 fun getPenIntent2(context: Context): PendingIntent {
     val intent = Intent(context, Widget::class.java)
-    intent.action = Widget().WIDGET_LIKE
+    intent.action = Widget().widgetLike
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }

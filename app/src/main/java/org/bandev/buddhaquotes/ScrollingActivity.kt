@@ -6,15 +6,17 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.*
-import androidx.annotation.RequiresApi
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import java.util.*
@@ -29,7 +31,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     private lateinit var prefList: List<String>
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
@@ -74,9 +75,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         val view = View(this)
         view.doOnLayout {
-            view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
-            window.insetsController?.show(WindowInsets.Type.ime())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
         }
 
         view.setOnApplyWindowInsetsListener { view, insets ->
