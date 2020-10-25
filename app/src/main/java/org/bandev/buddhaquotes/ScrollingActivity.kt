@@ -22,26 +22,26 @@ import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
-    lateinit var scrollingList: ArrayList<ExampleItem>
-    lateinit var adapter: ScrollingAdapter
+    private lateinit var scrollingList: ArrayList<ExampleItem>
+    private lateinit var adapter: ScrollingAdapter
 
-    var list_tmp = ""
+    private var list_tmp: String = ""
 
-    lateinit var pref_list: List<String>
+    private lateinit var pref_list: List<String>
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
-        var back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
-        var toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
-        var list = intent.getStringExtra("list")!!.toString()
+        val list = (intent.getStringExtra("list") ?: return).toString()
         list_tmp = list
 
         val pref = getSharedPreferences("List_system", 0)
         val pref_string = pref.getString(list_tmp, "")
-        pref_list = pref_string!!.split("//").toMutableList()
+        pref_list = (pref_string ?: return).split("//").toMutableList()
 
         //(pref_list as MutableList<String>).removeAt(0)
 
@@ -57,7 +57,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
 
-        toolbar.navigationIcon = back;
+        toolbar.navigationIcon = back
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -123,10 +123,10 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     }
 
     override fun onLikeClick(position: Int, text: String) {
-        if(list_tmp != "Favourites"){
+        if (list_tmp != "Favourites") {
             val clickedItem = scrollingList[position]
 
-            if(clickedItem.resource == R.drawable.heart_full_red){
+            if (clickedItem.resource == R.drawable.heart_full_red) {
                 clickedItem.resource = R.drawable.like
 
                 val pref = getSharedPreferences("List_system", 0)
@@ -136,9 +136,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 list_arr_final.remove(text)
                 val string_out = list_arr_final.joinToString(separator = "//")
                 editor.putString("Favourites", string_out)
-                editor.commit()
+                editor.apply()
 
-            }else{
+            } else {
                 clickedItem.resource = R.drawable.heart_full_red
 
                 val pref = getSharedPreferences("List_system", 0)
@@ -148,7 +148,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 list_arr_final.push(text)
                 val string_out = list_arr_final.joinToString(separator = "//")
                 editor.putString("Favourites", string_out)
-                editor.commit()
+                editor.apply()
 
             }
 
@@ -188,7 +188,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         list_arr_final.remove(text)
         val string_out = list_arr_final.joinToString(separator = "//")
         editor.putString(list_tmp, string_out)
-        editor.commit()
+        editor.apply()
 
     }
 
@@ -204,15 +204,15 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         val list_arr_final = LinkedList(list_arr?.split("//"))
 
 
-        while (i != max){
+        while (i != max) {
             var special = false
-            if(list_tmp == "Favourites"){
+            if (list_tmp == "Favourites") {
                 special = true
             }
-            if ((list_arr_final as MutableList<String?>).contains(pref_list[i])) {
-                item = ExampleItem(pref_list[i], R.drawable.heart_full_red, special)
-            }else{
-                item = ExampleItem(pref_list[i], R.drawable.like, special)
+            item = if ((list_arr_final as MutableList<String?>).contains(pref_list[i])) {
+                ExampleItem(pref_list[i], R.drawable.heart_full_red, special)
+            } else {
+                ExampleItem(pref_list[i], R.drawable.like, special)
             }
 
             list += item

@@ -45,7 +45,7 @@
     <string name="about_licaon">"@licaon-kter"</string>
     <string name="about_poussinou">"@Poussinou"</string>
     <string name="about_acknowledgements">Acknowledgements</string>
-    <string name="about_attribution">Launcher icon - Freepik via Flaticon</string>
+    <string name="about_attribution">Launcher icon - Freepik via <a href = "TODO">Flaticon</a></string>
     <string name="tick">Tick</string>
 
     <!-- Help/Welcome page -->

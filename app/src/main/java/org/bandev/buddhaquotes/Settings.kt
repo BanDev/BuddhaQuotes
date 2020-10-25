@@ -42,7 +42,7 @@ class Settings : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.black, null)
+                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
             }
         }
@@ -85,7 +85,7 @@ class Settings : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -153,10 +153,10 @@ class Settings : AppCompatActivity() {
                 listPreference?.setValueIndex(2)
             } else if (dark) {
                 listPreference?.setValueIndex(1) // Set to index of your default value
-                listPreference?.setIcon(R.drawable.night_settings)
+                listPreference?.setIcon(R.drawable.ic_night_settings)
             } else if (!dark) {
                 listPreference?.setValueIndex(0)
-                listPreference?.setIcon(R.drawable.day_settings)
+                listPreference?.setIcon(R.drawable.ic_day_settings)
             }
 
 

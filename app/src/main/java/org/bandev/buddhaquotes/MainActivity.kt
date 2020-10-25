@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                             ResourcesCompat.getColor(resources, R.color.transparent, null)
                     } else {
                         window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.black, null)
+                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
@@ -194,10 +194,10 @@ class MainActivity : AppCompatActivity() {
                 val editor = pref.edit()
                 val list_arr = pref.getString("Favourites", "")
                 val list_arr_final = LinkedList(list_arr?.split("//"))
-                list_arr_final.push(quoteview!!.text.toString())
+                list_arr_final.push((quoteview ?: return@setOnClickListener).text.toString())
                 val string_out = list_arr_final.joinToString(separator = "//")
                 editor.putString("Favourites", string_out)
-                editor.commit()
+                editor.apply()
 
                 done = true
                 (favourite ?: return@setOnClickListener).setImageDrawable(
@@ -222,7 +222,7 @@ class MainActivity : AppCompatActivity() {
                 list_arr_final.remove(text)
                 val string_out = list_arr_final.joinToString(separator = "//")
                 editor.putString("Favourites", string_out)
-                editor.commit()
+                editor.apply()
                 done = false
                 (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(

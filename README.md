@@ -69,7 +69,7 @@
 <h2 id="features">Features</h2>
 <ul>
 <li>Dark mode</li>
-<li>Over 340 quotes!</li>
+<li>Over 330 quotes!</li>
 <li>Favourite quotes</li>
 <li>Free, libre and open source</li>
 <li>No ads</li>
