@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -17,7 +16,6 @@ import androidx.core.view.updatePadding
 
 class License : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license)
@@ -72,9 +70,12 @@ class License : AppCompatActivity() {
 
         val view = View(this)
         view.doOnLayout {
-            view.windowInsetsController?.show(WindowInsets.Type.ime())
-            // You can also access it from Window
-            window.insetsController?.show(WindowInsets.Type.ime())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
         }
 
         view.setOnApplyWindowInsetsListener { view, insets ->

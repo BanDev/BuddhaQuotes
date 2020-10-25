@@ -9,7 +9,6 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.*
 import android.widget.ScrollView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -22,7 +21,6 @@ import nl.dionsegijn.konfetti.models.Size
 
 class About : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -101,8 +99,12 @@ class About : AppCompatActivity() {
 
         val view = View(this)
         view.doOnLayout {
-            view.windowInsetsController?.show(WindowInsets.Type.ime())
-            window.insetsController?.show(WindowInsets.Type.ime())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
         }
 
         view.setOnApplyWindowInsetsListener { view, insets ->
