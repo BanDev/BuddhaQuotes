@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_refresh_24"
+        app:srcCompat="@drawable/ic_refresh"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/refresh" />
@@ -51,12 +51,12 @@
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_navigate_next_24"
-        app:iconTint="@color/white"
+        app:icon="@drawable/ic_navigate_next"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -98,7 +98,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_refresh_24"
+        app:srcCompat="@drawable/ic_refresh"
         android:contentDescription="@string/refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,7 +70,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/mt_bold"
         android:text="@string/licenses_license"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/myRectangleView"
@@ -264,7 +264,7 @@
         app:layout_constraintHorizontal_bias="0.616"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:srcCompat="@drawable/ic_green_circle_24" />
+        app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -274,7 +274,7 @@
         app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toEndOf="@+id/textView24"
         app:layout_constraintTop_toTopOf="@+id/textView24"
-        app:srcCompat="@drawable/ic_blue_circle_24" />
+        app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -284,7 +284,7 @@
         app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toEndOf="@+id/textView25"
         app:layout_constraintTop_toTopOf="@+id/textView25"
-        app:srcCompat="@drawable/ic_blue_circle_24" />
+        app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -294,7 +294,7 @@
         app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toEndOf="@+id/textView25"
         app:layout_constraintTop_toTopOf="@+id/textView26"
-        app:srcCompat="@drawable/ic_blue_circle_24" />
+        app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -304,7 +304,7 @@
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toTopOf="@+id/textView29"
-        app:srcCompat="@drawable/ic_red_circle_24" />
+        app:srcCompat="@drawable/ic_red_circle"/>
 
     <ImageView
         android:layout_width="39dp"
@@ -314,7 +314,7 @@
         app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toEndOf="@+id/textView28"
         app:layout_constraintTop_toTopOf="@+id/textView28"
-        app:srcCompat="@drawable/ic_red_circle_24" />
+        app:srcCompat="@drawable/ic_red_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -324,7 +324,7 @@
         app:layout_constraintHorizontal_bias="0.616"
         app:layout_constraintStart_toEndOf="@+id/textView23"
         app:layout_constraintTop_toTopOf="@+id/textView23"
-        app:srcCompat="@drawable/ic_blue_circle_24" />
+        app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -335,7 +335,7 @@
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:srcCompat="@drawable/ic_green_circle_24" />
+        app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -345,7 +345,7 @@
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10"
-        app:srcCompat="@drawable/ic_green_circle_24" />
+        app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -355,7 +355,7 @@
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:srcCompat="@drawable/ic_green_circle_24" />
+        app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
         android:layout_width="39dp"
@@ -365,7 +365,7 @@
         app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/textView7"
-        app:srcCompat="@drawable/ic_green_circle_24" />
+        app:srcCompat="@drawable/ic_green_circle" />
 
     <Button
         android:id="@+id/button"
@@ -379,11 +379,11 @@
         android:letterSpacing="0.0"
         android:text="@string/licenses_full_license"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_gavel_24"
-        app:iconTint="@color/white"
+        app:icon="@drawable/ic_gavel"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

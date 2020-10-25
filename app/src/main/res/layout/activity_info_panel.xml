@@ -47,7 +47,7 @@
             android:paddingEnd="15dp"
             android:text="@string/favourited_quote"
             android:textAlignment="textEnd"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="36dp"
-        app:srcCompat="@drawable/ic_delete_outline_24"
+        app:srcCompat="@drawable/ic_delete_outline"
         app:tint="@android:color/white"
         android:focusable="true"
         android:contentDescription="@string/favourite_quote_delete" />
