@@ -24,6 +24,8 @@
 
         <activity android:name=".WidgetConfigureActivity">
             <intent-filter>
+                <action android:name="org.bandev.buddhaquotes.WIDGET_BUTTON" />
+                <action android:name="org.bandev.buddhaquotes.WIDGET_LIKE" />
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
