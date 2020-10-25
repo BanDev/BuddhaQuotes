@@ -5,11 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recycler_card.view.*
 import kotlinx.android.synthetic.main.recycler_card.view.bin
-import kotlinx.android.synthetic.main.recycler_card.view.share
 import kotlinx.android.synthetic.main.recycler_card_2.view.*
 
 class ListMenuAdapter(
@@ -31,11 +28,11 @@ class ListMenuAdapter(
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
         val currentItem = scrollingList[position]
 
-        holder.text_title.text = currentItem.title
-        holder.text_summary.text = currentItem.summary
+        holder.textTitle.text = currentItem.title
+        holder.textSummary.text = currentItem.summary
 
         if (currentItem.special) {
-            holder.icon_bin.visibility = View.GONE
+            holder.iconBin.visibility = View.GONE
         }
 
     }
@@ -44,9 +41,9 @@ class ListMenuAdapter(
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val text_title: TextView = itemView.title
-        val text_summary: TextView = itemView.summary
-        val icon_bin: ImageView = itemView.bin
+        val textTitle: TextView = itemView.title
+        val textSummary: TextView = itemView.summary
+        val iconBin: ImageView = itemView.bin
 
         init {
             itemView.setOnClickListener {
@@ -59,7 +56,7 @@ class ListMenuAdapter(
             itemView.bin.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, text_title.text.toString())
+                    listener.onBinClick(position, textTitle.text.toString())
                 }
             }
         }
@@ -67,14 +64,14 @@ class ListMenuAdapter(
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, text_title.toString())
+                listener.onLikeClick(position, textTitle.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, text_title.toString())
+                listener.onLikeClick(position, textTitle.toString())
             }
             // Return true to indicate the click was handled
             return true

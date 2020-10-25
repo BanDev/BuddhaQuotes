@@ -34,7 +34,8 @@
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toEndOf="@+id/like"
             app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/share" />
+            app:srcCompat="@drawable/share"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/bin"
@@ -45,7 +46,8 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@+id/quote"
             app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/ic_delete" />
+            app:srcCompat="@drawable/ic_delete"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/like"
@@ -58,7 +60,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/share"
             app:layout_constraintStart_toStartOf="@+id/quote"
             app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/like" />
+            app:srcCompat="@drawable/like"
+            android:contentDescription="TODO" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

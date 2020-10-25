@@ -45,6 +45,10 @@ class Settings : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
             }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
+            }
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {

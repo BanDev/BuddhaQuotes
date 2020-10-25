@@ -47,14 +47,14 @@ class AddList : AppCompatActivity() {
 
             val pref = getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.push(quote.random(num.toInt()))
-            val string_out = list_arr_final.joinToString(separator = "//")
+            val listArr = pref.getString(list, "")
+            val listArrFinal = LinkedList(listArr?.split("//"))
+            listArrFinal.push(quote.random(num.toInt()))
+            val stringOut = listArrFinal.joinToString(separator = "//")
 
-            Toast.makeText(this, string_out, LENGTH_SHORT).show()
+            Toast.makeText(this, stringOut, LENGTH_SHORT).show()
 
-            editor.putString(list, string_out)
+            editor.putString(list, stringOut)
             editor.apply()
 
             mBundle.putString("list", list)

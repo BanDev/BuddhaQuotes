@@ -25,9 +25,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     private lateinit var scrollingList: ArrayList<ExampleItem>
     private lateinit var adapter: ScrollingAdapter
 
-    private var list_tmp: String = ""
+    private var listTmp: String = ""
 
-    private lateinit var pref_list: List<String>
+    private lateinit var prefList: List<String>
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,15 +37,15 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
 
         val list = (intent.getStringExtra("list") ?: return).toString()
-        list_tmp = list
+        listTmp = list
 
         val pref = getSharedPreferences("List_system", 0)
-        val pref_string = pref.getString(list_tmp, "")
-        pref_list = (pref_string ?: return).split("//").toMutableList()
+        val prefString = pref.getString(listTmp, "")
+        prefList = (prefString ?: return).split("//").toMutableList()
 
         //(pref_list as MutableList<String>).removeAt(0)
 
-        scrollingList = generateDummyList(pref_list.size)
+        scrollingList = generateDummyList(prefList.size)
 
         adapter = ScrollingAdapter(scrollingList, this)
 
@@ -107,7 +107,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
             R.id.add -> {
                 val intent2 = Intent(this, AddList::class.java)
                 val b = Bundle()
-                b.putString("list", list_tmp) // Your id
+                b.putString("list", listTmp) // Your id
                 intent2.putExtras(b)
                 this.startActivity(intent2)
                 true
@@ -123,7 +123,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     }
 
     override fun onLikeClick(position: Int, text: String) {
-        if (list_tmp != "Favourites") {
+        if (listTmp != "Favourites") {
             val clickedItem = scrollingList[position]
 
             if (clickedItem.resource == R.drawable.heart_full_red) {
@@ -131,11 +131,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
-                val list_arr = pref.getString("Favourites", "")
-                val list_arr_final = LinkedList(list_arr?.split("//"))
-                list_arr_final.remove(text)
-                val string_out = list_arr_final.joinToString(separator = "//")
-                editor.putString("Favourites", string_out)
+                val listArr = pref.getString("Favourites", "")
+                val listArrFinal = LinkedList(listArr?.split("//"))
+                listArrFinal.remove(text)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
                 editor.apply()
 
             } else {
@@ -143,11 +143,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
-                val list_arr = pref.getString("Favourites", "")
-                val list_arr_final = LinkedList(list_arr?.split("//"))
-                list_arr_final.push(text)
-                val string_out = list_arr_final.joinToString(separator = "//")
-                editor.putString("Favourites", string_out)
+                val listArr = pref.getString("Favourites", "")
+                val listArrFinal = LinkedList(listArr?.split("//"))
+                listArrFinal.push(text)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
                 editor.apply()
 
             }
@@ -183,11 +183,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         val pref = getSharedPreferences("List_system", 0)
         val editor = pref.edit()
-        val list_arr = pref.getString(list_tmp, "")
-        val list_arr_final = LinkedList(list_arr?.split("//"))
-        list_arr_final.remove(text)
-        val string_out = list_arr_final.joinToString(separator = "//")
-        editor.putString(list_tmp, string_out)
+        val listArr = pref.getString(listTmp, "")
+        val listArrFinal = LinkedList(listArr?.split("//"))
+        listArrFinal.remove(text)
+        val stringOut = listArrFinal.joinToString(separator = "//")
+        editor.putString(listTmp, stringOut)
         editor.apply()
 
     }
@@ -200,19 +200,19 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         var item: ExampleItem
 
         val pref = getSharedPreferences("List_system", 0)
-        val list_arr = pref.getString("Favourites", "")
-        val list_arr_final = LinkedList(list_arr?.split("//"))
+        val listArr = pref.getString("Favourites", "")
+        val listArrFinal = LinkedList(listArr?.split("//"))
 
 
         while (i != max) {
             var special = false
-            if (list_tmp == "Favourites") {
+            if (listTmp == "Favourites") {
                 special = true
             }
-            item = if ((list_arr_final as MutableList<String?>).contains(pref_list[i])) {
-                ExampleItem(pref_list[i], R.drawable.heart_full_red, special)
+            item = if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
+                ExampleItem(prefList[i], R.drawable.heart_full_red, special)
             } else {
-                ExampleItem(pref_list[i], R.drawable.like, special)
+                ExampleItem(prefList[i], R.drawable.like, special)
             }
 
             list += item
