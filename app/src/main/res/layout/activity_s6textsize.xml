@@ -17,12 +17,12 @@
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_navigate_next_24"
-        app:iconTint="@color/white"
+        app:icon="@drawable/ic_navigate_next"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_text_accent_24"
+        app:srcCompat="@drawable/ic_text_accent"
         android:contentDescription="@string/text_size" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

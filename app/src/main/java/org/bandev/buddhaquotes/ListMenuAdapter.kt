@@ -34,8 +34,8 @@ class ListMenuAdapter(
         holder.text_title.text = currentItem.title
         holder.text_summary.text = currentItem.summary
 
-        if(currentItem.special){
-            holder.icon_bin.setVisibility(View.GONE)
+        if (currentItem.special) {
+            holder.icon_bin.visibility = View.GONE
         }
 
     }
@@ -52,7 +52,7 @@ class ListMenuAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                   listener.onShareClick(position)
+                    listener.onShareClick(position)
                 }
             }
 

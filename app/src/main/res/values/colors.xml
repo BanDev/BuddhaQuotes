@@ -4,13 +4,10 @@
     <color name="colorPrimary">#ff4155</color>
     <color name="colorAccent">#ff4155</color>
     <color name="colorAlsoAccent">#E80054</color>
-    <color name="white">#ffffff</color>
-    <color name="black">#000</color>
     <color name="colorTop">#E80054</color>
     <color name="colorWaveLight">#ff4155</color>
     <color name="colorWaveDark">#E80054</color>
     <color name="transparent">@android:color/transparent</color>
-
 
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#f0f0f0</color>

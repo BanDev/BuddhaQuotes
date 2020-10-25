@@ -25,7 +25,7 @@
         android:paddingEnd="20dp"
         android:text="@string/textview"
         android:textAlignment="textStart"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -53,7 +53,7 @@
             android:fontFamily="@font/mt_bold"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
@@ -75,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_refresh_24"
+        app:srcCompat="@drawable/ic_refresh"
         app:tint="@color/colorAccent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -111,7 +111,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
-        app:srcCompat="@drawable/ic_share_24"
+        app:srcCompat="@drawable/ic_share"
         app:tint="@color/colorAccent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

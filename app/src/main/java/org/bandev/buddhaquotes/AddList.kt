@@ -31,7 +31,7 @@ class AddList : AppCompatActivity() {
         val list = (intent.getStringExtra("list") ?: return).toString()
 
         //Setup toolbar
-        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
+        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "Add to List"
         toolbar.navigationIcon = back
@@ -45,7 +45,17 @@ class AddList : AppCompatActivity() {
             val intent2 = Intent(this, ScrollingActivity::class.java)
             val mBundle = Bundle()
 
-            Core(this).Lists().newItemInt(list, num.toInt())
+            val pref = getSharedPreferences("List_system", 0)
+            val editor = pref.edit()
+            val list_arr = pref.getString(list, "")
+            val list_arr_final = LinkedList(list_arr?.split("//"))
+            list_arr_final.push(quote.random(num.toInt()))
+            val string_out = list_arr_final.joinToString(separator = "//")
+
+            Toast.makeText(this, string_out, LENGTH_SHORT).show()
+
+            editor.putString(list, string_out)
+            editor.apply()
 
             mBundle.putString("list", list)
             intent2.putExtras(mBundle)

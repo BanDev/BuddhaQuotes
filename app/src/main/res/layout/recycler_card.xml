@@ -45,7 +45,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="@+id/quote"
             app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/bin" />
+            app:srcCompat="@drawable/ic_delete" />
 
         <ImageView
             android:id="@+id/like"

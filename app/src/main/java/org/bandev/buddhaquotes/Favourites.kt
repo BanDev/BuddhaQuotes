@@ -30,10 +30,10 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         TODO("Not yet implemented")
     }
 
-    lateinit var scrollingList: ArrayList<ListMenuItem>
-    lateinit var adapter: ListMenuAdapter
-    lateinit var favs: Array<String?>
-    lateinit var array: Array<String>
+    private lateinit var scrollingList: ArrayList<ListMenuItem>
+    private lateinit var adapter: ListMenuAdapter
+    private lateinit var favs: Array<String?>
+    private lateinit var array: Array<String>
 
     override fun onShareClick(position: Int) {
         val intent2 = Intent(this, ScrollingActivity::class.java)
@@ -57,7 +57,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         list_arr_final.remove(text)
         val string_out = list_arr_final.joinToString(separator = "//")
         editor.putString("MASTER_LIST", string_out)
-        editor.commit()
+        editor.apply()
     }
 
     private fun vibratePhone() {
@@ -86,7 +86,6 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
 
-
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,32 +95,29 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             Configuration.UI_MODE_NIGHT_NO -> {
             } // Night mode is not active, we're using the light theme
             Configuration.UI_MODE_NIGHT_YES -> {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
             }
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
         } else {
             window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
+                ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
         }
 
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)
         window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDefaultDisplayHomeAsUpEnabled(true)
-        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24)
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
 
         myToolbar.navigationIcon = back
-
-
-
 
 
         val pref = getSharedPreferences("List_system", 0)
@@ -143,19 +139,19 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         val list = ArrayList<ListMenuItem>()
 
         var i = 0
-        while (i != max){
+        while (i != max) {
             var special = false
             val pref = getSharedPreferences("List_system", 0)
             val array2 = pref.getString(array[i], "")!!.split("//")
-            val count: Int = array2.count()
-            if(array[i] == "Favourites"){
+            val count: Int = array2.size
+            if (array[i] == "Favourites") {
                 special = true
             }
             var summary = ""
-            if(count != 1){
-                summary = "$count items"
-            }else{
-                summary = "$count item"
+            summary = if (count != 1) {
+                "$count items"
+            } else {
+                "$count item"
             }
             val item = ListMenuItem(array[i], summary, special)
             list += item

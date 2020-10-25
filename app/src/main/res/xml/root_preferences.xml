@@ -8,7 +8,7 @@
         <ListPreference
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
-            app:icon="@drawable/ic_palette_24"
+            app:icon="@drawable/ic_palette"
             app:key="theme"
             app:title="@string/app_theme"
             android:layout="@layout/pref_single"
@@ -17,7 +17,7 @@
         <ListPreference
             app:entries="@array/size_entries"
             app:entryValues="@array/size_values"
-            app:icon="@drawable/ic_text_fields_24"
+            app:icon="@drawable/ic_text_fields"
             app:key="size"
             app:title="@string/text_size"
             android:layout="@layout/pref_single"
@@ -41,28 +41,28 @@
             android:title="@string/about"
             android:summary="@string/view_app_details"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_info_24" />
+            app:icon="@drawable/ic_info" />
 
         <Preference
             android:key="help"
             android:title="@string/help"
             android:summary="@string/app_introduction"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_help_24" />
+            app:icon="@drawable/ic_help" />
 
         <Preference
             android:key="license"
             android:title="@string/app_license"
             android:summary="@string/gplv3"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_gavel_24" />
+            app:icon="@drawable/ic_gavel" />
 
         <Preference
             android:key="oss_libraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
             android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_library_books_24" />
+            app:icon="@drawable/ic_library_books" />
 
     </PreferenceCategory>
 

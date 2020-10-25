@@ -30,7 +30,7 @@ class ScrollingAdapter(
         holder.text_quote.text = currentItem.quote
         holder.icon_like.setImageResource(currentItem.resource)
 
-        if(currentItem.no_like){
+        if (currentItem.no_like) {
             holder.icon_like.setImageResource(R.drawable.heart_full_red)
         }
     }

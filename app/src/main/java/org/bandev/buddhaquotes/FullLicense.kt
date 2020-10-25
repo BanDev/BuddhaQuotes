@@ -36,7 +36,7 @@ class FullLicense : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
                     WebSettingsCompat.setForceDark(
@@ -71,7 +71,7 @@ class FullLicense : AppCompatActivity() {
         setSupportActionBar(myToolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         window.statusBarColor = ContextCompat.getColor(this@FullLicense, R.color.colorTop)
 
     }
