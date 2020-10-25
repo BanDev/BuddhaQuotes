@@ -45,17 +45,7 @@ class AddList : AppCompatActivity() {
             val intent2 = Intent(this, ScrollingActivity::class.java)
             val mBundle = Bundle()
 
-            val pref = getSharedPreferences("List_system", 0)
-            val editor = pref.edit()
-            val list_arr = pref.getString(list, "")
-            val list_arr_final = LinkedList(list_arr?.split("//"))
-            list_arr_final.push(quote.random(num.toInt()))
-            val string_out = list_arr_final.joinToString(separator = "//")
-
-            Toast.makeText(this, string_out, LENGTH_SHORT).show()
-
-            editor.putString(list, string_out)
-            editor.commit()
+            Core(this).Lists().newItemInt(list, num.toInt())
 
             mBundle.putString("list", list)
             intent2.putExtras(mBundle)
