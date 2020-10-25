@@ -40,7 +40,7 @@ class S4Refresh : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.colorTop, null)
+                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     window.statusBarColor =

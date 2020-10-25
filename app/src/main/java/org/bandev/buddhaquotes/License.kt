@@ -34,7 +34,7 @@ class License : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 } else {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.black, null)
+                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
             }
         }
@@ -52,7 +52,7 @@ class License : AppCompatActivity() {
         }
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back_24)
+        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAlsoAccent)
 

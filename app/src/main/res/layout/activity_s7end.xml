@@ -17,12 +17,12 @@
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/slide_7_open_app"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:cornerRadius="11dp"
-        app:icon="@drawable/ic_launch_24"
-        app:iconTint="@color/white"
+        app:icon="@drawable/ic_launch"
+        app:iconTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_done_all_24"
+        app:srcCompat="@drawable/ic_double_tick"
         android:contentDescription="@string/slide_7_double_tick" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

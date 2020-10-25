@@ -16,7 +16,7 @@ class Core(val context: Context) {
 
     inner class Lists {
 
-        val quote = Quotes()
+        val quote: Quotes = Quotes()
 
 
         /**
@@ -34,7 +34,7 @@ class Core(val context: Context) {
             list_arr_final.push(quote.random(num))
             val string_out = list_arr_final.joinToString(separator = "//")
             editor.putString(list, string_out)
-            editor.commit()
+            editor.apply()
         }
 
 
@@ -53,7 +53,7 @@ class Core(val context: Context) {
             list_arr_final.remove(quote.random(num))
             val string_out = list_arr_final.joinToString(separator = "//")
             editor.putString(list, string_out)
-            editor.commit()
+            editor.apply()
         }
 
 
@@ -72,7 +72,7 @@ class Core(val context: Context) {
             list_arr_final.add(text)
             val string_out = list_arr_final.joinToString(separator = "//")
             editor.putString("MASTER_LIST", string_out)
-            editor.commit()
+            editor.apply()
         }
 
 
@@ -91,7 +91,7 @@ class Core(val context: Context) {
             list_arr_final.remove(text)
             val string_out = list_arr_final.joinToString(separator = "//")
             editor.putString("MASTER_LIST", string_out)
-            editor.commit()
+            editor.apply()
         }
 
 

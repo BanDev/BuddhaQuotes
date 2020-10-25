@@ -26,7 +26,7 @@ class CreateNewList : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
         //Setup toolbar
-        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_24) ?: return)
+        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "Create New List"
         toolbar.navigationIcon = back

@@ -43,7 +43,7 @@ class InfoPanel : AppCompatActivity() {
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
         } else {
             window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.black, null)
+                ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
         }
 
         val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
