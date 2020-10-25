@@ -27,11 +27,11 @@ class ScrollingAdapter(
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
         val currentItem = scrollingList[position]
 
-        holder.text_quote.text = currentItem.quote
-        holder.icon_like.setImageResource(currentItem.resource)
+        holder.textQuote.text = currentItem.quote
+        holder.iconLike.setImageResource(currentItem.resource)
 
         if (currentItem.no_like) {
-            holder.icon_like.setImageResource(R.drawable.heart_full_red)
+            holder.iconLike.setImageResource(R.drawable.heart_full_red)
         }
     }
 
@@ -39,13 +39,13 @@ class ScrollingAdapter(
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val text_quote: TextView = itemView.quote
-        val icon_like: ImageView = itemView.like
+        val textQuote: TextView = itemView.quote
+        val iconLike: ImageView = itemView.like
         private val share: ImageView = itemView.share
         private val bin: ImageView = itemView.bin
 
         init {
-            icon_like.setOnClickListener(this)
+            iconLike.setOnClickListener(this)
             share.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -56,7 +56,7 @@ class ScrollingAdapter(
             bin.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, text_quote.text.toString())
+                    listener.onBinClick(position, textQuote.text.toString())
                 }
             }
         }
@@ -64,14 +64,14 @@ class ScrollingAdapter(
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, text_quote.text.toString())
+                listener.onLikeClick(position, textQuote.text.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, text_quote.text.toString())
+                listener.onLikeClick(position, textQuote.text.toString())
             }
             // Return true to indicate the click was handled
             return true
