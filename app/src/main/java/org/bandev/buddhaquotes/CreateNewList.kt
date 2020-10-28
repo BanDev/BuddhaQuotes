@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 
 class CreateNewList : AppCompatActivity() {
 
-    lateinit var toolbar: MaterialToolbar
+    lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var back: Drawable
     private lateinit var go: Button
     lateinit var name: EditText
@@ -28,6 +29,8 @@ class CreateNewList : AppCompatActivity() {
         //Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         toolbar.title = "Create New List"
         toolbar.navigationIcon = back
 
@@ -40,7 +43,7 @@ class CreateNewList : AppCompatActivity() {
             //Add new list to MASTER_LIST & create a list for itself
             val pref = getSharedPreferences("List_system", 0)
             val editor = pref.edit()
-            editor.putString(text, "")
+            editor.putString(text, Quotes().random(0))
             editor.putString(
                 "MASTER_LIST",
                 (pref.getString("MASTER_LIST", "Favourites") + "//" + text)

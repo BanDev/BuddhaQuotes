@@ -2,15 +2,25 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowInsets
+import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
+import com.reddit.indicatorfastscroll.FastScrollItemIndicator
+import com.reddit.indicatorfastscroll.FastScrollerView
 import java.util.*
+
 
 class AddList : AppCompatActivity() {
 
@@ -28,42 +38,152 @@ class AddList : AppCompatActivity() {
         //Set status bar colors
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
+
+
+
         val list = (intent.getStringExtra("list") ?: return).toString()
 
+
+
         //Setup toolbar
+
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "Add to List"
         toolbar.navigationIcon = back
+        setSupportActionBar(toolbar)
 
-        //Setup button & onclick
-        go = findViewById(R.id.go)
-        go.setOnClickListener {
-            number = findViewById(R.id.number)
-            num = number.text.toString()
-
-            val intent2 = Intent(this, ScrollingActivity::class.java)
-            val mBundle = Bundle()
-
-            val pref = getSharedPreferences("List_system", 0)
-            val editor = pref.edit()
-            val listArr = pref.getString(list, "")
-            val listArrFinal = LinkedList(listArr?.split("//"))
-            listArrFinal.push(quote.random(num.toInt()))
-            val stringOut = listArrFinal.joinToString(separator = "//")
-
-            Toast.makeText(this, stringOut, LENGTH_SHORT).show()
-
-            editor.putString(list, stringOut)
-            editor.apply()
-
-            mBundle.putString("list", list)
-            intent2.putExtras(mBundle)
-            this.startActivity(intent2)
-            overridePendingTransition(
-                R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right
-            )
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
+
+        val param = (toolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        (toolbar ?: return).layoutParams = param
+
+        val view = View(this)
+        view.doOnLayout {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
+        }
+
+        view.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
+
+        val searchView = findViewById<SearchView>(R.id.searchView)
+        val listView = findViewById<ListView>(R.id.listView)
+
+        listView.setFastScrollEnabled(true)
+
+        val names = genList()
+
+        val adapter:ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
+
+        listView.adapter = adapter
+
+        listView.onItemClickListener =
+            OnItemClickListener { parent, view, position, id ->
+
+                val intent2 = Intent(this, ScrollingActivity::class.java)
+                val mBundle = Bundle()
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val listArr = pref.getString(list, "")
+                val listArrFinal = LinkedList(listArr?.split("//"))
+                listArrFinal.push(listView.getItemAtPosition(position) as String?)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+
+
+                editor.putString(list, stringOut)
+                editor.apply()
+
+                mBundle.putString("list", list)
+                intent2.putExtras(mBundle)
+                this.startActivity(intent2)
+
+
+            }
+
+        val fastScrollerView: FastScrollerView = findViewById(R.id.fastscroller)
+
+        fastScrollerView.useDefaultScroller = false
+        fastScrollerView.itemIndicatorSelectedCallbacks += object : FastScrollerView.ItemIndicatorSelectedCallback {
+            override fun onItemIndicatorSelected(
+                indicator: FastScrollItemIndicator,
+                indicatorCenterY: Int,
+                itemPosition: Int
+            ) {
+                // Handle scrolling
+            }
+        }
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                searchView.clearFocus()
+                if(names.contains(p0)){
+                    adapter.filter.filter(p0)
+                }else{
+                    Toast.makeText(applicationContext, "Not Found", LENGTH_SHORT).show()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                adapter.filter.filter(p0)
+                return false
+            }
+        })
+
+
+    }
+
+    fun genList():ArrayList<String>{
+        var list = ArrayList<String>()
+
+        var max = 341
+
+        var i = 1;
+
+        while(i != max){
+            list.add(Quotes().random(i))
+            i++;
+        }
+
+
+        return list;
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+
+
+        return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // add your animation
+
+        finish()
     }
 }

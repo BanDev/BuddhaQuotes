@@ -38,28 +38,16 @@
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <ImageView
-            android:id="@+id/share"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/quote"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/summary"
-            app:srcCompat="@drawable/share"
-            android:contentDescription="TODO" />
-
-        <ImageView
             android:id="@+id/bin"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@+id/quote"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="@+id/summary"
             app:layout_constraintEnd_toEndOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/summary"
-            app:srcCompat="@drawable/ic_delete"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toTopOf="@+id/title"
+            app:srcCompat="@drawable/ic_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
