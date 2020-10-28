@@ -22,34 +22,34 @@
         app:titleTextAppearance="@style/toolbarText"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="294dp"
-        android:layout_height="162dp"
-        android:layout_marginTop="30dp"
-        android:text="THIS IS WILL BE MUCH BETTER WHEN WE RELEASE, FOR NOW THOUGH YOU MUST ENTER QUOTE ID (1-341) ENTER 0 FOR RANDOM QUOTE"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/toolbar_line"
+        android:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"></SearchView>
 
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/textView20"
-        app:layout_constraintStart_toStartOf="@+id/textView20"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        android:importantForAutofill="no" />
-
-    <Button
-        android:id="@+id/go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go"
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number" />
+        tools:listitem="@layout/quotes_search"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+    </ListView>
+
+    <com.reddit.indicatorfastscroll.FastScrollerView
+        android:id="@+id/fastscroller"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

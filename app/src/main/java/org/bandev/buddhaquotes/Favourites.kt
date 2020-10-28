@@ -8,13 +8,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
@@ -115,6 +117,33 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         myToolbar.navigationIcon = back
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+
+        val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        (myToolbar ?: return).layoutParams = param
+
+        val view = View(this)
+        view.doOnLayout {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
+        }
+
+        view.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
+
 
         val pref = getSharedPreferences("List_system", 0)
         favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
@@ -158,6 +187,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.fav_menu, menu)
+
         return true
     }
 

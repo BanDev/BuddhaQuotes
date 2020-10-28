@@ -24,14 +24,14 @@
     <string name="help">Help</string>
     <string name="app_introduction">App introduction</string>
     <string name="app_license">App License</string>
-    <string name="gplv3">GPLv3</string>
-    <string name="open_source_libraries">Open Source Libraries</string>
+    <string name="gplv3" translatable="false">GPLv3</string>
     <string name="libraries_used">Libraries used</string>
+
+    <!-- Added up to here on BanDev Localisation Thingy -->
 
     <!-- About page -->
     <string name="about_app_promise">App Promise</string>
     <string name="about_no_trackers">No trackers</string>
-    <string name="about_no_ads">No ads</string>
     <string name="about_complete_privacy">Complete privacy</string>
     <string name="about_offline_app">Offline app</string>
     <string name="about_free_and_open_source">Free and Open Source</string>
@@ -39,13 +39,13 @@
     <string name="about_info_paragraph">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
 </string>
     <string name="about_contributors">Contributors</string>
-    <string name="about_fennec">"@Fennec_exe"</string>
-    <string name="about_jack">"@jack.txt"</string>
-    <string name="about_izzysoft">"@IzzySoft"</string>
-    <string name="about_licaon">"@licaon-kter"</string>
-    <string name="about_poussinou">"@Poussinou"</string>
+    <string name="about_fennec" translatable="false">"@Fennec_exe"</string>
+    <string name="about_jack" translatable="false">"@jack.txt"</string>
+    <string name="about_izzysoft" translatable="false">"@IzzySoft"</string>
+    <string name="about_licaon" translatable="false">"@licaon-kter"</string>
+    <string name="about_poussinou" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements">Acknowledgements</string>
-    <string name="about_attribution">Launcher icon - Freepik via <a href = "TODO">Flaticon</a></string>
+    <string name="about_attribution">Launcher icon - Freepik via Flaticon</string>
     <string name="tick">Tick</string>
 
     <!-- Help/Welcome page -->
@@ -96,10 +96,10 @@
 
     <!-- Licenses page -->
     <string name="licenses">Licenses</string>
-    <string name="licenses_license">GPL-3.0+</string>
+    <string name="licenses_license" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions">Permissions</string>
     <string name="licenses_commercial_use">Commercial use</string>
-    <string name="licenses_distribution">Distribution</string>
+    <string name="licenses_distribution"></string>
     <string name="licenses_modification">Modification</string>
     <string name="licenses_patent_use">Patent use</string>
     <string name="licenses_private_use">Private use</string>
@@ -112,7 +112,7 @@
     <string name="licenses_liability">Liability</string>
     <string name="licenses_warranty">Warranty</string>
     <string name="licenses_full_license">Full License</string>
-    <string name="green_circle">Green circle</string>
+    <string name="green_circle"></string>
     <string name="blue_circle">Blue circle</string>
     <string name="red_circle">Red circle</string>
 
@@ -127,5 +127,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+    <string name="open_source_libraries">Open Source Libraries</string>
+    <string name="about_no_ads">No Ads</string>
 
 </resources>

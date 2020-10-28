@@ -10,10 +10,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
+import androidx.core.view.isGone
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -48,6 +51,8 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         scrollingList = generateDummyList(prefList.size)
 
+
+
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -65,6 +70,8 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         recycler_view.setHasFixedSize(false)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
+
 
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
@@ -213,13 +220,16 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
             if (listTmp == "Favourites") {
                 special = true
             }
-            item = if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
-                ExampleItem(prefList[i], R.drawable.heart_full_red, special)
+            if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
+                if(prefList[i] != ""){
+                    item = ExampleItem(prefList[i], R.drawable.heart_full_red, special)
+                    list += item
+                }
             } else {
-                ExampleItem(prefList[i], R.drawable.like, special)
+                item = ExampleItem(prefList[i], R.drawable.like, special)
+                list += item
             }
 
-            list += item
             i++
         }
         return list
