@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Favourites moved to lists
 - Rounded icons used throughout app
 - Navigation bar fixes for Android 8 and 9
+- Quote fixes
 
 ### 1.4 - (2020-10-21)
 
