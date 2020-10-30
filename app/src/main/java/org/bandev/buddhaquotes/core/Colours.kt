@@ -15,7 +15,7 @@ class Colours {
      * @param [context] context of activity (Context)
      * @param [window] context of window (Window)
      * @author jack.txt
-     * @added [1007] v1.5.0 - 29/10/2020
+     * @added [1008] v1.5.0 - 29/10/2020
      */
 
     fun setAccentColor(context: Context, window: Window){

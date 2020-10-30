@@ -17,6 +17,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
@@ -53,12 +54,10 @@ class MainActivity : AppCompatActivity() {
         Compatability().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
-        val pref = this.getSharedPreferences("Settings", 0)
-        val funmode = pref.getBoolean("fun_mode", false)
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val fun_mode = sharedPrefs.getString("fun_mode", "no")
 
-
-
-        if(funmode){
+        if(fun_mode == "yes"){
             setContentView(R.layout.activity_main2)
             window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
         }else{

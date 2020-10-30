@@ -3,14 +3,14 @@
 
     <PreferenceCategory
         android:layout="@layout/pref_header"
-        app:title="General">
+        app:title="@string/settings_general">
 
         <ListPreference
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
-            app:icon="@drawable/ic_palette"
+            app:icon="@drawable/ic_language"
             app:key="app_language"
-            app:title="@string/app_theme"
+            app:title="@string/settings_language"
             android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
@@ -35,7 +35,7 @@
             app:icon="@drawable/ic_palette"
             app:key="accent_color"
             android:layout="@layout/pref_single"
-            app:title="Accent Colour"
+            app:title="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
@@ -51,9 +51,9 @@
             app:entries="@array/fun_entries"
             app:entryValues="@array/fun_values"
             app:icon="@drawable/ic_party_popper"
-            app:key="fun"
+            app:key="fun_mode"
             android:layout="@layout/pref_single"
-            app:title="Fun Mode"
+            app:title="@string/settings_fun_mode"
             app:useSimpleSummaryProvider="true" />
 
 
