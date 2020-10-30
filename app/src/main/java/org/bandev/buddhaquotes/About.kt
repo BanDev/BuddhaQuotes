@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_about.*
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 
 class About : AppCompatActivity() {
 
@@ -27,6 +28,7 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
+        Languages().setLanguage(this)
         setContentView(R.layout.activity_about)
 
         val done = false

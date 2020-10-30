@@ -4,29 +4,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
 
@@ -55,7 +51,21 @@ class MainActivity : AppCompatActivity() {
 
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
-        setContentView(R.layout.activity_main)
+        Languages().setLanguage(this)
+
+        val pref = this.getSharedPreferences("Settings", 0)
+        val funmode = pref.getBoolean("fun_mode", false)
+
+
+
+        if(funmode){
+            setContentView(R.layout.activity_main2)
+            window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+        }else{
+            setContentView(R.layout.activity_main)
+        }
+
+
 
 
 

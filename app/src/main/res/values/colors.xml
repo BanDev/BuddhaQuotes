@@ -16,7 +16,6 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
 
-    <color name="brownAccent">#c55a2c</color>
     <color name="blueAccent">#4285f4</color>
     <color name="greenAccent">#3ddc84</color>
     <color name="yellowAccent">#f4b400</color>
@@ -28,5 +27,17 @@
     <color name="redAccent">#ff5252</color>
     <color name="limeAccent">#c5de00</color>
     <color name="crimsonAccent">#dc143c</color>
+
+    <color name="blueAccentSecondary">#2F5DAB</color>
+    <color name="greenAccentSecondary">#2C985C</color>
+    <color name="yellowAccentSecondary">#A57A00</color>
+    <color name="orangeAccentSecondary">#BB561A</color>
+    <color name="tealAccentSecondary">#00685E</color>
+    <color name="violetAccentSecondary">#793385</color>
+    <color name="pinkAccentSecondary">#AF468C</color>
+    <color name="lightBlueAccentSecondary">#1F7FAB</color>
+    <color name="redAccentSecondary">#BB3C3C</color>
+    <color name="limeAccentSecondary">#8A9C00</color>
+    <color name="crimsonAccentSecondary">#900E28</color>
 
 </resources>

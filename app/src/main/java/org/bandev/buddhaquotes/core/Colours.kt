@@ -38,7 +38,7 @@ class Colours {
         val typedValue = TypedValue()
         val theme: Resources.Theme = context.getTheme()
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
-        @ColorInt val color = typedValue.data
+        val color = typedValue.data
         window.statusBarColor = color
     }
 }

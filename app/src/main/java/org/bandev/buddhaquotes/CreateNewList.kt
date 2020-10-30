@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 
 class CreateNewList : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class CreateNewList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
+        Languages().setLanguage(this)
         setContentView(R.layout.activity_create_new_list)
 
         //Set status bar colors

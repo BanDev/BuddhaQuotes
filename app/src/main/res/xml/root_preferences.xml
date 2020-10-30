@@ -3,6 +3,21 @@
 
     <PreferenceCategory
         android:layout="@layout/pref_header"
+        app:title="General">
+
+        <ListPreference
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_values"
+            app:icon="@drawable/ic_palette"
+            app:key="app_language"
+            app:title="@string/app_theme"
+            android:layout="@layout/pref_single"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout="@layout/pref_header"
         app:title="@string/appearance">
 
         <ListPreference

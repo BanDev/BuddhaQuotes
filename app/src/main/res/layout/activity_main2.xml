@@ -76,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_refresh"
-        app:tint="@color/colorAccent" />
+        app:tint="?colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
@@ -94,7 +94,7 @@
         app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/heart_white"
-        app:tint="@color/colorAccent" />
+        app:tint="?colorPrimary" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
@@ -112,6 +112,6 @@
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_share"
-        app:tint="@color/colorAccent" />
+        app:tint="?colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

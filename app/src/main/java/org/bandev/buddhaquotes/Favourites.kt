@@ -22,6 +22,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,6 +93,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
+        Languages().setLanguage(this)
         setContentView(R.layout.activity_favourites)
 
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
