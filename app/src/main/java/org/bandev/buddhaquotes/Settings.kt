@@ -20,6 +20,8 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 import org.bandev.buddhaquotes.slides.S1Intro
 
 class Settings : AppCompatActivity() {
@@ -28,28 +30,10 @@ class Settings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_settings)
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                } else {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-                }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.transparent, null)
-            }
-        }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)
@@ -90,7 +74,6 @@ class Settings : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-        window.statusBarColor = ContextCompat.getColor(this@Settings, R.color.colorTop)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -137,6 +120,7 @@ class Settings : AppCompatActivity() {
                     val i = Intent(activity, S1Intro::class.java)
                     startActivity(i)
                 }
+
             }
             return true
         }
@@ -161,6 +145,22 @@ class Settings : AppCompatActivity() {
             } else if (!dark) {
                 listPreference?.setValueIndex(0)
                 listPreference?.setIcon(R.drawable.ic_day_settings)
+            }
+
+
+            val accent_color_button = findPreference<Preference>("accent_color") as ListPreference?
+
+            accent_color_button!!.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                listPreference!!.value = newValue.toString()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("switch", true)
+                    intent2.putExtras(mBundle)
+
+                    startActivity(intent2)
+
+                    true
             }
 
 

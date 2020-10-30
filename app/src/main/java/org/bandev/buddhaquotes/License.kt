@@ -13,33 +13,18 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 
 class License : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_license)
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                } else {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-                }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.transparent, null)
-            }
-        }
+
 
         val myToolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(myToolbar)
@@ -56,7 +41,6 @@ class License : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = ContextCompat.getColor(this@License, R.color.colorAlsoAccent)
 
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")

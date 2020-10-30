@@ -13,11 +13,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 
 class FullLicense : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_full_license)
 
         // Webview
@@ -72,7 +76,6 @@ class FullLicense : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-        window.statusBarColor = ContextCompat.getColor(this@FullLicense, R.color.colorTop)
 
     }
 

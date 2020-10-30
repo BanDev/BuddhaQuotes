@@ -15,6 +15,15 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
+            app:entries="@array/appColor_entries"
+            app:entryValues="@array/appColor_values"
+            app:icon="@drawable/ic_palette"
+            app:key="accent_color"
+            android:layout="@layout/pref_single"
+            app:title="Accent Colour"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
             app:entries="@array/size_entries"
             app:entryValues="@array/size_values"
             app:icon="@drawable/ic_text_fields"
@@ -31,6 +40,8 @@
             android:layout="@layout/pref_single"
             app:title="Fun Mode"
             app:useSimpleSummaryProvider="true" />
+
+
 
     </PreferenceCategory>
 

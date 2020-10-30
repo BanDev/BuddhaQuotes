@@ -20,6 +20,8 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -87,38 +89,19 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_favourites)
-
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-            } // Night mode is not active, we're using the light theme
-            Configuration.UI_MODE_NIGHT_YES -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-        } else {
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-        }
 
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)
-        window.statusBarColor = ContextCompat.getColor(this@Favourites, R.color.colorTop)
         (supportActionBar ?: return).setDefaultDisplayHomeAsUpEnabled(true)
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
 
         myToolbar.navigationIcon = back
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {

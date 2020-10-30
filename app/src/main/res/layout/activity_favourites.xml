@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:textColorPrimary="@android:color/white"
-        android:background="@color/colorTop"
+        android:background="?colorAccent"
         app:title="Your Lists"
         android:elevation="4dp"
         android:paddingStart="8dp"

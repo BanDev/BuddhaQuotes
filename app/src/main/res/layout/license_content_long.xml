@@ -374,7 +374,7 @@
         android:layout_height="59dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="60dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="?colorPrimary"
         android:fontFamily="@font/mt_bold"
         android:letterSpacing="0.0"
         android:text="@string/licenses_full_license"
