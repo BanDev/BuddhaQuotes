@@ -231,22 +231,6 @@ class Settings : AppCompatActivity() {
                     true
                 }
 
-            val funMode = findPreference<Preference>("fun") as ListPreference?
-            (funMode ?: return).onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    funMode.value = newValue.toString()
-                    val areTheyCool = funMode.entry.toString()
-                    Log.d("debug", areTheyCool)
-                    if (areTheyCool == "Yes, I like The Cool Shapes :)") {
-                        editor.putBoolean("fun_mode", true)
-                        editor.apply()
-                    }
-                    if (areTheyCool == "Think Of The Overdraw!!! :(") {
-                        editor.putBoolean("fun_mode", false)
-                        editor.commit()
-                    }
-                    true
-                }
 
             val textSize = findPreference<Preference>("size") as ListPreference?
 

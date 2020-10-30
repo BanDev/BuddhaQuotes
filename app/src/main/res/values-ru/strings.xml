@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!-- Translated to ru at 10:16:49pm on 2020-10-30-->
+
+<resources>
+
+    <string name='refresh'>обновить</string> <!-- Translated by Fennec_exe -->
+    <string name='favourite'>Любимый</string> <!-- Translated by Fennec_exe -->
+    <string name='share'>Поделиться</string> <!-- Translated by Fennec_exe -->
+    <string name='settings'>Настройки</string> <!-- Translated by Fennec_exe -->
+    <string name='appearance'>Внешность</string> <!-- Translated by Fennec_exe -->
+    <string name='app_theme'>Тема приложения</string> <!-- Translated by Fennec_exe -->
+    <string name='light_mode'>Свет</string> <!-- Translated by Fennec_exe -->
+    <string name='dark_mode'>Темно</string> <!-- Translated by Fennec_exe -->
+    <string name='follow_system_default'>Следуйте системным настройкам по умолчанию</string> <!-- Translated by Fennec_exe -->
+    <string name='text_size'>Размер текста</string> <!-- Translated by Fennec_exe -->
+    <string name='small_text_size'>Небольшой</string> <!-- Translated by Fennec_exe -->
+    <string name='medium_text_size'>средний</string> <!-- Translated by Fennec_exe -->
+    <string name='large_text_size'>Большой</string> <!-- Translated by Fennec_exe -->
+    <string name='information'>Информация</string> <!-- Translated by Fennec_exe -->
+    <string name='about'>Около</string> <!-- Translated by Fennec_exe -->
+    <string name='view_app_details'>Просмотр сведений о приложении</string> <!-- Translated by Fennec_exe -->
+    <string name='help'>Помогите</string> <!-- Translated by Fennec_exe -->
+    <string name='app_introduction'>Введение в приложение</string> <!-- Translated by Fennec_exe -->
+    <string name='app_license'>Лицензия на приложение</string> <!-- Translated by Fennec_exe -->
+    <string name='libraries_used'>Используемые библиотеки</string> <!-- Translated by Fennec_exe -->
+    <string name='about_app_promise'>Обещание приложения</string> <!-- Translated by Fennec_exe -->
+    <string name='about_no_trackers'>Нет трекеров</string> <!-- Translated by Fennec_exe -->
+    <string name='about_complete_privacy'>Полная конфиденциальность</string> <!-- Translated by Fennec_exe -->
+    <string name='about_offline_app'>Автономное приложение
+</string> <!-- Translated by Fennec_exe -->
+    <string name='about_free_and_open_source'>Бесплатный и открытый исходный код</string> <!-- Translated by Fennec_exe -->
+    <string name='about_info'>Введение в приложение</string> <!-- Translated by Fennec_exe -->
+    <string name='about_info_paragraph'>Buddha Quotes - это совместный проект по созданию бесплатного приложения с открытым исходным кодом Buddha Quotes для Android с упором на конфиденциальность.</string> <!-- Translated by Fennec_exe -->
+    <string name='about_contributors'>Авторы</string> <!-- Translated by Fennec_exe -->
+    <string name='about_acknowledgements'>Благодарности</string> <!-- Translated by Fennec_exe -->
+    <string name='about_attribution'>Значок запуска - Freepik через Flaticon</string> <!-- Translated by Fennec_exe -->
+    <string name='tick'>галочка</string> <!-- Translated by Fennec_exe -->
+    <string name='quick_brown_fox'>Быстрая коричневая лиса прыгает через ленивую собаку</string> <!-- Translated by Fennec_exe -->
+    <string name='slides_continue'>Продолжать</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_1_free_libre_open_source'>Бесплатно, бесплатно и с открытым исходным кодом</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_2_privacy_focused'>Ориентация на конфиденциальность!</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_2_bandev_promise'>С обещанием BanDev</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_2_lock'>Замок навесной</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_3_see_one_you_like'>Видишь тот, который тебе нравится?</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_3_press_heart_button'>Нажмите кнопку сердца</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_3_heart_outline'>Контур сердца</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_4_another_quote'>Еще одна цитата?</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_4_hit_refresh'>Просто нажмите обновить</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_5_too_bright'>Дисплей слишком яркий?</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_5_try_dark'>Почему бы не попробовать темный режим</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_5_torch'>Факел</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_6_hard_to_read'>Текст трудно читать?</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_6_select_size'>Выберите размер текста ниже</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_7_all_done'>Все сделано!</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_7_ready'>Вы</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_7_open_app'>Открыть приложение</string> <!-- Translated by Fennec_exe -->
+    <string name='slide_7_double_tick'>Двойная галочка</string> <!-- Translated by Fennec_exe -->
+    <string name='more_counter_left'>Другая цитата</string> <!-- Translated by Fennec_exe -->
+    <string name='more_lots_of_refreshes'>Который</string> <!-- Translated by Fennec_exe -->
+    <string name='favourites'>Избранное</string> <!-- Translated by Fennec_exe -->
+    <string name='favourited_quote'>Избранная цитата</string> <!-- Translated by Fennec_exe -->
+    <string name='favourite_quote_delete'>удалять</string> <!-- Translated by Fennec_exe -->
+    <string name='buddha_quotes_logo'>Buddha Quotes Логотип</string> <!-- Translated by Fennec_exe -->
+    <string name='bandev_logo'>Логотип BanDev</string> <!-- Translated by Fennec_exe -->
+    <string name='the_buddha'>Будда</string> <!-- Translated by Fennec_exe -->
+    <string name='forward_arrow'>Возвращение</string> <!-- Translated by Fennec_exe -->
+    <string name='icon'>Икона</string> <!-- Translated by Fennec_exe -->
+    <string name='title'>заглавие</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses'>Лицензии</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_permissions'>Разрешения</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_commercial_use'>Коммерческое использование</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_distribution'>Распределение</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_modification'>Модификация</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_patent_use'>Использование патента</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_private_use'>Частное использование</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_conditions'>Условия</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_disclose_source'>Раскрыть источник</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_copyright_notice'>Уведомление о лицензии и авторских правах</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_same_license'>Та же лицензия</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_state_changes'>Изменения состояния</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_limitations'>Ограничения</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_liability'>Ответственность</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_warranty'>Гарантия</string> <!-- Translated by Fennec_exe -->
+    <string name='licenses_full_license'>Полная лицензия</string> <!-- Translated by Fennec_exe -->
+    <string name='green_circle'>Зеленый круг</string> <!-- Translated by Fennec_exe -->
+    <string name='blue_circle'>Синий круг</string> <!-- Translated by Fennec_exe -->
+    <string name='red_circle'>Красный круг</string> <!-- Translated by Fennec_exe -->
+    <string name='title_activity_settings'>Настройки Активность</string> <!-- Translated by Fennec_exe -->
+    <string name='textview'>Просмотр текста</string> <!-- Translated by Fennec_exe -->
+    <string name='MainActivity'>Основная деятельность</string> <!-- Translated by Fennec_exe -->
+    <string name='title_activity_scrolling'>Прокрутка</string> <!-- Translated by Fennec_exe -->
+    <string name='action_settings'>Настройки</string> <!-- Translated by Fennec_exe -->
+    <string name='appwidget_text'>ПРИМЕР</string> <!-- Translated by Fennec_exe -->
+    <string name='configure'>Настроить</string> <!-- Translated by Fennec_exe -->
+    <string name='add_widget'>Добавить виджет</string> <!-- Translated by Fennec_exe -->
+    <string name='open_source_libraries'>Библиотеки с открытым исходным кодом</string> <!-- Translated by Fennec_exe -->
+    <string name='about_no_ads'>Без рекламы</string> <!-- Translated by Fennec_exe -->
+
+</resources>

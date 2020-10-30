@@ -18,7 +18,7 @@ class Compatability {
      * @param [window] context of window (Window)
      * @param [resources] context of resources (Resources)
      * @author Fennec_exe
-     * @added [1007] v1.5.0 - 29/10/2020
+     * @added [1008] v1.5.0 - 29/10/2020
      */
 
     fun setNavigationBarColour(context: Context, window: Window, resources: Resources){
