@@ -21,6 +21,7 @@ import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.reddit.indicatorfastscroll.FastScrollerView
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
 
@@ -37,6 +38,7 @@ class AddList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
+        Languages().setLanguage(this)
         setContentView(R.layout.activity_addlist)
 
         //Set status bar colors

@@ -22,6 +22,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.slides.S1Intro
 
 class Settings : AppCompatActivity() {
@@ -32,6 +33,7 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatability().setNavigationBarColour(this, window, resources)
+        Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
 
@@ -162,6 +164,21 @@ class Settings : AppCompatActivity() {
 
                     true
             }
+
+            val lang = findPreference<Preference>("app_language") as ListPreference?
+
+            lang!!.onPreferenceChangeListener =
+                Preference.OnPreferenceChangeListener { preference, newValue ->
+                    listPreference!!.value = newValue.toString()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("switch", true)
+                    intent2.putExtras(mBundle)
+
+                    startActivity(intent2)
+
+                    true
+                }
 
 
             (listPreference ?: return).onPreferenceChangeListener =

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Buddha Quotes</string>
-    <string name="version">v1.4.0</string>
+    <string name="app_name" translatable="false">Buddha Quotes</string>
+    <string name="version" translatable="false">v1.4.0</string>
 
     <!-- Main page -->
     <string name="refresh">Refresh</string>
