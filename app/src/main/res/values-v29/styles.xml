@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:forceDarkAllowed">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+
+
+    <style name="AppTheme.blue" parent="AppTheme">
+        <item name="colorPrimary">#0067f4</item>
+        <item name="colorPrimaryDark">#0067f4</item>
+        <item name="colorAccent">#0067f4</item>
     </style>
 
     <style name="WindowAnimationTransition">

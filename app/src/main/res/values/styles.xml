@@ -6,9 +6,69 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Blue" parent="AppTheme">
+        <item name="colorAccent">@color/blueAccent</item>
+        <item name="colorPrimary">@color/blueAccent</item>
+    </style>
+
+    <style name="AppTheme.Green" parent="AppTheme">
+        <item name="colorAccent">@color/greenAccent</item>
+        <item name="colorPrimary">@color/greenAccent</item>
+    </style>
+
+    <style name="AppTheme.Orange" parent="AppTheme">
+        <item name="colorAccent">@color/orangeAccent</item>
+        <item name="colorPrimary">@color/orangeAccent</item>
+    </style>
+
+    <style name="AppTheme.Yellow" parent="AppTheme">
+        <item name="colorAccent">@color/yellowAccent</item>
+        <item name="colorPrimary">@color/yellowAccent</item>
+    </style>
+
+    <style name="AppTheme.Teal" parent="AppTheme">
+        <item name="colorAccent">@color/tealAccent</item>
+        <item name="colorPrimary">@color/tealAccent</item>
+    </style>
+
+    <style name="AppTheme.Violet" parent="AppTheme">
+        <item name="colorAccent">@color/violetAccent</item>
+        <item name="colorPrimary">@color/violetAccent</item>
+    </style>
+
+    <style name="AppTheme.Pink" parent="AppTheme">
+        <item name="colorAccent">@color/pinkAccent</item>
+        <item name="colorPrimary">@color/pinkAccent</item>
+    </style>
+
+    <style name="AppTheme.LightBlue" parent="AppTheme">
+        <item name="colorAccent">@color/lightBlueAccent</item>
+        <item name="colorPrimary">@color/lightBlueAccent</item>
+    </style>
+
+    <style name="AppTheme.Red" parent="AppTheme">
+        <item name="colorAccent">@color/redAccent</item>
+        <item name="colorPrimary">@color/redAccent</item>
+    </style>
+
+    <style name="AppTheme.Lime" parent="AppTheme">
+        <item name="colorAccent">@color/limeAccent</item>
+        <item name="colorPrimary">@color/limeAccent</item>
+    </style>
+
+    <style name="AppTheme.Crimson" parent="AppTheme">
+        <item name="colorAccent">@color/crimsonAccent</item>
+        <item name="colorPrimary">@color/crimsonAccent</item>
+    </style>
+
     <style name="toolbarTextScroller">
         <item name="fontFamily">@font/mt_bold</item>
         <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="ThemeOverlay.BuddhaQuotes.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
+        <item name="appWidgetTextColor">@color/light_blue_50</item>
     </style>
 
     <style name="toolbarText">

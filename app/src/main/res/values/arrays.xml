@@ -22,6 +22,37 @@
         <item>n</item>
     </string-array>
 
+    <string-array name="appColor_values">
+        <item>original</item>
+        <item>blue</item>
+        <item>green</item>
+        <item>orange</item>
+        <item>yellow</item>
+        <item>teal</item>
+        <item>violet</item>
+        <item>pink</item>
+        <item>lightBlue</item>
+        <item>red</item>
+        <item>lime</item>
+        <item>crimson</item>
+    </string-array>
+
+    <string-array name="appColor_entries">
+        <item>Original</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Teal</item>
+        <item>Violet</item>
+        <item>Pink</item>
+        <item>Light Blue</item>
+        <item>Red</item>
+        <item>Lime</item>
+        <item>Crimson</item>
+    </string-array>
+
+
     <string-array name="size_entries">
         <item>@string/small_text_size</item>
         <item>@string/medium_text_size</item>

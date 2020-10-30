@@ -21,7 +21,7 @@
         android:fitsSystemWindows="true"
         app:expandedTitleMarginStart="72dp"
         app:expandedTitleMarginBottom="28dp"
-        android:background="@color/colorTop"
+        android:background="?colorPrimary"
         app:expandedTitleTextAppearance="@style/toolbarTextScroller"
         app:collapsedTitleTextAppearance="@style/toolbarTextScroller">
 
@@ -31,7 +31,7 @@
             app:layout_collapseMode="pin"
             android:paddingStart="8dp"
             android:paddingEnd="10dp"
-            android:background="@color/colorTop"
+            android:background="?colorPrimary"
             android:layout_width="match_parent"
             android:elevation="0dp"
             />

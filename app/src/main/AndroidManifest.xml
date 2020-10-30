@@ -89,7 +89,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
-            android:theme="@style/MainActivity">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

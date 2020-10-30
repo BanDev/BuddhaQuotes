@@ -36,16 +36,17 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/colorTop"
-        app:title="@string/app_name"
         android:elevation="4dp"
+        android:background="?colorAccent"
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name"
         app:titleTextAppearance="@style/toolbarText"
-        tools:ignore="MissingConstraints" >
+        tools:ignore="MissingConstraints">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,16 +67,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="@string/refresh"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="?colorAccent"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_refresh"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="@string/refresh" />
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/favourite"
@@ -84,16 +85,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="@string/favourite"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="?colorAccent"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/refresh"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/heart_white"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="@string/favourite" />
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share"
@@ -102,15 +103,15 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="60dp"
         android:clickable="true"
+        android:contentDescription="@string/share"
+        android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="?colorAccent"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/favourite"
         app:maxImageSize="33dp"
         app:srcCompat="@drawable/ic_share"
-        app:tint="@android:color/white"
-        android:focusable="true"
-        android:contentDescription="@string/share" />
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

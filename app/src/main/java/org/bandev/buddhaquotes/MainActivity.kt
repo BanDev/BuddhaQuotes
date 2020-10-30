@@ -4,23 +4,31 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
+import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,40 +51,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_main)
 
-        val pref = this.getSharedPreferences("Settings", 0)
-        val funMode = pref.getBoolean("fun_mode", false)
-        if (funMode) {
-            setContentView(R.layout.activity_main2)
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-            window.statusBarColor =
-                ContextCompat.getColor(this@MainActivity, R.color.transparent)
-        } else {
-            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.transparent, null)
-                    } else {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-                    }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.decorView.systemUiVisibility =
-                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                    }
-                }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                }
-            }
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
-        }
+
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val quotenumber = sharedPref.getInt("Quote_Number", 0)
@@ -92,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
+        setTheme(R.style.AppTheme_blue)
         toolbar?.navigationIcon = heartBlack
 
         WindowCompat.setDecorFitsSystemWindows(window, false)

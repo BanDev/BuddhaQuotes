@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -36,6 +38,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_scrolling)
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
@@ -56,7 +61,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        window.statusBarColor = ContextCompat.getColor(this@ScrollingActivity, R.color.colorTop)
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = list
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)

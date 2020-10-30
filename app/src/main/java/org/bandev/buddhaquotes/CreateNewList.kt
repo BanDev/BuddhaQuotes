@@ -10,6 +10,8 @@ import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatability
 
 class CreateNewList : AppCompatActivity() {
 
@@ -21,10 +23,11 @@ class CreateNewList : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Colours().setAccentColor(this, window)
+        Compatability().setNavigationBarColour(this, window, resources)
         setContentView(R.layout.activity_create_new_list)
 
         //Set status bar colors
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorTop)
 
         //Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
