@@ -25,6 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
+import org.bandev.buddhaquotes.core.Hardware
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
@@ -65,28 +66,8 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor =
                 ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
-            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.transparent, null)
-                    } else {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-                    }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.decorView.systemUiVisibility =
-                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                    }
-                }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                }
-            }
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
+            Compatibility().setNavigationBarColour(this, window, resources)
+            setContentView(R.layout.activity_main)
         }
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
@@ -98,15 +79,6 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         heartBlack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
         quoteView = findViewById(R.id.quote)
-
-        fun vibrate() {
-            val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vib.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
-            } else {
-                vib.vibrate(30)
-            }
-        }
 
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
@@ -146,12 +118,12 @@ class MainActivity : AppCompatActivity() {
             val sendIntent: Intent = Intent().apply {
 
                 action = Intent.ACTION_SEND
-                vibrate()
                 val text = quoteView?.text.toString() + "\n\n~Gautama Buddha"
 
                 putExtra(Intent.EXTRA_TEXT, text)
                 type = "text/plain"
             }
+            Hardware().vibrate(this)
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
@@ -184,7 +156,7 @@ class MainActivity : AppCompatActivity() {
 
         // When refresh is pressed
         (refresh ?: return).setOnClickListener {
-            vibrate()
+            Hardware().vibrate(this)
             if (firstPress) {
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
@@ -203,7 +175,7 @@ class MainActivity : AppCompatActivity() {
 
         // When favourite is pressed
         (favourite ?: return).setOnClickListener {
-            vibrate()
+            Hardware().vibrate(this)
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)
