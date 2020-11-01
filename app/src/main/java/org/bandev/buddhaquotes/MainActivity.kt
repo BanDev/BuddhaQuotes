@@ -7,6 +7,8 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -22,7 +24,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
@@ -49,24 +51,43 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val fun_mode = sharedPrefs.getString("fun_mode", "no")
+        val funMode = sharedPrefs.getString("fun_mode", "no")
 
-        if(fun_mode == "yes"){
+        if (funMode == "yes") {
             setContentView(R.layout.activity_main2)
-            window.statusBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
-        }else{
-            setContentView(R.layout.activity_main)
+            window.navigationBarColor =
+                ResourcesCompat.getColor(resources, R.color.transparent, null)
+            window.statusBarColor =
+                ContextCompat.getColor(this@MainActivity, R.color.transparent)
+        } else {
+            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    } else {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                }
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                }
+            }
+            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
         }
-
-
-
-
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val quotenumber = sharedPref.getInt("Quote_Number", 0)
@@ -77,6 +98,15 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         heartBlack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
         quoteView = findViewById(R.id.quote)
+
+        fun vibrate() {
+            val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vib.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                vib.vibrate(30)
+            }
+        }
 
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
@@ -114,8 +144,9 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
 
+                action = Intent.ACTION_SEND
+                vibrate()
                 val text = quoteView?.text.toString() + "\n\n~Gautama Buddha"
 
                 putExtra(Intent.EXTRA_TEXT, text)
@@ -153,6 +184,7 @@ class MainActivity : AppCompatActivity() {
 
         // When refresh is pressed
         (refresh ?: return).setOnClickListener {
+            vibrate()
             if (firstPress) {
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
@@ -171,6 +203,7 @@ class MainActivity : AppCompatActivity() {
 
         // When favourite is pressed
         (favourite ?: return).setOnClickListener {
+            vibrate()
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)

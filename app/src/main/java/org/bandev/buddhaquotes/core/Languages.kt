@@ -14,7 +14,7 @@ class Languages {
      * @added [1008] v1.5.0 - 30/10/2020
      */
 
-    fun setLanguage(context: Context){
+    fun setLanguage(context: Context) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         val languageToLoad = sharedPrefs.getString("app_language", "en")
 
