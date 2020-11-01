@@ -1,19 +1,14 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
@@ -21,7 +16,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.mikepenz.aboutlibraries.LibsBuilder
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.slides.S1Intro
 
@@ -32,7 +27,7 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
@@ -150,11 +145,11 @@ class Settings : AppCompatActivity() {
             }
 
 
-            val accent_color_button = findPreference<Preference>("accent_color") as ListPreference?
+            val accentColorButton = findPreference<Preference>("accent_color") as ListPreference?
 
-            accent_color_button!!.onPreferenceChangeListener =
+            (accentColorButton ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
-                listPreference!!.value = newValue.toString()
+                    listPreference!!.value = newValue.toString()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
                     mBundle.putBoolean("switch", true)
@@ -163,11 +158,11 @@ class Settings : AppCompatActivity() {
                     startActivity(intent2)
 
                     true
-            }
+                }
 
             val lang = findPreference<Preference>("app_language") as ListPreference?
 
-            lang!!.onPreferenceChangeListener =
+            (lang ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference!!.value = newValue.toString()
                     val intent2 = Intent(context, Settings::class.java)

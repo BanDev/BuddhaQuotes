@@ -10,7 +10,7 @@ import android.view.WindowInsetsController
 import androidx.core.content.res.ResourcesCompat
 import org.bandev.buddhaquotes.R
 
-class Compatability {
+class Compatibility {
 
     /**
      * Sets navigation bar based off android version
@@ -21,7 +21,7 @@ class Compatability {
      * @added [1008] v1.5.0 - 29/10/2020
      */
 
-    fun setNavigationBarColour(context: Context, window: Window, resources: Resources){
+    fun setNavigationBarColour(context: Context, window: Window, resources: Resources) {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -39,7 +39,8 @@ class Compatability {
                 }
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.transparent, null)
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.transparent, null)
             }
         }
     }

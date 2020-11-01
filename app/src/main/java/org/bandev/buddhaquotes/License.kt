@@ -1,20 +1,20 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowInsets
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 
 class License : AppCompatActivity() {
@@ -22,10 +22,9 @@ class License : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_license)
-
 
 
         val myToolbar = findViewById<View>(R.id.toolbar) as Toolbar

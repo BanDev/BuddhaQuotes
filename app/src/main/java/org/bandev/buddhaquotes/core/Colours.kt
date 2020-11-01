@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.Window
-import androidx.annotation.ColorInt
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
 
@@ -18,10 +17,9 @@ class Colours {
      * @added [1008] v1.5.0 - 29/10/2020
      */
 
-    fun setAccentColor(context: Context, window: Window){
+    fun setAccentColor(context: Context, window: Window) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val accent = sharedPrefs.getString("accent_color", "original")
-        when (accent) {
+        when (sharedPrefs.getString("accent_color", "original")) {
             "blue" -> context.setTheme(R.style.AppTheme_blue)
             "green" -> context.setTheme(R.style.AppTheme_Green)
             "orange" -> context.setTheme(R.style.AppTheme_Orange)
@@ -36,7 +34,7 @@ class Colours {
             else -> context.setTheme(R.style.AppTheme)
         }
         val typedValue = TypedValue()
-        val theme: Resources.Theme = context.getTheme()
+        val theme: Resources.Theme = context.theme
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
         val color = typedValue.data
         window.statusBarColor = color

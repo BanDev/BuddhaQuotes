@@ -23,7 +23,7 @@ class Quotes {
             5 -> text =
                 "A man is not called wise because he talks and talks again; but if he is peaceful, loving and fearless then he is in truth called wise"
             6 -> text =
-                "A mind unruffled by the vagaries of fortune, from sorrow freed, from defilements cleansed, from fear liberated — this is the greatest blessing"
+                "A mind unruffled by the vagaries of fortune, from sorrow freed, from defilements cleansed, from fear liberated - this is the greatest blessing"
             7 -> text =
                 "A person, who no matter how desperate the situation, gives others hope, is a true leader"
             8 -> text =
@@ -31,7 +31,7 @@ class Quotes {
             9 -> text =
                 "Above all, do not lose your desire to walk"
             10 -> text =
-                "'All conditioned things are impermanent' — when one sees this with wisdom, one turns away from suffering"
+                "'All conditioned things are impermanent' - when one sees this with wisdom, one turns away from suffering"
             11 -> text =
                 "All experiences are preceded by mind, having mind as their master, created by mind"
             12 -> text =
@@ -173,7 +173,7 @@ class Quotes {
             80 -> text =
                 "I will not look at another’s bowl intent on finding fault: a training to be observed"
             81 -> text =
-                "If a man going down into a river, swollen and swiftly flowing, is carried away by the current — how can he help others across?"
+                "If a man going down into a river, swollen and swiftly flowing, is carried away by the current - how can he help others across?"
             82 -> text =
                 "If a traveler does not meet with one who is his better, or his equal, let him firmly keep to his solitary journey; there is no companionship with a fool"
             83 -> text =
@@ -237,7 +237,7 @@ class Quotes {
             112 -> text =
                 "Let none find fault with others; let none see the omissions and commissions of others. But let one see one’s own acts, done and undone"
             113 -> text =
-                "Letting go gives us freedom, and freedom is the only condition for happiness. If, in our heart, we still clint to anything — anger, anxiety, or possessions — we cannot be free"
+                "Letting go gives us freedom, and freedom is the only condition for happiness. If, in our heart, we still clint to anything - anger, anxiety, or possessions - we cannot be free"
             114 -> text =
                 "Life is a river always flowing. Do not hold onto things. Work hard"
             115 -> text =
@@ -261,7 +261,7 @@ class Quotes {
             124 -> text =
                 "Love is the absence of judgement"
             125 -> text =
-                "Love yourself and watch — today, tomorrow, and always"
+                "Love yourself and watch - today, tomorrow, and always"
             126 -> text =
                 "Many do not realise that we here must die. For those who realise this, quarrels end"
             127 -> text =
@@ -315,13 +315,13 @@ class Quotes {
             151 -> text =
                 "Purity and impurity depend on oneself; no one can purify another"
             152 -> text =
-                "Radiate boundless love towards the entire world — above, below, and across — unhindered, without ill will, without enmity"
+                "Radiate boundless love towards the entire world - above, below, and across - unhindered, without ill will, without enmity"
             153 -> text =
                 "Real generosity is doing something nice for someone who will never find out"
             154 -> text =
                 "Resolutely train yourself to attain peace"
             155 -> text =
-                "See them, floundering in their sense of mind, like fish in the puddles of a dried-up stream — and, seeing this, live with no mine, not forming attachment for states of becoming"
+                "See them, floundering in their sense of mind, like fish in the puddles of a dried-up stream - and, seeing this, live with no mine, not forming attachment for states of becoming"
             156 -> text =
                 "Sensual craving gives rise to grief; Sensual craving gives rise to fear. For someone released from sensual craving There is no grief; And from where would be fear?"
             157 -> text =
@@ -429,7 +429,7 @@ class Quotes {
             208 -> text =
                 "To refrain from evil and from strong drink and to be always steadfast in virtue; this is the good luck"
             209 -> text =
-                "To support mother and father, to cherish wife and children, and to be engaged in peaceful occupation — this is the greatest blessing"
+                "To support mother and father, to cherish wife and children, and to be engaged in peaceful occupation - this is the greatest blessing"
             210 -> text =
                 "True change is within, leave the outside as it is"
             211 -> text =
@@ -477,7 +477,7 @@ class Quotes {
             232 -> text =
                 "With realisation of one's own potential and self-confidence, one can build a better world"
             233 -> text =
-                "Without health life is not life; it is only a state of langour and suffering — an image of death"
+                "Without health life is not life; it is only a state of langour and suffering - an image of death"
             234 -> text =
                 "You are the community now. Be a lamp for yourselves. Be your own refuge. Seek for no other. All things must pass. Strive on diligently. Don’t give up"
             235 -> text =

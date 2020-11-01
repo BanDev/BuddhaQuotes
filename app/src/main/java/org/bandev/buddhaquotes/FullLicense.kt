@@ -9,12 +9,11 @@ import android.view.WindowInsetsController
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 
 class FullLicense : AppCompatActivity() {
@@ -22,7 +21,7 @@ class FullLicense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_full_license)
 

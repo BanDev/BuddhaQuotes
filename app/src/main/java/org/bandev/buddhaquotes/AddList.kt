@@ -20,7 +20,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.reddit.indicatorfastscroll.FastScrollerView
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
@@ -37,17 +37,14 @@ class AddList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_addlist)
 
         //Set status bar colors
 
 
-
-
         val list = (intent.getStringExtra("list") ?: return).toString()
-
 
 
         //Setup toolbar
@@ -66,9 +63,9 @@ class AddList : AppCompatActivity() {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param = (toolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        val param = toolbar.layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
-        (toolbar ?: return).layoutParams = param
+        toolbar.layoutParams = param
 
         val view = View(this)
         view.doOnLayout {
@@ -88,11 +85,11 @@ class AddList : AppCompatActivity() {
         val searchView = findViewById<SearchView>(R.id.searchView)
         val listView = findViewById<ListView>(R.id.listView)
 
-        listView.setFastScrollEnabled(true)
+        listView.isFastScrollEnabled = true
 
         val names = genList()
 
-        val adapter:ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
+        val adapter: ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
 
         listView.adapter = adapter
 
@@ -123,7 +120,8 @@ class AddList : AppCompatActivity() {
         val fastScrollerView: FastScrollerView = findViewById(R.id.fastscroller)
 
         fastScrollerView.useDefaultScroller = false
-        fastScrollerView.itemIndicatorSelectedCallbacks += object : FastScrollerView.ItemIndicatorSelectedCallback {
+        fastScrollerView.itemIndicatorSelectedCallbacks += object :
+            FastScrollerView.ItemIndicatorSelectedCallback {
             override fun onItemIndicatorSelected(
                 indicator: FastScrollItemIndicator,
                 indicatorCenterY: Int,
@@ -133,12 +131,12 @@ class AddList : AppCompatActivity() {
             }
         }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 searchView.clearFocus()
-                if(names.contains(p0)){
+                if (names.contains(p0)) {
                     adapter.filter.filter(p0)
-                }else{
+                } else {
                     Toast.makeText(applicationContext, "Not Found", LENGTH_SHORT).show()
                 }
                 return false
@@ -153,20 +151,20 @@ class AddList : AppCompatActivity() {
 
     }
 
-    fun genList():ArrayList<String>{
-        var list = ArrayList<String>()
+    private fun genList(): ArrayList<String> {
+        val list = ArrayList<String>()
 
-        var max = 341
+        val max = 341
 
-        var i = 1;
+        var i = 1
 
-        while(i != max){
+        while (i != max) {
             list.add(Quotes().random(i))
-            i++;
+            i++
         }
 
 
-        return list;
+        return list
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.material.appbar.MaterialToolbar
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 
 class CreateNewList : AppCompatActivity() {
@@ -25,7 +23,7 @@ class CreateNewList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_create_new_list)
 

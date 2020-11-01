@@ -1,25 +1,25 @@
 package org.bandev.buddhaquotes
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.*
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowInsets
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import kotlinx.android.synthetic.main.activity_about.*
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 
 class About : AppCompatActivity() {
@@ -27,7 +27,7 @@ class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_about)
 
@@ -59,7 +59,7 @@ class About : AppCompatActivity() {
                         .addSizes(Size(10))
                         .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
                         .streamFor(100, 1000L)
-                    vibratePhone()
+                    vibrate()
                     val contextView = findViewById<View>(R.id.context_view)
                 }
             }
@@ -97,12 +97,12 @@ class About : AppCompatActivity() {
         }
     }
 
-    private fun vibratePhone() {
-        val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    private fun vibrate() {
+        val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
+            vib.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
-            vibrator.vibrate(200)
+            vib.vibrate(200)
         }
     }
 

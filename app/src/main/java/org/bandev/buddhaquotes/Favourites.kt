@@ -3,17 +3,13 @@ package org.bandev.buddhaquotes
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.*
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
@@ -21,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatability
+import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 import kotlin.collections.ArrayList
@@ -46,7 +42,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        vibratePhone()
+        vibrate()
 
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
@@ -61,19 +57,19 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
-    private fun vibratePhone() {
-        val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    private fun vibrate() {
+        val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                vibrator.vibrate(
+                vib.vibrate(
                     VibrationEffect.createOneShot(
                         50,
-                        VibrationEffect.EFFECT_HEAVY_CLICK
+                        VibrationEffect.EFFECT_CLICK
                     )
                 )
             }
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                vibrator.vibrate(
+                vib.vibrate(
                     VibrationEffect.createOneShot(
                         50,
                         VibrationEffect.DEFAULT_AMPLITUDE
@@ -81,7 +77,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                 )
             }
             else -> {
-                vibrator.vibrate(50)
+                vib.vibrate(50)
             }
         }
     }
@@ -92,7 +88,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         super.onCreate(savedInstanceState)
 
         Colours().setAccentColor(this, window)
-        Compatability().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_favourites)
 
@@ -112,7 +108,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
-        (myToolbar ?: return).layoutParams = param
+        myToolbar.layoutParams = param
 
         val view = View(this)
         view.doOnLayout {
