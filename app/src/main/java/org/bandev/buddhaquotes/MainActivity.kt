@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor =
                 ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
+            setContentView(R.layout.activity_main)
             when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -86,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                         ResourcesCompat.getColor(resources, R.color.transparent, null)
                 }
             }
-            window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.colorTop)
         }
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
