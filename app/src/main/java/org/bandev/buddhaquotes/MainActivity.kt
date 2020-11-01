@@ -66,8 +66,28 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor =
                 ContextCompat.getColor(this@MainActivity, R.color.transparent)
         } else {
-            Compatibility().setNavigationBarColour(this, window, resources)
             setContentView(R.layout.activity_main)
+            when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    } else {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                }
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                }
+            }
         }
 
         val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return

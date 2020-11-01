@@ -5,6 +5,7 @@
     android:contentDescription="@string/appwidget_text"
     android:fontFamily="@font/mt_reg"
     android:paddingStart="20dp"
+    android:paddingEnd="20dp"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
     android:text="@string/appwidget_text"

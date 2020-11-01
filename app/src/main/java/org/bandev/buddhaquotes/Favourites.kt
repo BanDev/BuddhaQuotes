@@ -18,6 +18,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
+import org.bandev.buddhaquotes.core.Hardware
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 import kotlin.collections.ArrayList
@@ -42,7 +43,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        vibrate()
+        Hardware().vibrate(this)
 
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
@@ -56,32 +57,6 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.putString("MASTER_LIST", stringOut)
         editor.apply()
     }
-
-    private fun vibrate() {
-        val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                vib.vibrate(
-                    VibrationEffect.createOneShot(
-                        50,
-                        VibrationEffect.EFFECT_CLICK
-                    )
-                )
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                vib.vibrate(
-                    VibrationEffect.createOneShot(
-                        50,
-                        VibrationEffect.DEFAULT_AMPLITUDE
-                    )
-                )
-            }
-            else -> {
-                vib.vibrate(50)
-            }
-        }
-    }
-
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
