@@ -7,8 +7,6 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
