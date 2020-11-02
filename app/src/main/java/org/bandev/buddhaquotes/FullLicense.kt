@@ -27,22 +27,10 @@ class FullLicense : AppCompatActivity() {
 
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView
-        webview.loadUrl("file:///android_asset/Licenses/app.txt")
+        webview.loadUrl("file:///android_asset/Licenses/english.txt")
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
-                } else {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
-                }
                 if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
                     WebSettingsCompat.setForceDark(
                         webview.settings,
@@ -51,23 +39,11 @@ class FullLicense : AppCompatActivity() {
                 }
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                when {
-                    WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK) -> {
-                        WebSettingsCompat.setForceDark(
-                            webview.settings,
-                            WebSettingsCompat.FORCE_DARK_ON
-                        )
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.transparent, null)
-                    }
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.transparent, null)
-                    }
-                    else -> {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.colorTop, null)
-                    }
+                if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                    WebSettingsCompat.setForceDark(
+                        webview.settings,
+                        WebSettingsCompat.FORCE_DARK_ON
+                    )
                 }
             }
         }

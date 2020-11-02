@@ -56,11 +56,11 @@
             app:title="@string/settings_fun_mode"
             app:useSimpleSummaryProvider="true" />
 
-
-
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/information" android:layout="@layout/pref_header">
+    <PreferenceCategory
+        app:title="@string/information"
+        android:layout="@layout/pref_header">
 
         <Preference
             android:key="About"
