@@ -1,6 +1,5 @@
 package org.bandev.buddhaquotes
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -55,7 +54,6 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
-    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

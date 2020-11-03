@@ -74,7 +74,7 @@
 
     <style name="toolbarTextScroller">
         <item name="fontFamily">@font/mt_bold</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="ThemeOverlay.BuddhaQuotes.AppWidgetContainer" parent="">
@@ -84,7 +84,7 @@
 
     <style name="toolbarText">
         <item name="fontFamily">@font/mt_bold</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
 

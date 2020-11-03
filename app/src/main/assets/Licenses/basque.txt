@@ -1,0 +1,713 @@
+  This is an unofficial translation of the GNU General Public License into
+Basque. It was not published by the Free Software Foundation, and does not
+legally state the distribution terms for software that uses the GNU GPLâ€”only
+the original English text of the GNU GPL does that. However, we hope that this
+translation will help Basque speakers understand the GNU GPL better.
+
+  You may publish this translation, modified or unmodified, only under the
+terms at https://www.gnu.org/licenses/translations.html.
+
+-------------------------------------------------------------------------------
+
+  Hau GNU Lizentzia Publiko Orokorraren (GNU General Public License) euskarazko
+itzulpen ez ofizial bat da. Itzulpen hau ez du Software Librearen Fundazioak
+(Free Software Foundation) argitaratu, eta ez ditu legalki zehazten GNU GPL
+erabiltzen duen softwarea banatzeko baldintzak. Hori GNU GPLren ingelesezko
+jatorrizko testuak baino ez du egiten. Hala ere, itzulpen hau euskaldunei GNU
+GPL hobeto ulertzen laguntzeko asmoarekin egin dugu.
+
+  Itzulpen hau argitara dezakezu, aldatuta edo aldatu gabe, baldintza hauek
+betetzen badituzu soilik: https://www.gnu.org/licenses/translations.html.
+
+-------------------------------------------------------------------------------
+
+
+                        GNU LIZENTZIA PUBLIKO OROKORRA
+                       3. bertsioa, 2007ko ekainaren 29a
+
+ Copyright Â© 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Edonork egin eta bana ditzake lizentzia-dokumentu honen hitzez hitzeko kopiak,
+ baina debekatuta dago dokumentuan aldaketak egitea.
+
+                                    Sarrera
+
+  GNU Lizentzia Publiko Orokorra softwarerako eta beste lan mota batzuetarako
+copyleft lizentzia librea da.
+
+  Software eta beste lan praktiko gehienen lizentziak lanak partekatzeko eta
+aldatzeko askatasuna kentzeko diseinatuta daude. Aitzitik, programa baten
+bertsio guztiak partekatu eta aldatzeko duzun askatasuna bermatzea da GNU
+Lizentzia Publiko Orokorraren xedea, hau da, softwarea erabiltzaile guztientzat
+librea izango dela ziurtatzea. Guk, Software Librearen Fundazioak, GNU
+Lizentzia Publiko Orokorra erabiltzen dugu gure software gehienetarako; egileek
+modu horretan argitaratutako beste edozein lanetarako ere erabil daiteke. Zure
+programetarako ere erabili dezakezu.
+
+  Software libreaz hitz egiten dugunean, askatasunari buruz ari gara, eta ez
+prezioari buruz. Gure Lizentzia Publiko Orokorren diseinuaren xedea da software
+librearen kopiak banatzeko (eta nahi izanez gero, horiengatik kobratzeko)
+askatasuna duzula ziurtatzea, iturburu-kodea jaso duzula edo nahi izanez gero
+hori lor dezakezula bermatzea, softwarea aldatzeko edo software-zatiak beste
+programa libre berri batzuetan erabiltzeko eskubidea duzula ziurtatzea, eta
+gauza horiek egin ditzakezula jakinaraztea.
+
+  Zure eskubideak babesteko, norbaitek zuri eskubide hauek ukatzea edo eskubide
+horiei uko eginaraztea galarazi behar dugu. Beraz, software baten kopiak
+banatzen badituzu edo software bat aldatzen baduzu, hainbat erantzukizun izango
+dituzu: besteen askatasuna errespetatzeko erantzukizunak.
+
+  Adibidez, horrelako programa baten kopiak banatzen badituzu, bai doan eta bai
+kuota baten truke, zuk jaso dituzun askatasun berberak eman behar dizkiezu
+hartzaileei. Beraiek ere iturburu-kodea jasotzen dutela edo lor dezaketela
+ziurtatu behar duzu. Eta baldintza hauek erakutsi behar dizkiezu, zein eskubide
+dituzten jakin dezaten.
+
+  GNU GPL erabiltzen duten garatzaileek zure eskubideak babesten dituzte bi
+urratsen bidez: (1) softwarearen egile-eskubideak (copyright) aitortuz, eta (2)
+softwarea kopiatzeko, banatzeko edota aldatzeko legezko baimena ematen dizun
+izentzia hau eskainiz.
+
+  Garatzailea eta egilea babeste aldera, GPLk argi azaltzen du software libre
+honek ez duela inolako bermerik. Erabiltzaileen eta egileen onerako, bertsio
+aldatuak direnean hala adieraztera behartzen du GPLk, horiek eragindako arazoak
+modu okerrean ez leporatzeko aurreko bertsioen egileei.
+
+  Zenbait gailu diseinatzen dira erabiltzaileei ez uzteko beren barnean
+softwarearen bertsio aldatuak instalatzen edo erabiltzen, fabrikatzaileak hala
+egin dezakeen arren. Hori erabat bateraezina da erabiltzaileek softwarea
+aldatzeko duten askatasuna babesteko helburuarekin. Gehiegikeria horren
+errepikapen sistematikoa norbanakoek erabiltzeko produktuen esparruan gertatzen
+da, non, hain zuzen, ezin onartezinagoa baita. Hori dela eta, GPLren bertsio
+hau diseinatu dugu produktuotan praktika hori debekatzeko. Arazo horiek beste
+esparru batzuetan nabarmen areagotuz gero, prest gaude GPLren etorkizuneko
+bertsioetan neurri hori esparru horietara hedatzeko, erabiltzaileen askatasuna
+babesteko behar den heinean.
+
+  Azkenik, software-patenteek etengabe mehatxu egiten diete programa guztiei.
+Estatuek ez liekete patenteei baimenik eman behar erabilera orokorreko
+ordenagailuetan softwareen garapena eta erabilera mugatzeko. Hala ere, hori
+baimentzen dutenen kasuan, patenteen erabilera saihestu nahiko genuke programa
+libreak jabedun programa bilakatzeko arrisku berezia dagoenean. Hori
+saihesteko, GPLk bermatu egiten du patenteak ez direla erabiliko programak ez
+libre bilakatzeko helburuarekin.
+
+  Softwareak kopiatzeko, banatzeko eta aldatzeko baldintza zehatzak jarraian
+azaltzen dira.
+
+                                   BALDINTZAK
+
+  0. Definizioak.
+
+  Â«Lizentzia hauÂ» aipatzen denean GNU Lizentzia Publiko Orokorraren 3.
+bertsioaz ari gara.
+
+  Â«Egile-eskubideakÂ» aipatzen direnean, barne hartzen ditugu egile-eskubideen
+antzeko legeak ere, beste lan mota batzuei aplikatzen zaizkienak, besteak
+beste, zirkuitu integratuen argazki-maskarei.
+
+  Â«ProgramaÂ» da Lizentzia honen menpean dagoen edozein egile-eskubidedun lan.
+Lizentzia guztiak Â«zuriÂ» zuzenduta daude. Â«LizentziadunakÂ» eta Â«hartzaileakÂ»
+norbanakoak edo erakundeak izan daitezke.
+
+  Lan bat Â«aldatzeaÂ» da lan batetik kopiatzea edo lan osoa edo zati bat
+egokitzea, egile-eskubideen baimena behar duen modu batean, eta ez kopia
+berdin-berdin bat egitea. Amaierako lana aurreko lanaren Â«bertsio aldatuÂ» bat
+da, edo aurreko lanean Â«oinarritutakoÂ» lan bat.
+
+  Â«Babestutako lanÂ» bat da aldatu gabeko Programa bat edo Programa batean
+oinarritutako lan bat.
+
+  Lan bat Â«hedatzeaÂ» da lan horrekin edozer egitea, baimenik gabe eginez gero
+egile-eskubideen lege aplikagarria haustera eramango zintuzkeena zuzenean edo
+zeharka, lana ordenagailu batean exekutatzen denean edo kopia pribatu bat
+aldatzen denean izan ezik. Hedatzeak barne hartzen du kopiatzea, banatzea
+(aldaketekin edo aldaketarik gabe), publikoaren eskura jartzea, eta, herrialde
+batzuetan, bestelako ekintza batzuk burutzea.
+
+  Lan bat Â«helarazteaÂ» da lana hedatzea hirugarrenei kopiak egiteko edo
+jasotzeko aukera ematen dien edozein modutan. Ordenagailu-sare batetik
+erabiltzaile batekin interakzioan jardute hutsa, kopiarik transferitu gabe, ez
+da lanak helaraztea.
+
+  Erabiltzaile-interfaze interaktiboak Â«Lege-ohar EgokiakÂ» erakusten ditu,
+baldin eta funtzio edo eginbide praktiko eta ikuserraz bat baldin badauka (1)
+egile-eskubideei buruzko ohar egoki bat erakusteko, eta (2) erabiltzaileari
+jakinarazteko lanak ez duela bermerik (bermeak eskaintzen direnean salbu),
+lizentziadunek Lizentzia honen arabera lana helaraz dezaketela, eta Lizentzia
+honen kopia bat nola ikus dezaketen. Interfazeak erabiltzaile-komando edo
+aukeren zerrenda bat erakusten badu, esate baterako, menu bat, zerrendan
+elementu nabarmen bat jartzeak irizpide hori betetzen du.
+
+  1. Iturburu-kodea.
+
+  Lan baten Â«iturburu-kodeaÂ» da lanari aldaketak egiteko lanaren formarik
+egokiena. Â«Objektu-kodeaÂ» da lan baten iturburu-forma ez den edozein forma.
+
+  Â«Interfaze EstandarÂ» bat da aitortutako estandar-erakunde batek definituriko
+estandar ofizial den interfaze bat, edo, programazio-lengoaia jakin baterako
+zehaztutako interfazeen kasuan, lengoaia horretan lan egiten duten garatzaileen
+artean erabilera zabala duen interfaze bat.
+
+  Lan exekutagarri baten Â«Sistema LiburutegiakÂ» esatean, esan nahi da lan osoa
+ez den edozer: (a) Osagai Nagusi baten paketatze-forma normalean sartzen dena,
+baina Osagai Nagusi horren zati ez dena, eta (b) Osagai Nagusi horrekin lana
+erabili ahal izateko soilik balio duena, edo Interfaze estandar bat
+inplementatzeko, inplementazioa iturburu-kodean eskuragarri dagoenean.
+Testuinguru honetan, Â«Osagai NagusiaÂ» da lan exekutagarriak funtzionatzen duen
+sistema eragile espezifikoaren (halakorik badago) funtsezko osagai bat (kernel,
+leiho-sistema, etab.), edo lana sortzeko erabiltzen den konpiladore bat, edo
+horrek funtziona dezan erabiltzen den objektu-kodearen interprete bat.
+
+  Objektu-kode forman dagoen lan baten Â«Dagokion IturburuaÂ» da objektu-kodea
+sortzeko, instalatzeko eta (lan exekutagarrietan) exekutatzeko eta lana
+aldatzeko behar den iturburu-kode guztia, jarduera horiek kontrolatzeko
+script-ak barne. Hala ere, ez dira barne hartzen lanaren Sistema Liburutegiak,
+edo erabilera orokorreko tresnak eta orokorrean eskuragarri dauden programa
+libreak, jarduera horiek burutzean aldatu gabe erabiltzen diren arren, lanaren
+zati ez direnak.
+
+  Adibidez, Dagokion Iturburuaren barnean sartzen dira lanaren iturburu-
+fitxategiei lotutako interfazeen definizio-fitxategiak, eta baita partekatutako
+liburutegien eta dinamikoki lotutako azpiprogramen iturburu-kodea ere, lana
+espezifikoki diseinatuta badago horiek behar izateko, adibidez, azpiprograma
+horien eta lanaren beste zati batzuen arteko datu-komunikazio edo kontrol-
+fluxu bidez.
+
+  Ez da beharrezkoa Dagokion Iturburuaren barnean sartzea Dagokion Iturburuaren
+beste atal batzuetatik erabiltzaileek automatikoki birsortu dezaketen edozer.
+
+  Iturburu-kodean dagoen lan baten Dagokion Iturburua, lana bera da.
+
+  2. Oinarrizko baimenak.
+
+  Lizentzia honetan aitortzen diren eskubide guztiak Programaren egile-
+eskubideak indarrean dauden bitartean aitortzen dira, eta errebokaezinak dira
+baldin eta ezarritako baldintzak betetzen badira. Lizentzia honek esplizituki
+berresten du aldaketarik gabeko Programa erabiltzeko baimen mugagabea duzula.
+Babestutako lan bat exekutatzetik sortzen den produktua Lizentzia honek
+babestuko du baldin eta produktua, edukia kontuan hartuta, babestutako lan bat
+bada. Lizentzia honek lana zentzuz erabiltzeko eskubideak edo baliokideak
+aitortzen dizkizu, egile-eskubideen legeak aurreikusten duen bezala.
+
+  Zuk helarazten ez dituzun babestutako lanak baldintzarik gabe sortu, erabili
+eta heda ditzakezu, zure lizentzia gainerakoan indarrean dagoen bitartean.
+Babestutako lanak hirugarrenei helaraz diezazkiekezu lanei zuretzat soilik
+izango diren aldaketak egin diezazkieten bakarrik, edo lan horiek exekutatzeko
+lagungarriak eman diezazkizuten, baldin eta Lizentzia honen baldintzak betetzen
+badituzu zure kontrolpean ez dauden egile-eskubideak dituen material guztia
+helarazten duzunean. Babestutako zure lanak modu horretan burutzen edo
+erabiltzen dituzten pertsonek zure izenean, zure zuzendaritzapean eta
+kontrolpean egin beharko dute hori, eta ezin izango dute, horretarako, zure
+egile-eskubidedun materialaren kopiarik egin zuen arteko harremanetik kanpo.
+
+  Beste edozein baldintzaren arabera helarazi ahal izateko, behean adierazitako
+baldintzak bete behar dira. Azpilizentziatzeko baimenik ez da ematen; 10.
+atalaren ondorioz ez da beharrezkoa.
+
+  3. Erabiltzaileen legezko eskubideen babesa, Saihestearen Aurkako Legearen
+aurrean.
+
+  Babestutako lanak ez dira teknologia-neurri eraginkor baten zatitzat joko
+1996ko abenduaren 20an adostutako WIPO egile-eskubide itunaren 11. artikuluan
+ezarritakoa betetzen duen edozein lege aplikagarriren arabera edo neurri horiek
+saihesteko aukera debekatzen edo mugatzen duten antzeko legeen arabera.
+
+  Babestutako lan bat helarazten duzunean, neurri teknologikoak saihesteko
+aukera debekatzeko edozein legezko ahalmeni uko egiten diozu, baldin eta
+saiheste-ekintza hori Lizentzia honek, babestutako lanari dagokionez, aitortzen
+dituen eskubideak erabiltzean burutzen bada. Horrez gain, uko egiten diozu
+lanaren erabilera edo aldaketa mugatzeko edozein asmori, lanaren erabiltzaileen
+aurka baliatuz zure edo hirugarrenen legezko eskubideak teknologia-neurriak
+saihesteko aukera debekatzeko.
+
+  4. Hitzez hitzeko kopiak helaraztea.
+
+  Programaren iturburu-kodearen hitzez hitzeko kopiak helaraz ditzakezu, jaso
+bezala, edozein euskarritan, baina, horretarako, kopia bakoitzean egile-
+eskubideen ohar bat argitaratu beharko duzu modu ikusgarri eta egoki batean;
+oso-osorik mantendu beharko dituzu bai Lizentzia hau eta bai 7. atalaren
+arabera gehitzen den edozein baldintza murriztaile kodeari aplikatzen zaizkiola
+zehazten duten ohar guztiak; oso-osorik mantendu beharko dituzu bermerik ezaren
+inguruko ohar guztiak; eta Lizentzia honen kopia bat eman beharko diezu
+hartzaile guztiei Programarekin batera.
+
+  Kopiak prezio baten truke edo dohainik helaraz ditzakezu, eta laguntza-
+zerbitzua edo berme-babesa eskain dezakezu kuota baten truke.
+
+  5. Iturburu-kodearen bertsio aldatuak helaraztea.
+
+  Programan oinarritutako lan bat helaraz dezakezu, edo Programatik abiatuta
+lan hori sortzeko egin behar diren aldaketak, iturburu-kodearen forman, 4.
+ataleko baldintzak betez, eta, gainera, beste baldintza hauek guztiak ere
+betez:
+
+    a) Lana aldatu duzula adierazi behar duzu ohar nabarmenen bidez, eta data
+    adierazgarri bat eman.
+
+    b) Adierazi behar duzu lana Lizentzia honen arabera eta 7. atalean jasotzen
+    den edozein baldintzaren arabera argitaratu dela ohar nabarmenen bidez.
+    Eskakizun honek 4. ataleko eskakizun bat aldatzen du: Â«ohar guztiak
+    oso-osorik mantentzeaÂ».
+
+    c) Lana bere osotasunean hartzen duen Lizentzia bat eman behar diozu kopia
+    bat eskuratzen duen edonori. Ondorioz, Lizentzia hau, 7. ataleko edozein
+    baldintza osagarri aplikagarrirekin batera, lan osoari aplikatuko zaio, eta
+    lanaren atal guztiei, nola paketatu diren kontuan hartu gabe. Lizentzia
+    honek ez du baimenik ematen lanaren lizentziak beste edozein modutara
+    emateko, baina ez du halako baimenik baliogabetzen bereizita jaso baldin
+    baduzu.
+
+    d) Lanak erabiltzaile-interfaze interaktiboak baldin baditu, horietako
+    bakoitzak Lege-ohar Egokiak erakutsi behar ditu. Hala ere, Programak
+    Lege-ohar Egokiak erakusten ez dituzten interfaze interaktiboak baldin
+    baditu, ez dituzu gehitu beharko zure lanean.
+
+  Babestutako lan batek beste lan bereizi eta independente batzuekin batera
+bilduma bat osatzen duenean, baldin eta lanok babestutako lanaren luzapenak ez
+badira eta babestutako lanarekin programa handiago bat osatzeko konbinatzen ez
+badira, biltegiratze-bolumen edo banaketa-euskarri batean, bilduma horri
+Â«agregatuÂ» esaten zaio, baldin eta bilduma eta haren egile-eskubideak ez badira
+erabiltzen bildumaren erabiltzaileen sarbidea edo legezko eskubideak mugatzeko,
+lan bakoitzak baimentzen duenetik harago. Babestutako lan bat agregatu batean
+sartzeak ez du behartuko Lizentzia hau agregatuaren gainerako atalei
+aplikatzera.
+
+  6. Iturburu-kode ez diren formetan helaraztea.
+
+  Babestutako lanak objektu-kodean helaraz ditzakezu, 4. eta 5. ataletako
+baldintzen arabera, baldin eta horrekin batera Dagokion Iturburua, makina bidez
+irakurgarria, ere helarazten baduzu Lizentzia honen baldintzen arabera, modu
+hauetako batean:
+
+    a) Objektu-kodea produktu fisiko batean, edo horren barruan, (banaketarako
+    euskarri fisikoetan barne) helarazi, Dagokion Iturburuarekin batera
+    normalean softwareak trukatzeko erabiltzen den euskarri fisiko iraunkor
+    batean.
+
+    b) Objektu-kodea produktu fisiko batean, edo horren barruan, (banaketarako
+    euskarri fisikoetan barne) helarazi, idatzizko eskaintza batekin batera,
+    objektu-kodea daukan edozeini eskaintzeko: (1) Dagokion Iturburuaren kopia
+    bat Lizentzia honek babesten duen produktu barneko software guztiarentzat,
+    normalean softwareak trukatzeko erabiltzen den euskarri fisiko iraunkor
+    batean, eta iturburua fisikoki helaraztea kostatu zaizun zentzuzko prezioa
+    baino gehiago kobratu gabe, edo (2) Dagokion Iturburua kopiatzeko sarbidea,
+    kosturik gabeko sareko zerbitzari batetik. Eskaintza hori baliagarria
+    izango da gutxienez hiru urterako eta produktu-modelo horrentzako ordezko
+    piezak edo bezeroarentzako zerbitzua eskaintzen dituzun bitartean.
+
+    c) Objektu-kodearen banakako kopiak helarazi, Dagokion Iturburua emateko
+    idatzizko eskaintzaren kopia batekin batera. Aukera hau kasu batzuetan
+    baino ez dago baimenduta eta modu ez komertzialean, eta zuk ere objektu-
+    kodea halako eskaintza batekin jaso baduzu soilik, 6b azpiatalean zehazten
+    den bezala.
+
+    d) Objektu-kodea helarazi izendatutako leku batetik sarbidea eskainiz
+    (dohainik edo kostu baten truke), eta Dagokion Iturbururako sarbide berdina
+    eskainiz, modu berean eta leku beretik eta kostu gehigarririk gabe.
+    Hartzaileei ez daukazu eskatu beharrik Dagokion Iturburua objektu-
+    kodearekin batera kopiatzeko. Objektu-kodea kopiatzeko lekua sareko
+    zerbitzari bat baldin bada, Dagokion Iturburua beste zerbitzari batean egon
+    daiteke (zuk edo hirugarren batek kudeatzen duzuen batean), baina
+    zerbitzari horrek kopiatzeko erraztasun baliokideak eskaini beharko ditu,
+    eta objektu-kodearen ondoan jarraibide argiak eman beharko dituzu, Dagokion
+    Iturburua non aurkitu adieraziz. Dagokion Iturburua edozein zerbitzaritan
+    egonda ere, eskuragarri dagoela segurtatu behar duzu, baldintza hauek
+    betetzeko behar den denbora guztian zehar.
+
+    e) Objektu-kodea helarazi parekoen arteko (peer-to-peer) transmisioaren
+    bidez, beste parekoei jakinaraziz publiko orokorrak non eskura ditzakeen
+    lanaren objektu-kodea eta Dagokion Iturburua, inolako kosturik gabe, 6d
+    azpiatalak ezartzen duen bezala.
+
+  Lanaren objektu-kodea helaraztean, ez dago zertan sartu objektu-kodearen zati
+banangarririk, zati horren iturburu-kodea Dagokion Iturburutik kanpo geratzen
+bada Sistema Liburutegi gisa.
+
+  Â«Erabiltzaile ProduktuÂ» bat da (1) Â«kontsumitzaile-produktuÂ» bat, hau da,
+edozein ondasun pertsonal ukigarri, normalean norberaren gauzetarako, edo
+familiako edo etxeko kontuetarako erabiltzen dena, edo (2) etxebizitza batean
+erabiltzeko diseinatzen edo saltzen den edozer. Produktu bat kontsumitzaile-
+produktu bat den zehazteko, zalantza dagoen kasuetan babesaren alde egin behar
+da. Erabiltzaile batek jasotzen duen produktu jakin bati buruz, Â«normalean
+erabiltzen delaÂ» aipatzen denean esan nahi da hori dela produktu mota horren
+erabilera ohikoa edo arrunta, alde batera utzita erabiltzaile jakin baten
+estatusa edo horrek ematen dion, edo ematea espero dion, erabilera. Produktu
+bat kontsumitzaile-produktutzat joko da, funtsean erabilera komertzialak,
+industrialak edo kontsumotik kanpokoak dituen kontuan hartu gabe, erabilera
+horiek produktua erabiltzeko modu adierazgarri bakarra direnean izan ezik.
+
+  Erabiltzaile Produktu baten Â«Instalazio InformazioÂ» gisa jotzen da edozein
+metodo, prozedura, baimen-gako edo bestelako informazio, babestutako lan baten
+bertsio aldatuak Erabiltzaile Produktu horretan instalatzeko eta exekutatzeko
+beharrezko dena, Dagokion Iturburuaren bertsio aldatutik abiatuta. Informazioak
+nahikoa izan behar du segurtatzeko aldatutako objektu-kodearen funtzionamendu
+etengabea ez dela eragotziko edo oztopatuko aldaketa egin izanagatik bakarrik.
+
+  Atal honen arabera Lan baten objektu-kodea helarazten baduzu Erabiltzaile
+Produktu batean, edo batekin batera, edo berariaz Produktu horretan
+erabiltzeko, eta transakzio baten baitan helarazten baduzu, zeinaren bidez
+produktuaren edukitza- eta erabilera-eskubideak hartzaileari transferitzen
+baitzaizkio epe mugatu baterako edo betiko (transakzioaren ezaugarriak kontuan
+hartu gabe), atal honen arabera helarazitako Dagokion Iturburua Instalazio
+Informazioarekin batera helarazi beharko duzu. Hala ere, betekizun hori hau ez
+da aplikatuko, baldin eta zuk edo hirugarren batek ez baduzue aldatutako
+objektu-kodea Erabiltzaile Produktuan instalatzeko gaitasuna atxikitzen
+(adibidez, lana ROM memorian instalatu bada).
+
+  Instalazio Informazioa eman beharrak ez du esan nahi laguntza-zerbitzua,
+bermea edo eguneratzeak helarazten jarraitu behar denik lana hartzaileak aldatu
+edo instalatu duen kasuetan edo lana instalatua edo aldatua izan den
+Erabiltzaile Produktuaren kasuan. Sare baterako sarbidea uka daiteke aldaketak
+berak sarearen funtzionamenduari eragiten dionean modu material eta
+kaltegarrian edo sarearen bidezko komunikazio-arau edo -protokoloak hausten
+dituenean.
+
+  Atal honen arabera helarazitako Dagokion Iturburua eta emandako Instalazio
+Informazioa, publikoki dokumentatutako formatu batean eman beharko dira
+(publikoarentzat iturburu-kodean eskuragarri dagoen inplementazio batekin),
+inolako pasahitz edo gako berezirik eskatu gabe paketea irekitzeko, irakurtzeko
+edo kopiatzeko.
+
+  7. Baldintza osagarriak.
+
+  Â«Baimen osagarriakÂ» dira Lizentzia honen baldintzak osatzen dituzten
+baldintzak, Lizentziako baldintza bat edo gehiago salbuetsiz. Programa osoari
+aplikatzekoak diren baimen osagarriak Lizentzia honen zati balira bezala
+tratatu beharko dira, baldin eta lege aplikagarrien arabera baliozkoak badira.
+Baimen osagarriak Programaren zati bati soilik aplikatzen bazaizkio, zati hori
+bereizirik erabili ahal izango da baimen horien arabera, baina Programak, bere
+osotasunean, Lizentzia honen mende jarraituko du baimen osagarriak aintzat
+hartu gabe.
+
+  Babestutako lan baten kopia helarazten duzunean, edozein baimen osagarri
+ezabatu dezakezu, nahi izanez gero, kopia horretatik edo kopiaren edozein
+zatitatik. (Zenbait kasutan, lana aldatzen duzunean, baimen osagarriak idatz
+daitezke baimen horiek ezaba daitezen eskatzeko). Materialari baimen osagarriak
+gehi diezazkiokezu, babestutako lan bati gehitu diozun materialaren kasuan,
+baldin eta egile-eskubideen baimen egokia baldin baduzu edo eman baldin
+badezakezu.
+
+  Lizentzia honen beste edozein xedapen alde batera utzita, babestutako lan
+bati gehitzen diozun materialari dagokionez, Lizentzia honen baldintzak beste
+baldintza hauekin osa ditzakezu (material horren egile-eskubideen jabeek hala
+baimentzen badute):
+
+    a) Bermeak ukatzea edo erantzukizunak mugatzea Lizentzia honen 15. eta 16.
+ataletako baldintzetatik harago, edo
+
+    b) Zentzuzko lege-ohar espezifikoak edo egiletasun-aitortzeak mantentzera
+behartzea, aipatutako materialean edo material hori jasotzen duten lanetan
+erakusten diren Lege-ohar Egokietan, edo
+
+    c) Materialaren jatorriaren desitxuratzea debekatzea, edo aldatutako
+bertsioak jatorrizko bertsiotik desberdintzen direla zentzuz adierazi behar
+izatea, edo
+
+    d) Materialaren lizentzia-emaileen edo egileen izenak publizitate asmoekin
+erabiltzea mugatzea, edo
+
+    e) Izen komertzialak, markak edo zerbitzu-markak erabiltzeko marka-legearen
+araberako eskubideak emateari uko egitea, edo
+
+    f) Material horren lizentzia-emaileen eta egileen kalte-ordaina exijitzea,
+materiala (edo materialaren bertsio aldatua) hartzailearekiko erantzukizunak
+kontratu bidez hartuta helarazten duen orori, kontratu bidez hartutako
+erantzukizun horiek lizentzia-emaileei eta egileei zuzenean inposatzen dieten
+erantzukizun orotarako.
+
+  Bestelako baldintza osagarri murriztaile guztiak Â«bestelako murrizketaÂ» gisa
+jasotzen dira 10. atalean. Programak, jaso bezala, edo programaren edozein
+zatik, ohar bat baldin badu, Programari, Lizentzia honez gain, bestelako
+murrizketa bat ezartzen dion baldintza batekin, baldintza hori ezaba dezakezu.
+Lizentzia-dokumentu batek, bestelako murrizketa bat eduki arren, baimena ematen
+badu birlizentziatzeko edo helarazteko Lizentzia honen baldintzapean,
+babestutako lanari edozein material gehi diezaiokezu lizentzia-dokumentu horren
+baldintzen arabera, baldin eta bestelako murrizketa ez bada mantentzen
+birlizentziatu edo helarazi ondoren.
+
+  Babestutako lan bati atal honen arabera baldintzak gehitzen badizkiozu,
+dagozkion iturburu-fitxategietan deklarazio bat gehitu beharko duzu fitxategi
+horiei aplikatzen zaizkien baldintza osagarriekin, edo, bestela, baldintza
+horiek non aurkitu adierazten duen ohar bat.
+
+  Baldintza osagarriak (permisiboak edo murriztaileak) idatzizko lizentzia
+bereizi batean zehaztu daitezke, edo salbuespen modura; nolanahi ere, goian
+aipatutako baldintzak aplikatuko dira.
+
+  8. Baliogabetzea.
+
+  Ezin da babestutako lan bat hedatu edo aldatu, Lizentzia honetan espresuki
+adierazten den moduan izan ezik. Lana beste modu batera hedatzeko edo aldatzeko
+edozein saiakera baliogabetzat joko da, eta Lizentzia honek aitortzen dizkizun
+eskubideak automatikoki azkenduko dira (baita 11. ataleko hirugarren
+paragrafoaren arabera emandako edozein patente-lizentzia ere).
+
+  Hala ere, Lizentzia-urraketak egiteari uzten badiozu, egile-eskubideen jabe
+zehatz batek emandako zure lizentzia lehengoratu zaizu (a) behin-behinean,
+baldin eta egile-eskubideen jabeak ez badu zure lizentzia bukatutzat jotzen
+modu esplizituan eta behin betiko, edo hori egiten duen arte eta (b) behin
+betiko, egile-eskubideen jabeak ez badizu lizentzia-urraketaren berri ematen
+zentzuzko bitarteko baten bidez lizentzia eten eta 60 egun igaro baino lehen.
+
+  Era berean, egile-eskubideen jabe zehatz batek ematen dizun lizentzia behin
+betiko itzuliko zaizu, baldin eta jabeak Lizentzia-urraketaren berri zentzuzko
+bitarteko baten bidez ematen badizu, jabe horrek emandako (edozein lanen)
+Lizentzia-urraketaren ondoriozko jakinarazpen bat jasotzen duzun lehen aldia
+bada, eta zuk zeuk, jakinarazpena jaso eta 30 eguneko epean, urraketa zuzentzen
+baduzu.
+
+  Atal honetan ezarritakoaren arabera zure eskubideak azkentzeak ez du esan
+nahi zuregandik Lizentzia honen pean kopiak edo eskubideak jaso dituztenen
+lizentziak azkentzen direnik. Zure eskubideak azkentzen baldin badira eta ez
+bazaizkizu behin betiko lehengoratzen, ezin izango duzu material berdinerako
+lizentzia berririk jaso, 10. atalean ezarritakoaren arabera.
+
+  9. Kopiak edukitzeko, onarpena ez da beharrezkoa.
+
+  Programaren kopia bat jasotzeko edo erabiltzeko ez duzu Lizentzia hau onartu
+beharrik. Era berean, babestutako lan bat bigarren mailan hedatzen denean,
+parekoen arteko (peer-to-peer) transmisioaren bidez kopia berdin bat jasotzeko
+soilik, ez dago lizentzia hau onartu beharrik. Hala ere, Lizentzia honek baino
+ez dizu ematen babestutako edozein lan hedatzeko edo aldatzeko baimena.
+Lizentzia hau ez baduzu onartzen, aipatutako ekintzek egile-eskubideak urratuko
+dituzte. Hori dela eta, babestutako lan bat aldatzen edo hedatzen duzunean,
+Lizentzia hau onartzen duzula adierazten ari zara hori burutzeko.
+
+  10. Lizentzia-emate automatikoa ondorengo hartzaileei.
+
+  Babestutako lan bat hedatzen duzun bakoitzean, hartzaileak jatorrizko
+lizentzia-emaileen lizentzia bat jasoko du automatikoki, lan hori erabiltzeko,
+aldatzeko edo hedatzeko, Lizentzia honen arabera. Ez duzu inolako
+erantzukizunik hirugarrenek Lizentzia hau betetzen dutela bermatzeko.
+
+  Â«Entitate-transakzioÂ» bat da erakunde baten kontrola edo erakunde baten
+aktibo guztien kontrola transferitzeko transakzioa, edo erakunde bat zatitzeko,
+edo hainbat erakunde batzeko transakzioa. Babestutako lan baten hedapena
+entitate-transakzio baten ondorioz gertatzen denean, transakzioko alderdi
+bakoitzak, lanaren kopia bat jasotzeaz gain, alderdiaren aurrekoak dituen edo
+eman ditzakeen lan-lizentzia guztiak jasoko ditu aurreko paragrafoaren arabera,
+baita aurrekoaren lanaren Dagokion Iturburua edukitzeko eskubidea ere,
+aurrekoak Dagokion Iturburua baldin badu edo zentzuzko ahalegin bat eginez
+lortu baldin badezake.
+
+  Ezin duzu bestelako murrizketarik inposatu Lizentzia honetan aitortzen edo
+bermatzen diren eskubideak baliatzeari dagokionez. Adibidez, ezin duzu
+lizentzia-kuotarik, royalty-rik edo bestelako preziorik inposatu Lizentzia
+honetan aitortzen diren eskubideak baliatzearen truke, eta ezin duzu auzirik
+hasi (auzi baten demandak eta errekonbentzio-demandak barne), alegatuz edozein
+patente-eskubide urratu egiten dela Programa edo horren zati bat sortzen,
+erabiltzen, saltzen, salerosketarako eskaintzen edo inportatzen denean.
+
+  11. Patenteak.
+
+  Â«KolaboratzaileÂ» bat da egile-eskubideen jabe den pertsona bat, zeinak
+Programaren edo Programan oinarritutako lan baten erabilera baimentzen baitu
+Lizentzia honen arabera. Modu horretan lizentziatutako lana kolaboratzailearen
+Â«kolaboratzaile-bertsioaÂ» izenez ezagutzen da.
+
+  Kolaboratzaileen Â«funtsezko patente-eskubideakÂ» dira kolaboratzaileak dituen
+edo kontrolatzen dituen patente-eskubide guztiak, jada eskuratutakoak edo
+hemendik aurrera eskuratuko dituenak, hainbat modutara urra daitezkeenak,
+Lizentzia honek baimentzen duenari jarraikiz, kolaboratzaile-bertsioak eginez,
+erabiliz edo salduz; baina ez dituzte barne hartzen kolaboratzaile-bertsioaren
+ondorengo aldaketen ondorioz soilik urra daitezkeen eskubideak. Definizio honen
+ondorioetarako, Â«kontrolakÂ» barne hartzen du patenteen azpilizentziak emateko
+eskubidea Lizentzia honetan zehazten diren eskakizunen arabera.
+
+  Kolaboratzaile bakoitzak mundu-mailako eta royalty-rik gabeko patente-
+lizentzia ez esklusibo bat ematen dizu, kolaboratzailearen funtsezko patente-
+eskubideen arabera, bere kolaboratzaile-bertsioaren edukiak sortzeko,
+erabiltzeko, saltzeko, salerosketarako eskaintzeko, inportatzeko eta bestela
+erabiltzeko, aldatzeko eta hedatzeko.
+
+  Hurrengo hiru paragrafoetan, Â«patente-lizentziaÂ» izango da patente-eskubideak
+betetzera ez behartzeko berariazko edozein hitzarmen edo konpromiso, horren
+izena edozein delarik ere (adibidez, patente bat erabiltzeko berariazko baimen
+bat, edo patente-eskubideak urratzeagatik auzi bat ez dela hasiko zehazten duen
+hitzarmen bat). Alderdi bati horrelako patente-lizentzia bat Â«emateaÂ»k esan
+nahi du, patentea alderdi horren aurka ez dela erabiliko adostu edo hitzartu
+dela.
+
+  Babestutako lan bat helarazten baldin baduzu, patente-lizentzia baten menpe
+dagoela jakinda, eta lanaren Dagokion Iturburua ez baldin badago eskuragarri
+kopiatzeko, doan eta Lizentzia honen baldintzapean, sarbide publikoa duen
+sareko zerbitzari baten bidez edo sarbide zuzeneko beste bitarteko batzuen
+bidez, zera egin beharko duzu: (1) Dagokion Iturburua modu horretan eskuragarri
+jarri, edo (2) lan zehatz horretarako patente-lizentziaren onurari uko egin,
+edo (3) behar diren neurriak hartu ondorengo hartzaileengana patente-lizentzia
+hedatzeko, Lizentzia honetan zehazten diren eskakizunen arabera. Â«Patente-
+lizentzia baten menpe dagoela jakindaÂ» adierazten denean, zera esan nahi da:
+badakizula, hain zuzen ere, patente-lizentziagatik izango ez balitz, zuk
+babestutako lana herrialde batean helarazteak, edo hartzaileak lan hori
+herrialde batean erabiltzeak, urratu egingo lituzkeela herrialde horretan
+patente identifikagarri bat edo gehiago, hainbat arrazoi direla medio,
+baliagarritzat jotzen dituzunak.
+
+  Transakzio edo kontratu bakar bati jarraituz edo horri lotuta, babestutako
+lan bat helarazten baduzu, edo babestutako lan bat hedatzen baduzu hori
+helarazteko, eta babestutako lana jasotzen duten zenbait alderdiri patente-
+lizentzia bat ematen badiezu, babestutako lanaren kopia espezifiko bat
+erabiltzeko, hedatzeko, aldatzeko edo helarazteko baimena emanez, eman duzun
+patente-lizentzia automatikoki zabalduko da babestutako lanaren hartzaile
+guztietara, eta lan horretan oinarritzen diren lanen hartzaileetara.
+
+  Patente-lizentzia bat Â«diskriminatzaileaÂ» da baldin eta bere estalduraren
+barnean ez badira sartzen Lizentzia honen arabera berariaz aitortzen diren
+eskubideetako bat edo gehiago, eskubide horien erabilera debekatzen badu, edo
+eskubide horiek ez erabiltzearen truke ematen bada. Ez duzu babestutako lanik
+helarazi behar baldin eta softwareak banatzeko negozioan aritzen den hirugarren
+alderdi batekin adostu duzun kontratu baten alderdi bat bazara, eta horren
+arabera, lana zuk helarazteagatik hirugarren alderdiari ordaindu behar badiozu,
+eta zure bitartez babestutako lana jasotzen duten alderdiei hirugarren
+alderdiak patente-lizentzia diskriminatzaile bat ematen badie (a) zuk
+helarazitako babestutako lanaren kopiekin (edo kopia horietatik egindako
+kopiekin) lotura duena edo (b) nagusiki, babestutako lanaz baliatzen diren
+bilduma edo produktu espezifikoentzat dena edo horiekin lotura duena, salbu eta
+kontratu hori 2007ko martxoaren 28a baino lehen onartu baduzu, edo patente-
+lizentzia data horren aurretik eman bada.
+
+  Lizentzia honetako xedapenak ezin dira interpretatu lizentzia inplizituen
+esklusio edo mugatze gisa edo, urraketen aurkako defentsak â€”bestela ere
+patenteen lege aplikagarriaren arabera eskuragarri izango zenituzkeenakâ€”
+mugatzeko modu gisa.
+
+  12. Hirugarrenen askatasunaren babesa.
+
+  Lizentzia honen baldintzak ezeztatzen dituzten baldintzak inposatzen
+bazaizkizu (agindu judizial edo kontratu bidez edo beste nolabait), ez zaituzte
+Lizentzia honen baldintzetatik salbuetsiko. Babestutako lan bat helarazten
+duzunean ezin badituzu, aldi berean, Lizentzia honek zehaztutako betekizunak
+eta zuri dagozkizun bestelako betekizun batzuk bete, ezin izango duzu inolaz
+ere helarazi. Adibidez, zure Programa jaso dutenei etorkizunean Programa
+helarazteagatik royalty bat kobratzera behartzen zaituzten baldintzak onartzen
+badituzu, Programa helarazteari uko egitea litzateke bai baldintza horiek bai
+Lizentzia hau betetzeko modu bakarra.
+
+  13. GNU Affero Lizentzia Publiko Orokorrarekin erabiltzea.
+
+  Lizentzia honen beste edozein xedapen alde batera utzita, baimena daukazu
+babestutako edozein lan estekatzeko edo konbinatzeko GNU Affero Lizentzia
+Publiko Orokorraren 3. bertsioaren araberako lizentzia duen beste lan batekin,
+lan konbinatu bakar bat osatzeko, eta amaierako lan hori helarazteko.
+Babestutako lanari dagokion zatiari lizentzia honen baldintzak aplikatzen
+jarraituko zaizkio; aldiz, GNU Affero Lizentzia Publiko Orokorraren 13. ataleko
+eskakizun bereziak, sarearen bitartezko interakzioari buruzkoak, konbinazioari
+aplikatuko zaizkio.
+
+  14. Lizentzia honen bertsio berrikusiak.
+
+  Software Librearen Fundazioak Lizentzia Publiko Orokorraren bertsio
+berrikusiak edo berriak argitara ditzake noizean behin. Bertsio berri horiek
+egungoaren antzekoak izango dira izaerari dagokionez, baina arazo edo kezka
+berriei aurre egin beharko dietenez, xehetasunen bat alda daiteke.
+
+  Bertsio bakoitzari bere bertsio-zenbaki bereizgarria ematen zaio. Programak
+zehazten badu GNU Lizentzia Publiko Orokorraren bertsio-zenbaki bat Â«edo
+bertsio berriago batÂ» aplikatzen zaiola, aukera duzu bertsio-zenbaki horren
+zein Software Librearen Fundazioak geroago argitaratutako beste bertsioren
+baten baldintzak betetzeko. Programak ez badu zehazten GNU Lizentzia Publiko
+Orokorraren bertsio-zenbakirik, Software Librearen Fundazioak argitaratutako
+bertsioetako edozein aukera dezakezu.
+
+  Programak zehazten badu ahaldun batek erabaki dezakeela GNU Lizentzia Publiko
+Orokorraren zer bertsio erabili ahal izango diren etorkizunean, ahaldun horrek
+publikoki deklaratzen badu bertsio jakin bat onartzen duela, betiko baimena
+emango dizu, Programarako bertsio hori aukeratzeko.
+
+  Lizentziaren bertsio berriagoek baimen osagarriak edo desberdinak eman
+diezazkizukete. Hala ere, egileei edo egile-eskubideen jabeei ez zaie inolako
+obligazio gehigarririk inposatuko ondorengo bertsio berriago bat jarraitzea
+aukeratzen baduzu.
+
+  15. Bermea-ukatzea.
+
+  PROGRAMAK EZ DU BERMERIK, LEGE APLIKAGARRIAK ONARTZEN DUEN NEURRIAN. IDATZIZ
+AURKAKORIK ADIERAZTEN EZ BADA, EGILE-ESKUBIDEEN JABEEK ETA/EDO BESTE ALDERDI
+BATZUEK PROGRAMA Â«BERE HORRETANÂ» EMATEN DUTE INOLAKO BERMERIK GABE, EZ
+ESPRESUKI ADIERAZITAKORIK EZ INPLIZITURIK, BARNE HARTUZ, BAINA HORRETARA MUGATU
+GABE, KOMERTZIALIZAGARRITASUNAREN EDO XEDE JAKIN BATERAKO EGOKITASUNAREN
+BERMEAK. PROGRAMAREN KALITATEARI ETA ERRENDIMENDUARI DAGOKIONEZ, ZURE GAIN DAGO
+ARRISKU GUZTIA. PROGRAMAK AKATSIK IZANGO BALU, ZURE GAIN HARTU BEHARKO DUZU
+BEHAR DIREN ZERBITZUEN, KONPONKETEN EDO ZUZENKETEN KOSTUA.
+
+  16. Erantzukizun-mugatzea.
+
+  EZ BADA LEGE APLIKAGARRIAK EDO IDATZIZKO KONTRATU BATEK HALA ESKATZEN
+DUELAKO, EGILE-ESKUBIDEEN EDOZEIN JABERI EDO GOIAN BAIMENTZEN DEN BEZALA
+PROGRAMA HELARAZTEN EDO BERTAN ALDAKETAK EGITEN DITUEN BESTE ALDERDI BATI,
+EZINGO DIOZU ERANTZUKIZUNIK ESKATU KALTEENGATIK, EZTA PROGRAMA ERABILTZETIK EDO
+ERABILI EZINETIK SOR LITEZKEEN EDOZEIN ERATAKO KALTE OROKORRAK, BEREZIAK,
+EZUSTEKOAK EDO ONDORIOZKOAK IZANDA ERE (BESTEAK BESTE, INFORMAZIOA GALTZEA,
+DATU OKERRAK EMATEA, EDO ZUK EDO HIRUGARRENEK JASANDAKO GALERAK, EDO PROGRAMA
+GAI EZ IZATEA BESTE PROGRAMA BATZUEKIN LAN EGITEKO), NAHIZ ETA ESKUBIDEEN
+JABEAK EDO BESTE ALDERDI BATEK HALAKO KALTEAK SORTZEKO AUKERAREN BERRI IZAN.
+
+  17. Aurreko 15. eta 16. atalen interpretazioa.
+
+  Goian zehaztutako berme-ukatzeari eta erantzukizun-mugatzeari, ezartzen
+dituzten baldintzak direla-eta, ezin bazaie legezko baliorik eman
+jurisdikzioren batean, kasua aztertzen duten auzitegiek tokiko legeak aplikatu
+beharko dituzte, Programari lotutako edozein erantzukizun zibilen uko-egite
+absolutuari ahalik eta gehien hurbiltzeko moduan, salbu eta Programaren kopia
+batekin batera, kuota bat ordainduta, berme bat edo erantzukizun-hartze bat
+eskaintzen bada.
+
+                               BALDINTZEN AMAIERA
+
+              Nola aplikatu baldintza hauek zure programa berriei.
+
+  Programa berri bat garatu baduzu eta publikoari ahalik eta erabilerarik
+handiena eskaini nahi badiozu, zure programa software libre egitea da hori
+lortzeko modurik hoberena, edonork birbanatu eta aldatu ahal izan dezan
+baldintza hauen arabera.
+
+  Horretarako, gehitu ondorengo oharrak programari. Seguruena da oharrak
+iturburu-fitxategi bakoitzaren hasieran gehitzea, bermerik ez dagoela modu
+eraginkorrean adierazteko; eta fitxategi bakoitzak eduki beharko luke gutxienez
+Â«copyrightÂ» lerroa eta ohar osora joateko erakusle edo lotura bat.
+
+    <lerro batean, programaren izena eta egiten duenaren ideia laburra.>
+    Copyright (C) <urtea>  <egilearen izena>
+
+    Programa hau software librea da: birbanatu dezakezu, eta/edo aldatu,
+    Software Librearen Fundazioak argitaratutako GNU Lizentzia Publiko
+    Orokorraren baldintzen arabera, dela Lizentziaren 3. bertsioaren arabera
+    edo dela (nahi baduzu) bertsio berriagoren baten arabera.
+
+    Erabilgarria izango delakoan banatzen da programa hau, baina INOLAKO
+    BERMERIK GABE; ez du KOMERTZIALIZAGARRITASUNAREN EDO XEDE JAKIN BATERAKO
+    EGOKITASUNAREN berme inpliziturik ere. Xehetasun gehiagorako ikusi GNU
+    Lizentzia Publiko Orokorra.
+
+    Programa honekin batera GNU Lizentzia Publiko Orokorraren kopia bat jaso
+    eharko zenuke. Ez baduzu halakorik jaso, ikusi
+    <http://www.gnu.org/licenses/>.
+
+  Horrez gain, gehitu informazioa posta elektroniko zein arruntaren bidez
+zurekin harremanetan nola jarri jakiteko.
+
+  Programak terminaleko interakzioa badu, ziurtatu modu interaktiboan hasten
+denean ohar labur bat erakusten duela, jarraian agertzen denaren antzekoa:
+
+    <programa>  Copyright (C) <urtea>  <egilearen izena>
+    Programa honek ez du INOLAKO BERMERIK; informazio gehiagorako idatzi
+    `show w'. Hau software librea da, eta birbanatu dezakezu zenbait
+    baldintzarekin; idatzi `show c' xehetasunak ikusteko.
+
+  `show w' eta `show c' komando hipotetiko horiek Lizentzia Publiko Orokorraren
+atal egokiak erakutsi beharko lituzkete. Noski, zure programaren komandoak
+desberdinak izan daitezke; GUI interfazeetan, Â«honi buruzÂ» elkarrizketa-koadroa
+erabiliko zenuke.
+
+  Programatzaile gisa lan egiten baduzu enplegatzaile batentzako edo ikastetxe
+batean, ziurtatu horiek Â«egile-eskubideei uko-egiteaÂ» sinatzen dutela, behar
+izanez gero. Horren inguruko informazio gehiagorako, eta GNU GPL nola aplikatu
+eta bete jakiteko, ikusi <https://www.gnu.org/licenses/>.
+
+  GNU Lizentzia Publiko Orokorrak ez du baimenik ematen zure programa programa
+jabedunen barruan sartzeko. Zure programa azpirrutina-liburutegi bat baldin
+bada, beharbada erabilgarriagoa izango zaizu aplikazio jabedunak
+liburutegiarekin lotzeko baimena ematea. Hori bada egin nahi duzuna, erabili
+GNU Lizentzia Publiko Orokor Murriztua (Lesser General Public License)
+Lizentzia honen ordez. Baina lehenbizi, irakurri
+<https://www.gnu.org/philosophy/why-not-lgpl.html>.

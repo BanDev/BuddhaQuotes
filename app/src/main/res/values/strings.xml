@@ -99,7 +99,7 @@
     <string name="licenses_license" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions">Permissions</string>
     <string name="licenses_commercial_use">Commercial use</string>
-    <string name="licenses_distribution"></string>
+    <string name="licenses_distribution">Distribution</string>
     <string name="licenses_modification">Modification</string>
     <string name="licenses_patent_use">Patent use</string>
     <string name="licenses_private_use">Private use</string>
@@ -112,7 +112,7 @@
     <string name="licenses_liability">Liability</string>
     <string name="licenses_warranty">Warranty</string>
     <string name="licenses_full_license">Full License</string>
-    <string name="green_circle"></string>
+    <string name="green_circle">Green circle</string>
     <string name="blue_circle">Blue circle</string>
     <string name="red_circle">Red circle</string>
 

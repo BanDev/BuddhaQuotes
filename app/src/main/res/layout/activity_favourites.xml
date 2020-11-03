@@ -12,17 +12,16 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:textColorPrimary="@android:color/white"
         android:background="?colorAccent"
         app:title="Your Lists"
+        app:titleTextColor="@android:color/white"
         android:elevation="4dp"
         android:paddingStart="8dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextAppearance="@style/toolbarText"
-        tools:ignore="MissingConstraints" />
+        app:titleTextAppearance="@style/toolbarText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

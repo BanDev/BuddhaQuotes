@@ -19,6 +19,8 @@ class Colours {
 
     fun setAccentColor(context: Context, window: Window) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+
+        //Set the accent
         when (sharedPrefs.getString("accent_color", "original")) {
             "blue" -> context.setTheme(R.style.AppTheme_blue)
             "green" -> context.setTheme(R.style.AppTheme_Green)
@@ -33,6 +35,7 @@ class Colours {
             "crimson" -> context.setTheme(R.style.AppTheme_Crimson)
             else -> context.setTheme(R.style.AppTheme)
         }
+
         val typedValue = TypedValue()
         val theme: Resources.Theme = context.theme
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
