@@ -27,4 +27,18 @@ class Languages {
             context.resources.displayMetrics
         )
     }
+
+    /**
+     * Gets the current langauge from shared preferneces
+     * @param [context] context of activity (Context)
+     * @return string of iso code e.g. en or fr or ru
+     * @author jack.txt
+     * @added [1008] v1.5.0 - 03/11/2020
+     */
+
+    fun getLanguage(context: Context): String{
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val language = sharedPrefs.getString("app_language", "en").toString()
+        return language
+    }
 }
