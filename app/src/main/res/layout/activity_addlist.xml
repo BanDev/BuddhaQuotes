@@ -19,8 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextAppearance="@style/toolbarText"
-        tools:ignore="MissingConstraints" />
+        app:titleTextAppearance="@style/toolbarText" />
 
     <SearchView
         android:id="@+id/searchView"
