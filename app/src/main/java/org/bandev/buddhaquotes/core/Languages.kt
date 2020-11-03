@@ -36,9 +36,8 @@ class Languages {
      * @added [1008] v1.5.0 - 03/11/2020
      */
 
-    fun getLanguage(context: Context): String{
+    fun getLanguage(context: Context): String {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val language = sharedPrefs.getString("app_language", "en").toString()
-        return language
+        return sharedPrefs.getString("app_language", "en").toString()
     }
 }

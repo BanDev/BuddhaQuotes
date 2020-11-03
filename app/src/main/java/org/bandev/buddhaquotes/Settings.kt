@@ -86,7 +86,6 @@ class Settings : AppCompatActivity() {
 
         val view = View(this)
 
-
         view.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets

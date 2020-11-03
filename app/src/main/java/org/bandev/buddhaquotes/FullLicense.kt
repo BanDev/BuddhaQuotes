@@ -23,11 +23,31 @@ class FullLicense : AppCompatActivity() {
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
+        val language = Languages().getLanguage(this)
         setContentView(R.layout.activity_full_license)
 
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView
-        webview.loadUrl("file:///android_asset/Licenses/english.txt")
+        when (language) {
+            "en" -> {
+                webview.loadUrl("file:///android_asset/Licenses/english.txt")
+            }
+            "ru" -> {
+                webview.loadUrl("file:///android_asset/Licenses/russian.txt")
+            }
+            "da" -> {
+                webview.loadUrl("file:///android_asset/Licenses/danish.txt")
+            }
+            "de" -> {
+                webview.loadUrl("file:///android_asset/Licenses/german.txt")
+            }
+            "eu" -> {
+                webview.loadUrl("file:///android_asset/Licenses/basque.txt")
+            }
+            "sk" -> {
+                webview.loadUrl("file:///android_asset/Licenses/slovak.txt")
+            }
+        }
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {

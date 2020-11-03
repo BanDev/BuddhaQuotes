@@ -48,7 +48,6 @@ class AddList : AppCompatActivity() {
 
 
         //Setup toolbar
-
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
         toolbar.title = "Add to List"

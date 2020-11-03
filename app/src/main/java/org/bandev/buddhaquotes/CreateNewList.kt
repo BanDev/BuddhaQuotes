@@ -27,9 +27,7 @@ class CreateNewList : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_create_new_list)
 
-        //Set status bar colors
-
-        //Setup toolbar
+        // Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
