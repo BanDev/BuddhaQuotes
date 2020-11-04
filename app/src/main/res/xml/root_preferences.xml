@@ -87,7 +87,7 @@
             android:key="oss_libraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
-            android:layout="@layout/pref_single"
+            android:layout="@layout/pref_padding"
             app:icon="@drawable/ic_library_books" />
 
     </PreferenceCategory>
