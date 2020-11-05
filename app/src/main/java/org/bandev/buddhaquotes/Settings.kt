@@ -168,7 +168,6 @@ class Settings : AppCompatActivity() {
                     listPreference!!.value = newValue.toString()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
-                    mBundle.putBoolean("switch", true)
                     intent2.putExtras(mBundle)
 
                     startActivity(intent2)
