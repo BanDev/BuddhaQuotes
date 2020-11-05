@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -41,11 +42,9 @@ class AddList : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_addlist)
 
-        //Set status bar colors
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val list = (intent.getStringExtra("list") ?: return).toString()
-
 
         //Setup toolbar
         back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
@@ -153,7 +152,7 @@ class AddList : AppCompatActivity() {
     private fun genList(): ArrayList<String> {
         val list = ArrayList<String>()
 
-        val max = 341
+        val max = 237
 
         var i = 1
 

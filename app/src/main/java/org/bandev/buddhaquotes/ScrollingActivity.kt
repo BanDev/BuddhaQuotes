@@ -2,6 +2,7 @@ package org.bandev.buddhaquotes
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
@@ -41,12 +42,13 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_scrolling)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
-
         val pref = getSharedPreferences("List_system", 0)
         val prefString = pref.getString(listTmp, "")
         prefList = (prefString ?: return).split("//").toMutableList()

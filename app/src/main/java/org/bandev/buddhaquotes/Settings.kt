@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -31,6 +32,7 @@ class Settings : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)
