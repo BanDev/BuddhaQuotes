@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -98,6 +99,8 @@ class MainActivity : AppCompatActivity() {
         heartBlack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
         quoteView = findViewById(R.id.quote)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
@@ -188,9 +191,6 @@ class MainActivity : AppCompatActivity() {
             newQuote(0)
         }
 
-        val favourites = getSharedPreferences("Favs", 0)
-        val editor = favourites.edit()
-
         // When favourite is pressed
         (favourite ?: return).setOnClickListener {
             Hardware().vibrate(this)
@@ -246,7 +246,6 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).isEnabled = true
             }
         }
-
         // Get the first quote
         newQuote(quotenumber)
     }
@@ -263,7 +262,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         val pref = getSharedPreferences("List_system", 0)
-        val editor = pref.edit()
         val listArr = pref.getString("Favourites", "")
         val listArrFinal = LinkedList(listArr?.split("//"))
 

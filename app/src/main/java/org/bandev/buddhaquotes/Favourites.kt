@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -61,6 +62,8 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_favourites)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)

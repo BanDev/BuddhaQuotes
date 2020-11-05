@@ -1,15 +1,13 @@
 package org.bandev.buddhaquotes
 
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowInsetsController
 import android.webkit.WebView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.res.ResourcesCompat
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebViewFeature
 import org.bandev.buddhaquotes.core.Colours
@@ -25,6 +23,8 @@ class FullLicense : AppCompatActivity() {
         Languages().setLanguage(this)
         val language = Languages().getLanguage(this)
         setContentView(R.layout.activity_full_license)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView

@@ -22,7 +22,9 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-        <activity android:name=".WidgetConfigureActivity">
+        <activity
+            android:name=".WidgetConfigureActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="org.bandev.buddhaquotes.WIDGET_BUTTON" />
                 <action android:name="org.bandev.buddhaquotes.WIDGET_LIKE" />
@@ -32,43 +34,58 @@
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/ScrollingActivity" />
+            android:theme="@style/ScrollingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddList"
             android:label="addList"
-            android:theme="@style/ScrollingActivity" />
+            android:theme="@style/ScrollingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CreateNewList"
             android:label="createNewList"
-            android:theme="@style/ScrollingActivity" />
-        <activity android:name=".FullLicense" />
+            android:theme="@style/ScrollingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FullLicense"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S1Intro"
-            android:theme="@style/slide1" />
+            android:theme="@style/slide1"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S2Promise"
-            android:theme="@style/slide2" />
+            android:theme="@style/slide2"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S3Favourite"
-            android:theme="@style/slide3" />
+            android:theme="@style/slide3"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S4Refresh"
-            android:theme="@style/slide4" />
+            android:theme="@style/slide4"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S5Brightness"
-            android:theme="@style/slide5" />
+            android:theme="@style/slide5"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S6TextSize"
-            android:theme="@style/slide6" />
+            android:theme="@style/slide6"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S7End"
-            android:theme="@style/slide7" />
+            android:theme="@style/slide7"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".License"
             android:label="License"
-            android:theme="@style/license" />
+            android:theme="@style/license"
+            android:screenOrientation="portrait" />
         <activity android:name=".InfoPanel" />
-        <activity android:name=".Favourites" />
+        <activity
+            android:name=".Favourites"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Splash"
             android:theme="@style/Splash">
@@ -81,15 +98,18 @@
         <activity
             android:name=".About"
             android:label="@string/about"
-            android:theme="@style/about" />
+            android:theme="@style/about"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
-            android:theme="@style/settings" />
+            android:theme="@style/settings"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />
