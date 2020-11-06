@@ -3,7 +3,7 @@ package org.bandev.buddhaquotes.core
 class Quotes {
 
     //Current maxQuote variable
-    var maxQuote = 237
+    private var maxQuote = 237
 
     /**
      * Gets a quote from our quote library returns random quote if param is 0
