@@ -9,7 +9,6 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
@@ -20,8 +19,6 @@ import org.bandev.buddhaquotes.R
 
 class S5Brightness : AppCompatActivity() {
 
-
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_s5brightness)
@@ -91,7 +88,6 @@ class S5Brightness : AppCompatActivity() {
                 R.anim.anim_slide_in_left,
                 R.anim.anim_slide_out_left
             )
-            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -104,9 +100,13 @@ class S5Brightness : AppCompatActivity() {
 
         val view = View(this)
         view.doOnLayout {
-            view.windowInsetsController?.show(WindowInsets.Type.ime())
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
             // You can also access it from Window
-            window.insetsController?.show(WindowInsets.Type.ime())
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
         }
 
         view.setOnApplyWindowInsetsListener { view, insets ->

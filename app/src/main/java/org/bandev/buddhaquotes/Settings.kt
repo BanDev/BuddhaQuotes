@@ -265,7 +265,6 @@ class Settings : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Settings, MainActivity::class.java)
-
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)

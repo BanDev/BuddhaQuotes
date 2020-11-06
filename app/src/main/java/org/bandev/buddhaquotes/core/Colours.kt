@@ -22,7 +22,7 @@ class Colours {
 
         //Set the accent
         when (sharedPrefs.getString("accent_color", "original")) {
-            "blue" -> context.setTheme(R.style.AppTheme_blue)
+            "blue" -> context.setTheme(R.style.AppTheme_Blue)
             "green" -> context.setTheme(R.style.AppTheme_Green)
             "orange" -> context.setTheme(R.style.AppTheme_Orange)
             "yellow" -> context.setTheme(R.style.AppTheme_Yellow)

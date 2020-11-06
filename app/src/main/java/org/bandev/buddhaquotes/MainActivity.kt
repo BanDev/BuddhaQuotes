@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        setTheme(R.style.AppTheme_blue)
+        setTheme(R.style.AppTheme_Blue)
         toolbar?.navigationIcon = heartBlack
 
         WindowCompat.setDecorFitsSystemWindows(window, false)

@@ -19,7 +19,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <style name="license" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
