@@ -6,6 +6,12 @@
         <item name="colorPrimaryDark">@color/colorWaveDark</item>
     </style>
 
+    <style name="AppTheme.Original" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorWaveDark</item>
+    </style>
+
     <style name="AppTheme.Blue" parent="AppTheme">
         <item name="colorAccent">@color/blueAccent</item>
         <item name="colorPrimary">@color/blueAccent</item>

@@ -122,7 +122,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             var special = false
             val pref = getSharedPreferences("List_system", 0)
             val array2 = pref.getString(array[i], "")!!.split("//")
-            val count: Int = array2.size
+            val count: Int = array2.size -1
             if (array[i] == "Favourites") {
                 special = true
             }

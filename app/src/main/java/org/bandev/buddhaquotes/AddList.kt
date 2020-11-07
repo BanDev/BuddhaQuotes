@@ -18,6 +18,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.snackbar.Snackbar
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.reddit.indicatorfastscroll.FastScrollerView
 import org.bandev.buddhaquotes.core.Colours
@@ -94,20 +95,28 @@ class AddList : AppCompatActivity() {
         listView.onItemClickListener =
             OnItemClickListener { parent, view, position, id ->
 
-                val intent2 = Intent(this, ScrollingActivity::class.java)
-                val mBundle = Bundle()
+
 
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString(list, "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
-                listArrFinal.push(listView.getItemAtPosition(position) as String?)
+                if(listArrFinal.contains(listView.getItemAtPosition(position) as String?)){
+                    Toast.makeText(this, "Already in list!", LENGTH_SHORT).show()
+                }else{
+                    listArrFinal.push(listView.getItemAtPosition(position) as String?)
+                }
+
                 val stringOut = listArrFinal.joinToString(separator = "//")
+
+
 
 
                 editor.putString(list, stringOut)
                 editor.apply()
 
+                val intent2 = Intent(this, ScrollingActivity::class.java)
+                val mBundle = Bundle()
                 mBundle.putString("list", list)
                 intent2.putExtras(mBundle)
                 this.startActivity(intent2)

@@ -11,6 +11,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -19,6 +21,7 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -43,6 +46,13 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         Languages().setLanguage(this)
         setContentView(R.layout.activity_scrolling)
 
+        if(intent.extras!!.getBoolean("duplicate", false)){
+            val contextView = findViewById<View>(R.id.scrolling)
+
+            Snackbar.make(contextView, "Already in list!", Snackbar.LENGTH_SHORT)
+                .show()
+        }
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
@@ -51,7 +61,10 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         listTmp = list
         val pref = getSharedPreferences("List_system", 0)
         val prefString = pref.getString(listTmp, "")
-        prefList = (prefString ?: return).split("//").toMutableList()
+        var prefListTmp: MutableList<String> = (prefString ?: return).split("//").toMutableList()
+        prefListTmp.remove("null")
+
+        prefList = prefListTmp
 
         //(pref_list as MutableList<String>).removeAt(0)
 
