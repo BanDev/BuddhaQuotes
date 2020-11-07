@@ -15,7 +15,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Hardware
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,8 +39,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        Hardware().vibrate(this)
-
+        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
 
@@ -122,7 +120,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             var special = false
             val pref = getSharedPreferences("List_system", 0)
             val array2 = pref.getString(array[i], "")!!.split("//")
-            val count: Int = array2.size -1
+            val count: Int = array2.size - 1
             if (array[i] == "Favourites") {
                 special = true
             }

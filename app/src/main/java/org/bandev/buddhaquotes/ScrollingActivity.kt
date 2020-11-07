@@ -11,8 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -46,7 +44,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         Languages().setLanguage(this)
         setContentView(R.layout.activity_scrolling)
 
-        if(intent.extras!!.getBoolean("duplicate", false)){
+        if ((intent.extras ?: return).getBoolean("duplicate", false)) {
             val contextView = findViewById<View>(R.id.scrolling)
 
             Snackbar.make(contextView, "Already in list!", Snackbar.LENGTH_SHORT)
@@ -61,7 +59,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         listTmp = list
         val pref = getSharedPreferences("List_system", 0)
         val prefString = pref.getString(listTmp, "")
-        var prefListTmp: MutableList<String> = (prefString ?: return).split("//").toMutableList()
+        val prefListTmp: MutableList<String> = (prefString ?: return).split("//").toMutableList()
         prefListTmp.remove("null")
 
         prefList = prefListTmp
