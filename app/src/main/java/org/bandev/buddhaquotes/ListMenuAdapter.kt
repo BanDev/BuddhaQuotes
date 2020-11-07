@@ -34,7 +34,6 @@ class ListMenuAdapter(
         if (currentItem.special) {
             holder.iconBin.visibility = View.GONE
         }
-
     }
 
     override fun getItemCount(): Int = scrollingList.size

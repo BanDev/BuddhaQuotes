@@ -68,11 +68,11 @@ class S4Refresh : AppCompatActivity() {
 
         val view = View(this)
         view.doOnLayout {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 view.windowInsetsController?.show(WindowInsets.Type.ime())
             }
             // You can also access it from Window
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 window.insetsController?.show(WindowInsets.Type.ime())
             }
         }

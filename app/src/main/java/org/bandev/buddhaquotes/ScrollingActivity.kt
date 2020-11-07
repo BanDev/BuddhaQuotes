@@ -57,8 +57,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         scrollingList = generateDummyList(prefList.size)
 
-
-
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -66,7 +64,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
 
         toolbar.navigationIcon = back
 
