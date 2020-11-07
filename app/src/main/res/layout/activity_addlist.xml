@@ -5,7 +5,8 @@
     tools:context=".AddList"
     android:layout_height="match_parent"
     android:background="@color/background"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addlist">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"

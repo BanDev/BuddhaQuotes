@@ -33,7 +33,7 @@ class Colours {
             "red" -> context.setTheme(R.style.AppTheme_Red)
             "lime" -> context.setTheme(R.style.AppTheme_Lime)
             "crimson" -> context.setTheme(R.style.AppTheme_Crimson)
-            else -> context.setTheme(R.style.AppTheme)
+            else -> context.setTheme(R.style.AppTheme_Original)
         }
 
         val typedValue = TypedValue()

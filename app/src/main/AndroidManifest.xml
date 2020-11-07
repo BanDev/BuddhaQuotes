@@ -51,7 +51,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S1Intro"
-            android:theme="@style/slide1"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait" />
         <activity
             android:name=".slides.S2Promise"
@@ -82,7 +82,6 @@
             android:label="License"
             android:theme="@style/license"
             android:screenOrientation="portrait" />
-        <activity android:name=".InfoPanel" />
         <activity
             android:name=".Favourites"
             android:screenOrientation="portrait" />
