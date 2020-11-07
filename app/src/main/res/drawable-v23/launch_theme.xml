@@ -7,10 +7,8 @@
     <item android:drawable="@drawable/splash_background"/>
 
     <!-- The app icon -->
-    <item>
-        <bitmap
-            android:src="@mipmap/buddha_no_background"
-            android:gravity="center" />
-    </item>
+    <item
+            android:drawable="@drawable/ic_buddha_no_background"
+            android:gravity="center"/>
 
 </layer-list>
