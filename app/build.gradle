@@ -67,8 +67,8 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.1"
 
     // AboutLibraries
-    implementation "com.mikepenz:aboutlibraries:8.4.3"
-    implementation "com.mikepenz:aboutlibraries-core:8.4.3"
+    implementation "com.mikepenz:aboutlibraries:8.4.5"
+    implementation "com.mikepenz:aboutlibraries-core:8.4.5"
 
     //Recycler View
     implementation "androidx.recyclerview:recyclerview:1.1.0"

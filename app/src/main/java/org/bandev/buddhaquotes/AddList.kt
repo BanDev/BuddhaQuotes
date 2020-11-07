@@ -5,10 +5,7 @@ import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowInsets
+import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Toast.LENGTH_SHORT
@@ -95,33 +92,32 @@ class AddList : AppCompatActivity() {
         listView.onItemClickListener =
             OnItemClickListener { parent, view, position, id ->
 
-
-
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString(list, "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
-                if(listArrFinal.contains(listView.getItemAtPosition(position) as String?)){
-                    Toast.makeText(this, "Already in list!", LENGTH_SHORT).show()
-                }else{
-                    listArrFinal.push(listView.getItemAtPosition(position) as String?)
-                }
-
-                val stringOut = listArrFinal.joinToString(separator = "//")
-
-
-
-
-                editor.putString(list, stringOut)
-                editor.apply()
-
                 val intent2 = Intent(this, ScrollingActivity::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("list", list)
                 intent2.putExtras(mBundle)
-                this.startActivity(intent2)
+                if (listArrFinal.contains(listView.getItemAtPosition(position) as String?)) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        window.decorView.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                    } else {
+                        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
+                    Snackbar.make(view, "This quote is already in the list!", Snackbar.LENGTH_SHORT)
+                        .show()
+                } else {
+                    window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    listArrFinal.push(listView.getItemAtPosition(position) as String?)
+                    this.startActivity(intent2)
+                }
 
+                val stringOut = listArrFinal.joinToString(separator = "//")
 
+                editor.putString(list, stringOut)
+                editor.apply()
             }
 
         val fastScrollerView: FastScrollerView = findViewById(R.id.fastscroller)
@@ -144,7 +140,7 @@ class AddList : AppCompatActivity() {
                 if (names.contains(p0)) {
                     adapter.filter.filter(p0)
                 } else {
-                    Toast.makeText(applicationContext, "Not Found", LENGTH_SHORT).show()
+                    Snackbar.make(view, "Not Found", Snackbar.LENGTH_SHORT).show()
                 }
                 return false
             }

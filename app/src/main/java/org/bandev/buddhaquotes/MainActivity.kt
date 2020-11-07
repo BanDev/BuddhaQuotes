@@ -24,7 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Hardware
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
