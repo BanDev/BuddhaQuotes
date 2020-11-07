@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_TEXT, text)
                 type = "text/plain"
             }
-            Hardware().vibrate(this)
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity() {
 
         // When refresh is pressed
         (refresh ?: return).setOnClickListener {
-            Hardware().vibrate(this)
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (firstPress) {
                 rotateAnimation.duration = 2.toLong() * 250
                 (refresh ?: return@setOnClickListener).startAnimation(rotateAnimation)
@@ -193,7 +193,7 @@ class MainActivity : AppCompatActivity() {
 
         // When favourite is pressed
         (favourite ?: return).setOnClickListener {
-            Hardware().vibrate(this)
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (!(done ?: return@setOnClickListener)) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)

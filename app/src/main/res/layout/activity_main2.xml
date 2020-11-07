@@ -10,10 +10,10 @@
     <ImageView
         android:layout_width="179dp"
         android:layout_height="342dp"
-        android:contentDescription="@string/the_buddha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/buddha" />
+        app:srcCompat="@mipmap/buddha"
+        android:contentDescription="@string/the_buddha" />
 
     <TextView
         android:id="@+id/quote"
@@ -70,7 +70,8 @@
         android:contentDescription="@string/refresh"
         android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="#FFFFFF"
+        android:hapticFeedbackEnabled="true"
+        app:backgroundTint="@android:color/white"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +89,8 @@
         android:contentDescription="@string/favourite"
         android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="#FFFFFF"
+        android:hapticFeedbackEnabled="true"
+        app:backgroundTint="@android:color/white"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/refresh"
@@ -106,7 +108,8 @@
         android:contentDescription="@string/share"
         android:focusable="true"
         android:scaleType="center"
-        app:backgroundTint="#FFFFFF"
+        android:hapticFeedbackEnabled="true"
+        app:backgroundTint="@android:color/white"
         app:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/favourite"
