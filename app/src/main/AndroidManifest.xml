@@ -21,16 +21,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
-
-        <activity
-            android:name=".WidgetConfigureActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="org.bandev.buddhaquotes.WIDGET_BUTTON" />
-                <action android:name="org.bandev.buddhaquotes.WIDGET_LIKE" />
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
