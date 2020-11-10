@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.*
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -22,7 +21,6 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
-
 
 class AddList : AppCompatActivity() {
 
@@ -181,8 +179,6 @@ class AddList : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-
-
         return true
     }
 
