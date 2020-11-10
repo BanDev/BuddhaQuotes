@@ -41,6 +41,7 @@
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="18dp" />
+        
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -67,6 +68,7 @@
             <include layout="@layout/about_content_long" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

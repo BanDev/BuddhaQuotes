@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
@@ -88,6 +89,7 @@ class S6TextSize : AppCompatActivity() {
             }
 
             val myIntent = Intent(this@S6TextSize, S7End::class.java)
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             this@S6TextSize.startActivity(myIntent)
             overridePendingTransition(
                 R.anim.anim_slide_in_left,

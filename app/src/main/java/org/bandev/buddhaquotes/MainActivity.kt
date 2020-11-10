@@ -220,11 +220,6 @@ class MainActivity : AppCompatActivity() {
                 )
                 (favourite ?: return@setOnClickListener).isEnabled = true
             } else {
-                // If it is already liked
-                // val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
-                // like.setSpeedRange(0.0625f, 0.0625f)
-                // like.setFadeOut(100)
-                // like.oneShot(favourite, 5);
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
