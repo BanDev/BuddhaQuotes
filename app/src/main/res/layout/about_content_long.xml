@@ -50,7 +50,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="229dp"
-        android:layout_height="87dp"
+        android:layout_height="100dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/mt_bold"
         android:text="@string/app_name"
@@ -113,9 +113,9 @@
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="270dp"
+        android:layout_width="350dp"
         android:layout_height="44dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/mt_bold"
         android:text="@string/about_acknowledgements"
         android:textAlignment="viewStart"
@@ -123,16 +123,16 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.283"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="271dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="112dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="108dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_no_trackers"
         android:textAlignment="viewStart"
@@ -143,10 +143,10 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="108dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_no_ads"
         android:textAlignment="viewStart"
@@ -157,10 +157,10 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="108dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_complete_privacy"
         android:textAlignment="viewStart"
@@ -172,7 +172,7 @@
     <TextView
         android:id="@+id/textView16"
         android:layout_width="355dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_info_paragraph"
@@ -202,10 +202,10 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="108dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_offline_app"
         android:textAlignment="viewStart"
@@ -216,10 +216,10 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="262dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="271dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="108dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_free_and_open_source"
         android:textAlignment="viewStart"
@@ -231,7 +231,7 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="250dp"
-        android:layout_height="31dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_fennec"
@@ -246,7 +246,7 @@
     <TextView
         android:id="@+id/textView5"
         android:layout_width="250dp"
-        android:layout_height="31dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_jack"
@@ -261,7 +261,7 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="250dp"
-        android:layout_height="31dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_izzysoft"
@@ -276,7 +276,7 @@
     <TextView
         android:id="@+id/textView14"
         android:layout_width="250dp"
-        android:layout_height="31dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_licaon"
@@ -291,7 +291,7 @@
     <TextView
         android:id="@+id/textView13"
         android:layout_width="250dp"
-        android:layout_height="31dp"
+        android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_poussinou"
@@ -306,7 +306,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="150dp"
-        android:layout_height="53dp"
+        android:layout_height="40dp"
         android:text="@string/version"
         android:textColor="@android:color/white"
         android:textSize="18sp"

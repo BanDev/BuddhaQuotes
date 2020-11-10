@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowInsets
 import android.view.animation.Animation
@@ -60,6 +61,7 @@ class S4Refresh : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val myIntent = Intent(this@S4Refresh, S5Brightness::class.java)
             this@S4Refresh.startActivity(myIntent)
             overridePendingTransition(
@@ -84,6 +86,7 @@ class S4Refresh : AppCompatActivity() {
 
         var noanim = true
         favourite.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (noanim) {
                 rotateAnimation.duration = 2.toLong() * 250
                 favourite.startAnimation(rotateAnimation)

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
@@ -59,6 +60,7 @@ class S3Favourite : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val myIntent = Intent(this@S3Favourite, S4Refresh::class.java)
             this@S3Favourite.startActivity(myIntent)
             overridePendingTransition(
@@ -72,6 +74,7 @@ class S3Favourite : AppCompatActivity() {
         var done = false
 
         favourite.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (!done) {
                 val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
                 like.setSpeedRange(0.0750f, 0.0750f)
@@ -89,11 +92,6 @@ class S3Favourite : AppCompatActivity() {
                 favourite.isEnabled = true
                 done = true
             } else {
-                // If It Is Already Liked
-                // val like = ParticleSystem(this, 5, R.drawable.heart_white, 600)
-                // like.setSpeedRange(0.0625f, 0.0625f)
-                // like.setFadeOut(100)
-                // like.oneShot(favourite, 5);
                 favourite.isEnabled = false
                 done = false
                 favourite.setImageDrawable(

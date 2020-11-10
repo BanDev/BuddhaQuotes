@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
@@ -28,6 +29,7 @@ class S5Brightness : AppCompatActivity() {
         val day: Button = findViewById(R.id.day)
 
         night.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val pref = this.getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -44,6 +46,7 @@ class S5Brightness : AppCompatActivity() {
         }
 
         day.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val pref = this.getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

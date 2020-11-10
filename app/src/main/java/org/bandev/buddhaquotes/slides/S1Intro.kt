@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes.slides
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Button
@@ -24,6 +25,7 @@ class S1Intro : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val myIntent =
                 Intent(this@S1Intro, S2Promise::class.java)
             this@S1Intro.startActivity(myIntent)

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
@@ -53,6 +54,7 @@ class CreateNewList : AppCompatActivity() {
                 nameBox.error = error
             } else {
                 //Add new list to MASTER_LIST & create a list for itself
+                window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 editor.putString(text, "null")
