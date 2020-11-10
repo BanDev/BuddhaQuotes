@@ -5,14 +5,9 @@ import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputLayout
 import org.bandev.buddhaquotes.core.Colours
@@ -47,17 +42,16 @@ class CreateNewList : AppCompatActivity() {
         //Setup button & onclick
         go = findViewById(R.id.go)
         go.setOnClickListener {
-            val name_box = findViewById<TextInputLayout>(R.id.name_box)
+            val nameBox = findViewById<TextInputLayout>(R.id.name_box)
             name = findViewById(R.id.name)
             text = name.text.toString()
 
 
-
             val error = getError(text)
 
-            if(error != "safe"){
-                name_box.error = error
-            }else{
+            if (error != "safe") {
+                nameBox.error = error
+            } else {
                 //Add new list to MASTER_LIST & create a list for itself
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
@@ -78,19 +72,28 @@ class CreateNewList : AppCompatActivity() {
         }
     }
 
-    fun getError(input: String ): String{
+    private fun getError(input: String): String {
         val pref = getSharedPreferences("List_system", 0)
 
-        if(input == ""){
-            return "Cannot be blank"
-        }else if(input.contains("//")){
-            return "Cannot contain //"
-        }else if(input == "Favourites"){
-            return ":( stop tryna break our app"
-        }else if(pref.getString("MASTER_LIST", "Favourites")!!.contains(input)){
-            return "There is already a list named " + input
-        }else{
-            return "safe"
+        when {
+            input == "" -> {
+                return "Cannot be blank"
+            }
+            input.contains("//") -> {
+                return "Cannot contain //"
+            }
+            input == "Favourites" -> {
+                return ":( stop trynna break the app"
+            }
+            input == "favourites" -> {
+                return ":( stop trynna break the app"
+            }
+            pref.getString("MASTER_LIST", "Favourites")!!.contains(input) -> {
+                return "There is already a list named $input"
+            }
+            else -> {
+                return "safe"
+            }
         }
     }
 

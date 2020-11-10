@@ -68,7 +68,7 @@
         android:layout_marginEnd="33dp"
         android:backgroundTint="?colorPrimary"
         android:capitalize="none"
-        android:drawableLeft="@drawable/ic_add"
+        android:drawableStart="@drawable/ic_add"
         android:fontFamily="@font/mt_bold"
         android:text="Create List"
         android:textAlignment="viewStart"
