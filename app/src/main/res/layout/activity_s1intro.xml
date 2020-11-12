@@ -68,7 +68,7 @@
         android:gravity="center"
         android:letterSpacing="0.0"
         android:text="@string/slide_1_free_libre_open_source"
-        android:textColor="?android:textColorSecondaryInverse"
+        android:textColor="@android:color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
