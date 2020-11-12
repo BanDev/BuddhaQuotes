@@ -19,10 +19,7 @@ import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
-    override fun onLikeClick(position: Int, text: String) {
-        TODO("Not yet implemented")
-    }
+class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     private lateinit var scrollingList: ArrayList<ListMenuItem>
     private lateinit var adapter: ListMenuAdapter
@@ -59,7 +56,7 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_favourites)
+        setContentView(R.layout.activity_your_lists)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -146,14 +143,14 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                val myIntent = Intent(this@Favourites, CreateNewList::class.java)
-                this@Favourites.startActivity(myIntent)
+                val myIntent = Intent(this@YourLists, CreateNewList::class.java)
+                this@YourLists.startActivity(myIntent)
                 finish()
                 true
             }
             android.R.id.home -> {
-                val myIntent = Intent(this@Favourites, MainActivity::class.java)
-                this@Favourites.startActivity(myIntent)
+                val myIntent = Intent(this@YourLists, MainActivity::class.java)
+                this@YourLists.startActivity(myIntent)
                 finish()
                 true
             }
@@ -162,8 +159,8 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@Favourites, MainActivity::class.java)
-        this@Favourites.startActivity(myIntent)
+        val myIntent = Intent(this@YourLists, MainActivity::class.java)
+        this@YourLists.startActivity(myIntent)
 
         finish()
         return true
@@ -172,9 +169,9 @@ class Favourites : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val myIntent = Intent(this@Favourites, MainActivity::class.java)
+        val myIntent = Intent(this@YourLists, MainActivity::class.java)
         val mBundle = Bundle()
-        this@Favourites.startActivity(myIntent)
+        this@YourLists.startActivity(myIntent)
         finish()
     }
 }

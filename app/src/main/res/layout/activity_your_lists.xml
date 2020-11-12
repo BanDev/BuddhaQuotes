@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Favourites"
+    tools:context=".YourLists"
     android:background="@color/background">
 
     <com.google.android.material.appbar.MaterialToolbar

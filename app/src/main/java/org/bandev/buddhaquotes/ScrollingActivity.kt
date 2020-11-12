@@ -108,18 +108,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
     }
 
-    fun insertItem(text: String) {
-        val index = 0
-        val newItem = ExampleItem(
-            text,
-            R.drawable.like,
-            false
-        )
-
-        scrollingList.add(index, newItem)
-        adapter.notifyItemInserted(index)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.scroll_mode_menu, menu)
         return true
@@ -128,7 +116,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                val intent2 = Intent(this, AddList::class.java)
+                val intent2 = Intent(this, AddQuote::class.java)
                 val b = Bundle()
                 b.putString("list", listTmp) // Your id
                 intent2.putExtras(b)
@@ -136,7 +124,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this, Favourites::class.java)
+                val intent2 = Intent(this, YourLists::class.java)
                 this.startActivity(intent2)
                 finish()
                 super.onOptionsItemSelected(item)
@@ -275,7 +263,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     override fun onSupportNavigateUp(): Boolean {
 
-        val intent2 = Intent(this, Favourites::class.java)
+        val intent2 = Intent(this, YourLists::class.java)
         this.startActivity(intent2)
         return true
     }
@@ -283,7 +271,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onBackPressed() {
         super.onBackPressed()
         // add your animation
-        val intent2 = Intent(this, Favourites::class.java)
+        val intent2 = Intent(this, YourLists::class.java)
         this.startActivity(intent2)
         finish()
     }

@@ -65,7 +65,7 @@ class CreateNewList : AppCompatActivity() {
                 editor.apply()
 
                 //Leave & take users back to favourites
-                val myIntent = Intent(this, Favourites::class.java)
+                val myIntent = Intent(this, YourLists::class.java)
                 this.startActivity(myIntent)
                 finish()
             }
@@ -102,7 +102,7 @@ class CreateNewList : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                val myIntent = Intent(this, Favourites::class.java)
+                val myIntent = Intent(this, YourLists::class.java)
                 this.startActivity(myIntent)
                 finish()
                 true
@@ -112,7 +112,7 @@ class CreateNewList : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this, Favourites::class.java)
+        val myIntent = Intent(this, YourLists::class.java)
         this.startActivity(myIntent)
         finish()
         return true
@@ -120,7 +120,7 @@ class CreateNewList : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val myIntent = Intent(this, Favourites::class.java)
+        val myIntent = Intent(this, YourLists::class.java)
         this.startActivity(myIntent)
         finish()
     }

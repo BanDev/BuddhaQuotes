@@ -32,8 +32,8 @@ class Settings : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
-        if((intent.extras ?: return).getBoolean("lang")){
-            this.overridePendingTransition(0, 0);
+        if ((intent.extras ?: return).getBoolean("lang")) {
+            this.overridePendingTransition(0, 0)
         }
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

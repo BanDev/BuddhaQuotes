@@ -37,9 +37,6 @@ class MainActivity : AppCompatActivity() {
     private var share: FloatingActionButton? = null
     private var refresh: FloatingActionButton? = null
     private var favourite: FloatingActionButton? = null
-    private var list: List<String?>? = null
-    private lateinit var favs: Array<String?>
-    private lateinit var array: Array<String?>
     private var noAnim = false
     private var firstPress = true
     private var fontSize: String? = null
@@ -298,7 +295,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             android.R.id.home -> {
-                val intent2 = Intent(this@MainActivity, Favourites::class.java)
+                val intent2 = Intent(this@MainActivity, YourLists::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("quote", quoteNumber.toString())
                 intent2.putExtras(mBundle)

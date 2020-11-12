@@ -27,7 +27,7 @@
             android:theme="@style/ScrollingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AddList"
+            android:name=".AddQuote"
             android:label="addList"
             android:theme="@style/ScrollingActivity"
             android:screenOrientation="portrait" />
@@ -73,7 +73,7 @@
             android:theme="@style/license"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Favourites"
+            android:name=".YourLists"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Splash"
