@@ -16,21 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="15dp"
             android:fontFamily="@font/mt_reg"
             android:text="Hello"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/share"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_below="@+id/quote"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toEndOf="@+id/like"
             app:layout_constraintTop_toBottomOf="@+id/quote"
@@ -39,8 +39,8 @@
 
         <ImageView
             android:id="@+id/bin"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_below="@+id/quote"
             android:layout_alignParentStart="true"
             android:layout_marginTop="15dp"
@@ -51,8 +51,8 @@
 
         <ImageView
             android:id="@+id/like"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignTop="@+id/quote"
             android:layout_alignBottom="@+id/share"
             android:layout_alignParentStart="true"

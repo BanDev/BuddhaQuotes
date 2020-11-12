@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         android:layout_marginBottom="60dp"
         android:backgroundTint="@color/colorAccent"
         android:elevation="0dp"
-        android:fontFamily="@font/mt_bold"
+        android:fontFamily="@font/mt_med"
         android:letterSpacing="0.0"
         android:text="@string/slides_continue"
         android:textColor="@android:color/white"
@@ -56,7 +57,7 @@
         android:letterSpacing="0.0"
         android:text="@string/slide_6_hard_to_read"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,7 @@
         android:text="@string/slide_6_select_size"
         android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorSecondary"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -85,7 +86,7 @@
         android:text="@string/quick_brown_fox"
         android:fontFamily="@font/mt_reg"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/slider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

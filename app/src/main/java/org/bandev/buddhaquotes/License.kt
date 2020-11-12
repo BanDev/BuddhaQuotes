@@ -4,10 +4,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowInsets
+import android.view.*
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -36,6 +33,7 @@ class License : AppCompatActivity() {
         val button: Button = findViewById(R.id.button)
 
         button.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val i =
                 Intent(this, FullLicense::class.java)
             startActivity(i)

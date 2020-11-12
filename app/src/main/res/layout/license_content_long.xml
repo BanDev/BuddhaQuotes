@@ -71,11 +71,11 @@
         android:layout_width="200dp"
         android:layout_height="44dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/mt_bold"
+        android:fontFamily="@font/mt_med"
         android:text="@string/licenses_permissions"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.130"
@@ -87,11 +87,11 @@
         android:layout_width="200dp"
         android:layout_height="44dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/mt_bold"
+        android:fontFamily="@font/mt_med"
         android:text="@string/licenses_limitations"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.13"
@@ -103,11 +103,11 @@
         android:layout_width="200dp"
         android:layout_height="44dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/mt_bold"
+        android:fontFamily="@font/mt_med"
         android:text="@string/licenses_conditions"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.130"
@@ -123,7 +123,7 @@
         android:text="@string/licenses_commercial_use"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -136,7 +136,7 @@
         android:text="@string/licenses_distribution"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -149,7 +149,7 @@
         android:text="@string/licenses_modification"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -162,7 +162,7 @@
         android:text="@string/licenses_disclose_source"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -175,7 +175,7 @@
         android:text="@string/licenses_copyright_notice"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -188,7 +188,7 @@
         android:text="@string/licenses_state_changes"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -201,7 +201,7 @@
         android:text="@string/licenses_same_license"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -214,7 +214,7 @@
         android:text="@string/licenses_patent_use"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -227,7 +227,7 @@
         android:text="@string/licenses_private_use"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -240,7 +240,7 @@
         android:text="@string/licenses_liability"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -253,14 +253,14 @@
         android:text="@string/licenses_warranty"
         android:textAlignment="viewStart"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/green_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -269,8 +269,8 @@
         app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/green_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView9"
@@ -278,8 +278,8 @@
         app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/green_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -297,8 +297,8 @@
         app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/green_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -307,8 +307,8 @@
         app:srcCompat="@drawable/ic_green_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/blue_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -317,8 +317,8 @@
         app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/blue_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -327,8 +327,8 @@
         app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/blue_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -337,8 +337,8 @@
         app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/blue_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -347,8 +347,8 @@
         app:srcCompat="@drawable/ic_blue_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/red_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -357,8 +357,8 @@
         app:srcCompat="@drawable/ic_red_circle" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:contentDescription="@string/red_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -374,7 +374,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="60dp"
         android:backgroundTint="?colorPrimary"
-        android:fontFamily="@font/mt_bold"
+        android:fontFamily="@font/mt_med"
         android:letterSpacing="0.0"
         android:text="@string/licenses_full_license"
         android:textAllCaps="false"
