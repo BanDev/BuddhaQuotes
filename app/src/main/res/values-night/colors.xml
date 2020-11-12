@@ -10,28 +10,28 @@
     <color name="background">#121212</color>
     <color name="transparent">@android:color/transparent</color>
 
-    <color name="blueAccent">#2F5DAB</color>
+    <color name="blueAccent">#0C59D4</color>
     <color name="greenAccent">#2C985C</color>
-    <color name="yellowAccent">#A57A00</color>
-    <color name="orangeAccent">#BB561A</color>
-    <color name="tealAccent">#00685E</color>
-    <color name="violetAccent">#793385</color>
-    <color name="pinkAccent">#AF468C</color>
-    <color name="lightBlueAccent">#1F7FAB</color>
+    <color name="yellowAccent">#CC9600</color>
+    <color name="orangeAccent">#CC4E00</color>
+    <color name="tealAccent">#008F81</color>
+    <color name="violetAccent">#883696</color>
+    <color name="pinkAccent">#E00096</color>
+    <color name="lightBlueAccent">#077BB0</color>
     <color name="redAccent">#BB3C3C</color>
-    <color name="limeAccent">#8A9C00</color>
-    <color name="crimsonAccent">#900E28</color>
+    <color name="limeAccent">#90A300</color>
+    <color name="crimsonAccent">#950E29</color>
 
-    <color name="blueAccentSecondary">#2F5DAB</color>
-    <color name="greenAccentSecondary">#115522</color>
-    <color name="yellowAccentSecondary">#A57A00</color>
-    <color name="orangeAccentSecondary">#BB561A</color>
-    <color name="tealAccentSecondary">#00685E</color>
-    <color name="violetAccentSecondary">#793385</color>
-    <color name="pinkAccentSecondary">#AF468C</color>
-    <color name="lightBlueAccentSecondary">#1F7FAB</color>
+    <color name="blueAccentSecondary">#0C59D4</color>
+    <color name="greenAccentSecondary">#2C985C</color>
+    <color name="yellowAccentSecondary">#CC9600</color>
+    <color name="orangeAccentSecondary">#CC4E00</color>
+    <color name="tealAccentSecondary">#008F81</color>
+    <color name="violetAccentSecondary">#883696</color>
+    <color name="pinkAccentSecondary">#E00096</color>
+    <color name="lightBlueAccentSecondary">#077BB0</color>
     <color name="redAccentSecondary">#BB3C3C</color>
-    <color name="limeAccentSecondary">#8A9C00</color>
-    <color name="crimsonAccentSecondary">#900E28</color>
+    <color name="limeAccentSecondary">#90A300</color>
+    <color name="crimsonAccentSecondary">#950E29</color>
 
 </resources>
