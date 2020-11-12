@@ -1,0 +1,19 @@
+1.5 - (2020-11-12)
+
+Added
+
+- Custom accent colour
+- Russian translation
+- French translation
+- Widgets
+- Support for Android 5 and 6
+- Lists to store quotes
+
+Changed
+
+- Layout redesign to match material design guidelines
+- Favourites moved to lists
+- Rounded icons used throughout app
+- Navigation bar fixes for Android 8 and 9
+- Quote fixes
+- Bug fixes and optimisations
