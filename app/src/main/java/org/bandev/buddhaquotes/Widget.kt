@@ -89,6 +89,7 @@ internal fun updateAppWidget(
     views.setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
     //views.setImageViewResource(R.id.like, R.drawable.like)
     views.setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
+    views.setImageViewResource(R.id.logo, R.drawable.ic_buddha)
     //views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
 
     views.setTextViewText(R.id.appwidget_text, Quotes().random(0))
