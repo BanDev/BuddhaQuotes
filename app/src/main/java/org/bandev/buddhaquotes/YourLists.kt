@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -26,6 +27,10 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
 
+    override fun onLikeClick(position: Int, text: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onShareClick(position: Int) {
         val intent2 = Intent(this, ScrollingActivity::class.java)
         val mBundle = Bundle()
@@ -50,6 +55,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
