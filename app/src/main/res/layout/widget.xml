@@ -26,7 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/ic_refresh_black" />
+        app:srcCompat="@drawable/ic_refresh_black"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/like"
@@ -37,5 +38,6 @@
         android:onClick="like"
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/refresh"
-        app:srcCompat="@drawable/like" />
+        app:srcCompat="@drawable/like"
+        android:contentDescription="TODO" />
 </RelativeLayout>
