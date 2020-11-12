@@ -32,6 +32,10 @@ class Settings : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
+        if((intent.extras ?: return).getBoolean("lang")){
+            this.overridePendingTransition(0, 0);
+        }
+
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("switch")) {
@@ -168,7 +172,10 @@ class Settings : AppCompatActivity() {
                     listPreference!!.value = newValue.toString()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
+                    mBundle.putBoolean("lang", true)
                     intent2.putExtras(mBundle)
+
+
 
                     startActivity(intent2)
 
@@ -179,9 +186,9 @@ class Settings : AppCompatActivity() {
             (listPreference ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference.value = newValue.toString()
-                    val theme = listPreference.entry.toString()
+                    val theme = listPreference.value.toString()
                     Log.d("debug", theme)
-                    if (theme == "Light") {
+                    if (theme == "light") {
                         editor.putBoolean("dark_mode", false)
                         editor.putBoolean("sys", false)
                         editor.apply()
@@ -194,7 +201,7 @@ class Settings : AppCompatActivity() {
                         startActivity(intent2)
                         //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     }
-                    if (theme == "Dark") {
+                    if (theme == "dark") {
                         editor.putBoolean("dark_mode", true)
                         editor.putBoolean("sys", false)
                         editor.commit()
@@ -208,7 +215,7 @@ class Settings : AppCompatActivity() {
 
                         //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
-                    if (theme == "Follow system default") {
+                    if (theme == "sys") {
                         editor.putBoolean("dark_mode", false)
                         editor.putBoolean("sys", true)
                         editor.commit()

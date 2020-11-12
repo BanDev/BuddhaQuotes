@@ -19,15 +19,15 @@
 
     <ImageView
         android:id="@+id/refresh"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:onClick="refresh"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignStart="@+id/appwidget_text"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/ic_refresh_black"
-        android:contentDescription="TODO" />
+        android:contentDescription="TODO"
+        android:onClick="refresh"
+        app:srcCompat="@drawable/ic_refresh_black" />
 
     <ImageView
         android:id="@+id/like"
@@ -40,4 +40,14 @@
         android:layout_toEndOf="@+id/refresh"
         app:srcCompat="@drawable/like"
         android:contentDescription="TODO" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:srcCompat="@drawable/ic_buddha" />
 </RelativeLayout>
