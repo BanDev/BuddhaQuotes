@@ -69,18 +69,23 @@
 <h2 id="features">Features</h2>
 <ul>
 <li>Dark mode</li>
-<li>Over 330 quotes!</li>
-<li>Favourite quotes</li>
+<li>Over 230 quotes!</li>
+<li>Add quotes to lists and favourites</li>
 <li>Free, libre and open source</li>
 <li>No ads</li>
 <li>No trackers (verified using <a href="https://bitbucket.org/oF2pks/fdroid-classyshark3xodus/src/master/">ClassyShark3xodus</a>)</li>
 <li>No non-free dependencies like Google services</li>
 <li>Completely offline</li>
-<li>Small file size!</li>
+<li>Material Design</li>
 </ul>
 
 <h2 id="contributing">Contributing</h2>
 <p>Looking to contribute to Buddha Quotes? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
+
+<h3 id="translations">Translations</h3>
+<p>You can help translate the app via our open source <a href="https://computub.com/bandev/localisation">localisation website</a>. Here is the link to the <a href="https://gitlab.com/bandev/bandev-localisation-project">repository</a>.</p>
+<a href="https://computub.com/bandev/localisation"><img src="https://img.shields.io/badge/-help%20translate!-red"></a>
+
 <h2 id="acknowledgements">Acknowledgements</h2>
 <ul>
 <li><a href="https://www.flaticon.com/authors/freepik">Launcher Icon</a> - Freepik via Flaticon</li>
