@@ -32,7 +32,7 @@
             android:layout_marginStart="32dp"
             android:fontFamily="@font/mt_reg"
             android:text="Summary"
-            android:textColor="?android:attr/textColorPrimary"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />

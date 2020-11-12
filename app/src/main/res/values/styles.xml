@@ -87,7 +87,7 @@
     </style>
 
     <style name="toolbarTextScroller">
-        <item name="fontFamily">@font/mt_bold</item>
+        <item name="fontFamily">@font/mt_med</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -97,7 +97,7 @@
     </style>
 
     <style name="toolbarText">
-        <item name="fontFamily">@font/mt_bold</item>
+        <item name="fontFamily">@font/mt_med</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
