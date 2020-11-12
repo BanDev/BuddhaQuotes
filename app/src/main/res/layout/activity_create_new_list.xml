@@ -14,8 +14,8 @@
         android:elevation="4dp"
         android:fontFamily="@font/mt_bold"
         android:paddingStart="8dp"
-        app:titleTextAppearance="@style/toolbarText"
         android:paddingEnd="10dp"
+        app:titleTextAppearance="@style/toolbarText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mt_reg"
+            android:fontFamily="@font/mt_med"
             android:text="Create New List"
             android:textColor="@android:color/white"
             android:textSize="20sp"

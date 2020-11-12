@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.recycler_card_2.view.*
 class ListMenuAdapter(
 
     private val scrollingList: List<ListMenuItem>,
-    private val listener: Favourites,
+    private val listener: YourLists,
 
     ) : RecyclerView.Adapter<ListMenuAdapter.ScrollingViewHolder>() {
 
@@ -76,10 +76,6 @@ class ListMenuAdapter(
             return true
         }
 
-    }
-
-    interface OnItemClickFinder {
-        fun onCardClick(position: Int)
     }
 
 }

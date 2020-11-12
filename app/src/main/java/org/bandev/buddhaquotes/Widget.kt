@@ -18,7 +18,6 @@ class Widget : AppWidgetProvider() {
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
     var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
     private var quoteCurrent: String = "Test"
-    private val views: RemoteViews? = null
     private var x = 0
 
     override fun onUpdate(
@@ -105,8 +104,3 @@ fun getPenIntent(context: Context): PendingIntent {
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 
-fun getPenIntent2(context: Context): PendingIntent {
-    val intent = Intent(context, Widget::class.java)
-    intent.action = Widget().widgetLike
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-}

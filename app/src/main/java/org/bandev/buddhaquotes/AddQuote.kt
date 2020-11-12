@@ -22,21 +22,17 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
-class AddList : AppCompatActivity() {
+class AddQuote : AppCompatActivity() {
 
     lateinit var toolbar: MaterialToolbar
     private lateinit var back: Drawable
-    private lateinit var go: Button
-    private lateinit var number: EditText
-    private var num: String = ""
-    private var quote = Quotes()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_addlist)
+        setContentView(R.layout.activity_add_quote)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -134,12 +130,6 @@ class AddList : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                searchView.clearFocus()
-                if (names.contains(p0)) {
-                    adapter.filter.filter(p0)
-                } else {
-                    Snackbar.make(view, "Not Found", Snackbar.LENGTH_SHORT).show()
-                }
                 return false
             }
 
