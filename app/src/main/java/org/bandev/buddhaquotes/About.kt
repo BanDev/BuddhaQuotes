@@ -7,10 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowInsets
+import android.view.*
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -62,7 +59,19 @@ class About : AppCompatActivity() {
                         .addSizes(Size(10))
                         .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
                         .streamFor(100, 1000L)
-                    vibrate()
+
+                    val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vib.vibrate(
+                            VibrationEffect.createOneShot(
+                                200,
+                                VibrationEffect.DEFAULT_AMPLITUDE
+                            )
+                        )
+                    } else {
+                        vib.vibrate(200)
+                    }
+
                     val contextView = findViewById<View>(R.id.context_view)
                 }
             }
@@ -97,15 +106,6 @@ class About : AppCompatActivity() {
         view.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
-        }
-    }
-
-    private fun vibrate() {
-        val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vib.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            vib.vibrate(200)
         }
     }
 

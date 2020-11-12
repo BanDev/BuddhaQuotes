@@ -20,7 +20,7 @@
             android:fontFamily="@font/mt_reg"
             android:text="Hello"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="21sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

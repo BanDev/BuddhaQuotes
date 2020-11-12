@@ -54,7 +54,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="16sp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,17 +65,16 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="33dp"
         android:backgroundTint="?colorPrimary"
-        android:capitalize="none"
         android:drawableStart="@drawable/ic_add"
         android:fontFamily="@font/mt_bold"
         android:text="Create List"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textIsSelectable="false"
-        android:textSize="17sp"
+        android:textSize="16sp"
         app:cornerRadius="11dp"
         app:iconTint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@android:id/icon"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:layout_marginStart="16dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
@@ -26,7 +26,7 @@
         android:fontFamily="@font/mt_bold"
         android:text="@string/title"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +39,8 @@
         android:layout_weight="1"
         android:fontFamily="@font/mt_reg"
         android:text="@string/title"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="15sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@android:id/title" />
