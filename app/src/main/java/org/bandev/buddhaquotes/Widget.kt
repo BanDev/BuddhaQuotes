@@ -16,7 +16,7 @@ import android.widget.RemoteViews
 class Widget : AppWidgetProvider() {
 
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
-    var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
+    private var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
     private var quoteCurrent: String = "Test"
     private var x = 0
 

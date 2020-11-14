@@ -9,7 +9,6 @@ import android.view.View
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import org.bandev.buddhaquotes.slides.S1Intro
 
 class Splash : AppCompatActivity() {
 
@@ -45,7 +44,7 @@ class Splash : AppCompatActivity() {
         if (sharedPreferences.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            val i = Intent(this, S1Intro::class.java)
+            val i = Intent(this, Intro::class.java)
             startActivity(i)
             finish()
         } else {
