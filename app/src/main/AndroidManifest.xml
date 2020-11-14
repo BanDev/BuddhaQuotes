@@ -95,6 +95,9 @@
             android:theme="@style/settings"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Intro"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
             android:theme="@style/AppTheme"
