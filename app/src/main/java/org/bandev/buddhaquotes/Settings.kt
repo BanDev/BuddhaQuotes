@@ -19,7 +19,6 @@ import com.mikepenz.aboutlibraries.LibsBuilder
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.slides.S1Intro
 
 class Settings : AppCompatActivity() {
 
