@@ -95,7 +95,7 @@
     <string name="title">Title</string>
 
     <!-- Licenses page -->
-    <string name="licenses">Licenses</string>
+    <string name="licenses">License</string>
     <string name="licenses_license" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions">Permissions</string>
     <string name="licenses_commercial_use">Commercial use</string>

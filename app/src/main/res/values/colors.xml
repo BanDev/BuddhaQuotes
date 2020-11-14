@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#ff4155</color>
-    <color name="colorAccent">#ff4155</color>
+    <color name="colorPrimary">#E80054</color>
+    <color name="colorAccent">#E80054</color>
     <color name="colorAlsoAccent">#E80054</color>
     <color name="colorTop">#E80054</color>
-    <color name="colorWaveLight">#ff4155</color>
-    <color name="colorWaveDark">#E80054</color>
+    <color name="colorWaveLight">#E80054</color>
+    <color name="colorWaveDark">#FF4155</color>
     <color name="transparent">@android:color/transparent</color>
 
     <!-- Slightly grey-ish colour for background on newer UI -->
