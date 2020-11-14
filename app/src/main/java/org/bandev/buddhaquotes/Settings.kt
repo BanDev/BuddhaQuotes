@@ -119,7 +119,7 @@ class Settings : AppCompatActivity() {
                     } // start the activity
                 }
                 "help" -> {
-                    val i = Intent(activity, S1Intro::class.java)
+                    val i = Intent(activity, Intro::class.java)
                     startActivity(i)
                 }
 

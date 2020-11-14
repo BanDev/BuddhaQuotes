@@ -16,9 +16,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    repositories {
-        maven { url "https://jitpack.io" }
-    }
 
     lintOptions {
         abortOnError false
