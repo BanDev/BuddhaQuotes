@@ -73,6 +73,7 @@
         android:drawableStart="@drawable/ic_add"
         android:fontFamily="@font/mt_med"
         android:text="Create List"
+        android:textColor="@android:color/white"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textIsSelectable="false"
