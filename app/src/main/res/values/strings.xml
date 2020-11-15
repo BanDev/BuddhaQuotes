@@ -1,6 +1,7 @@
 <resources>
+
     <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.5.0</string>
+    <string name="version" translatable="false">v1.5.1</string>
 
     <!-- Main page -->
     <string name="refresh">Refresh</string>
@@ -48,37 +49,6 @@
     <string name="about_attribution">Launcher icon - Freepik via Flaticon</string>
     <string name="tick">Tick</string>
 
-    <!-- Help/Welcome page -->
-    <string name="quick_brown_fox">The quick brown fox jumps over the lazy dog</string>
-    <string name="slides_continue">Continue</string>
-    <!-- Slide 1 -->
-    <string name="slide_1_free_libre_open_source">Free, Libre &amp; Open Source</string>
-    <!-- Slide 2 -->
-    <string name="slide_2_privacy_focused">Privacy focused!</string>
-    <string name="slide_2_bandev_promise">With the BanDev promise</string>
-    <string name="slide_2_lock">Lock</string>
-    <!-- Slide 3 -->
-    <string name="slide_3_see_one_you_like">See one you like?</string>
-    <string name="slide_3_press_heart_button">Press the heart button</string>
-    <string name="slide_3_heart_outline">Heart outline</string>
-    <!-- Slide 4 -->
-    <string name="slide_4_another_quote">Another quote?</string>
-    <string name="slide_4_hit_refresh">Just hit refresh</string>
-    <!-- Slide 5 -->
-    <string name="slide_5_too_bright">Display too bright?</string>
-    <string name="slide_5_try_dark">Why not try dark mode</string>
-    <string name="slide_5_torch">Torch</string>
-    <!-- Slide 6 -->
-    <string name="slide_6_hard_to_read">Text hard to read?</string>
-    <string name="slide_6_select_size">Select a text size below</string>
-    <!-- Slide 7 -->
-    <string name="slide_7_all_done">All done!</string>
-    <string name="slide_7_ready">You\'re ready to start now</string>
-    <string name="slide_7_open_app">Open app</string>
-    <string name="slide_7_double_tick">Double tick</string>
-    <!-- More -->
-    <string name="more_counter_left">Another Quote …\u0020 %1$d</string>
-    <string name="more_lots_of_refreshes">That\'s a lot of refreshes …\u0020 %1$d</string>
     <!-- Favourites page -->
     <string name="favourites">Favourites</string>
 
@@ -130,7 +100,6 @@
     <string name="open_source_libraries">Open Source Libraries</string>
     <string name="about_no_ads">No ads</string>
 
-
     <!-- added in v1.5.0 -->
     <!-- please keep everything after v1.5.0 below here to make it easier to add to localisation! -->
 
@@ -145,7 +114,7 @@
     <!-- Settings -->
     <string name="settings_general">General</string>
     <string name="settings_accent_colour">Accent Colour</string>
-    <string name="settings_fun_mode">Fun Mode</string>
+    <string name="settings_fun_mode">Shapes Mode</string>
     <string name="settings_fun_mode_yes">On</string>
     <string name="settings_fun_mode_no">Off</string>
     <string name="settings_language">Language (ALPHA)</string>
@@ -349,7 +318,5 @@
         <string name='yo'>Yoruba</string>
         <string name='za'>Zhuang, Chuang</string>
         <string name='zu'>Zulu</string>
-
-
 
 </resources>

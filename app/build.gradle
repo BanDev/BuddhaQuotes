@@ -11,11 +11,10 @@ android {
         applicationId "org.bandev.buddhaquotes"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1008
-        versionName "v1.5.0"
+        versionCode 1009
+        versionName "v1.5.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
 
     lintOptions {
         abortOnError false

@@ -27,7 +27,6 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
 
     private var done: Boolean? = null
