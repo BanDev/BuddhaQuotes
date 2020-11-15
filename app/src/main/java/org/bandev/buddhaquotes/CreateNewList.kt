@@ -51,6 +51,9 @@ class CreateNewList : AppCompatActivity() {
             val error = getError(text)
 
             if (error != "safe") {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    window.decorView.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                }
                 nameBox.error = error
             } else {
                 //Add new list to MASTER_LIST & create a list for itself

@@ -30,7 +30,6 @@ class Intro : AppIntro2() {
                 descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
-
         addSlide(
             AppIntroFragment.newInstance(
                 title = "Over 230 quotes!",
@@ -64,7 +63,7 @@ class Intro : AppIntro2() {
         addSlide(
             AppIntroFragment.newInstance(
                 title = "...Let's get started!",
-                description = "We hope you enjoy the app - we have a GitLab where you can request features or raise issues",
+                description = "We hope you enjoy the app - we have a GitLab repository where you can request features or raise issues",
                 imageDrawable = R.drawable.ic_meditate,
                 backgroundDrawable = R.drawable.slide_5,
                 titleTypefaceFontRes = R.font.mt_med,
