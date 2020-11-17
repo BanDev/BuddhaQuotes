@@ -27,8 +27,7 @@
     <string name='about_app_promise'>Обещание приложения</string> <!-- Translated by Fennec_exe -->
     <string name='about_no_trackers'>Нет трекеров</string> <!-- Translated by Fennec_exe -->
     <string name='about_complete_privacy'>Полная конфиденциальность</string> <!-- Translated by Fennec_exe -->
-    <string name='about_offline_app'>Автономное приложение
-</string> <!-- Translated by Fennec_exe -->
+    <string name='about_offline_app'>Автономное приложение</string> <!-- Translated by Fennec_exe -->
     <string name='about_free_and_open_source'>Бесплатный и открытый исходный код</string> <!-- Translated by Fennec_exe -->
     <string name='about_info'>Введение в приложение</string> <!-- Translated by Fennec_exe -->
     <string name='about_info_paragraph'>Buddha Quotes - это совместный проект по созданию бесплатного приложения с открытым исходным кодом Buddha Quotes для Android с упором на конфиденциальность.</string> <!-- Translated by Fennec_exe -->
@@ -36,7 +35,6 @@
     <string name='about_acknowledgements'>Благодарности</string> <!-- Translated by Fennec_exe -->
     <string name='about_attribution'>Значок запуска - Freepik через Flaticon</string> <!-- Translated by Fennec_exe -->
     <string name='tick'>галочка</string> <!-- Translated by Fennec_exe -->
-    <string name='favourites'>Избранное</string> <!-- Translated by Fennec_exe -->
     <string name='favourited_quote'>Избранная цитата</string> <!-- Translated by Fennec_exe -->
     <string name='favourite_quote_delete'>удалять</string> <!-- Translated by Fennec_exe -->
     <string name='buddha_quotes_logo'>Buddha Quotes Логотип</string> <!-- Translated by Fennec_exe -->

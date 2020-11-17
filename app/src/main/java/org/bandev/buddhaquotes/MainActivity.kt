@@ -23,7 +23,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import java.util.*
 
@@ -47,13 +46,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         Colours().setAccentColor(this, window)
-        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val funMode = sharedPrefs.getString("fun_mode", "no")
+        val shapesMode = sharedPrefs.getString("fun_mode", "no")
 
-        if (funMode == "yes") {
+        if (shapesMode == "yes") {
             setContentView(R.layout.activity_main2)
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)
@@ -73,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
                     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        @Suppress("DEPRECATION")
                         window.decorView.systemUiVisibility =
                             View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                     }
@@ -167,7 +166,6 @@ class MainActivity : AppCompatActivity() {
             0.5f,
             Animation.RELATIVE_TO_SELF,
             0.5f
-
         )
 
         // When refresh is pressed

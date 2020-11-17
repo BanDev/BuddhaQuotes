@@ -1,6 +1,5 @@
 package org.bandev.buddhaquotes
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -55,7 +54,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
-    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -68,7 +66,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDefaultDisplayHomeAsUpEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
 
         myToolbar.navigationIcon = back

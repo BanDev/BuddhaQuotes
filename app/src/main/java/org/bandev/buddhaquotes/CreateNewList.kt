@@ -53,11 +53,17 @@ class CreateNewList : AppCompatActivity() {
             if (error != "safe") {
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
                     window.decorView.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                } else {
+                    window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
                 nameBox.error = error
             } else {
                 //Add new list to MASTER_LIST & create a list for itself
-                window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    window.decorView.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 editor.putString(text, "null")

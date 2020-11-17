@@ -115,13 +115,12 @@ class Settings : AppCompatActivity() {
                             .withAboutIconShown(true)
                             .withAboutVersionShown(false)
                             .start(it)
-                    } // start the activity
+                    }
                 }
                 "help" -> {
                     val i = Intent(activity, Intro::class.java)
                     startActivity(i)
                 }
-
             }
             return true
         }
@@ -138,16 +137,19 @@ class Settings : AppCompatActivity() {
 
             val listPreference = findPreference<Preference>("theme") as ListPreference?
 
-            if (sys) {
-                listPreference?.setValueIndex(2)
-            } else if (dark) {
-                listPreference?.setValueIndex(1) // Set to index of your default value
-                listPreference?.setIcon(R.drawable.ic_night_settings)
-            } else if (!dark) {
-                listPreference?.setValueIndex(0)
-                listPreference?.setIcon(R.drawable.ic_day_settings)
+            when {
+                sys -> {
+                    listPreference?.setValueIndex(2)
+                }
+                dark -> {
+                    listPreference?.setValueIndex(1) // Set to index of your default value
+                    listPreference?.setIcon(R.drawable.ic_night_settings)
+                }
+                else -> {
+                    listPreference?.setValueIndex(0)
+                    listPreference?.setIcon(R.drawable.ic_day_settings)
+                }
             }
-
 
             val accentColorButton = findPreference<Preference>("accent_color") as ListPreference?
 
@@ -174,64 +176,61 @@ class Settings : AppCompatActivity() {
                     mBundle.putBoolean("lang", true)
                     intent2.putExtras(mBundle)
 
-
-
                     startActivity(intent2)
 
                     true
                 }
-
 
             (listPreference ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference.value = newValue.toString()
                     val theme = listPreference.value.toString()
                     Log.d("debug", theme)
-                    if (theme == "light") {
-                        editor.putBoolean("dark_mode", false)
-                        editor.putBoolean("sys", false)
-                        editor.apply()
+                    when (theme) {
+                        "light" -> {
+                            editor.putBoolean("dark_mode", false)
+                            editor.putBoolean("sys", false)
+                            editor.apply()
 
-                        val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("switch", true)
-                        intent2.putExtras(mBundle)
+                            val intent2 = Intent(context, Settings::class.java)
+                            val mBundle = Bundle()
+                            mBundle.putBoolean("switch", true)
+                            intent2.putExtras(mBundle)
 
-                        startActivity(intent2)
-                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
-                    if (theme == "dark") {
-                        editor.putBoolean("dark_mode", true)
-                        editor.putBoolean("sys", false)
-                        editor.commit()
+                            startActivity(intent2)
+                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }
+                        "dark" -> {
+                            editor.putBoolean("dark_mode", true)
+                            editor.putBoolean("sys", false)
+                            editor.commit()
 
-                        val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("switch", true)
-                        intent2.putExtras(mBundle)
+                            val intent2 = Intent(context, Settings::class.java)
+                            val mBundle = Bundle()
+                            mBundle.putBoolean("switch", true)
+                            intent2.putExtras(mBundle)
 
-                        startActivity(intent2)
+                            startActivity(intent2)
 
-                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    }
-                    if (theme == "sys") {
-                        editor.putBoolean("dark_mode", false)
-                        editor.putBoolean("sys", true)
-                        editor.commit()
+                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+                        "sys" -> {
+                            editor.putBoolean("dark_mode", false)
+                            editor.putBoolean("sys", true)
+                            editor.commit()
 
-                        val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("switch", true)
-                        intent2.putExtras(mBundle)
+                            val intent2 = Intent(context, Settings::class.java)
+                            val mBundle = Bundle()
+                            mBundle.putBoolean("switch", true)
+                            intent2.putExtras(mBundle)
 
+                            startActivity(intent2)
 
-                        startActivity(intent2)
-
-                        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        }
                     }
                     true
                 }
-
 
             val textSize = findPreference<Preference>("size") as ListPreference?
 
@@ -252,17 +251,19 @@ class Settings : AppCompatActivity() {
                     textSize?.value = newValue.toString()
                     val size = textSize?.entry.toString()
                     Log.d("debug", size)
-                    if (size == "Small") {
-                        editor.putString("text_size", "sm")
-                        editor.commit()
-                    }
-                    if (size == "Medium") {
-                        editor.putString("text_size", "md")
-                        editor.commit()
-                    }
-                    if (size == "Large") {
-                        editor.putString("text_size", "lg")
-                        editor.commit()
+                    when (size) {
+                        "Small" -> {
+                            editor.putString("text_size", "sm")
+                            editor.commit()
+                        }
+                        "Medium" -> {
+                            editor.putString("text_size", "md")
+                            editor.commit()
+                        }
+                        "Large" -> {
+                            editor.putString("text_size", "lg")
+                            editor.commit()
+                        }
                     }
                     true
                 }

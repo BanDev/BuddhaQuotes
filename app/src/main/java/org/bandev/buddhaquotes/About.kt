@@ -36,9 +36,7 @@ class About : AppCompatActivity() {
         val scrollview: ScrollView = findViewById(R.id.scroll)
         scrollview.viewTreeObserver
             .addOnScrollChangedListener {
-                if (scrollview.getChildAt(0).bottom
-                    <= scrollview.height + scrollview.scrollY &&
-                    !done
+                if (!(scrollview.getChildAt(0).bottom > scrollview.height + scrollview.scrollY || done)
                 ) {
                     viewKonfetti.build()
                         .addColors(

@@ -32,7 +32,7 @@ class AddQuote : AppCompatActivity() {
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_add_quote)
+        setContentView(R.layout.addlist_content)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -103,7 +103,11 @@ class AddQuote : AppCompatActivity() {
                     Snackbar.make(view, "This quote is already in the list!", Snackbar.LENGTH_SHORT)
                         .show()
                 } else {
-                    window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        window.decorView.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
                     listArrFinal.push(listView.getItemAtPosition(position) as String?)
                     this.startActivity(intent2)
                 }

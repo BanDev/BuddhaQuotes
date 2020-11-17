@@ -34,7 +34,6 @@
     <string name='about_acknowledgements'>Remerciements</string> <!-- Translated by harrydevey06 -->
     <string name='about_attribution'>Icône du lanceur - Freepik via Flaticon</string> <!-- Translated by harrydevey06 -->
     <string name='tick'>Cocher</string> <!-- Translated by harrydevey06 -->
-    <string name='favourites'>Favoris</string> <!-- Translated by harrydevey06 -->
     <string name='favourited_quote'>Citation préférée</string> <!-- Translated by harrydevey06 -->
     <string name='favourite_quote_delete'>Effacer</string> <!-- Translated by harrydevey06 -->
     <string name='buddha_quotes_logo'>Logo de citations de Bouddha</string> <!-- Translated by harrydevey06 -->
@@ -72,6 +71,5 @@
     <string name='add_widget'>Ajouter un widget</string> <!-- Translated by jack.txt -->
     <string name='open_source_libraries'>Bibliothèques Open Source</string> <!-- Translated by jack.txt -->
     <string name='about_no_ads'>Pas de pubs</string> <!-- Translated by jack.txt -->
-
 
 </resources>

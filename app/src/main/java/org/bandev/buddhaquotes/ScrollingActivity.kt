@@ -1,16 +1,10 @@
 package org.bandev.buddhaquotes
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowInsets
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -45,7 +39,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
             val contextView = findViewById<View>(R.id.scrolling)
-
             Snackbar.make(contextView, "Already in list!", Snackbar.LENGTH_SHORT)
                 .show()
         }
@@ -90,7 +83,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         if (resourceId > 0) {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
-
 
         val view = View(this)
         view.doOnLayout {
@@ -162,16 +154,14 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 editor.apply()
 
             }
-
-            vibratePhone()
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             adapter.notifyItemChanged(position)
         }
-
     }
 
     override fun onShareClick(position: Int) {
         val clickedItem = scrollingList[position]
-        vibratePhone()
+        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
@@ -187,7 +177,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     }
 
     override fun onBinClick(position: Int, text: String) {
-        vibratePhone()
+        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
@@ -234,32 +224,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         }
         return list
     }
-
-    private fun vibratePhone() {
-        val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                vibrator.vibrate(
-                    VibrationEffect.createOneShot(
-                        50,
-                        VibrationEffect.EFFECT_HEAVY_CLICK
-                    )
-                )
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                vibrator.vibrate(
-                    VibrationEffect.createOneShot(
-                        50,
-                        VibrationEffect.DEFAULT_AMPLITUDE
-                    )
-                )
-            }
-            else -> {
-                vibrator.vibrate(50)
-            }
-        }
-    }
-
 
     override fun onSupportNavigateUp(): Boolean {
 

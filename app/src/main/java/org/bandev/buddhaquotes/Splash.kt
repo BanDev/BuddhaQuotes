@@ -2,11 +2,8 @@ package org.bandev.buddhaquotes
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.content.res.Configuration
-import android.os.Build
+import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 
@@ -29,15 +26,7 @@ class Splash : AppCompatActivity() {
             }
         }
 
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-            }
-        }
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val editor = sharedPreferences.edit()
 
