@@ -18,7 +18,6 @@ class Core(val context: Context) {
 
         val quote: Quotes = Quotes()
 
-
         /**
          * Updates a 'list' (adds a quote to a pre-existing 'list')
          * @param [list] title of list (String)

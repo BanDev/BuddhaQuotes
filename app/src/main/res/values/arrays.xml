@@ -13,8 +13,8 @@
     </string-array>
 
     <string-array name="fun_entries">
-        <item>@string/settings_fun_mode_yes</item>
-        <item>@string/settings_fun_mode_no</item>
+        <item>@string/settings_shapes_mode_yes</item>
+        <item>@string/settings_shapes_mode_no</item>
     </string-array>
 
     <string-array name="fun_values">

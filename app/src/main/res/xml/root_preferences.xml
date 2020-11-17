@@ -53,7 +53,7 @@
             app:icon="@drawable/ic_party_popper"
             app:key="fun_mode"
             android:layout="@layout/pref_single"
-            app:title="@string/settings_fun_mode"
+            app:title="@string/settings_shapes_mode"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>

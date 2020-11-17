@@ -8,11 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 
-
-/**
- * Implementation of App Widget functionality.
- * App Widget Configuration implemented in [WidgetConfigureActivity]
- */
 class Widget : AppWidgetProvider() {
 
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
@@ -64,7 +59,6 @@ class Widget : AppWidgetProvider() {
 
     override fun onDeleted(context: Context, appWidgetIds: IntArray) {
         // When the user deletes the widget, delete the preference associated with it.
-
     }
 
     override fun onEnabled(context: Context) {
@@ -74,8 +68,6 @@ class Widget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
     }
-
-
 }
 
 internal fun updateAppWidget(

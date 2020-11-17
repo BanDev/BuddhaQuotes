@@ -375,7 +375,7 @@
 
     <TextView
         android:layout_width="340dp"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:fontFamily="@font/mt_reg"
         android:text="@string/about_attribution"
         android:textAlignment="viewStart"

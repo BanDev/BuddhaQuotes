@@ -237,7 +237,7 @@ class Quotes {
             112 -> text =
                 "Let none find fault with others; let none see the omissions and commissions of others. But let one see one’s own acts, done and undone"
             113 -> text =
-                "Letting go gives us freedom, and freedom is the only condition for happiness. If, in our heart, we still clint to anything - anger, anxiety, or possessions - we cannot be free"
+                "Letting go gives us freedom, and freedom is the only condition for happiness. If, in our heart, we still cling to anything - anger, anxiety, or possessions - we cannot be free"
             114 -> text =
                 "Life is a river always flowing. Do not hold onto things. Work hard"
             115 -> text =

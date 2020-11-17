@@ -49,9 +49,6 @@
     <string name="about_attribution">Launcher icon - Freepik via Flaticon</string>
     <string name="tick">Tick</string>
 
-    <!-- Favourites page -->
-    <string name="favourites">Favourites</string>
-
     <!-- Favourited Quote page -->
     <string name="favourited_quote">Favourited Quote</string>
     <string name="favourite_quote_delete">Delete</string>
@@ -114,9 +111,9 @@
     <!-- Settings -->
     <string name="settings_general">General</string>
     <string name="settings_accent_colour">Accent Colour</string>
-    <string name="settings_fun_mode">Shapes Mode</string>
-    <string name="settings_fun_mode_yes">On</string>
-    <string name="settings_fun_mode_no">Off</string>
+    <string name="settings_shapes_mode">Shapes Mode</string>
+    <string name="settings_shapes_mode_yes">On</string>
+    <string name="settings_shapes_mode_no">Off</string>
     <string name="settings_language">Language (ALPHA)</string>
 
         <!-- colours & their corresponding values -->
