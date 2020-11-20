@@ -33,11 +33,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".CreateNewList"
-            android:label="createNewList"
-            android:screenOrientation="portrait"
-            android:theme="@style/ScrollingActivity" />
-        <activity
             android:name=".FullLicense"
             android:screenOrientation="portrait" />
         <activity
