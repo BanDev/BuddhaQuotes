@@ -109,7 +109,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(false)
-
     }
 
     private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
