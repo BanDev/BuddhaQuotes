@@ -81,7 +81,6 @@ class License : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
         finish()
     }
 

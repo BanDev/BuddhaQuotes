@@ -121,7 +121,6 @@ class About : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // Add your animation
         finish()
     }
 

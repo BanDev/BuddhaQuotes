@@ -70,14 +70,14 @@
             app:icon="@drawable/ic_info" />
 
         <Preference
-            android:key="help"
+            android:key="Help"
             android:title="@string/help"
             android:summary="@string/app_introduction"
             android:layout="@layout/pref_single"
             app:icon="@drawable/ic_help" />
 
         <Preference
-            android:key="license"
+            android:key="License"
             android:title="@string/app_license"
             android:summary="@string/gplv3"
             android:layout="@layout/pref_single"
