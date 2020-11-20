@@ -109,16 +109,12 @@ class Settings : AppCompatActivity() {
                     val i = Intent(activity, License::class.java)
                     startActivity(i)
                 }
-                "oss_libraries" -> {
-                    context?.let {
-                        LibsBuilder()
-                            .withAboutIconShown(true)
-                            .withAboutVersionShown(false)
-                            .start(it)
-                    }
+                "AboutLibraries" -> {
+                    val i = Intent(activity, AboutLibraries::class.java)
+                    startActivity(i)
                 }
                 "help" -> {
-                    val i = Intent(activity, Intro::class.java)
+                    val i = Intent(activity, AppIntro::class.java)
                     startActivity(i)
                 }
             }

@@ -12,45 +12,46 @@
         android:roundIcon="@drawable/ic_buddha"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <receiver android:name=".Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
+
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/ScrollingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".AddQuote"
             android:label="addList"
-            android:theme="@style/ScrollingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".CreateNewList"
             android:label="createNewList"
-            android:theme="@style/ScrollingActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".FullLicense"
             android:screenOrientation="portrait" />
         <activity
             android:name=".License"
             android:label="License"
-            android:theme="@style/license"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/license" />
         <activity
             android:name=".YourLists"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Splash"
-            android:theme="@style/Splash"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,21 +61,24 @@
         <activity
             android:name=".About"
             android:label="@string/about"
-            android:theme="@style/about"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/about" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
-            android:theme="@style/settings"
+            android:screenOrientation="portrait"
+            android:theme="@style/settings" />
+        <activity
+            android:name=".AppIntro"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Intro"
+            android:name=".AboutLibraries"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:label="@string/MainActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="MainActivity" />

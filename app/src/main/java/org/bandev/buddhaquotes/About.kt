@@ -15,6 +15,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import kotlinx.android.synthetic.main.activity_about.*
+import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -40,34 +41,35 @@ class About : AppCompatActivity() {
                 ) {
                     viewKonfetti.build()
                         .addColors(
-                            Color.parseColor("#a864fd"),
-                            Color.parseColor("#29cdff"),
-                            Color.parseColor("#78ff44"),
-                            Color.parseColor("#ff718d"),
-                            Color.parseColor("#fdff6a")
+                            Color.parseColor("#A864FD"),
+                            Color.parseColor("#29CDFF"),
+                            Color.parseColor("#78FF44"),
+                            Color.parseColor("#FF718D"),
+                            Color.parseColor("#FDFF6A")
                         )
                         .setDirection(0.0, 359.0)
                         .setSpeed(1f, 5f)
                         .setFadeOutEnabled(true)
                         .setTimeToLive(2000L)
                         .addShapes(
-                            nl.dionsegijn.konfetti.models.Shape.RECT,
-                            nl.dionsegijn.konfetti.models.Shape.CIRCLE
+                            Shape.Square,
+                            Shape.Circle
                         )
                         .addSizes(Size(10))
                         .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
                         .streamFor(100, 1000L)
 
-                    val vib = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        vib.vibrate(
+                        vibrator.vibrate(
                             VibrationEffect.createOneShot(
                                 200,
                                 VibrationEffect.DEFAULT_AMPLITUDE
                             )
                         )
                     } else {
-                        vib.vibrate(200)
+                        @Suppress("DEPRECATION")
+                        vibrator.vibrate(200)
                     }
 
                     val contextView = findViewById<View>(R.id.context_view)
