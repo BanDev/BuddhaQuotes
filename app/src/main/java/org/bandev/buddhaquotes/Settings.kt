@@ -105,16 +105,16 @@ class Settings : AppCompatActivity() {
                     val i = Intent(activity, About::class.java)
                     startActivity(i)
                 }
-                "license" -> {
+                "Help" -> {
+                    val i = Intent(activity, AppIntro::class.java)
+                    startActivity(i)
+                }
+                "License" -> {
                     val i = Intent(activity, License::class.java)
                     startActivity(i)
                 }
                 "AboutLibraries" -> {
                     val i = Intent(activity, AboutLibraries::class.java)
-                    startActivity(i)
-                }
-                "help" -> {
-                    val i = Intent(activity, AppIntro::class.java)
                     startActivity(i)
                 }
             }
@@ -282,7 +282,6 @@ class Settings : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
         val myIntent = Intent(this@Settings, MainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
