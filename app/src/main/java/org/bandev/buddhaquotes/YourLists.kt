@@ -105,6 +105,10 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         }
 
 
+        refresh()
+    }
+
+    fun refresh(){
         val pref = getSharedPreferences("List_system", 0)
         favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
         array = (favs[0] ?: return).split("//".toRegex()).toTypedArray()
@@ -202,6 +206,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                 (pref.getString("MASTER_LIST", "Favourites") + "//" + text)
                             )
                             editor.apply()
+                            refresh()
                         }
                     }
 
