@@ -105,7 +105,7 @@
     <string name="lists_title">Your Lists</string>
     <string name="lists_add_item">Add to List</string>
     <string name="lists_add_lists">Create new List</string>
-    <string name="lists_add_lists_go">Go</string>
+    <string name="lists_add_lists_go">Add</string>
     <string name="lists_add_lists_name">Name</string>
 
     <!-- Settings -->
@@ -315,5 +315,9 @@
     <string name='yo'>Yoruba</string>
     <string name='za'>Zhuang, Chuang</string>
     <string name='zu'>Zulu</string>
+
+    <!-- added in v1.5.2 -->
+
+    <string name="cancel">Cancel</string>
 
 </resources>

@@ -6,82 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".AddQuote">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="?colorPrimary"
-        android:elevation="4dp"
-        android:fontFamily="@font/mt_bold"
-        android:paddingStart="8dp"
-        android:paddingEnd="10dp"
-        app:titleTextAppearance="@style/toolbarText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp">
 
-        <TextView
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mt_med"
-            android:text="@string/lists_add_lists"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="18dp" />
+            android:layout_marginStart="33dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="33dp"
+            android:backgroundTint="@android:color/white"
+            android:backgroundTintMode="?colorPrimary"
+            android:hint="Name"
+            app:boxCornerRadiusTopEnd="11dp"
+            app:boxCornerRadiusTopStart="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:startIconDrawable="@drawable/ic_text_fields">
 
-    </androidx.appcompat.widget.Toolbar>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="@font/mt_reg"/>
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="33dp"
-        android:backgroundTint="@android:color/white"
-        android:backgroundTintMode="?colorPrimary"
-        android:hint="Name"
-        app:boxCornerRadiusTopEnd="11dp"
-        app:boxCornerRadiusTopStart="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:startIconDrawable="@drawable/ic_text_fields">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:fontFamily="@font/mt_reg"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/go"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="33dp"
-        android:backgroundTint="?colorPrimary"
-        android:drawableStart="@drawable/ic_add"
-        android:fontFamily="@font/mt_med"
-        android:text="Create List"
-        android:textColor="@android:color/white"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textIsSelectable="false"
-        android:textSize="16sp"
-        app:cornerRadius="11dp"
-        app:iconTint="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_box" />
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
