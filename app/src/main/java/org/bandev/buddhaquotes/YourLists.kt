@@ -5,13 +5,20 @@ import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.LayoutMode
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
+import com.afollestad.materialdialogs.customview.customView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -143,12 +150,65 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         return true
     }
 
+    private fun getError(input: String): String {
+        val pref = getSharedPreferences("List_system", 0)
+
+        when {
+            input == "" -> {
+                return "Cannot be blank"
+            }
+            input.contains("//") -> {
+                return "Cannot contain //"
+            }
+            input == "Favourites" -> {
+                return ":( stop trynna break the app"
+            }
+            input == "favourites" -> {
+                return ":( stop trynna break the app"
+            }
+            pref.getString("MASTER_LIST", "Favourites")!!.contains(input) -> {
+                return "There is already a list named $input"
+            }
+            else -> {
+                return "safe"
+            }
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                val myIntent = Intent(this@YourLists, CreateNewList::class.java)
-                this@YourLists.startActivity(myIntent)
-                finish()
+                MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    cornerRadius(16f)
+                    title(R.string.lists_add_lists)
+                    icon(R.drawable.ic_buddha_no_background)
+                    customView(R.layout.activity_create_new_list)
+                    positiveButton(R.string.lists_add_lists_go) {
+                        val nameBox = findViewById<TextInputLayout>(R.id.name_box)
+                        val name = findViewById<EditText>(R.id.name)
+                        val text = name.text.toString()
+
+                        val error = getError(text)
+
+                        if (error != "safe") {
+                            nameBox.error = error
+                        } else {
+                            //Add new list to MASTER_LIST & create a list for itself
+                            val pref = getSharedPreferences("List_system", 0)
+                            val editor = pref.edit()
+                            editor.putString(text, "null")
+                            editor.putString(
+                                "MASTER_LIST",
+                                (pref.getString("MASTER_LIST", "Favourites") + "//" + text)
+                            )
+                            editor.apply()
+                        }
+                    }
+
+                    negativeButton(R.string.cancel) {
+                        dismiss()
+                    }
+                }
                 true
             }
             android.R.id.home -> {
