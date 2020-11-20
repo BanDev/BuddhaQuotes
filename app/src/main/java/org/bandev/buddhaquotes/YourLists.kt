@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.customview.customView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
@@ -108,7 +107,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         refresh()
     }
 
-    fun refresh(){
+    fun refresh() {
         val pref = getSharedPreferences("List_system", 0)
         favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
         array = (favs[0] ?: return).split("//".toRegex()).toTypedArray()
@@ -185,7 +184,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                 MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
                     cornerRadius(16f)
                     title(R.string.lists_add_lists)
-                    icon(R.drawable.ic_buddha_no_background)
+                    icon(R.drawable.ic_add_circle_bottomsheet)
                     customView(R.layout.activity_create_new_list)
                     positiveButton(R.string.lists_add_lists_go) {
                         val nameBox = findViewById<TextInputLayout>(R.id.name_box)
@@ -195,9 +194,26 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                         val error = getError(text)
 
                         if (error != "safe") {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                    HapticFeedbackConstants.REJECT
+                                )
+                            } else {
+                                (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                    HapticFeedbackConstants.VIRTUAL_KEY
+                                )
+                            }
                             nameBox.error = error
                         } else {
-                            //Add new list to MASTER_LIST & create a list for itself
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                    HapticFeedbackConstants.CONFIRM
+                                )
+                            } else {
+                                (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                    HapticFeedbackConstants.VIRTUAL_KEY
+                                )
+                            }
                             val pref = getSharedPreferences("List_system", 0)
                             val editor = pref.edit()
                             editor.putString(text, "null")
@@ -211,7 +227,9 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                     }
 
                     negativeButton(R.string.cancel) {
-                        dismiss()
+                        (window ?: return@negativeButton).decorView.performHapticFeedback(
+                            HapticFeedbackConstants.VIRTUAL_KEY
+                        )
                     }
                 }
                 true
