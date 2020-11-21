@@ -23,7 +23,7 @@ class AppIntro : AppIntro2() {
         addSlide(
             AppIntroFragment.newInstance(
                 title = "Buddha Quotes",
-                description = "A Free and Open Source Buddha Quotes app",
+                description = "Une application gratuite et open source sur les citations de Buddha",
                 imageDrawable = R.drawable.ic_buddha_no_background,
                 backgroundDrawable = R.drawable.slide_1,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -32,8 +32,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Over 230 quotes!",
-                description = "Over 230 quotes from The Buddha",
+                title = "Plus de 230 citations!",
+                description = "Plus de 230 citations de Buddha",
                 imageDrawable = R.drawable.ic_quotation_marks,
                 backgroundDrawable = R.drawable.slide_2,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -42,8 +42,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Favourites",
-                description = "You can favourite quotes by pressing the favourite button",
+                title = "Favoris",
+                description = "Vous pouvez ajouter vos citations en favories, en appuyant sur le bouton favori",
                 imageDrawable = R.drawable.heart_full_white_large,
                 backgroundDrawable = R.drawable.slide_3,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -52,7 +52,7 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Customisable",
+                title = "Customisation",
                 description = "There is a variety of user interface options, such as accent colours and shapes mode",
                 imageDrawable = R.drawable.ic_palette_large,
                 backgroundDrawable = R.drawable.slide_4,
@@ -62,8 +62,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "...Let's get started!",
-                description = "We hope you enjoy the app - we have a GitLab repository where you can request features or raise issues",
+                title = "...C'est parti !",
+                description = "Nous espérons que vous aimez l'application - nous avons un dépôt GitLab où vous pouvez demander des fonctionalités ou signaler des problèmes",
                 imageDrawable = R.drawable.ic_meditate,
                 backgroundDrawable = R.drawable.slide_5,
                 titleTypefaceFontRes = R.font.mt_med,
