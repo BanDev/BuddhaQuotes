@@ -13,7 +13,7 @@ class Quotes {
         var text = ""
         when (num) {
             1 -> text =
-                "A disciplined mind brings happiness"
+                "Un esprit discipliné apporte le bonheur"
             2 -> text =
                 "A good friend who points out mistakes and imperfections and rebukes evil is to be respected as if he reveals a secret of hidden treasure"
             3 -> text =
@@ -43,7 +43,7 @@ class Quotes {
             15 -> text =
                 "All wrong-doing arises because of mind. If mind is transformed can wrong-doing remain?"
             16 -> text =
-                "An open heart is an open mind"
+                "Un coeur ouvert est un esprit ouvert"
             17 -> text =
                 "Analysing through special insight and realising the lack of inherent existence constitute understanding of the signless"
             18 -> text =
@@ -65,9 +65,9 @@ class Quotes {
             26 -> text =
                 "As an elephant in the battlefield withstands arrows shot from bows all around, even so shall I endure abuse"
             27 -> text =
-                "Attachment leads to suffering"
+                "L'attachement mène à la souffrance"
             28 -> text =
-                "Attention is the rarest and purest form of generosity"
+                "L'attention est la plus rare et la plus pure forme de générosité"
             29 -> text =
                 "Be a lamp unto yourself. Work out your liberation with liberation"
             30 -> text =
@@ -75,13 +75,13 @@ class Quotes {
             31 -> text =
                 "Be kind whenever possible. It is always possible"
             32 -> text =
-                "Be vigilant; guard your mind against negative thoughts"
+                "Soyez vigilant; Protéger votre esprit contre les pensées négatives"
             33 -> text =
                 "Be what you are. This is the first step toward becoming better than you are"
             34 -> text =
                 "Because we all share an identical need for love, it is possible to feel that anybody we meet, in whatever circumstances, is a brother or sister"
             35 -> text =
-                "Because you are alive, everything is possible"
+                "Car vous êtes vivant, tout est possible"
             36 -> text =
                 "Better it is to live alone; there is no fellowship with a fool. Live alone and do no evil; be carefree like an elephant in the elephant fores"
             37 -> text =
@@ -105,7 +105,7 @@ class Quotes {
             46 -> text =
                 "Conquer the angry one by not getting angry; conquer the wicked by goodness; conquer the stingy by generosity, and the liar by speaking the truth"
             47 -> text =
-                "Contentment is the greatest wealth"
+                "La satisfaction est la plus grande richesse"
             48 -> text =
                 "Delight in heedfulness! Guard well your thoughts!"
             49 -> text =
@@ -113,7 +113,7 @@ class Quotes {
             50 -> text =
                 "Dharma is not upheld by talking about it. Dharma is upheld by living in harmony with it..."
             51 -> text =
-                "Do not give your attention to what others do or fail to do; give it to what you do or fail to do"
+                "Ne prêter pas attention à ce que les autres font où échouent à faire; Faites attention à ce que vous faites ou échouer à faire"
             52 -> text =
                 "Do not overrate what you have received, nor envy others. He who envies others does not obtain peace of mind"
             53 -> text =
@@ -121,7 +121,7 @@ class Quotes {
             54 -> text =
                 "Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good"
             55 -> text =
-                "Emotion arise from Desire, hence an Illusion"
+                "L'Emotion arise from Desire, hence an Illusion"
             56 -> text =
                 "Endurance is one of the most difficult disciplines, but it is to the one who endures that the final victory comes"
             57 -> text =
@@ -143,7 +143,7 @@ class Quotes {
             65 -> text =
                 "From a withered tree, a flower blooms"
             66 -> text =
-                "Give, even if you only have a little"
+                "Donnez, même si vous avez seulement un peu"
             67 -> text =
                 "Greater in battle than the man who would conquer a thousand-thousand men, is he who would conquer just one – himself. Better to conquer yourself than others"
             68 -> text =
@@ -285,13 +285,13 @@ class Quotes {
             136 -> text =
                 "Nothing can harm you as much as your own thoughts unguarded"
             137 -> text =
-                "Nothing is forever except change"
+                "Rien est éternel sauf le changement"
             138 -> text =
                 "One is not called noble who harms living beings. By not harming living beings one is called noble"
             139 -> text =
                 "Opinion, O disciples, is a disease; opinion is a tumor; opinion is a sore. He who has overcome all opinion, O disciples, is called a saint, one who knows"
             140 -> text =
-                "Our own life has to be our message"
+                "Notre propre vie doit être notre message"
             141 -> text =
                 "Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them"
             142 -> text =
@@ -347,7 +347,7 @@ class Quotes {
             167 -> text =
                 "The calmed say that what is well-spoken is best; second, that one should say what is right, not unrighteous; third, what’s pleasing, not displeasing; fourth, what is true, not false"
             168 -> text =
-                "The darkest night is ignorance"
+                "La plus sombre nuit est l'ignorance"
             169 -> text =
                 "The Gift of Truth excels all other Gifts"
             170 -> text =
