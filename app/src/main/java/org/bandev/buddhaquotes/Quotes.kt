@@ -293,7 +293,7 @@ class Quotes {
             140 -> text =
                 "Notre propre vie doit être notre message"
             141 -> text =
-                "Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them"
+                "Notre but primaire dans cette vie est d'aider les autres. Et si vous ne pouvez pas les aider, au moins ne les blessez pas"
             142 -> text =
                 "Over there are the roots of trees; over there, empty dwellings. Practice jhana, monks. Don’t be heedless"
             143 -> text =
