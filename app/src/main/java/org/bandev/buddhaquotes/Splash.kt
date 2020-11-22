@@ -28,21 +28,9 @@ class Splash : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val editor = sharedPreferences.edit()
-
-        if (sharedPreferences.getBoolean("first_time", true)) {
-            editor.putBoolean("first_time", false)
-            editor.apply()
-            val i = Intent(this, AppIntro::class.java)
-            startActivity(i)
-            finish()
-        } else {
             val i = Intent(this, MainActivity::class.java)
-            val mBundle = Bundle()
-            mBundle.putString("quote", "0")
-            i.putExtras(mBundle)
             startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             finish()
-        }
+
     }
 }
