@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -158,31 +157,11 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         return true
     }
 
-    fun checkString(submission: String): Boolean {
-        var apostropheFound = false
-        var hypenFound = false
-        if (submission == "\'") return false
-        if (submission.startsWith('-')) return false
-        if (submission.contains("-\'")) return false
-        loop@ for (s in submission.replace("\\s".toRegex(), "")) {
-            when {
-                s.isLetter() -> continue@loop
-                s == '-' && !hypenFound -> hypenFound = true
-                s == '\'' && !apostropheFound -> apostropheFound = true
-                else -> return false
-            }
-        }
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
                 var nameValue = "error"
                 val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-                    val customView = dialog.getCustomView()
-                    val name = customView.findViewById<EditText>(R.id.nameEvent)
-                    val input = name.text.toString()
 
                     cornerRadius(16f)
                     title(R.string.lists_add_lists)
@@ -198,15 +177,19 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                 HapticFeedbackConstants.VIRTUAL_KEY
                             )
                         }
-                        dismiss()
+
+                        //Save the code
                         val pref = getSharedPreferences("List_system", 0)
                         val editor = pref.edit()
-                        editor.putString(input, "null")
+                        editor.putString(nameValue, "null")
                         editor.putString(
                             "MASTER_LIST",
-                            (pref.getString("MASTER_LIST", "Favourites") + "//" + input)
-                                    editor.apply()
-                                    refresh()
+                            (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue))
+                        editor.apply()
+                        refresh()
+
+                        dismiss()
+
                     }
 
                     negativeButton(R.string.cancel) {
@@ -219,28 +202,29 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
                 dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
                 val customView = dialog.getCustomView()
-                val name = customView.findViewById<EditText>(R.id.nameEvent)
-                val input = name.text.toString()
+                val name = customView.nameEvent
 
                 val watcher = object : TextWatcher {
                     override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
                     override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
                     override fun afterTextChanged(editable: Editable) {
                         when {
-                            editable === name.editableText -> {
+                            editable === name.text -> {
+                                val input = name.text.toString()
+                                nameValue = input
                                 val pref = getSharedPreferences("List_system", 0)
-                                if ((input.isBlank()) || !checkString(input)) {
-                                    customView.nameEvent.error = "Cannot be blank"
+                                if (input.isBlank()) {
+                                    customView.nameEventLayout.error = "Cannot be blank"
                                     dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
                                 } else if (input.contains("//")) {
-                                    customView.nameEvent.error = "Cannot contain //"
+                                    customView.nameEventLayout.error = "Cannot contain //"
                                     dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
                                 } else if ((pref.getString("MASTER_LIST", "Favourites")?: return).contains(input)) {
-                                    customView.nameEvent.error = "There is already a list named $input"
+                                    customView.nameEventLayout.error = "There is already a list named $input"
                                     dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
                                 } else {
                                     nameValue = input
-                                    customView.nameEvent.error = null
+                                    customView.nameEventLayout.error = null
                                     dialog.getActionButton(WhichButton.POSITIVE).isEnabled = true
                                 }
                             }
