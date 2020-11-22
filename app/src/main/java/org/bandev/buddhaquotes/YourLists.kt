@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -14,10 +16,13 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_create_new_list.view.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -153,85 +158,97 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         return true
     }
 
-    private fun getError(input: String): String {
-        val pref = getSharedPreferences("List_system", 0)
-
-        when {
-            input == "" -> {
-                return "Cannot be blank"
-            }
-            input.contains("//") -> {
-                return "Cannot contain //"
-            }
-            input == "Favourites" -> {
-                return ":( stop trynna break the app"
-            }
-            input == "favourites" -> {
-                return ":( stop trynna break the app"
-            }
-            pref.getString("MASTER_LIST", "Favourites")!!.contains(input) -> {
-                return "There is already a list named $input"
-            }
-            else -> {
-                return "safe"
+    fun checkString(submission: String): Boolean {
+        var apostropheFound = false
+        var hypenFound = false
+        if (submission == "\'") return false
+        if (submission.startsWith('-')) return false
+        if (submission.contains("-\'")) return false
+        loop@ for (s in submission.replace("\\s".toRegex(), "")) {
+            when {
+                s.isLetter() -> continue@loop
+                s == '-' && !hypenFound -> hypenFound = true
+                s == '\'' && !apostropheFound -> apostropheFound = true
+                else -> return false
             }
         }
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                var nameValue = "error"
+                val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    val customView = dialog.getCustomView()
+                    val name = customView.findViewById<EditText>(R.id.nameEvent)
+                    val input = name.text.toString()
+
                     cornerRadius(16f)
                     title(R.string.lists_add_lists)
                     icon(R.drawable.ic_add_circle_bottomsheet)
                     customView(R.layout.activity_create_new_list)
                     positiveButton(R.string.lists_add_lists_go) {
-                        val nameBox = findViewById<TextInputLayout>(R.id.name_box)
-                        val name = findViewById<EditText>(R.id.name)
-                        val text = name.text.toString()
-
-                        val error = getError(text)
-
-                        if (error != "safe") {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                    HapticFeedbackConstants.REJECT
-                                )
-                            } else {
-                                (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                    HapticFeedbackConstants.VIRTUAL_KEY
-                                )
-                            }
-                            nameBox.error = error
-                        } else {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                    HapticFeedbackConstants.CONFIRM
-                                )
-                            } else {
-                                (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                    HapticFeedbackConstants.VIRTUAL_KEY
-                                )
-                            }
-                            val pref = getSharedPreferences("List_system", 0)
-                            val editor = pref.edit()
-                            editor.putString(text, "null")
-                            editor.putString(
-                                "MASTER_LIST",
-                                (pref.getString("MASTER_LIST", "Favourites") + "//" + text)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                HapticFeedbackConstants.CONFIRM
                             )
-                            editor.apply()
-                            refresh()
+                        } else {
+                            (window ?: return@positiveButton).decorView.performHapticFeedback(
+                                HapticFeedbackConstants.VIRTUAL_KEY
+                            )
                         }
+                        dismiss()
+                        val pref = getSharedPreferences("List_system", 0)
+                        val editor = pref.edit()
+                        editor.putString(input, "null")
+                        editor.putString(
+                            "MASTER_LIST",
+                            (pref.getString("MASTER_LIST", "Favourites") + "//" + input)
+                                    editor.apply()
+                                    refresh()
                     }
 
                     negativeButton(R.string.cancel) {
                         (window ?: return@negativeButton).decorView.performHapticFeedback(
                             HapticFeedbackConstants.VIRTUAL_KEY
                         )
+                        dismiss()
                     }
                 }
+
+                dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
+                val customView = dialog.getCustomView()
+                val name = customView.findViewById<EditText>(R.id.nameEvent)
+                val input = name.text.toString()
+
+                val watcher = object : TextWatcher {
+                    override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+                    override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+                    override fun afterTextChanged(editable: Editable) {
+                        when {
+                            editable === name.editableText -> {
+                                val pref = getSharedPreferences("List_system", 0)
+                                if ((input.isBlank()) || !checkString(input)) {
+                                    customView.nameEvent.error = "Cannot be blank"
+                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
+                                } else if (input.contains("//")) {
+                                    customView.nameEvent.error = "Cannot contain //"
+                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
+                                } else if ((pref.getString("MASTER_LIST", "Favourites")?: return).contains(input)) {
+                                    customView.nameEvent.error = "There is already a list named $input"
+                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
+                                } else {
+                                    nameValue = input
+                                    customView.nameEvent.error = null
+                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = true
+                                }
+                            }
+                        }
+                    }
+                }
+
+                name.addTextChangedListener(watcher)
                 true
             }
             android.R.id.home -> {
