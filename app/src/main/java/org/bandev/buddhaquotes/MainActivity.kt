@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes
 
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -44,6 +45,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sharedPreferences = getSharedPreferences("Settings", 0)
+        val editor = sharedPreferences.edit()
+
+        if (sharedPreferences.getBoolean("first_time", true)) {
+            editor.putBoolean("first_time", false)
+            editor.apply()
+            val i = Intent(this, AppIntro::class.java)
+            startActivity(i)
+        }
 
         Colours().setAccentColor(this, window)
         Languages().setLanguage(this)
