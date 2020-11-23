@@ -9,6 +9,7 @@ import android.view.View
 import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 
@@ -32,6 +33,9 @@ class Splash : AppCompatActivity() {
         }
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        window.navigationBarColor =
+            ResourcesCompat.getColor(resources, R.color.transparent, null)
 
         val view = View(this)
         view.doOnLayout {
