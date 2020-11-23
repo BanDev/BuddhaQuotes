@@ -4,322 +4,326 @@
     <string name="version" translatable="false">v1.5.1</string>
 
     <!-- Main page -->
-    <string name="refresh">Refresh</string>
-    <string name="favourite">Favourite</string>
-    <string name="share">Share</string>
+    <string id="1" name="refresh">Refresh</string>
+    <string id="2" name="favourite">Favourite</string>
+    <string id="3" name="share">Share</string>
 
     <!-- Settings -->
-    <string name="settings">Settings</string>
-    <string name="appearance">Appearance</string>
-    <string name="app_theme">App Theme</string>
-    <string name="light_mode">Light</string>
-    <string name="dark_mode">Dark</string>
-    <string name="follow_system_default">Follow system default</string>
-    <string name="text_size">Text Size</string>
-    <string name="small_text_size">Small</string>
-    <string name="medium_text_size">Medium</string>
-    <string name="large_text_size">Large</string>
-    <string name="information">Information</string>
-    <string name="about">About</string>
-    <string name="view_app_details">View app details</string>
-    <string name="help">Help</string>
-    <string name="app_introduction">App introduction</string>
-    <string name="app_license">App License</string>
-    <string name="gplv3" translatable="false">GPLv3</string>
-    <string name="libraries_used">Libraries used</string>
+    <string id="4" name="settings">Settings</string>
+    <string id="5" name="appearance">Appearance</string>
+    <string id="6" name="app_theme">App Theme</string>
+    <string id="7" name="light_mode">Light</string>
+    <string id="8" name="dark_mode">Dark</string>
+    <string id="9" name="follow_system_default">Follow system default</string>
+    <string id="10" name="text_size">Text Size</string>
+    <string id="11" name="small_text_size">Small</string>
+    <string id="12" name="medium_text_size">Medium</string>
+    <string id="13" name="large_text_size">Large</string>
+    <string id="14" name="information">Information</string>
+    <string id="15" name="about">About</string>
+    <string id="16" name="view_app_details">View app details</string>
+    <string id="17" name="help">Help</string>
+    <string id="18" name="app_introduction">App introduction</string>
+    <string id="19" name="app_license">App License</string>
+    <string id="UNTRANSLATE" name="gplv3" translatable="false">GPLv3</string>
+    <string id="20" name="libraries_used">Libraries used</string>
 
     <!-- Added up to here on BanDev Localisation Thingy -->
 
     <!-- About page -->
-    <string name="about_app_promise">App Promise</string>
-    <string name="about_no_trackers">No trackers</string>
-    <string name="about_complete_privacy">Complete privacy</string>
-    <string name="about_offline_app">Offline app</string>
-    <string name="about_free_and_open_source">Free and Open Source</string>
-    <string name="about_info">App Info</string>
-    <string name="about_info_paragraph">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
+    <string id="21" name="about_app_promise">App Promise</string>
+    <string id="22" name="about_no_trackers">No trackers</string>
+    <string id="23" name="about_complete_privacy">Complete privacy</string>
+    <string id="24" name="about_offline_app">Offline app</string>
+    <string id="25" name="about_free_and_open_source">Free and Open Source</string>
+    <string id="26" name="about_info">App Info</string>
+    <string id="27" name="about_info_paragraph">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
 </string>
-    <string name="about_contributors">Contributors</string>
-    <string name="about_fennec" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" translatable="false">"@jack.txt"</string>
-    <string name="about_izzysoft" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" translatable="false">"@Poussinou"</string>
-    <string name="about_acknowledgements">Acknowledgements</string>
-    <string name="about_attribution">Launcher icon - Freepik via Flaticon</string>
-    <string name="tick">Tick</string>
+    <string id="28" name="about_contributors">Contributors</string>
+    <string id="UNTRANSLATE" name="about_fennec" translatable="false">"@Fennec_exe"</string>
+    <string id="UNTRANSLATE" name="about_jack" translatable="false">"@jack.txt"</string>
+    <string id="UNTRANSLATE" name="about_izzysoft" translatable="false">"@IzzySoft"</string>
+    <string id="UNTRANSLATE" name="about_licaon" translatable="false">"@licaon-kter"</string>
+    <string id="UNTRANSLATE" name="about_poussinou" translatable="false">"@Poussinou"</string>
+    <string id="29" name="about_acknowledgements">Acknowledgements</string>
+    <string id="30" name="about_attribution">Launcher icon - Freepik via Flaticon</string>
+    <string id="31" name="tick">Tick</string>
+
+    <!-- Slides was here (32-54) removed in v1.5.1 -->
 
     <!-- Favourited Quote page -->
-    <string name="favourited_quote">Favourited Quote</string>
-    <string name="favourite_quote_delete">Delete</string>
+    <string id="55" name="favourited_quote">Favourited Quote</string>
+    <string id="56" name="favourite_quote_delete">Delete</string>
 
     <!-- Miscellaneous Content descriptions  -->
-    <string name="buddha_quotes_logo">Buddha Quotes logo</string>
-    <string name="bandev_logo">BanDev logo</string>
-    <string name="the_buddha">The Buddha</string>
-    <string name="forward_arrow">Return</string>
-    <string name="icon">Icon</string>
-    <string name="title">Title</string>
+    <string id="57" name="buddha_quotes_logo">Buddha Quotes logo</string>
+    <string id="58" name="bandev_logo">BanDev logo</string>
+    <string id="59" name="the_buddha">The Buddha</string>
+    <string id="60" name="forward_arrow">Return</string>
+    <string id="61" name="icon">Icon</string>
+    <string id="62" name="title">Title</string>
 
     <!-- Licenses page -->
-    <string name="licenses">License</string>
-    <string name="licenses_license" translatable="false">GPL-3.0+</string>
-    <string name="licenses_permissions">Permissions</string>
-    <string name="licenses_commercial_use">Commercial use</string>
-    <string name="licenses_distribution">Distribution</string>
-    <string name="licenses_modification">Modification</string>
-    <string name="licenses_patent_use">Patent use</string>
-    <string name="licenses_private_use">Private use</string>
-    <string name="licenses_conditions">Conditions</string>
-    <string name="licenses_disclose_source">Disclose source</string>
-    <string name="licenses_copyright_notice">License and copyright notice</string>
-    <string name="licenses_same_license">Same license</string>
-    <string name="licenses_state_changes">State changes</string>
-    <string name="licenses_limitations">Limitations</string>
-    <string name="licenses_liability">Liability</string>
-    <string name="licenses_warranty">Warranty</string>
-    <string name="licenses_full_license">Full License</string>
-    <string name="green_circle">Green circle</string>
-    <string name="blue_circle">Blue circle</string>
-    <string name="red_circle">Red circle</string>
+    <string id="63" name="licenses">License</string>
+    <string id="UNTRANSLATE" name="licenses_license" translatable="false">GPL-3.0+</string>
+    <string id="64" name="licenses_permissions">Permissions</string>
+    <string id="65" name="licenses_commercial_use">Commercial use</string>
+    <string id="66" name="licenses_distribution">Distribution</string>
+    <string id="67" name="licenses_modification">Modification</string>
+    <string id="68" name="licenses_patent_use">Patent use</string>
+    <string id="69" name="licenses_private_use">Private use</string>
+    <string id="70" name="licenses_conditions">Conditions</string>
+    <string id="71" name="licenses_disclose_source">Disclose source</string>
+    <string id="72" name="licenses_copyright_notice">License and copyright notice</string>
+    <string id="73" name="licenses_same_license">Same license</string>
+    <string id="74" name="licenses_state_changes">State changes</string>
+    <string id="75" name="licenses_limitations">Limitations</string>
+    <string id="76" name="licenses_liability">Liability</string>
+    <string id="77" name="licenses_warranty">Warranty</string>
+    <string id="78" name="licenses_full_license">Full License</string>
+    <string id="79" name="green_circle">Green circle</string>
+    <string id="80" name="blue_circle">Blue circle</string>
+    <string id="81" name="red_circle">Red circle</string>
 
     <!-- Miscellaneous  -->
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="textview">TextView</string>
-    <string name="MainActivity">Main Activity</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-    <string name="action_settings">Settings</string>
+    <string id="82" name="title_activity_settings">SettingsActivity</string>
+    <string id="83" name="textview">TextView</string>
+    <string id="84" name="MainActivity">Main Activity</string>
+    <string id="85" name="title_activity_scrolling">ScrollingActivity</string>
+    <string id="86" name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="configure">Configure</string>
-    <string name="add_widget">Add widget</string>
-    <string name="open_source_libraries">Open Source Libraries</string>
-    <string name="about_no_ads">No ads</string>
+    <string id="87" name="appwidget_text">EXAMPLE</string>
+    <string id="88" name="configure">Configure</string>
+    <string id="89" name="add_widget">Add widget</string>
+    <string id="90" name="open_source_libraries">Open Source Libraries</string>
+    <string id="91" name="about_no_ads">No ads</string>
 
-    <!-- added in v1.5.0 -->
-    <!-- please keep everything after v1.5.0 below here to make it easier to add to localisation! -->
+    <!-- v1.5.0 -->
 
-    <!-- Lists -->
+        <!-- Lists -->
 
-    <string name="lists_title">Your Lists</string>
-    <string name="lists_add_item">Add to List</string>
-    <string name="lists_add_lists">Create new List</string>
-    <string name="lists_add_lists_go">Add</string>
-    <string name="lists_add_lists_name">Name</string>
+        <string id="92" name="lists_title">Your Lists</string>
+        <string id="93" name="lists_add_item">Add to List</string>
+        <string id="94" name="lists_add_lists">Create new List</string>
+        <string id="95" name="lists_add_lists_go">Add</string>
+        <string id="96" name="lists_add_lists_name">Name</string>
 
-    <!-- Settings -->
-    <string name="settings_general">General</string>
-    <string name="settings_accent_colour">Accent Colour</string>
-    <string name="settings_shapes_mode">Shapes Mode</string>
-    <string name="settings_shapes_mode_yes">On</string>
-    <string name="settings_shapes_mode_no">Off</string>
-    <string name="settings_language">Language (ALPHA)</string>
+        <!-- Settings -->
+        <string id="97" name="settings_general">General</string>
+        <string id="98" name="settings_accent_colour">Accent Colour</string>
+        <string id="99" name="settings_shapes_mode">Shapes Mode</string>
+        <string id="100" name="settings_shapes_mode_yes">On</string>
+        <string id="101" name="settings_shapes_mode_no">Off</string>
+        <string id="102" name="settings_language">Language (ALPHA)</string>
 
-    <!-- colours & their corresponding values -->
-    <string name="original">Original</string>
-    <string name="blue">Blue</string>
-    <string name="green">Green</string>
-    <string name="orange">Orange</string>
-    <string name="yellow">Yellow</string>
-    <string name="teal">Teal</string>
-    <string name="violet">Violet</string>
-    <string name="pink">Pink</string>
-    <string name="lightBlue">Light Blue</string>
-    <string name="red">Red</string>
-    <string name="lime">Lime</string>
-    <string name="crimson">Crimson</string>
+        <!-- colours & their corresponding values -->
+        <string id="103" name="original">Original</string>
+        <string id="104" name="blue">Blue</string>
+        <string id="105" name="green">Green</string>
+        <string id="106" name="orange">Orange</string>
+        <string id="107" name="yellow">Yellow</string>
+        <string id="108" name="teal">Teal</string>
+        <string id="109" name="violet">Violet</string>
+        <string id="110" name="pink">Pink</string>
+        <string id="111" name="lightBlue">Light Blue</string>
+        <string id="112" name="red">Red</string>
+        <string id="113" name="lime">Lime</string>
+        <string id="114" name="crimson">Crimson</string>
 
-    <!-- language iso codes & their corresponding values -->
-    <string name='ab'>Abkhazian</string>
-    <string name='aa'>Afar</string>
-    <string name='af'>Afrikaans</string>
-    <string name='ak'>Akan</string>
-    <string name='sq'>Albanian</string>
-    <string name='am'>Amharic</string>
-    <string name='ar'>Arabic</string>
-    <string name='an'>Aragonese</string>
-    <string name='hy'>Armenian</string>
-    <string name='as'>Assamese</string>
-    <string name='av'>Avaric</string>
-    <string name='ae'>Avestan</string>
-    <string name='ay'>Aymara</string>
-    <string name='az'>Azerbaijani</string>
-    <string name='bm'>Bambara</string>
-    <string name='ba'>Bashkir</string>
-    <string name='eu'>Basque</string>
-    <string name='be'>Belarusian</string>
-    <string name='bn'>Bengali</string>
-    <string name='bh'>Bihari languages</string>
-    <string name='bi'>Bislama</string>
-    <string name='bs'>Bosnian</string>
-    <string name='br'>Breton</string>
-    <string name='bg'>Bulgarian</string>
-    <string name='my'>Burmese</string>
-    <string name='ca'>Catalan, Valencian</string>
-    <string name='km'>Central Khmer</string>
-    <string name='ch'>Chamorro</string>
-    <string name='ce'>Chechen</string>
-    <string name='ny'>Chichewa, Chewa, Nyanja</string>
-    <string name='zh'>Chinese</string>
-    <string name='cu'>Church Slavonic, Old Bulgarian, Old Church Slavonic</string>
-    <string name='cv'>Chuvash</string>
-    <string name='kw'>Cornish</string>
-    <string name='co'>Corsican</string>
-    <string name='cr'>Cree</string>
-    <string name='hr'>Croatian</string>
-    <string name='cs'>Czech</string>
-    <string name='da'>Danish</string>
-    <string name='dv'>Divehi, Dhivehi, Maldivian</string>
-    <string name='nl'>Dutch, Flemish</string>
-    <string name='dz'>Dzongkha</string>
-    <string name='en'>English</string>
-    <string name='eo'>Esperanto</string>
-    <string name='et'>Estonian</string>
-    <string name='ee'>Ewe</string>
-    <string name='fo'>Faroese</string>
-    <string name='fj'>Fijian</string>
-    <string name='fi'>Finnish</string>
-    <string name='fr'>French</string>
-    <string name='ff'>Fulah</string>
-    <string name='gd'>Gaelic, Scottish Gaelic</string>
-    <string name='gl'>Galician</string>
-    <string name='lg'>Ganda</string>
-    <string name='ka'>Georgian</string>
-    <string name='de'>German</string>
-    <string name='ki'>Gikuyu, Kikuyu</string>
-    <string name='el'>Greek (Modern)</string>
-    <string name='kl'>Greenlandic, Kalaallisut</string>
-    <string name='gn'>Guarani</string>
-    <string name='gu'>Gujarati</string>
-    <string name='ht'>Haitian, Haitian Creole</string>
-    <string name='ha'>Hausa</string>
-    <string name='he'>Hebrew</string>
-    <string name='hz'>Herero</string>
-    <string name='hi'>Hindi</string>
-    <string name='ho'>Hiri Motu</string>
-    <string name='hu'>Hungarian</string>
-    <string name='is'>Icelandic</string>
-    <string name='io'>Ido</string>
-    <string name='ig'>Igbo</string>
-    <string name='id'>Indonesian</string>
-    <string name='ia'>Interlingua (International Auxiliary Language Association)</string>
-    <string name='ie'>Interlingue</string>
-    <string name='iu'>Inuktitut</string>
-    <string name='ik'>Inupiaq</string>
-    <string name='ga'>Irish</string>
-    <string name='it'>Italian</string>
-    <string name='ja'>Japanese</string>
-    <string name='jv'>Javanese</string>
-    <string name='kn'>Kannada</string>
-    <string name='kr'>Kanuri</string>
-    <string name='ks'>Kashmiri</string>
-    <string name='kk'>Kazakh</string>
-    <string name='rw'>Kinyarwanda</string>
-    <string name='kv'>Komi</string>
-    <string name='kg'>Kongo</string>
-    <string name='ko'>Korean</string>
-    <string name='kj'>Kwanyama, Kuanyama</string>
-    <string name='ku'>Kurdish</string>
-    <string name='ky'>Kyrgyz</string>
-    <string name='lo'>Lao</string>
-    <string name='la'>Latin</string>
-    <string name='lv'>Latvian</string>
-    <string name='lb'>Letzeburgesch, Luxembourgish</string>
-    <string name='li'>Limburgish, Limburgan, Limburger</string>
-    <string name='ln'>Lingala</string>
-    <string name='lt'>Lithuanian</string>
-    <string name='lu'>Luba-Katanga</string>
-    <string name='mk'>Macedonian</string>
-    <string name='mg'>Malagasy</string>
-    <string name='ms'>Malay</string>
-    <string name='ml'>Malayalam</string>
-    <string name='mt'>Maltese</string>
-    <string name='gv'>Manx</string>
-    <string name='mi'>Maori</string>
-    <string name='mr'>Marathi</string>
-    <string name='mh'>Marshallese</string>
-    <string name='ro'>Moldovan, Moldavian, Romanian</string>
-    <string name='mn'>Mongolian</string>
-    <string name='na'>Nauru</string>
-    <string name='nv'>Navajo, Navaho</string>
-    <string name='nd'>Northern Ndebele</string>
-    <string name='ng'>Ndonga</string>
-    <string name='ne'>Nepali</string>
-    <string name='se'>Northern Sami</string>
-    <string name='no'>Norwegian</string>
-    <string name='nb'>Norwegian Bokmål</string>
-    <string name='nn'>Norwegian Nynorsk</string>
-    <string name='ii'>Nuosu, Sichuan Yi</string>
-    <string name='oc'>Occitan (post 1500)</string>
-    <string name='oj'>Ojibwa</string>
-    <string name='or'>Oriya</string>
-    <string name='om'>Oromo</string>
-    <string name='os'>Ossetian, Ossetic</string>
-    <string name='pi'>Pali</string>
-    <string name='pa'>Panjabi, Punjabi</string>
-    <string name='ps'>Pashto, Pushto</string>
-    <string name='fa'>Persian</string>
-    <string name='pl'>Polish</string>
-    <string name='pt'>Portuguese</string>
-    <string name='qu'>Quechua</string>
-    <string name='rm'>Romansh</string>
-    <string name='rn'>Rundi</string>
-    <string name='ru'>Russian</string>
-    <string name='sm'>Samoan</string>
-    <string name='sg'>Sango</string>
-    <string name='sa'>Sanskrit</string>
-    <string name='sc'>Sardinian</string>
-    <string name='sr'>Serbian</string>
-    <string name='sn'>Shona</string>
-    <string name='sd'>Sindhi</string>
-    <string name='si'>Sinhala, Sinhalese</string>
-    <string name='sk'>Slovak</string>
-    <string name='sl'>Slovenian</string>
-    <string name='so'>Somali</string>
-    <string name='st'>Sotho, Southern</string>
-    <string name='nr'>South Ndebele</string>
-    <string name='es'>Spanish, Castilian</string>
-    <string name='su'>Sundanese</string>
-    <string name='sw'>Swahili</string>
-    <string name='ss'>Swati</string>
-    <string name='sv'>Swedish</string>
-    <string name='tl'>Tagalog</string>
-    <string name='ty'>Tahitian</string>
-    <string name='tg'>Tajik</string>
-    <string name='ta'>Tamil</string>
-    <string name='tt'>Tatar</string>
-    <string name='te'>Telugu</string>
-    <string name='th'>Thai</string>
-    <string name='bo'>Tibetan</string>
-    <string name='ti'>Tigrinya</string>
-    <string name='to'>Tonga (Tonga Islands)</string>
-    <string name='ts'>Tsonga</string>
-    <string name='tn'>Tswana</string>
-    <string name='tr'>Turkish</string>
-    <string name='tk'>Turkmen</string>
-    <string name='tw'>Twi</string>
-    <string name='ug'>Uighur, Uyghur</string>
-    <string name='uk'>Ukrainian</string>
-    <string name='ur'>Urdu</string>
-    <string name='uz'>Uzbek</string>
-    <string name='ve'>Venda</string>
-    <string name='vi'>Vietnamese</string>
-    <string name='vo'>Volap_k</string>
-    <string name='wa'>Walloon</string>
-    <string name='cy'>Welsh</string>
-    <string name='fy'>Western Frisian</string>
-    <string name='wo'>Wolof</string>
-    <string name='xh'>Xhosa</string>
-    <string name='yi'>Yiddish</string>
-    <string name='yo'>Yoruba</string>
-    <string name='za'>Zhuang, Chuang</string>
-    <string name='zu'>Zulu</string>
+        <!-- language iso codes & their corresponding values -->
+        <string name='ab'>Abkhazian</string>
+        <string name='aa'>Afar</string>
+        <string name='af'>Afrikaans</string>
+        <string name='ak'>Akan</string>
+        <string name='sq'>Albanian</string>
+        <string name='am'>Amharic</string>
+        <string name='ar'>Arabic</string>
+        <string name='an'>Aragonese</string>
+        <string name='hy'>Armenian</string>
+        <string name='as'>Assamese</string>
+        <string name='av'>Avaric</string>
+        <string name='ae'>Avestan</string>
+        <string name='ay'>Aymara</string>
+        <string name='az'>Azerbaijani</string>
+        <string name='bm'>Bambara</string>
+        <string name='ba'>Bashkir</string>
+        <string name='eu'>Basque</string>
+        <string name='be'>Belarusian</string>
+        <string name='bn'>Bengali</string>
+        <string name='bh'>Bihari languages</string>
+        <string name='bi'>Bislama</string>
+        <string name='bs'>Bosnian</string>
+        <string name='br'>Breton</string>
+        <string name='bg'>Bulgarian</string>
+        <string name='my'>Burmese</string>
+        <string name='ca'>Catalan, Valencian</string>
+        <string name='km'>Central Khmer</string>
+        <string name='ch'>Chamorro</string>
+        <string name='ce'>Chechen</string>
+        <string name='ny'>Chichewa, Chewa, Nyanja</string>
+        <string name='zh'>Chinese</string>
+        <string name='cu'>Church Slavonic, Old Bulgarian, Old Church Slavonic</string>
+        <string name='cv'>Chuvash</string>
+        <string name='kw'>Cornish</string>
+        <string name='co'>Corsican</string>
+        <string name='cr'>Cree</string>
+        <string name='hr'>Croatian</string>
+        <string name='cs'>Czech</string>
+        <string name='da'>Danish</string>
+        <string name='dv'>Divehi, Dhivehi, Maldivian</string>
+        <string name='nl'>Dutch, Flemish</string>
+        <string name='dz'>Dzongkha</string>
+        <string name='en'>English</string>
+        <string name='eo'>Esperanto</string>
+        <string name='et'>Estonian</string>
+        <string name='ee'>Ewe</string>
+        <string name='fo'>Faroese</string>
+        <string name='fj'>Fijian</string>
+        <string name='fi'>Finnish</string>
+        <string name='fr'>French</string>
+        <string name='ff'>Fulah</string>
+        <string name='gd'>Gaelic, Scottish Gaelic</string>
+        <string name='gl'>Galician</string>
+        <string name='lg'>Ganda</string>
+        <string name='ka'>Georgian</string>
+        <string name='de'>German</string>
+        <string name='ki'>Gikuyu, Kikuyu</string>
+        <string name='el'>Greek (Modern)</string>
+        <string name='kl'>Greenlandic, Kalaallisut</string>
+        <string name='gn'>Guarani</string>
+        <string name='gu'>Gujarati</string>
+        <string name='ht'>Haitian, Haitian Creole</string>
+        <string name='ha'>Hausa</string>
+        <string name='he'>Hebrew</string>
+        <string name='hz'>Herero</string>
+        <string name='hi'>Hindi</string>
+        <string name='ho'>Hiri Motu</string>
+        <string name='hu'>Hungarian</string>
+        <string name='is'>Icelandic</string>
+        <string name='io'>Ido</string>
+        <string name='ig'>Igbo</string>
+        <string name='id'>Indonesian</string>
+        <string name='ia'>Interlingua (International Auxiliary Language Association)</string>
+        <string name='ie'>Interlingue</string>
+        <string name='iu'>Inuktitut</string>
+        <string name='ik'>Inupiaq</string>
+        <string name='ga'>Irish</string>
+        <string name='it'>Italian</string>
+        <string name='ja'>Japanese</string>
+        <string name='jv'>Javanese</string>
+        <string name='kn'>Kannada</string>
+        <string name='kr'>Kanuri</string>
+        <string name='ks'>Kashmiri</string>
+        <string name='kk'>Kazakh</string>
+        <string name='rw'>Kinyarwanda</string>
+        <string name='kv'>Komi</string>
+        <string name='kg'>Kongo</string>
+        <string name='ko'>Korean</string>
+        <string name='kj'>Kwanyama, Kuanyama</string>
+        <string name='ku'>Kurdish</string>
+        <string name='ky'>Kyrgyz</string>
+        <string name='lo'>Lao</string>
+        <string name='la'>Latin</string>
+        <string name='lv'>Latvian</string>
+        <string name='lb'>Letzeburgesch, Luxembourgish</string>
+        <string name='li'>Limburgish, Limburgan, Limburger</string>
+        <string name='ln'>Lingala</string>
+        <string name='lt'>Lithuanian</string>
+        <string name='lu'>Luba-Katanga</string>
+        <string name='mk'>Macedonian</string>
+        <string name='mg'>Malagasy</string>
+        <string name='ms'>Malay</string>
+        <string name='ml'>Malayalam</string>
+        <string name='mt'>Maltese</string>
+        <string name='gv'>Manx</string>
+        <string name='mi'>Maori</string>
+        <string name='mr'>Marathi</string>
+        <string name='mh'>Marshallese</string>
+        <string name='ro'>Moldovan, Moldavian, Romanian</string>
+        <string name='mn'>Mongolian</string>
+        <string name='na'>Nauru</string>
+        <string name='nv'>Navajo, Navaho</string>
+        <string name='nd'>Northern Ndebele</string>
+        <string name='ng'>Ndonga</string>
+        <string name='ne'>Nepali</string>
+        <string name='se'>Northern Sami</string>
+        <string name='no'>Norwegian</string>
+        <string name='nb'>Norwegian Bokmål</string>
+        <string name='nn'>Norwegian Nynorsk</string>
+        <string name='ii'>Nuosu, Sichuan Yi</string>
+        <string name='oc'>Occitan (post 1500)</string>
+        <string name='oj'>Ojibwa</string>
+        <string name='or'>Oriya</string>
+        <string name='om'>Oromo</string>
+        <string name='os'>Ossetian, Ossetic</string>
+        <string name='pi'>Pali</string>
+        <string name='pa'>Panjabi, Punjabi</string>
+        <string name='ps'>Pashto, Pushto</string>
+        <string name='fa'>Persian</string>
+        <string name='pl'>Polish</string>
+        <string name='pt'>Portuguese</string>
+        <string name='qu'>Quechua</string>
+        <string name='rm'>Romansh</string>
+        <string name='rn'>Rundi</string>
+        <string name='ru'>Russian</string>
+        <string name='sm'>Samoan</string>
+        <string name='sg'>Sango</string>
+        <string name='sa'>Sanskrit</string>
+        <string name='sc'>Sardinian</string>
+        <string name='sr'>Serbian</string>
+        <string name='sn'>Shona</string>
+        <string name='sd'>Sindhi</string>
+        <string name='si'>Sinhala, Sinhalese</string>
+        <string name='sk'>Slovak</string>
+        <string name='sl'>Slovenian</string>
+        <string name='so'>Somali</string>
+        <string name='st'>Sotho, Southern</string>
+        <string name='nr'>South Ndebele</string>
+        <string name='es'>Spanish, Castilian</string>
+        <string name='su'>Sundanese</string>
+        <string name='sw'>Swahili</string>
+        <string name='ss'>Swati</string>
+        <string name='sv'>Swedish</string>
+        <string name='tl'>Tagalog</string>
+        <string name='ty'>Tahitian</string>
+        <string name='tg'>Tajik</string>
+        <string name='ta'>Tamil</string>
+        <string name='tt'>Tatar</string>
+        <string name='te'>Telugu</string>
+        <string name='th'>Thai</string>
+        <string name='bo'>Tibetan</string>
+        <string name='ti'>Tigrinya</string>
+        <string name='to'>Tonga (Tonga Islands)</string>
+        <string name='ts'>Tsonga</string>
+        <string name='tn'>Tswana</string>
+        <string name='tr'>Turkish</string>
+        <string name='tk'>Turkmen</string>
+        <string name='tw'>Twi</string>
+        <string name='ug'>Uighur, Uyghur</string>
+        <string name='uk'>Ukrainian</string>
+        <string name='ur'>Urdu</string>
+        <string name='uz'>Uzbek</string>
+        <string name='ve'>Venda</string>
+        <string name='vi'>Vietnamese</string>
+        <string name='vo'>Volap_k</string>
+        <string name='wa'>Walloon</string>
+        <string name='cy'>Welsh</string>
+        <string name='fy'>Western Frisian</string>
+        <string name='wo'>Wolof</string>
+        <string name='xh'>Xhosa</string>
+        <string name='yi'>Yiddish</string>
+        <string name='yo'>Yoruba</string>
+        <string name='za'>Zhuang, Chuang</string>
+        <string name='zu'>Zulu</string>
 
-    <!-- added in v1.5.1 -->
+    <!-- v1.5.1 -->
+
         <!-- there is no string -->
-    <!-- added in v1.5.2 -->
 
-    <string name="cancel">Cancel</string>
+    <!-- v1.5.2 -->
+
+    <string id="299" name="cancel">Cancel</string>
+    <string id="300" name="confirm">Confirm</string>
 
 </resources>
