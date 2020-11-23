@@ -162,7 +162,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             R.id.add -> {
                 var nameValue = "error"
                 val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-
                     cornerRadius(16f)
                     title(R.string.lists_add_lists)
                     icon(R.drawable.ic_add_circle_bottomsheet)
@@ -184,7 +183,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                         editor.putString(nameValue, "null")
                         editor.putString(
                             "MASTER_LIST",
-                            (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue))
+                            (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue)
+                        )
                         editor.apply()
                         refresh()
 
@@ -205,27 +205,54 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                 val name = customView.nameEvent
 
                 val watcher = object : TextWatcher {
-                    override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-                    override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+                    override fun beforeTextChanged(
+                        charSequence: CharSequence,
+                        i: Int,
+                        i1: Int,
+                        i2: Int
+                    ) {
+                    }
+
+                    override fun onTextChanged(
+                        charSequence: CharSequence,
+                        i: Int,
+                        i1: Int,
+                        i2: Int
+                    ) {
+                    }
+
                     override fun afterTextChanged(editable: Editable) {
                         when {
                             editable === name.text -> {
                                 val input = name.text.toString()
                                 nameValue = input
                                 val pref = getSharedPreferences("List_system", 0)
-                                if (input.isBlank()) {
-                                    customView.nameEventLayout.error = "Cannot be blank"
-                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
-                                } else if (input.contains("//")) {
-                                    customView.nameEventLayout.error = "Cannot contain //"
-                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
-                                } else if ((pref.getString("MASTER_LIST", "Favourites")?: return).contains(input)) {
-                                    customView.nameEventLayout.error = "There is already a list named $input"
-                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
-                                } else {
-                                    nameValue = input
-                                    customView.nameEventLayout.error = null
-                                    dialog.getActionButton(WhichButton.POSITIVE).isEnabled = true
+                                when {
+                                    input.isBlank() -> {
+                                        customView.nameEventLayout.error = "Cannot be blank"
+                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                            false
+                                    }
+                                    input.contains("//") -> {
+                                        customView.nameEventLayout.error = "Cannot contain //"
+                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                            false
+                                    }
+                                    (pref.getString("MASTER_LIST", "Favourites")
+                                        ?: return).toLowerCase(Locale.ROOT).contains(
+                                        input.toLowerCase(Locale.ROOT)
+                                    ) -> {
+                                        customView.nameEventLayout.error =
+                                            "There is already a list named $input"
+                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                            false
+                                    }
+                                    else -> {
+                                        nameValue = input
+                                        customView.nameEventLayout.error = null
+                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                            true
+                                    }
                                 }
                             }
                         }

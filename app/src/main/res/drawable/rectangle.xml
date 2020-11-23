@@ -8,12 +8,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/my_toolbar">
 
-    <padding
-        android:bottom="2dp"
-        android:left="2dp"
-        android:right="2dp"
-        android:top="2dp" />
-
     <corners android:radius="0dp" />
 
     <solid android:color="?colorPrimary"/>

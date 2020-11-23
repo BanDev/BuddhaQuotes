@@ -3,9 +3,14 @@ package org.bandev.buddhaquotes
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.doOnLayout
+import androidx.core.view.updatePadding
 
 class Splash : AppCompatActivity() {
 
@@ -28,9 +33,24 @@ class Splash : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            finish()
+        val view = View(this)
+        view.doOnLayout {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                view.windowInsetsController?.show(WindowInsets.Type.ime())
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.show(WindowInsets.Type.ime())
+            }
+        }
+
+        view.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            insets
+        }
+
+        val i = Intent(this, MainActivity::class.java)
+        startActivity(i, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        finish()
 
     }
 }

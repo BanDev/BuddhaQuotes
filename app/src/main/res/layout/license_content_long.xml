@@ -379,7 +379,7 @@
         android:fontFamily="@font/mt_med"
         android:letterSpacing="0.0"
         android:text="@string/licenses_full_license"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:cornerRadius="11dp"

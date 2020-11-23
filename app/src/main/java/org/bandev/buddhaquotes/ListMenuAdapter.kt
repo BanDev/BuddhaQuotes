@@ -46,14 +46,14 @@ class ListMenuAdapter(
 
         init {
             itemView.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onShareClick(position)
                 }
             }
 
             itemView.bin.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onBinClick(position, textTitle.text.toString())
                 }
@@ -61,14 +61,14 @@ class ListMenuAdapter(
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onLikeClick(position, textTitle.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onLikeClick(position, textTitle.toString())
             }

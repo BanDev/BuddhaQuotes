@@ -30,11 +30,11 @@ class Settings : AppCompatActivity() {
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         if ((intent.extras ?: return).getBoolean("lang")) {
             this.overridePendingTransition(0, 0)
         }
-
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)

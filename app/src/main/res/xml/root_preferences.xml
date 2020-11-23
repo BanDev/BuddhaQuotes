@@ -47,14 +47,12 @@
             android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:entries="@array/fun_entries"
-            app:entryValues="@array/fun_values"
+        <SwitchPreferenceCompat
             app:icon="@drawable/ic_party_popper"
-            app:key="fun_mode"
-            android:layout="@layout/pref_single"
+            app:key="shapes_mode"
             app:title="@string/settings_shapes_mode"
-            app:useSimpleSummaryProvider="true" />
+            app:summaryOn="On"
+            app:summaryOff="Off" />
 
     </PreferenceCategory>
 
