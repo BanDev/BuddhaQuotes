@@ -15,8 +15,6 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
-import com.reddit.indicatorfastscroll.FastScrollerView
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
@@ -117,20 +115,6 @@ class AddQuote : AppCompatActivity() {
                 editor.putString(list, stringOut)
                 editor.apply()
             }
-
-        val fastScrollerView: FastScrollerView = findViewById(R.id.fastscroller)
-
-        fastScrollerView.useDefaultScroller = false
-        fastScrollerView.itemIndicatorSelectedCallbacks += object :
-            FastScrollerView.ItemIndicatorSelectedCallback {
-            override fun onItemIndicatorSelected(
-                indicator: FastScrollItemIndicator,
-                indicatorCenterY: Int,
-                itemPosition: Int
-            ) {
-                // Handle scrolling
-            }
-        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {

@@ -77,7 +77,6 @@ class AboutLibraries : AppCompatActivity() {
             private val licenseDescriptionTextView: TextView =
                 itemView.findViewById(R.id.licenseDescriptionTextView)
 
-            @Suppress("DEPRECATION")
             fun onBind(library: Library) {
 
                 nameTextView.text = library.libraryName
@@ -99,6 +98,7 @@ class AboutLibraries : AppCompatActivity() {
                                 Html.FROM_HTML_MODE_COMPACT
                             )
                         } else {
+                            @Suppress("DEPRECATION")
                             Html.fromHtml(license.licenseShortDescription)
                         }
                 } else {

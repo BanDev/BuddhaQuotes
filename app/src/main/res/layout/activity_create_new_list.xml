@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="16dp"
             android:hint="Insert name"
             app:boxBackgroundColor="@color/transparent"
             app:boxCornerRadiusBottomEnd="12dp"
@@ -34,7 +34,7 @@
             app:errorTextColor="?colorAccent"
             app:hintAnimationEnabled="true"
             app:hintTextColor="?colorAccent"
-            app:startIconDrawable="@drawable/ic_add"
+            app:startIconDrawable="@drawable/ic_text_fields"
             app:startIconTint="@android:color/darker_gray">
 
         <com.google.android.material.textfield.TextInputEditText

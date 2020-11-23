@@ -47,14 +47,14 @@ class ScrollingAdapter(
         init {
             iconLike.setOnClickListener(this)
             share.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onShareClick(position)
                 }
             }
 
             bin.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onBinClick(position, textQuote.text.toString())
                 }
@@ -62,14 +62,14 @@ class ScrollingAdapter(
         }
 
         override fun onClick(v: View?) {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onLikeClick(position, textQuote.text.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
-            val position = adapterPosition
+            val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
                 listener.onLikeClick(position, textQuote.text.toString())
             }
