@@ -10,11 +10,15 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.color.colorChooser
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
@@ -124,6 +128,8 @@ class Settings : AppCompatActivity() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
 
+
+
             val dark = pref.getBoolean("dark_mode", false)
             val sys = pref.getBoolean("sys", false)
 
@@ -131,6 +137,8 @@ class Settings : AppCompatActivity() {
             val screen = preferenceScreen
 
             val listPreference = findPreference<Preference>("theme") as ListPreference?
+
+            updateColorSummary()
 
             when {
                 sys -> {
@@ -146,20 +154,11 @@ class Settings : AppCompatActivity() {
                 }
             }
 
-            val accentColorButton = findPreference<Preference>("accent_color") as ListPreference?
-
-            (accentColorButton ?: return).onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    listPreference!!.value = newValue.toString()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("switch", true)
-                    intent2.putExtras(mBundle)
-
-                    startActivity(intent2)
-
-                    true
-                }
+            val accentColorButton = findPreference<Preference>("accent_color") as Preference?
+            accentColorButton!!.setOnPreferenceClickListener(Preference.OnPreferenceClickListener {
+                showColorPopup()
+                true
+            })
 
             val lang = findPreference<Preference>("app_language") as ListPreference?
 
@@ -263,7 +262,98 @@ class Settings : AppCompatActivity() {
                     true
                 }
         }
+
+        fun updateColorSummary(){
+            val accent_color = findPreference<Preference>("accent_color")
+            val color = Colours().getColor(requireContext())
+            when(color){
+                "blue" -> accent_color!!.summary = getString(R.string.blue)
+                "green" -> accent_color!!.summary = getString(R.string.green)
+                "orange" -> accent_color!!.summary = getString(R.string.orange)
+                "yellow" -> accent_color!!.summary = getString(R.string.yellow)
+                "teal" -> accent_color!!.summary = getString(R.string.teal)
+                "violet" -> accent_color!!.summary = getString(R.string.violet)
+                "pink" -> accent_color!!.summary = getString(R.string.pink)
+                "lightBlue" -> accent_color!!.summary = getString(R.string.lightBlue)
+                "red" -> accent_color!!.summary = getString(R.string.red)
+                "lime" -> accent_color!!.summary = getString(R.string.lime)
+                "crimson" -> accent_color!!.summary = getString(R.string.crimson)
+                else -> accent_color!!.summary = getString(R.string.original)
+            }
+        }
+
+        fun showColorPopup() {
+            val colors = intArrayOf(
+                ContextCompat.getColor(requireContext(), R.color.blueAccent),
+                ContextCompat.getColor(requireContext(), R.color.greenAccent),
+                ContextCompat.getColor(requireContext(), R.color.yellowAccent),
+                ContextCompat.getColor(requireContext(), R.color.orangeAccent),
+                ContextCompat.getColor(requireContext(), R.color.tealAccent),
+                ContextCompat.getColor(requireContext(), R.color.violetAccent),
+                ContextCompat.getColor(requireContext(), R.color.lightBlueAccent),
+                ContextCompat.getColor(requireContext(), R.color.redAccent),
+                ContextCompat.getColor(requireContext(), R.color.limeAccent),
+                ContextCompat.getColor(requireContext(), R.color.crimsonAccent),
+                ContextCompat.getColor(requireContext(), R.color.colorPrimary)
+            )
+
+            MaterialDialog(requireContext()).show {
+                title(R.string.settings_accent_colour)
+                colorChooser(colors) { dialog, color ->
+                    // Use color integer
+                    var colorOut = "original"
+                    when(color){
+                        ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
+                            colorOut = "blue"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
+                            colorOut = "green"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
+                            colorOut = "yellow"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
+                            colorOut = "orange"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
+                            colorOut = "teal"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
+                            colorOut = "violet"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
+                            colorOut = "lightBlue"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
+                            colorOut = "red"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
+                            colorOut = "lime"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
+                            colorOut = "crimson"
+                        }
+                    }
+                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                    val editor = sharedPrefs.edit()
+                    editor.putString("accent_color", colorOut)
+                    editor.commit()
+
+                    updateColorSummary()
+
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("switch", true)
+                    intent2.putExtras(mBundle)
+
+                    startActivity(intent2)
+                }
+                positiveButton(R.string.configure)
+            }
+
+        }
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Settings, MainActivity::class.java)

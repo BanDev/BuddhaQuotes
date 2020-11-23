@@ -18,12 +18,12 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.updatePadding
-import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Preferences
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -58,10 +58,8 @@ class MainActivity : AppCompatActivity() {
         Colours().setAccentColor(this, window)
         Languages().setLanguage(this)
 
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val shapesMode = sharedPrefs.getString("fun_mode", "no")
-
-        if (shapesMode == "yes") {
+        val shapesMode = Preferences().shapesMode(this)
+        if (shapesMode) {
             setContentView(R.layout.activity_main2)
             window.navigationBarColor =
                 ResourcesCompat.getColor(resources, R.color.transparent, null)

@@ -42,4 +42,9 @@ class Colours {
         val color = typedValue.data
         window.statusBarColor = color
     }
+
+    fun getColor(context: Context): String{
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPrefs.getString("accent_color", "original").toString()
+    }
 }

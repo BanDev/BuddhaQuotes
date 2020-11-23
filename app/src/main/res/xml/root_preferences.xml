@@ -29,13 +29,12 @@
             android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:entries="@array/appColor_entries"
-            app:entryValues="@array/appColor_values"
+        <Preference
             app:icon="@drawable/ic_palette"
             app:key="accent_color"
             android:layout="@layout/pref_single"
             app:title="@string/settings_accent_colour"
+            android:summary="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
@@ -50,6 +49,7 @@
         <SwitchPreferenceCompat
             app:icon="@drawable/ic_party_popper"
             app:key="shapes_mode"
+            android:layout="@layout/pref_single_switch"
             app:title="@string/settings_shapes_mode"
             app:summaryOn="On"
             app:summaryOff="Off" />

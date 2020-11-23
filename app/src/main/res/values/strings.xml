@@ -316,6 +316,8 @@
     <string name='za'>Zhuang, Chuang</string>
     <string name='zu'>Zulu</string>
 
+    <!-- added in v1.5.1 -->
+        <!-- there is no string -->
     <!-- added in v1.5.2 -->
 
     <string name="cancel">Cancel</string>

@@ -79,7 +79,7 @@
     </style>
 
     <style name="Splash" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:navigationBarColor">#E80054</item>
+        <item name="android:navigationBarColor">@color/splashEndColor</item>
         <item name="colorPrimary">#E80054</item>
         <item name="android:background">@drawable/launch_theme</item>
         <item name="colorPrimaryDark">#E80054</item>
