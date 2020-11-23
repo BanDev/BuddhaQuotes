@@ -227,6 +227,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                 val input = name.text.toString()
                                 nameValue = input
                                 val pref = getSharedPreferences("List_system", 0)
+                                var lists = pref.getString("MASTER_LIST", "Favourites")?.split("//".toRegex())
+                                    ?.toTypedArray()
                                 when {
                                     input.isBlank() -> {
                                         customView.nameEventLayout.error = "Cannot be blank"
@@ -238,10 +240,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                         dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                             false
                                     }
-                                    (pref.getString("MASTER_LIST", "Favourites")
-                                        ?: return).toLowerCase(Locale.ROOT).contains(
-                                        input.toLowerCase(Locale.ROOT)
-                                    ) -> {
+
+                                    lists!!.contains(input) -> {
                                         customView.nameEventLayout.error =
                                             "There is already a list named $input"
                                         dialog.getActionButton(WhichButton.POSITIVE).isEnabled =

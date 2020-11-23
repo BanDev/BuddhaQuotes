@@ -10,6 +10,8 @@
     <color name="transparent">@android:color/transparent</color>
     <color name="redError">#70df5252</color>
 
+    <color name="splashEndColor">#FFB332</color>
+
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F0F0F0</color>
     <color name="light_blue_50">#FFE1F5FE</color>
