@@ -17,6 +17,8 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/mt_med"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/authorTextView"
             tools:text="Library"/>
@@ -26,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/mt_reg"
             app:layout_constraintTop_toBottomOf="@id/nameTextView"
             app:layout_constraintBottom_toTopOf="@id/licenseNameTextView"
             tools:text="Author"/>
@@ -34,6 +38,8 @@
             android:id="@+id/versionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/mt_reg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/mt_reg"
             app:layout_constraintTop_toBottomOf="@id/authorTextView"
             app:layout_constraintBottom_toTopOf="@id/licenseDescriptionTextView"/>
 
@@ -52,6 +60,8 @@
             android:id="@+id/licenseDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/mt_reg"
             app:layout_constraintTop_toBottomOf="@id/licenseNameTextView"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
