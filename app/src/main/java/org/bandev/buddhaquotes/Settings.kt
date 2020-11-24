@@ -2,8 +2,10 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -128,8 +130,6 @@ class Settings : AppCompatActivity() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
 
-
-
             val dark = pref.getBoolean("dark_mode", false)
             val sys = pref.getBoolean("sys", false)
 
@@ -154,11 +154,12 @@ class Settings : AppCompatActivity() {
                 }
             }
 
-            val accentColorButton = findPreference<Preference>("accent_color") as Preference?
-            accentColorButton!!.setOnPreferenceClickListener(Preference.OnPreferenceClickListener {
-                showColorPopup()
-                true
-            })
+            val accentColorButton = findPreference<Preference>("accent_color")
+            (accentColorButton ?: return).onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    showColorPopup()
+                    true
+                }
 
             val lang = findPreference<Preference>("app_language") as ListPreference?
 
@@ -263,26 +264,25 @@ class Settings : AppCompatActivity() {
                 }
         }
 
-        fun updateColorSummary(){
-            val accent_color = findPreference<Preference>("accent_color")
-            val color = Colours().getColor(requireContext())
-            when(color){
-                "blue" -> accent_color!!.summary = getString(R.string.blue)
-                "green" -> accent_color!!.summary = getString(R.string.green)
-                "orange" -> accent_color!!.summary = getString(R.string.orange)
-                "yellow" -> accent_color!!.summary = getString(R.string.yellow)
-                "teal" -> accent_color!!.summary = getString(R.string.teal)
-                "violet" -> accent_color!!.summary = getString(R.string.violet)
-                "pink" -> accent_color!!.summary = getString(R.string.pink)
-                "lightBlue" -> accent_color!!.summary = getString(R.string.lightBlue)
-                "red" -> accent_color!!.summary = getString(R.string.red)
-                "lime" -> accent_color!!.summary = getString(R.string.lime)
-                "crimson" -> accent_color!!.summary = getString(R.string.crimson)
-                else -> accent_color!!.summary = getString(R.string.original)
+        private fun updateColorSummary() {
+            val accentColor = findPreference<Preference>("accent_color")
+            when (Colours().getColor(requireContext())) {
+                "blue" -> (accentColor ?: return).summary = getString(R.string.blue)
+                "green" -> (accentColor ?: return).summary = getString(R.string.green)
+                "orange" -> (accentColor ?: return).summary = getString(R.string.orange)
+                "yellow" -> (accentColor ?: return).summary = getString(R.string.yellow)
+                "teal" -> (accentColor ?: return).summary = getString(R.string.teal)
+                "violet" -> (accentColor ?: return).summary = getString(R.string.violet)
+                "pink" -> (accentColor ?: return).summary = getString(R.string.pink)
+                "lightBlue" -> (accentColor ?: return).summary = getString(R.string.lightBlue)
+                "red" -> (accentColor ?: return).summary = getString(R.string.red)
+                "lime" -> (accentColor ?: return).summary = getString(R.string.lime)
+                "crimson" -> (accentColor ?: return).summary = getString(R.string.crimson)
+                else -> (accentColor ?: return).summary = getString(R.string.original)
             }
         }
 
-        fun showColorPopup() {
+        private fun showColorPopup() {
             val colors = intArrayOf(
                 ContextCompat.getColor(requireContext(), R.color.blueAccent),
                 ContextCompat.getColor(requireContext(), R.color.greenAccent),
@@ -302,7 +302,7 @@ class Settings : AppCompatActivity() {
                 colorChooser(colors) { dialog, color ->
                     // Use color integer
                     var colorOut = "original"
-                    when(color){
+                    when (color) {
                         ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
                             colorOut = "blue"
                         }
@@ -337,7 +337,7 @@ class Settings : AppCompatActivity() {
                     val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
                     val editor = sharedPrefs.edit()
                     editor.putString("accent_color", colorOut)
-                    editor.commit()
+                    editor.apply()
 
                     updateColorSummary()
 
@@ -348,9 +348,23 @@ class Settings : AppCompatActivity() {
 
                     startActivity(intent2)
                 }
-                positiveButton(R.string.configure)
+                positiveButton(R.string.confirm) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        (window ?: return@positiveButton).decorView.performHapticFeedback(
+                            HapticFeedbackConstants.CONFIRM
+                        )
+                    } else {
+                        (window ?: return@positiveButton).decorView.performHapticFeedback(
+                            HapticFeedbackConstants.VIRTUAL_KEY
+                        )
+                    }
+                }
+                negativeButton(R.string.cancel) {
+                    (window ?: return@negativeButton).decorView.performHapticFeedback(
+                        HapticFeedbackConstants.VIRTUAL_KEY
+                    )
+                }
             }
-
         }
     }
 

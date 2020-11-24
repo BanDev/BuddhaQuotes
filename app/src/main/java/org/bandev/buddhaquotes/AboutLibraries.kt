@@ -8,28 +8,29 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
-import kotlinx.android.synthetic.main.activity_about_libraries.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.databinding.ActivityAboutLibrariesBinding
+import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
 class AboutLibraries : AppCompatActivity() {
 
-    private val adapter = LibraryAdapter()
+    private lateinit var binding: ActivityAboutLibrariesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_about_libraries)
+        binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -39,20 +40,14 @@ class AboutLibraries : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
 
-        adapter.setItems(Libs(this).libraries)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        with(binding.recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = LibraryAdapter(Libs(context).libraries)
+        }
     }
 
-    class LibraryAdapter : RecyclerView.Adapter<LibraryAdapter.LibraryViewHolder>() {
-
-        private val itemList = mutableListOf<Library>()
-
-        fun setItems(items: List<Library>) {
-            itemList.clear()
-            itemList.addAll(items)
-            notifyDataSetChanged()
-        }
+    class LibraryAdapter(private val itemList: List<Library>) :
+        RecyclerView.Adapter<LibraryAdapter.LibraryViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LibraryViewHolder {
             val rowView: View = LayoutInflater.from(parent.context).inflate(
@@ -69,29 +64,24 @@ class AboutLibraries : AppCompatActivity() {
         override fun getItemCount(): Int = itemList.size
 
         class LibraryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-            private val authorTextView: TextView = itemView.findViewById(R.id.authorTextView)
-            private val versionTextView: TextView = itemView.findViewById(R.id.versionTextView)
-            private val licenseNameTextView: TextView =
-                itemView.findViewById(R.id.licenseNameTextView)
-            private val licenseDescriptionTextView: TextView =
-                itemView.findViewById(R.id.licenseDescriptionTextView)
+
+            private val binding = LayoutItemLibraryBinding.bind(itemView)
 
             fun onBind(library: Library) {
 
-                nameTextView.text = library.libraryName
-                versionTextView.text = library.libraryVersion
+                binding.nameTextView.text = library.libraryName
+                binding.versionTextView.text = library.libraryVersion
 
                 if (library.author.isNotEmpty()) {
-                    authorTextView.text = library.author
+                    binding.authorTextView.text = library.author
                 } else {
-                    authorTextView.visibility = View.GONE
+                    binding.authorTextView.visibility = View.GONE
                 }
 
                 val license = library.licenses?.firstOrNull()
                 if (license != null) {
-                    licenseNameTextView.text = license.licenseName
-                    licenseDescriptionTextView.text =
+                    binding.licenseNameTextView.text = license.licenseName
+                    binding.licenseDescriptionTextView.text =
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             Html.fromHtml(
                                 license.licenseShortDescription,
@@ -102,8 +92,8 @@ class AboutLibraries : AppCompatActivity() {
                             Html.fromHtml(license.licenseShortDescription)
                         }
                 } else {
-                    licenseNameTextView.visibility = View.GONE
-                    licenseDescriptionTextView.visibility = View.GONE
+                    binding.licenseNameTextView.visibility = View.GONE
+                    binding.licenseDescriptionTextView.visibility = View.GONE
                 }
             }
         }

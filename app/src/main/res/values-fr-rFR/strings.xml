@@ -72,4 +72,16 @@
     <string name='open_source_libraries'>Bibliothèques Open Source</string> <!-- Translated by jack.txt -->
     <string name='about_no_ads'>Pas de pubs</string> <!-- Translated by jack.txt -->
 
+    <!-- v1.5.1 -->
+
+    <string id="299" name="appintro1_description">Une application gratuite et open source sur les citations de Buddha</string>
+    <string id="300" name="appintro2_title">Plus de 230 citations</string>
+    <string id="301" name="appintro2_description">Plus de 230 citations de Buddha</string>
+    <string id="302" name="appintro3_title">Favoris</string>
+    <string id="303" name="appintro3_description">Vous pouvez ajouter vos citations en favories, en appuyant sur le bouton favori</string>
+    <string id="304" name="appintro4_title">Customisation</string>
+    <string id="305" name="appintro4_description">Il existe une variété d\'options d\'interface utilisateur, telles que les couleurs d\'accentuation et le mode formes</string>
+    <string id="306" name="appintro5_title">C\'est parti!</string>
+    <string id="307" name="appintro5_description">Nous espérons que vous aimez l\'application - nous avons un dépôt GitLab où vous pouvez demander des fonctionalités ou signaler des problèmes</string>
+
 </resources>

@@ -22,8 +22,8 @@ class AppIntro : AppIntro2() {
         // You can use AppIntroFragment to use a pre-built fragment
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Buddha Quotes",
-                description = "A Free and Open Source Buddha Quotes app",
+                title = getString(R.string.app_name),
+                description = getString(R.string.appintro1_description),
                 imageDrawable = R.drawable.ic_buddha_no_background,
                 backgroundDrawable = R.drawable.slide_1,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -32,8 +32,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Over 230 quotes!",
-                description = "Over 230 quotes from The Buddha",
+                title = getString(R.string.appintro2_title),
+                description = getString(R.string.appintro2_description),
                 imageDrawable = R.drawable.ic_quotation_marks,
                 backgroundDrawable = R.drawable.slide_2,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -42,8 +42,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Favourites",
-                description = "You can favourite quotes by pressing the favourite button",
+                title = getString(R.string.appintro3_title),
+                description = getString(R.string.appintro3_description),
                 imageDrawable = R.drawable.heart_full_white_large,
                 backgroundDrawable = R.drawable.slide_3,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -52,8 +52,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "Customisable",
-                description = "There is a variety of user interface options, such as accent colours and shapes mode",
+                title = getString(R.string.appintro4_title),
+                description = getString(R.string.appintro4_description),
                 imageDrawable = R.drawable.ic_palette_large,
                 backgroundDrawable = R.drawable.slide_4,
                 titleTypefaceFontRes = R.font.mt_med,
@@ -62,8 +62,8 @@ class AppIntro : AppIntro2() {
         )
         addSlide(
             AppIntroFragment.newInstance(
-                title = "...Let's get started!",
-                description = "We hope you enjoy the app - we have a GitLab repository where you can request features or raise issues",
+                title = getString(R.string.appintro5_title),
+                description = getString(R.string.appintro5_description),
                 imageDrawable = R.drawable.ic_meditate,
                 backgroundDrawable = R.drawable.slide_5,
                 titleTypefaceFontRes = R.font.mt_med,

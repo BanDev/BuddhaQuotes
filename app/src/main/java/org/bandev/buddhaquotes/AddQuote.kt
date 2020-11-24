@@ -18,9 +18,12 @@ import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import java.util.*
 
 class AddQuote : AppCompatActivity() {
+
+    private lateinit var binding: AddlistContentBinding
 
     lateinit var toolbar: MaterialToolbar
     private lateinit var back: Drawable
@@ -30,7 +33,8 @@ class AddQuote : AppCompatActivity() {
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.addlist_content)
+        binding = AddlistContentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
