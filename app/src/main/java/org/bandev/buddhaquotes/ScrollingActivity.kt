@@ -18,24 +18,25 @@ import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
+    private lateinit var binding: ActivityScrollingBinding
     private lateinit var scrollingList: ArrayList<ExampleItem>
     private lateinit var adapter: ScrollingAdapter
-
-    private var listTmp: String = ""
-
     private lateinit var prefList: List<String>
+    private var listTmp: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_scrolling)
+        binding = ActivityScrollingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
             val contextView = findViewById<View>(R.id.scrolling)
@@ -55,11 +56,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         prefListTmp.remove("null")
 
         prefList = prefListTmp
-
-        //(pref_list as MutableList<String>).removeAt(0)
-
         scrollingList = generateDummyList(prefList.size)
-
         adapter = ScrollingAdapter(scrollingList, this)
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -76,7 +73,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
-
 
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")

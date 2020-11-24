@@ -31,7 +31,6 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
         viewBinding true
     }
 
@@ -58,8 +57,8 @@ dependencies {
     implementation 'com.quiph.ui:recyclerviewfastscroller:1.0.0'
 
     // AboutLibraries
-    implementation "com.mikepenz:aboutlibraries:8.6.0"
-    implementation "com.mikepenz:aboutlibraries-core:8.6.0"
+    implementation "com.mikepenz:aboutlibraries:8.6.1"
+    implementation "com.mikepenz:aboutlibraries-core:8.6.1"
 
     //AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'

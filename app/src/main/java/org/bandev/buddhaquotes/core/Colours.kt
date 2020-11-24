@@ -43,7 +43,7 @@ class Colours {
         window.statusBarColor = color
     }
 
-    fun getColor(context: Context): String{
+    fun getColor(context: Context): String {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPrefs.getString("accent_color", "original").toString()
     }

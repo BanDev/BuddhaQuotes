@@ -26,11 +26,13 @@ import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
+    private lateinit var binding: ActivityYourListsBinding
     private lateinit var scrollingList: ArrayList<ListMenuItem>
     private lateinit var adapter: ListMenuAdapter
     private lateinit var favs: Array<String?>
@@ -70,7 +72,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_your_lists)
+        binding = ActivityYourListsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -106,7 +109,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
         }
-
 
         refresh()
     }
@@ -185,18 +187,15 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                             "MASTER_LIST",
                             (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue)
                         )
+
                         editor.apply()
                         refresh()
-
-                        dismiss()
-
                     }
 
                     negativeButton(R.string.cancel) {
                         (window ?: return@negativeButton).decorView.performHapticFeedback(
                             HapticFeedbackConstants.VIRTUAL_KEY
                         )
-                        dismiss()
                     }
                 }
 
@@ -227,8 +226,12 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                 val input = name.text.toString()
                                 nameValue = input
                                 val pref = getSharedPreferences("List_system", 0)
-                                var lists = pref.getString("MASTER_LIST", "Favourites")?.split("//".toRegex())
-                                    ?.toTypedArray()
+                                val lists =
+                                    (pref.getString("MASTER_LIST", "Favourites")
+                                        ?: return).toLowerCase(
+                                        Locale.ROOT
+                                    )
+                                        .split("//".toRegex()).toTypedArray()
                                 when {
                                     input.isBlank() -> {
                                         customView.nameEventLayout.error = "Cannot be blank"
@@ -240,8 +243,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                         dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                             false
                                     }
-
-                                    lists!!.contains(input) -> {
+                                    lists.contains(input.toLowerCase(Locale.ROOT)) -> {
                                         customView.nameEventLayout.error =
                                             "There is already a list named $input"
                                         dialog.getActionButton(WhichButton.POSITIVE).isEnabled =

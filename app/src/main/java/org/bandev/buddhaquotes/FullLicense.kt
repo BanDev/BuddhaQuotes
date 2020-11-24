@@ -29,9 +29,6 @@ class FullLicense : AppCompatActivity() {
         // Webview
         val webview = findViewById<View>(R.id.webview) as WebView
         when (language) {
-            "en" -> {
-                webview.loadUrl("file:///android_asset/Licenses/english.txt")
-            }
             "ru" -> {
                 webview.loadUrl("file:///android_asset/Licenses/russian.txt")
             }
@@ -46,6 +43,9 @@ class FullLicense : AppCompatActivity() {
             }
             "sk" -> {
                 webview.loadUrl("file:///android_asset/Licenses/slovak.txt")
+            }
+            else -> {
+                webview.loadUrl("file:///android_asset/Licenses/english.txt")
             }
         }
 
