@@ -7,11 +7,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.view.ViewGroup.MarginLayoutParams
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
+import androidx.core.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
@@ -21,6 +21,7 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_create_new_list.view.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
@@ -29,6 +30,7 @@ import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
@@ -66,6 +68,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -96,21 +99,130 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         myToolbar.layoutParams = param
 
         val view = View(this)
-        view.doOnLayout {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                view.windowInsetsController?.show(WindowInsets.Type.ime())
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.show(WindowInsets.Type.ime())
-            }
+
+        view.setOnApplyWindowInsetsListener { v, insets ->
+            insets.consumeStableInsets()
         }
 
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
+        val fab: FloatingActionButton = findViewById(R.id.bottomsheet)
+
+        ViewCompat.setOnApplyWindowInsetsListener(fab) { v: View, insets: WindowInsetsCompat ->
+            val params = v.layoutParams as MarginLayoutParams
+            params.bottomMargin = insets.systemWindowInsetBottom + 30
+            insets.consumeSystemWindowInsets()
         }
+
+        fab.setOnClickListener {
+            showBottomSheet()
+        }
+
+
+
 
         refresh()
+    }
+
+    fun showBottomSheet(){
+        var nameValue = "error"
+        val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+            cornerRadius(16f)
+            title(R.string.lists_add_lists)
+            icon(R.drawable.ic_add_circle_bottomsheet)
+            customView(R.layout.activity_create_new_list)
+            positiveButton(R.string.lists_add_lists_go) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    (window ?: return@positiveButton).decorView.performHapticFeedback(
+                        HapticFeedbackConstants.CONFIRM
+                    )
+                } else {
+                    (window ?: return@positiveButton).decorView.performHapticFeedback(
+                        HapticFeedbackConstants.VIRTUAL_KEY
+                    )
+                }
+
+                //Save the code
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                editor.putString(nameValue, "null")
+                editor.putString(
+                    "MASTER_LIST",
+                    (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue)
+                )
+
+                editor.apply()
+                refresh()
+            }
+
+            negativeButton(R.string.cancel) {
+                (window ?: return@negativeButton).decorView.performHapticFeedback(
+                    HapticFeedbackConstants.VIRTUAL_KEY
+                )
+            }
+        }
+
+        dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
+        val customView = dialog.getCustomView()
+        val name = customView.nameEvent
+
+        val watcher = object : TextWatcher {
+            override fun beforeTextChanged(
+                charSequence: CharSequence,
+                i: Int,
+                i1: Int,
+                i2: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                charSequence: CharSequence,
+                i: Int,
+                i1: Int,
+                i2: Int
+            ) {
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+                when {
+                    editable === name.text -> {
+                        val input = name.text.toString()
+                        nameValue = input
+                        val pref = getSharedPreferences("List_system", 0)
+                        val lists =
+                            (pref.getString("MASTER_LIST", "Favourites")
+                                ?: return).toLowerCase(
+                                Locale.ROOT
+                            )
+                                .split("//".toRegex()).toTypedArray()
+                        when {
+                            input.isBlank() -> {
+                                customView.nameEventLayout.error = "Cannot be blank"
+                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                    false
+                            }
+                            input.contains("//") -> {
+                                customView.nameEventLayout.error = "Cannot contain //"
+                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                    false
+                            }
+                            lists.contains(input.toLowerCase(Locale.ROOT)) -> {
+                                customView.nameEventLayout.error =
+                                    "There is already a list named $input"
+                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                    false
+                            }
+                            else -> {
+                                nameValue = input
+                                customView.nameEventLayout.error = null
+                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
+                                    true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        name.addTextChangedListener(watcher)
     }
 
     fun refresh() {
@@ -162,106 +274,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                var nameValue = "error"
-                val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-                    cornerRadius(16f)
-                    title(R.string.lists_add_lists)
-                    icon(R.drawable.ic_add_circle_bottomsheet)
-                    customView(R.layout.activity_create_new_list)
-                    positiveButton(R.string.lists_add_lists_go) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                HapticFeedbackConstants.CONFIRM
-                            )
-                        } else {
-                            (window ?: return@positiveButton).decorView.performHapticFeedback(
-                                HapticFeedbackConstants.VIRTUAL_KEY
-                            )
-                        }
 
-                        //Save the code
-                        val pref = getSharedPreferences("List_system", 0)
-                        val editor = pref.edit()
-                        editor.putString(nameValue, "null")
-                        editor.putString(
-                            "MASTER_LIST",
-                            (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue)
-                        )
-
-                        editor.apply()
-                        refresh()
-                    }
-
-                    negativeButton(R.string.cancel) {
-                        (window ?: return@negativeButton).decorView.performHapticFeedback(
-                            HapticFeedbackConstants.VIRTUAL_KEY
-                        )
-                    }
-                }
-
-                dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
-                val customView = dialog.getCustomView()
-                val name = customView.nameEvent
-
-                val watcher = object : TextWatcher {
-                    override fun beforeTextChanged(
-                        charSequence: CharSequence,
-                        i: Int,
-                        i1: Int,
-                        i2: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        charSequence: CharSequence,
-                        i: Int,
-                        i1: Int,
-                        i2: Int
-                    ) {
-                    }
-
-                    override fun afterTextChanged(editable: Editable) {
-                        when {
-                            editable === name.text -> {
-                                val input = name.text.toString()
-                                nameValue = input
-                                val pref = getSharedPreferences("List_system", 0)
-                                val lists =
-                                    (pref.getString("MASTER_LIST", "Favourites")
-                                        ?: return).toLowerCase(
-                                        Locale.ROOT
-                                    )
-                                        .split("//".toRegex()).toTypedArray()
-                                when {
-                                    input.isBlank() -> {
-                                        customView.nameEventLayout.error = "Cannot be blank"
-                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                            false
-                                    }
-                                    input.contains("//") -> {
-                                        customView.nameEventLayout.error = "Cannot contain //"
-                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                            false
-                                    }
-                                    lists.contains(input.toLowerCase(Locale.ROOT)) -> {
-                                        customView.nameEventLayout.error =
-                                            "There is already a list named $input"
-                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                            false
-                                    }
-                                    else -> {
-                                        nameValue = input
-                                        customView.nameEventLayout.error = null
-                                        dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                            true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                name.addTextChangedListener(watcher)
                 true
             }
             android.R.id.home -> {
