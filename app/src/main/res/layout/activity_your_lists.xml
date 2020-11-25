@@ -40,8 +40,9 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
+        android:contentDescription="TODO"
         android:focusable="true"
         android:scaleType="center"
         app:backgroundTint="?colorAccent"
@@ -50,7 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="38dp"
         app:srcCompat="@drawable/ic_add"
-        app:tint="@android:color/white"
-        android:contentDescription="TODO" />
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
