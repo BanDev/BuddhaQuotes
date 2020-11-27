@@ -257,7 +257,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun newQuote(Quote_Number_Local: Int) {
-        val text = quote.random(Quote_Number_Local)
+        val text = quote.random(Quote_Number_Local, this)
         (quoteView ?: return).text = text
         done = false
         (favourite ?: return).setImageDrawable(
