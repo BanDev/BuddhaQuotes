@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -15,12 +16,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
+import androidx.core.view.*
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
+import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.createBalloon
+import com.skydoves.balloon.showAlignTop
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Preferences
@@ -61,10 +63,8 @@ class MainActivity : AppCompatActivity() {
         val shapesMode = Preferences().shapesMode(this)
         if (shapesMode) {
             setContentView(R.layout.activity_main2)
-            window.navigationBarColor =
-                ResourcesCompat.getColor(resources, R.color.transparent, null)
-            window.statusBarColor =
-                ContextCompat.getColor(this@MainActivity, R.color.transparent)
+            window.navigationBarColor = Color.TRANSPARENT
+            window.statusBarColor = Color.TRANSPARENT
         } else {
             setContentView(R.layout.activity_main)
             when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
@@ -77,16 +77,14 @@ class MainActivity : AppCompatActivity() {
                             View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.transparent, null)
+                        window.navigationBarColor = Color.TRANSPARENT
                     } else {
                         window.navigationBarColor =
                             ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                     }
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    window.navigationBarColor = Color.TRANSPARENT
                 }
             }
         }
@@ -122,19 +120,12 @@ class MainActivity : AppCompatActivity() {
         param.setMargins(0, statusBarHeight, 0, 0)
         (toolbar ?: return).layoutParams = param
 
-        val view = View(this)
-        view.doOnLayout {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                view.windowInsetsController?.show(WindowInsets.Type.ime())
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.show(WindowInsets.Type.ime())
-            }
-        }
+        val refreshInsets: FloatingActionButton = findViewById(R.id.refresh)
 
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
+        ViewCompat.setOnApplyWindowInsetsListener(refreshInsets) { v: View, insets: WindowInsetsCompat ->
+            val params = v.layoutParams as ViewGroup.MarginLayoutParams
+            params.bottomMargin = insets.systemWindowInsetBottom + 30
+            insets.consumeSystemWindowInsets()
         }
 
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
@@ -242,6 +233,25 @@ class MainActivity : AppCompatActivity() {
                 (favourite ?: return@setOnClickListener).isEnabled = true
             }
         }
+
+        val balloon = createBalloon(this) {
+            setLayout(R.layout.layout_balloon_popup)
+            setArrowSize(10)
+            setWidthRatio(0.5f)
+            setHeight(170)
+            setCornerRadius(8f)
+            setMarginBottom(10)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setBackgroundColorResource(R.color.white)
+            setLifecycleOwner(lifecycleOwner)
+        }
+
+        (favourite ?: return).setOnLongClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            favourite!!.showAlignTop(balloon)
+            true
+        }
+
         // Get the first quote
         newQuote(quotenumber)
     }

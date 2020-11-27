@@ -34,14 +34,11 @@
             android:paddingEnd="10dp"
             android:background="?colorPrimary"
             android:layout_width="match_parent"
-            android:elevation="0dp"
-            />
+            android:elevation="0dp" />
 
     </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_scrolling" />
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

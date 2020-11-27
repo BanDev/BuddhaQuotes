@@ -8,7 +8,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
@@ -22,7 +21,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_create_new_list.view.*
+import kotlinx.android.synthetic.main.layout_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -68,7 +67,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         editor.apply()
     }
 
-    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -94,15 +92,9 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
+        val param = (myToolbar ?: return).layoutParams as MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
         myToolbar.layoutParams = param
-
-        val view = View(this)
-
-        view.setOnApplyWindowInsetsListener { v, insets ->
-            insets.consumeStableInsets()
-        }
 
         val fab: FloatingActionButton = findViewById(R.id.bottomsheet)
 
@@ -113,22 +105,20 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         }
 
         fab.setOnClickListener {
+            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showBottomSheet()
         }
-
-
-
 
         refresh()
     }
 
-    fun showBottomSheet(){
+    private fun showBottomSheet() {
         var nameValue = "error"
         val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             cornerRadius(16f)
             title(R.string.lists_add_lists)
             icon(R.drawable.ic_add_circle_bottomsheet)
-            customView(R.layout.activity_create_new_list)
+            customView(R.layout.layout_bottom_sheet)
             positiveButton(R.string.lists_add_lists_go) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     (window ?: return@positiveButton).decorView.performHapticFeedback(
@@ -267,37 +257,27 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.fav_menu, menu)
-
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.add -> {
-
-                true
-            }
-            android.R.id.home -> {
-                val myIntent = Intent(this@YourLists, MainActivity::class.java)
-                this@YourLists.startActivity(myIntent)
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        return if (item.itemId == android.R.id.home) {
+            val myIntent = Intent(this@YourLists, MainActivity::class.java)
+            this@YourLists.startActivity(myIntent)
+            finish()
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@YourLists, MainActivity::class.java)
         this@YourLists.startActivity(myIntent)
-
         finish()
         return true
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
         val myIntent = Intent(this@YourLists, MainActivity::class.java)
         val mBundle = Bundle()
         this@YourLists.startActivity(myIntent)

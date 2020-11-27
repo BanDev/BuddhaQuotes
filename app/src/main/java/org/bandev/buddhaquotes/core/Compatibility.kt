@@ -3,6 +3,7 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.Window
@@ -32,16 +33,14 @@ class Compatibility {
                         View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.transparent, null)
+                    window.navigationBarColor = Color.TRANSPARENT
                 } else {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                 }
             }
             Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.transparent, null)
+                window.navigationBarColor = Color.TRANSPARENT
             }
         }
     }
