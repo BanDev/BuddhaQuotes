@@ -255,11 +255,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         return list
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.fav_menu, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
             val myIntent = Intent(this@YourLists, MainActivity::class.java)

@@ -61,58 +61,12 @@
             tools:layout_editor_absoluteY="18dp" />
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/refresh"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:contentDescription="@string/refresh"
-        android:focusable="true"
-        android:scaleType="center"
-        app:backgroundTint="@android:color/white"
-        app:elevation="1dp"
+    <include
+        android:id="@+id/buttons"
+        layout="@layout/mainactivty2buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="38dp"
-        app:srcCompat="@drawable/ic_refresh"
-        app:tint="?colorPrimary" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/favourite"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="60dp"
-        android:clickable="true"
-        android:contentDescription="@string/favourite"
-        android:focusable="true"
-        android:scaleType="center"
-        app:backgroundTint="@android:color/white"
-        app:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/refresh"
-        app:maxImageSize="33dp"
-        app:srcCompat="@drawable/heart_white"
-        app:tint="?colorPrimary" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/share"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="60dp"
-        android:clickable="true"
-        android:contentDescription="@string/share"
-        android:focusable="true"
-        android:scaleType="center"
-        app:backgroundTint="@android:color/white"
-        app:elevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/favourite"
-        app:maxImageSize="33dp"
-        app:srcCompat="@drawable/ic_share"
-        app:tint="?colorPrimary" />
+        app:layout_constraintStart_toStartOf="parent"></include>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
