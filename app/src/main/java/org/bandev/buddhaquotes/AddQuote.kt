@@ -141,7 +141,7 @@ class AddQuote : AppCompatActivity() {
         var i = 1
 
         while (i != max) {
-            list.add(Quotes().random(i))
+            list.add(Quotes().random(i,this))
             i++
         }
 

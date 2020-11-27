@@ -331,7 +331,245 @@
 
     <!-- v1.5.2 -->
 
-    <string id="308" name="cancel">Cancel</string>
-    <string id="309" name="confirm">Confirm</string>
+        <string id="308" name="cancel">Cancel</string>
+        <string id="309" name="confirm">Confirm</string>
+
+        <string id='310' name='quote_1'>A disciplined mind brings happiness</string>
+        <string id='311' name='quote_2'>A good friend who points out mistakes and imperfections and rebukes evil is to be respected as if he reveals a secret of hidden treasure</string>
+        <string id='312' name='quote_3'>A great human revolution in just a single individual will help achieve a change in the destiny of a nation and, further, can even enable a change in the destiny of all humankind</string>
+        <string id='313' name='quote_4'>A man asked Gautama Buddha, "I want happiness." Buddha said, "First remove "I," that's Ego, then remove "want," that's Desire. See now you are left with only "Happiness"</string>
+        <string id='314' name='quote_5'>A man is not called wise because he talks and talks again; but if he is peaceful, loving and fearless then he is in truth called wise</string>
+        <string id='315' name='quote_6'>A mind unruffled by the vagaries of fortune, from sorrow freed, from defilements cleansed, from fear liberated - this is the greatest blessing</string>
+        <string id='316' name='quote_7'>A person, who no matter how desperate the situation, gives others hope, is a true leader</string>
+        <string id='317' name='quote_8'>A truly compassionate attitude toward others does not change even if they behave negatively or hurt you</string>
+        <string id='318' name='quote_9'>Above all, do not lose your desire to walk</string>
+        <string id='319' name='quote_10'>\'All conditioned things are impermanent\' - when one sees this with wisdom, one turns away from suffering</string>
+        <string id='320' name='quote_11'>All experiences are preceded by mind, having mind as their master, created by mind</string>
+        <string id='321' name='quote_12'>All phenomena do not inherently exist because of being dependent-arisings. All phenomena do not inherently exist because of being dependently imputed</string>
+        <string id='322' name='quote_13'>All suffering is caused by ignorance. People inflict pain on others in the selfish pursuit of their own happiness or satisfaction</string>
+        <string id='323' name='quote_14'>All tremble at violence; all fear death. Putting oneself in the place of another, one should not kill nor cause another to kill</string>
+        <string id='324' name='quote_15'>All wrong-doing arises because of mind. If mind is transformed can wrong-doing remain?</string>
+        <string id='325' name='quote_16'>An open heart is an open mind</string>
+        <string id='326' name='quote_17'>Analysing through special insight and realising the lack of inherent existence constitute understanding of the signless</string>
+        <string id='327' name='quote_18'>Anger is the ultimate destroyer of your own peace of mind</string>
+        <string id='328' name='quote_19'>Anger or hatred is like a fisherman\'s hook. It is very important for us to ensure that we are not caught by it</string>
+        <string id='329' name='quote_20'>Anger will never disappear so long as thoughts of resentment are cherished in the mind. Anger will disappear just as soon as thoughts of resentment are forgotten</string>
+        <string id='330' name='quote_21'>Ardently do today what must be done. Who knows? Tomorrow, death comes</string>
+        <string id='331' name='quote_22'>As I am, so are these. As are these, so am I. Drawing the parallel to yourself, neither kill nor get others to kill</string>
+        <string id='332' name='quote_23'>As a flower that is lovely and beautiful, but is scentless, even so, fruitless is the well-spoken word of one who practices it not</string>
+        <string id='333' name='quote_24'>As a lotus flower is born in water, grows in water and rises out of water to stand above it unsoiled, so I, born in the world, raised in the world having overcome the world, live unsoiled by the world</string>
+        <string id='334' name='quote_25'>As a water bead on a lotus leaf, as water on a red lily, does not adhere, so the sage does not adhere to the seen, the heard, or the sensed</string>
+        <string id='335' name='quote_26'>As an elephant in the battlefield withstands arrows shot from bows all around, even so shall I endure abuse</string>
+        <string id='336' name='quote_27'>Attachment leads to suffering</string>
+        <string id='337' name='quote_28'>Attention is the rarest and purest form of generosity</string>
+        <string id='338' name='quote_29'>Be a lamp unto yourself. Work out your liberation with liberation</string>
+        <string id='339' name='quote_30'>Be greatly aware of the present</string>
+        <string id='340' name='quote_31'>Be kind whenever possible. It is always possible</string>
+        <string id='341' name='quote_32'>Be vigilant; guard your mind against negative thoughts</string>
+        <string id='342' name='quote_33'>Be what you are. This is the first step toward becoming better than you are</string>
+        <string id='343' name='quote_34'>Because we all share an identical need for love, it is possible to feel that anybody we meet, in whatever circumstances, is a brother or sister</string>
+        <string id='344' name='quote_35'>Because you are alive, everything is possible</string>
+        <string id='345' name='quote_36'>Better it is to live alone; there is no fellowship with a fool. Live alone and do no evil; be carefree like an elephant in the elephant fores</string>
+        <string id='346' name='quote_37'>Better it is to live one day seeing the rise and fall of things than to live a hundred years without ever seeing the rise and fall of things</string>
+        <string id='347' name='quote_38'>Better than a thousand useless words is one useful word, hearing which one attains peace.</string>
+        <string id='348' name='quote_39'>Better than worshiping gods is obedience to the laws of righteousness</string>
+        <string id='349' name='quote_40'>By living deeply in the present moment, we can understand the past better and we can prepare for a better future</string>
+        <string id='350' name='quote_41'>Calm mind brings inner strength and self-confidence, so that\'s very important for good health</string>
+        <string id='351' name='quote_42'>Ceasing to do evil, Cultivating the good, Purifying the heart: This is the teaching of the Buddhas</string>
+        <string id='352' name='quote_43'>Choose to be optimistic, it feels better</string>
+        <string id='353' name='quote_44'>Conquer anger through gentleness, unkindness through kindness, greed through generosity, and falsehood by truth</string>
+        <string id='354' name='quote_45'>Conquer anger with non-anger. Conquer badness with goodness. Conquer meanness with generosity. Conquer dishonesty with truth</string>
+        <string id='355' name='quote_46'>Conquer the angry one by not getting angry; conquer the wicked by goodness; conquer the stingy by generosity, and the liar by speaking the truth</string>
+        <string id='356' name='quote_47'>Contentment is the greatest wealth</string>
+        <string id='357' name='quote_48'>Delight in heedfulness! Guard well your thoughts!</string>
+        <string id='358' name='quote_49'>Delightful are forests Where the public does not delight. There the passion-free delight, Not seeking sensual pleasure</string>
+        <string id='359' name='quote_50'>Dharma is not upheld by talking about it. Dharma is upheld by living in harmony with it...</string>
+        <string id='360' name='quote_51'>Do not give your attention to what others do or fail to do; give it to what you do or fail to do</string>
+        <string id='361' name='quote_52'>Do not overrate what you have received, nor envy others. He who envies others does not obtain peace of mind</string>
+        <string id='362' name='quote_53'>Do not think of how big the universe is, it will merely hurt your head</string>
+        <string id='363' name='quote_54'>Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good</string>
+        <string id='364' name='quote_55'>Emotion arise from Desire, hence an Illusion</string>
+        <string id='365' name='quote_56'>Endurance is one of the most difficult disciplines, but it is to the one who endures that the final victory comes</string>
+        <string id='366' name='quote_57'>Even as a solid rock is unshaken by the wind, so are the wise unshaken by praise or blame</string>
+        <string id='367' name='quote_58'>Even if things don\'t unfold the way you expected, don\'t be disheartened or give up. One who continues to advance will win in the end</string>
+        <string id='368' name='quote_59'>Everything is changeable, everything appears and disappears there is no blissful peace until one passes beyond the agony of life and death</string>
+        <string id='369' name='quote_60'>Feelings come and go like clouds in a windy sky. Conscious breathing is my anchor</string>
+        <string id='370' name='quote_61'>Few among men are they who cross to the further shore. The others merely run up and down the bank on this side</string>
+        <string id='371' name='quote_62'>Following the Noble Path is like entering a dark room with a light in the hand; the darkness will all be cleared away, and the room will be filled with light</string>
+        <string id='372' name='quote_63'>For the good of the many, for the happiness of the many, out of compassion for the world</string>
+        <string id='373' name='quote_64'>Friendship is the only cure for hatred, the only guarantee of peace</string>
+        <string id='374' name='quote_65'>From a withered tree, a flower blooms</string>
+        <string id='375' name='quote_66'>Give, even if you only have a little</string>
+        <string id='376' name='quote_67'>Greater in battle than the man who would conquer a thousand-thousand men, is he who would conquer just one – himself. Better to conquer yourself than others</string>
+        <string id='377' name='quote_68'>Greater still is the truth of our connectedness</string>
+        <string id='378' name='quote_69'>Happiness mainly comes from our own attitude, rather than from external factors</string>
+        <string id='379' name='quote_70'>Hatred is never appeased by hatred in this world. By non-hatred alone is hatred appeased. This is a law eternal</string>
+        <string id='380' name='quote_71'>He has no need for faith who knows the uncreated, who has cut off rebirth, who has destroyed any opportunity for good or evil, and cast away all desire. He is indeed the ultimate man</string>
+        <string id='381' name='quote_72'>He is not the same, nor is he another</string>
+        <string id='382' name='quote_73'>He who can curb his wrath as soon as it arises, as a timely antidote will check snake\'s venom that so quickly spreads – such a monk gives up the here and the beyond, just as a serpent sheds its worn-out skin</string>
+        <string id='383' name='quote_74'>He who walks in the eightfold noble path with unswerving determination is sure to reach Nirvana</string>
+        <string id='384' name='quote_75'>Health is the greatest gift, contentment the greatest wealth, faithfulness the best relationship</string>
+        <string id='385' name='quote_76'>How blissful it is, for one who has nothing. Attainers-of-wisdom are people with nothing. See him suffering, one who has something, a person bound in mind with people</string>
+        <string id='386' name='quote_77'>However many holy words you read, however many you speak, what good will they do you if you do not act on upon them?</string>
+        <string id='387' name='quote_78'>I do not dispute with the world; rather it is the world that disputes with me</string>
+        <string id='388' name='quote_79'>I shall live here in the rains, There in winter, Elsewhere in summer," muses the fool, Not aware of the nearness of death</string>
+        <string id='389' name='quote_80'>I will not look at another’s bowl intent on finding fault: a training to be observed</string>
+        <string id='390' name='quote_81'>If a man going down into a river, swollen and swiftly flowing, is carried away by the current - how can he help others across?</string>
+        <string id='391' name='quote_82'>If a traveler does not meet with one who is his better, or his equal, let him firmly keep to his solitary journey; there is no companionship with a fool</string>
+        <string id='392' name='quote_83'>If anything is worth doing, do it with all your heart</string>
+        <string id='393' name='quote_84'>If the selflessness of phenomena is analysed and if this analysis is cultivated, it causes the effect of attaining nirvana. Through no other cause does one come to peace</string>
+        <string id='394' name='quote_85'>If we fail to look after others when they need help, who will look after us?</string>
+        <string id='395' name='quote_86'>If with a pure mind a person speaks or acts, happiness follows them like a never-departing shadow</string>
+        <string id='396' name='quote_87'>If you can cultivate the right attitude, your enemies are your best spiritual teachers because their presence provides you with the opportunity to enhance and develop your tolerance, patience and understanding</string>
+        <string id='397' name='quote_88'>If you find no one to support you on the spiritual path, walk alone There is no companionship with the immature</string>
+        <string id='398' name='quote_89'>If you knew what I know about the power of giving, you would not let a single meal pass without sharing it in some way</string>
+        <string id='399' name='quote_90'>If you love someone but rarely make yourself available to them, that is not true love</string>
+        <string id='400' name='quote_91'>If you want others to be happy, practice compassion. If you want to be happy, practice compassion</string>
+        <string id='401' name='quote_92'>In life we cannot avoid change, we cannot avoid loss. Freedom and happiness are found in the flexibility and ease with which we move through change</string>
+        <string id='402' name='quote_93'>In order to carry a positive action, we must develop here a positive vision</string>
+        <string id='403' name='quote_94'>In whom there is no sympathy for living beings: know him as an outcast</string>
+        <string id='404' name='quote_95'>It is a man\'s own mind, not his enemy or foe, that lures him to evil ways</string>
+        <string id='405' name='quote_96'>It is easy to see the faults of others, but difficult to see one\'s own faults. One shows the faults of other like chaff winnowed in the wind, but one conceals one\'s own faults as a cunning gambler conceals his dice</string>
+        <string id='406' name='quote_97'>It is in the nature of things that joy arises in a person free from remorse</string>
+        <string id='407' name='quote_98'>It is necessary to combine knowledge born from study with sincere practice in our daily lives. These two must go together</string>
+        <string id='408' name='quote_99'>It is not enough to be compassionate, we must act</string>
+        <string id='409' name='quote_100'>It is possible to live 24 hours in a state of love</string>
+        <string id='410' name='quote_101'>It is very important to generate a good attitude, a good heart, as much as possible. From this, happiness in both the short term and the long term for both yourself and others will come</string>
+        <string id='411' name='quote_102'>It’s your road… and yours alone… Others may walk it with you, but no one can walk it for you. No matter what path you choose, really walk it</string>
+        <string id='412' name='quote_103'>Joy comes not through possession or ownership but through a wise and loving heart</string>
+        <string id='413' name='quote_104'>Just as a solid rock is not shaken by the storm, even so the wise are not affected by praise or blame</string>
+        <string id='414' name='quote_105'>Just as the great ocean has one taste, the taste of salt, so also this teaching and discipline has one taste, the taste of liberation</string>
+        <string id='415' name='quote_106'>Know from the rivers in clefts and in crevices: those in small channels flow noisily, the great flow silent. Whatever’s not full makes noise. Whatever is full is quiet</string>
+        <string id='416' name='quote_107'>Know well what leads you forward and what holds you back, and choose the path that leads to wisdom</string>
+        <string id='417' name='quote_108'>Learn this from water: loud splashes the brook but the oceans depth are calm</string>
+        <string id='418' name='quote_109'>Leave behind the passive dreaming of a rose-tinted future. The energy of happiness exists in living today with roots sunk firmly in reality\'s soil</string>
+        <string id='419' name='quote_110'>Let all-embracing thoughts for all beings be yours</string>
+        <string id='420' name='quote_111'>Let him not deceive another nor despise anyone anywhere. In anger or ill will let him not wish another ill</string>
+        <string id='421' name='quote_112'>Let none find fault with others; let none see the omissions and commissions of others. But let one see one’s own acts, done and undone</string>
+        <string id='422' name='quote_113'>Letting go gives us freedom, and freedom is the only condition for happiness. If, in our heart, we still cling to anything - anger, anxiety, or possessions - we cannot be free</string>
+        <string id='423' name='quote_114'>Life is a river always flowing. Do not hold onto things. Work hard</string>
+        <string id='424' name='quote_115'>Life is available only in the present moment</string>
+        <string id='425' name='quote_116'>Like a lovely flower full of colour but lacking in fragrance, are the words of those who do not practice what they teach</string>
+        <string id='426' name='quote_117'>Like someone pointing to treasure is the wise person who sees your faults and points them out. Associate with such a sage</string>
+        <string id='427' name='quote_118'>Little by little a person becomes evil, as a water pot is filled by drops of water; Little by little a person becomes good, as a water pot is filled by drops of water</string>
+        <string id='428' name='quote_119'>Live every act fully, as if it were your last</string>
+        <string id='429' name='quote_120'>Live with no sense of ‘mine,’ not forming attachment to experiences</string>
+        <string id='430' name='quote_121'>Long is the night to him who is awake; long is a mile to him who is tired; long is life to the foolish who do not know the true law</string>
+        <string id='431' name='quote_122'>Look at situations from all angles, and you will become more open</string>
+        <string id='432' name='quote_123'>Love and compassion are necessities, not luxuries. Without them, humanity cannot survive</string>
+        <string id='433' name='quote_124'>Love is the absence of judgement</string>
+        <string id='434' name='quote_125'>Love yourself and watch - today, tomorrow, and always</string>
+        <string id='435' name='quote_126'>Many do not realise that we here must die. For those who realise this, quarrels end</string>
+        <string id='436' name='quote_127'>May all beings have happy minds</string>
+        <string id='437' name='quote_128'>Meditate… do not delay, lest you later regret it</string>
+        <string id='438' name='quote_129'>Meditate, Ānanda, do not delay, or else you will regret it later. This is our instruction to you</string>
+        <string id='439' name='quote_130'>Meditation brings wisdom; lack of meditation leaves ignorance. Know well what leads you forward and what hold you back, and choose the path that leads to wisdom</string>
+        <string id='440' name='quote_131'>Monks, even if bandits were to savagely sever you, limb by limb, with a double-handled saw, even then, whoever of you harbors ill will at heart would not be upholding my teaching</string>
+        <string id='441' name='quote_132'>More than those who hate you, more than all your enemies, an undisciplined mind does greater harm</string>
+        <string id='442' name='quote_133'>Most problems, if you give them enough time and space, will eventually wear themselves out</string>
+        <string id='443' name='quote_134'>Neither fire nor wind, birth nor death can erase our good deeds</string>
+        <string id='444' name='quote_135'>No one saves us but ourselves. No one can and no one may. We ourselves must walk the path</string>
+        <string id='445' name='quote_136'>Nothing can harm you as much as your own thoughts unguarded</string>
+        <string id='446' name='quote_137'>Nothing is forever except change</string>
+        <string id='447' name='quote_138'>One is not called noble who harms living beings. By not harming living beings one is called noble</string>
+        <string id='448' name='quote_139'>Opinion, O disciples, is a disease; opinion is a tumor; opinion is a sore. He who has overcome all opinion, O disciples, is called a saint, one who knows</string>
+        <string id='449' name='quote_140'>Our own life has to be our message</string>
+        <string id='450' name='quote_141'>Our prime purpose in this life is to help others. And if you can\'t help them, at least don\'t hurt them</string>
+        <string id='451' name='quote_142'>Over there are the roots of trees; over there, empty dwellings. Practice jhana, monks. Don’t be heedless</string>
+        <string id='452' name='quote_143'>Patience is the highest asceticism</string>
+        <string id='453' name='quote_144'>Peace does not mean an absence of conflicts; differences will always be there. Peace means solving these differences through peaceful means; through dialogue, education, knowledge; and through humane ways</string>
+        <string id='454' name='quote_145'>People have a hard time letting go of their suffering. Out of a fear of the unknown, they prefer suffering that is familiar</string>
+        <string id='455' name='quote_146'>People take different roads seeking fulfillment and happiness. Just because they\'re not on your road doesn\'t mean they\'ve gotten lost</string>
+        <string id='456' name='quote_147'>People with opinions just go around bothering one another</string>
+        <string id='457' name='quote_148'>Perhaps the deepest reason why we are afraid of death is because we do not know who we are</string>
+        <string id='458' name='quote_149'>Praise and blame, gain and loss, pleasure and sorrow come and go like the wind. To be happy, rest like a giant tree in the midst of them all</string>
+        <string id='459' name='quote_150'>Pure-limbed, white-canopied, one-wheeled, the cart roles on. See him that cometh: faultless, stream-cutter, bondless he</string>
+        <string id='460' name='quote_151'>Purity and impurity depend on oneself; no one can purify another</string>
+        <string id='461' name='quote_152'>Radiate boundless love towards the entire world - above, below, and across - unhindered, without ill will, without enmity</string>
+        <string id='462' name='quote_153'>Real generosity is doing something nice for someone who will never find out</string>
+        <string id='463' name='quote_154'>Resolutely train yourself to attain peace</string>
+        <string id='464' name='quote_155'>See them, floundering in their sense of mind, like fish in the puddles of a dried-up stream - and, seeing this, live with no mine, not forming attachment for states of becoming</string>
+        <string id='465' name='quote_156'>Sensual craving gives rise to grief; Sensual craving gives rise to fear. For someone released from sensual craving There is no grief; And from where would be fear?</string>
+        <string id='466' name='quote_157'>Set your heart on doing good. Do it over and over again, and you will be filled with joy</string>
+        <string id='467' name='quote_158'>Should a person do good, let him do it again and again. Let him find pleasure therein, for blissful is the accumulation of good</string>
+        <string id='468' name='quote_159'>Should a seeker not find a companion who is better or equal, let them resolutely pursue a solitary course</string>
+        <string id='469' name='quote_160'>Should you find a wise critic to point out your faults, follow him as you would a guide to hidden treasure</string>
+        <string id='470' name='quote_161'>Silence is sometimes the best answer</string>
+        <string id='471' name='quote_162'>Silence the angry man with love. Silence the ill-natured man with kindness. Silence the miser with generosity. Silence the liar with truth</string>
+        <string id='472' name='quote_163'>Some do not understand that we must die, But those who do realise this settle their quarrels</string>
+        <string id='473' name='quote_164'>Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy</string>
+        <string id='474' name='quote_165'>Speak only endearing speech, speech that is welcomed. Speech, when it brings no evil to others, is a pleasant thing</string>
+        <string id='475' name='quote_166'>Speak the truth, do not become angered, and give when asked, even be it a little. By these three conditions, one goes to the presence of the gods</string>
+        <string id='476' name='quote_167'>The calmed say that what is well-spoken is best; second, that one should say what is right, not unrighteous; third, what’s pleasing, not displeasing; fourth, what is true, not false</string>
+        <string id='477' name='quote_168'>The darkest night is ignorance</string>
+        <string id='478' name='quote_169'>The Gift of Truth excels all other Gifts</string>
+        <string id='479' name='quote_170'>The growth of wisdom may be measured exactly by the diminution of ill temper</string>
+        <string id='480' name='quote_171'>The ignorant man is an ox. He grows in size, not in wisdom</string>
+        <string id='481' name='quote_172'>The less you have, the less you have to worry about</string>
+        <string id='482' name='quote_173'>The moment you see how important it is to love yourself, you will stop making others suffer</string>
+        <string id='483' name='quote_174'>The more you are motivated by Love, The more Fearless and Free your action will be</string>
+        <string id='484' name='quote_175'>The non-doing of any evil, the performance of what\'s skillful, the cleansing of one\'s own mind: this is the teaching of the Awakened</string>
+        <string id='485' name='quote_176'>The one in whom no longer exist the craving and thirst that perpetuate becoming; how could you track that Awakened one, trackless, and of limitless range</string>
+        <string id='486' name='quote_177'>The one who has conquered himself is a far greater hero than he who has defeated a thousand times a thousand men</string>
+        <string id='487' name='quote_178'>The rain could turn to gold and still your thirst would not be slaked. Desire is unquenchable or it ends in tears, even in heaven</string>
+        <string id='488' name='quote_179'>The root of suffering is attachment</string>
+        <string id='489' name='quote_180'>The roots of all goodness lie in the soil of appreciation for goodness</string>
+        <string id='490' name='quote_181'>The source of love is deep in us and we can help others realise a lot of happiness. One word, one action, one thought can reduce another person\'s suffering and bring that person joy</string>
+        <string id='491' name='quote_182'>The universe itself is change and life itself is but what you deem it</string>
+        <string id='492' name='quote_183'>The virtuous man delights in this world and he delights in the next</string>
+        <string id='493' name='quote_184'>The way to change others\' minds is with affection, and not anger</string>
+        <string id='494' name='quote_185'>The wise man makes an island of himself that no flood can overwhelm</string>
+        <string id='495' name='quote_186'>The world is afflicted by death and decay. But the wise do not grieve, having realised the nature of the world</string>
+        <string id='496' name='quote_187'>There are no chains like hate… Dwelling on your brother’s faults multiplies your own. You are far from the end of your journey</string>
+        <string id='497' name='quote_188'>There is no fear for one whose mind is not filled with desires</string>
+        <string id='498' name='quote_189'>There is no fire like passion, there is no shark like hatred, there is no snare like folly, there is no torrent like greed</string>
+        <string id='499' name='quote_190'>There is nothing so disobedient as an undisciplined mind, and there is nothing so obedient as a disciplined mind</string>
+        <string id='500' name='quote_191'>They blame those who remain silent, they blame those who speak much, they blame those who speak in moderation. There is none in the world who is not blamed</string>
+        <string id='501' name='quote_192'>Think not lightly of evil, saying \'It will not come to me.\' Drop by drop is the water pot filled. Likewise the fool, gathering it little by little, fills himself with evil</string>
+        <string id='502' name='quote_193'>Those which are produced from causes are not produced. They do not have an inherent nature of production. Those which depend on causes are said to be empty; those who know emptiness are aware</string>
+        <string id='503' name='quote_194'>Those which arise dependently are free of inherent existence</string>
+        <string id='504' name='quote_195'>Those who are free of resentful thoughts surely find peace</string>
+        <string id='505' name='quote_196'>Those who cling to perceptions and views wander the world offending people</string>
+        <string id='506' name='quote_197'>Those who have failed to work toward the truth have missed the purpose of living</string>
+        <string id='507' name='quote_198'>Those who really seek the path to Enlightenment dictate terms to their mind. Then they proceed with strong determination</string>
+        <string id='508' name='quote_199'>Though one should live a hundred years without wisdom and control, yet better, indeed, is a single day’s life of one who is wise and meditative</string>
+        <string id='509' name='quote_200'>Thousands of candles can be lit from a single candle, and the life of the candle will not be shortened. Happiness never decreases by being shared</string>
+        <string id='510' name='quote_201'>Three things cannot be long hidden: the sun, the moon, and the truth</string>
+        <string id='511' name='quote_202'>Times of luxury do not last long, but pass away very quickly nothing in this world can be long enjoyed</string>
+        <string id='512' name='quote_203'>To be beautiful means to be yourself. You don\'t need to be accepted by others. You need to accept yourself</string>
+        <string id='513' name='quote_204'>To become vegetarian is to step into the stream which leads to nirvana</string>
+        <string id='514' name='quote_205'>To insist on a spiritual practice that served you in the past is to carry the raft on your back after you have crossed the river</string>
+        <string id='515' name='quote_206'>To keep the body in good health is a duty… otherwise we shall not be able to keep our mind strong and clear</string>
+        <string id='516' name='quote_207'>To live in the consciousness of the inevitability of suffering, of becoming enfeebled, of old age and of death, is impossible – we must free ourselves from life, from all possible life</string>
+        <string id='517' name='quote_208'>To refrain from evil and from strong drink and to be always steadfast in virtue; this is the good luck</string>
+        <string id='518' name='quote_209'>To support mother and father, to cherish wife and children, and to be engaged in peaceful occupation - this is the greatest blessing</string>
+        <string id='519' name='quote_210'>True change is within, leave the outside as it is</string>
+        <string id='520' name='quote_211'>Understanding is the heartwood of well-spoken words</string>
+        <string id='521' name='quote_212'>Victory breeds hatred. The defeated live in pain. Happily the peaceful live, giving up victory and defeat</string>
+        <string id='522' name='quote_213'>Virtuous people always let go. They don\'t prattle about pleasures and desires. Touched by happiness and then by suffering, The sage shows no sign of being elated or depressed</string>
+        <string id='523' name='quote_214'>We are here to awaken from our illusion of separateness</string>
+        <string id='524' name='quote_215'>We will develop love, we will practice it, we will make it both a way and a basis…</string>
+        <string id='525' name='quote_216'>We will develop and cultivate the liberation of mind by lovingkindness, make it our vehicle, make it our basis, stabilize it, exercise ourselves in it, and fully perfect it</string>
+        <string id='526' name='quote_217'>Whatever a monk keeps pursuing with his thinking and pondering, that becomes the inclination of his awareness</string>
+        <string id='527' name='quote_218'>Whatever an enemy might do to an enemy, or a foe to a foe, the ill-directed mind can do to you even worse</string>
+        <string id='528' name='quote_219'>Whatever has the nature of arising has the nature of ceasing</string>
+        <string id='529' name='quote_220'>Whatever is not yours: let go of it. Your letting go of it will be for your long-term happiness &amp; benefit</string>
+        <string id='530' name='quote_221'>Whatever precious jewel there is in the heavenly worlds, there is nothing comparable to one who is Awakened</string>
+        <string id='531' name='quote_222'>When one has the feeling of dislike for evil, when one feels tranquil, one finds pleasure in listening to good teachings; when one has these feelings and appreciates them, one is free of fear</string>
+        <string id='532' name='quote_223'>When the Aggregates arise, decay and die, O bhikkhu, every moment you are born, decay, and die</string>
+        <string id='533' name='quote_224'>When watching after yourself, you watch after others. When watching after others, you watch after yourself</string>
+        <string id='534' name='quote_225'>When we feel love and kindness toward others, it not only makes others feel loved and cared for, but it helps us also to develop inner happiness and peace</string>
+        <string id='535' name='quote_226'>When you come upon a path that brings benefit and happiness to all, follow this course as the moon journeys through the stars</string>
+        <string id='536' name='quote_227'>When you practice gratefulness, there is a sense of respect toward others</string>
+        <string id='537' name='quote_228'>Who leaves behind all human bonds And has cast off the bonds of heaven, Detached from all bonds everywhere: He is the one I call a brahmin</string>
+        <string id='538' name='quote_229'>Whoever doesn’t flare up at someone who’s angry wins a battle hard to win</string>
+        <string id='539' name='quote_230'>Whoever sees me sees the teaching, and whoever sees the teaching sees me</string>
+        <string id='540' name='quote_231'>With fools, there is no companionship. Rather than to live with men who are selfish, vain, quarrelsome, and obstinate, let a man walk alone</string>
+        <string id='541' name='quote_232'>With realisation of one\'s own potential and self-confidence, one can build a better world</string>
+        <string id='542' name='quote_233'>Without health life is not life; it is only a state of langour and suffering - an image of death</string>
+        <string id='543' name='quote_234'>You are the community now. Be a lamp for yourselves. Be your own refuge. Seek for no other. All things must pass. Strive on diligently. Don’t give up</string>
+        <string id='544' name='quote_235'>You don\'t gather the beauty of a flower by plucking her petals</string>
+        <string id='545' name='quote_236'>Your own self is your master; who else could be? With yourself well controlled, you gain a master very hard to find</string>
+        <string id='546' name='quote_237'>You yourself must strive. The Buddhas only point the way</string>
 
 </resources>
