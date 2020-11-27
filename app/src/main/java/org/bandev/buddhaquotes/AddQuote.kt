@@ -48,7 +48,6 @@ class AddQuote : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {

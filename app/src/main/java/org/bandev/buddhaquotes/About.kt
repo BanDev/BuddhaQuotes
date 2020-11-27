@@ -10,13 +10,10 @@ import android.os.Vibrator
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.core.Colours
@@ -99,20 +96,6 @@ class About : AppCompatActivity() {
         param.setMargins(0, statusBarHeight, 0, 0)
         myToolbar.layoutParams = param
 
-        val view = View(this)
-        view.doOnLayout {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                view.windowInsetsController?.show(WindowInsets.Type.ime())
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.show(WindowInsets.Type.ime())
-            }
-        }
-
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -32,18 +32,6 @@ class FullLicense : AppCompatActivity() {
             "ru" -> {
                 webview.loadUrl("file:///android_asset/Licenses/russian.txt")
             }
-            "da" -> {
-                webview.loadUrl("file:///android_asset/Licenses/danish.txt")
-            }
-            "de" -> {
-                webview.loadUrl("file:///android_asset/Licenses/german.txt")
-            }
-            "eu" -> {
-                webview.loadUrl("file:///android_asset/Licenses/basque.txt")
-            }
-            "sk" -> {
-                webview.loadUrl("file:///android_asset/Licenses/slovak.txt")
-            }
             else -> {
                 webview.loadUrl("file:///android_asset/Licenses/english.txt")
             }

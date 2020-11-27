@@ -2,14 +2,14 @@ package org.bandev.buddhaquotes
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.HapticFeedbackConstants
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
@@ -72,27 +72,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         recycler_view.setHasFixedSize(false)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.transparent)
 
         var statusBarHeight = 0
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         if (resourceId > 0) {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
-        val view = View(this)
-        view.doOnLayout {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                view.windowInsetsController?.show(WindowInsets.Type.ime())
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.show(WindowInsets.Type.ime())
-            }
-        }
-
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
         }
     }
 

@@ -33,15 +33,26 @@
             tools:layout_editor_absoluteY="18dp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
         android:layout_width="match_parent"
+        android:id="@+id/fastscroller"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        app:handleDrawable="@drawable/handle_drawable"
+        app:handleVisibilityDuration="1"
+        app:handleWidth="14dp"
+        app:handleHeight="32dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+
+    </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

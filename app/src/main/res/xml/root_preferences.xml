@@ -37,15 +37,6 @@
             android:summary="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:entries="@array/size_entries"
-            app:entryValues="@array/size_values"
-            app:icon="@drawable/ic_text_fields"
-            app:key="size"
-            app:title="@string/text_size"
-            android:layout="@layout/pref_single"
-            app:useSimpleSummaryProvider="true" />
-
         <SwitchPreferenceCompat
             app:icon="@drawable/ic_party_popper"
             app:key="shapes_mode"

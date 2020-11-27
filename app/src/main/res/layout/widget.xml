@@ -49,5 +49,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/ic_buddha" />
+        app:srcCompat="@drawable/ic_buddha"
+        android:contentDescription="TODO" />
+
 </RelativeLayout>

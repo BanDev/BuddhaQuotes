@@ -21,7 +21,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:hint="Insert name"
-            app:boxBackgroundColor="@color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopEnd="12dp"

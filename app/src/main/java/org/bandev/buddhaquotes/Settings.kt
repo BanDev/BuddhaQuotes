@@ -226,57 +226,21 @@ class Settings : AppCompatActivity() {
                     }
                     true
                 }
-
-            val textSize = findPreference<Preference>("size") as ListPreference?
-
-            when (pref.getString("text_size", "md")) {
-                "md" -> {
-                    textSize?.setValueIndex(1) // Set to index of your default value
-                }
-                "sm" -> {
-                    textSize?.setValueIndex(0)
-                }
-                "lg" -> {
-                    textSize?.setValueIndex(2)
-                }
-            }
-
-            textSize?.onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    textSize?.value = newValue.toString()
-                    val size = textSize?.entry.toString()
-                    Log.d("debug", size)
-                    when (size) {
-                        "Small" -> {
-                            editor.putString("text_size", "sm")
-                            editor.commit()
-                        }
-                        "Medium" -> {
-                            editor.putString("text_size", "md")
-                            editor.commit()
-                        }
-                        "Large" -> {
-                            editor.putString("text_size", "lg")
-                            editor.commit()
-                        }
-                    }
-                    true
-                }
         }
 
         private fun updateColorSummary() {
             val accentColor = findPreference<Preference>("accent_color")
             when (Colours().getColor(requireContext())) {
-                "blue" -> (accentColor ?: return).summary = getString(R.string.blue)
-                "green" -> (accentColor ?: return).summary = getString(R.string.green)
-                "orange" -> (accentColor ?: return).summary = getString(R.string.orange)
-                "yellow" -> (accentColor ?: return).summary = getString(R.string.yellow)
-                "teal" -> (accentColor ?: return).summary = getString(R.string.teal)
-                "violet" -> (accentColor ?: return).summary = getString(R.string.violet)
                 "pink" -> (accentColor ?: return).summary = getString(R.string.pink)
+                "violet" -> (accentColor ?: return).summary = getString(R.string.violet)
+                "blue" -> (accentColor ?: return).summary = getString(R.string.blue)
                 "lightBlue" -> (accentColor ?: return).summary = getString(R.string.lightBlue)
-                "red" -> (accentColor ?: return).summary = getString(R.string.red)
+                "teal" -> (accentColor ?: return).summary = getString(R.string.teal)
+                "green" -> (accentColor ?: return).summary = getString(R.string.green)
                 "lime" -> (accentColor ?: return).summary = getString(R.string.lime)
+                "yellow" -> (accentColor ?: return).summary = getString(R.string.yellow)
+                "orange" -> (accentColor ?: return).summary = getString(R.string.orange)
+                "red" -> (accentColor ?: return).summary = getString(R.string.red)
                 "crimson" -> (accentColor ?: return).summary = getString(R.string.crimson)
                 else -> (accentColor ?: return).summary = getString(R.string.original)
             }
@@ -284,15 +248,16 @@ class Settings : AppCompatActivity() {
 
         private fun showColorPopup() {
             val colors = intArrayOf(
+                ContextCompat.getColor(requireContext(), R.color.pinkAccent),
+                ContextCompat.getColor(requireContext(), R.color.violetAccent),
                 ContextCompat.getColor(requireContext(), R.color.blueAccent),
+                ContextCompat.getColor(requireContext(), R.color.lightBlueAccent),
+                ContextCompat.getColor(requireContext(), R.color.tealAccent),
                 ContextCompat.getColor(requireContext(), R.color.greenAccent),
+                ContextCompat.getColor(requireContext(), R.color.limeAccent),
                 ContextCompat.getColor(requireContext(), R.color.yellowAccent),
                 ContextCompat.getColor(requireContext(), R.color.orangeAccent),
-                ContextCompat.getColor(requireContext(), R.color.tealAccent),
-                ContextCompat.getColor(requireContext(), R.color.violetAccent),
-                ContextCompat.getColor(requireContext(), R.color.lightBlueAccent),
                 ContextCompat.getColor(requireContext(), R.color.redAccent),
-                ContextCompat.getColor(requireContext(), R.color.limeAccent),
                 ContextCompat.getColor(requireContext(), R.color.crimsonAccent),
                 ContextCompat.getColor(requireContext(), R.color.colorPrimary)
             )
@@ -303,11 +268,26 @@ class Settings : AppCompatActivity() {
                     // Use color integer
                     var colorOut = "original"
                     when (color) {
+                        ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
+                            colorOut = "pink"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
+                            colorOut = "violet"
+                        }
                         ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
                             colorOut = "blue"
                         }
+                        ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
+                            colorOut = "lightBlue"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
+                            colorOut = "teal"
+                        }
                         ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
                             colorOut = "green"
+                        }
+                        ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
+                            colorOut = "lime"
                         }
                         ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
                             colorOut = "yellow"
@@ -315,20 +295,8 @@ class Settings : AppCompatActivity() {
                         ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
                             colorOut = "orange"
                         }
-                        ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
-                            colorOut = "teal"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
-                            colorOut = "violet"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
-                            colorOut = "lightBlue"
-                        }
                         ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
                             colorOut = "red"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
-                            colorOut = "lime"
                         }
                         ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
                             colorOut = "crimson"
