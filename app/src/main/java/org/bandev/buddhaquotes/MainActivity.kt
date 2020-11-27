@@ -13,10 +13,14 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
+import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
@@ -44,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     var toolbar: MaterialToolbar? = null
     private var settings: SharedPreferences? = null
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -120,13 +125,23 @@ class MainActivity : AppCompatActivity() {
         param.setMargins(0, statusBarHeight, 0, 0)
         (toolbar ?: return).layoutParams = param
 
-        val refreshInsets: FloatingActionButton = findViewById(R.id.refresh)
+        val buttons: View = findViewById(R.id.buttons)
 
-        ViewCompat.setOnApplyWindowInsetsListener(refreshInsets) { v: View, insets: WindowInsetsCompat ->
+        ViewCompat.setOnApplyWindowInsetsListener(buttons) { v: View, insets: WindowInsetsCompat ->
             val params = v.layoutParams as ViewGroup.MarginLayoutParams
             params.bottomMargin = insets.systemWindowInsetBottom + 30
             insets.consumeSystemWindowInsets()
         }
+
+        val shareInsets: FloatingActionButton = findViewById(R.id.share)
+        val likeInsets: FloatingActionButton = findViewById(R.id.favourite)
+
+
+        val view2 = View(this)
+
+
+
+
 
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
