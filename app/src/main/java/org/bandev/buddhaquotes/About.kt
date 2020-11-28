@@ -10,10 +10,14 @@ import android.os.Vibrator
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.WindowCompat
+import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.core.Colours
@@ -35,7 +39,18 @@ class About : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val done = false
+        var translators_list: ListView = findViewById(R.id.translators_list)
+
+        val translators = this.getStringArray(R.array.translators)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.list_item, translators)
+
+        translators_list.setAdapter(arrayAdapter)
+        translators_list.divider = null
+        translators_list.isClickable = false
+        justifyListViewHeightBasedOnChildren(translators_list)
+
+        var done = false
 
         val scrollview: ScrollView = findViewById(R.id.scroll)
         scrollview.viewTreeObserver
@@ -61,6 +76,7 @@ class About : AppCompatActivity() {
                         .addSizes(Size(10))
                         .setPosition(-50f, binding.viewKonfetti.width + 50f, -50f, -50f)
                         .streamFor(100, 1000L)
+                    done = true
 
                     val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -116,5 +132,20 @@ class About : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    private fun justifyListViewHeightBasedOnChildren(listView: ListView) {
+        val adapter = listView.adapter ?: return
+        val vg: ViewGroup = listView
+        var totalHeight = 0
+        for (i in 0 until adapter.count) {
+            val listItem: View = adapter.getView(i, null, vg)
+            listItem.measure(0, 0)
+            totalHeight += listItem.measuredHeight + 10
+        }
+        val par = listView.layoutParams
+        par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
+        listView.layoutParams = par
+        listView.requestLayout()
     }
 }

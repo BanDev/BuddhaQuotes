@@ -11,6 +11,8 @@
     <color name="splashEndColor">#FFB332</color>
     <color name="white">@android:color/white</color>
 
+    <color name="bandev">#5E17EB</color>
+
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F0F0F0</color>
     <color name="light_blue_50">#FFE1F5FE</color>

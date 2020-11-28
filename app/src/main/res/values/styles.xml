@@ -122,4 +122,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PopupTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/Title.Text.Popup</item>
+    </style>
+
+    <style name="Title.Text.Popup" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textAppearance">@style/Title.Text</item>
+    </style>
+
+    <style name="Title.Text" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/mt_bold</item>
+        <item name="android:fontFamily">@font/mt_bold</item>
+    </style>
+
 </resources>
