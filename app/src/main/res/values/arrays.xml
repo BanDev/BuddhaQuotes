@@ -42,6 +42,11 @@
         <item>Crimson</item>
     </string-array>
 
+    <string-array name="translators">
+        <item>harrydevey06</item>
+        <item>SorryNoSiri1</item>
+    </string-array>
+
 
     <string-array name="language_values">
         <item>en</item>

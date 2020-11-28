@@ -5,12 +5,11 @@
         android:layout="@layout/pref_header"
         app:title="@string/settings_general">
 
-        <ListPreference
-            app:entries="@array/language_entries"
-            app:entryValues="@array/language_values"
+        <Preference
             app:icon="@drawable/ic_language"
             app:key="app_language"
             app:title="@string/settings_language"
+            app:summary="@string/settings_language"
             android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
@@ -20,12 +19,11 @@
         android:layout="@layout/pref_header"
         app:title="@string/appearance">
 
-        <ListPreference
-            app:entries="@array/theme_entries"
-            app:entryValues="@array/theme_values"
+        <Preference
             app:icon="@drawable/ic_palette"
             app:key="theme"
             app:title="@string/app_theme"
+            android:summary="@string/app_theme"
             android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 

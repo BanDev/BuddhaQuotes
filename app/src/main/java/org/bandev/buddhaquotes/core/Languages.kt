@@ -40,4 +40,9 @@ class Languages {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPrefs.getString("app_language", "en").toString()
     }
+
+    fun getLanguageInt(context: Context): Int {
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPrefs.getInt("app_language_int", 0)
+    }
 }

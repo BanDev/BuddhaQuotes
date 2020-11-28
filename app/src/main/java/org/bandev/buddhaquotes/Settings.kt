@@ -5,10 +5,8 @@ import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.HapticFeedbackConstants
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -21,9 +19,12 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.color.colorChooser
+import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Theme
 
 class Settings : AppCompatActivity() {
 
@@ -41,6 +42,8 @@ class Settings : AppCompatActivity() {
         if ((intent.extras ?: return).getBoolean("lang")) {
             this.overridePendingTransition(0, 0)
         }
+
+
 
         if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)
@@ -130,17 +133,20 @@ class Settings : AppCompatActivity() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
 
+
             val dark = pref.getBoolean("dark_mode", false)
             val sys = pref.getBoolean("sys", false)
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
 
-            val listPreference = findPreference<Preference>("theme") as ListPreference?
+            //val listPreference = findPreference<Preference>("theme") as ListPreference?
 
             updateColorSummary()
+            updateThemeSummary()
+            updateLanguageSummary()
 
-            when {
+            /*when {
                 sys -> {
                     listPreference?.setValueIndex(2)
                 }
@@ -152,7 +158,7 @@ class Settings : AppCompatActivity() {
                     listPreference?.setValueIndex(0)
                     listPreference?.setIcon(R.drawable.ic_day_settings)
                 }
-            }
+            }*/
 
             val accentColorButton = findPreference<Preference>("accent_color")
             (accentColorButton ?: return).onPreferenceClickListener =
@@ -161,22 +167,30 @@ class Settings : AppCompatActivity() {
                     true
                 }
 
-            val lang = findPreference<Preference>("app_language") as ListPreference?
-
-            (lang ?: return).onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    listPreference!!.value = newValue.toString()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("lang", true)
-                    intent2.putExtras(mBundle)
-
-                    startActivity(intent2)
-
+            val shapesModeButton = findPreference<Preference>("shapes_mode")
+            (shapesModeButton ?: return).onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    //Put haptic here
                     true
                 }
 
-            (listPreference ?: return).onPreferenceChangeListener =
+            val appThemeButton = findPreference<Preference>("theme")
+            (appThemeButton ?: return).onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    showThemePopup()
+                    true
+                }
+
+            val languageButton = findPreference<Preference>("app_language")
+            (languageButton ?: return).onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    showLanguagePopup()
+                    true
+                }
+
+
+
+            /*(listPreference ?: return).onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { preference, newValue ->
                     listPreference.value = newValue.toString()
                     val theme = listPreference.value.toString()
@@ -225,7 +239,7 @@ class Settings : AppCompatActivity() {
                         }
                     }
                     true
-                }
+                }*/
         }
 
         private fun updateColorSummary() {
@@ -244,6 +258,95 @@ class Settings : AppCompatActivity() {
                 "crimson" -> (accentColor ?: return).summary = getString(R.string.crimson)
                 else -> (accentColor ?: return).summary = getString(R.string.original)
             }
+        }
+
+        private fun updateThemeSummary() {
+            val theme = findPreference<Preference>("theme")
+            when (Theme().getAppTheme(requireContext())) {
+                0 -> {
+                    (theme ?: return).summary = getString(R.string.light_mode)
+                    theme?.setIcon(R.drawable.ic_day_settings)
+                }
+                1 -> {
+                    (theme ?: return).summary = getString(R.string.dark_mode)
+                    theme?.setIcon(R.drawable.ic_night_settings)
+                }
+                else -> (theme ?: return).summary = getString(R.string.follow_system_default)
+            }
+        }
+
+        private fun updateLanguageSummary() {
+            val language = findPreference<Preference>("app_language")
+            val int = Languages().getLanguageInt(requireContext())
+            val singleItems = requireContext().getStringArray(R.array.language_entries)
+            (language ?: return).summary = singleItems[int]
+        }
+
+        private fun showThemePopup() {
+            val pref = requireContext().getSharedPreferences("Settings", 0)
+            val editor = pref.edit()
+            val singleItems = requireContext().getStringArray(R.array.theme_entries)
+            val checkedItem = pref.getInt("appThemeInt", 2)
+
+            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
+                .setTitle(resources.getString(R.string.app_theme))
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                }
+                .setPositiveButton(resources.getString(R.string.confirm)) { dialog, which ->
+                    editor.apply()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("switch", true)
+                    intent2.putExtras(mBundle)
+                    startActivity(intent2)
+                }
+                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                    when (which) {
+                        0 -> {
+                            editor.putBoolean("dark_mode", false)
+                            editor.putBoolean("sys", false)
+                            editor.putInt("appThemeInt", 0)
+                        }
+                        1 -> {
+                            editor.putBoolean("dark_mode", true)
+                            editor.putBoolean("sys", false)
+                            editor.putInt("appThemeInt", 1)
+                        }
+                        2 -> {
+                            editor.putBoolean("dark_mode", false)
+                            editor.putBoolean("sys", true)
+                            editor.putInt("appThemeInt", 2)
+                        }
+                    }
+                }
+                .show()
+        }
+
+        private fun showLanguagePopup() {
+            val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val editor = sharedPrefs.edit()
+            val singleItems = requireContext().getStringArray(R.array.language_entries)
+            val values = requireContext().getStringArray(R.array.language_values)
+            val checkedItem = sharedPrefs.getInt("app_language_int", 0)
+
+            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
+                .setTitle(resources.getString(R.string.settings_language))
+                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                }
+                .setPositiveButton(resources.getString(R.string.confirm)) { dialog, which ->
+                    editor.apply()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("lang", true)
+                    intent2.putExtras(mBundle)
+                    startActivity(intent2)
+                }
+                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                    editor.putInt("app_language_int", which)
+                    editor.putString("app_language", values[which])
+
+                }
+                .show()
         }
 
         private fun showColorPopup() {
