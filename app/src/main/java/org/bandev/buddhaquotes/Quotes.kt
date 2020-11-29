@@ -1,12 +1,11 @@
 package org.bandev.buddhaquotes
 
 import android.content.Context
-import androidx.core.content.res.TypedArrayUtils.getString
 
 class Quotes {
 
     var quotenumberglobal: Int = 0
-    var maxQuote = 237
+    private var maxQuote: Int = 237
     fun random(Quote_Number: Int, context: Context): String {
         val num: Int = if (Quote_Number == 0) {
             getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()

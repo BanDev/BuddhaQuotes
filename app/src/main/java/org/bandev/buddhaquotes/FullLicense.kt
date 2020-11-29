@@ -19,7 +19,7 @@ class FullLicense : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
         val language = Languages().getLanguage(this)
         setContentView(R.layout.activity_full_license)

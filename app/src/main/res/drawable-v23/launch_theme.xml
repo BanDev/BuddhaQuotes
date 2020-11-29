@@ -8,7 +8,7 @@
 
     <!-- The app icon -->
     <item
-            android:drawable="@drawable/ic_buddha_no_background"
-            android:gravity="center"/>
+        android:drawable="@drawable/ic_buddha_no_background"
+        android:gravity="center"/>
 
 </layer-list>

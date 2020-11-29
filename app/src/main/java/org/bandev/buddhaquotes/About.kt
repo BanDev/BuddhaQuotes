@@ -15,7 +15,6 @@ import android.widget.ListView
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.WindowCompat
 import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import nl.dionsegijn.konfetti.models.Shape
@@ -32,23 +31,23 @@ class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        var translators_list: ListView = findViewById(R.id.translators_list)
+        val translatorsList: ListView = findViewById(R.id.translators_list)
 
         val translators = this.getStringArray(R.array.translators)
 
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, translators)
 
-        translators_list.setAdapter(arrayAdapter)
-        translators_list.divider = null
-        translators_list.isClickable = false
-        justifyListViewHeightBasedOnChildren(translators_list)
+        translatorsList.adapter = arrayAdapter
+        translatorsList.divider = null
+        translatorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(translatorsList)
 
         var done = false
 
@@ -111,7 +110,6 @@ class About : AppCompatActivity() {
         val param = myToolbar.layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
         myToolbar.layoutParams = param
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

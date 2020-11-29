@@ -22,7 +22,7 @@ class Compatibility {
      * @added [1008] v1.5.0 - 29/10/2020
      */
 
-    fun setNavigationBarColour(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBar(context: Context, window: Window, resources: Resources) {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

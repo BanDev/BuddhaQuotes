@@ -4,16 +4,13 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.updatePadding
-import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -33,7 +30,7 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
         setContentView(R.layout.activity_settings)
 
@@ -170,7 +167,7 @@ class Settings : AppCompatActivity() {
             val shapesModeButton = findPreference<Preference>("shapes_mode")
             (shapesModeButton ?: return).onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    //Put haptic here
+
                     true
                 }
 
@@ -187,7 +184,6 @@ class Settings : AppCompatActivity() {
                     showLanguagePopup()
                     true
                 }
-
 
 
             /*(listPreference ?: return).onPreferenceChangeListener =
@@ -265,11 +261,11 @@ class Settings : AppCompatActivity() {
             when (Theme().getAppTheme(requireContext())) {
                 0 -> {
                     (theme ?: return).summary = getString(R.string.light_mode)
-                    theme?.setIcon(R.drawable.ic_day_settings)
+                    theme.setIcon(R.drawable.ic_day_settings)
                 }
                 1 -> {
                     (theme ?: return).summary = getString(R.string.dark_mode)
-                    theme?.setIcon(R.drawable.ic_night_settings)
+                    theme.setIcon(R.drawable.ic_night_settings)
                 }
                 else -> (theme ?: return).summary = getString(R.string.follow_system_default)
             }
@@ -289,10 +285,10 @@ class Settings : AppCompatActivity() {
             val checkedItem = pref.getInt("appThemeInt", 2)
 
             MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
-                .setTitle(resources.getString(R.string.app_theme))
-                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                .setTitle(R.string.app_theme)
+                .setNeutralButton(R.string.cancel) { dialog, which ->
                 }
-                .setPositiveButton(resources.getString(R.string.confirm)) { dialog, which ->
+                .setPositiveButton(R.string.confirm) { dialog, which ->
                     editor.apply()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
@@ -330,10 +326,10 @@ class Settings : AppCompatActivity() {
             val checkedItem = sharedPrefs.getInt("app_language_int", 0)
 
             MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
-                .setTitle(resources.getString(R.string.settings_language))
-                .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+                .setTitle(R.string.settings_language)
+                .setNeutralButton(R.string.cancel) { dialog, which ->
                 }
-                .setPositiveButton(resources.getString(R.string.confirm)) { dialog, which ->
+                .setPositiveButton(R.string.confirm) { dialog, which ->
                     editor.apply()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
@@ -438,7 +434,6 @@ class Settings : AppCompatActivity() {
             }
         }
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         val myIntent = Intent(this@Settings, MainActivity::class.java)

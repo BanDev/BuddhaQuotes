@@ -74,7 +74,7 @@
             android:key="AboutLibraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
-            android:layout="@layout/pref_padding"
+            android:layout="@layout/pref_single"
             app:icon="@drawable/ic_library_books" />
 
     </PreferenceCategory>

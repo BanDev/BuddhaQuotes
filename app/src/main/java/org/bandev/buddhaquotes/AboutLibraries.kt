@@ -27,7 +27,7 @@ class AboutLibraries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
         binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
         setContentView(binding.root)
