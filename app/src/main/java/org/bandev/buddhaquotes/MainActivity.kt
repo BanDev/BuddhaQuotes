@@ -13,8 +13,6 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -127,21 +125,11 @@ class MainActivity : AppCompatActivity() {
 
         val buttons: View = findViewById(R.id.buttons)
 
-        ViewCompat.setOnApplyWindowInsetsListener(buttons) { v: View, insets: WindowInsetsCompat ->
+        setOnApplyWindowInsetsListener(buttons) { v: View, insets: WindowInsetsCompat ->
             val params = v.layoutParams as ViewGroup.MarginLayoutParams
             params.bottomMargin = insets.systemWindowInsetBottom + 30
             insets.consumeSystemWindowInsets()
         }
-
-        val shareInsets: FloatingActionButton = findViewById(R.id.share)
-        val likeInsets: FloatingActionButton = findViewById(R.id.favourite)
-
-
-        val view2 = View(this)
-
-
-
-
 
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
@@ -267,7 +255,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Get the first quote
         newQuote(quotenumber)
     }
 

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".About"
-    android:background="@color/background"
     android:id="@+id/context_view">
 
     <nl.dionsegijn.konfetti.KonfettiView
@@ -67,7 +66,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/about_content_long_new" />
+            <include layout="@layout/about_content_long" />
 
         </LinearLayout>
 

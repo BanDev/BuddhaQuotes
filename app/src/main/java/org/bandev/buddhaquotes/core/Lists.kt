@@ -11,7 +11,7 @@ class Lists {
         return LinkedList(listArr?.split("//"))
     }
 
-    fun newList(name: String, context: Context){
+    fun newList(name: String, context: Context) {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         editor.putString(name, "null")
@@ -22,7 +22,7 @@ class Lists {
         editor.apply()
     }
 
-    fun removeList(name: String, context: Context){
+    fun removeList(name: String, context: Context) {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString("MASTER_LIST", "Favourites")
@@ -33,12 +33,12 @@ class Lists {
         editor.apply()
     }
 
-    fun addToList(quote: String, name: String, context: Context): Boolean{
+    fun addToList(quote: String, name: String, context: Context): Boolean {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(name, "")
         val listArrFinal = LinkedList(listArr?.split("//"))
-        if(listArrFinal.contains(quote)){
+        if (listArrFinal.contains(quote)) {
             return false
         }
         listArrFinal.push(quote)
@@ -48,7 +48,7 @@ class Lists {
         return true
     }
 
-    fun removeFromList(quote: String, name: String, context: Context){
+    fun removeFromList(quote: String, name: String, context: Context) {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(name, "")
