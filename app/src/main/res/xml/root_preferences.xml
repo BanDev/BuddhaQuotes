@@ -64,13 +64,6 @@
             app:icon="@drawable/ic_help" />
 
         <Preference
-            android:key="License"
-            android:title="@string/app_license"
-            android:summary="@string/gplv3"
-            android:layout="@layout/pref_single"
-            app:icon="@drawable/ic_gavel" />
-
-        <Preference
             android:key="AboutLibraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"

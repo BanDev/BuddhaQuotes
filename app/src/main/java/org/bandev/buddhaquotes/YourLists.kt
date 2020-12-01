@@ -129,8 +129,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                         HapticFeedbackConstants.VIRTUAL_KEY
                     )
                 }
-
-                //Save the code
+                
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 editor.putString(nameValue, "null")

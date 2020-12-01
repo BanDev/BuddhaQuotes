@@ -4,21 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### 1.5.2 - (Unreleased)
+### 1.6 - (Unreleased)
 
 #### Added
 
 - Polish translation
-- Improved French translation
 
 #### Changed
 
 - Remade Open Source Libraries page
 - Creating a new list is now done through a Bottom Sheet
-- Custom popup for accent colour that shows the colour
+- Custom material dialog for accent colour that shows the colours
 - Shapes mode is now a switch rather than a popup
+- Improved French translation
 
 #### Fixed
+
 - Fixed crash when completing app introduction for the first time
 - Various other bug fixes
 
@@ -47,6 +48,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Favourites moved to lists
 - Rounded icons used throughout app
 - Navigation bar fixes for Android 8 and 9
+
+#### Fixed
+
 - Quote fixes
 - Bug fixes and optimisations
 

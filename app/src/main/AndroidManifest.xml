@@ -33,14 +33,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".FullLicense"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".License"
-            android:label="License"
-            android:screenOrientation="portrait"
-            android:theme="@style/license" />
-        <activity
             android:name=".YourLists"
             android:screenOrientation="portrait" />
         <activity
@@ -57,12 +49,12 @@
             android:name=".About"
             android:label="@string/about"
             android:screenOrientation="portrait"
-            android:theme="@style/about" />
+            android:theme="@style/About" />
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/settings" />
+            android:theme="@style/Settings" />
         <activity
             android:name=".AppIntro"
             android:screenOrientation="portrait" />
