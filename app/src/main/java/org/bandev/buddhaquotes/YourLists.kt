@@ -21,15 +21,13 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.layout_bottom_sheet.view.*
-import kotlinx.android.synthetic.main.content_scrolling.*
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
+import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
@@ -151,7 +149,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
         val customView = dialog.getCustomView()
-        val name = customView.nameEvent
+        val binding = LayoutBottomSheetBinding.bind(customView)
+        val name = binding.nameEvent
 
         val watcher = object : TextWatcher {
             override fun beforeTextChanged(
@@ -184,24 +183,24 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                                 .split("//".toRegex()).toTypedArray()
                         when {
                             input.isBlank() -> {
-                                customView.nameEventLayout.error = "Cannot be blank"
+                                binding.nameEventLayout.error = "Cannot be blank"
                                 dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                     false
                             }
                             input.contains("//") -> {
-                                customView.nameEventLayout.error = "Cannot contain //"
+                                binding.nameEventLayout.error = "Cannot contain //"
                                 dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                     false
                             }
                             lists.contains(input.toLowerCase(Locale.ROOT)) -> {
-                                customView.nameEventLayout.error =
+                                binding.nameEventLayout.error =
                                     "There is already a list named $input"
                                 dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                     false
                             }
                             else -> {
                                 nameValue = input
-                                customView.nameEventLayout.error = null
+                                binding.nameEventLayout.error = null
                                 dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
                                     true
                             }
@@ -221,11 +220,12 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         array = array.distinct().toTypedArray()
 
         scrollingList = generateDummyList(array.size)
-        adapter = ListMenuAdapter(scrollingList, this)
 
-        recycler_view.adapter = adapter
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.setHasFixedSize(false)
+        with(binding.recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ListMenuAdapter(scrollingList, this@YourLists)
+            setHasFixedSize(false)
+        }
     }
 
     private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
