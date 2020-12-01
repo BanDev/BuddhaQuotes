@@ -3,12 +3,9 @@ package org.bandev.buddhaquotes
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.res.ResourcesCompat
 
 class Splash : AppCompatActivity() {
 

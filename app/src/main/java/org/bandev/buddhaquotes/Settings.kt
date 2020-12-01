@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.updatePadding
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -22,25 +21,26 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Theme
+import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
 
     private var quotenumber: Int = 0
+    private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
-        setContentView(R.layout.activity_settings)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("lang")) {
             this.overridePendingTransition(0, 0)
         }
-
-
 
         if ((intent.extras ?: return).getBoolean("switch")) {
             val sharedPreferences = getSharedPreferences("Settings", 0)
@@ -93,13 +93,6 @@ class Settings : AppCompatActivity() {
         val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(0, statusBarHeight, 0, 0)
         myToolbar.layoutParams = param
-
-        val view = View(this)
-
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -114,10 +107,6 @@ class Settings : AppCompatActivity() {
                     val i = Intent(activity, AppIntro::class.java)
                     startActivity(i)
                 }
-                "License" -> {
-                    val i = Intent(activity, License::class.java)
-                    startActivity(i)
-                }
                 "AboutLibraries" -> {
                     val i = Intent(activity, AboutLibraries::class.java)
                     startActivity(i)
@@ -128,8 +117,6 @@ class Settings : AppCompatActivity() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
-            val editor = pref.edit()
-
 
             val dark = pref.getBoolean("dark_mode", false)
             val sys = pref.getBoolean("sys", false)
@@ -137,25 +124,9 @@ class Settings : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
             val screen = preferenceScreen
 
-            //val listPreference = findPreference<Preference>("theme") as ListPreference?
-
             updateColorSummary()
             updateThemeSummary()
             updateLanguageSummary()
-
-            /*when {
-                sys -> {
-                    listPreference?.setValueIndex(2)
-                }
-                dark -> {
-                    listPreference?.setValueIndex(1) // Set to index of your default value
-                    listPreference?.setIcon(R.drawable.ic_night_settings)
-                }
-                else -> {
-                    listPreference?.setValueIndex(0)
-                    listPreference?.setIcon(R.drawable.ic_day_settings)
-                }
-            }*/
 
             val accentColorButton = findPreference<Preference>("accent_color")
             (accentColorButton ?: return).onPreferenceClickListener =
@@ -167,7 +138,7 @@ class Settings : AppCompatActivity() {
             val shapesModeButton = findPreference<Preference>("shapes_mode")
             (shapesModeButton ?: return).onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-
+                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     true
                 }
 
@@ -184,58 +155,6 @@ class Settings : AppCompatActivity() {
                     showLanguagePopup()
                     true
                 }
-
-
-            /*(listPreference ?: return).onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { preference, newValue ->
-                    listPreference.value = newValue.toString()
-                    val theme = listPreference.value.toString()
-                    Log.d("debug", theme)
-                    when (theme) {
-                        "light" -> {
-                            editor.putBoolean("dark_mode", false)
-                            editor.putBoolean("sys", false)
-                            editor.apply()
-
-                            val intent2 = Intent(context, Settings::class.java)
-                            val mBundle = Bundle()
-                            mBundle.putBoolean("switch", true)
-                            intent2.putExtras(mBundle)
-
-                            startActivity(intent2)
-                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        }
-                        "dark" -> {
-                            editor.putBoolean("dark_mode", true)
-                            editor.putBoolean("sys", false)
-                            editor.commit()
-
-                            val intent2 = Intent(context, Settings::class.java)
-                            val mBundle = Bundle()
-                            mBundle.putBoolean("switch", true)
-                            intent2.putExtras(mBundle)
-
-                            startActivity(intent2)
-
-                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        }
-                        "sys" -> {
-                            editor.putBoolean("dark_mode", false)
-                            editor.putBoolean("sys", true)
-                            editor.commit()
-
-                            val intent2 = Intent(context, Settings::class.java)
-                            val mBundle = Bundle()
-                            mBundle.putBoolean("switch", true)
-                            intent2.putExtras(mBundle)
-
-                            startActivity(intent2)
-
-                            //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                        }
-                    }
-                    true
-                }*/
         }
 
         private fun updateColorSummary() {
@@ -278,6 +197,39 @@ class Settings : AppCompatActivity() {
             (language ?: return).summary = singleItems[int]
         }
 
+        private fun showLanguagePopup() {
+            val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val editor = sharedPrefs.edit()
+            val singleItems = requireContext().getStringArray(R.array.language_entries)
+            val values = requireContext().getStringArray(R.array.language_values)
+            val checkedItem = sharedPrefs.getInt("app_language_int", 0)
+
+            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
+                .setTitle(R.string.settings_language)
+                .setNegativeButton(R.string.cancel) { dialog, which ->
+                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+                .setPositiveButton(R.string.confirm) { dialog, which ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
+                    editor.apply()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("lang", true)
+                    intent2.putExtras(mBundle)
+                    startActivity(intent2)
+                }
+                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                    editor.putInt("app_language_int", which)
+                    editor.putString("app_language", values[which])
+
+                }
+                .show()
+        }
+
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
@@ -286,9 +238,15 @@ class Settings : AppCompatActivity() {
 
             MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
                 .setTitle(R.string.app_theme)
-                .setNeutralButton(R.string.cancel) { dialog, which ->
+                .setNegativeButton(R.string.cancel) { dialog, which ->
+                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
                 .setPositiveButton(R.string.confirm) { dialog, which ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
                     editor.apply()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
@@ -314,33 +272,6 @@ class Settings : AppCompatActivity() {
                             editor.putInt("appThemeInt", 2)
                         }
                     }
-                }
-                .show()
-        }
-
-        private fun showLanguagePopup() {
-            val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val editor = sharedPrefs.edit()
-            val singleItems = requireContext().getStringArray(R.array.language_entries)
-            val values = requireContext().getStringArray(R.array.language_values)
-            val checkedItem = sharedPrefs.getInt("app_language_int", 0)
-
-            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
-                .setTitle(R.string.settings_language)
-                .setNeutralButton(R.string.cancel) { dialog, which ->
-                }
-                .setPositiveButton(R.string.confirm) { dialog, which ->
-                    editor.apply()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("lang", true)
-                    intent2.putExtras(mBundle)
-                    startActivity(intent2)
-                }
-                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
-                    editor.putInt("app_language_int", which)
-                    editor.putString("app_language", values[which])
-
                 }
                 .show()
         }

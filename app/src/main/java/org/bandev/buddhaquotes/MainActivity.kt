@@ -13,7 +13,6 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -46,9 +45,10 @@ class MainActivity : AppCompatActivity() {
     var toolbar: MaterialToolbar? = null
     private var settings: SharedPreferences? = null
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Colours().setAccentColor(this, window)
+        Languages().setLanguage(this)
 
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val editor = sharedPreferences.edit()
@@ -59,9 +59,6 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, AppIntro::class.java)
             startActivity(i)
         }
-
-        Colours().setAccentColor(this, window)
-        Languages().setLanguage(this)
 
         val shapesMode = Preferences().shapesMode(this)
         if (shapesMode) {
