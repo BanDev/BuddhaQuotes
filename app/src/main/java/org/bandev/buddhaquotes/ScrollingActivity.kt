@@ -38,7 +38,6 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
         binding = ActivityScrollingBinding.inflate(layoutInflater)
-        bindingContent = ContentScrollingBinding.bind(binding.root)
         setContentView(binding.root)
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
@@ -69,9 +68,9 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         toolbar.navigationIcon = back
 
-        val includedView: View = bindingContent.contentScroll.RecyclerView
+        val view : RecyclerView = binding.recyclerView
 
-        with(includedView) {
+        with(view) {
             layoutManager = LinearLayoutManager(context)
             adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
             setHasFixedSize(false)
