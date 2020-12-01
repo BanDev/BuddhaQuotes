@@ -27,6 +27,8 @@ import com.skydoves.balloon.showAlignTop
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Preferences
+import org.bandev.buddhaquotes.databinding.ActivityMain2Binding
+import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +47,9 @@ class MainActivity : AppCompatActivity() {
     var toolbar: MaterialToolbar? = null
     private var settings: SharedPreferences? = null
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding2: ActivityMain2Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColor(this, window)
@@ -62,11 +67,13 @@ class MainActivity : AppCompatActivity() {
 
         val shapesMode = Preferences().shapesMode(this)
         if (shapesMode) {
-            setContentView(R.layout.activity_main2)
+            binding2 = ActivityMain2Binding.inflate(layoutInflater)
+            setContentView(binding2.root)
             window.navigationBarColor = Color.TRANSPARENT
             window.statusBarColor = Color.TRANSPARENT
         } else {
-            setContentView(R.layout.activity_main)
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
             when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
