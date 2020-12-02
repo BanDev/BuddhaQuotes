@@ -56,6 +56,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         prefList = prefListTmp
         scrollingList = generateDummyList(prefList.size)
+        adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
 
         setSupportActionBar(findViewById(R.id.toolbar))
         findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = list
@@ -67,9 +68,10 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         val view: RecyclerView = binding.recyclerView
 
+        binding.recyclerView.adapter = adapter
+
         with(view) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
             setHasFixedSize(false)
         }
     }

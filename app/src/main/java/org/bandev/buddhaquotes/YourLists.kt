@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import java.util.*
@@ -54,18 +55,11 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onBinClick(position: Int, text: String) {
         window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         val contextView = findViewById<View>(R.id.your_lists)
+        Lists().removeList(text, this)
         Snackbar.make(contextView, "Deleted", Snackbar.LENGTH_SHORT).show()
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
-
-        val pref = getSharedPreferences("List_system", 0)
-        val editor = pref.edit()
-        val listArr = pref.getString("MASTER_LIST", "Favourites")
-        val listArrFinal = LinkedList(listArr?.split("//"))
-        listArrFinal.remove(text)
-        val stringOut = listArrFinal.joinToString(separator = "//")
-        editor.putString("MASTER_LIST", stringOut)
-        editor.apply()
+        refresh()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +70,10 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         Languages().setLanguage(this)
         binding = ActivityYourListsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
@@ -119,7 +117,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
                         HapticFeedbackConstants.VIRTUAL_KEY
                     )
                 }
-                
+
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 editor.putString(nameValue, "null")
@@ -212,6 +210,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         array = array.distinct().toTypedArray()
 
         scrollingList = generateDummyList(array.size)
+        adapter = ListMenuAdapter(scrollingList, this)
 
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
