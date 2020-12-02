@@ -41,7 +41,7 @@
         app:handleDrawable="@drawable/handle_drawable"
         app:handleVisibilityDuration="1"
         app:handleWidth="14dp"
-        app:handleHeight="32dp">
+        app:handleHeight="34dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -5,14 +5,14 @@ import android.content.pm.ActivityInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.view.*
-import android.widget.*
+import android.view.HapticFeedbackConstants
+import android.view.MenuItem
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.updatePadding
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
@@ -46,32 +46,6 @@ class AddQuote : AppCompatActivity() {
         toolbar.title = "Add to List"
         toolbar.navigationIcon = back
         setSupportActionBar(toolbar)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
-        val param = toolbar.layoutParams as ViewGroup.MarginLayoutParams
-        param.setMargins(0, statusBarHeight, 0, 0)
-        toolbar.layoutParams = param
-
-        val view = View(this)
-        view.doOnLayout {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                view.windowInsetsController?.show(WindowInsets.Type.ime())
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.show(WindowInsets.Type.ime())
-            }
-        }
-
-        view.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-        }
 
         val searchView = findViewById<SearchView>(R.id.searchView)
         val listView = findViewById<ListView>(R.id.listView)
