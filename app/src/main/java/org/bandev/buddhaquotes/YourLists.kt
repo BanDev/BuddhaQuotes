@@ -21,6 +21,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
@@ -52,6 +53,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     override fun onBinClick(position: Int, text: String) {
         window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        val contextView = findViewById<View>(R.id.your_lists)
+        Snackbar.make(contextView, "Deleted", Snackbar.LENGTH_SHORT).show()
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
 
@@ -82,17 +85,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
 
         myToolbar.navigationIcon = back
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
-        val param = (myToolbar ?: return).layoutParams as MarginLayoutParams
-        param.setMargins(0, statusBarHeight, 0, 0)
-        myToolbar.layoutParams = param
 
         val fab: FloatingActionButton = findViewById(R.id.bottomsheet)
 

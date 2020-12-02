@@ -15,7 +15,6 @@ import android.widget.ListView
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.WindowCompat
 import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
@@ -94,22 +93,11 @@ class About : AppCompatActivity() {
                 }
             }
 
-        val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
-        setSupportActionBar(myToolbar)
+        val toolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
+        setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
-        val param = myToolbar.layoutParams as ViewGroup.MarginLayoutParams
-        param.setMargins(0, statusBarHeight, 0, 0)
-        myToolbar.layoutParams = param
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

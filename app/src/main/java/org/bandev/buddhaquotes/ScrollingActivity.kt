@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -19,14 +18,12 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
-import org.bandev.buddhaquotes.databinding.ContentScrollingBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
-    private lateinit var bindingContent: ContentScrollingBinding
     private lateinit var scrollingList: ArrayList<ExampleItem>
     private lateinit var adapter: ScrollingAdapter
     private lateinit var prefList: List<String>
@@ -68,20 +65,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         toolbar.navigationIcon = back
 
-        val view : RecyclerView = binding.recyclerView
+        val view: RecyclerView = binding.recyclerView
 
         with(view) {
             layoutManager = LinearLayoutManager(context)
             adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
             setHasFixedSize(false)
-        }
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
     }
 

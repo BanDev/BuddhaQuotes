@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -81,18 +80,6 @@ class Settings : AppCompatActivity() {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            statusBarHeight = resources.getDimensionPixelSize(resourceId)
-        }
-
-        val param = (myToolbar ?: return).layoutParams as ViewGroup.MarginLayoutParams
-        param.setMargins(0, statusBarHeight, 0, 0)
-        myToolbar.layoutParams = param
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
