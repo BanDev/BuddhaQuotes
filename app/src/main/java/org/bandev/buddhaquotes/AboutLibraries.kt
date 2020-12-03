@@ -34,7 +34,7 @@ class AboutLibraries : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             finish()
         }

@@ -70,7 +70,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             val myIntent = Intent(this@YourLists, MainActivity::class.java)
             this@YourLists.startActivity(myIntent)

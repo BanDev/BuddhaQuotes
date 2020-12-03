@@ -42,11 +42,18 @@
         <item>Crimson</item>
     </string-array>
 
+    <string-array name="contributors">
+        <item>@string/about_fennec</item>
+        <item>@string/about_jack</item>
+        <item>@string/about_izzysoft</item>
+        <item>@string/about_licaon</item>
+        <item>@string/about_poussinou</item>
+    </string-array>
+
     <string-array name="translators">
         <item>harrydevey06</item>
         <item>SorryNoSiri1</item>
     </string-array>
-
 
     <string-array name="language_values">
         <item>en</item>
