@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -41,7 +40,7 @@ class About : AppCompatActivity() {
 
         val translators = this.getStringArray(R.array.translators)
 
-        val arrayAdapter = ArrayAdapter(this, R.layout.list_item, translators)
+        val arrayAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
 
         translatorsList.adapter = arrayAdapter
         translatorsList.divider = null
@@ -93,20 +92,10 @@ class About : AppCompatActivity() {
                 }
             }
 
-        val toolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
-        setSupportActionBar(toolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-    }
+        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        toolbar.setNavigationOnClickListener {
+            finish()
         }
     }
 

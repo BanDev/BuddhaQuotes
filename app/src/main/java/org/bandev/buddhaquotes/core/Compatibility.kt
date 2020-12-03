@@ -19,7 +19,7 @@ class Compatibility {
      * @param [window] context of window (Window)
      * @param [resources] context of resources (Resources)
      * @author Fennec_exe
-     * @added [1008] v1.5.0 - 29/10/2020
+     * @added [1008] v1.5.0 - 2020-10-29
      */
 
     fun setNavigationBar(context: Context, window: Window, resources: Resources) {

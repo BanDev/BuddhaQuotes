@@ -97,7 +97,6 @@
 
     <style name="toolbarText">
         <item name="fontFamily">@font/mt_med</item>
-        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
 
