@@ -11,8 +11,8 @@ android {
         applicationId "org.bandev.buddhaquotes"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1009
-        versionName "v1.5.1"
+        versionCode 1010
+        versionName "v1.6.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
