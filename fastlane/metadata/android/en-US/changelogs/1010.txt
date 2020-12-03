@@ -1,0 +1,15 @@
+1.6 - (2020-12-03)
+
+Added
+
+- Polish translation
+
+Changed
+
+- Remade Open Source Libraries page
+- Creating a new list is now done through a Bottom Sheet
+- Custom material dialog for accent colour that shows the colours
+- Shapes mode is now a switch rather than a popup
+- Improved French translation
+- Fixed crash when completing app introduction for the first time
+- Various other bug fixes
