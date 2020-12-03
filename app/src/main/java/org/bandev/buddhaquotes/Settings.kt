@@ -74,12 +74,21 @@ class Settings : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.settings, SettingsFragment())
             .commit()
-        val myToolbar = findViewById<Toolbar>(R.id.my_toolbar)
 
-        setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
+
+        toolbar.setNavigationOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            val mBundle = Bundle()
+            mBundle.putString("quote", quotenumber.toString())
+            i.putExtras(mBundle)
+            startActivity(i)
+            overridePendingTransition(
+                R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right
+            )
+            finish()
+        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -380,24 +389,5 @@ class Settings : AppCompatActivity() {
             R.anim.anim_slide_out_right
         )
         finish()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                val i = Intent(this, MainActivity::class.java)
-                val mBundle = Bundle()
-                mBundle.putString("quote", quotenumber.toString())
-                i.putExtras(mBundle)
-                startActivity(i)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right
-                )
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

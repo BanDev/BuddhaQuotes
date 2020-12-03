@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Expanded" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/mt_med</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextAppearance.App.CollapsingToolbar.Collapsed" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/mt_med</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

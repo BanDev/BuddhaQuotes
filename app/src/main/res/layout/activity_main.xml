@@ -56,7 +56,6 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="18dp" />
     </com.google.android.material.appbar.MaterialToolbar>

@@ -9,7 +9,7 @@ import android.text.TextWatcher
 import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
@@ -19,9 +19,7 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
@@ -54,9 +52,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     override fun onBinClick(position: Int, text: String) {
         window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        val contextView = findViewById<View>(R.id.your_lists)
         Lists().removeList(text, this)
-        Snackbar.make(contextView, "Deleted", Snackbar.LENGTH_SHORT).show()
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
         refresh()
@@ -71,18 +67,15 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         binding = ActivityYourListsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val myToolbar = findViewById<MaterialToolbar>(R.id.toolbar)
-        setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
+        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
 
-        myToolbar.navigationIcon = back
+        toolbar.setNavigationOnClickListener {
+            val myIntent = Intent(this@YourLists, MainActivity::class.java)
+            this@YourLists.startActivity(myIntent)
+            finish()
+        }
 
         val fab: FloatingActionButton = findViewById(R.id.bottomsheet)
 
@@ -243,15 +236,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             i++
         }
         return list
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == android.R.id.home) {
-            val myIntent = Intent(this@YourLists, MainActivity::class.java)
-            this@YourLists.startActivity(myIntent)
-            finish()
-            true
-        } else super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

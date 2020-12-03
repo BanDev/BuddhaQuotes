@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -34,11 +33,11 @@ class AboutLibraries : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val myToolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
-        setSupportActionBar(myToolbar)
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-        (supportActionBar ?: return).setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
+
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
@@ -96,16 +95,6 @@ class AboutLibraries : AppCompatActivity() {
                     binding.licenseDescriptionTextView.visibility = View.GONE
                 }
             }
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 
