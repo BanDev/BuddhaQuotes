@@ -36,13 +36,18 @@ class About : AppCompatActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        val contributorsList: ListView = findViewById(R.id.contributors_list)
+        val contributors = this.getStringArray(R.array.contributors)
+        val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
+        contributorsList.adapter = contributorsAdapter
+        contributorsList.divider = null
+        contributorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(contributorsList)
+
         val translatorsList: ListView = findViewById(R.id.translators_list)
-
         val translators = this.getStringArray(R.array.translators)
-
-        val arrayAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-
-        translatorsList.adapter = arrayAdapter
+        val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
+        translatorsList.adapter = translatorsAdapter
         translatorsList.divider = null
         translatorsList.isClickable = false
         justifyListViewHeightBasedOnChildren(translatorsList)
@@ -93,7 +98,7 @@ class About : AppCompatActivity() {
             }
 
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             finish()
         }

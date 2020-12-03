@@ -2,7 +2,6 @@ package org.bandev.buddhaquotes
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
@@ -21,9 +20,6 @@ import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.plattysoft.leonids.ParticleSystem
-import com.skydoves.balloon.BalloonAnimation
-import com.skydoves.balloon.createBalloon
-import com.skydoves.balloon.showAlignTop
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Preferences
@@ -42,10 +38,8 @@ class MainActivity : AppCompatActivity() {
     private var favourite: FloatingActionButton? = null
     private var noAnim = false
     private var firstPress = true
-    private var fontSize: String? = null
     private var heartBlack: Drawable? = null
     var toolbar: MaterialToolbar? = null
-    private var settings: SharedPreferences? = null
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var binding2: ActivityMain2Binding
@@ -155,16 +149,6 @@ class MainActivity : AppCompatActivity() {
             navBarHeight = resources.getDimensionPixelSize(resourceId)
         }
 
-        // Get text size from shared preferences (was set in settings, defaults to medium (30px)) and sets it
-        settings = getSharedPreferences("Settings", 0)
-        val textsize: String? = settings?.getString("text_size", "md")
-        fontSize = when (textsize) {
-            "sm" -> "25"
-            "lg" -> "35"
-            else -> "30"
-        }
-        (quoteView ?: return).textSize = (fontSize ?: return).toFloat()
-
         val rotateAnimation = RotateAnimation(
             0F,
             360f,
@@ -239,24 +223,6 @@ class MainActivity : AppCompatActivity() {
                 )
                 (favourite ?: return@setOnClickListener).isEnabled = true
             }
-        }
-
-        val balloon = createBalloon(this) {
-            setLayout(R.layout.layout_balloon_popup)
-            setArrowSize(10)
-            setWidthRatio(0.5f)
-            setHeight(170)
-            setCornerRadius(8f)
-            setMarginBottom(10)
-            setBalloonAnimation(BalloonAnimation.FADE)
-            setBackgroundColorResource(R.color.white)
-            setLifecycleOwner(lifecycleOwner)
-        }
-
-        (favourite ?: return).setOnLongClickListener {
-            window.decorView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-            favourite!!.showAlignTop(balloon)
-            true
         }
 
         newQuote(quotenumber)

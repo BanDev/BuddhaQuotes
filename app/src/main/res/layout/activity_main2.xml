@@ -27,7 +27,7 @@
         android:text="@string/textview"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

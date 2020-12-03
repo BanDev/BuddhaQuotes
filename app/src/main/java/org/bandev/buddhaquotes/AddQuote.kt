@@ -6,13 +6,11 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import android.view.MenuItem
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
@@ -20,6 +18,7 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import java.util.*
+
 
 class AddQuote : AppCompatActivity() {
 
@@ -40,17 +39,14 @@ class AddQuote : AppCompatActivity() {
 
         val list = (intent.getStringExtra("list") ?: return).toString()
 
-        //Setup toolbar
-        back = (ContextCompat.getDrawable(this, R.drawable.ic_arrow_back) ?: return)
         toolbar = findViewById(R.id.toolbar)
-        toolbar.title = "Add to List"
-        toolbar.navigationIcon = back
         setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
 
         val searchView = findViewById<SearchView>(R.id.searchView)
         val listView = findViewById<ListView>(R.id.listView)
-
-        listView.isFastScrollEnabled = true
 
         val names = genList()
 
@@ -103,34 +99,18 @@ class AddQuote : AppCompatActivity() {
                 return false
             }
         })
-
-
     }
 
     private fun genList(): ArrayList<String> {
         val list = ArrayList<String>()
-
         val max = 237
-
         var i = 1
-
         while (i != max) {
             list.add(Quotes().random(i, this))
             i++
         }
 
-
         return list
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -139,8 +119,6 @@ class AddQuote : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
-
         finish()
     }
 }

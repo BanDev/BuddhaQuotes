@@ -76,7 +76,7 @@ class Settings : AppCompatActivity() {
             .commit()
 
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-
+        setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
             val i = Intent(this, MainActivity::class.java)
             val mBundle = Bundle()
