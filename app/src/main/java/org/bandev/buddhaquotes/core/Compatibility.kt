@@ -6,9 +6,11 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowInsetsController
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.WindowCompat
 import org.bandev.buddhaquotes.R
 
 class Compatibility {
@@ -43,5 +45,25 @@ class Compatibility {
                 window.navigationBarColor = Color.TRANSPARENT
             }
         }
+    }
+
+    fun edgeToEdge(window: Window, view: View, toolbar: androidx.appcompat.widget.Toolbar, resources: Resources) {
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        view.setOnApplyWindowInsetsListener { v, insets ->
+            insets.isConsumed
+            insets
+        }
+
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen",
+            "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+        val param = toolbar.layoutParams as ViewGroup.MarginLayoutParams
+        param.setMargins(0, statusBarHeight, 0, 0)
+        toolbar.layoutParams = param
     }
 }
