@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.databinding.LayoutRecyclerCard2Binding
+import org.bandev.buddhaquotes.ui.dashboard.DashboardFragment
 
 class ListMenuAdapter(
 
     private val scrollingList: List<ListMenuItem>,
-    private val listener: YourLists,
+    private val listener: DashboardFragment,
 
     ) : RecyclerView.Adapter<ListMenuAdapter.ScrollingViewHolder>() {
 

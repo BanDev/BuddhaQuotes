@@ -12,11 +12,17 @@
         android:roundIcon="@drawable/ic_buddha"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.MainActivity"></activity>
 
         <receiver android:name=".Widget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
@@ -62,13 +68,13 @@
             android:name=".AboutLibraries"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".OldMainActivity"
             android:label="@string/MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
+                android:value="OldMainActivity" />
         </activity>
     </application>
 

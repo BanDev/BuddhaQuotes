@@ -72,7 +72,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
-            val myIntent = Intent(this@YourLists, MainActivity::class.java)
+            val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
             this@YourLists.startActivity(myIntent)
             finish()
         }
@@ -203,11 +203,11 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         array = array.distinct().toTypedArray()
 
         scrollingList = generateDummyList(array.size)
-        adapter = ListMenuAdapter(scrollingList, this)
+        //adapter = ListMenuAdapter(scrollingList, this)
 
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListMenuAdapter(scrollingList, this@YourLists)
+           // adapter = ListMenuAdapter(scrollingList, this@YourLists)
             setHasFixedSize(false)
         }
     }
@@ -239,7 +239,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@YourLists, MainActivity::class.java)
+        val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
         this@YourLists.startActivity(myIntent)
         finish()
         return true
@@ -247,7 +247,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val myIntent = Intent(this@YourLists, MainActivity::class.java)
+        val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
         val mBundle = Bundle()
         this@YourLists.startActivity(myIntent)
         finish()

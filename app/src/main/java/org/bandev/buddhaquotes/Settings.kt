@@ -78,7 +78,7 @@ class Settings : AppCompatActivity() {
         val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
+            val i = Intent(this, OldMainActivity::class.java)
             val mBundle = Bundle()
             mBundle.putString("quote", quotenumber.toString())
             i.putExtras(mBundle)
@@ -363,7 +363,7 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@Settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, OldMainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
@@ -378,7 +378,7 @@ class Settings : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val myIntent = Intent(this@Settings, MainActivity::class.java)
+        val myIntent = Intent(this@Settings, OldMainActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
