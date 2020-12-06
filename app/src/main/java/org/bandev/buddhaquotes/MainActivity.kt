@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
+import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +20,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme according to selected colour
+        //Set theme, navigation bar and language
         Colours().setAccentColor(this, window, resources)
+        Compatibility().setNavigationBar(this, window, resources)
+        Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode
         binding = MainActivityBinding.inflate(layoutInflater)

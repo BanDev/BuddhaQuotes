@@ -82,9 +82,6 @@ class OldMainActivity : AppCompatActivity() {
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.navigationBarColor = Color.TRANSPARENT
-                    } else {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.dark_nav_bar, null)
                     }
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {

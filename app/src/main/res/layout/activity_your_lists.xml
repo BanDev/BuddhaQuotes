@@ -23,7 +23,7 @@
         app:titleTextColor="@android:color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
