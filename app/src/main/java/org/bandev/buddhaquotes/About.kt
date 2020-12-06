@@ -26,6 +26,8 @@ class About : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Set theme, navigation bar and language
         Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
@@ -61,7 +63,7 @@ class About : AppCompatActivity() {
 
         binding.scrollView.viewTreeObserver
             .addOnScrollChangedListener {
-                if (!(binding.scrollView.getChildAt(0).bottom > binding.scrollView.height + binding.scrollView.scrollY || done)
+                if (binding.scrollView.getChildAt(0).bottom <= binding.scrollView.height + binding.scrollView.scrollY && !done
                 ) {
                     binding.viewKonfetti.build()
                         .addColors(

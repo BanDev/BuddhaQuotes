@@ -14,6 +14,14 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.ScrollingAdapter
 
 class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
+
+    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var scrollingList: ArrayList<ListMenuItem>
+    private lateinit var adapter: ListMenuAdapter
+    private lateinit var favs: Array<String?>
+    private lateinit var array: Array<String>
+    private lateinit var recyclerView: RecyclerView
+
     override fun onLikeClick(position: Int, text: String) {
         TODO("Not yet implemented")
     }
@@ -26,13 +34,6 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
         TODO("Not yet implemented")
     }
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private lateinit var scrollingList: ArrayList<ListMenuItem>
-    private lateinit var adapter: ListMenuAdapter
-    private lateinit var favs: Array<String?>
-    private lateinit var array: Array<String>
-    private lateinit var recyclerView: RecyclerView
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +43,7 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
             ViewModelProvider(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
-        recyclerView = root.findViewById(R.id.recycler_view)
+        recyclerView = root.findViewById(R.id.recyclerView)
 
         refresh()
 

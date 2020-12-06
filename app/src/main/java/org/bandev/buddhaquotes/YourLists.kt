@@ -75,15 +75,13 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             finish()
         }
 
-        val fab: FloatingActionButton = findViewById(R.id.bottomSheet)
-
-        ViewCompat.setOnApplyWindowInsetsListener(fab) { v: View, insets: WindowInsetsCompat ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.bottomSheet) { v: View, insets: WindowInsetsCompat ->
             val params = v.layoutParams as MarginLayoutParams
             params.bottomMargin = insets.systemWindowInsetBottom + 30
             insets.consumeSystemWindowInsets()
         }
 
-        fab.setOnClickListener {
+        binding.bottomSheet.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showBottomSheet()
         }

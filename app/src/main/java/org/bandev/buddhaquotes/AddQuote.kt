@@ -22,6 +22,8 @@ class AddQuote : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //Set theme, navigation bar and language
         Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
@@ -46,7 +48,7 @@ class AddQuote : AppCompatActivity() {
         binding.listView.adapter = adapter
 
         binding.listView.onItemClickListener =
-            OnItemClickListener { parent, view, position, id ->
+            OnItemClickListener { _, view, position, _ ->
 
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
