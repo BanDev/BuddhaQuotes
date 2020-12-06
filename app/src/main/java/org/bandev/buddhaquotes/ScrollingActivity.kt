@@ -10,9 +10,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -31,11 +28,14 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
+
+        //Setup view binding & force portrait mode
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
             val contextView = findViewById<View>(R.id.scrolling)
@@ -43,10 +43,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 .show()
         }
 
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
-        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
         val pref = getSharedPreferences("List_system", 0)
@@ -58,19 +55,17 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         scrollingList = generateDummyList(prefList.size)
         adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        findViewById<CollapsingToolbarLayout>(R.id.toolbar_layout).title = list
+        setSupportActionBar(binding.toolbar)
+        binding.toolbarLayout.title = list
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        toolbar.navigationIcon = back
-
-        val view: RecyclerView = binding.recyclerView
+        binding.toolbar.navigationIcon = back
 
         binding.recyclerView.adapter = adapter
 
-        with(view) {
+        with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(false)
         }
@@ -130,14 +125,14 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
                 editor.apply()
 
             }
-            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             adapter.notifyItemChanged(position)
         }
     }
 
     override fun onShareClick(position: Int) {
         val clickedItem = scrollingList[position]
-        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
@@ -153,7 +148,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     }
 
     override fun onBinClick(position: Int, text: String) {
-        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
@@ -201,16 +196,8 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
         return list
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-
-        val intent2 = Intent(this, YourLists::class.java)
-        this.startActivity(intent2)
-        return true
-    }
-
     override fun onBackPressed() {
         super.onBackPressed()
-        // add your animation
         val intent2 = Intent(this, YourLists::class.java)
         this.startActivity(intent2)
         finish()

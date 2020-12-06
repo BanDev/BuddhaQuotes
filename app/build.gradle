@@ -56,8 +56,8 @@ dependencies {
     implementation 'com.quiph.ui:recyclerviewfastscroller:1.0.0'
 
     // AboutLibraries
-    implementation "com.mikepenz:aboutlibraries:8.6.2"
-    implementation "com.mikepenz:aboutlibraries-core:8.6.2"
+    implementation 'com.mikepenz:aboutlibraries:8.6.2'
+    implementation 'com.mikepenz:aboutlibraries-core:8.6.2'
 
     //AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
@@ -70,16 +70,14 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
 
     // Navigation component
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.1"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
 
     //Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation 'androidx.navigation:navigation-fragment:2.3.1'
-    implementation 'androidx.navigation:navigation-ui:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     // [Testing] Basic
     testImplementation 'junit:junit:4.13.1'

@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:background="?colorPrimary"
+        android:background="@drawable/toolbar"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
         app:expandedTitleMarginStart="72dp"
         app:expandedTitleMarginBottom="28dp"

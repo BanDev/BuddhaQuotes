@@ -69,17 +69,4 @@
         <item>@string/pl</item>
     </string-array>
 
-
-    <string-array name="size_entries">
-        <item>@string/small_text_size</item>
-        <item>@string/medium_text_size</item>
-        <item>@string/large_text_size</item>
-    </string-array>
-
-    <string-array name="size_values">
-        <item>sm</item>
-        <item>md</item>
-        <item>lg</item>
-    </string-array>
-
 </resources>

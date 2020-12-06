@@ -18,7 +18,7 @@ class AppIntro : AppIntro2() {
 
         setTransformer(AppIntroPageTransformerType.Fade)
 
-        // Call addSlide passing your Fragments.
+        // Call addSlide passing your Fragments
         // You can use AppIntroFragment to use a pre-built fragment
         addSlide(
             AppIntroFragment.newInstance(

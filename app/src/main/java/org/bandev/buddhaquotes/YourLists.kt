@@ -9,7 +9,6 @@ import android.text.TextWatcher
 import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
@@ -51,7 +50,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         Lists().removeList(text, this)
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
@@ -61,23 +60,22 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
+
         binding = ActivityYourListsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
             val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
             this@YourLists.startActivity(myIntent)
             finish()
         }
 
-        val fab: FloatingActionButton = findViewById(R.id.bottomsheet)
+        val fab: FloatingActionButton = findViewById(R.id.bottomSheet)
 
         ViewCompat.setOnApplyWindowInsetsListener(fab) { v: View, insets: WindowInsetsCompat ->
             val params = v.layoutParams as MarginLayoutParams
@@ -86,7 +84,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         }
 
         fab.setOnClickListener {
-            window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showBottomSheet()
         }
 
@@ -207,7 +205,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
 
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
-           // adapter = ListMenuAdapter(scrollingList, this@YourLists)
+            // adapter = ListMenuAdapter(scrollingList, this@YourLists)
             setHasFixedSize(false)
         }
     }
@@ -236,13 +234,6 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             i++
         }
         return list
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
-        this@YourLists.startActivity(myIntent)
-        finish()
-        return true
     }
 
     override fun onBackPressed() {

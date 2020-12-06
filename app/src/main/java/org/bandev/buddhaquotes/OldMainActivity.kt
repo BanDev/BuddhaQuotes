@@ -46,7 +46,7 @@ class OldMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Languages().setLanguage(this)
 
         val intent = Intent(this, MainActivity::class.java)

@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +31,7 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
     private lateinit var adapter: ListMenuAdapter
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +43,6 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
         recyclerView = root.findViewById(R.id.recycler_view)
-
 
         refresh()
 
@@ -60,8 +57,6 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
 
         scrollingList = generateDummyList(array.size)
         adapter = ListMenuAdapter(scrollingList, this)
-
-
 
         with(recyclerView) {
             layoutManager = LinearLayoutManager(context)

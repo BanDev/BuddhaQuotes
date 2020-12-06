@@ -8,7 +8,6 @@
 
     <style name="AppTheme.MainActivity" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 

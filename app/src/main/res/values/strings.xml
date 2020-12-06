@@ -15,17 +15,13 @@
     <string name="light_mode" id="7">Light</string>
     <string name="dark_mode" id="8">Dark</string>
     <string name="follow_system_default" id="9">Follow system default</string>
-    <string name="text_size" id="10">Text Size</string>
-    <string name="small_text_size" id="11">Small</string>
-    <string name="medium_text_size" id="12">Medium</string>
-    <string name="large_text_size" id="13">Large</string>
     <string name="information" id="14">Information</string>
     <string name="about" id="15">About</string>
     <string name="view_app_details" id="16">View app details</string>
     <string name="help" id="17">Help</string>
     <string name="app_introduction" id="18">App introduction</string>
     <string name="app_license" id="19">App License</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3</string>
+    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Libraries used</string>
 
     <!-- Added up to here on BanDev Localisation Thingy -->

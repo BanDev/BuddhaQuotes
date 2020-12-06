@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -147,7 +146,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <ListView
-        android:id="@+id/contributors_list"
+        android:id="@+id/contributorsList"
         android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="@+id/textView15"
@@ -233,9 +232,9 @@
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="@+id/contributors_list"
-        app:layout_constraintStart_toStartOf="@+id/contributors_list"
-        app:layout_constraintTop_toBottomOf="@+id/contributors_list" />
+        app:layout_constraintEnd_toEndOf="@+id/contributorsList"
+        app:layout_constraintStart_toStartOf="@+id/contributorsList"
+        app:layout_constraintTop_toBottomOf="@+id/contributorsList" />
 
     <View
         android:id="@+id/view5"
@@ -303,7 +302,7 @@
         app:srcCompat="@drawable/ic_buddha" />
 
     <ListView
-        android:id="@+id/translators_list"
+        android:id="@+id/translatorsList"
         android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="@+id/textView22"
@@ -319,8 +318,9 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/translators_list"
-        app:srcCompat="@drawable/gplv3" />
+        app:layout_constraintTop_toBottomOf="@+id/translatorsList"
+        app:srcCompat="@drawable/gplv3"
+        android:contentDescription="@string/gplv3" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -331,7 +331,7 @@
         android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/translators_list"
+        app:layout_constraintTop_toBottomOf="@+id/translatorsList"
         app:srcCompat="@drawable/osi_keyhole" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

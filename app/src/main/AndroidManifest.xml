@@ -16,7 +16,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.MainActivity"></activity>
+            android:theme="@style/AppTheme.MainActivity" />
 
         <receiver android:name=".Widget">
             <intent-filter>

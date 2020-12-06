@@ -11,9 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
@@ -28,15 +26,22 @@ class About : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
+
+        //Setup view binding & force portrait mode
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val contributorsList: ListView = findViewById(R.id.contributors_list)
+        //Setup toolbar
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
+
+        val contributorsList: ListView = findViewById(R.id.contributorsList)
         val contributors = this.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
         contributorsList.adapter = contributorsAdapter
@@ -44,7 +49,7 @@ class About : AppCompatActivity() {
         contributorsList.isClickable = false
         justifyListViewHeightBasedOnChildren(contributorsList)
 
-        val translatorsList: ListView = findViewById(R.id.translators_list)
+        val translatorsList: ListView = findViewById(R.id.translatorsList)
         val translators = this.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
         translatorsList.adapter = translatorsAdapter
@@ -54,10 +59,9 @@ class About : AppCompatActivity() {
 
         var done = false
 
-        val scrollview: ScrollView = findViewById(R.id.scroll)
-        scrollview.viewTreeObserver
+        binding.scrollView.viewTreeObserver
             .addOnScrollChangedListener {
-                if (!(scrollview.getChildAt(0).bottom > scrollview.height + scrollview.scrollY || done)
+                if (!(binding.scrollView.getChildAt(0).bottom > binding.scrollView.height + binding.scrollView.scrollY || done)
                 ) {
                     binding.viewKonfetti.build()
                         .addColors(
@@ -92,26 +96,13 @@ class About : AppCompatActivity() {
                         @Suppress("DEPRECATION")
                         vibrator.vibrate(200)
                     }
-
-                    val contextView = findViewById<View>(R.id.context_view)
                 }
             }
-
-        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 
     private fun justifyListViewHeightBasedOnChildren(listView: ListView) {

@@ -4,9 +4,9 @@
     <color name="colorPrimary">#E80054</color>
     <color name="colorAccent">#E80054</color>
     <color name="colorAlsoAccent">#E80054</color>
-    <color name="colorTop">#333333</color>
     <color name="colorWaveLight">#222222</color>
     <color name="colorWaveDark">#333333</color>
     <color name="background">#121212</color>
+    <color name="dark_mode_bar">#333333</color>
 
 </resources>
