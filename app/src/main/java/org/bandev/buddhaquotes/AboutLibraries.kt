@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
@@ -25,17 +24,18 @@ class AboutLibraries : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
+
+        //Setup view binding & force portrait mode
         binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
+        //Setup toolbar
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
             finish()
         }
 
@@ -101,10 +101,5 @@ class AboutLibraries : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 }

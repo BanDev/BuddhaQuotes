@@ -13,10 +13,6 @@
     <string name='light_mode'>Свет</string> <!-- Translated by Fennec_exe -->
     <string name='dark_mode'>Темно</string> <!-- Translated by Fennec_exe -->
     <string name='follow_system_default'>Следуйте системным настройкам по умолчанию</string> <!-- Translated by Fennec_exe -->
-    <string name='text_size'>Размер текста</string> <!-- Translated by Fennec_exe -->
-    <string name='small_text_size'>Небольшой</string> <!-- Translated by Fennec_exe -->
-    <string name='medium_text_size'>средний</string> <!-- Translated by Fennec_exe -->
-    <string name='large_text_size'>Большой</string> <!-- Translated by Fennec_exe -->
     <string name='information'>Информация</string> <!-- Translated by Fennec_exe -->
     <string name='about'>Около</string> <!-- Translated by Fennec_exe -->
     <string name='view_app_details'>Просмотр сведений о приложении</string> <!-- Translated by Fennec_exe -->

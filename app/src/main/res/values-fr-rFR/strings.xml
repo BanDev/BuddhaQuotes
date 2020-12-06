@@ -12,10 +12,6 @@
     <string name='light_mode'>lumière</string> <!-- Translated by harrydevey06 -->
     <string name='dark_mode'>sombre</string> <!-- Translated by harrydevey06 -->
     <string name='follow_system_default'>Suivre les paramètres par défaut du système</string> <!-- Translated by harrydevey06 -->
-    <string name='text_size'>Taille du texte</string> <!-- Translated by harrydevey06 -->
-    <string name='small_text_size'>Petit</string> <!-- Translated by harrydevey06 -->
-    <string name='medium_text_size'>moyen</string> <!-- Translated by harrydevey06 -->
-    <string name='large_text_size'>Grand</string> <!-- Translated by harrydevey06 -->
     <string name='information'>information</string> <!-- Translated by harrydevey06 -->
     <string name='about'>sur</string> <!-- Translated by harrydevey06 -->
     <string name='view_app_details'>Afficher les détails de l\'application</string> <!-- Translated by harrydevey06 -->

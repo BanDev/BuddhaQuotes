@@ -14,9 +14,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbar"
             android:paddingStart="8dp"
             android:paddingEnd="10dp"
             app:title="@string/open_source_libraries"
@@ -35,7 +36,7 @@
         app:handleDrawable="@drawable/handle_drawable"
         app:handleVisibilityDuration="1"
         app:handleWidth="14dp"
-        app:handleHeight="34dp">
+        app:handleHeight="36dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

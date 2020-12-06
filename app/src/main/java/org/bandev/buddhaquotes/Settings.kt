@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -29,13 +28,29 @@ class Settings : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window)
+        Colours().setAccentColor(this, window, resources)
         Compatibility().setNavigationBar(this, window, resources)
         Languages().setLanguage(this)
+
+        //Setup view binding & force portrait mode
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        //Setup toolbar
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener {
+            val i = Intent(this, OldMainActivity::class.java)
+            val mBundle = Bundle()
+            mBundle.putString("quote", quotenumber.toString())
+            i.putExtras(mBundle)
+            startActivity(i)
+            overridePendingTransition(
+                R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right
+            )
+            finish()
+        }
 
         if ((intent.extras ?: return).getBoolean("lang")) {
             this.overridePendingTransition(0, 0)
@@ -74,21 +89,6 @@ class Settings : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.settings, SettingsFragment())
             .commit()
-
-        val toolbar = findViewById<View>(R.id.topAppBar) as Toolbar
-        setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            val i = Intent(this, OldMainActivity::class.java)
-            val mBundle = Bundle()
-            mBundle.putString("quote", quotenumber.toString())
-            i.putExtras(mBundle)
-            startActivity(i)
-            overridePendingTransition(
-                R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right
-            )
-            finish()
-        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -202,10 +202,10 @@ class Settings : AppCompatActivity() {
 
             MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
                 .setTitle(R.string.settings_language)
-                .setNegativeButton(R.string.cancel) { dialog, which ->
+                .setNegativeButton(R.string.cancel) { _, _ ->
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-                .setPositiveButton(R.string.confirm) { dialog, which ->
+                .setPositiveButton(R.string.confirm) { _, _ ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
@@ -234,10 +234,10 @@ class Settings : AppCompatActivity() {
 
             MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
                 .setTitle(R.string.app_theme)
-                .setNegativeButton(R.string.cancel) { dialog, which ->
+                .setNegativeButton(R.string.cancel) { _, _ ->
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-                .setPositiveButton(R.string.confirm) { dialog, which ->
+                .setPositiveButton(R.string.confirm) { _, _ ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
@@ -250,7 +250,7 @@ class Settings : AppCompatActivity() {
                     intent2.putExtras(mBundle)
                     startActivity(intent2)
                 }
-                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
                     when (which) {
                         0 -> {
                             editor.putBoolean("dark_mode", false)
@@ -290,7 +290,7 @@ class Settings : AppCompatActivity() {
 
             MaterialDialog(requireContext()).show {
                 title(R.string.settings_accent_colour)
-                colorChooser(colors) { dialog, color ->
+                colorChooser(colors) { _, color ->
                     // Use color integer
                     var colorOut = "original"
                     when (color) {
@@ -362,20 +362,6 @@ class Settings : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val myIntent = Intent(this@Settings, OldMainActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", quotenumber.toString())
-        myIntent.putExtras(mBundle)
-        this@Settings.startActivity(myIntent)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
-        finish()
-        return true
-    }
-
     override fun onBackPressed() {
         super.onBackPressed()
         val myIntent = Intent(this@Settings, OldMainActivity::class.java)
@@ -383,7 +369,6 @@ class Settings : AppCompatActivity() {
         mBundle.putString("quote", quotenumber.toString())
         myIntent.putExtras(mBundle)
         this@Settings.startActivity(myIntent)
-
         overridePendingTransition(
             R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right

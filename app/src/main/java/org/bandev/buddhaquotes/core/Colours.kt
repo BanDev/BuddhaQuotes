@@ -1,9 +1,11 @@
 package org.bandev.buddhaquotes.core
 
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.Window
+import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
 
@@ -17,7 +19,7 @@ class Colours {
      * @added [1008] v1.5.0 - 2020-10-29
      */
 
-    fun setAccentColor(context: Context, window: Window) {
+    fun setAccentColor(context: Context, window: Window, resources: Resources) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
 
         //Set the accent
@@ -40,7 +42,15 @@ class Colours {
         val theme: Resources.Theme = context.theme
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
         val color = typedValue.data
-        window.statusBarColor = color
+        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                window.statusBarColor = color
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                window.statusBarColor =
+                    ResourcesCompat.getColor(resources, R.color.dark_mode_bar, null)
+            }
+        }
     }
 
     fun getColor(context: Context): String {

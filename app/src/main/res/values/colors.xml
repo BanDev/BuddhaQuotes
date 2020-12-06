@@ -4,12 +4,11 @@
     <color name="colorPrimary">#E80054</color>
     <color name="colorAccent">#E80054</color>
     <color name="colorAlsoAccent">#E80054</color>
-    <color name="colorTop">#E80054</color>
     <color name="colorWaveLight">#E80054</color>
     <color name="colorWaveDark">#FF4155</color>
     <color name="redError">#70df5252</color>
     <color name="splashEndColor">#FFB332</color>
-    <color name="white">@android:color/white</color>
+    <color name="dark_mode_bar">#333333</color>
 
     <color name="bandev">#5E17EB</color>
 

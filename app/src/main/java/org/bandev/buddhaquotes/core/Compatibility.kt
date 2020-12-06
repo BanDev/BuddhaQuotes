@@ -47,7 +47,12 @@ class Compatibility {
         }
     }
 
-    fun edgeToEdge(window: Window, view: View, toolbar: androidx.appcompat.widget.Toolbar, resources: Resources) {
+    fun edgeToEdge(
+        window: Window,
+        view: View,
+        toolbar: com.google.android.material.appbar.MaterialToolbar,
+        resources: Resources
+    ) {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -57,8 +62,10 @@ class Compatibility {
         }
 
         var statusBarHeight = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen",
-            "android")
+        val resourceId = resources.getIdentifier(
+            "status_bar_height", "dimen",
+            "android"
+        )
         if (resourceId > 0) {
             statusBarHeight = resources.getDimensionPixelSize(resourceId)
         }
