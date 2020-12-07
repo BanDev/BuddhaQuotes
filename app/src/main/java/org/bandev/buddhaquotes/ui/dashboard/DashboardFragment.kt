@@ -64,7 +64,6 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
             adapter = ListMenuAdapter(scrollingList, this@DashboardFragment)
             setHasFixedSize(false)
         }
-
     }
 
     private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
