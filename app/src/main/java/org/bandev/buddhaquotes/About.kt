@@ -63,8 +63,7 @@ class About : AppCompatActivity() {
 
         binding.scrollView.viewTreeObserver
             .addOnScrollChangedListener {
-                if (binding.scrollView.getChildAt(0).bottom <= binding.scrollView.height + binding.scrollView.scrollY && !done
-                ) {
+                if (binding.scrollView.getChildAt(0).bottom <= binding.scrollView.height + binding.scrollView.scrollY && !done) {
                     binding.viewKonfetti.build()
                         .addColors(
                             Color.parseColor("#A864FD"),

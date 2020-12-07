@@ -90,11 +90,6 @@
         <item name="android:windowBackground">@drawable/launch_theme</item>
     </style>
 
-    <style name="toolbarTextScroller">
-        <item name="fontFamily">@font/mt_med</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
     <style name="ThemeOverlay.BuddhaQuotes.AppWidgetContainer" parent="">
         <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
         <item name="appWidgetTextColor">@color/light_blue_50</item>

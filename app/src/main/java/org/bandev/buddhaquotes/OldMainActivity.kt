@@ -14,12 +14,10 @@ import android.view.animation.RotateAnimation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.*
 import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.plattysoft.leonids.ParticleSystem
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Preferences
@@ -97,7 +95,7 @@ class OldMainActivity : AppCompatActivity() {
         share = findViewById(R.id.share)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
-        heartBlack = ContextCompat.getDrawable(this, R.drawable.format_list_bulleted_black_24dp)
+        heartBlack = ContextCompat.getDrawable(this, R.drawable.ic_list)
         quoteView = findViewById(R.id.quote)
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -178,11 +176,6 @@ class OldMainActivity : AppCompatActivity() {
         (favourite ?: return).setOnClickListener {
             window.decorView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (!(done ?: return@setOnClickListener)) {
-                val like = ParticleSystem(this, 5, R.drawable.heart_full_red, 600)
-                like.setSpeedRange(0.0750f, 0.0750f)
-                like.setFadeOut(100)
-                like.setScaleRange(0.5f, 1f)
-                like.oneShot(favourite, 5)
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 // If It Is Not Liked Already
 

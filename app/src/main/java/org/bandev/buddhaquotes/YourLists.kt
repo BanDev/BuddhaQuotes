@@ -18,7 +18,6 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
