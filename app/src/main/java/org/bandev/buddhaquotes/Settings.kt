@@ -23,7 +23,6 @@ import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
 
-    private var quotenumber: Int = 0
     private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,10 +42,6 @@ class Settings : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             val i = Intent(this, OldMainActivity::class.java)
-            val mBundle = Bundle()
-            mBundle.putString("quote", quotenumber.toString())
-            i.putExtras(mBundle)
-            startActivity(i)
             overridePendingTransition(
                 R.anim.anim_slide_in_right,
                 R.anim.anim_slide_out_right
@@ -367,9 +362,6 @@ class Settings : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val myIntent = Intent(this@Settings, OldMainActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("quote", quotenumber.toString())
-        myIntent.putExtras(mBundle)
         this@Settings.startActivity(myIntent)
         overridePendingTransition(
             R.anim.anim_slide_in_right,
