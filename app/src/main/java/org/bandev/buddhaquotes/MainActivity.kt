@@ -3,19 +3,35 @@ package org.bandev.buddhaquotes
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
+import org.bandev.buddhaquotes.fragments.FragmentAdapter
+
+/**
+ * MainActivity is the main page of Buddha Quotes
+ *
+ * It has a ViewPager and allows the user to scroll between its fragments.
+ * It uses [FragmentAdapter] as a fragment adapter and
+ * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
+ * @since v1.0.0
+ * @author jack.txt & Fennec_exe
+ */
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
+
+    /**
+     * On activity created
+     *
+     * @param savedInstanceState [Bundle]
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,32 +49,38 @@ class MainActivity : AppCompatActivity() {
         //Setup toolbar
         setSupportActionBar(binding.toolbar)
 
-        //Set to draw behind system bars
-        Compatibility().edgeToEdge(window, binding.root, binding.toolbar, resources)
+        //Setup viewPager with FragmentAdapter
+        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        binding.bottomBar.setupWithViewPager2(binding.viewPager)
 
-        binding.root.setOnClickListener {
-            val myIntent =
-                Intent(this, Settings::class.java)
-            val mBundle = Bundle()
-            mBundle.putString("quote", 1.toString())
-            myIntent.putExtras(mBundle)
-            this.startActivity(myIntent)
-            overridePendingTransition(
-                R.anim.anim_slide_in_left,
-                R.anim.anim_slide_out_left
-            )
-        }
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        // Passing each menu ID as a set of IDs because each menu should be considered as top level destinations
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
     }
+
+    /**
+     * On options menu created
+     *
+     * @param menu [Menu]
+     * @return [Boolean]
+     */
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    /**
+     * On options menu item selected
+     *
+     * There is currently only 1 icon, there is no need to check which icon was pressed
+     *
+     * @param item [MenuItem]
+     * @return [Boolean]
+     */
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this, Settings::class.java)
+        intent.putExtra("from", Activities.MAIN_ACTIVITY)
+        this.startActivity(intent)
+        return true
+    }
+
 }
