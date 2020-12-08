@@ -48,7 +48,7 @@ class Colours {
             }
             Configuration.UI_MODE_NIGHT_YES -> {
                 window.statusBarColor =
-                    ResourcesCompat.getColor(resources, R.color.dark_mode_bar, null)
+                    ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
             }
         }
     }

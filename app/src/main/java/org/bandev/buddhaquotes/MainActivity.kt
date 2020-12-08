@@ -82,5 +82,4 @@ class MainActivity : AppCompatActivity() {
         this.startActivity(intent)
         return true
     }
-
 }

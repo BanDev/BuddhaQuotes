@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.google.android:flexbox:2.0.1'
 
     // Kotlin
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.20'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21'
 
     // AboutLibraries
     implementation 'com.mikepenz:aboutlibraries-core:8.6.3'
@@ -85,7 +85,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-beta01'
 
     //Recycler View
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // Android KTX
@@ -95,7 +95,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha02'
-
-    implementation 'nl.joery.animatedbottombar:library:1.0.9'
-
 }
