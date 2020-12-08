@@ -131,4 +131,8 @@
         <item name="android:fontFamily">@font/mt_bold</item>
     </style>
 
+    <style name="AnimatedBottomBarText">
+        <item name="android:fontFamily">@font/mt_med</item>
+    </style>
+
 </resources>

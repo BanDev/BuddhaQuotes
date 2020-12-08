@@ -25,7 +25,7 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFF"
+        android:background="@color/abbBackgroundColor"
         android:elevation="10dp"
         app:abb_indicatorAppearance="round"
         app:abb_indicatorHeight="4dp"
@@ -33,6 +33,8 @@
         app:abb_selectedIndex="1"
         app:abb_selectedTabType="text"
         app:abb_tabs="@menu/bottom_nav_menu"
+        app:abb_textAppearance="@style/AnimatedBottomBarText"
+        app:abb_animationDuration="200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

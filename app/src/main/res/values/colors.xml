@@ -8,7 +8,8 @@
     <color name="colorWaveDark">#FF4155</color>
     <color name="redError">#70df5252</color>
     <color name="splashEndColor">#FFB332</color>
-    <color name="dark_mode_bar">#333333</color>
+    <color name="darkModeBar">#333333</color>
+    <color name="abbBackgroundColor">@android:color/white</color>
 
     <color name="bandev">#5E17EB</color>
 

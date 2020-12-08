@@ -7,6 +7,7 @@
     <color name="colorWaveLight">#222222</color>
     <color name="colorWaveDark">#333333</color>
     <color name="background">#121212</color>
-    <color name="dark_mode_bar">#333333</color>
+    <color name="darkModeBar">#333333</color>
+    <color name="abbBackgroundColor">@color/darkModeBar</color>
 
 </resources>
