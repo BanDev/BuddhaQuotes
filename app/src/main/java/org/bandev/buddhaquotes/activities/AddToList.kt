@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -10,13 +10,15 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import java.util.*
 
-class AddQuote : AppCompatActivity() {
+class AddToList : AppCompatActivity() {
 
     private lateinit var binding: AddlistContentBinding
 
@@ -24,8 +26,8 @@ class AddQuote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //Set theme, navigation bar and language
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode

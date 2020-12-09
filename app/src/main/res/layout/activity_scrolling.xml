@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:id="@+id/scrolling"
-    tools:context=".ScrollingActivity">
+    tools:context=".activities.ScrollingActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ScrollingActivity"
+        tools:context=".activities.ScrollingActivity"
         android:id="@+id/nested_scroll"
         tools:showIn="@layout/activity_scrolling">
 

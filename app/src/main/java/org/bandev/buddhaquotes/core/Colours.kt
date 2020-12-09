@@ -3,11 +3,21 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.graphics.Color
 import android.util.TypedValue
 import android.view.Window
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
+
+/**
+ * Colours is the class used to manage custom accent colours in Buddha Quotes. It saves data in
+ * shared preferences using the key "accent_color"
+ *
+ * @author jack.txt & Fennec_exe
+ * @since v1.5.0
+ * @updated 09/12/2020
+ */
 
 class Colours {
 
@@ -15,11 +25,9 @@ class Colours {
      * Sets activity's theme based off setting from preferences
      * @param [context] context of activity (Context)
      * @param [window] context of window (Window)
-     * @author jack.txt
-     * @added [1008] v1.5.0 - 2020-10-29
      */
 
-    fun setAccentColor(context: Context, window: Window, resources: Resources) {
+    fun setAccentColour(context: Context, window: Window, resources: Resources) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
 
         //Set the accent
@@ -38,13 +46,9 @@ class Colours {
             else -> context.setTheme(R.style.AppTheme_Original)
         }
 
-        val typedValue = TypedValue()
-        val theme: Resources.Theme = context.theme
-        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
-        val color = typedValue.data
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = color
+                window.statusBarColor = getAccentColorAsInt(context)
             }
             Configuration.UI_MODE_NIGHT_YES -> {
                 window.statusBarColor =
@@ -53,8 +57,29 @@ class Colours {
         }
     }
 
-    fun getColor(context: Context): String {
+    /**
+     * Gets the current colour and returns it as a string
+     *
+     * @param [context] context of activity (Context)
+     * @return The name of the colour (String)
+     */
+
+    fun getAccentColourAsString(context: Context): String {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPrefs.getString("accent_color", "original").toString()
+    }
+
+    /**
+     * Gets the current colour and returns it as an int
+     *
+     * @param [context] context of activity (Context)
+     * @return The accent colour (Int)
+     */
+
+    fun getAccentColorAsInt(context: Context): Int {
+        val typedValue = TypedValue()
+        val theme: Resources.Theme = context.theme
+        theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        return typedValue.data
     }
 }

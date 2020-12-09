@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -15,6 +15,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.color.colorChooser
 import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.bandev.buddhaquotes.OldMainActivity
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
@@ -29,8 +31,8 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //Set theme, navigation bar and language
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode
@@ -97,11 +99,11 @@ class Settings : AppCompatActivity() {
                     startActivity(i)
                 }
                 "Help" -> {
-                    val i = Intent(activity, AppIntro::class.java)
+                    val i = Intent(activity, Intro::class.java)
                     startActivity(i)
                 }
                 "AboutLibraries" -> {
-                    val i = Intent(activity, AboutLibraries::class.java)
+                    val i = Intent(activity, OssLibraries::class.java)
                     startActivity(i)
                 }
             }
@@ -152,7 +154,7 @@ class Settings : AppCompatActivity() {
 
         private fun updateColorSummary() {
             val accentColor = findPreference<Preference>("accent_color")
-            when (Colours().getColor(requireContext())) {
+            when (Colours().getAccentColourAsString(requireContext())) {
                 "pink" -> (accentColor ?: return).summary = getString(R.string.pink)
                 "violet" -> (accentColor ?: return).summary = getString(R.string.violet)
                 "blue" -> (accentColor ?: return).summary = getString(R.string.blue)

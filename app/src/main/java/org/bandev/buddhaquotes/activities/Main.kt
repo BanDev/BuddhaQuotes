@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -23,7 +24,7 @@ import org.bandev.buddhaquotes.fragments.FragmentAdapter
  * @author jack.txt & Fennec_exe
  */
 
-class MainActivity : AppCompatActivity() {
+class Main : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
 
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //Set theme, navigation bar and language
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intent = Intent(this, Settings::class.java)
-        intent.putExtra("from", Activities.MAIN_ACTIVITY)
+        intent.putExtra("from", Activities.MAIN)
         this.startActivity(intent)
         return true
     }

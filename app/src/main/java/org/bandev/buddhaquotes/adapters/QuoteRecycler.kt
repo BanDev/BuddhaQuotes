@@ -1,21 +1,22 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.databinding.LayoutRecyclerCard2Binding
-import org.bandev.buddhaquotes.ui.dashboard.DashboardFragment
+import org.bandev.buddhaquotes.items.Quote
+import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.databinding.LayoutRecyclerCardBinding
 
-class ListMenuAdapter(
+class QuoteRecycler(
 
-    private val scrollingList: List<ListMenuItem>,
-    private val listener: DashboardFragment,
+    private val scrollingList: List<Quote>,
+    private val listener: OnItemClickFinder,
 
-    ) : RecyclerView.Adapter<ListMenuAdapter.ScrollingViewHolder>() {
+    ) : RecyclerView.Adapter<QuoteRecycler.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
-        val binding = LayoutRecyclerCard2Binding.inflate(
+        val binding = LayoutRecyclerCardBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -25,11 +26,11 @@ class ListMenuAdapter(
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
         val currentItem = scrollingList[position]
 
-        holder.binding.title.text = currentItem.title
-        holder.binding.summary.text = currentItem.summary
+        holder.binding.quote.text = currentItem.quote
+        holder.binding.like.setImageResource(currentItem.resource)
 
-        if (currentItem.special) {
-            holder.binding.bin.visibility = View.GONE
+        if (currentItem.no_like) {
+            holder.binding.like.setImageResource(R.drawable.heart_full_red)
         }
     }
 
@@ -37,10 +38,11 @@ class ListMenuAdapter(
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val binding: LayoutRecyclerCard2Binding = LayoutRecyclerCard2Binding.bind(itemView)
+        val binding: LayoutRecyclerCardBinding = LayoutRecyclerCardBinding.bind(itemView)
 
         init {
-            itemView.setOnClickListener {
+            binding.like.setOnClickListener(this)
+            binding.share.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onShareClick(position)
@@ -50,7 +52,7 @@ class ListMenuAdapter(
             binding.bin.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, binding.title.text.toString())
+                    listener.onBinClick(position, binding.quote.text.toString())
                 }
             }
         }
@@ -58,20 +60,26 @@ class ListMenuAdapter(
         override fun onClick(v: View?) {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.title.toString())
+                listener.onLikeClick(position, binding.quote.text.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.title.toString())
+                listener.onLikeClick(position, binding.quote.text.toString())
             }
             // Return true to indicate the click was handled
             return true
         }
-
     }
 
+    interface OnItemClickFinder {
+        fun onLikeClick(position: Int, text: String)
+
+        fun onShareClick(position: Int)
+
+        fun onBinClick(position: Int, text: String)
+    }
 }
 

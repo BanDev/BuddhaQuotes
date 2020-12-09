@@ -1,6 +1,7 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.core
 
 import android.content.Context
+import org.bandev.buddhaquotes.R
 
 class Quotes {
 
