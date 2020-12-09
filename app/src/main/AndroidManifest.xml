@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.Main"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.MainActivity" />
@@ -29,20 +29,20 @@
         </receiver>
 
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".activities.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".AddQuote"
+            android:name=".activities.AddToList"
             android:label="addList"
             android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".YourLists"
+            android:name=".activities.YourLists"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash"
+            android:name=".activities.Splash"
             android:screenOrientation="portrait"
             android:theme="@style/Splash">
             <intent-filter>
@@ -52,20 +52,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".About"
+            android:name=".activities.About"
             android:label="@string/about"
             android:screenOrientation="portrait"
             android:theme="@style/About" />
         <activity
-            android:name=".Settings"
+            android:name=".activities.Settings"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait"
             android:theme="@style/Settings" />
         <activity
-            android:name=".AppIntro"
+            android:name=".activities.Intro"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AboutLibraries"
+            android:name=".activities.OssLibraries"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OldMainActivity"

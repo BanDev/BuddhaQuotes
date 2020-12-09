@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -18,20 +18,24 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import org.bandev.buddhaquotes.*
+import org.bandev.buddhaquotes.adapters.ListRecycler
+import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
+import org.bandev.buddhaquotes.items.List
 import java.util.*
 import kotlin.collections.ArrayList
 
-class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
+class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityYourListsBinding
-    private lateinit var scrollingList: ArrayList<ListMenuItem>
-    private lateinit var adapter: ListMenuAdapter
+    private lateinit var scrollingList: ArrayList<List>
+    private lateinit var adapter: ListRecycler
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
 
@@ -59,8 +63,8 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         binding = ActivityYourListsBinding.inflate(layoutInflater)
@@ -207,9 +211,9 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
         }
     }
 
-    private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
+    private fun generateDummyList(max: Int): ArrayList<List> {
 
-        val list = ArrayList<ListMenuItem>()
+        val list = ArrayList<List>()
 
         var i = 0
         while (i != max) {
@@ -226,7 +230,7 @@ class YourLists : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
             } else {
                 "$count item"
             }
-            val item = ListMenuItem(array[i], summary, special)
+            val item = List(array[i], summary, special)
             list += item
             i++
         }

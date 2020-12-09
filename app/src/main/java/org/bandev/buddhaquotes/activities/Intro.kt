@@ -1,12 +1,13 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
+import org.bandev.buddhaquotes.R
 
-class AppIntro : AppIntro2() {
+class Intro : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Make sure you don't call setContentView!

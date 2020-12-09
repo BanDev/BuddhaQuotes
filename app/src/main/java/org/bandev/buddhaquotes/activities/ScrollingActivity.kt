@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -11,25 +11,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
+import org.bandev.buddhaquotes.items.Quote
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinder {
+class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
-    private lateinit var scrollingList: ArrayList<ExampleItem>
-    private lateinit var adapter: ScrollingAdapter
+    private lateinit var scrollingList: ArrayList<Quote>
+    private lateinit var adapter: QuoteRecycler
     private lateinit var prefList: List<String>
     private var listTmp: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode
@@ -53,7 +56,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
         prefList = prefListTmp
         scrollingList = generateDummyList(prefList.size)
-        adapter = ScrollingAdapter(scrollingList, this@ScrollingActivity)
+        adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         setSupportActionBar(binding.toolbar)
         binding.toolbarLayout.title = list
@@ -79,7 +82,7 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                val intent2 = Intent(this, AddQuote::class.java)
+                val intent2 = Intent(this, AddToList::class.java)
                 val b = Bundle()
                 b.putString("list", listTmp) // Your id
                 intent2.putExtras(b)
@@ -164,12 +167,12 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
 
     }
 
-    private fun generateDummyList(max: Int): ArrayList<ExampleItem> {
+    private fun generateDummyList(max: Int): ArrayList<Quote> {
 
-        val list = ArrayList<ExampleItem>()
+        val list = ArrayList<Quote>()
 
         var i = 0
-        var item: ExampleItem
+        var item: Quote
 
         val pref = getSharedPreferences("List_system", 0)
         val listArr = pref.getString("Favourites", "")
@@ -183,11 +186,11 @@ class ScrollingActivity : AppCompatActivity(), ScrollingAdapter.OnItemClickFinde
             }
             if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
                 if (prefList[i] != "") {
-                    item = ExampleItem(prefList[i], R.drawable.heart_full_red, special)
+                    item = Quote(prefList[i], R.drawable.heart_full_red, special)
                     list += item
                 }
             } else {
-                item = ExampleItem(prefList[i], R.drawable.like, special)
+                item = Quote(prefList[i], R.drawable.like, special)
                 list += item
             }
 

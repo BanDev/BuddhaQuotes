@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.activities
 
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -12,13 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityAboutLibrariesBinding
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
-class AboutLibraries : AppCompatActivity() {
+class OssLibraries : AppCompatActivity() {
 
     private lateinit var binding: ActivityAboutLibrariesBinding
 
@@ -26,8 +27,8 @@ class AboutLibraries : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //Set theme, navigation bar and language
-        Colours().setAccentColor(this, window, resources)
-        Compatibility().setNavigationBar(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode

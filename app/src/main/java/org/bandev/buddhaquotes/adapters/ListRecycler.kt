@@ -1,20 +1,22 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.databinding.LayoutRecyclerCardBinding
+import org.bandev.buddhaquotes.items.List
+import org.bandev.buddhaquotes.databinding.LayoutRecyclerCard2Binding
+import org.bandev.buddhaquotes.ui.dashboard.DashboardFragment
 
-class ScrollingAdapter(
+class ListRecycler(
 
-    private val scrollingList: List<ExampleItem>,
-    private val listener: OnItemClickFinder,
+    private val scrollingLists: kotlin.collections.List<List>,
+    private val listener: DashboardFragment,
 
-    ) : RecyclerView.Adapter<ScrollingAdapter.ScrollingViewHolder>() {
+    ) : RecyclerView.Adapter<ListRecycler.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
-        val binding = LayoutRecyclerCardBinding.inflate(
+        val binding = LayoutRecyclerCard2Binding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -22,25 +24,24 @@ class ScrollingAdapter(
     }
 
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
-        val currentItem = scrollingList[position]
+        val currentItem = scrollingLists[position]
 
-        holder.binding.quote.text = currentItem.quote
-        holder.binding.like.setImageResource(currentItem.resource)
+        holder.binding.title.text = currentItem.title
+        holder.binding.summary.text = currentItem.summary
 
-        if (currentItem.no_like) {
-            holder.binding.like.setImageResource(R.drawable.heart_full_red)
+        if (currentItem.special) {
+            holder.binding.bin.visibility = View.GONE
         }
     }
 
-    override fun getItemCount(): Int = scrollingList.size
+    override fun getItemCount(): Int = scrollingLists.size
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val binding: LayoutRecyclerCardBinding = LayoutRecyclerCardBinding.bind(itemView)
+        val binding: LayoutRecyclerCard2Binding = LayoutRecyclerCard2Binding.bind(itemView)
 
         init {
-            binding.like.setOnClickListener(this)
-            binding.share.setOnClickListener {
+            itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onShareClick(position)
@@ -50,7 +51,7 @@ class ScrollingAdapter(
             binding.bin.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, binding.quote.text.toString())
+                    listener.onBinClick(position, binding.title.text.toString())
                 }
             }
         }
@@ -58,26 +59,20 @@ class ScrollingAdapter(
         override fun onClick(v: View?) {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.quote.text.toString())
+                listener.onLikeClick(position, binding.title.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.quote.text.toString())
+                listener.onLikeClick(position, binding.title.toString())
             }
             // Return true to indicate the click was handled
             return true
         }
+
     }
 
-    interface OnItemClickFinder {
-        fun onLikeClick(position: Int, text: String)
-
-        fun onShareClick(position: Int)
-
-        fun onBinClick(position: Int, text: String)
-    }
 }
 

@@ -48,6 +48,26 @@ class Lists {
         return true
     }
 
+    fun toggleToList(quote: String, name: String, context: Context): Boolean {
+        val pref = context.getSharedPreferences("List_system", 0)
+        val listArr = pref.getString(name, "")
+        val listArrFinal = LinkedList(listArr?.split("//"))
+        return if (listArrFinal.contains(quote)) {
+            removeFromList(quote, name, context)
+            false
+        } else {
+            addToList(quote, name, context)
+            true
+        }
+    }
+
+    fun queryInList(quote: String, name: String, context: Context?): Boolean {
+        val pref = context?.getSharedPreferences("List_system", 0)
+        val listArr = pref?.getString(name, "")
+        val listArrFinal = LinkedList(listArr?.split("//"))
+        return listArrFinal.contains(quote)
+    }
+
     fun removeFromList(quote: String, name: String, context: Context) {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()

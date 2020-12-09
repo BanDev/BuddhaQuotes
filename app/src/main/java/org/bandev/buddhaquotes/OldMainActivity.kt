@@ -18,9 +18,14 @@ import androidx.core.view.*
 import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.bandev.buddhaquotes.activities.Intro
+import org.bandev.buddhaquotes.activities.Main
+import org.bandev.buddhaquotes.activities.Settings
+import org.bandev.buddhaquotes.activities.YourLists
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Preferences
+import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.ActivityMain2Binding
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import java.util.*
@@ -44,10 +49,10 @@ class OldMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColor(this, window, resources)
+        Colours().setAccentColour(this, window, resources)
         Languages().setLanguage(this)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Main::class.java)
         this.startActivity(intent)
 
         val sharedPreferences = getSharedPreferences("Settings", 0)
@@ -56,7 +61,7 @@ class OldMainActivity : AppCompatActivity() {
         if (sharedPreferences.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            val i = Intent(this, AppIntro::class.java)
+            val i = Intent(this, Intro::class.java)
             startActivity(i)
         }
 

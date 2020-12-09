@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes
+package org.bandev.buddhaquotes.widgets
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -7,8 +7,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.Lists
+import org.bandev.buddhaquotes.core.Quotes
 
-class Widget : AppWidgetProvider() {
+class Main : AppWidgetProvider() {
 
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
     private var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
@@ -34,7 +37,7 @@ class Widget : AppWidgetProvider() {
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
                     context,
-                    Widget::class.java
+                    Main::class.java
                 )
             )
             x++
@@ -47,11 +50,11 @@ class Widget : AppWidgetProvider() {
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
                     context,
-                    Widget::class.java
+                    Main::class.java
                 )
             )
             x++
-            Core(context).Lists().newItemString("Favourites", quoteCurrent)
+            Lists().addToList("Favourites", quoteCurrent, context)
             views.setImageViewResource(R.id.like, R.drawable.heart_full_red)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         }
@@ -91,8 +94,8 @@ internal fun updateAppWidget(
 }
 
 fun getPenIntent(context: Context): PendingIntent {
-    val intent = Intent(context, Widget::class.java)
-    intent.action = Widget().widgetButton
+    val intent = Intent(context, Main::class.java)
+    intent.action = Main().widgetButton
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 

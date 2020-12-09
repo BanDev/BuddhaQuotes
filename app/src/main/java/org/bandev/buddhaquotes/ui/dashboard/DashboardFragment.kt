@@ -7,17 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.ListMenuAdapter
-import org.bandev.buddhaquotes.ListMenuItem
+import org.bandev.buddhaquotes.adapters.ListRecycler
+import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.ScrollingAdapter
+import org.bandev.buddhaquotes.activities.ScrollingActivity
+import org.bandev.buddhaquotes.adapters.QuoteRecycler
 
-class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
+class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    private lateinit var scrollingList: ArrayList<ListMenuItem>
-    private lateinit var adapter: ListMenuAdapter
+    private lateinit var scrollingList: ArrayList<List>
+    private lateinit var adapter: ListRecycler
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
     private lateinit var recyclerView: RecyclerView
@@ -57,18 +59,18 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
         array = array.distinct().toTypedArray()
 
         scrollingList = generateDummyList(array.size)
-        adapter = ListMenuAdapter(scrollingList, this)
+        adapter = ListRecycler(scrollingList, this)
 
         with(recyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListMenuAdapter(scrollingList, this@DashboardFragment)
+            adapter = ListRecycler(scrollingList, this@DashboardFragment)
             setHasFixedSize(false)
         }
     }
 
-    private fun generateDummyList(max: Int): ArrayList<ListMenuItem> {
+    private fun generateDummyList(max: Int): ArrayList<List> {
 
-        val list = ArrayList<ListMenuItem>()
+        val list = ArrayList<List>()
 
         var i = 0
         while (i != max) {
@@ -85,7 +87,7 @@ class DashboardFragment : Fragment(), ScrollingAdapter.OnItemClickFinder {
             } else {
                 "$count item"
             }
-            val item = ListMenuItem(array[i], summary, special)
+            val item = List(array[i], summary, special)
             list += item
             i++
         }
