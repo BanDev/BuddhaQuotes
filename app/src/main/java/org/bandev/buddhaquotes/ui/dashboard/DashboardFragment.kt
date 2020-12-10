@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.adapters.ListRecycler
-import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.ScrollingActivity
+import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
+import org.bandev.buddhaquotes.items.List
 
 class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
