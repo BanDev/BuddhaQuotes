@@ -3,7 +3,6 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.graphics.Color
 import android.util.TypedValue
 import android.view.Window
 import androidx.core.content.res.ResourcesCompat

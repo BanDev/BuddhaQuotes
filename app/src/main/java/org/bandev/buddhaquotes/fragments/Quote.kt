@@ -2,17 +2,16 @@ package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
-import org.bandev.buddhaquotes.custom.onDoubleClickListener
+import org.bandev.buddhaquotes.custom.OnDoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 
 /**
@@ -64,7 +63,7 @@ class Quote : Fragment() {
         binding.share.setOnClickListener {
             shareQuote()
         }
-        binding.content.setOnClickListener(object : onDoubleClickListener() {
+        binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
                 favouriteQuote()
             }

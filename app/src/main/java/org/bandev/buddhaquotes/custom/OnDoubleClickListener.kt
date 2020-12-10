@@ -11,9 +11,9 @@ import android.view.View
  * @updated 09/12/2020
  */
 
-abstract class onDoubleClickListener : View.OnClickListener {
+abstract class OnDoubleClickListener : View.OnClickListener {
 
-    var lastClickTime: Long = 0
+    private var lastClickTime: Long = 0
 
     override fun onClick(v: View?) {
         val clickTime = System.currentTimeMillis()
