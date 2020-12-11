@@ -96,5 +96,5 @@ dependencies {
     //Swipe to refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
-    implementation 'pub.hanks:smallbang:1.2.2'
+    implementation 'com.gitlab.bandev:Xplosion:1.0.1'
 }
