@@ -15,14 +15,14 @@ import org.bandev.buddhaquotes.custom.OnDoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 
 /**
- * Quote shows quotes to the user with refresh, like & share buttons.
- * Is the first item in the [FragmentAdapter] on MainActivity
+ * QuoteFragment shows quotes to the user with refresh, like & share buttons.
+ * It is the first item in the [FragmentAdapter] on MainActivity
  * @author jack.txt
  * @since 1.7.0
  * @updated 09/12/2020
  */
 
-class Quote : Fragment() {
+class QuoteFragment : Fragment() {
 
     private var _binding: FragmentQuoteBinding? = null
     private val binding get() = _binding!!
@@ -75,7 +75,7 @@ class Quote : Fragment() {
      */
 
     private fun newQuote() {
-        val quote = quotes.random(0, requireContext())
+        val quote = quotes.getQuote(0, requireContext())
         binding.quote.text = quote
         binding.number.text = getString(R.string.quote_number, quotes.quotenumberglobal)
         val icon = if (Lists().queryInList(quote, "Favourites", context)) {
@@ -110,12 +110,12 @@ class Quote : Fragment() {
     }
 
     /**
-     * Adds the quote to "Favourites" list using [Lists.toggleToList]
+     * Adds the quote to "Favourites" list using [Lists.toggleInList]
      */
 
     internal fun favouriteQuote() {
         val quote = binding.quote.text.toString()
-        if (Lists().toggleToList(quote, "Favourites", requireContext())) {
+        if (Lists().toggleInList(quote, "Favourites", requireContext())) {
             binding.like.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireContext(),
@@ -138,11 +138,11 @@ class Quote : Fragment() {
         /**
          * Called on new instance request
          * @param position [Int]
-         * @return [Quote]
+         * @return [QuoteFragment]
          */
 
-        fun newInstance(position: Int): Quote {
-            val instance = Quote()
+        fun newInstance(position: Int): QuoteFragment {
+            val instance = QuoteFragment()
             val args = Bundle()
             args.putInt("position", position)
             instance.arguments = args

@@ -227,7 +227,7 @@ class OldMainActivity : AppCompatActivity() {
     }
 
     private fun newQuote(Quote_Number_Local: Int) {
-        val text = quote.random(Quote_Number_Local, this)
+        val text = quote.getQuote(Quote_Number_Local, this)
         (quoteView ?: return).text = text
         done = false
         (favourite ?: return).setImageDrawable(
@@ -260,13 +260,13 @@ class OldMainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.settings_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_main_setting -> {
+            R.id.settings -> {
                 val myIntent =
                     Intent(this@OldMainActivity, Settings::class.java)
                 val mBundle = Bundle()

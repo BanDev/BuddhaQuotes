@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/toolbar"
-        app:menu="@menu/menu_main"
+        app:menu="@menu/settings_menu"
         android:paddingStart="25dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"

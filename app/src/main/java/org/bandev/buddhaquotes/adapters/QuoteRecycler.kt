@@ -4,19 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.items.Quote
+import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.databinding.LayoutRecyclerCardBinding
+import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
 
 class QuoteRecycler(
 
-    private val scrollingList: List<Quote>,
+    private val scrollingList: List<QuoteItem>,
     private val listener: OnItemClickFinder,
 
     ) : RecyclerView.Adapter<QuoteRecycler.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
-        val binding = LayoutRecyclerCardBinding.inflate(
+        val binding = CardQuoteFragmentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -38,14 +38,14 @@ class QuoteRecycler(
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val binding: LayoutRecyclerCardBinding = LayoutRecyclerCardBinding.bind(itemView)
+        val binding: CardQuoteFragmentBinding = CardQuoteFragmentBinding.bind(itemView)
 
         init {
             binding.like.setOnClickListener(this)
             binding.share.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onShareClick(position)
+                    listener.onCardClick(position)
                 }
             }
 
@@ -77,7 +77,7 @@ class QuoteRecycler(
     interface OnItemClickFinder {
         fun onLikeClick(position: Int, text: String)
 
-        fun onShareClick(position: Int)
+        fun onCardClick(position: Int)
 
         fun onBinClick(position: Int, text: String)
     }

@@ -53,7 +53,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:padding="10dp"
-            tools:listitem="@layout/layout_recycler_card" />
+            tools:listitem="@layout/card_quote_fragment" />
 
     </androidx.core.widget.NestedScrollView>
 

@@ -36,7 +36,8 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> Quote.newInstance(position)
+            0 -> QuoteFragment.newInstance(position)
+            1 -> ListsFragment.newInstance(position)
             else -> SampleFragment.newInstance(position)
         }
     }

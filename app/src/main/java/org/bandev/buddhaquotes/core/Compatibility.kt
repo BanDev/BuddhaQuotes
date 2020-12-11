@@ -8,14 +8,21 @@ import android.view.View
 import android.view.Window
 import android.view.WindowInsetsController
 
+/**
+ * The compatibility class ensures that Buddha Quotes works well on any android version that our
+ * app supports.
+ *
+ * @author Fennec_exe
+ * @since v1.5.0
+ * @updated 29/10/2020
+ */
+
 class Compatibility {
 
     /**
      * Sets navigation bar colour based off android version
      * @param [context] context of activity (Context)
      * @param [window] context of window (Window)
-     * @author Fennec_exe
-     * @added [1008] v1.5.0 - 2020-10-29
      */
 
     fun setNavigationBarColour(context: Context, window: Window) {

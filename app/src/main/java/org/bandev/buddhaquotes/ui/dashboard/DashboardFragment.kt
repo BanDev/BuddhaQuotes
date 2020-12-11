@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.items.List
+import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.bandev.buddhaquotes.items.ListItem
 
 class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    private lateinit var scrollingList: ArrayList<List>
+    private lateinit var scrollingList: ArrayList<ListItem>
     private lateinit var adapter: ListRecycler
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
@@ -26,7 +27,7 @@ class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         TODO("Not yet implemented")
     }
 
-    override fun onShareClick(position: Int) {
+    override fun onCardClick(position: Int) {
         TODO("Not yet implemented")
     }
 
@@ -57,18 +58,18 @@ class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         array = array.distinct().toTypedArray()
 
         scrollingList = generateDummyList(array.size)
-        adapter = ListRecycler(scrollingList, this)
+        adapter = ListRecycler(scrollingList, ListsFragment())
 
         with(recyclerView) {
             layoutManager = LinearLayoutManager(context)
-            adapter = ListRecycler(scrollingList, this@DashboardFragment)
+            adapter = ListRecycler(scrollingList, ListsFragment())
             setHasFixedSize(false)
         }
     }
 
-    private fun generateDummyList(max: Int): ArrayList<List> {
+    private fun generateDummyList(max: Int): ArrayList<ListItem> {
 
-        val list = ArrayList<List>()
+        val list = ArrayList<ListItem>()
 
         var i = 0
         while (i != max) {
@@ -85,7 +86,7 @@ class DashboardFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             } else {
                 "$count item"
             }
-            val item = List(array[i], summary, special)
+            val item = ListItem(array[i], summary, special)
             list += item
             i++
         }

@@ -3,19 +3,35 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import org.bandev.buddhaquotes.R
 
+/**
+ * Quotes manages all of our quotes
+ *
+ * @author jack.txt & Fennec_exe
+ * @since v1.2.0
+ * @updated 09/12/2020
+ */
+
 class Quotes {
 
     var quotenumberglobal: Int = 0
     private var maxQuote: Int = 237
-    fun random(Quote_Number: Int, context: Context): String {
+
+    /**
+     * Returns the quote with the corresponding index (0 for a random quote)
+     *
+     * @param [Quote_Number] is the index of the requested quote (Int)
+     * @param [context] context of activity (Context)
+     * @return the quote (String)
+     */
+
+    fun getQuote(Quote_Number: Int, context: Context): String {
         val num: Int = if (Quote_Number == 0) {
-            getRandomIntegerBetweenRange(0.0, maxQuote.toDouble()).toInt()
+            getRandomIntegerBetweenRange(1.0, maxQuote.toDouble()).toInt()
         } else {
             Quote_Number
         }
         var text = ""
         when (num) {
-
             1 -> text = context.getString(R.string.quote_1)
             2 -> text = context.getString(R.string.quote_2)
             3 -> text = context.getString(R.string.quote_3)

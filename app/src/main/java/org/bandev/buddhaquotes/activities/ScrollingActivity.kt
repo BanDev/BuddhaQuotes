@@ -11,20 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import org.bandev.buddhaquotes.OldMainActivity
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
-import org.bandev.buddhaquotes.items.Quote
+import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
-    private lateinit var scrollingList: ArrayList<Quote>
+    private lateinit var scrollingList: ArrayList<QuoteItem>
     private lateinit var adapter: QuoteRecycler
     private lateinit var prefList: List<String>
     private var listTmp: String = ""
@@ -75,7 +76,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.scroll_mode_menu, menu)
+        menuInflater.inflate(R.menu.add_menu, menu)
         return true
     }
 
@@ -133,7 +134,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         }
     }
 
-    override fun onShareClick(position: Int) {
+    override fun onCardClick(position: Int) {
         val clickedItem = scrollingList[position]
         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
@@ -167,12 +168,12 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     }
 
-    private fun generateDummyList(max: Int): ArrayList<Quote> {
+    private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
 
-        val list = ArrayList<Quote>()
+        val list = ArrayList<QuoteItem>()
 
         var i = 0
-        var item: Quote
+        var item: QuoteItem
 
         val pref = getSharedPreferences("List_system", 0)
         val listArr = pref.getString("Favourites", "")
@@ -186,11 +187,11 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             }
             if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
                 if (prefList[i] != "") {
-                    item = Quote(prefList[i], R.drawable.heart_full_red, special)
+                    item = QuoteItem(prefList[i], R.drawable.heart_full_red, special)
                     list += item
                 }
             } else {
-                item = Quote(prefList[i], R.drawable.like, special)
+                item = QuoteItem(prefList[i], R.drawable.like, special)
                 list += item
             }
 
@@ -201,8 +202,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent2 = Intent(this, YourLists::class.java)
-        this.startActivity(intent2)
+        val myIntent = Intent(this, Main::class.java)
+        this.startActivity(myIntent)
         finish()
     }
 }
