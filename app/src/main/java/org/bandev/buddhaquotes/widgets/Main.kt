@@ -41,7 +41,7 @@ class Main : AppWidgetProvider() {
                 )
             )
             x++
-            quoteCurrent = Quotes().random(0, context)
+            quoteCurrent = Quotes().getQuote(0, context)
             views.setTextViewText(R.id.appwidget_text, quoteCurrent)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         } else if (intent.action.equals(widgetLike, ignoreCase = true)) {
@@ -86,7 +86,7 @@ internal fun updateAppWidget(
     views.setImageViewResource(R.id.logo, R.drawable.ic_buddha)
     //views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
 
-    views.setTextViewText(R.id.appwidget_text, Quotes().random(0, context))
+    views.setTextViewText(R.id.appwidget_text, Quotes().getQuote(0, context))
 
     getPenIntent(context)
     // Instruct the widget manager to update the widget

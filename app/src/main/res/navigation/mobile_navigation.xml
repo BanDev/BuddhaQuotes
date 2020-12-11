@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/lists"
         android:name="org.bandev.buddhaquotes.ui.dashboard.DashboardFragment"
         android:label="Your Lists"
         tools:layout="@layout/fragment_dashboard" />

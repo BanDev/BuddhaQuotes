@@ -2,6 +2,7 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -187,7 +188,7 @@ class Settings : AppCompatActivity() {
 
         private fun updateLanguageSummary() {
             val language = findPreference<Preference>("app_language")
-            val int = Languages().getLanguageInt(requireContext())
+            val int = Languages().getLanguageAsInt(requireContext())
             val singleItems = requireContext().getStringArray(R.array.language_entries)
             (language ?: return).summary = singleItems[int]
         }

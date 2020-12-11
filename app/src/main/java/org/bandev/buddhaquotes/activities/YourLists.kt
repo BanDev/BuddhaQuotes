@@ -10,7 +10,6 @@ import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.*
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
@@ -25,16 +24,15 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.databinding.ActivityYourListsBinding
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
-import org.bandev.buddhaquotes.items.List
+import org.bandev.buddhaquotes.items.ListItem
 import java.util.*
 import kotlin.collections.ArrayList
 
 class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
-    private lateinit var binding: ActivityYourListsBinding
-    private lateinit var scrollingList: ArrayList<List>
+    //private lateinit var binding: ActivityYourListsBinding
+    private lateinit var scrollingList: ArrayList<ListItem>
     private lateinit var adapter: ListRecycler
     private lateinit var favs: Array<String?>
     private lateinit var array: Array<String>
@@ -43,7 +41,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         TODO("Not yet implemented")
     }
 
-    override fun onShareClick(position: Int) {
+    override fun onCardClick(position: Int) {
         val intent2 = Intent(this, ScrollingActivity::class.java)
         val mBundle = Bundle()
         mBundle.putString("list", array[position])
@@ -53,13 +51,14 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        //binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         Lists().removeList(text, this)
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
-        refresh()
+        //refresh()
     }
 
+/*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -91,6 +90,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         refresh()
     }
+*/
 
     private fun showBottomSheet() {
         var nameValue = "error"
@@ -119,7 +119,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 )
 
                 editor.apply()
-                refresh()
+               // refresh()
             }
 
             negativeButton(R.string.cancel) {
@@ -195,6 +195,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         name.addTextChangedListener(watcher)
     }
 
+/*
     fun refresh() {
         val pref = getSharedPreferences("List_system", 0)
         favs = arrayOf(pref.getString("MASTER_LIST", "Favourites"))
@@ -210,10 +211,11 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             setHasFixedSize(false)
         }
     }
+*/
 
-    private fun generateDummyList(max: Int): ArrayList<List> {
+    private fun generateDummyList(max: Int): ArrayList<ListItem> {
 
-        val list = ArrayList<List>()
+        val list = ArrayList<ListItem>()
 
         var i = 0
         while (i != max) {
@@ -230,7 +232,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             } else {
                 "$count item"
             }
-            val item = List(array[i], summary, special)
+            val item = ListItem(array[i], summary, special)
             list += item
             i++
         }

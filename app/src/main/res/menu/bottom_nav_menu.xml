@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/nav_your_lists"
-        android:title="Your lists" />
+        android:title="Lists" />
 
     <item
         android:id="@+id/navigation_notifications"

@@ -5,18 +5,25 @@ import android.content.res.Configuration
 import androidx.preference.PreferenceManager
 import java.util.*
 
+/**
+ * The Languages class manages the languages that Buddha Quotes supports. The language in ISO 639
+ * format is stored in shared preferences with the key "app_language"
+ *
+ * @author jack.txt
+ * @since v1.5.0
+ * @updated 30/10/2020
+ */
+
 class Languages {
 
     /**
      * Sets the activity's langauge to the one selected by user
      * @param [context] context of activity (Context)
-     * @author jack.txt
-     * @added [1008] v1.5.0 - 2020-10-30
      */
 
     fun setLanguage(context: Context) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        val languageToLoad = sharedPrefs.getString("app_language", "en")
+        val languageToLoad = sharedPrefs.getString("app_language", "en").toString()
 
         val locale = Locale(languageToLoad)
         Locale.setDefault(locale)
@@ -29,19 +36,23 @@ class Languages {
     }
 
     /**
-     * Gets the current langauge from shared preferneces
+     * Gets the current language from shared preferences
      * @param [context] context of activity (Context)
-     * @return string of iso code e.g. en or fr or ru
-     * @author jack.txt
-     * @added [1008] v1.5.0 - 03/11/2020
+     * @return iso code of the language (String)
      */
 
-    fun getLanguage(context: Context): String {
+    fun getLanguageAsString(context: Context): String {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPrefs.getString("app_language", "en").toString()
     }
 
-    fun getLanguageInt(context: Context): Int {
+    /**
+     * Gets the current langauge from shared preferences
+     * @param [context] context of activity (Context)
+     * @return index of the langauge in the array (Int)
+     */
+
+    fun getLanguageAsInt(context: Context): Int {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPrefs.getInt("app_language_int", 0)
     }

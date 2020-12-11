@@ -4,19 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.items.List
-import org.bandev.buddhaquotes.databinding.LayoutRecyclerCard2Binding
-import org.bandev.buddhaquotes.ui.dashboard.DashboardFragment
+import org.bandev.buddhaquotes.items.ListItem
+import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
+import org.bandev.buddhaquotes.fragments.ListsFragment
 
 class ListRecycler(
 
-    private val scrollingLists: kotlin.collections.List<List>,
-    private val listener: DashboardFragment,
+    private val scrollingLists: List<ListItem>,
+    private val listener: ListsFragment,
 
     ) : RecyclerView.Adapter<ListRecycler.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
-        val binding = LayoutRecyclerCard2Binding.inflate(
+        val binding = CardListsFragmentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -38,13 +38,13 @@ class ListRecycler(
 
     inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener, View.OnLongClickListener {
-        val binding: LayoutRecyclerCard2Binding = LayoutRecyclerCard2Binding.bind(itemView)
+        val binding: CardListsFragmentBinding = CardListsFragmentBinding.bind(itemView)
 
         init {
             itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onShareClick(position)
+                    listener.onCardClick(position)
                 }
             }
 

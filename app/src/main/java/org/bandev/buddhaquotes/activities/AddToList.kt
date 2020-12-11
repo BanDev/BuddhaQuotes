@@ -101,7 +101,7 @@ class AddToList : AppCompatActivity() {
         val max = 237
         var i = 1
         while (i != max) {
-            list.add(Quotes().random(i, this))
+            list.add(Quotes().getQuote(i, this))
             i++
         }
 
