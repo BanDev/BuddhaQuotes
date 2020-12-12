@@ -65,6 +65,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
         binding.toolbar.navigationIcon = back
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         binding.recyclerView.adapter = adapter
 
@@ -198,6 +201,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onBackPressed() {
         super.onBackPressed()
         val myIntent = Intent(this, Main::class.java)
+        intent.putExtra("display", (intent.extras ?: return).getInt("from"))
         this.startActivity(myIntent)
         finish()
     }

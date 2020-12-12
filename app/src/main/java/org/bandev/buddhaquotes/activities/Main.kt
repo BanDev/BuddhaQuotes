@@ -10,8 +10,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
@@ -21,9 +24,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import java.util.*
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Activities
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
@@ -51,34 +52,10 @@ class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set theme and language
+        // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourMain(this, window, resources)
         Languages().setLanguage(this)
-
-        // Set navigation bar
-        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    @Suppress("DEPRECATION")
-                    window.decorView.systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor = Color.WHITE
-                } else {
-                    window.navigationBarColor = Color.GRAY
-                }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
-            }
-        }
 
         // Setup view binding & force portrait mode
         binding = MainActivityBinding.inflate(layoutInflater)
@@ -91,6 +68,9 @@ class Main : AppCompatActivity() {
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
+
+        // Get fragment to display from intent
+        showFragment((intent.extras ?: return).getInt("display"))
     }
 
     /**
@@ -123,6 +103,20 @@ class Main : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showFragment(fragment: Int) {
+        Toast.makeText(this, fragment.toString(), LENGTH_LONG).show()
+        when (fragment) {
+            Fragments.LISTS -> {
+                binding.viewPager.setCurrentItem(1, false)
+            }
+            else -> {
+                //Quote is the default fragment
+                binding.viewPager.setCurrentItem(0, false)
+            }
+
         }
     }
 
