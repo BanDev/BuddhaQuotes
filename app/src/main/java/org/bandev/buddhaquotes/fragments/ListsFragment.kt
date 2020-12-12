@@ -6,9 +6,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
+import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.custom.Updateable
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
@@ -127,11 +129,12 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
     }
 
     override fun onCardClick(position: Int) {
-        val intent2 = Intent(context, ScrollingActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("list", masterlist[position])
-        intent2.putExtras(mBundle)
-        this.startActivity(intent2)
+        val intent = Intent(context, ScrollingActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("list", masterlist[position])
+        bundle.putInt("from", Fragments.LISTS)
+        intent.putExtras(bundle)
+        this.startActivity(intent)
     }
 
     override fun onBinClick(position: Int, text: String) {
