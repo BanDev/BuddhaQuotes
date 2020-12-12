@@ -8,5 +8,4 @@ class Theme {
         val pref = context.getSharedPreferences("Settings", 0)
         return pref.getInt("appThemeInt", 2)
     }
-
 }

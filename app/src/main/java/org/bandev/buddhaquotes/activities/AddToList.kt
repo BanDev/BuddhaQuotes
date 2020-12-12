@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
-import java.util.*
 
 class AddToList : AppCompatActivity() {
 
@@ -25,17 +25,17 @@ class AddToList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme, navigation bar and language
+        // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
-        //Setup view binding & force portrait mode
+        // Setup view binding & force portrait mode
         binding = AddlistContentBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Setup toolbar
+        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             finish()

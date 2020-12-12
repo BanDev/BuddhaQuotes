@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import java.util.*
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.Colours
@@ -26,7 +27,6 @@ import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -42,7 +42,6 @@ class Main : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
 
-
     /**
      * On activity created
      *
@@ -52,11 +51,11 @@ class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme and language
+        // Set theme and language
         Colours().setAccentColour(this, window, resources)
         Languages().setLanguage(this)
 
-        //Set navigation bar
+        // Set navigation bar
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -81,15 +80,15 @@ class Main : AppCompatActivity() {
             }
         }
 
-        //Setup view binding & force portrait mode
+        // Setup view binding & force portrait mode
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Setup toolbar
+        // Setup toolbar
         setSupportActionBar(binding.toolbar)
 
-        //Setup viewPager with FragmentAdapter
+        // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
     }
@@ -202,11 +201,9 @@ class Main : AppCompatActivity() {
                         nameValue = input
                         val pref = getSharedPreferences("List_system", 0)
                         val lists =
-                            (pref.getString("MASTER_LIST", "Favourites")
-                                ?: return).toLowerCase(
+                            (pref.getString("MASTER_LIST", "Favourites") ?: return).toLowerCase(
                                 Locale.ROOT
-                            )
-                                .split("//".toRegex()).toTypedArray()
+                            ).split("//".toRegex()).toTypedArray()
                         when {
                             input.isBlank() -> {
                                 binding.nameEventLayout.error = "Cannot be blank"
@@ -238,5 +235,4 @@ class Main : AppCompatActivity() {
 
         name.addTextChangedListener(watcher)
     }
-
 }

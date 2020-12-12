@@ -28,17 +28,17 @@ class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme, navigation bar and language
+        // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
-        //Setup view binding & force portrait mode
+        // Setup view binding & force portrait mode
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Setup toolbar
+        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             finish()
