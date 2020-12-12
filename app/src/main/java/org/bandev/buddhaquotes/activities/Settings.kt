@@ -30,17 +30,17 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme, navigation bar and language
+        // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
-        //Setup view binding & force portrait mode
+        // Setup view binding & force portrait mode
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Setup toolbar
+        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             val i = Intent(this, OldMainActivity::class.java)
@@ -217,10 +217,9 @@ class Settings : AppCompatActivity() {
                     intent2.putExtras(mBundle)
                     startActivity(intent2)
                 }
-                .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
+                .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
                     editor.putInt("app_language_int", which)
                     editor.putString("app_language", values[which])
-
                 }
                 .show()
         }
@@ -362,9 +361,7 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        val myIntent = Intent(this@Settings, OldMainActivity::class.java)
-        this@Settings.startActivity(myIntent)
+        val i = Intent(this, OldMainActivity::class.java)
         overridePendingTransition(
             R.anim.anim_slide_in_right,
             R.anim.anim_slide_out_right

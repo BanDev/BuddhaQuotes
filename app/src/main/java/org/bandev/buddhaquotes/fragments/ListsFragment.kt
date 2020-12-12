@@ -22,7 +22,6 @@ import org.bandev.buddhaquotes.items.ListItem
  * @updated 11/12/2020
  */
 
-
 class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
 
     private var _binding: FragmentListsBinding? = null
@@ -39,7 +38,8 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
      */
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
@@ -55,7 +55,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         update()
-
     }
 
     /**

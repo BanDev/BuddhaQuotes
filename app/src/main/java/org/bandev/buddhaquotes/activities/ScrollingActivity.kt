@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
+import kotlin.collections.ArrayList
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
@@ -18,8 +20,6 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.QuoteItem
-import java.util.*
-import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
@@ -35,7 +35,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
-        //Setup view binding & force portrait mode
+        // Setup view binding & force portrait mode
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -114,7 +114,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
                 editor.apply()
-
             } else {
                 clickedItem.resource = R.drawable.heart_full_red
 
@@ -126,7 +125,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
                 editor.apply()
-
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             adapter.notifyItemChanged(position)
@@ -164,7 +162,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString(listTmp, stringOut)
         editor.apply()
-
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
@@ -177,7 +174,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         val pref = getSharedPreferences("List_system", 0)
         val listArr = pref.getString("Favourites", "")
         val listArrFinal = LinkedList(listArr?.split("//"))
-
 
         while (i != max) {
             var special = false
@@ -206,4 +202,3 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         finish()
     }
 }
-
