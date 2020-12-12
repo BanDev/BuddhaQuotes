@@ -2,7 +2,6 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -33,7 +32,7 @@ class Settings : AppCompatActivity() {
 
         //Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode

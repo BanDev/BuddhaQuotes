@@ -27,7 +27,7 @@ class AddToList : AppCompatActivity() {
 
         //Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode
