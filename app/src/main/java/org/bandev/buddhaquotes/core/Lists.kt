@@ -121,7 +121,7 @@ class Lists {
      * @param [context] context of activity (Context)
      */
 
-    fun removeFromList(quote: String, name: String, context: Context) {
+    private fun removeFromList(quote: String, name: String, context: Context) {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(name, "")

@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import org.bandev.buddhaquotes.OldMainActivity
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
@@ -33,7 +32,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window)
+        Compatibility().setNavigationBarColour(this, window, resources)
         Languages().setLanguage(this)
 
         //Setup view binding & force portrait mode

@@ -1,13 +1,11 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.view.ViewGroup.MarginLayoutParams
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.*
 import com.afollestad.materialdialogs.LayoutMode
@@ -20,9 +18,6 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import org.bandev.buddhaquotes.*
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.items.ListItem
@@ -119,7 +114,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 )
 
                 editor.apply()
-               // refresh()
+                // refresh()
             }
 
             negativeButton(R.string.cancel) {

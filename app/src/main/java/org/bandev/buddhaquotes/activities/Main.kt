@@ -2,14 +2,16 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.HapticFeedbackConstants
-import android.view.Menu
-import android.view.MenuItem
+import android.view.*
+import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
@@ -20,9 +22,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.custom.Updateable
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
@@ -52,10 +52,34 @@ class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Set theme, navigation bar and language
+        //Set theme and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window)
         Languages().setLanguage(this)
+
+        //Set navigation bar
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                        APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                        APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                    )
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    @Suppress("DEPRECATION")
+                    window.decorView.systemUiVisibility =
+                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    window.navigationBarColor = Color.WHITE
+                } else {
+                    window.navigationBarColor = Color.GRAY
+                }
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                window.navigationBarColor =
+                    ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
+            }
+        }
 
         //Setup view binding & force portrait mode
         binding = MainActivityBinding.inflate(layoutInflater)
@@ -68,7 +92,6 @@ class Main : AppCompatActivity() {
         //Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
-
     }
 
     /**
