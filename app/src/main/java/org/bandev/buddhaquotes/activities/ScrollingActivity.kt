@@ -41,8 +41,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
-            val contextView = findViewById<View>(R.id.scrolling)
-            Snackbar.make(contextView, "Already in list!", Snackbar.LENGTH_SHORT)
+            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT)
                 .show()
         }
 
@@ -199,10 +198,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        val myIntent = Intent(this, Main::class.java)
-        intent.putExtra("display", (intent.extras ?: return).getInt("from"))
-        this.startActivity(myIntent)
         finish()
     }
 }

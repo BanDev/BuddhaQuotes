@@ -151,12 +151,7 @@ class Main : AppCompatActivity() {
                 )
 
                 editor.apply()
-
-                val intent = Intent(context, ScrollingActivity::class.java)
-                intent.putExtra("from", Activities.MAIN)
-                intent.putExtra("list", nameValue)
-                context.startActivity(intent)
-                finish()
+                dismiss()
             }
 
             negativeButton(R.string.cancel) {
