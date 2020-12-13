@@ -6,13 +6,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.custom.Updateable
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 
@@ -24,7 +22,7 @@ import org.bandev.buddhaquotes.items.ListItem
  * @updated 11/12/2020
  */
 
-class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
+class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     private var _binding: FragmentListsBinding? = null
     private val binding get() = _binding!!
@@ -56,14 +54,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        update()
-    }
-
-    /**
-     * Refreshes list of lists shown on the screen
-     */
-
-    override fun update() {
         masterlist = Lists().getMasterList(requireContext())
 
         masterListFinal = generateMasterList(masterlist.size, masterlist)
@@ -138,5 +128,8 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder, Updateable {
     }
 
     override fun onBinClick(position: Int, text: String) {
+        Lists().removeList(text, requireContext())
+        masterListFinal.removeAt(position)
+        binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
 }

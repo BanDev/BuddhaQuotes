@@ -198,6 +198,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         finish()
     }
 }

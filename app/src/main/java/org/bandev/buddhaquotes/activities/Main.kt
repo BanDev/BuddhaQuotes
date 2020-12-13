@@ -2,19 +2,14 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
-import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
@@ -68,9 +63,6 @@ class Main : AppCompatActivity() {
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
-
-        // Get fragment to display from intent
-        showFragment((intent.extras ?: return).getInt("display"))
     }
 
     /**
@@ -106,20 +98,6 @@ class Main : AppCompatActivity() {
         }
     }
 
-    private fun showFragment(fragment: Int) {
-        Toast.makeText(this, fragment.toString(), LENGTH_LONG).show()
-        when (fragment) {
-            Fragments.LISTS -> {
-                binding.viewPager.setCurrentItem(1, false)
-            }
-            else -> {
-                //Quote is the default fragment
-                binding.viewPager.setCurrentItem(0, false)
-            }
-
-        }
-    }
-
     /**
      * Shows a popup asking the user for a new list name
      */
@@ -151,7 +129,11 @@ class Main : AppCompatActivity() {
                 )
 
                 editor.apply()
-                dismiss()
+
+                //Refresh fragments
+                binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+                binding.viewPager.setCurrentItem(1, false)
+                binding.bottomBar.setupWithViewPager2(binding.viewPager)
             }
 
             negativeButton(R.string.cancel) {
