@@ -71,8 +71,6 @@ class ListRecycler(
             // Return true to indicate the click was handled
             return true
         }
-
     }
-
 }
 

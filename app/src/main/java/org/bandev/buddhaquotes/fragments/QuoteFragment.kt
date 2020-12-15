@@ -66,7 +66,7 @@ class QuoteFragment : Fragment() {
         }
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
-                favouriteQuote()
+                doubleClickFavouriteQuote()
             }
         })
     }
@@ -114,7 +114,7 @@ class QuoteFragment : Fragment() {
      * Adds the quote to "Favourites" list using [Lists.toggleInList]
      */
 
-    internal fun favouriteQuote() {
+    private fun favouriteQuote() {
         val quote = binding.quote.text.toString()
         if (Lists().toggleInList(quote, "Favourites", requireContext())) {
             binding.like.setImageDrawable(
@@ -131,6 +131,24 @@ class QuoteFragment : Fragment() {
                     R.drawable.like
                 )
             )
+        }
+    }
+
+    /**
+     * Adds the quote to favourites through double clicking using [Lists.queryInList] and [Lists.addToList]
+     */
+
+    internal fun doubleClickFavouriteQuote() {
+        val quote = binding.quote.text.toString()
+        if (!Lists().queryInList(quote, "Favourites", requireContext())) {
+            Lists().addToList(quote, "Favourites", requireContext())
+            binding.like.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.heart_full_red
+                )
+            )
+            binding.likeAnimator.likeAnimation()
         }
     }
 

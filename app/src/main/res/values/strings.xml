@@ -111,7 +111,7 @@
     <string name="settings_shapes_mode" id="99">Shapes Mode</string>
     <string name="settings_shapes_mode_yes" id="100">On</string>
     <string name="settings_shapes_mode_no" id="101">Off</string>
-    <string name="settings_language" id="102">Language (ALPHA)</string>
+    <string name="settings_language" id="102">Language</string>
 
     <!-- colours & their corresponding values -->
     <string name="original" id="103">Original</string>

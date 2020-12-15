@@ -6,13 +6,10 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
-import kotlin.collections.ArrayList
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
@@ -20,6 +17,8 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.QuoteItem
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
@@ -32,13 +31,12 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColourGray(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
             Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT)
@@ -63,7 +61,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        binding.toolbar.navigationIcon = back
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -198,7 +195,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        val i = Intent(this, Main::class.java)
+        this@ScrollingActivity.startActivity(i)
         finish()
     }
 }

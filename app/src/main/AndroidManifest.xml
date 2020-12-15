@@ -14,11 +14,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.Main"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.MainActivity" />
 
-        <receiver android:name=".Widget">
+        <receiver android:name=".widgets.MainWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -31,19 +30,15 @@
         <activity
             android:name=".activities.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".activities.AddToList"
             android:label="addList"
-            android:screenOrientation="portrait"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".activities.YourLists"
-            android:screenOrientation="portrait" />
+            android:name=".activities.YourLists" />
         <activity
             android:name=".activities.Splash"
-            android:screenOrientation="portrait"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,23 +49,18 @@
         <activity
             android:name=".activities.About"
             android:label="@string/about"
-            android:screenOrientation="portrait"
             android:theme="@style/About" />
         <activity
             android:name=".activities.Settings"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.Intro"
-            android:screenOrientation="portrait" />
+            android:name=".activities.Intro" />
         <activity
-            android:name=".activities.OssLibraries"
-            android:screenOrientation="portrait" />
+            android:name=".activities.OssLibraries" />
         <activity
             android:name=".OldMainActivity"
             android:label="@string/MainActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

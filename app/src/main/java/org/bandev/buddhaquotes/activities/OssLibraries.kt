@@ -28,13 +28,12 @@ class OssLibraries : AppCompatActivity() {
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColourWhite(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -99,10 +98,5 @@ class OssLibraries : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
     }
 }

@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
@@ -17,12 +15,12 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import java.util.*
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -52,10 +50,9 @@ class Main : AppCompatActivity() {
         Compatibility().setNavigationBarColourMain(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -120,15 +117,7 @@ class Main : AppCompatActivity() {
                     )
                 }
 
-                val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
-                editor.putString(nameValue, "null")
-                editor.putString(
-                    "MASTER_LIST",
-                    (pref.getString("MASTER_LIST", "Favourites") + "//" + nameValue)
-                )
-
-                editor.apply()
+                Lists().newList(nameValue, context)
 
                 //Refresh fragments
                 binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)

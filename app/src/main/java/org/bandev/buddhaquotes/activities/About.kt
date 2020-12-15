@@ -30,18 +30,17 @@ class About : AppCompatActivity() {
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColourWhite(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         val contributorsList: ListView = findViewById(R.id.contributorsList)
@@ -103,7 +102,6 @@ class About : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         finish()
     }
 

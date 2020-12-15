@@ -11,7 +11,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
 
-class Main : AppWidgetProvider() {
+class MainWidget : AppWidgetProvider() {
 
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
     private var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
@@ -23,7 +23,6 @@ class Main : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
@@ -37,7 +36,7 @@ class Main : AppWidgetProvider() {
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
                     context,
-                    Main::class.java
+                    MainWidget::class.java
                 )
             )
             x++
@@ -50,7 +49,7 @@ class Main : AppWidgetProvider() {
             val appWidgetIds = appWidgetManager.getAppWidgetIds(
                 ComponentName(
                     context,
-                    Main::class.java
+                    MainWidget::class.java
                 )
             )
             x++
@@ -94,8 +93,8 @@ internal fun updateAppWidget(
 }
 
 fun getPenIntent(context: Context): PendingIntent {
-    val intent = Intent(context, Main::class.java)
-    intent.action = Main().widgetButton
+    val intent = Intent(context, MainWidget::class.java)
+    intent.action = MainWidget().widgetButton
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
 

@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import org.bandev.buddhaquotes.core.Fragments
-import org.bandev.buddhaquotes.widgets.Main
 
 class Splash : AppCompatActivity() {
 
@@ -27,9 +26,7 @@ class Splash : AppCompatActivity() {
             }
         }
 
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
-        val i = Intent(this, org.bandev.buddhaquotes.activities.Main::class.java)
+        val i = Intent(this, Main::class.java)
         i.putExtra("display", Fragments.QUOTE)
         this.startActivity(i)
         finish()
