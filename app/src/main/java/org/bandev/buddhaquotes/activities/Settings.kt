@@ -32,23 +32,17 @@ class Settings : AppCompatActivity() {
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColourWhite(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
-            val i = Intent(this, OldMainActivity::class.java)
-            overridePendingTransition(
-                R.anim.anim_slide_in_right,
-                R.anim.anim_slide_out_right
-            )
-            finish()
+            onBackPressed()
         }
 
         if ((intent.extras ?: return).getBoolean("lang")) {
@@ -361,11 +355,8 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val i = Intent(this, OldMainActivity::class.java)
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
+        val i = Intent(this, Main::class.java)
+        this@Settings.startActivity(i)
         finish()
     }
 }

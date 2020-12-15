@@ -27,17 +27,17 @@ class AddToList : AppCompatActivity() {
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColour(this, window, resources)
+        Compatibility().setNavigationBarColourGray(this, window, resources)
         Languages().setLanguage(this)
 
-        // Setup view binding & force portrait mode
+        // Setup view binding
         binding = AddlistContentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
+            super.onBackPressed()
             finish()
         }
 
@@ -106,10 +106,5 @@ class AddToList : AppCompatActivity() {
         }
 
         return list
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
     }
 }
