@@ -101,6 +101,7 @@ dependencies {
 }
 
 task createPom {
+    apply plugin: 'maven'
     description "Generates pom.xml"
     pom {
         project {
