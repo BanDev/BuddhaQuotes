@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'maven'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 android {
@@ -97,4 +98,23 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
     implementation 'com.github.BanDevApps:Xplosion:1.0.1'
+}
+
+task createPom {
+    pom {
+        project {
+            groupId 'org.bandev'
+            artifactId 'buddhaquotes'
+            version 'v1.6.0'
+
+            inceptionYear '2020'
+            licenses {
+                license {
+                    name 'GNU 3.0+'
+                    url 'https://www.gnu.org/licenses/gpl-3.0.en.html'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
 }
