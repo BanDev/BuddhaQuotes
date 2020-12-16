@@ -101,20 +101,23 @@ dependencies {
 }
 
 task createPom {
+    description "Generates pom.xml"
     pom {
         project {
-            groupId 'org.bandev'
-            artifactId 'buddhaquotes'
-            version 'v1.6.0'
-
-            inceptionYear '2020'
-            licenses {
-                license {
-                    name 'GNU 3.0+'
-                    url 'https://www.gnu.org/licenses/gpl-3.0.en.html'
-                    distribution 'repo'
-                }
+            groupId "org.bandev"
+            artifactId "buddhaquotes"
+            version "v1.6.0"
+        }
+    }.withXml {
+        def dependenciesNode = asNode().appendNode('dependencies')
+        configurations.implementation.allDependencies.each { dependency ->
+            if (dependency.name != 'unspecified') {
+                def dependencyNode = dependenciesNode.appendNode('dependency')
+                dependencyNode.appendNode('groupId', dependency.group)
+                dependencyNode.appendNode('artifactId', dependency.name)
+                dependencyNode.appendNode('version', dependency.version)
             }
         }
     }.writeTo("pom.xml")
+    // based on https://gist.github.com/delor/f70560f14674b322dcd2
 }

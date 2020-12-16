@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.bandev</groupId>
+  <artifactId>buddhaquotes</artifactId>
+  <version>v1.6.0</version>
+  <dependencies>
+    <dependency>
+      <groupId>androidx.constraintlayout</groupId>
+      <artifactId>constraintlayout</artifactId>
+      <version>2.1.0-alpha1</version>
+    </dependency>
+    <dependency>
+      <groupId>androidx.coordinatorlayout</groupId>
+      <artifactId>coordinatorlayout</artifactId>
+      <version>1.1.0</version>
