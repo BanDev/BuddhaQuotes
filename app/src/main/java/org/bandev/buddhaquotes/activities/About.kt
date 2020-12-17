@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle

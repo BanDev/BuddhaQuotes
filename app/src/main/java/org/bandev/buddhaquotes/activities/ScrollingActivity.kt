@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
@@ -195,7 +196,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onBackPressed() {
         val i = Intent(this, Main::class.java)
-        this.startActivity(i)
+        this@ScrollingActivity.startActivity(i)
         finish()
     }
 }
