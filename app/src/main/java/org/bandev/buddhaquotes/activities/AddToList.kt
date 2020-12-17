@@ -1,7 +1,6 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -10,13 +9,13 @@ import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
+import java.util.*
 
 class AddToList : AppCompatActivity() {
 
