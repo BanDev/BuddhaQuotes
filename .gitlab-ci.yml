@@ -14,7 +14,6 @@ variables:
   # Official Site-> https://developer.android.com/studio/index.html
   # There, look down below at the cli tools only, sdk tools package is of format:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
-  # when the script was last modified for latest compileSdkVersion, it was which is written down below
   ANDROID_SDK_TOOLS: "6609375"
 
 # Packages installation before running script
@@ -30,12 +29,12 @@ before_script:
   # (the key thing here is the url from where you are downloading these sdk tool for command line, so please do note this url pattern there and here as well)
   # after that unzipping those tools and
   # then running a series of SDK manager commands to install necessary android SDK packages that'll allow the app to build
-  - wget --output-document=$ANDROID_SDK_ROOT/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
+  - wget --quiet --output-document=$ANDROID_SDK_ROOT/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
   # move to the archive at ANDROID_SDK_ROOT
   - pushd $ANDROID_SDK_ROOT
   - unzip -d cmdline-tools cmdline-tools.zip
   - popd
-  - export PATH=$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin/
+  - export PATH=$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/version/bin/
 
   # Nothing fancy here, just checking sdkManager version
   - sdkmanager --version
@@ -76,7 +75,7 @@ assembleDebug:
     expire_in: 1 second
     when: always
 
-#Genereate Pom
+#Generate Pom
 generatePom:
   script:
     - ./gradlew createPom
