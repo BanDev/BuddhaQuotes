@@ -14,7 +14,7 @@ variables:
   # Official Site-> https://developer.android.com/studio/index.html
   # There, look down below at the cli tools only, sdk tools package is of format:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
-  ANDROID_SDK_TOOLS: "6609375"
+  ANDROID_SDK_TOOLS: "6858069"
 
 # Packages installation before running script
 before_script:
