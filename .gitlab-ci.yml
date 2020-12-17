@@ -14,7 +14,7 @@ variables:
   # Official Site-> https://developer.android.com/studio/index.html
   # There, look down below at the cli tools only, sdk tools package is of format:
   #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
-  ANDROID_SDK_TOOLS: "6858069"
+  ANDROID_SDK_TOOLS: "6609375"
 
 # Packages installation before running script
 before_script:
@@ -34,7 +34,7 @@ before_script:
   - pushd $ANDROID_SDK_ROOT
   - unzip -d cmdline-tools cmdline-tools.zip
   - popd
-  - export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+  - export PATH=$PATH:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin/
 
   # Nothing fancy here, just checking sdkManager version
   - sdkmanager --version
