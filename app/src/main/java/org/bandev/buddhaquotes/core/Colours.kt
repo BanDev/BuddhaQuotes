@@ -47,7 +47,7 @@ class Colours {
 
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = getAccentColorAsInt(context)
+                window.statusBarColor = getAccentColourAsInt(context)
             }
             Configuration.UI_MODE_NIGHT_YES -> {
                 window.statusBarColor =
@@ -75,7 +75,7 @@ class Colours {
      * @return The accent colour (Int)
      */
 
-    fun getAccentColorAsInt(context: Context): Int {
+    fun getAccentColourAsInt(context: Context): Int {
         val typedValue = TypedValue()
         val theme: Resources.Theme = context.theme
         theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)

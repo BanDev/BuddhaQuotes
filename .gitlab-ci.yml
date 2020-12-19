@@ -75,11 +75,6 @@ assembleDebug:
     expire_in: 1 second
     when: always
 
-#Generate Pom
-generatePom:
-  script:
-    - ./gradlew createPom
-
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
   interruptible: true

@@ -15,7 +15,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
-import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.bandev.buddhaquotes.activities.Intro
@@ -124,14 +123,6 @@ class OldMainActivity : AppCompatActivity() {
         param.setMargins(0, statusBarHeight, 0, 0)
         (toolbar ?: return).layoutParams = param
 
-        val buttons: View = findViewById(R.id.buttons)
-
-        setOnApplyWindowInsetsListener(buttons) { v: View, insets: WindowInsetsCompat ->
-            val params = v.layoutParams as ViewGroup.MarginLayoutParams
-            params.bottomMargin = insets.systemWindowInsetBottom + 30
-            insets.consumeSystemWindowInsets()
-        }
-
         findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
 
@@ -185,13 +176,13 @@ class OldMainActivity : AppCompatActivity() {
                 // If It Is Not Liked Already
 
                 val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
+                val edit = pref.edit()
                 val listArr = pref.getString("Favourites", "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
                 listArrFinal.push((quoteView ?: return@setOnClickListener).text.toString())
                 val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                edit.putString("Favourites", stringOut)
+                edit.apply()
 
                 done = true
                 (favourite ?: return@setOnClickListener).setImageDrawable(
@@ -204,14 +195,14 @@ class OldMainActivity : AppCompatActivity() {
             } else {
                 (favourite ?: return@setOnClickListener).isEnabled = false
                 val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
+                val edit = pref.edit()
                 val listArr = pref.getString("Favourites", "")
                 val listArrFinal = LinkedList(listArr?.split("//"))
                 val text = (quoteView ?: return@setOnClickListener).text as String
                 listArrFinal.remove(text)
                 val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                edit.putString("Favourites", stringOut)
+                edit.apply()
                 done = false
                 (favourite ?: return@setOnClickListener).setImageDrawable(
                     ContextCompat.getDrawable(

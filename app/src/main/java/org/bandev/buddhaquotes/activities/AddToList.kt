@@ -36,14 +36,11 @@ class AddToList : AppCompatActivity() {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
-            super.onBackPressed()
-            finish()
+            onBackPressed()
         }
 
         val list = (intent.getStringExtra("list") ?: return).toString()
-
         val names = genList()
-
         val adapter: ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
 
         binding.listView.adapter = adapter
@@ -54,7 +51,9 @@ class AddToList : AppCompatActivity() {
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString(list, "")
-                val listArrFinal = LinkedList(listArr?.split("//"))
+                val listArrPref: MutableList<String> = (listArr?.split("//")
+                    ?: return@OnItemClickListener).toMutableList()
+                val listArrFinal = LinkedList(listArrPref)
                 val intent2 = Intent(this, ScrollingActivity::class.java)
                 val mBundle = Bundle()
                 mBundle.putString("list", list)
@@ -75,6 +74,7 @@ class AddToList : AppCompatActivity() {
                     }
                     listArrFinal.push(binding.listView.getItemAtPosition(position) as String?)
                     this.startActivity(intent2)
+                    finish()
                 }
 
                 val stringOut = listArrFinal.joinToString(separator = "//")
@@ -105,5 +105,9 @@ class AddToList : AppCompatActivity() {
         }
 
         return list
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
