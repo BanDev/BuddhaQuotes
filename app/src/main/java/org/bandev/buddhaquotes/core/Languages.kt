@@ -36,17 +36,6 @@ class Languages {
     }
 
     /**
-     * Gets the current language from shared preferences
-     * @param [context] context of activity (Context)
-     * @return iso code of the language (String)
-     */
-
-    fun getLanguageAsString(context: Context): String {
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPrefs.getString("app_language", "en").toString()
-    }
-
-    /**
      * Gets the current langauge from shared preferences
      * @param [context] context of activity (Context)
      * @return index of the langauge in the array (Int)

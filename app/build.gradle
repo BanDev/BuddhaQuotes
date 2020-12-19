@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'maven'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 android {
@@ -38,7 +37,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             shrinkResources true
         }
     }
@@ -77,6 +76,7 @@ dependencies {
     // Navigation components
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 
     // Lifecycle components
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01'
@@ -98,27 +98,4 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
     implementation 'com.github.BanDevApps:Xplosion:1.0.1'
-}
-
-task createPom {
-    apply plugin: 'maven'
-    description "Generates pom.xml"
-    pom {
-        project {
-            groupId "org.bandev"
-            artifactId "buddhaquotes"
-            version "v1.6.0"
-        }
-    }.withXml {
-        def dependenciesNode = asNode().appendNode('dependencies')
-        configurations.implementation.allDependencies.each { dependency ->
-            if (dependency.name != 'unspecified') {
-                def dependencyNode = dependenciesNode.appendNode('dependency')
-                dependencyNode.appendNode('groupId', dependency.group)
-                dependencyNode.appendNode('artifactId', dependency.name)
-                dependencyNode.appendNode('version', dependency.version)
-            }
-        }
-    }.writeTo("pom.xml")
-    // based on https://gist.github.com/delor/f70560f14674b322dcd2
 }

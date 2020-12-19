@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import org.bandev.buddhaquotes.core.Fragments
 
 class Splash : AppCompatActivity() {
 
@@ -26,7 +25,6 @@ class Splash : AppCompatActivity() {
         }
 
         val i = Intent(this, Main::class.java)
-        i.putExtra("display", Fragments.QUOTE)
         this.startActivity(i)
         finish()
     }

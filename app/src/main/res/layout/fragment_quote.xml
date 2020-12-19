@@ -33,7 +33,7 @@
                 android:text="@string/textview"
                 android:textAlignment="textStart"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="@dimen/quoteNumberSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +48,11 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/mt_reg"
                 android:paddingEnd="20dp"
+                android:paddingStart="20dp"
                 android:text="@string/textview"
                 android:textAlignment="textStart"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="30sp"
+                android:textSize="@dimen/quoteTextSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,14 +63,14 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/quoteFragmentActionPadding"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/number">
 
                 <ImageView
                     android:id="@+id/like"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/quoteFragmentActionSize"
+                    android:layout_height="@dimen/quoteFragmentActionSize"
                     android:layout_gravity="center"
                     app:srcCompat="@drawable/like" />
 
@@ -77,8 +78,8 @@
 
             <ImageView
                 android:id="@+id/share"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/quoteFragmentActionSize"
+                android:layout_height="@dimen/quoteFragmentActionSize"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"

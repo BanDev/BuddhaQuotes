@@ -23,7 +23,8 @@ class Lists {
     fun getMasterList(context: Context): List<String> {
         val pref = context.getSharedPreferences("List_system", 0)
         val listArr = pref.getString("MASTER_LIST", "Favourites")
-        return LinkedList(listArr?.split("//"))
+        val listArrFinal: MutableList<String> = listArr?.split("//")!!.toMutableList()
+        return LinkedList(listArrFinal)
     }
 
     /**
@@ -53,7 +54,8 @@ class Lists {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString("MASTER_LIST", "Favourites")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         listArrFinal.remove(name)
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString("MASTER_LIST", stringOut)
@@ -71,7 +73,8 @@ class Lists {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(name, "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         listArrFinal.push(quote)
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString(name, stringOut)
@@ -89,7 +92,8 @@ class Lists {
     fun toggleInList(quote: String, name: String, context: Context): Boolean {
         val pref = context.getSharedPreferences("List_system", 0)
         val listArr = pref.getString(name, "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         return if (listArrFinal.contains(quote)) {
             removeFromList(quote, name, context)
             false
@@ -110,7 +114,8 @@ class Lists {
     fun queryInList(quote: String, name: String, context: Context?): Boolean {
         val pref = context?.getSharedPreferences("List_system", 0)
         val listArr = pref?.getString(name, "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         return listArrFinal.contains(quote)
     }
 
@@ -125,7 +130,8 @@ class Lists {
         val pref = context.getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(name, "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         listArrFinal.remove(quote)
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString(name, stringOut)

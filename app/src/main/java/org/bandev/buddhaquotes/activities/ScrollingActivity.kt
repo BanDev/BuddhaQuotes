@@ -38,8 +38,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         setContentView(binding.root)
 
         if ((intent.extras ?: return).getBoolean("duplicate", false)) {
-            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT)
-                .show()
+            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT).show()
         }
 
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
@@ -60,6 +59,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
+        binding.toolbar.navigationIcon = back
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -87,12 +87,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 this.startActivity(intent2)
                 true
             }
-            android.R.id.home -> {
-                val intent2 = Intent(this, YourLists::class.java)
-                this.startActivity(intent2)
-                finish()
-                super.onOptionsItemSelected(item)
-            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -107,7 +101,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString("Favourites", "")
-                val listArrFinal = LinkedList(listArr?.split("//"))
+                val listArrTemp: MutableList<String> =
+                    (listArr?.split("//") ?: return).toMutableList()
+                val listArrFinal = LinkedList(listArrTemp)
                 listArrFinal.remove(text)
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
@@ -118,7 +114,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString("Favourites", "")
-                val listArrFinal = LinkedList(listArr?.split("//"))
+                val listArrTemp: MutableList<String> =
+                    (listArr?.split("//") ?: return).toMutableList()
+                val listArrFinal = LinkedList(listArrTemp)
                 listArrFinal.push(text)
                 val stringOut = listArrFinal.joinToString(separator = "//")
                 editor.putString("Favourites", stringOut)
@@ -155,7 +153,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         val pref = getSharedPreferences("List_system", 0)
         val editor = pref.edit()
         val listArr = pref.getString(listTmp, "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> =
+            (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
         listArrFinal.remove(text)
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString(listTmp, stringOut)
@@ -171,7 +171,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         val pref = getSharedPreferences("List_system", 0)
         val listArr = pref.getString("Favourites", "")
-        val listArrFinal = LinkedList(listArr?.split("//"))
+        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
 
         while (i != max) {
             var special = false
@@ -194,8 +195,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
-        val i = Intent(this, Main::class.java)
-        this.startActivity(i)
         finish()
     }
 }

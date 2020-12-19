@@ -48,30 +48,19 @@ class Settings : AppCompatActivity() {
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
+            this.overridePendingTransition(0, 0)
             val sharedPreferences = getSharedPreferences("Settings", 0)
             val darkmode = sharedPreferences.getBoolean("dark_mode", false)
             val sys = sharedPreferences.getBoolean("sys", true)
             when {
                 sys -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                    overridePendingTransition(
-                        R.anim.fade_out,
-                        R.anim.fade_in
-                    )
                 }
                 darkmode -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    overridePendingTransition(
-                        R.anim.fade_out,
-                        R.anim.fade_in
-                    )
                 }
                 else -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    overridePendingTransition(
-                        R.anim.fade_out,
-                        R.anim.fade_in
-                    )
                 }
             }
         }
@@ -105,11 +94,11 @@ class Settings : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             val pref = requireContext().getSharedPreferences("Settings", 0)
 
-            val dark = pref.getBoolean("dark_mode", false)
-            val sys = pref.getBoolean("sys", false)
+            pref.getBoolean("dark_mode", false)
+            pref.getBoolean("sys", false)
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
-            val screen = preferenceScreen
+            preferenceScreen
 
             updateColorSummary()
             updateThemeSummary()
@@ -353,8 +342,6 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val i = Intent(this, Main::class.java)
-        this@Settings.startActivity(i)
         finish()
     }
 }

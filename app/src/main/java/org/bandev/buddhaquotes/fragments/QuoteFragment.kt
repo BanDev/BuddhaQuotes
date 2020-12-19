@@ -55,7 +55,7 @@ class QuoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         newQuote()
         with(binding.swipeRefresh) {
-            setColorSchemeColors(Colours().getAccentColorAsInt(context))
+            setColorSchemeColors(Colours().getAccentColourAsInt(context))
             setOnRefreshListener { newQuote(); binding.swipeRefresh.isRefreshing = false }
         }
         binding.like.setOnClickListener {

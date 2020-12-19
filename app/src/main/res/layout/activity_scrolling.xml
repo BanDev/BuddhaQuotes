@@ -20,7 +20,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:background="@drawable/toolbar"
-        app:navigationIcon="@drawable/ic_arrow_back"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
         app:expandedTitleMarginStart="72dp"
         app:expandedTitleMarginBottom="28dp"

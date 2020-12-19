@@ -236,9 +236,8 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val myIntent = Intent(this@YourLists, OldMainActivity::class.java)
-        val mBundle = Bundle()
-        this@YourLists.startActivity(myIntent)
+        val i = Intent(this@YourLists, OldMainActivity::class.java)
+        this.startActivity(i)
         finish()
     }
 }
