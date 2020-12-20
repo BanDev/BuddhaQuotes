@@ -19,10 +19,13 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
+import org.bandev.buddhaquotes.databinding.LayoutAboutContentLongBinding
 
 class About : AppCompatActivity() {
 
+    // Declare view binding variables
     private lateinit var binding: ActivityAboutBinding
+    private lateinit var bindingContent: LayoutAboutContentLongBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,24 +45,25 @@ class About : AppCompatActivity() {
             onBackPressed()
         }
 
-        val contributorsList: ListView = findViewById(R.id.contributorsList)
+        // Setup contributors array
         val contributors = this.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
-        contributorsList.adapter = contributorsAdapter
-        contributorsList.divider = null
-        contributorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(contributorsList)
+        bindingContent.contributorsList.adapter = contributorsAdapter
+        bindingContent.contributorsList.divider = null
+        bindingContent.contributorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(bindingContent.contributorsList)
 
-        val translatorsList: ListView = findViewById(R.id.translatorsList)
+        // Setup translators array
         val translators = this.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-        translatorsList.adapter = translatorsAdapter
-        translatorsList.divider = null
-        translatorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(translatorsList)
+        bindingContent.translatorsList.adapter = translatorsAdapter
+        bindingContent.translatorsList.divider = null
+        bindingContent.translatorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(bindingContent.translatorsList)
 
         var done = false
 
+        // Show confetti when the user scrolls to the bottom of the page
         binding.scrollView.viewTreeObserver
             .addOnScrollChangedListener {
                 if (binding.scrollView.getChildAt(0).bottom <= binding.scrollView.height + binding.scrollView.scrollY && !done) {
@@ -84,6 +88,7 @@ class About : AppCompatActivity() {
                         .streamFor(100, 1000L)
                     done = true
 
+                    // Vibrate device for 0.2 seconds
                     val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         vibrator.vibrate(
@@ -100,10 +105,6 @@ class About : AppCompatActivity() {
             }
     }
 
-    override fun onBackPressed() {
-        finish()
-    }
-
     private fun justifyListViewHeightBasedOnChildren(listView: ListView) {
         val adapter = listView.adapter ?: return
         val vg: ViewGroup = listView
@@ -117,5 +118,9 @@ class About : AppCompatActivity() {
         par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
         listView.layoutParams = par
         listView.requestLayout()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

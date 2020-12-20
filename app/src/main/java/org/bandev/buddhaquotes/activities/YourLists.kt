@@ -92,7 +92,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             cornerRadius(16f)
             title(R.string.lists_add_lists)
-            icon(R.drawable.ic_add_circle_bottomsheet)
+            icon(R.drawable.ic_add_circle)
             customView(R.layout.layout_bottom_sheet)
             positiveButton(R.string.lists_add_lists_go) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

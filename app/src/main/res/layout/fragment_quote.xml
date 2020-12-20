@@ -47,8 +47,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/mt_reg"
+                android:paddingStart="0dp"
                 android:paddingEnd="20dp"
-                android:paddingStart="20dp"
                 android:text="@string/textview"
                 android:textAlignment="textStart"
                 android:textColor="?android:attr/textColorPrimary"
@@ -77,7 +77,7 @@
             </org.bandev.libraries.xplosion.XplosionView>
 
             <ImageView
-                android:id="@+id/share"
+                android:id="@+id/more"
                 android:layout_width="@dimen/quoteFragmentActionSize"
                 android:layout_height="@dimen/quoteFragmentActionSize"
                 android:layout_gravity="center"
@@ -85,7 +85,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
                 app:layout_constraintStart_toEndOf="@+id/likeAnimator"
                 app:layout_constraintTop_toTopOf="@+id/likeAnimator"
-                app:srcCompat="@drawable/share" />
+                app:srcCompat="@drawable/ic_more" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
