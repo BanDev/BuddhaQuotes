@@ -19,13 +19,11 @@ import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
-import org.bandev.buddhaquotes.databinding.LayoutAboutContentLongBinding
 
 class About : AppCompatActivity() {
 
     // Declare view binding variables
     private lateinit var binding: ActivityAboutBinding
-    private lateinit var bindingContent: LayoutAboutContentLongBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +46,18 @@ class About : AppCompatActivity() {
         // Setup contributors array
         val contributors = this.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
-        bindingContent.contributorsList.adapter = contributorsAdapter
-        bindingContent.contributorsList.divider = null
-        bindingContent.contributorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(bindingContent.contributorsList)
+        binding.contributorsList.adapter = contributorsAdapter
+        binding.contributorsList.divider = null
+        binding.contributorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(binding.contributorsList)
 
         // Setup translators array
         val translators = this.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-        bindingContent.translatorsList.adapter = translatorsAdapter
-        bindingContent.translatorsList.divider = null
-        bindingContent.translatorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(bindingContent.translatorsList)
+        binding.translatorsList.adapter = translatorsAdapter
+        binding.translatorsList.divider = null
+        binding.translatorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(binding.translatorsList)
 
         var done = false
 
