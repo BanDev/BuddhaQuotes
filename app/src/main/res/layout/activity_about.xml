@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/about_content_long" />
+            <include layout="@layout/layout_about_content_long" />
 
         </LinearLayout>
 

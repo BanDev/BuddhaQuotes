@@ -96,7 +96,7 @@ class OldMainActivity : AppCompatActivity() {
         val quotenumber = sharedPref.getInt("Quote_Number", 0)
 
         refresh = findViewById(R.id.refresh)
-        share = findViewById(R.id.share)
+        share = findViewById(R.id.more)
         favourite = findViewById(R.id.favourite)
         toolbar = findViewById(R.id.toolbar)
         heartBlack = ContextCompat.getDrawable(this, R.drawable.ic_list)
@@ -123,7 +123,7 @@ class OldMainActivity : AppCompatActivity() {
         param.setMargins(0, statusBarHeight, 0, 0)
         (toolbar ?: return).layoutParams = param
 
-        findViewById<FloatingActionButton>(R.id.share).setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.more).setOnClickListener {
             val sendIntent: Intent = Intent().apply {
 
                 action = Intent.ACTION_SEND

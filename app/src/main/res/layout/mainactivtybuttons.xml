@@ -41,7 +41,7 @@
         app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/share"
+        android:id="@+id/more"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="20dp"

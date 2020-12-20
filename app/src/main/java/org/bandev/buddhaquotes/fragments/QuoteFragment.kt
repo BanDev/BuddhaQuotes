@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.maxkeppeler.bottomsheets.options.DisplayMode
+import com.maxkeppeler.bottomsheets.options.Option
+import com.maxkeppeler.bottomsheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Lists
@@ -61,8 +64,8 @@ class QuoteFragment : Fragment() {
         binding.like.setOnClickListener {
             favouriteQuote()
         }
-        binding.share.setOnClickListener {
-            shareQuote()
+        binding.more.setOnClickListener {
+            moreOptions()
         }
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
@@ -95,19 +98,33 @@ class QuoteFragment : Fragment() {
     }
 
     /**
-     * Opens sharesheet for the quote on screen
+     * Opens a bottom sheet with options to share and add to list
      */
 
-    private fun shareQuote() {
-        val sendIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
-
-            putExtra(Intent.EXTRA_TEXT, text)
-            type = "text/plain"
+    private fun moreOptions() {
+        OptionsSheet().show(requireContext()) {
+            displayMode(DisplayMode.LIST)
+            title("More")
+            closeButtonDrawable(R.drawable.ic_down_arrow)
+            with(
+                Option(R.drawable.ic_share, "Share"),
+                Option(R.drawable.ic_add_circle, "Add to list")
+            )
+            onPositive { index: Int, option: Option ->
+                if (index == 0) {
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
+                        putExtra(Intent.EXTRA_TEXT, text)
+                        type = "text/plain"
+                    }
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
+                } else {
+                    dismiss()
+                }
+            }
         }
-        val shareIntent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
     }
 
     /**
