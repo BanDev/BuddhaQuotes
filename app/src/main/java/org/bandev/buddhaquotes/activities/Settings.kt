@@ -43,12 +43,7 @@ class Settings : AppCompatActivity() {
             onBackPressed()
         }
 
-        if ((intent.extras ?: return).getBoolean("lang")) {
-            this.overridePendingTransition(0, 0)
-        }
-
         if ((intent.extras ?: return).getBoolean("switch")) {
-            this.overridePendingTransition(0, 0)
             val sharedPreferences = getSharedPreferences("Settings", 0)
             val darkmode = sharedPreferences.getBoolean("dark_mode", false)
             val sys = sharedPreferences.getBoolean("sys", true)
@@ -195,6 +190,10 @@ class Settings : AppCompatActivity() {
                     intent2.putExtras(mBundle)
                     startActivity(intent2)
                     activity?.finish()
+                    activity?.overridePendingTransition(
+                        android.R.anim.fade_in,
+                        android.R.anim.fade_out
+                    )
                 }
                 .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
                     editor.putInt("app_language_int", which)
@@ -227,6 +226,7 @@ class Settings : AppCompatActivity() {
                     intent2.putExtras(mBundle)
                     startActivity(intent2)
                     activity?.finish()
+                    activity?.overridePendingTransition(0, 0)
                 }
                 .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
                     when (which) {
@@ -319,6 +319,10 @@ class Settings : AppCompatActivity() {
                     intent2.putExtras(mBundle)
                     startActivity(intent2)
                     activity?.finish()
+                    activity?.overridePendingTransition(
+                        android.R.anim.fade_in,
+                        android.R.anim.fade_out
+                    )
                 }
                 positiveButton(R.string.confirm) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -343,5 +347,9 @@ class Settings : AppCompatActivity() {
     override fun onBackPressed() {
         startActivity(Intent(this@Settings, Main::class.java))
         finish()
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
     }
 }
