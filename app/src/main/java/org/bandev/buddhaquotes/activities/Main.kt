@@ -85,7 +85,9 @@ class Main : AppCompatActivity() {
                 true
             }
             R.id.settings -> {
-                startActivity(Intent(this@Main, Settings::class.java))
+                val intent = Intent(this, Settings::class.java)
+                intent.putExtra("from", Activities.MAIN)
+                this.startActivity(intent)
                 finish()
                 true
             }
