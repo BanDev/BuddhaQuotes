@@ -52,7 +52,7 @@ dependencies {
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
     // Kotlin
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.4.21'
 
     // AboutLibraries
     implementation 'com.mikepenz:aboutlibraries-core:8.6.3'
