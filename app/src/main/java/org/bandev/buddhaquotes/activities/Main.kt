@@ -50,6 +50,16 @@ class Main : AppCompatActivity() {
         Compatibility().setNavigationBarColourMain(this, window, resources)
         Languages().setLanguage(this)
 
+        val sharedPreferences = getSharedPreferences("Settings", 0)
+        val editor = sharedPreferences.edit()
+
+        if (sharedPreferences.getBoolean("first_time", true)) {
+            editor.putBoolean("first_time", false)
+            editor.apply()
+            val i = Intent(this, Intro::class.java)
+            startActivity(i)
+        }
+
         // Setup view binding
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -10,8 +10,8 @@ package org.bandev.buddhaquotes.core
 
 object Fragments {
 
-    const val QUOTE: Int = 1000
-    const val LISTS: Int = 1001
-    const val DHAMMAPADA: Int = 1002
+    const val QUOTE: Int = 0
+    const val LISTS: Int = 1
+    const val DHAMMAPADA: Int = 2
 
 }
