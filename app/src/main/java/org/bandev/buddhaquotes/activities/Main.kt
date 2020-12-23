@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
@@ -14,6 +16,7 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
@@ -58,7 +61,20 @@ class Main : AppCompatActivity() {
 
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        binding.viewPager.setCurrentItem(Store(this).Fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
+
+        binding.bottomBar.setOnTabInterceptListener(object :AnimatedBottomBar.OnTabInterceptListener {
+            override fun onTabIntercepted(
+                lastIndex: Int,
+                lastTab: AnimatedBottomBar.Tab?,
+                newIndex: Int,
+                newTab: AnimatedBottomBar.Tab
+            ): Boolean {
+                Store(applicationContext).Fragment = newIndex
+                return true
+            }
+        })
     }
 
     /**

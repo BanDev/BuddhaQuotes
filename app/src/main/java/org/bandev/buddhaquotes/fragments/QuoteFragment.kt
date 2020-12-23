@@ -14,6 +14,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
+import org.bandev.buddhaquotes.core.Store
 import org.bandev.buddhaquotes.custom.OnDoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 
@@ -56,10 +57,10 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        newQuote()
+        newQuote(Store(requireContext()).QuoteID)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))
-            setOnRefreshListener { newQuote(); binding.swipeRefresh.isRefreshing = false }
+            setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
         }
         binding.like.setOnClickListener {
             favouriteQuote()
@@ -78,10 +79,11 @@ class QuoteFragment : Fragment() {
      * Refreshes the quote on screen
      */
 
-    private fun newQuote() {
-        val quote = quotes.getQuote(0, requireContext())
+    private fun newQuote(quoteId: Int) {
+        val quote = quotes.getQuote(quoteId, requireContext())
         binding.quote.text = quote
         binding.number.text = getString(R.string.quote_number, quotes.quotenumberglobal)
+        Store(requireContext()).QuoteID = quotes.quotenumberglobal
         val icon = if (Lists().queryInList(quote, "Favourites", context)) {
             liked = true
             R.drawable.heart_full_red
