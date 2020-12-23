@@ -85,9 +85,8 @@ class Main : AppCompatActivity() {
                 true
             }
             R.id.settings -> {
-                val intent = Intent(this, Settings::class.java)
-                intent.putExtra("from", Activities.MAIN)
-                this.startActivity(intent)
+                startActivity(Intent(this@Main, Settings::class.java))
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

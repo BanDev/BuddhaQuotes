@@ -18,7 +18,7 @@ import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityAboutLibrariesBinding
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
-class OssLibraries : AppCompatActivity() {
+class AboutLibraries : AppCompatActivity() {
 
     private lateinit var binding: ActivityAboutLibrariesBinding
 
