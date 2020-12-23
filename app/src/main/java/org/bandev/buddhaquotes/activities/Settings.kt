@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -44,11 +45,9 @@ class Settings : AppCompatActivity() {
         }
 
         if ((intent.extras ?: return).getBoolean("lang")) {
-            this.overridePendingTransition(0, 0)
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
-            this.overridePendingTransition(0, 0)
             val sharedPreferences = getSharedPreferences("Settings", 0)
             val darkmode = sharedPreferences.getBoolean("dark_mode", false)
             val sys = sharedPreferences.getBoolean("sys", true)
@@ -76,16 +75,13 @@ class Settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> {
-                    val i = Intent(activity, About::class.java)
-                    startActivity(i)
+                    startActivity(Intent(activity, About::class.java))
                 }
                 "Help" -> {
-                    val i = Intent(activity, Intro::class.java)
-                    startActivity(i)
+                    startActivity(Intent(activity, Intro::class.java))
                 }
                 "AboutLibraries" -> {
-                    val i = Intent(activity, OssLibraries::class.java)
-                    startActivity(i)
+                    startActivity(Intent(activity, AboutLibraries::class.java))
                 }
             }
             return true
@@ -196,6 +192,7 @@ class Settings : AppCompatActivity() {
                     val mBundle = Bundle()
                     mBundle.putBoolean("lang", true)
                     intent2.putExtras(mBundle)
+                    activity?.finish()
                     startActivity(intent2)
                 }
                 .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
@@ -227,6 +224,7 @@ class Settings : AppCompatActivity() {
                     val mBundle = Bundle()
                     mBundle.putBoolean("switch", true)
                     intent2.putExtras(mBundle)
+                    activity?.finish()
                     startActivity(intent2)
                 }
                 .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
@@ -318,7 +316,8 @@ class Settings : AppCompatActivity() {
                     val mBundle = Bundle()
                     mBundle.putBoolean("switch", true)
                     intent2.putExtras(mBundle)
-
+                    intent2.flags = FLAG_ACTIVITY_NO_ANIMATION
+                    activity?.finish()
                     startActivity(intent2)
                 }
                 positiveButton(R.string.confirm) {
@@ -343,5 +342,6 @@ class Settings : AppCompatActivity() {
 
     override fun onBackPressed() {
         finish()
+        startActivity(Intent(this@Settings, Main::class.java))
     }
 }

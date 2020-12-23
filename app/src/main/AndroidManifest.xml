@@ -57,7 +57,7 @@
         <activity
             android:name=".activities.Intro" />
         <activity
-            android:name=".activities.OssLibraries" />
+            android:name=".activities.AboutLibraries" />
         <activity
             android:name=".OldMainActivity"
             android:label="@string/MainActivity"

@@ -85,6 +85,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 b.putString("list", listTmp) // Your id
                 intent2.putExtras(b)
                 this.startActivity(intent2)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -108,6 +108,12 @@ class AddToList : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        val list = (intent.getStringExtra("list") ?: return).toString()
+        val intent2 = Intent(this, ScrollingActivity::class.java)
+        val mBundle = Bundle()
+        mBundle.putString("list", list)
+        intent2.putExtras(mBundle)
+        this.startActivity(intent2)
         finish()
     }
 }
