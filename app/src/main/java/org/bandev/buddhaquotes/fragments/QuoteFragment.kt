@@ -57,7 +57,7 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        newQuote(Store(requireContext()).QuoteID)
+        newQuote(Store(requireContext()).quoteID)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))
             setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
@@ -83,7 +83,7 @@ class QuoteFragment : Fragment() {
         val quote = quotes.getQuote(quoteId, requireContext())
         binding.quote.text = quote
         binding.number.text = getString(R.string.quote_number, quotes.quotenumberglobal)
-        Store(requireContext()).QuoteID = quotes.quotenumberglobal
+        Store(requireContext()).quoteID = quotes.quotenumberglobal
         val icon = if (Lists().queryInList(quote, "Favourites", context)) {
             liked = true
             R.drawable.heart_full_red

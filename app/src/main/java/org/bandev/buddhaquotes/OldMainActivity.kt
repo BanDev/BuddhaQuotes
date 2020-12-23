@@ -264,10 +264,6 @@ class OldMainActivity : AppCompatActivity() {
                 mBundle.putString("quote", quoteNumber.toString())
                 myIntent.putExtras(mBundle)
                 this@OldMainActivity.startActivity(myIntent)
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
                 true
             }
             android.R.id.home -> {

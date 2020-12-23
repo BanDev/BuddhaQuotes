@@ -40,7 +40,7 @@ class About : AppCompatActivity() {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setNavigationOnClickListener {
-            finish()
+            onBackPressed()
         }
 
         // Setup contributors array
@@ -116,5 +116,9 @@ class About : AppCompatActivity() {
         par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
         listView.layoutParams = par
         listView.requestLayout()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

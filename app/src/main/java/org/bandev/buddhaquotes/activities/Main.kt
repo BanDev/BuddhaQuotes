@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
@@ -61,17 +59,18 @@ class Main : AppCompatActivity() {
 
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-        binding.viewPager.setCurrentItem(Store(this).Fragment, false)
+        binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
 
-        binding.bottomBar.setOnTabInterceptListener(object :AnimatedBottomBar.OnTabInterceptListener {
+        binding.bottomBar.setOnTabInterceptListener(object :
+            AnimatedBottomBar.OnTabInterceptListener {
             override fun onTabIntercepted(
                 lastIndex: Int,
                 lastTab: AnimatedBottomBar.Tab?,
                 newIndex: Int,
                 newTab: AnimatedBottomBar.Tab
             ): Boolean {
-                Store(applicationContext).Fragment = newIndex
+                Store(applicationContext).fragment = newIndex
                 return true
             }
         })
@@ -105,6 +104,10 @@ class Main : AppCompatActivity() {
                 intent.putExtra("from", Activities.MAIN)
                 this.startActivity(intent)
                 finish()
+                overridePendingTransition(
+                    R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
