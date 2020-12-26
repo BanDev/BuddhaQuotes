@@ -196,6 +196,11 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
+        startActivity(Intent(this@ScrollingActivity, Main::class.java))
         finish()
+        overridePendingTransition(
+            android.R.anim.fade_in,
+            android.R.anim.fade_out
+        )
     }
 }
