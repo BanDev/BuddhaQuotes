@@ -4,69 +4,961 @@
 
 <resources>
 
-    <string name='refresh'>обновить</string> <!-- Translated by Fennec_exe -->
-    <string name='favourite'>Любимый</string> <!-- Translated by Fennec_exe -->
-    <string name='share'>Поделиться</string> <!-- Translated by Fennec_exe -->
-    <string name='settings'>Настройки</string> <!-- Translated by Fennec_exe -->
-    <string name='appearance'>Внешность</string> <!-- Translated by Fennec_exe -->
-    <string name='app_theme'>Тема приложения</string> <!-- Translated by Fennec_exe -->
-    <string name='light_mode'>Свет</string> <!-- Translated by Fennec_exe -->
-    <string name='dark_mode'>Темно</string> <!-- Translated by Fennec_exe -->
-    <string name='follow_system_default'>Следуйте системным настройкам по умолчанию</string> <!-- Translated by Fennec_exe -->
-    <string name='information'>Информация</string> <!-- Translated by Fennec_exe -->
-    <string name='about'>Около</string> <!-- Translated by Fennec_exe -->
-    <string name='view_app_details'>Просмотр сведений о приложении</string> <!-- Translated by Fennec_exe -->
-    <string name='help'>Помогите</string> <!-- Translated by Fennec_exe -->
-    <string name='app_introduction'>Введение в приложение</string> <!-- Translated by Fennec_exe -->
-    <string name='app_license'>Лицензия на приложение</string> <!-- Translated by Fennec_exe -->
-    <string name='libraries_used'>Используемые библиотеки</string> <!-- Translated by Fennec_exe -->
-    <string name='about_app_promise'>Обещание приложения</string> <!-- Translated by Fennec_exe -->
-    <string name='about_no_trackers'>Нет трекеров</string> <!-- Translated by Fennec_exe -->
-    <string name='about_complete_privacy'>Полная конфиденциальность</string> <!-- Translated by Fennec_exe -->
-    <string name='about_offline_app'>Автономное приложение</string> <!-- Translated by Fennec_exe -->
-    <string name='about_free_and_open_source'>Бесплатный и открытый исходный код</string> <!-- Translated by Fennec_exe -->
-    <string name='about_info'>Введение в приложение</string> <!-- Translated by Fennec_exe -->
-    <string name='about_info_paragraph'>Buddha Quotes - это совместный проект по созданию бесплатного приложения с открытым исходным кодом Buddha Quotes для Android с упором на конфиденциальность.</string> <!-- Translated by Fennec_exe -->
-    <string name='about_contributors'>Авторы</string> <!-- Translated by Fennec_exe -->
-    <string name='about_acknowledgements'>Благодарности</string> <!-- Translated by Fennec_exe -->
-    <string name='about_attribution'>Значок запуска - Freepik через Flaticon</string> <!-- Translated by Fennec_exe -->
-    <string name='tick'>галочка</string> <!-- Translated by Fennec_exe -->
-    <string name='favourited_quote'>Избранная цитата</string> <!-- Translated by Fennec_exe -->
-    <string name='favourite_quote_delete'>удалять</string> <!-- Translated by Fennec_exe -->
-    <string name='buddha_quotes_logo'>Buddha Quotes Логотип</string> <!-- Translated by Fennec_exe -->
-    <string name='bandev_logo'>Логотип BanDev</string> <!-- Translated by Fennec_exe -->
-    <string name='the_buddha'>Будда</string> <!-- Translated by Fennec_exe -->
-    <string name='forward_arrow'>Возвращение</string> <!-- Translated by Fennec_exe -->
-    <string name='icon'>Икона</string> <!-- Translated by Fennec_exe -->
-    <string name='title'>заглавие</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses'>Лицензии</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_permissions'>Разрешения</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_commercial_use'>Коммерческое использование</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_distribution'>Распределение</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_modification'>Модификация</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_patent_use'>Использование патента</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_private_use'>Частное использование</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_conditions'>Условия</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_disclose_source'>Раскрыть источник</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_copyright_notice'>Уведомление о лицензии и авторских правах</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_same_license'>Та же лицензия</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_state_changes'>Изменения состояния</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_limitations'>Ограничения</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_liability'>Ответственность</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_warranty'>Гарантия</string> <!-- Translated by Fennec_exe -->
-    <string name='licenses_full_license'>Полная лицензия</string> <!-- Translated by Fennec_exe -->
-    <string name='green_circle'>Зеленый круг</string> <!-- Translated by Fennec_exe -->
-    <string name='blue_circle'>Синий круг</string> <!-- Translated by Fennec_exe -->
-    <string name='red_circle'>Красный круг</string> <!-- Translated by Fennec_exe -->
-    <string name='title_activity_settings'>Настройки Активность</string> <!-- Translated by Fennec_exe -->
-    <string name='textview'>Просмотр текста</string> <!-- Translated by Fennec_exe -->
-    <string name='MainActivity'>Основная деятельность</string> <!-- Translated by Fennec_exe -->
-    <string name='title_activity_scrolling'>Прокрутка</string> <!-- Translated by Fennec_exe -->
-    <string name='action_settings'>Настройки</string> <!-- Translated by Fennec_exe -->
-    <string name='appwidget_text'>ПРИМЕР</string> <!-- Translated by Fennec_exe -->
-    <string name='configure'>Настроить</string> <!-- Translated by Fennec_exe -->
-    <string name='add_widget'>Добавить виджет</string> <!-- Translated by Fennec_exe -->
-    <string name='open_source_libraries'>Библиотеки с открытым исходным кодом</string> <!-- Translated by Fennec_exe -->
-    <string name='about_no_ads'>Без рекламы</string> <!-- Translated by Fennec_exe -->
+    <string name="app_name" translatable="false">Buddha Quotes</string>
+    <string name="version" translatable="false">v1.6.0</string>
+    <string id="1" name="refresh">Обновить</string>
+    <string id="2" name="favourite">Любимый</string>
+    <string id="3" name="share">Поделиться</string>
+    <string id="4" name="settings">Настройки</string>
+    <string id="5" name="appearance">вид</string>
+    <string id="6" name="app_theme">Тема приложения</string>
+    <string id="7" name="light_mode">Свет</string>
+    <string id="8" name="dark_mode">Тьма</string>
+    <string id="9" name="follow_system_default">Следуйте системным настройкам по умолчанию</string>
+    <string id="14" name="information">Информация</string>
+    <string id="15" name="about">Около</string>
+    <string id="16" name="view_app_details">Просмотр сведений о приложении</string>
+    <string id="17" name="help">Помогите</string>
+    <string id="18" name="app_introduction">Введение в приложение</string>
+    <string id="19" name="app_license">Лицензия на приложение</string>
+    <string id="UNTRANSLATE" name="gplv3" translatable="false">GPLv3 Logo</string>
+    <string id="20" name="libraries_used">Используемые библиотеки</string>
+    <string id="21" name="about_app_promise">Обещание приложения</string>
+    <string id="22" name="about_no_trackers">Нет трекеров</string>
+    <string id="23" name="about_complete_privacy">Полная конфиденциальность</string>
+    <string id="24" name="about_offline_app">Автономное приложение</string>
+    <string id="25" name="about_free_and_open_source">Бесплатный и открытый исходный код</string>
+    <string id="26" name="about_info">Информация о приложении</string>
+    <string id="27" name="about_info_paragraph">
+Buddha Quotes - это совместный проект по созданию бесплатного приложения с открытым исходным кодом Buddha Quotes для Android с упором на конфиденциальность.
+</string>
+    <string id="28" name="about_contributors">Авторы</string>
+    <string id="UNTRANSLATE" name="about_fennec" translatable="false">"@Fennec_exe"</string>
+    <string id="UNTRANSLATE" name="about_jack" translatable="false">"@jack.txt"</string>
+    <string id="UNTRANSLATE" name="about_izzysoft" translatable="false">"@IzzySoft"</string>
+    <string id="UNTRANSLATE" name="about_licaon" translatable="false">"@licaon-kter"</string>
+    <string id="UNTRANSLATE" name="about_poussinou" translatable="false">"@Poussinou"</string>
+    <string id="29" name="about_acknowledgements">Благодарности</string>
+    <string id="30" name="about_attribution">Значок запуска - Freepik через Flaticon</string>
+    <string id="31" name="tick">Поставить галочку</string>
+    <string id="55" name="favourited_quote">Избранная цитата</string>
+    <string id="56" name="favourite_quote_delete">удалять</string>
+    <string id="57" name="buddha_quotes_logo">Логотип цитаты Будды</string>
+    <string id="58" name="bandev_logo">Логотип BanDev</string>
+    <string id="59" name="the_buddha">Будда</string>
+    <string id="60" name="forward_arrow">Возвращение</string>
+    <string id="61" name="icon">Икона</string>
+    <string id="62" name="title">заглавие</string>
+    <string id="63" name="licenses">Лицензия</string>
+    <string id="UNTRANSLATE" name="licenses_license" translatable="false">GPL-3.0+</string>
+    <string id="64" name="licenses_permissions">Разрешения</string>
+    <string id="65" name="licenses_commercial_use">Коммерческое использование</string>
+    <string id="66" name="licenses_distribution">Распределение</string>
+    <string id="67" name="licenses_modification">Модификация</string>
+    <string id="68" name="licenses_patent_use">Использование патента</string>
+    <string id="69" name="licenses_private_use">Частное использование</string>
+    <string id="70" name="licenses_conditions">Условия</string>
+    <string id="71" name="licenses_disclose_source">Раскрыть источник</string>
+    <string id="72" name="licenses_copyright_notice">Уведомление о лицензии и авторских правах</string>
+    <string id="73" name="licenses_same_license">Та же лицензия</string>
+    <string id="74" name="licenses_state_changes">Изменения состояния</string>
+    <string id="75" name="licenses_limitations">Ограничения</string>
+    <string id="76" name="licenses_liability">Ответственность</string>
+    <string id="77" name="licenses_warranty">Гарантия</string>
+    <string id="78" name="licenses_full_license">Полная лицензия</string>
+    <string id="79" name="green_circle">Зеленый круг</string>
+    <string id="80" name="blue_circle">Синий круг</string>
+    <string id="81" name="red_circle">Красный круг</string>
+    <string id="82" name="title_activity_settings">Настройки</string>
+    <string id="83" name="textview">TextView</string>
+    <string id="84" name="MainActivity">Основное занятие</string>
+    <string id="85" name="title_activity_scrolling">ScrollingActivity</string>
+    <string id="86" name="action_settings">Настройки</string>
+    <string id="87" name="appwidget_text">ПРИМЕР</string>
+    <string id="88" name="configure">Настроить</string>
+    <string id="89" name="add_widget">Добавить виджет</string>
+    <string id="90" name="open_source_libraries">Библиотеки с открытым исходным кодом</string>
+    <string id="91" name="about_no_ads">Без рекламы</string>
+    <string id="92" name="lists_title">Ваши списки</string>
+    <string id="93" name="lists_add_item">Добавить в список</string>
+    <string id="94" name="lists_add_lists">Создать новый список</string>
+    <string id="95" name="lists_add_lists_go">Добавить</string>
+    <string id="96" name="lists_add_lists_name">имя</string>
+    <string id="97" name="settings_general">генеральный</string>
+    <string id="98" name="settings_accent_colour">Акцентный цвет</string>
+    <string id="99" name="settings_shapes_mode">Режим фигур</string>
+    <string id="100" name="settings_shapes_mode_yes">На</string>
+    <string id="101" name="settings_shapes_mode_no">Выключено</string>
+    <string id="102" name="settings_language">Язык</string>
+    <string id="103" name="original">Оригинал</string>
+    <string id="104" name="blue">Синий</string>
+    <string id="105" name="green">Зеленый</string>
+    <string id="106" name="orange">апельсин</string>
+    <string id="107" name="yellow">Желтый</string>
+    <string id="108" name="teal">Бирюзовый</string>
+    <string id="109" name="violet">Виолетта</string>
+    <string id="110" name="pink">Розовый</string>
+    <string id="111" name="lightBlue">Светло-синий</string>
+    <string id="112" name="red">Красный</string>
+    <string id="113" name="lime">Лайм</string>
+    <string id="114" name="crimson">малиновый цвет</string>
+    <string name="ab">Абхазский</string>
+    <string name="aa">Афар</string>
+    <string name="af">африкаанс</string>
+    <string name="ak">Акан</string>
+    <string name="sq">албанский</string>
+    <string name="am">Амхарский</string>
+    <string name="ar">арабский</string>
+    <string name="an">Арагонский</string>
+    <string name="hy">Армянский</string>
+    <string name="as">Ассамский</string>
+    <string name="av">Аварский</string>
+    <string name="ae">Авестийский</string>
+    <string name="ay">аймара</string>
+    <string name="az">Азербайджанский</string>
+    <string name="bm">Бамбара</string>
+    <string name="ba">Башкирский</string>
+    <string name="eu">Баскский</string>
+    <string name="be">Белорусский</string>
+    <string name="bn">Бенгальский</string>
+    <string name="bh">Языки бихари</string>
+    <string name="bi">Бислама</string>
+    <string name="bs">Боснийский</string>
+    <string name="br">Бретонский</string>
+    <string name="bg">болгарский</string>
+    <string name="my">Бирманский</string>
+    <string name="ca">Каталонский, валенсийский</string>
+    <string name="km">Центральный кхмерский</string>
+    <string name="ch">Чаморро</string>
+    <string name="ce">Чеченский</string>
+    <string name="ny">Чичева, Чева, Ньянджа</string>
+    <string name="zh">китайский язык</string>
+    <string name="cu">
+Церковнославянский, староболгарский, старославянский
+</string>
+    <string name="cv">Чувашский</string>
+    <string name="kw">Корнуолл</string>
+    <string name="co">Корсиканский</string>
+    <string name="cr">Кри</string>
+    <string name="hr">хорватский</string>
+    <string name="cs">чешский язык</string>
+    <string name="da">Датский</string>
+    <string name="dv">Дивехи, Дивехи, Мальдивы</string>
+    <string name="nl">Голландский, фламандский</string>
+    <string name="dz">Дзонгка</string>
+    <string name="en">английский</string>
+    <string name="eo">эсперанто</string>
+    <string name="et">эстонский</string>
+    <string name="ee">Ewe</string>
+    <string name="fo">Фарерские острова</string>
+    <string name="fj">Фиджийский</string>
+    <string name="fi">Финский</string>
+    <string name="fr">французский язык</string>
+    <string name="ff">Фулах</string>
+    <string name="gd">Гэльский, шотландский гэльский</string>
+    <string name="gl">Галицкий</string>
+    <string name="lg">Ганда</string>
+    <string name="ka">Грузинский</string>
+    <string name="de">Немецкий</string>
+    <string name="ki">Гикуйю, Кикуйю</string>
+    <string name="el">Греческий (современный)</string>
+    <string name="kl">Гренландский, калааллисут</string>
+    <string name="gn">Гуарани</string>
+    <string name="gu">Гуджарати</string>
+    <string name="ht">Гаитянский, гаитянский креольский</string>
+    <string name="ha">Хауса</string>
+    <string name="he">иврит</string>
+    <string name="hz">Гереро</string>
+    <string name="hi">хинди</string>
+    <string name="ho">Хири Моту</string>
+    <string name="hu">венгерский язык</string>
+    <string name="is">исландский</string>
+    <string name="io">Я делаю</string>
+    <string name="ig">Игбо</string>
+    <string name="id">индонезийский</string>
+    <string name="ia">
+Интерлингва (Международная ассоциация вспомогательных языков)
+</string>
+    <string name="ie">Интерлингв</string>
+    <string name="iu">Инуктитут</string>
+    <string name="ik">Инупиак</string>
+    <string name="ga">Ирландский</string>
+    <string name="it">Итальянский</string>
+    <string name="ja">Японский</string>
+    <string name="jv">Яванский</string>
+    <string name="kn">Каннада</string>
+    <string name="kr">Канури</string>
+    <string name="ks">Кашмири</string>
+    <string name="kk">Казахский</string>
+    <string name="rw">Киньяруанда</string>
+    <string name="kv">Коми</string>
+    <string name="kg">Конго</string>
+    <string name="ko">корейский язык</string>
+    <string name="kj">Кваньяма, Куаньяма</string>
+    <string name="ku">Курдский</string>
+    <string name="ky">Кыргызский</string>
+    <string name="lo">Лаосский</string>
+    <string name="la">латинский</string>
+    <string name="lv">Латышский</string>
+    <string name="lb">Letzeburgesch, люксембургский</string>
+    <string name="li">Лимбургский, Лимбургский, Лимбургский</string>
+    <string name="ln">Лингала</string>
+    <string name="lt">Литовский язык</string>
+    <string name="lu">Люба-Катанга</string>
+    <string name="mk">македонский</string>
+    <string name="mg">Малагасийский</string>
+    <string name="ms">малайский</string>
+    <string name="ml">Малаялам</string>
+    <string name="mt">Мальтийский</string>
+    <string name="gv">Манкс</string>
+    <string name="mi">маори</string>
+    <string name="mr">Маратхи</string>
+    <string name="mh">Маршалльский</string>
+    <string name="ro">Молдавский, молдавский, румынский</string>
+    <string name="mn">Монгольский</string>
+    <string name="na">Науру</string>
+    <string name="nv">Навахо, навахо</string>
+    <string name="nd">Северный ндебеле</string>
+    <string name="ng">Ндонга</string>
+    <string name="ne">Непальский</string>
+    <string name="se">Северные саамы</string>
+    <string name="no">Норвежский</string>
+    <string name="nb">Норвежский букмол</string>
+    <string name="nn">Норвежский нюнорск</string>
+    <string name="ii">Нуосу, Сычуань И</string>
+    <string name="oc">Окситанский (пост 1500)</string>
+    <string name="oj">Оджибва</string>
+    <string name="or">Ория</string>
+    <string name="om">Оромо</string>
+    <string name="os">Осетинский, Осетинский</string>
+    <string name="pi">пали</string>
+    <string name="pa">Панджаби (пенджаби)</string>
+    <string name="ps">Пушту, пушту</string>
+    <string name="fa">Персидский</string>
+    <string name="pl">Польский</string>
+    <string name="pt">португальский</string>
+    <string name="qu">кечуа</string>
+    <string name="rm">Ретороманский</string>
+    <string name="rn">Рунди</string>
+    <string name="ru">русский</string>
+    <string name="sm">Самоанский</string>
+    <string name="sg">Санго</string>
+    <string name="sa">санскрит</string>
+    <string name="sc">Сардинский</string>
+    <string name="sr">сербский</string>
+    <string name="sn">Шона</string>
+    <string name="sd">Синдхи</string>
+    <string name="si">Сингальский, сингальский</string>
+    <string name="sk">словацкий</string>
+    <string name="sl">словенский</string>
+    <string name="so">Сомалийский</string>
+    <string name="st">Сото, Южный</string>
+    <string name="nr">Южный Ндебеле</string>
+    <string name="es">Испанский, кастильский</string>
+    <string name="su">Суданский</string>
+    <string name="sw">суахили</string>
+    <string name="ss">Свати</string>
+    <string name="sv">Шведский</string>
+    <string name="tl">Тагальский</string>
+    <string name="ty">Таитянский</string>
+    <string name="tg">Таджикский</string>
+    <string name="ta">Тамильский</string>
+    <string name="tt">Татарский</string>
+    <string name="te">телугу</string>
+    <string name="th">Тайский</string>
+    <string name="bo">тибетский</string>
+    <string name="ti">Тигринья</string>
+    <string name="to">Тонга (острова Тонга)</string>
+    <string name="ts">Тсонга</string>
+    <string name="tn">Тсвана</string>
+    <string name="tr">турецкий</string>
+    <string name="tk">туркменский</string>
+    <string name="tw">Тви</string>
+    <string name="ug">Уйгурский, уйгурский</string>
+    <string name="uk">украинец</string>
+    <string name="ur">Урду</string>
+    <string name="uz">Узбекский</string>
+    <string name="ve">Венда</string>
+    <string name="vi">вьетнамский</string>
+    <string name="vo">Волап_к</string>
+    <string name="wa">валлонский</string>
+    <string name="cy">валлийский</string>
+    <string name="fy">Западно-фризский</string>
+    <string name="wo">Волоф</string>
+    <string name="xh">Коса</string>
+    <string name="yi">идиш</string>
+    <string name="yo">Йоруба</string>
+    <string name="za">Чжуан, Чжуан</string>
+    <string name="zu">Зулусский</string>
+    <string id="299" name="appintro1_description">
+Бесплатное приложение с цитатами о Будде с открытым исходным кодом
+</string>
+    <string id="300" name="appintro2_title">Более 230 цитат</string>
+    <string id="301" name="appintro2_description">Более 230 цитат из Будды</string>
+    <string id="302" name="appintro3_title">Избранное</string>
+    <string id="303" name="appintro3_description">
+Вы можете добавить цитаты в избранное, нажав кнопку избранного
+</string>
+    <string id="304" name="appintro4_title">Настраиваемый</string>
+    <string id="305" name="appintro4_description">
+Существует множество вариантов пользовательского интерфейса, таких как режим акцентирования цветов и форм.
+</string>
+    <string id="306" name="appintro5_title">Давайте начнем!</string>
+    <string id="307" name="appintro5_description">
+Мы надеемся, что вам понравится приложение - у нас есть репозиторий GitLab, где вы можете запрашивать функции или поднимать вопросы.
+</string>
+    <string id="308" name="cancel">отменить</string>
+    <string id="309" name="confirm">Подтвердить</string>
+    <string id="310" name="quote_1">Дисциплинированный ум приносит счастье</string>
+    <string id="311" name="quote_2">
+Хорошего друга, который указывает на ошибки и недостатки и упрекает зло, следует уважать, как если бы он открыл секрет спрятанного сокровища.
+</string>
+    <string id="312" name="quote_3">
+Великая человеческая революция всего в одном человеке поможет изменить судьбу нации и, более того, может даже изменить судьбу всего человечества.
+</string>
+    <string id="313" name="quote_4">
+Один человек спросил Гаутаму Будду: «Я хочу счастья». Будда сказал: «Сначала удалите« я », это эго, затем удалите« желание », это желание. Смотрите, теперь у вас остается только« счастье ».
+</string>
+    <string id="314" name="quote_5">
+Человека называют мудрым не потому, что он снова и снова говорит; но если он мирный, любящий и бесстрашный, то его на самом деле называют мудрым
+</string>
+    <string id="315" name="quote_6">
+Ум, не тронутый капризами удачи, освобожденный от печали, очищенный от скверн, освобожденный от страха - это величайшее благословение.
+</string>
+    <string id="316" name="quote_7">
+Человек, который в любой безвыходной ситуации вселяет надежду в других, является настоящим лидером.
+</string>
+    <string id="317" name="quote_8">
+По-настоящему сострадательное отношение к другим не меняется, даже если они ведут себя негативно или причиняют вам боль.
+</string>
+    <string id="318" name="quote_9">Прежде всего, не теряйте желания гулять</string>
+    <string id="319" name="quote_10">
+\\\'Все обусловленные вещи непостоянны \\\' - когда человек видит это с мудростью, он отворачивается от страдания
+</string>
+    <string id="320" name="quote_11">
+Всякому опыту предшествует ум, имея ум как хозяин, созданный умом.
+</string>
+    <string id="321" name="quote_12">
+Все явления не существуют по своей природе из-за того, что они возникают из-за зависимости. Не все явления по своей природе существуют из-за зависимого вменения
+</string>
+    <string id="322" name="quote_13">
+Все страдания вызваны невежеством. Люди причиняют боль другим в эгоистичном стремлении к собственному счастью или удовлетворению.
+</string>
+    <string id="323" name="quote_14">
+Все трепещут перед насилием; все боятся смерти. Ставя себя на место другого, нельзя убивать или заставлять другого убивать
+</string>
+    <string id="324" name="quote_15">
+Все неправильные поступки возникают из-за ума. Если ум трансформируется, могут ли оставаться неправильные поступки?
+</string>
+    <string id="325" name="quote_16">Открытое сердце - это открытый ум</string>
+    <string id="326" name="quote_17">
+Анализ через особую проницательность и осознание отсутствия внутреннего существования составляют понимание беззнакового
+</string>
+    <string id="327" name="quote_18">
+Гнев - окончательный разрушитель вашего душевного спокойствия
+</string>
+    <string id="328" name="quote_19">
+Гнев или ненависть похожи на крючок рыбака. Для нас очень важно, чтобы он нас не поймал.
+</string>
+    <string id="329" name="quote_20">
+Гнев никогда не исчезнет, ​​пока в уме лелеются мысли обиды. Гнев исчезнет, ​​как только мысли обиды будут забыты
+</string>
+    <string id="330" name="quote_21">
+Горячо делайте сегодня то, что должно быть сделано. Кто знает? Завтра смерть придет
+</string>
+    <string id="331" name="quote_22">
+Как я, таковы и они. Как они, я тоже. Проведите параллель с самим собой, не убивайте и не заставляйте других убивать
+</string>
+    <string id="332" name="quote_23">
+Как прекрасный и красивый цветок, но без запаха, бесплодный - хорошо произнесенное слово того, кто его не практикует.
+</string>
+    <string id="333" name="quote_24">
+Как цветок лотоса рождается в воде, растет в воде и поднимается из воды, чтобы стоять над ней незапятнанным, так и я, рожденный в мире, выросший в мире, преодолевший мир, живу незагрязненным миром.
+</string>
+    <string id="334" name="quote_25">
+Как водная бусинка на листе лотоса, как вода на красной лилии, не прилипает, так и мудрец не прилипает к видимому, слышимому или ощутимому.
+</string>
+    <string id="335" name="quote_26">
+Как слон на поле боя выдерживает стрелы, выпущенные из луков со всех сторон, так и я вынесу оскорбления
+</string>
+    <string id="336" name="quote_27">Привязанность ведет к страданию</string>
+    <string id="337" name="quote_28">Внимание - самая редкая и чистая форма щедрости</string>
+    <string id="338" name="quote_29">
+Будь светильником для себя. Освободите свое освобождение с помощью освобождения
+</string>
+    <string id="339" name="quote_30">Будьте в курсе настоящего</string>
+    <string id="340" name="quote_31">По возможности будьте добры. Это всегда возможно</string>
+    <string id="341" name="quote_32">
+Будьте бдительны; охраняйте свой разум от негативных мыслей
+</string>
+    <string id="342" name="quote_33">
+Будь собой. Это первый шаг к тому, чтобы стать лучше, чем вы есть
+</string>
+    <string id="343" name="quote_34">
+Поскольку все мы разделяем одинаковую потребность в любви, можно почувствовать, что любой, кого мы встречаем, при любых обстоятельствах, является братом или сестрой.
+</string>
+    <string id="344" name="quote_35">Потому что ты жив, все возможно</string>
+    <string id="345" name="quote_36">
+Лучше жить одному; нет общения с глупцом. Живите один и не делайте зла; будь беззаботным, как слон в слоновьей роще
+</string>
+    <string id="346" name="quote_37">
+Лучше прожить один день, наблюдая взлеты и падения вещей, чем прожить сто лет, не видя взлетов и падений вещей
+</string>
+    <string id="347" name="quote_38">
+Лучше тысячи бесполезных слов одно полезное слово, слыша которое обретает покой.
+</string>
+    <string id="348" name="quote_39">
+Лучше поклонения богам подчинение законам праведности
+</string>
+    <string id="349" name="quote_40">
+Живя глубоко в настоящем моменте, мы можем лучше понять прошлое и подготовиться к лучшему будущему.
+</string>
+    <string id="350" name="quote_41">
+Спокойствие ума приносит внутреннюю силу и уверенность в себе, что очень важно для хорошего здоровья.
+</string>
+    <string id="351" name="quote_42">
+Прекращение совершения зла, взращивание добра, очищение сердца: это учение Будд.
+</string>
+    <string id="352" name="quote_43">Выбери оптимизм, так лучше</string>
+    <string id="353" name="quote_44">
+Победите гнев через мягкость, недоброжелательность через доброту, жадность через щедрость и ложь через истину
+</string>
+    <string id="354" name="quote_45">
+Победи гнев без гнева. Побеждайте зло добром. Победите подлость щедростью. Победите нечестность правдой
+</string>
+    <string id="355" name="quote_46">
+Победи разгневанного, не злясь; побеждайте нечестивых добротой; победить скупых щедростью, а лжецов - правдой
+</string>
+    <string id="356" name="quote_47">Удовлетворенность - величайшее богатство</string>
+    <string id="357" name="quote_48">Радуйтесь внимательности! Берегите свои мысли!</string>
+    <string id="358" name="quote_49">
+Восхитительны леса, Где публика не в восторге. Там восторг без страсти, Не ища удовольствия чувственного
+</string>
+    <string id="359" name="quote_50">
+Говоря об этом, не подтверждают Дхарму. Дхарма поддерживается жизнью в гармонии с ней …
+</string>
+    <string id="360" name="quote_51">
+Не обращайте внимания на то, что делают или не делают другие; отдай это тому, что ты делаешь или не делаешь
+</string>
+    <string id="361" name="quote_52">
+Не переоценивайте то, что вы получили, и не завидуйте другим. Тот, кто завидует другим, не обретает душевного покоя
+</string>
+    <string id="362" name="quote_53">
+Не думайте, насколько велика Вселенная, это просто повредит вам голову
+</string>
+    <string id="363" name="quote_54">
+Капля за каплей наполняется горшок с водой. Точно так же мудрый человек, собирая его понемногу, наполняется добром
+</string>
+    <string id="364" name="quote_55">Эмоции возникают из желания, отсюда иллюзия</string>
+    <string id="365" name="quote_56">
+Выносливость - одна из самых сложных дисциплин, но окончательная победа приходит к тому, кто выдерживает.
+</string>
+    <string id="366" name="quote_57">
+Как твердый камень не поколеблен ветром, так и мудрые не поколеблены похвалой или порицанием
+</string>
+    <string id="367" name="quote_58">
+Даже если все развернется не так, как вы ожидали, не расстраивайтесь и не сдавайтесь. Тот, кто продолжает продвигаться, в конце концов победит
+</string>
+    <string id="368" name="quote_59">
+Все изменчиво, все появляется и исчезает, нет блаженного покоя, пока человек не выйдет за пределы агонии жизни и смерти
+</string>
+    <string id="369" name="quote_60">
+Чувства приходят и уходят, как облака в ветреном небе. Осознанное дыхание - мой якорь
+</string>
+    <string id="370" name="quote_61">
+Мало кто из людей переходит на другой берег. Остальные просто бегают вверх и вниз по берегу с этой стороны
+</string>
+    <string id="371" name="quote_62">
+Следование Благородному Пути похоже на вход в темную комнату со светом в руке; тьма рассеется, и комната наполнится светом
+</string>
+    <string id="372" name="quote_63">
+Для блага многих, для счастья многих, из сострадания к миру
+</string>
+    <string id="373" name="quote_64">
+Дружба - единственное лекарство от ненависти, единственная гарантия мира
+</string>
+    <string id="374" name="quote_65">С засохшего дерева распускается цветок</string>
+    <string id="375" name="quote_66">Отдавай, даже если у тебя мало</string>
+    <string id="376" name="quote_67">
+В бою сильнее человека, который хочет победить тысячу тысяч человек, тот, кто победит только одного - себя. Лучше победить себя, чем других
+</string>
+    <string id="377" name="quote_68">Еще больше правда о нашей связи</string>
+    <string id="378" name="quote_69">
+Счастье в основном исходит от нашего собственного отношения, а не от внешних факторов
+</string>
+    <string id="379" name="quote_70">
+Ненависть никогда не утихает ненавистью в этом мире. Ненависть умиротворяется только отсутствием ненависти. Это вечный закон
+</string>
+    <string id="380" name="quote_71">
+Ему не нужна вера, кто знает несотворенное, кто отсек возрождение, кто уничтожил любую возможность для добра или зла и отверг все желания. Он действительно лучший человек
+</string>
+    <string id="381" name="quote_72">Он не тот, и он не другой</string>
+    <string id="382" name="quote_73">
+Тот, кто может обуздать свой гнев, как только он возникнет, в качестве своевременного противоядия остановит змеиный яд, который так быстро распространяется - такой монах отказывается от настоящего и запредельного, как змей сбрасывает свою изношенную кожу
+</string>
+    <string id="383" name="quote_74">
+Тот, кто идет восьмеричным благородным путем с непоколебимой решимостью, обязательно достигнет Нирваны.
+</string>
+    <string id="384" name="quote_75">
+Здоровье - величайший дар, довольство - величайшее богатство, верность - лучшие отношения.
+</string>
+    <string id="385" name="quote_76">
+Какое блаженство для того, у кого ничего нет. Обладатели мудрости - это люди, у которых нет ничего. Увидеть его страдающего, того, у кого что-то есть, человека, связанного с людьми
+</string>
+    <string id="386" name="quote_77">
+Сколько бы святых слов вы ни читали, сколько бы вы ни произносили, какая польза от них, если вы не будете их исполнять?
+</string>
+    <string id="387" name="quote_78">Я не спорю с миром; скорее это мир спорит со мной</string>
+    <string id="388" name="quote_79">
+Я буду жить здесь под дождем, Там зимой, Где-то летом, - размышляет дурак, Не осознавая близости смерти.
+</string>
+    <string id="389" name="quote_80">
+Я не буду смотреть на чужую чашу с намерением найти недостатки: тренировка, которую нужно соблюдать
+</string>
+    <string id="390" name="quote_81">
+Если человека, спускающегося в реку, набухшую и стремительно текущую, уносит течением - как он может помочь другим перейти?
+</string>
+    <string id="391" name="quote_82">
+Если путник не встречает кого-то, кто лучше или равнее ему, пусть он твердо продолжит свое уединенное путешествие; нет товарищества с дураком
+</string>
+    <string id="392" name="quote_83">Если что-то стоит делать, делайте это от всей души</string>
+    <string id="393" name="quote_84">
+Если проанализировать самоотверженность явлений и культивировать этот анализ, это вызовет эффект достижения нирваны. Ни по какой другой причине никто не приходит к миру
+</string>
+    <string id="394" name="quote_85">
+Если мы не сможем позаботиться о других, когда им понадобится помощь, кто позаботится о нас?
+</string>
+    <string id="395" name="quote_86">
+Если с чистым умом человек говорит или действует, счастье следует за ним, как никогда не уходящая тень.
+</string>
+    <string id="396" name="quote_87">
+Если вы сможете развить правильное отношение, ваши враги станут вашими лучшими духовными учителями, потому что их присутствие дает вам возможность усилить и развить вашу терпимость, терпение и понимание.
+</string>
+    <string id="397" name="quote_88">
+Если вы не находите никого, кто поддержит вас на духовном пути, идите в одиночестве.Нет общения с незрелыми.
+</string>
+    <string id="398" name="quote_89">
+Если бы вы знали то, что я знаю о силе даяния, вы бы не пропустили ни одной еды, не поделившись ею каким-либо образом
+</string>
+    <string id="399" name="quote_90">
+Если вы любите кого-то, но редко открываете ему доступ, это не настоящая любовь.
+</string>
+    <string id="400" name="quote_91">
+Если вы хотите, чтобы другие были счастливы, практикуйте сострадание. Если хочешь быть счастливым, практикуй сострадание
+</string>
+    <string id="401" name="quote_92">
+В жизни мы не можем избежать изменений, мы не можем избежать потерь. Свобода и счастье заключаются в гибкости и легкости, с которой мы движемся через перемены.
+</string>
+    <string id="402" name="quote_93">
+Чтобы осуществить позитивные действия, мы должны развить здесь позитивное видение
+</string>
+    <string id="403" name="quote_94">
+В ком нет сочувствия к живым существам: знай его как изгоя
+</string>
+    <string id="404" name="quote_95">
+Собственный разум человека, а не его враг или враг, соблазняет его на злые пути
+</string>
+    <string id="405" name="quote_96">
+Легко увидеть недостатки других, но трудно увидеть свои собственные. Один показывает недостатки другого, как плевел на ветру, но другой скрывает свои собственные ошибки, как хитрый игрок прячет свои кости.
+</string>
+    <string id="406" name="quote_97">
+В природе вещей радость возникает в человеке, свободном от угрызений совести.
+</string>
+    <string id="407" name="quote_98">
+Необходимо сочетать знания, полученные в результате учебы, с искренней практикой в ​​нашей повседневной жизни. Эти двое должны идти вместе
+</string>
+    <string id="408" name="quote_99">
+Недостаточно быть сострадательным, мы должны действовать
+</string>
+    <string id="409" name="quote_100">В состоянии любви можно прожить 24 часа</string>
+    <string id="410" name="quote_101">
+Очень важно, насколько это возможно, формировать хорошее отношение, доброе сердце. Это принесет счастье как в краткосрочной, так и в долгосрочной перспективе как для вас, так и для других.
+</string>
+    <string id="411" name="quote_102">
+Это ваша дорога … и только ваша … Другие могут пройти ее с вами, но никто не сможет пройти ее за вас. Независимо от того, какой путь вы выберете, действительно идите по нему
+</string>
+    <string id="412" name="quote_103">
+Радость приходит не через обладание или владение, а через мудрое и любящее сердце
+</string>
+    <string id="413" name="quote_104">
+Как твердый камень не потрясает буря, так и мудрые не подвержены похвале или порицанию.
+</string>
+    <string id="414" name="quote_105">
+Как у великого океана один вкус - вкус соли, так и у этого учения и дисциплины один вкус - вкус освобождения.
+</string>
+    <string id="415" name="quote_106">
+Узнай по рекам в расселинах и расщелинах: реки в маленьких каналах текут шумно, а большие потоки бесшумны. То, что не заполнено, создает шум. Все, что полно, тихо
+</string>
+    <string id="416" name="quote_107">
+Хорошо знайте, что ведет вас вперед и что сдерживает, и выбирайте путь, ведущий к мудрости
+</string>
+    <string id="417" name="quote_108">
+Узнайте это из воды: ручей громко плещется, а глубина океанов спокойна
+</string>
+    <string id="418" name="quote_109">
+Оставьте позади пассивные мечты о розовом будущем. Энергия счастья существует в сегодняшней жизни с корнями, прочно утопающими в почве реальности.
+</string>
+    <string id="419" name="quote_110">
+Пусть будут твои мысли всеобъемлющие для всех существ
+</string>
+    <string id="420" name="quote_111">
+Пусть он нигде не обманывает и никого не презирает. В гневе или зле позволит ему не желать другого зла
+</string>
+    <string id="421" name="quote_112">
+Пусть никто не придирается к другим; пусть никто не видит упущений и действий других. Но позвольте увидеть свои собственные действия, сделанные и отмененные
+</string>
+    <string id="422" name="quote_113">
+Отпускание дает нам свободу, а свобода - единственное условие счастья. Если в своем сердце мы все еще цепляемся за что-либо - гнев, беспокойство или имущество - мы не можем быть свободными.
+</string>
+    <string id="423" name="quote_114">
+Жизнь - это всегда текущая река. Не держитесь за вещи. Прилагать усилия
+</string>
+    <string id="424" name="quote_115">Жизнь доступна только в настоящий момент</string>
+    <string id="425" name="quote_116">
+Словно прекрасный цветок, полный цвета, но лишенный аромата, - это слова тех, кто не практикует то, чему они учат.
+</string>
+    <string id="426" name="quote_117">
+Подобно тому, как кто-то указывает на сокровища, это мудрый человек, который видит ваши недостатки и указывает на них. Связь с таким мудрецом
+</string>
+    <string id="427" name="quote_118">
+Мало-помалу человек становится злым, как горшок с водой наполняется каплями воды; Постепенно человек становится хорошим, как горшок с водой наполняется каплями воды.
+</string>
+    <string id="428" name="quote_119">
+Живите полностью каждое действие, как если бы оно было вашим последним
+</string>
+    <string id="429" name="quote_120">
+Живите без чувства "моего", не привязываясь к опыту
+</string>
+    <string id="430" name="quote_121">
+Долгая ночь для бодрствующего; долгая миля тому, кто устал; Долговечна жизнь глупцам, не знающим истинного закона
+</string>
+    <string id="431" name="quote_122">
+Посмотрите на ситуации со всех сторон, и вы станете более открытыми
+</string>
+    <string id="432" name="quote_123">
+Любовь и сострадание - это необходимость, а не роскошь. Без них человечество не сможет выжить
+</string>
+    <string id="433" name="quote_124">Любовь - это отсутствие суждения</string>
+    <string id="434" name="quote_125">Люби себя и смотри - сегодня, завтра и всегда</string>
+    <string id="435" name="quote_126">
+Многие не понимают, что мы здесь должны умереть. Для тех, кто это понимает, ссоры заканчиваются
+</string>
+    <string id="436" name="quote_127">Пусть у всех существ будут счастливые умы</string>
+    <string id="437" name="quote_128">
+Медитируй … не откладывай, чтобы потом не пожалеть об этом
+</string>
+    <string id="438" name="quote_129">
+Медитируй, Ананда, не откладывай, иначе ты пожалеешь об этом позже. Это наша инструкция для вас
+</string>
+    <string id="439" name="quote_130">
+Медитация приносит мудрость; отсутствие медитации оставляет невежество. Хорошо знайте, что ведет вас вперед и что сдерживает, и выбирайте путь, ведущий к мудрости
+</string>
+    <string id="440" name="quote_131">
+Монахи, даже если бандиты зверски разорвут вас, на части за куском, двуручной пилой, даже тогда, кто бы из вас злой волей в глубине души не поддержал мое учение
+</string>
+    <string id="441" name="quote_132">
+Больше, чем те, кто вас ненавидит, больше, чем все ваши враги, недисциплинированный ум приносит больший вред
+</string>
+    <string id="442" name="quote_133">
+Большинство проблем, если вы дадите им достаточно времени и места, со временем изнашиваются.
+</string>
+    <string id="443" name="quote_134">
+Ни огонь, ни ветер, ни рождение, ни смерть не могут стереть наши добрые дела
+</string>
+    <string id="444" name="quote_135">
+Никто не спасает нас, кроме нас самих. Никто не может и никто не может. Мы сами должны идти по пути
+</string>
+    <string id="445" name="quote_136">
+Ничто не может причинить вам столько вреда, как ваши собственные мысли без защиты
+</string>
+    <string id="446" name="quote_137">Нет ничего вечного, кроме перемен</string>
+    <string id="447" name="quote_138">
+Не называют благородным того, кто вредит живым существам. Не причиняя вреда живым существам, называют благородным
+</string>
+    <string id="448" name="quote_139">
+Мнение, ученики, это болезнь; мнение - это опухоль; мнение больно. Кто победил всякое мнение, ученики, называется святым, знающим
+</string>
+    <string id="449" name="quote_140">Наша собственная жизнь должна быть нашим посланием</string>
+    <string id="450" name="quote_141">
+Наша главная цель в этой жизни - помогать другим. И если вы не можете им помочь, по крайней мере, не причиняйте им вреда
+</string>
+    <string id="451" name="quote_142">
+Вон корни деревьев; вон там пустые жилища. Практикуйте джхану, монахи. Не будь беспечным
+</string>
+    <string id="452" name="quote_143">Терпение - высший аскетизм</string>
+    <string id="453" name="quote_144">
+Мир не означает отсутствие конфликтов; различия всегда будут. Мир означает разрешение этих разногласий мирными средствами; через диалог, образование, знания; и гуманными способами
+</string>
+    <string id="454" name="quote_145">
+Людям трудно избавиться от своих страданий. Из страха перед неизвестным они предпочитают знакомые страдания.
+</string>
+    <string id="455" name="quote_146">
+Люди идут разными дорогами в поисках удовлетворения и счастья. То, что они не на твоей дороге, не означает, что они заблудились.
+</string>
+    <string id="456" name="quote_147">
+Люди с собственным мнением просто беспокоят друг друга
+</string>
+    <string id="457" name="quote_148">
+Возможно, самая глубокая причина, по которой мы боимся смерти, заключается в том, что мы не знаем, кто мы
+</string>
+    <string id="458" name="quote_149">
+Хвала и порицание, приобретение и потеря, удовольствие и печаль приходят и уходят, как ветер. Чтобы быть счастливым, отдыхайте, как гигантское дерево среди них всех
+</string>
+    <string id="459" name="quote_150">
+Чистокровный, с белоснежным тентом, одноколесный, повозка работает. Смотри на грядущего: безупречный, резчик ручьев, беззаветный.
+</string>
+    <string id="460" name="quote_151">
+Чистота и нечистота зависят от нас самих; никто не может очистить другого
+</string>
+    <string id="461" name="quote_152">
+Излучайте безграничную любовь ко всему миру - вверху, внизу и по горизонтали - беспрепятственно, без зла, без вражды.
+</string>
+    <string id="462" name="quote_153">
+Настоящая щедрость делает что-то хорошее для того, кто никогда не узнает
+</string>
+    <string id="463" name="quote_154">Решительно тренируйтесь, чтобы достичь мира</string>
+    <string id="464" name="quote_155">
+Посмотрите на них, барахтающихся в своем уме, как рыба в лужах высохшего ручья - и, видя это, живите без рудника, не формируя привязанности к состояниям становления.
+</string>
+    <string id="465" name="quote_156">
+Чувственное влечение рождает горе; Чувственное желание порождает страх. Для того, кто освобожден от чувственного влечения, нет горя; А откуда будет страх?
+</string>
+    <string id="466" name="quote_157">
+Настройте свое сердце на добрые дела. Делайте это снова и снова, и вы будете наполнены радостью
+</string>
+    <string id="467" name="quote_158">
+Если человек делает добро, пусть делает это снова и снова. Пусть найдет в этом удовольствие, ибо блаженно накопление добра.
+</string>
+    <string id="468" name="quote_159">
+Если ищущий не находит товарища, который был бы лучше или равным, пусть он решительно проводит уединенный путь.
+</string>
+    <string id="469" name="quote_160">
+Если вы найдете мудрого критика, который укажет на ваши недостатки, следуйте за ним, как если бы вы вели к спрятанным сокровищам.
+</string>
+    <string id="470" name="quote_161">Иногда молчание - лучший ответ</string>
+    <string id="471" name="quote_162">
+Молчите сердитого человека любовью. Добротой молчите злого человека. Щедростью умолкни скупца. Молчание лжеца правдой
+</string>
+    <string id="472" name="quote_163">
+Некоторые не понимают, что мы должны умереть, но те, кто понимает это, улаживают свои ссоры
+</string>
+    <string id="473" name="quote_164">
+Иногда ваша радость является источником вашей улыбки, но иногда ваша улыбка может быть источником вашей радости
+</string>
+    <string id="474" name="quote_165">
+Говорите только милую речь, приветствуемую речь. Речь, если она не приносит зла ​​другим, - вещь приятная.
+</string>
+    <string id="475" name="quote_166">
+Говорите правду, не сердитесь и давайте, когда вас просят, пусть даже немного. По этим трем условиям человек попадает в присутствие богов.
+</string>
+    <string id="476" name="quote_167">
+Успокоенные говорят, что лучше всего то, что хорошо сказано; во-вторых, нужно говорить то, что правильно, а не неправедное; в-третьих, что приятно, а не неприятно; в-четвертых, что правда, а не ложь
+</string>
+    <string id="477" name="quote_168">Самая темная ночь - невежество</string>
+    <string id="478" name="quote_169">Дар истины превосходит все другие дары</string>
+    <string id="479" name="quote_170">
+Рост мудрости можно точно измерить по уменьшению дурного настроения.
+</string>
+    <string id="480" name="quote_171">
+Невежественный человек - это бык. Он растет в размерах, а не в мудрости
+</string>
+    <string id="481" name="quote_172">
+Чем меньше у вас есть, тем меньше вам нужно беспокоиться
+</string>
+    <string id="482" name="quote_173">
+Как только вы поймете, как важно любить себя, вы перестанете заставлять других страдать
+</string>
+    <string id="483" name="quote_174">
+Чем больше вас мотивирует Любовь, тем бесстрашнее и свободнее будут ваши действия.
+</string>
+    <string id="484" name="quote_175">
+Невыполнение какого-либо зла, выполнение того, что умело, очищение собственного разума: это учение Пробужденных.
+</string>
+    <string id="485" name="quote_176">
+Тот, в ком больше нет жажды и страсти, которые увековечивают становление; как вы могли отследить этого Пробужденного, без следа и безграничного диапазона
+</string>
+    <string id="486" name="quote_177">
+Тот, кто победил себя, гораздо более великий герой, чем тот, кто победил тысячу раз тысячу человек.
+</string>
+    <string id="487" name="quote_178">
+Дождь мог превратиться в золото, и твоя жажда все равно не утолилась. Желание неугасимое или заканчивается слезами даже на небесах
+</string>
+    <string id="488" name="quote_179">Корень страдания - привязанность</string>
+    <string id="489" name="quote_180">
+Корни всякой добра лежат в почве признательности за добро.
+</string>
+    <string id="490" name="quote_181">
+Источник любви находится глубоко в нас, и мы можем помочь другим обрести счастье. Одно слово, одно действие, одна мысль могут уменьшить страдания другого человека и принести ему радость
+</string>
+    <string id="491" name="quote_182">
+Сама вселенная - это изменение, а сама жизнь - это то, что вы считаете
+</string>
+    <string id="492" name="quote_183">
+Добродетельный человек наслаждается этим миром, и ему нравится следующее.
+</string>
+    <string id="493" name="quote_184">
+Способ изменить мнение других - это любовь, а не гнев
+</string>
+    <string id="494" name="quote_185">
+Мудрец делает из себя остров, который не может сокрушить ни один потоп
+</string>
+    <string id="495" name="quote_186">
+Мир страдает от смерти и разложения. Но мудрые не горюют, осознав природу мира
+</string>
+    <string id="496" name="quote_187">
+Нет цепей, подобных ненависти… Если вы будете думать о недостатках брата, то умножите свои собственные. Вы далеки от конца своего пути
+</string>
+    <string id="497" name="quote_188">Нет страха для того, чей ум не наполнен желаниями</string>
+    <string id="498" name="quote_189">
+Нет огня, подобного страсти, нет акулы, подобной ненависти, нет ловушки, подобной глупости, нет потока, подобного жадности
+</string>
+    <string id="499" name="quote_190">
+Нет ничего более непослушного, чем недисциплинированный ум, и нет ничего более послушного, чем дисциплинированный ум.
+</string>
+    <string id="500" name="quote_191">
+Они обвиняют тех, кто хранит молчание, они обвиняют тех, кто много говорит, они обвиняют тех, кто говорит умеренно. В мире нет никого, кого бы не обвиняли
+</string>
+    <string id="501" name="quote_192">
+Не думайте легкомысленно о зле, говоря: «Оно не придет ко мне». Капля за каплей наполняется сосуд с водой. Так и дурак, собирая понемногу, наполняется злом.
+</string>
+    <string id="502" name="quote_193">
+Те, которые производятся по причинам, не производятся. Им не свойственен производственный характер. Те, что зависят от причин, называются пустыми; те, кто знает пустоту, осознают
+</string>
+    <string id="503" name="quote_194">
+Те, которые возникают зависимо, свободны от внутреннего существования
+</string>
+    <string id="504" name="quote_195">
+Те, кто свободны от обидных мыслей, несомненно, обретут покой
+</string>
+    <string id="505" name="quote_196">
+Те, кто цепляется за представления и взгляды, блуждают по миру, оскорбляя людей
+</string>
+    <string id="506" name="quote_197">
+Те, кому не удалось приблизиться к истине, упустили цель жизни.
+</string>
+    <string id="507" name="quote_198">
+Те, кто действительно ищут путь к Просветлению, диктуют условия своему уму. Затем они продолжают с твердой решимостью
+</string>
+    <string id="508" name="quote_199">
+Хотя человек должен прожить сто лет без мудрости и контроля, тем не менее, лучше всего один день жизни того, кто мудр и медитативен.
+</string>
+    <string id="509" name="quote_200">
+От одной свечи можно зажечь тысячи свечей, и срок ее службы не сократится. Счастье никогда не уменьшается, когда им делятся
+</string>
+    <string id="510" name="quote_201">
+Три вещи нельзя долго скрывать: солнце, луну и правду.
+</string>
+    <string id="511" name="quote_202">
+Времена роскоши длятся недолго, но быстро проходят, ничем в этом мире нельзя долго наслаждаться.
+</string>
+    <string id="512" name="quote_203">
+Быть красивой - значит быть собой. Вам не нужно, чтобы вас принимали другие. Вам нужно принять себя
+</string>
+    <string id="513" name="quote_204">
+Стать вегетарианцем - значит вступить в поток, ведущий к нирване.
+</string>
+    <string id="514" name="quote_205">
+Настаивать на духовной практике, которая служила вам в прошлом, означает нести плот на спине после того, как вы пересекли реку.
+</string>
+    <string id="515" name="quote_206">
+Поддерживать здоровье тела - это долг … иначе мы не сможем сохранять разум сильным и ясным.
+</string>
+    <string id="516" name="quote_207">
+Жить в сознании неизбежности страдания, ослабления, старости и смерти невозможно - мы должны освободиться от жизни, от всей возможной жизни.
+</string>
+    <string id="517" name="quote_208">
+Воздерживаться от зла ​​и крепких напитков и всегда быть стойким в добродетели; это удача
+</string>
+    <string id="518" name="quote_209">
+Поддерживать отца и мать, беречь жену и детей, заниматься мирным делом - это величайшее благословение.
+</string>
+    <string id="519" name="quote_210">
+Истинное изменение внутри, оставьте внешнее, как оно есть
+</string>
+    <string id="520" name="quote_211">Понимание - это основа хорошо произнесенных слов</string>
+    <string id="521" name="quote_212">
+Победа порождает ненависть. Побежденные живут в боли. К счастью, мирная жизнь, отказавшись от победы и поражения
+</string>
+    <string id="522" name="quote_213">
+Добродетельные люди всегда отпускают. Они не болтают о удовольствиях и желаниях. Тронутый счастьем, а затем страданием, мудрец не выказывает никаких признаков восторга или подавленности.
+</string>
+    <string id="523" name="quote_214">
+Мы здесь, чтобы пробудиться от нашей иллюзии обособленности
+</string>
+    <string id="524" name="quote_215">
+Мы разовьем любовь, будем практиковать ее, сделаем ее и способом, и основой …
+</string>
+    <string id="525" name="quote_216">
+Мы будем развивать и взращивать освобождение ума с помощью милосердия, сделаем его своим проводником, сделаем его своей основой, стабилизируем его, будем упражняться в нем и полностью его усовершенствовать.
+</string>
+    <string id="526" name="quote_217">
+Что бы монах ни делал своими размышлениями и размышлениями, это становится склонностью его осознания.
+</string>
+    <string id="527" name="quote_218">
+Что бы враг ни сделал с врагом, ни враг с противником, непослушный разум может сделать с вами еще хуже
+</string>
+    <string id="528" name="quote_219">
+Все, что имеет природу возникновения, имеет природу прекращения
+</string>
+    <string id="529" name="quote_220">
+Все, что не принадлежит тебе: отпусти это. Вы отпустите это для вашего долгосрочного счастья
+</string>
+    <string id="530" name="quote_221">
+Какой бы драгоценный камень ни был в небесных мирах, нет ничего сопоставимого с пробужденным.
+</string>
+    <string id="531" name="quote_222">
+Когда человек испытывает неприязнь ко злу, когда он умиротворен, он находит удовольствие в выслушивании добрых учений; когда человек испытывает эти чувства и ценит их, он свободен от страха
+</string>
+    <string id="532" name="quote_223">
+Когда совокупности возникают, распадаются и умирают, о монах, каждое мгновение вы рождаетесь, распадаетесь и умираете
+</string>
+    <string id="533" name="quote_224">
+Наблюдая за собой, вы смотрите за другими. Наблюдая за другими, вы смотрите за собой
+</string>
+    <string id="534" name="quote_225">
+Когда мы чувствуем любовь и доброту по отношению к другим, это не только заставляет других чувствовать себя любимыми и заботливыми, но также помогает нам развивать внутреннее счастье и покой.
+</string>
+    <string id="535" name="quote_226">
+Когда вы вступаете на путь, который приносит пользу и счастье всем, следуйте этим курсом, пока луна путешествует по звездам.
+</string>
+    <string id="536" name="quote_227">
+Когда вы практикуете благодарность, вы испытываете чувство уважения к другим
+</string>
+    <string id="537" name="quote_228">
+Кто оставляет позади все человеческие узы И сбросил узы небесные, Отвязанный от всех узы повсюду: Он тот, кого я называю брамином
+</string>
+    <string id="538" name="quote_229">
+Тот, кто не обрушивается на того, кто рассержен, побеждает в тяжелой битве
+</string>
+    <string id="539" name="quote_230">
+Тот, кто видит меня, видит учение, и тот, кто видит учение, видит меня
+</string>
+    <string id="540" name="quote_231">
+С дураками общения нет. Вместо того чтобы жить с эгоистичными, тщеславными, сварливыми и упрямыми людьми, позвольте мужчине идти одному.
+</string>
+    <string id="541" name="quote_232">
+С реализацией собственного потенциала и уверенности в себе можно построить лучший мир.
+</string>
+    <string id="542" name="quote_233">
+Без здоровья жизнь - это не жизнь; это только состояние лангура и страдания - образ смерти
+</string>
+    <string id="543" name="quote_234">
+Теперь вы сообщество. Будьте лампой для себя. Будь своим собственным убежищем. Не ищите другого. Все должно пройти. Усердно стремитесь. Не сдавайся
+</string>
+    <string id="544" name="quote_235">
+Вы не собираете красоту цветка, сорвав его лепестки
+</string>
+    <string id="545" name="quote_236">
+Ваше собственное «я» - ваш хозяин; кто еще мог быть? Если вы хорошо контролируете себя, вы получите мастера, которого очень трудно найти
+</string>
+    <string id="546" name="quote_237">
+Вы сами должны стремиться. Будды только указывают путь
+</string>
+    <string id="547" name="about_translators">Переводчики</string>
+    <string name="title_activity_main">Основное занятие</string>
+    <string name="title_home">Главная</string>
+    <string name="title_dashboard">Приборная доска</string>
+    <string name="title_notifications">Уведомления</string>
+    <string name="quote_number">Цитата #%1$d</string>
 
 </resources>
