@@ -58,15 +58,19 @@
     <string-array name="language_values">
         <item>en</item>
         <item>fr</item>
-        <item>ru</item>
+        <item>de</item>
         <item>pl</item>
+        <item>ru</item>
+        <item>es</item>
     </string-array>
 
     <string-array name="language_entries">
         <item>@string/en</item>
         <item>@string/fr</item>
-        <item>@string/ru</item>
+        <item>@string/de</item>
         <item>@string/pl</item>
+        <item>@string/ru</item>
+        <item>@string/es</item>
     </string-array>
 
 </resources>
