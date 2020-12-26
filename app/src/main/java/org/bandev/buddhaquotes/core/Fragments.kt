@@ -12,6 +12,6 @@ object Fragments {
 
     const val QUOTE: Int = 0
     const val LISTS: Int = 1
-    const val DHAMMAPADA: Int = 2
+    const val TIMER: Int = 2
 
 }

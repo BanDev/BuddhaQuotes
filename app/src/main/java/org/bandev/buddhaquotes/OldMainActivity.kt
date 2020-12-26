@@ -102,8 +102,6 @@ class OldMainActivity : AppCompatActivity() {
         heartBlack = ContextCompat.getDrawable(this, R.drawable.ic_list)
         quoteView = findViewById(R.id.quote)
 
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-
         // Sets up toolbar and adds icons
         setSupportActionBar(toolbar)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)

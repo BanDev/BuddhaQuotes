@@ -125,6 +125,11 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
         this.startActivity(intent)
+        activity?.finish()
+        activity?.overridePendingTransition(
+            android.R.anim.fade_in,
+            android.R.anim.fade_out
+        )
     }
 
     override fun onBinClick(position: Int, text: String) {

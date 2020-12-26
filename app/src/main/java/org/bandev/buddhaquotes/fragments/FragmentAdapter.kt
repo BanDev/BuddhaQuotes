@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.bandev.buddhaquotes.SampleFragment
 
 /**
  * Fragment adapter for MainActivity
@@ -38,7 +37,7 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         return when (position) {
             0 -> QuoteFragment.newInstance(position)
             1 -> ListsFragment.newInstance(position)
-            else -> SampleFragment.newInstance(position)
+            else -> TimerFragment.newInstance(position)
         }
     }
 }

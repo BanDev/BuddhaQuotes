@@ -383,7 +383,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView27"
                 app:layout_constraintTop_toBottomOf="@+id/translatorsList"
                 app:srcCompat="@drawable/osi_keyhole"
-                android:contentDescription="TODO" />
+                android:contentDescription="Open Source Logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
