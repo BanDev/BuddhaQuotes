@@ -12,7 +12,6 @@ import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.getActionButton
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import org.bandev.buddhaquotes.*
@@ -87,7 +86,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 */
 
-    private fun showBottomSheet() {
+    /*private fun showBottomSheet() {
         var nameValue = "error"
         val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             cornerRadius(16f)
@@ -188,7 +187,7 @@ class YourLists : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         }
 
         name.addTextChangedListener(watcher)
-    }
+    }*/
 
 /*
     fun refresh() {
