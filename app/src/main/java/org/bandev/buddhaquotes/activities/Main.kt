@@ -3,24 +3,15 @@ package org.bandev.buddhaquotes.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import com.afollestad.materialdialogs.LayoutMode
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.WhichButton
-import com.afollestad.materialdialogs.actions.getActionButton
-import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
+import com.maxkeppeler.bottomsheets.input.InputSheet
+import com.maxkeppeler.bottomsheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.databinding.LayoutBottomSheetBinding
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -106,7 +97,7 @@ class Main : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                showBottomSheet()
+                addToListSheet.show()
                 true
             }
             R.id.settings -> {
@@ -128,8 +119,42 @@ class Main : AppCompatActivity() {
      * Shows a popup asking the user for a new list name
      */
 
-    private fun showBottomSheet() {
-        var nameValue = "error"
+    val addToListSheet: InputSheet = InputSheet().build(this) {
+        title("Create new list")
+        with(InputEditText {
+            required()
+            hint("Insert name")
+            changeListener { value ->
+            } // Input value changes
+            resultListener { value ->
+                Lists().newList(value.toString(), requireContext())
+            } // Input value changed when form finished
+        })
+        onNegative {
+            binding.root.performHapticFeedback(
+                HapticFeedbackConstants.VIRTUAL_KEY
+            )
+        }
+        onPositive("Add") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.CONFIRM
+                )
+            } else {
+                binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.VIRTUAL_KEY
+                )
+            }
+
+            //Refresh fragments
+            binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+            binding.viewPager.setCurrentItem(1, false)
+            binding.bottomBar.setupWithViewPager2(binding.viewPager)
+        }
+    }
+}
+
+/*        var nameValue = "error"
         val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             cornerRadius(16f)
             title(R.string.lists_add_lists)
@@ -221,6 +246,4 @@ class Main : AppCompatActivity() {
             }
         }
 
-        name.addTextChangedListener(watcher)
-    }
-}
+        name.addTextChangedListener(watcher)*/
