@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
     <string id="1" name="refresh">Aktualisierung</string>
     <string id="2" name="favourite">Lieblings</string>
     <string id="3" name="share">Aktie</string>
@@ -17,7 +15,6 @@
     <string id="17" name="help">Hilfe</string>
     <string id="18" name="app_introduction">App Einführung</string>
     <string id="19" name="app_license">App-Lizenz</string>
-    <string id="UNTRANSLATE" name="gplv3" translatable="false">GPLv3 Logo</string>
     <string id="20" name="libraries_used">Verwendete Bibliotheken</string>
     <string id="21" name="about_app_promise">App Versprechen</string>
     <string id="22" name="about_no_trackers">Keine Tracker</string>
@@ -29,11 +26,6 @@
 Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und Open Source Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz
 </string>
     <string id="28" name="about_contributors">Mitwirkende</string>
-    <string id="UNTRANSLATE" name="about_fennec" translatable="false">"@Fennec_exe"</string>
-    <string id="UNTRANSLATE" name="about_jack" translatable="false">"@jack.txt"</string>
-    <string id="UNTRANSLATE" name="about_izzysoft" translatable="false">"@IzzySoft"</string>
-    <string id="UNTRANSLATE" name="about_licaon" translatable="false">"@licaon-kter"</string>
-    <string id="UNTRANSLATE" name="about_poussinou" translatable="false">"@Poussinou"</string>
     <string id="29" name="about_acknowledgements">Danksagung</string>
     <string id="30" name="about_attribution">Launcher-Symbol - Freepik über Flaticon</string>
     <string id="31" name="tick">Tick</string>
@@ -46,7 +38,6 @@ Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und 
     <string id="61" name="icon">Symbol</string>
     <string id="62" name="title">Titel</string>
     <string id="63" name="licenses">Lizenz</string>
-    <string id="UNTRANSLATE" name="licenses_license" translatable="false">GPL-3.0+</string>
     <string id="64" name="licenses_permissions">Berechtigungen</string>
     <string id="65" name="licenses_commercial_use">Kommerzielle Benutzung</string>
     <string id="66" name="licenses_distribution">Verteilung</string>
