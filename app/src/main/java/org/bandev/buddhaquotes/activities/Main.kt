@@ -115,10 +115,7 @@ class Main : AppCompatActivity() {
         }
     }
 
-    /**
-     * Shows a popup asking the user for a new list name
-     */
-
+    // Build the input bottom sheet that allows creation of a new list
     val addToListSheet: InputSheet = InputSheet().build(this) {
         title("Create new list")
         with(InputEditText {
@@ -131,19 +128,13 @@ class Main : AppCompatActivity() {
             } // Input value changed when form finished
         })
         onNegative {
-            binding.root.performHapticFeedback(
-                HapticFeedbackConstants.VIRTUAL_KEY
-            )
+            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         }
         onPositive("Add") {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.CONFIRM
-                )
+                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             } else {
-                binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.VIRTUAL_KEY
-                )
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
 
             //Refresh fragments

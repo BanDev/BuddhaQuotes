@@ -7,14 +7,24 @@
     android:background="@color/background"
     tools:context="fragments.TimerFragment">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
-        android:capitalize="words"
+        android:textAllCaps="true"
         android:text="Set timer"
+        android:textColor="@android:color/white"
         app:cornerRadius="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,8 +36,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/colorWaveDark"
-        android:capitalize="words"
+        android:textAllCaps="true"
         android:text="Stop"
+        android:textColor="@android:color/white"
         android:visibility="invisible"
         app:cornerRadius="11dp"
         app:layout_constraintBottom_toBottomOf="parent"

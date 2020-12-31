@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
     <string id="1" name="refresh">Actualizar</string>
     <string id="2" name="favourite">Favorito</string>
     <string id="3" name="share">Compartir</string>
@@ -17,7 +15,6 @@
     <string id="17" name="help">Ayuda</string>
     <string id="18" name="app_introduction">Introducción a la aplicación</string>
     <string id="19" name="app_license">Licencia de aplicación</string>
-    <string id="UNTRANSLATE" name="gplv3" translatable="false">GPLv3 Logo</string>
     <string id="20" name="libraries_used">Bibliotecas utilizadas</string>
     <string id="21" name="about_app_promise">Promesa de la aplicación</string>
     <string id="22" name="about_no_trackers">Sin rastreadores</string>
@@ -29,11 +26,6 @@
 Buddha Quotes es un proyecto colaborativo para crear una aplicación Buddha Quotes gratuita y de código abierto para Android con un enfoque en la privacidad
 </string>
     <string id="28" name="about_contributors">Colaboradores</string>
-    <string id="UNTRANSLATE" name="about_fennec" translatable="false">"@Fennec_exe"</string>
-    <string id="UNTRANSLATE" name="about_jack" translatable="false">"@jack.txt"</string>
-    <string id="UNTRANSLATE" name="about_izzysoft" translatable="false">"@IzzySoft"</string>
-    <string id="UNTRANSLATE" name="about_licaon" translatable="false">"@licaon-kter"</string>
-    <string id="UNTRANSLATE" name="about_poussinou" translatable="false">"@Poussinou"</string>
     <string id="29" name="about_acknowledgements">Agradecimientos</string>
     <string id="30" name="about_attribution">Icono de lanzador - Freepik a través de Flaticon</string>
     <string id="31" name="tick">garrapata</string>
@@ -46,7 +38,6 @@ Buddha Quotes es un proyecto colaborativo para crear una aplicación Buddha Quot
     <string id="61" name="icon">Icono</string>
     <string id="62" name="title">Título</string>
     <string id="63" name="licenses">Licencia</string>
-    <string id="UNTRANSLATE" name="licenses_license" translatable="false">GPL-3.0+</string>
     <string id="64" name="licenses_permissions">Permisos</string>
     <string id="65" name="licenses_commercial_use">Uso comercial</string>
     <string id="66" name="licenses_distribution">Distribución</string>

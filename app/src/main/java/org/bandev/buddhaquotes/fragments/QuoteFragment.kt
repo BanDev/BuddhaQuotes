@@ -2,6 +2,7 @@ package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,17 +58,49 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Builds the options bottom sheet
+        val moreOptions = OptionsSheet().build(requireContext()) {
+            displayMode(DisplayMode.LIST)
+            title("More")
+            closeButtonDrawable(R.drawable.ic_down_arrow)
+            with(
+                Option(R.drawable.ic_share, "Share"),
+                Option(R.drawable.ic_add_circle, "Add to list")
+            )
+            onPositive { index: Int, option: Option ->
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                if (index == 0) {
+                    val sendIntent: Intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
+                        putExtra(Intent.EXTRA_TEXT, text)
+                        type = "text/plain"
+                    }
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    startActivity(shareIntent)
+                } else {
+                    dismiss()
+                }
+            }
+        }
+
         newQuote(Store(requireContext()).quoteID)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))
             setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
         }
+
+        // Toggles the quote in favourites (If favourited, unfavourite. If unfavourited, favourite)
         binding.like.setOnClickListener {
-            favouriteQuote()
+            toggleFavouriteQuote()
         }
+
+        // Shows the options bottom sheet
         binding.more.setOnClickListener {
-            moreOptions()
+            moreOptions.show()
         }
+
+        // Favourites the quote on double click
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
                 doubleClickFavouriteQuote()
@@ -100,40 +133,10 @@ class QuoteFragment : Fragment() {
     }
 
     /**
-     * Opens a bottom sheet with options to share and add to list
-     */
-
-    private fun moreOptions() {
-        OptionsSheet().show(requireContext()) {
-            displayMode(DisplayMode.LIST)
-            title("More")
-            closeButtonDrawable(R.drawable.ic_down_arrow)
-            with(
-                Option(R.drawable.ic_share, "Share"),
-                Option(R.drawable.ic_add_circle, "Add to list")
-            )
-            onPositive { index: Int, option: Option ->
-                if (index == 0) {
-                    val sendIntent: Intent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
-                        putExtra(Intent.EXTRA_TEXT, text)
-                        type = "text/plain"
-                    }
-                    val shareIntent = Intent.createChooser(sendIntent, null)
-                    startActivity(shareIntent)
-                } else {
-                    dismiss()
-                }
-            }
-        }
-    }
-
-    /**
      * Adds the quote to "Favourites" list using [Lists.toggleInList]
      */
 
-    private fun favouriteQuote() {
+    private fun toggleFavouriteQuote() {
         val quote = binding.quote.text.toString()
         if (Lists().toggleInList(quote, "Favourites", requireContext())) {
             binding.like.setImageDrawable(

@@ -4,8 +4,6 @@
 
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
     <string id="1" name="refresh">Обновить</string>
     <string id="2" name="favourite">Любимый</string>
     <string id="3" name="share">Поделиться</string>
@@ -21,7 +19,6 @@
     <string id="17" name="help">Помогите</string>
     <string id="18" name="app_introduction">Введение в приложение</string>
     <string id="19" name="app_license">Лицензия на приложение</string>
-    <string id="UNTRANSLATE" name="gplv3" translatable="false">GPLv3 Logo</string>
     <string id="20" name="libraries_used">Используемые библиотеки</string>
     <string id="21" name="about_app_promise">Обещание приложения</string>
     <string id="22" name="about_no_trackers">Нет трекеров</string>
@@ -33,11 +30,6 @@
 Buddha Quotes - это совместный проект по созданию бесплатного приложения с открытым исходным кодом Buddha Quotes для Android с упором на конфиденциальность.
 </string>
     <string id="28" name="about_contributors">Авторы</string>
-    <string id="UNTRANSLATE" name="about_fennec" translatable="false">"@Fennec_exe"</string>
-    <string id="UNTRANSLATE" name="about_jack" translatable="false">"@jack.txt"</string>
-    <string id="UNTRANSLATE" name="about_izzysoft" translatable="false">"@IzzySoft"</string>
-    <string id="UNTRANSLATE" name="about_licaon" translatable="false">"@licaon-kter"</string>
-    <string id="UNTRANSLATE" name="about_poussinou" translatable="false">"@Poussinou"</string>
     <string id="29" name="about_acknowledgements">Благодарности</string>
     <string id="30" name="about_attribution">Значок запуска - Freepik через Flaticon</string>
     <string id="31" name="tick">Поставить галочку</string>
@@ -50,7 +42,6 @@ Buddha Quotes - это совместный проект по созданию �
     <string id="61" name="icon">Икона</string>
     <string id="62" name="title">заглавие</string>
     <string id="63" name="licenses">Лицензия</string>
-    <string id="UNTRANSLATE" name="licenses_license" translatable="false">GPL-3.0+</string>
     <string id="64" name="licenses_permissions">Разрешения</string>
     <string id="65" name="licenses_commercial_use">Коммерческое использование</string>
     <string id="66" name="licenses_distribution">Распределение</string>
