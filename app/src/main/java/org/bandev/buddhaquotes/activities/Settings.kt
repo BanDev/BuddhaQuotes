@@ -177,9 +177,9 @@ class Settings : AppCompatActivity() {
                 title(R.string.settings_language)
                 displayMode(DisplayMode.LIST)
                 with(
-                    Option(R.string.en),
-                    Option(R.string.fr),
-                    Option(R.string.de),
+                    Option(R.drawable.ic_default, R.string.en),
+                    Option(R.drawable.ic_machine, R.string.fr),
+                    Option(R.drawable.ic_machine, R.string.de),
                     Option(R.string.pl),
                     Option(R.string.ru),
                     Option(R.string.es)
