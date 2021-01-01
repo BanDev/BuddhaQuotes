@@ -14,7 +14,7 @@
     <string name="app_theme" id="6">App Theme</string>
     <string name="light_mode" id="7">Light</string>
     <string name="dark_mode" id="8">Dark</string>
-    <string name="follow_system_default" id="9">Follow system default</string>
+    <string name="follow_system_default" id="9">Follow system</string>
     <string name="information" id="14">Information</string>
     <string name="about" id="15">About</string>
     <string name="view_app_details" id="16">View app details</string>
@@ -575,4 +575,8 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="quote_number">Quote #%1$d</string>
+
+    <string name="fragment_quote">Quote</string>
+    <string name="fragment_lists">Lists</string>
+    <string name="fragment_meditation">Meditation</string>
 </resources>

@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
@@ -44,7 +43,7 @@ class About : AppCompatActivity() {
         }
 
         // Setup contributors array
-        val contributors = this.getStringArray(R.array.contributors)
+        val contributors = resources.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
         binding.contributorsList.adapter = contributorsAdapter
         binding.contributorsList.divider = null
@@ -52,7 +51,7 @@ class About : AppCompatActivity() {
         justifyListViewHeightBasedOnChildren(binding.contributorsList)
 
         // Setup translators array
-        val translators = this.getStringArray(R.array.translators)
+        val translators = resources.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
         binding.translatorsList.adapter = translatorsAdapter
         binding.translatorsList.divider = null

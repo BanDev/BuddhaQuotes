@@ -10,10 +10,11 @@ import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.color.colorChooser
-import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.maxkeppeler.bottomsheets.color.ColorSheet
+import com.maxkeppeler.bottomsheets.color.ColorView
+import com.maxkeppeler.bottomsheets.options.DisplayMode
+import com.maxkeppeler.bottomsheets.options.Option
+import com.maxkeppeler.bottomsheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -161,23 +162,34 @@ class Settings : AppCompatActivity() {
         private fun updateLanguageSummary() {
             val language = findPreference<Preference>("app_language")
             val int = Languages().getLanguageAsInt(requireContext())
-            val singleItems = requireContext().getStringArray(R.array.language_entries)
+            val singleItems = resources.getStringArray(R.array.language_entries)
             (language ?: return).summary = singleItems[int]
         }
 
         private fun showLanguagePopup() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
-            val singleItems = requireContext().getStringArray(R.array.language_entries)
-            val values = requireContext().getStringArray(R.array.language_values)
+            val singleItems = resources.getStringArray(R.array.language_entries)
+            val values = resources.getStringArray(R.array.language_values)
             val checkedItem = sharedPrefs.getInt("app_language_int", 0)
 
-            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
-                .setTitle(R.string.settings_language)
-                .setNegativeButton(R.string.cancel) { _, _ ->
-                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-                .setPositiveButton(R.string.confirm) { _, _ ->
+            OptionsSheet().show(requireContext()) {
+                title(R.string.settings_language)
+                displayMode(DisplayMode.LIST)
+                with(
+                    Option(R.string.en),
+                    Option(R.string.fr),
+                    Option(R.string.de),
+                    Option(R.string.pl),
+                    Option(R.string.ru),
+                    Option(R.string.es)
+                )
+                onPositive { index: Int, option: Option ->
+                    // Handle selected option
+
+                    editor.putInt("app_language_int", index)
+                    editor.putString("app_language", values[index])
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
@@ -195,41 +207,29 @@ class Settings : AppCompatActivity() {
                         android.R.anim.fade_out
                     )
                 }
-                .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
-                    editor.putInt("app_language_int", which)
-                    editor.putString("app_language", values[which])
+                onNegative {
+                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-                .show()
+            }
+
         }
 
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
-            val singleItems = requireContext().getStringArray(R.array.theme_entries)
+            val singleItems = resources.getStringArray(R.array.theme_entries)
             val checkedItem = pref.getInt("appThemeInt", 2)
 
-            MaterialAlertDialogBuilder(requireContext(), R.style.PopupTheme)
-                .setTitle(R.string.app_theme)
-                .setNegativeButton(R.string.cancel) { _, _ ->
-                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-                .setPositiveButton(R.string.confirm) { _, _ ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    editor.apply()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("switch", true)
-                    intent2.putExtras(mBundle)
-                    startActivity(intent2)
-                    activity?.finish()
-                    activity?.overridePendingTransition(0, 0)
-                }
-                .setSingleChoiceItems(singleItems, checkedItem) { _, which ->
-                    when (which) {
+
+            OptionsSheet().show(requireContext()) {
+                title(R.string.app_theme)
+                with(
+                    Option(R.drawable.ic_day_settings, R.string.light_mode),
+                    Option(R.drawable.ic_night_settings, R.string.dark_mode),
+                    Option(R.drawable.ic_palette, R.string.follow_system_default)
+                )
+                onPositive { index: Int, option: Option ->
+                    when (index) {
                         0 -> {
                             editor.putBoolean("dark_mode", false)
                             editor.putBoolean("sys", false)
@@ -246,30 +246,49 @@ class Settings : AppCompatActivity() {
                             editor.putInt("appThemeInt", 2)
                         }
                     }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
+                    editor.apply()
+                    val intent2 = Intent(context, Settings::class.java)
+                    val mBundle = Bundle()
+                    mBundle.putBoolean("switch", true)
+                    intent2.putExtras(mBundle)
+                    startActivity(intent2)
+                    activity?.finish()
+                    activity?.overridePendingTransition(
+                        android.R.anim.fade_in,
+                        android.R.anim.fade_out
+                    )
                 }
-                .show()
+            }
         }
 
         private fun showColorPopup() {
-            val colors = intArrayOf(
-                ContextCompat.getColor(requireContext(), R.color.pinkAccent),
-                ContextCompat.getColor(requireContext(), R.color.violetAccent),
-                ContextCompat.getColor(requireContext(), R.color.blueAccent),
-                ContextCompat.getColor(requireContext(), R.color.lightBlueAccent),
-                ContextCompat.getColor(requireContext(), R.color.tealAccent),
-                ContextCompat.getColor(requireContext(), R.color.greenAccent),
-                ContextCompat.getColor(requireContext(), R.color.limeAccent),
-                ContextCompat.getColor(requireContext(), R.color.yellowAccent),
-                ContextCompat.getColor(requireContext(), R.color.orangeAccent),
-                ContextCompat.getColor(requireContext(), R.color.redAccent),
-                ContextCompat.getColor(requireContext(), R.color.crimsonAccent),
-                ContextCompat.getColor(requireContext(), R.color.colorPrimary)
+            val colors = mutableListOf(
+                R.color.pinkAccent,
+                R.color.violetAccent,
+                R.color.blueAccent,
+                R.color.lightBlueAccent,
+                R.color.tealAccent,
+                R.color.greenAccent,
+                R.color.limeAccent,
+                R.color.yellowAccent,
+                R.color.orangeAccent,
+                R.color.redAccent,
+                R.color.crimsonAccent,
+                R.color.colorPrimary
             )
 
-            MaterialDialog(requireContext()).show {
+            ColorSheet().show(requireContext()) {
+                colors(colors)
                 title(R.string.settings_accent_colour)
-                colorChooser(colors) { _, color ->
-                    // Use color integer
+                defaultView(ColorView.TEMPLATE)
+                disableSwitchColorView()
+                onPositive { color ->
+                    // Use color
                     var colorOut = "original"
                     when (color) {
                         ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
@@ -322,22 +341,6 @@ class Settings : AppCompatActivity() {
                     activity?.overridePendingTransition(
                         android.R.anim.fade_in,
                         android.R.anim.fade_out
-                    )
-                }
-                positiveButton(R.string.confirm) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        (window ?: return@positiveButton).decorView.performHapticFeedback(
-                            HapticFeedbackConstants.CONFIRM
-                        )
-                    } else {
-                        (window ?: return@positiveButton).decorView.performHapticFeedback(
-                            HapticFeedbackConstants.VIRTUAL_KEY
-                        )
-                    }
-                }
-                negativeButton(R.string.cancel) {
-                    (window ?: return@negativeButton).decorView.performHapticFeedback(
-                        HapticFeedbackConstants.VIRTUAL_KEY
                     )
                 }
             }
