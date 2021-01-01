@@ -17,58 +17,58 @@
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:fontFamily="@font/mt_med"
             android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/authorTextView"
-            tools:text="Library"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp"
+            tools:text="Library" />
 
         <TextView
             android:id="@+id/authorTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:textSize="14sp"
-            android:fontFamily="@font/mt_reg"
             android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintTop_toBottomOf="@id/nameTextView"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/licenseNameTextView"
-            tools:text="Author"/>
+            app:layout_constraintTop_toBottomOf="@id/nameTextView"
+            tools:layout_editor_absoluteX="16dp"
+            tools:text="Author" />
 
         <TextView
             android:id="@+id/versionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:fontFamily="@font/mt_reg"
             android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            tools:text="1.0.0"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1.0.0" />
 
         <TextView
             android:id="@+id/licenseNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textSize="14sp"
-            android:fontFamily="@font/mt_reg"
             android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/licenseDescriptionTextView"
             app:layout_constraintTop_toBottomOf="@id/authorTextView"
-            app:layout_constraintBottom_toTopOf="@id/licenseDescriptionTextView"/>
+            tools:layout_editor_absoluteX="16dp" />
 
         <TextView
             android:id="@+id/licenseDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:fontFamily="@font/mt_reg"
             android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/licenseNameTextView"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

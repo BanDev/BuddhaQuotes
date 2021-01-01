@@ -59,13 +59,11 @@ dependencies {
 
     // Material components
     implementation 'com.google.android.material:material:1.3.0-beta01'
-    implementation 'com.afollestad.material-dialogs:core:3.3.0'
-    implementation 'com.afollestad.material-dialogs:color:3.3.0'
-    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
-    implementation 'com.maxkeppeler.bottomsheets:core:1.0.6'
-    implementation 'com.maxkeppeler.bottomsheets:input:1.0.6'
-    implementation 'com.maxkeppeler.bottomsheets:options:1.0.6'
-    implementation 'com.maxkeppeler.bottomsheets:time:1.0.6'
+    implementation 'com.maxkeppeler.bottomsheets:core:1.1.0'
+    implementation 'com.maxkeppeler.bottomsheets:input:1.1.0'
+    implementation 'com.maxkeppeler.bottomsheets:color:1.1.0'
+    implementation 'com.maxkeppeler.bottomsheets:options:1.1.0'
+    implementation 'com.maxkeppeler.bottomsheets:time:1.1.0'
 
     // AppCompat
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'

@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:layout="@layout/pref_header"
         app:title="@string/settings_general">
 
         <Preference
@@ -10,13 +9,11 @@
             app:key="app_language"
             app:title="@string/settings_language"
             app:summary="@string/settings_language"
-            android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:layout="@layout/pref_header"
         app:title="@string/appearance">
 
         <Preference
@@ -24,13 +21,11 @@
             app:key="theme"
             app:title="@string/app_theme"
             android:summary="@string/app_theme"
-            android:layout="@layout/pref_single"
             app:useSimpleSummaryProvider="true" />
 
         <Preference
             app:icon="@drawable/ic_palette"
             app:key="accent_color"
-            android:layout="@layout/pref_single"
             app:title="@string/settings_accent_colour"
             android:summary="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
@@ -38,7 +33,6 @@
         <SwitchPreferenceCompat
             app:icon="@drawable/ic_party_popper"
             app:key="shapes_mode"
-            android:layout="@layout/pref_single_switch"
             app:title="@string/settings_shapes_mode"
             app:summaryOn="On"
             app:summaryOff="Off" />
@@ -46,28 +40,24 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/information"
-        android:layout="@layout/pref_header">
+        app:title="@string/information">
 
         <Preference
             android:key="About"
             android:title="@string/about"
             android:summary="@string/view_app_details"
-            android:layout="@layout/pref_single"
             app:icon="@drawable/ic_info" />
 
         <Preference
             android:key="Help"
             android:title="@string/help"
             android:summary="@string/app_introduction"
-            android:layout="@layout/pref_single"
             app:icon="@drawable/ic_help" />
 
         <Preference
             android:key="AboutLibraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used"
-            android:layout="@layout/pref_single"
             app:icon="@drawable/ic_library_books" />
 
     </PreferenceCategory>
