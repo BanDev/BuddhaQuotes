@@ -1,10 +1,11 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.HapticFeedbackConstants
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.maxkeppeler.bottomsheets.input.InputSheet
 import com.maxkeppeler.bottomsheets.input.Validation
