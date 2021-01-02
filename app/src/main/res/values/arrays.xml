@@ -59,18 +59,24 @@
         <item>en</item>
         <item>fr</item>
         <item>de</item>
-        <item>pl</item>
-        <item>ru</item>
         <item>es</item>
+        <item>ru</item>
+        <item>zh</item>
+        <item>ja</item>
+        <item>hi</item>
+        <item>pl</item>
     </string-array>
 
     <string-array name="language_entries">
         <item>@string/en</item>
         <item>@string/fr</item>
         <item>@string/de</item>
-        <item>@string/pl</item>
-        <item>@string/ru</item>
         <item>@string/es</item>
+        <item>@string/ru</item>
+        <item>@string/zh</item>
+        <item>@string/ja</item>
+        <item>@string/hi</item>
+        <item>@string/pl</item>
     </string-array>
 
 </resources>

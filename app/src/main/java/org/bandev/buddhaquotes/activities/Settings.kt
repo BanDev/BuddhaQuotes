@@ -180,9 +180,12 @@ class Settings : AppCompatActivity() {
                     Option(R.drawable.ic_default, R.string.en),
                     Option(R.drawable.ic_machine, R.string.fr),
                     Option(R.drawable.ic_machine, R.string.de),
-                    Option(R.string.pl),
-                    Option(R.string.ru),
-                    Option(R.string.es)
+                    Option(R.drawable.ic_machine, R.string.es),
+                    Option(R.drawable.ic_machine, R.string.ru),
+                    Option(R.drawable.ic_machine, R.string.zh),
+                    Option(R.drawable.ic_machine, R.string.ja),
+                    Option(R.drawable.ic_machine, R.string.hi),
+                    Option(R.drawable.ic_language, R.string.pl)
                 )
                 onPositive { index: Int, option: Option ->
                     // Handle selected option
