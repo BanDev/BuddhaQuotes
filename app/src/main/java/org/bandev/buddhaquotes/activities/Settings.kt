@@ -31,7 +31,7 @@ class Settings : AppCompatActivity() {
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourWhite(this, window, resources)
+        Compatibility().setNavigationBarColourGray(this, window, resources)
         Languages().setLanguage(this)
 
         // Setup view binding
@@ -175,6 +175,7 @@ class Settings : AppCompatActivity() {
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
+                closeButtonDrawable(R.drawable.ic_down_arrow)
                 displayMode(DisplayMode.LIST)
                 with(
                     Option(R.drawable.ic_default, R.string.en),
@@ -187,17 +188,16 @@ class Settings : AppCompatActivity() {
                     Option(R.drawable.ic_machine, R.string.hi),
                     Option(R.drawable.ic_language, R.string.pl)
                 )
+                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { index: Int, option: Option ->
-                    // Handle selected option
-
-                    editor.putInt("app_language_int", index)
-                    editor.putString("app_language", values[index])
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
                         requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
+
+                    editor.putInt("app_language_int", index)
+                    editor.putString("app_language", values[index])
                     editor.apply()
                     val intent2 = Intent(context, Settings::class.java)
                     val mBundle = Bundle()
@@ -226,11 +226,13 @@ class Settings : AppCompatActivity() {
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
+                closeButtonDrawable(R.drawable.ic_down_arrow)
                 with(
                     Option(R.drawable.ic_day_settings, R.string.light_mode),
                     Option(R.drawable.ic_night_settings, R.string.dark_mode),
                     Option(R.drawable.ic_palette, R.string.follow_system_default)
                 )
+                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { index: Int, option: Option ->
                     when (index) {
                         0 -> {
@@ -288,9 +290,16 @@ class Settings : AppCompatActivity() {
             ColorSheet().show(requireContext()) {
                 colors(colors)
                 title(R.string.settings_accent_colour)
+                closeButtonDrawable(R.drawable.ic_down_arrow)
                 defaultView(ColorView.TEMPLATE)
                 disableSwitchColorView()
+                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { color ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
                     // Use color
                     var colorOut = "original"
                     when (color) {

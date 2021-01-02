@@ -1,17 +1,20 @@
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.maxkeppeler.bottomsheets.input.InputSheet
+import com.maxkeppeler.bottomsheets.input.Validation
 import com.maxkeppeler.bottomsheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -121,15 +124,28 @@ class Main : AppCompatActivity() {
         with(InputEditText {
             required()
             hint("Insert name")
-            changeListener { value ->
-            } // Input value changes
+            validationListener { value ->
+                when {
+                    value.contains("//") -> {
+                        Validation.failed("Cannot contain //")
+                    }
+                    value.toLowerCase(Locale.ROOT) == "favourites" -> {
+                        Validation.failed("There is already a list named Favourites")
+                    }
+                    Lists().getMasterList(requireContext())
+                        .contains(value.toLowerCase(Locale.ROOT)) -> {
+                        Validation.failed("There is already an input named $value")
+                    }
+                    else -> {
+                        Validation.success()
+                    }
+                }
+            }
             resultListener { value ->
                 Lists().newList(value.toString(), requireContext())
-            } // Input value changed when form finished
+            }
         })
-        onNegative {
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        }
+        onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         onPositive("Add") {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
@@ -144,97 +160,3 @@ class Main : AppCompatActivity() {
         }
     }
 }
-
-/*        var nameValue = "error"
-        val dialog = MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
-            cornerRadius(16f)
-            title(R.string.lists_add_lists)
-            customView(R.layout.layout_bottom_sheet)
-            positiveButton(R.string.lists_add_lists_go) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    (window ?: return@positiveButton).decorView.performHapticFeedback(
-                        HapticFeedbackConstants.CONFIRM
-                    )
-                } else {
-                    (window ?: return@positiveButton).decorView.performHapticFeedback(
-                        HapticFeedbackConstants.VIRTUAL_KEY
-                    )
-                }
-
-                Lists().newList(nameValue, context)
-
-                //Refresh fragments
-                binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-                binding.viewPager.setCurrentItem(1, false)
-                binding.bottomBar.setupWithViewPager2(binding.viewPager)
-            }
-
-            negativeButton(R.string.cancel) {
-                (window ?: return@negativeButton).decorView.performHapticFeedback(
-                    HapticFeedbackConstants.VIRTUAL_KEY
-                )
-            }
-        }
-
-        dialog.getActionButton(WhichButton.POSITIVE).isEnabled = false
-        val customView = dialog.getCustomView()
-        val binding = LayoutBottomSheetBinding.bind(customView)
-        val name = binding.nameEvent
-
-        val watcher = object : TextWatcher {
-            override fun beforeTextChanged(
-                charSequence: CharSequence,
-                i: Int,
-                i1: Int,
-                i2: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                charSequence: CharSequence,
-                i: Int,
-                i1: Int,
-                i2: Int
-            ) {
-            }
-
-            override fun afterTextChanged(editable: Editable) {
-                when {
-                    editable === name.text -> {
-                        val input = name.text.toString()
-                        nameValue = input
-                        val pref = getSharedPreferences("List_system", 0)
-                        val lists =
-                            (pref.getString("MASTER_LIST", "Favourites") ?: return).toLowerCase(
-                                Locale.ROOT
-                            ).split("//".toRegex()).toTypedArray()
-                        when {
-                            input.isBlank() -> {
-                                binding.nameEventLayout.error = "Cannot be blank"
-                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                    false
-                            }
-                            input.contains("//") -> {
-                                binding.nameEventLayout.error = "Cannot contain //"
-                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                    false
-                            }
-                            lists.contains(input.toLowerCase(Locale.ROOT)) -> {
-                                binding.nameEventLayout.error =
-                                    "There is already a list named $input"
-                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                    false
-                            }
-                            else -> {
-                                nameValue = input
-                                binding.nameEventLayout.error = null
-                                dialog.getActionButton(WhichButton.POSITIVE).isEnabled =
-                                    true
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        name.addTextChangedListener(watcher)*/
