@@ -3,12 +3,12 @@
     <string name="app_name" translatable="false">Buddha Quotes</string>
     <string name="version" translatable="false">v1.6.0</string>
 
-
+    
     <string name="refresh" id="1">Rafraîchir</string>
     <string name="favourite" id="2">Favori</string>
     <string name="share" id="3">Partager</string>
 
-
+    
     <string name="settings" id="4">Réglages</string>
     <string name="appearance" id="5">Apparence</string>
     <string name="app_theme" id="6">Thème de l\'application</string>
@@ -24,9 +24,9 @@
     <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Bibliothèques utilisées</string>
 
+    
 
-
-
+    
     <string name="about_app_promise" id="21">Promesse d\'application</string>
     <string name="about_no_trackers" id="22">Pas de trackers</string>
     <string name="about_complete_privacy" id="23">Confidentialité totale</string>
@@ -44,13 +44,13 @@
     <string name="about_attribution" id="30">Icône du lanceur - Freepik via Flaticon</string>
     <string name="tick" id="31">Cocher</string>
 
+    
 
-
-
+    
     <string name="favourited_quote" id="55">Citation préférée</string>
     <string name="favourite_quote_delete" id="56">Effacer</string>
 
-
+    
     <string name="buddha_quotes_logo" id="57">Logo de citations de Bouddha</string>
     <string name="bandev_logo" id="58">Logo BanDev</string>
     <string name="the_buddha" id="59">Le Bouddha</string>
@@ -58,7 +58,7 @@
     <string name="icon" id="61">Icône</string>
     <string name="title" id="62">Titre</string>
 
-
+    
     <string name="licenses" id="63">Licence</string>
     <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">Autorisations</string>
@@ -80,23 +80,23 @@
     <string name="blue_circle" id="80">Cercle bleu</string>
     <string name="red_circle" id="81">Cercle rouge</string>
 
-
+    
     <string name="title_activity_settings" id="82">ParamètresActivité</string>
     <string name="textview" id="83">Affichage</string>
     <string name="MainActivity" id="84">Activité principale</string>
     <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
     <string name="action_settings" id="86">Réglages</string>
 
-
+    
     <string name="appwidget_text" id="87">EXEMPLE</string>
     <string name="configure" id="88">Configurer</string>
     <string name="add_widget" id="89">Ajouter un widget</string>
     <string name="open_source_libraries" id="90">Bibliothèques Open Source</string>
     <string name="about_no_ads" id="91">Pas de pubs</string>
 
+    
 
-
-
+    
 
     <string name="lists_title" id="92">Vos listes</string>
     <string name="lists_add_item" id="93">Ajouter à la liste</string>
@@ -104,7 +104,7 @@
     <string name="lists_add_lists_go" id="95">Ajouter</string>
     <string name="lists_add_lists_name" id="96">Nom</string>
 
-
+    
     <string name="settings_general" id="97">Général</string>
     <string name="settings_accent_colour" id="98">Couleur d\'accent</string>
     <string name="settings_shapes_mode" id="99">Mode formes</string>
@@ -112,7 +112,7 @@
     <string name="settings_shapes_mode_no" id="101">De</string>
     <string name="settings_language" id="102">Langue</string>
 
-
+    
     <string name="original" id="103">Original</string>
     <string name="blue" id="104">Bleu</string>
     <string name="green" id="105">vert</string>
@@ -126,7 +126,7 @@
     <string name="lime" id="113">Citron vert</string>
     <string name="crimson" id="114">cramoisi</string>
 
-
+    
     <string name="ab">Abkhaze</string>
     <string name="aa">Au loin</string>
     <string name="af">afrikaans</string>
@@ -312,7 +312,7 @@
     <string name="za">Zhuang, Chuang</string>
     <string name="zu">zoulou</string>
 
-
+    
 
     <string name="appintro1_description" id="299">Une application gratuite et open source Buddha Quotes</string>
     <string name="appintro2_title" id="300">Plus de 230 citations</string>
@@ -324,7 +324,7 @@
     <string name="appintro5_title" id="306">Commençons!</string>
     <string name="appintro5_description" id="307">Nous espérons que vous apprécierez l\'application - nous avons un référentiel GitLab où vous pouvez demander des fonctionnalités ou soulever des problèmes</string>
 
-
+    
 
     <string name="cancel" id="308">Annuler</string>
     <string name="confirm" id="309">Confirmer</string>
@@ -531,7 +531,7 @@
     <string name="quote_200" id="509">Des milliers de bougies peuvent être allumées à partir d\'une seule bougie et la durée de vie de la bougie ne sera pas raccourcie. Le bonheur ne diminue jamais en étant partagé</string>
     <string name="quote_201" id="510">Trois choses ne peuvent pas être longtemps cachées: le soleil, la lune et la vérité</string>
     <string name="quote_202" id="511">Les temps de luxe ne durent pas longtemps, mais disparaissent très vite, rien dans ce monde ne peut être apprécié longtemps</string>
-    <string name="quote_203" id="512">Être beau signifie être soi-même. Vous n \'avez pas besoin d \\' être accepté par les autres. Vous devez vous accepter</string>
+    <string name="quote_203" id="512">Être beau signifie être soi-même. Vous n \\'avez pas besoin d \\' être accepté par les autres. Vous devez vous accepter</string>
     <string name="quote_204" id="513">Devenir végétarien, c\'est entrer dans le courant qui mène au nirvana</string>
     <string name="quote_205" id="514">Insister sur une pratique spirituelle qui vous a servi dans le passé, c\'est porter le radeau sur le dos après avoir traversé la rivière</string>
     <string name="quote_206" id="515">Garder le corps en bonne santé est un devoir ... sinon nous ne pourrons pas garder notre esprit fort et clair</string>
