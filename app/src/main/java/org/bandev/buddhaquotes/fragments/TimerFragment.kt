@@ -13,6 +13,7 @@ import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
 import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 class TimerFragment : Fragment() {
@@ -49,10 +50,9 @@ class TimerFragment : Fragment() {
         // Builds the bottom sheet that allows for an input of time
         timeSheet = TimeSheet().build(requireContext()) {
             title("Meditation timer")
+            closeButtonDrawable(R.drawable.ic_down_arrow)
             format(TimeFormat.MM_SS)
-            onNegative {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
+            onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
