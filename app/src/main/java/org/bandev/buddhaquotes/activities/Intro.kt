@@ -1,6 +1,9 @@
 package org.bandev.buddhaquotes.activities
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.ViewConfiguration
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
@@ -14,10 +17,18 @@ class Intro : AppIntro2() {
 
         isVibrate = true
         vibrateDuration = 30L
-
-        setImmersiveMode()
-
         setTransformer(AppIntroPageTransformerType.Fade)
+
+        // Checks whether the user has a navigation bar or uses gestures
+        if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
+            // If they have a navigation bar, hide the status bar and navigation bar
+            setImmersiveMode()
+        } else {
+            // If they use gestures, show the status bar, set it transparent and draw the background behind it
+            showStatusBar(true)
+            setStatusBarColor(Color.TRANSPARENT)
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
 
         // Call addSlide passing your Fragments
         // You can use AppIntroFragment to use a pre-built fragment

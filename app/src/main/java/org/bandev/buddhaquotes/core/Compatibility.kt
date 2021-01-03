@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.ViewConfiguration
 import android.view.Window
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
 import androidx.core.content.res.ResourcesCompat
@@ -29,27 +30,29 @@ class Compatibility {
      */
 
     fun setNavigationBarColourWhite(context: Context, window: Window, resources: Resources) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    @Suppress("DEPRECATION")
-                    window.decorView.systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
+            when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                            APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                            APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                        )
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        @Suppress("DEPRECATION")
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor = Color.WHITE
+                    } else {
+                        window.navigationBarColor = Color.GRAY
+                    }
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor = Color.WHITE
-                } else {
-                    window.navigationBarColor = Color.GRAY
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.background, null)
                 }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.background, null)
             }
         }
     }
@@ -61,28 +64,30 @@ class Compatibility {
      */
 
     fun setNavigationBarColourGray(context: Context, window: Window, resources: Resources) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    @Suppress("DEPRECATION")
-                    window.decorView.systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
+            when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                            APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                            APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                        )
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        @Suppress("DEPRECATION")
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor =
+                            ResourcesCompat.getColor(resources, R.color.background, null)
+                    } else {
+                        window.navigationBarColor = Color.GRAY
+                    }
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Configuration.UI_MODE_NIGHT_YES -> {
                     window.navigationBarColor =
                         ResourcesCompat.getColor(resources, R.color.background, null)
-                } else {
-                    window.navigationBarColor = Color.GRAY
                 }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.background, null)
             }
         }
     }
@@ -94,27 +99,29 @@ class Compatibility {
      */
 
     fun setNavigationBarColourMain(context: Context, window: Window, resources: Resources) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    @Suppress("DEPRECATION")
-                    window.decorView.systemUiVisibility =
-                        View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
+            when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                Configuration.UI_MODE_NIGHT_NO -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                            APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                            APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                        )
+                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        @Suppress("DEPRECATION")
+                        window.decorView.systemUiVisibility =
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        window.navigationBarColor = Color.WHITE
+                    } else {
+                        window.navigationBarColor = Color.GRAY
+                    }
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    window.navigationBarColor = Color.WHITE
-                } else {
-                    window.navigationBarColor = Color.GRAY
+                Configuration.UI_MODE_NIGHT_YES -> {
+                    window.navigationBarColor =
+                        ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
                 }
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.navigationBarColor =
-                    ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
             }
         }
     }

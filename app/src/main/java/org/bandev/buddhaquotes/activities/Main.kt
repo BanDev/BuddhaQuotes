@@ -135,7 +135,7 @@ class Main : AppCompatActivity() {
                     }
                     Lists().getMasterList(requireContext())
                         .contains(value.toLowerCase(Locale.ROOT)) -> {
-                        Validation.failed("There is already an input named $value")
+                        Validation.failed("There is already an list named $value")
                     }
                     else -> {
                         Validation.success()
