@@ -95,10 +95,7 @@
     <string name="open_source_libraries" id="90">Open Source Libraries</string>
     <string name="about_no_ads" id="91">No ads</string>
 
-    <!-- v1.5.0 -->
-
     <!-- Lists -->
-
     <string name="lists_title" id="92">Your Lists</string>
     <string name="lists_add_item" id="93">Add to List</string>
     <string name="lists_add_lists" id="94">Create new List</string>
@@ -319,7 +316,7 @@
     <string name="appintro2_title" id="300">Over 230 quotes</string>
     <string name="appintro2_description" id="301">Over 230 quotes from The Buddha</string>
     <string name="appintro3_title" id="302">Favourites</string>
-    <string name="appintro3_description" id="303">You can favourite quotes by pressing the favourite button</string>
+    <string name="appintro3_description" id="303">You can favourite quotes by pressing the favourite button or double tapping on the screen</string>
     <string name="appintro4_title" id="304">Customisable</string>
     <string name="appintro4_description" id="305">There is a variety of user interface options, such as accent colours and shapes mode</string>
     <string name="appintro5_title" id="306">Let\'s get started!</string>

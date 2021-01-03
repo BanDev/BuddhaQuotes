@@ -37,8 +37,6 @@
             android:label="addList"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".activities.YourLists" />
-        <activity
             android:name=".activities.Splash"
             android:theme="@style/Splash">
             <intent-filter>
@@ -59,14 +57,6 @@
             android:name=".activities.Intro" />
         <activity
             android:name=".activities.AboutLibraries" />
-        <activity
-            android:name=".OldMainActivity"
-            android:label="@string/MainActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="OldMainActivity" />
-        </activity>
     </application>
 
 </manifest>

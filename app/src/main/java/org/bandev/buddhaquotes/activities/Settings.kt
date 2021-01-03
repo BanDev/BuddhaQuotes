@@ -16,10 +16,7 @@ import com.maxkeppeler.bottomsheets.options.DisplayMode
 import com.maxkeppeler.bottomsheets.options.Option
 import com.maxkeppeler.bottomsheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.core.Theme
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
@@ -196,19 +193,23 @@ class Settings : AppCompatActivity() {
                         requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
 
-                    editor.putInt("app_language_int", index)
-                    editor.putString("app_language", values[index])
-                    editor.apply()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("lang", true)
-                    intent2.putExtras(mBundle)
-                    startActivity(intent2)
-                    activity?.finish()
-                    activity?.overridePendingTransition(
-                        android.R.anim.fade_in,
-                        android.R.anim.fade_out
-                    )
+                    if (Languages().getLanguageAsInt(requireContext()) != index) {
+                        editor.putInt("app_language_int", index)
+                        editor.putString("app_language", values[index])
+                        editor.apply()
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("lang", true)
+                        intent2.putExtras(mBundle)
+                        startActivity(intent2)
+                        activity?.finish()
+                        activity?.overridePendingTransition(
+                            android.R.anim.fade_in,
+                            android.R.anim.fade_out
+                        )
+                    } else {
+                        dismiss()
+                    }
                 }
                 onNegative {
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -223,7 +224,6 @@ class Settings : AppCompatActivity() {
             val singleItems = resources.getStringArray(R.array.theme_entries)
             val checkedItem = pref.getInt("appThemeInt", 2)
 
-
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
                 closeButtonDrawable(R.drawable.ic_down_arrow)
@@ -234,61 +234,65 @@ class Settings : AppCompatActivity() {
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { index: Int, option: Option ->
-                    when (index) {
-                        0 -> {
-                            editor.putBoolean("dark_mode", false)
-                            editor.putBoolean("sys", false)
-                            editor.putInt("appThemeInt", 0)
-                        }
-                        1 -> {
-                            editor.putBoolean("dark_mode", true)
-                            editor.putBoolean("sys", false)
-                            editor.putInt("appThemeInt", 1)
-                        }
-                        2 -> {
-                            editor.putBoolean("dark_mode", false)
-                            editor.putBoolean("sys", true)
-                            editor.putInt("appThemeInt", 2)
-                        }
-                    }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
                         requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
-                    editor.apply()
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("switch", true)
-                    intent2.putExtras(mBundle)
-                    startActivity(intent2)
-                    activity?.finish()
-                    activity?.overridePendingTransition(
-                        android.R.anim.fade_in,
-                        android.R.anim.fade_out
-                    )
+                    if (Theme().getAppTheme(requireContext()) != index) {
+                        when (index) {
+                            0 -> {
+                                // Light mode
+                                editor.putBoolean("dark_mode", false)
+                                editor.putBoolean("sys", false)
+                                editor.putInt("appThemeInt", 0)
+                            }
+                            1 -> {
+                                // Dark mode
+                                editor.putBoolean("dark_mode", true)
+                                editor.putBoolean("sys", false)
+                                editor.putInt("appThemeInt", 1)
+                            }
+                            2 -> {
+                                // System default
+                                editor.putBoolean("dark_mode", false)
+                                editor.putBoolean("sys", true)
+                                editor.putInt("appThemeInt", 2)
+                            }
+                        }
+                        editor.apply()
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("switch", true)
+                        intent2.putExtras(mBundle)
+                        startActivity(intent2)
+                        activity?.finish()
+                        activity?.overridePendingTransition(0, 0)
+                    } else {
+                        dismiss()
+                    }
                 }
             }
         }
 
         private fun showColorPopup() {
-            val colors = mutableListOf(
-                R.color.pinkAccent,
-                R.color.violetAccent,
-                R.color.blueAccent,
-                R.color.lightBlueAccent,
-                R.color.tealAccent,
-                R.color.greenAccent,
-                R.color.limeAccent,
-                R.color.yellowAccent,
-                R.color.orangeAccent,
-                R.color.redAccent,
-                R.color.crimsonAccent,
-                R.color.colorPrimary
-            )
-
             ColorSheet().show(requireContext()) {
-                colors(colors)
+                colors(
+                    mutableListOf(
+                        R.color.pinkAccent,
+                        R.color.violetAccent,
+                        R.color.blueAccent,
+                        R.color.lightBlueAccent,
+                        R.color.tealAccent,
+                        R.color.greenAccent,
+                        R.color.limeAccent,
+                        R.color.yellowAccent,
+                        R.color.orangeAccent,
+                        R.color.redAccent,
+                        R.color.crimsonAccent,
+                        R.color.colorPrimary
+                    )
+                )
                 title(R.string.settings_accent_colour)
                 closeButtonDrawable(R.drawable.ic_down_arrow)
                 defaultView(ColorView.TEMPLATE)
@@ -300,60 +304,65 @@ class Settings : AppCompatActivity() {
                     } else {
                         requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
-                    // Use color
-                    var colorOut = "original"
-                    when (color) {
-                        ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
-                            colorOut = "pink"
+
+                    // Checks if the chosen color is not the same as the current color
+                    if (Colours().getAccentColourAsInt(requireContext()) != color) {
+                        var colorOut = "original"
+                        when (color) {
+                            ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
+                                colorOut = "pink"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
+                                colorOut = "violet"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
+                                colorOut = "blue"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
+                                colorOut = "lightBlue"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
+                                colorOut = "teal"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
+                                colorOut = "green"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
+                                colorOut = "lime"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
+                                colorOut = "yellow"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
+                                colorOut = "orange"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
+                                colorOut = "red"
+                            }
+                            ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
+                                colorOut = "crimson"
+                            }
                         }
-                        ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
-                            colorOut = "violet"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
-                            colorOut = "blue"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
-                            colorOut = "lightBlue"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
-                            colorOut = "teal"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
-                            colorOut = "green"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
-                            colorOut = "lime"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
-                            colorOut = "yellow"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
-                            colorOut = "orange"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
-                            colorOut = "red"
-                        }
-                        ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
-                            colorOut = "crimson"
-                        }
+                        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                        val editor = sharedPrefs.edit()
+                        editor.putString("accent_color", colorOut)
+                        editor.apply()
+
+                        updateColorSummary()
+
+                        val intent2 = Intent(context, Settings::class.java)
+                        val mBundle = Bundle()
+                        mBundle.putBoolean("switch", true)
+                        intent2.putExtras(mBundle)
+                        startActivity(intent2)
+                        activity?.finish()
+                        activity?.overridePendingTransition(
+                            android.R.anim.fade_in,
+                            android.R.anim.fade_out
+                        )
+                    } else {
+                        dismiss()
                     }
-                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-                    val editor = sharedPrefs.edit()
-                    editor.putString("accent_color", colorOut)
-                    editor.apply()
-
-                    updateColorSummary()
-
-                    val intent2 = Intent(context, Settings::class.java)
-                    val mBundle = Bundle()
-                    mBundle.putBoolean("switch", true)
-                    intent2.putExtras(mBundle)
-                    startActivity(intent2)
-                    activity?.finish()
-                    activity?.overridePendingTransition(
-                        android.R.anim.fade_in,
-                        android.R.anim.fade_out
-                    )
                 }
             }
         }

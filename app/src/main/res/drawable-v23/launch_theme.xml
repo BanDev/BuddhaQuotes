@@ -4,7 +4,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
 
     <!-- The background -->
-    <item android:drawable="@drawable/splash_background"/>
+    <item android:drawable="@color/ic_launcher_background"/>
 
     <!-- The app icon -->
     <item
