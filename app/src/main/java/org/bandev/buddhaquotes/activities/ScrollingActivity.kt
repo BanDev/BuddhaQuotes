@@ -54,9 +54,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbarLayout.title = list
+        binding.toolbar.title = listTmp
 
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(false)
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
         binding.toolbar.navigationIcon = back

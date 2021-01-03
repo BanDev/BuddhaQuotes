@@ -5,7 +5,7 @@
         app:title="@string/settings_general">
 
         <Preference
-            app:icon="@drawable/ic_language"
+            app:icon="@drawable/ic_language_big"
             app:key="app_language"
             app:title="@string/settings_language"
             app:summary="@string/settings_language"
@@ -30,12 +30,7 @@
             android:summary="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
 
-        <SwitchPreferenceCompat
-            app:icon="@drawable/ic_party_popper"
-            app:key="shapes_mode"
-            app:title="@string/settings_shapes_mode"
-            app:summaryOn="On"
-            app:summaryOff="Off" />
+
 
     </PreferenceCategory>
 

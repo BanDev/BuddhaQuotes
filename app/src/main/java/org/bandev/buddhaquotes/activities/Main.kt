@@ -1,6 +1,8 @@
 package org.bandev.buddhaquotes.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -66,6 +68,12 @@ class Main : AppCompatActivity() {
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
+        val sharedPreferences2 = getSharedPreferences("timer", 0)
+
+        if(sharedPreferences2.getBoolean("new", true)){
+            binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge("New"))
+        }
+
 
         binding.bottomBar.setOnTabInterceptListener(object :
             AnimatedBottomBar.OnTabInterceptListener {

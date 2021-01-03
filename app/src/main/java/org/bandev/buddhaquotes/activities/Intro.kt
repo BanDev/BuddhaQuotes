@@ -38,8 +38,6 @@ class Intro : AppIntro2() {
                 description = getString(R.string.appintro1_description),
                 imageDrawable = R.drawable.ic_buddha_no_background,
                 backgroundDrawable = R.drawable.slide_1,
-                titleTypefaceFontRes = R.font.mt_med,
-                descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
         addSlide(
@@ -48,8 +46,6 @@ class Intro : AppIntro2() {
                 description = getString(R.string.appintro2_description),
                 imageDrawable = R.drawable.ic_quotation_marks,
                 backgroundDrawable = R.drawable.slide_2,
-                titleTypefaceFontRes = R.font.mt_med,
-                descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
         addSlide(
@@ -58,8 +54,6 @@ class Intro : AppIntro2() {
                 description = getString(R.string.appintro3_description),
                 imageDrawable = R.drawable.heart_full_white_large,
                 backgroundDrawable = R.drawable.slide_3,
-                titleTypefaceFontRes = R.font.mt_med,
-                descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
         addSlide(
@@ -68,8 +62,6 @@ class Intro : AppIntro2() {
                 description = getString(R.string.appintro4_description),
                 imageDrawable = R.drawable.ic_palette_large,
                 backgroundDrawable = R.drawable.slide_4,
-                titleTypefaceFontRes = R.font.mt_med,
-                descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
         addSlide(
@@ -78,8 +70,6 @@ class Intro : AppIntro2() {
                 description = getString(R.string.appintro5_description),
                 imageDrawable = R.drawable.ic_meditate,
                 backgroundDrawable = R.drawable.slide_5,
-                titleTypefaceFontRes = R.font.mt_med,
-                descriptionTypefaceFontRes = R.font.mt_reg,
             )
         )
     }
