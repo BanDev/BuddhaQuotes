@@ -1,5 +1,9 @@
 package org.bandev.buddhaquotes.fragments
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +12,12 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import androidx.core.app.NotificationBuilderWithBuilderAccessor
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
 import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
@@ -36,6 +46,10 @@ class TimerFragment : Fragment() {
     private var isPaused: Boolean = false
     var timeInMilliSeconds: Long = 0L
     private var duration: Long = 0L
+    private var durationM: Long = 0L
+    private var maxMin: Int = 0
+    private var maxSec: Int = 0
+    private lateinit var builder: NotificationCompat.Builder
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +75,10 @@ class TimerFragment : Fragment() {
                 }
                 duration = durationTimeInMillis * 1000
                 startTimer(duration)
+                durationM = durationTimeInMillis
+
+                maxMin = (durationTimeInMillis / 60).toInt()
+                maxSec = (durationTimeInMillis % 60).toInt()
             }
         }
 
@@ -93,6 +111,11 @@ class TimerFragment : Fragment() {
 
             override fun onFinish() {
                 // Shows a burst of confetti when the timer finishes
+                builder.setContentTitle("Meditating complete!")
+                builder.setContentText("You meditated for $maxMin:$maxSec")
+                NotificationManagerCompat.from(requireContext()).apply {
+                    notify(12, builder.build())
+                }
                 binding.viewKonfetti.build()
                     .addColors(
                         Color.parseColor("#A864FD"),
@@ -123,16 +146,51 @@ class TimerFragment : Fragment() {
                 updateTextUI(timeInMilliSeconds)
             }
         }
+        val sharedpreferences: SharedPreferences? =
+            context?.getSharedPreferences("timer", Context.MODE_PRIVATE)
+
+        val editor = sharedpreferences?.edit()
+
+        editor!!.putBoolean("new", false)
+        editor!!.commit()
+
         // Start the timer
         countDownTimer.start()
         isRunning = true
+        binding.textView4.visibility = View.INVISIBLE
+        binding.textView5.visibility = View.INVISIBLE
+        binding.timeLeft.visibility = View.VISIBLE
         binding.button.text = "Pause"
         binding.stop.visibility = View.VISIBLE
+
+        builder = NotificationCompat.Builder(requireContext(), "BQ.Timer").apply {
+            setContentTitle("Picture Download")
+            setContentText("Download in progress")
+            setSmallIcon(R.drawable.nav_meditate)
+            setPriority(NotificationCompat.PRIORITY_LOW)
+            setCategory(NotificationCompat.CATEGORY_PROGRESS)
+            setOnlyAlertOnce(true)
+        }
+
+        val PROGRESS_MAX = 100
+        val PROGRESS_CURRENT = 0
+
+        NotificationManagerCompat.from(requireContext()).apply {
+            // Issue the initial notification with zero progress
+            builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false)
+            notify(12, builder.build())
+        }
     }
 
     internal fun updateTextUI(time: Long) {
         val minute = (time / 1000) / 60
         val seconds = (time / 1000) % 60
+        builder.setContentTitle("Meditating for $maxMin:$maxSec")
+        builder.setContentText("Time left: $minute:$seconds")
+        builder.setProgress(durationM.toInt(), time.toInt() / 1000, false)
+        NotificationManagerCompat.from(requireContext()).apply {
+            notify(12, builder.build())
+        }
         binding.timeLeft.text = "$minute:$seconds"
     }
 

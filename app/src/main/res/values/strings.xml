@@ -575,5 +575,5 @@
 
     <string name="fragment_quote">Quote</string>
     <string name="fragment_lists">Lists</string>
-    <string name="fragment_meditation">Meditation</string>
+    <string name="fragment_meditation">Meditate</string>
 </resources>

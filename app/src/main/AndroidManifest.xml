@@ -57,6 +57,9 @@
             android:name=".activities.Intro" />
         <activity
             android:name=".activities.AboutLibraries" />
+
     </application>
+
+
 
 </manifest>

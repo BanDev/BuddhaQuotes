@@ -101,13 +101,6 @@ class Settings : AppCompatActivity() {
                     true
                 }
 
-            val shapesModeButton = findPreference<Preference>("shapes_mode")
-            (shapesModeButton ?: return).onPreferenceClickListener =
-                Preference.OnPreferenceClickListener {
-                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    true
-                }
-
             val appThemeButton = findPreference<Preference>("theme")
             (appThemeButton ?: return).onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
@@ -173,7 +166,7 @@ class Settings : AppCompatActivity() {
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
                 closeButtonDrawable(R.drawable.ic_down_arrow)
-                displayMode(DisplayMode.LIST)
+                displayMode(DisplayMode.GRID_VERTICAL)
                 with(
                     Option(R.drawable.ic_default, R.string.en),
                     Option(R.drawable.ic_machine, R.string.fr),

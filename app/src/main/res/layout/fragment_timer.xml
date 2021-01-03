@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context="fragments.TimerFragment">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="359dp"
+        android:layout_height="251dp"
+        android:src="@drawable/meditate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/viewKonfetti"
@@ -20,41 +29,64 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Start"
         android:textAllCaps="true"
-        android:text="Set timer"
         android:textColor="@android:color/white"
         app:cornerRadius="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/stop"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/colorWaveDark"
-        android:textAllCaps="true"
         android:text="Stop"
+        android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:visibility="invisible"
         app:cornerRadius="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
         android:id="@+id/timeLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="00:00"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="80sp"
         android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Meditate with us."
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It's simple &amp; easy"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
