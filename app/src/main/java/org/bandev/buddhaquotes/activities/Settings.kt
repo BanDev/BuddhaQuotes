@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
+import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.bottomsheets.color.ColorSheet
 import com.maxkeppeler.bottomsheets.color.ColorView
 import com.maxkeppeler.bottomsheets.options.DisplayMode
@@ -22,9 +24,19 @@ import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 class Settings : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
+    private lateinit var timerData: Bundle
+    private var paused: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        overridePendingTransition(
+            R.anim.anim_slide_in_left,
+            R.anim.anim_slide_out_left
+        )
+
+        // Check if the data is safe to get
+        // if so set timer data
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
@@ -34,6 +46,12 @@ class Settings : AppCompatActivity() {
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        if(intent.extras?.getBoolean("paused") == true){
+            Snackbar.make(binding.root, "Timer has been paused", LENGTH_SHORT).show()
+        }
+
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -362,7 +380,8 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@Settings, Main::class.java))
+        val intent = Intent(this@Settings, Main::class.java)
+        startActivity(intent)
         finish()
         overridePendingTransition(
             R.anim.anim_slide_in_right,
