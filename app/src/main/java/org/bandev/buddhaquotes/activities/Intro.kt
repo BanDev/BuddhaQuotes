@@ -19,6 +19,14 @@ class Intro : AppIntro2() {
         vibrateDuration = 30L
         setTransformer(AppIntroPageTransformerType.Fade)
 
+        // If this is run, user is new so mark latestShown as shown for this
+        // release meaning they all of the new release rubbish until they
+        // update!
+        val sharedPreferences = getSharedPreferences("Settings", 0)
+        val editor = sharedPreferences.edit()
+        editor.putString("latestShown", getString(R.string.version))
+        editor.apply()
+
         // Checks whether the user has a navigation bar or uses gestures
         if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
             // If they have a navigation bar, hide the status bar and navigation bar

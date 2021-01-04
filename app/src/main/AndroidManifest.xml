@@ -46,6 +46,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activities.UpdateInfo"
+            android:theme="@style/UpdateInfo" />
+        <activity
             android:name=".activities.About"
             android:label="@string/about"
             android:theme="@style/About" />

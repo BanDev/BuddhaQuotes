@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
+    <string name="version" translatable="false">v1.7.0</string>
 
     <!-- Main page -->
     <string name="refresh" id="1">Refresh</string>
@@ -576,4 +576,9 @@
     <string name="fragment_quote">Quote</string>
     <string name="fragment_lists">Lists</string>
     <string name="fragment_meditation">Meditate</string>
+
+    <string name="updateTitle">New year, New Buddha Quotes</string>
+    <string name="updateSubheading">We have changed lots, and can\'t wait for you to try it!</string>
+    <string name="carry_on">Continue</string>
+    <string name="read">Blog post</string>
 </resources>

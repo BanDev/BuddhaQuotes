@@ -55,6 +55,12 @@ class Main : AppCompatActivity() {
             editor.apply()
             val i = Intent(this, Intro::class.java)
             startActivity(i)
+        } else if (sharedPreferences.getString(
+                "latestShown",
+                "null"
+            ) != getString(R.string.version)
+        ) {
+            startActivity(Intent(this, UpdateInfo::class.java))
         }
 
         // Setup view binding
@@ -70,7 +76,7 @@ class Main : AppCompatActivity() {
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
         val sharedPreferences2 = getSharedPreferences("timer", 0)
 
-        if(sharedPreferences2.getBoolean("new", true)){
+        if (sharedPreferences2.getBoolean("new", true)) {
             binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge("New"))
         }
 

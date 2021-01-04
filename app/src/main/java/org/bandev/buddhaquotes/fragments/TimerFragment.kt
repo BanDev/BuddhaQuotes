@@ -1,13 +1,21 @@
 package org.bandev.buddhaquotes.fragments
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.media.MediaDataSource
+import android.media.MediaMetadata
+import android.media.MediaPlayer
+import android.media.session.MediaSession
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.MediaStore
+import android.provider.Settings.Global.putString
+import android.provider.Settings.Secure.putString
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +58,8 @@ class TimerFragment : Fragment() {
     private var maxMin: Int = 0
     private var maxSec: Int = 0
     private lateinit var builder: NotificationCompat.Builder
+    lateinit var mediaPlayer: MediaPlayer
+    lateinit var backgroundMediaPlayer: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,6 +91,15 @@ class TimerFragment : Fragment() {
                 maxSec = (durationTimeInMillis % 60).toInt()
             }
         }
+        backgroundMediaPlayer = MediaPlayer.create(context, R.raw.background)
+        backgroundMediaPlayer.setOnPreparedListener {
+            print("Background Media Loaded")
+        }
+
+        mediaPlayer = MediaPlayer.create(context, R.raw.gong)
+        mediaPlayer.setOnPreparedListener {
+            print("End Media Loaded")
+        }
 
         binding.button.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -98,15 +117,23 @@ class TimerFragment : Fragment() {
         binding.stop.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             countDownTimer.cancel()
-            updateTextUI(0)
-            binding.button.text = "Set timer"
+            binding.button.text = "Begin"
             isRunning = false
             isPaused = false
             binding.stop.visibility = View.INVISIBLE
+            binding.textView4.visibility = View.VISIBLE
+            binding.textView5.visibility = View.VISIBLE
+            binding.timeLeft.visibility = View.INVISIBLE
+            backgroundMediaPlayer.stop()
         }
     }
 
     private fun startTimer(time_in_seconds: Long) {
+        backgroundMediaPlayer.start()
+
+        val mediaSession = MediaSession(requireContext(), "bq.timer")
+
+
         countDownTimer = object : CountDownTimer(time_in_seconds, 1000) {
 
             override fun onFinish() {
@@ -138,6 +165,8 @@ class TimerFragment : Fragment() {
                         binding.viewKonfetti.y + binding.viewKonfetti.height / 2
                     )
                     .burst(100)
+                mediaPlayer.start()
+                backgroundMediaPlayer.stop()
             }
 
             // Updates the text of the timer every second
@@ -200,5 +229,6 @@ class TimerFragment : Fragment() {
         countDownTimer.cancel()
         isRunning = false
         binding.stop.visibility = View.VISIBLE
+        backgroundMediaPlayer.pause()
     }
 }
