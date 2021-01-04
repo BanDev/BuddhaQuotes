@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/carry_on"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/carry_on"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        app:cornerRadius="11dp"
+        app:layout_constraintStart_toStartOf="@+id/subheading"
+        app:layout_constraintTop_toBottomOf="@+id/subheading" />
+
+    <Button
+        android:id="@+id/read_docs"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/read"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        app:cornerRadius="11dp"
+        app:icon="@drawable/ic_link"
+        app:iconTint="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/carry_on"
+        app:layout_constraintTop_toBottomOf="@+id/subheading" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/updateTitle"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/subheading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/updateSubheading"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <ImageView
+        android:id="@+id/update_graphic"
+        android:layout_width="0dp"
+        android:layout_height="305dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/new_years" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
