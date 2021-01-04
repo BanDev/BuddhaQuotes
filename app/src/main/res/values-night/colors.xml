@@ -10,4 +10,6 @@
     <color name="darkModeBar">#333333</color>
     <color name="abbBackgroundColor">@color/darkModeBar</color>
 
+    <color name="meditateBack">@color/bandev</color>
+
 </resources>

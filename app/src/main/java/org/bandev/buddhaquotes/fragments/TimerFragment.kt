@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.media.MediaDataSource
@@ -16,10 +17,7 @@ import android.os.CountDownTimer
 import android.provider.MediaStore
 import android.provider.Settings.Global.putString
 import android.provider.Settings.Secure.putString
-import android.view.HapticFeedbackConstants
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.core.app.NotificationBuilderWithBuilderAccessor
@@ -32,7 +30,12 @@ import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.activities.Main
+import org.bandev.buddhaquotes.activities.Settings
+import org.bandev.buddhaquotes.core.Activities
+import org.bandev.buddhaquotes.core.TimerStore
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
+import java.util.*
 
 class TimerFragment : Fragment() {
     companion object {
@@ -59,18 +62,22 @@ class TimerFragment : Fragment() {
     private var maxSec: Int = 0
     private lateinit var builder: NotificationCompat.Builder
     lateinit var mediaPlayer: MediaPlayer
-    lateinit var backgroundMediaPlayer: MediaPlayer
+    var data = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         _binding = FragmentTimerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (TimerStore(requireContext()).resumeTimers()) {
+            startTimer(TimerStore(requireContext()).progress)
+        }
         // Builds the bottom sheet that allows for an input of time
         timeSheet = TimeSheet().build(requireContext()) {
             title("Meditation timer")
@@ -89,11 +96,8 @@ class TimerFragment : Fragment() {
 
                 maxMin = (durationTimeInMillis / 60).toInt()
                 maxSec = (durationTimeInMillis % 60).toInt()
+                data.putLong("duration", duration)
             }
-        }
-        backgroundMediaPlayer = MediaPlayer.create(context, R.raw.background)
-        backgroundMediaPlayer.setOnPreparedListener {
-            print("Background Media Loaded")
         }
 
         mediaPlayer = MediaPlayer.create(context, R.raw.gong)
@@ -124,15 +128,20 @@ class TimerFragment : Fragment() {
             binding.textView4.visibility = View.VISIBLE
             binding.textView5.visibility = View.VISIBLE
             binding.timeLeft.visibility = View.INVISIBLE
-            backgroundMediaPlayer.stop()
+
+            TimerStore(requireContext()).active = false
+
+            NotificationManagerCompat.from(requireContext()).apply {
+                cancel(12)
+            }
         }
     }
 
     private fun startTimer(time_in_seconds: Long) {
-        backgroundMediaPlayer.start()
 
-        val mediaSession = MediaSession(requireContext(), "bq.timer")
-
+        //Store total time in miliseconds here
+        TimerStore(requireContext()).duration = time_in_seconds
+        TimerStore(requireContext()).active = true
 
         countDownTimer = object : CountDownTimer(time_in_seconds, 1000) {
 
@@ -166,13 +175,11 @@ class TimerFragment : Fragment() {
                     )
                     .burst(100)
                 mediaPlayer.start()
-                backgroundMediaPlayer.stop()
             }
 
             // Updates the text of the timer every second
             override fun onTick(p0: Long) {
-                timeInMilliSeconds = p0
-                updateTextUI(timeInMilliSeconds)
+                updateTextUI(p0)
             }
         }
         val sharedpreferences: SharedPreferences? =
@@ -199,6 +206,7 @@ class TimerFragment : Fragment() {
             setPriority(NotificationCompat.PRIORITY_LOW)
             setCategory(NotificationCompat.CATEGORY_PROGRESS)
             setOnlyAlertOnce(true)
+            setOngoing(true)
         }
 
         val PROGRESS_MAX = 100
@@ -212,6 +220,7 @@ class TimerFragment : Fragment() {
     }
 
     internal fun updateTextUI(time: Long) {
+        timeInMilliSeconds = time
         val minute = (time / 1000) / 60
         val seconds = (time / 1000) % 60
         builder.setContentTitle("Meditating for $maxMin:$maxSec")
@@ -223,12 +232,33 @@ class TimerFragment : Fragment() {
         binding.timeLeft.text = "$minute:$seconds"
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                val intent = Intent(context, Settings::class.java)
+                if (isRunning){
+                    pauseTimer()
+                    TimerStore(requireContext()).progress = timeInMilliSeconds
+                }
+                intent.putExtra("from", Activities.MAIN)
+                intent.putExtra("paused", isRunning)
+
+                this.startActivity(intent)
+                activity?.finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun pauseTimer() {
-        binding.button.text = "Start"
+        binding.button.text = "Resume"
         isPaused = true
         countDownTimer.cancel()
-        isRunning = false
         binding.stop.visibility = View.VISIBLE
-        backgroundMediaPlayer.pause()
+        builder.setContentTitle("Meditating for $maxMin:$maxSec has been paused")
+        NotificationManagerCompat.from(requireContext()).apply {
+            notify(12, builder.build())
+        }
     }
 }

@@ -29,8 +29,9 @@ class Splash : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-
-        startActivity(Intent(this, Main::class.java))
+        val intent = Intent(this, Main::class.java)
+        intent.putExtra("data_safe", false)
+        startActivity(intent)
         finish()
     }
 
