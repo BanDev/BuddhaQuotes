@@ -237,6 +237,10 @@ class TimerFragment : Fragment() {
 
                 this.startActivity(intent)
                 activity?.finish()
+                activity?.overridePendingTransition(
+                    R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
