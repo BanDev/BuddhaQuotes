@@ -48,7 +48,7 @@ class Settings : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        if(intent.extras?.getBoolean("paused") == true){
+        if (intent.extras?.getBoolean("paused") == true) {
             Snackbar.make(binding.root, "Timer has been paused", LENGTH_SHORT).show()
         }
 
