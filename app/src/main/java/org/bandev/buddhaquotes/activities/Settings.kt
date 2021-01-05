@@ -30,28 +30,21 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        overridePendingTransition(
-            R.anim.anim_slide_in_left,
-            R.anim.anim_slide_out_left
-        )
-
         // Check if the data is safe to get
         // if so set timer data
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourGray(this, window, resources)
+        Compatibility().setNavigationBarColourWhite(this, window, resources)
         Languages().setLanguage(this)
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         if (intent.extras?.getBoolean("paused") == true) {
             Snackbar.make(binding.root, "Timer has been paused", LENGTH_SHORT).show()
         }
-
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
