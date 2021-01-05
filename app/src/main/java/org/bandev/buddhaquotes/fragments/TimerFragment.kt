@@ -1,41 +1,26 @@
 package org.bandev.buddhaquotes.fragments
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.media.MediaDataSource
-import android.media.MediaMetadata
 import android.media.MediaPlayer
-import android.media.session.MediaSession
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.provider.MediaStore
-import android.provider.Settings.Global.putString
-import android.provider.Settings.Secure.putString
 import android.view.*
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import androidx.core.app.NotificationBuilderWithBuilderAccessor
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
 import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.activities.Settings
 import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.TimerStore
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
-import java.util.*
 
 class TimerFragment : Fragment() {
     companion object {
@@ -62,7 +47,7 @@ class TimerFragment : Fragment() {
     private var maxSec: Int = 0
     private lateinit var builder: NotificationCompat.Builder
     lateinit var mediaPlayer: MediaPlayer
-    var data = Bundle()
+    private var data = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -119,33 +104,40 @@ class TimerFragment : Fragment() {
         }
 
         binding.stop.setOnClickListener {
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            countDownTimer.cancel()
-            binding.button.text = "Begin"
-            isRunning = false
-            isPaused = false
-            binding.stop.visibility = View.INVISIBLE
-            binding.textView4.visibility = View.VISIBLE
-            binding.textView5.visibility = View.VISIBLE
-            binding.timeLeft.visibility = View.INVISIBLE
-
-            TimerStore(requireContext()).active = false
-
-            NotificationManagerCompat.from(requireContext()).apply {
-                cancel(12)
-            }
+            resetTimer()
         }
     }
 
-    private fun startTimer(time_in_seconds: Long) {
+    internal fun resetTimer() {
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        countDownTimer.cancel()
+        binding.button.text = "Begin"
+        isRunning = false
+        isPaused = false
+        binding.stop.visibility = View.INVISIBLE
+        binding.textView4.visibility = View.VISIBLE
+        binding.textView5.visibility = View.VISIBLE
+        binding.timeLeft.visibility = View.INVISIBLE
+
+        TimerStore(requireContext()).active = false
+
+        NotificationManagerCompat.from(requireContext()).apply {
+            cancel(12)
+        }
+    }
+
+    private fun startTimer(timeInSeconds: Long) {
 
         //Store total time in miliseconds here
-        TimerStore(requireContext()).duration = time_in_seconds
+        TimerStore(requireContext()).duration = timeInSeconds
         TimerStore(requireContext()).active = true
 
-        countDownTimer = object : CountDownTimer(time_in_seconds, 1000) {
+        countDownTimer = object : CountDownTimer(timeInSeconds, 1000) {
 
             override fun onFinish() {
+                // Stop the timer
+                resetTimer()
+
                 // Shows a burst of confetti when the timer finishes
                 builder.setContentTitle("Meditating complete!")
                 builder.setContentText("You meditated for $maxMin:$maxSec")
@@ -187,8 +179,8 @@ class TimerFragment : Fragment() {
 
         val editor = sharedpreferences?.edit()
 
-        editor!!.putBoolean("new", false)
-        editor!!.commit()
+        (editor ?: return).putBoolean("new", false)
+        editor.apply()
 
         // Start the timer
         countDownTimer.start()
@@ -203,18 +195,18 @@ class TimerFragment : Fragment() {
             setContentTitle("Picture Download")
             setContentText("Download in progress")
             setSmallIcon(R.drawable.nav_meditate)
-            setPriority(NotificationCompat.PRIORITY_LOW)
+            priority = NotificationCompat.PRIORITY_LOW
             setCategory(NotificationCompat.CATEGORY_PROGRESS)
             setOnlyAlertOnce(true)
             setOngoing(true)
         }
 
-        val PROGRESS_MAX = 100
-        val PROGRESS_CURRENT = 0
+        val progressMax = 100
+        val progressCurrent = 0
 
         NotificationManagerCompat.from(requireContext()).apply {
             // Issue the initial notification with zero progress
-            builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false)
+            builder.setProgress(progressMax, progressCurrent, false)
             notify(12, builder.build())
         }
     }
@@ -236,7 +228,7 @@ class TimerFragment : Fragment() {
         return when (item.itemId) {
             R.id.settings -> {
                 val intent = Intent(context, Settings::class.java)
-                if (isRunning){
+                if (isRunning) {
                     pauseTimer()
                     TimerStore(requireContext()).progress = timeInMilliSeconds
                 }
