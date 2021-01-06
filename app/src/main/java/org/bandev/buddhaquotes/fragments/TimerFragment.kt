@@ -17,7 +17,9 @@ import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.activities.Settings
+import org.bandev.buddhaquotes.activities.Timer
 import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.TimerStore
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
@@ -60,9 +62,7 @@ class TimerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (TimerStore(requireContext()).resumeTimers()) {
-            startTimer(TimerStore(requireContext()).progress)
-        }
+
         // Builds the bottom sheet that allows for an input of time
         timeSheet = TimeSheet().build(requireContext()) {
             title("Meditation timer")
@@ -70,18 +70,19 @@ class TimerFragment : Fragment() {
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                 } else {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-                duration = durationTimeInMillis * 1000
-                startTimer(duration)
-                durationM = durationTimeInMillis
 
-                maxMin = (durationTimeInMillis / 60).toInt()
-                maxSec = (durationTimeInMillis % 60).toInt()
-                data.putLong("duration", duration)
+
+                val toTimer = Intent(context, Timer::class.java)
+                toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
+                startActivity(toTimer)
+
+
             }
         }
 
@@ -97,7 +98,8 @@ class TimerFragment : Fragment() {
                     pauseTimer()
                 }
                 isPaused -> {
-                    startTimer(timeInMilliSeconds)
+
+                    //startTimer(timeInMilliSeconds)
                 }
                 else -> timeSheet.show()
             }
@@ -224,28 +226,6 @@ class TimerFragment : Fragment() {
         binding.timeLeft.text = "$minute:$seconds"
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.settings -> {
-                val intent = Intent(context, Settings::class.java)
-                if (isRunning) {
-                    pauseTimer()
-                    TimerStore(requireContext()).progress = timeInMilliSeconds
-                }
-                intent.putExtra("from", Activities.MAIN)
-                intent.putExtra("paused", isRunning)
-
-                this.startActivity(intent)
-                activity?.finish()
-                activity?.overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     private fun pauseTimer() {
         binding.button.text = "Resume"

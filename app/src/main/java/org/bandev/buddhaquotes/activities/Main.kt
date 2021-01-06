@@ -104,6 +104,27 @@ class Main : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.add -> {
+                addToListSheet.show()
+                true
+            }
+            R.id.settings -> {
+                val intent = Intent(this, Settings::class.java)
+                intent.putExtra("from", Activities.MAIN)
+                this.startActivity(intent)
+                finish()
+                overridePendingTransition(
+                    R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left
+                )
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     /**
      * On options menu item selected
      * @param item [MenuItem]
