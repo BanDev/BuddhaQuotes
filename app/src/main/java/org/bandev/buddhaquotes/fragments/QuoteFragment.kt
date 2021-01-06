@@ -58,31 +58,6 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Builds the options bottom sheet
-        val moreOptions = OptionsSheet().build(requireContext()) {
-            displayMode(DisplayMode.LIST)
-            title("More")
-            closeButtonDrawable(R.drawable.ic_down_arrow)
-            with(
-                Option(R.drawable.ic_share, "Share"),
-                Option(R.drawable.ic_add_circle, "Add to list")
-            )
-            onPositive { index: Int, option: Option ->
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                if (index == 0) {
-                    val sendIntent: Intent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
-                        putExtra(Intent.EXTRA_TEXT, text)
-                        type = "text/plain"
-                    }
-                    val shareIntent = Intent.createChooser(sendIntent, null)
-                    startActivity(shareIntent)
-                } else {
-                    dismiss()
-                }
-            }
-        }
 
         newQuote(Store(requireContext()).quoteID)
         with(binding.swipeRefresh) {
@@ -97,7 +72,30 @@ class QuoteFragment : Fragment() {
 
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
-            moreOptions.show()
+            OptionsSheet().show(requireContext()) {
+                displayMode(DisplayMode.LIST)
+                title("More")
+                closeButtonDrawable(R.drawable.ic_down_arrow)
+                with(
+                    Option(R.drawable.ic_share, "Share"),
+                    Option(R.drawable.ic_add_circle, "Add to list")
+                )
+                onPositive { index: Int, option: Option ->
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    if (index == 0) {
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
+                            putExtra(Intent.EXTRA_TEXT, text)
+                            type = "text/plain"
+                        }
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+                        startActivity(shareIntent)
+                    } else {
+                        dismiss()
+                    }
+                }
+            }
         }
 
         // Favourites the quote on double click
