@@ -581,4 +581,25 @@
     <string name="updateSubheading">We have changed lots, and can\'t wait for you to try it!</string>
     <string name="carry_on">Continue</string>
     <string name="read">Blog post</string>
+
+    <string name="meditate_title">Meditate</string>
+    <string name="meditate_subheading">It\'s simple &amp; easy</string>
+
+    <string name="meditate_space">Space</string>
+    <string name="meditate_space_desc">Choose somewhere quiet where you wont be disturbed.</string>
+
+    <string name="meditate_posture">Space</string>
+    <string name="meditate_posture_desc">Sit on the floor or on a straight backed chair. The key is to be comfortable!</string>
+
+    <string name="meditate_breath">Breath</string>
+    <string name="meditate_breath_desc">Take deep slow breaths, try to breath into your stomach.</string>
+
+    <string name="play">Resume</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Reset</string>
+
+    <string name="time_left">Time Left</string>
+    <string name="meditating_for">Meditating for</string>
+    <string name="has_been_paused">has been paused</string>
+    <string name="meditation_timer">Meditation Timer</string>
 </resources>

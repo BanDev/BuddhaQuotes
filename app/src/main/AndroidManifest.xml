@@ -53,6 +53,9 @@
             android:label="@string/about"
             android:theme="@style/About" />
         <activity
+            android:name=".activities.Timer"
+            android:theme="@style/Settings" />
+        <activity
             android:name=".activities.Settings"
             android:label="@string/title_activity_settings"
             android:theme="@style/Settings" />
