@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
 
     
     <string name="refresh" id="1">刷新</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">救命</string>
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用许可</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">使用的图书馆</string>
 
     
@@ -35,11 +32,6 @@
     <string name="about_info" id="26">应用程式资讯</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes是一个协作项目，旨在为Android创建免费和开源的Buddha Quotes应用程序。</string>
     <string name="about_contributors" id="28">贡献者</string>
-    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
     <string name="tick" id="31">蜱</string>
@@ -60,7 +52,6 @@
 
     
     <string name="licenses" id="63">执照</string>
-    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">权限</string>
     <string name="licenses_commercial_use" id="65">商业用途</string>
     <string name="licenses_distribution" id="66">分配</string>

@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
 
     
     <string name="refresh" id="1">ताज़ा करना</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">मदद</string>
     <string name="app_introduction" id="18">एप्लिकेशन परिचय</string>
     <string name="app_license" id="19">ऐप लाइसेंस</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">पुस्तकालयों का इस्तेमाल किया</string>
 
     
@@ -35,11 +32,6 @@
     <string name="about_info" id="26">अनुप्रयोग की जानकारी</string>
     <string name="about_info_paragraph" id="27">बुद्ध उद्धरण, गोपनीयता पर ध्यान देने के साथ Android के लिए एक मुफ़्त और मुक्त स्रोत बुद्ध उद्धरण ऐप बनाने के लिए एक सहयोगी परियोजना है</string>
     <string name="about_contributors" id="28">योगदानकर्ताओं</string>
-    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">स्वीकृतियाँ</string>
     <string name="about_attribution" id="30">लॉन्चर आइकन - फ्लैटिकॉन के माध्यम से फ्रीपिक</string>
     <string name="tick" id="31">टिकटिक</string>
@@ -60,7 +52,6 @@
 
     
     <string name="licenses" id="63">लाइसेंस</string>
-    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">अनुमतियां</string>
     <string name="licenses_commercial_use" id="65">वाणिज्य उपयोग</string>
     <string name="licenses_distribution" id="66">वितरण</string>
