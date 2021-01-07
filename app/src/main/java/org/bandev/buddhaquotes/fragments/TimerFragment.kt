@@ -8,7 +8,10 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.*
+import android.view.HapticFeedbackConstants
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
@@ -17,10 +20,7 @@ import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Main
-import org.bandev.buddhaquotes.activities.Settings
 import org.bandev.buddhaquotes.activities.Timer
-import org.bandev.buddhaquotes.core.Activities
 import org.bandev.buddhaquotes.core.TimerStore
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 

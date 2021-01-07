@@ -1,19 +1,13 @@
 package org.bandev.buddhaquotes.activities
 
-import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.HapticFeedbackConstants
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import com.maxkeppeler.bottomsheets.options.Option
-import com.maxkeppeler.bottomsheets.options.OptionsSheet
 import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
 import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
 import org.bandev.buddhaquotes.R
@@ -22,7 +16,6 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.GoodTime
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
-import kotlin.math.max
 
 class Timer : AppCompatActivity() {
 
@@ -79,15 +72,19 @@ class Timer : AppCompatActivity() {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
 
-            if (isPaused) {
-                // Resume timer
-                resume()
-            } else if (isRunning) {
-                // Pause timer
-                pause()
-            } else {
-                // Timer is done so must be for reset
-                reset()
+            when {
+                isPaused -> {
+                    // Resume timer
+                    resume()
+                }
+                isRunning -> {
+                    // Pause timer
+                    pause()
+                }
+                else -> {
+                    // Reset the timer once it has finished
+                    reset()
+                }
             }
         }
 

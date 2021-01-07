@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v1.6.0</string>
 
     
     <string name="refresh" id="1">Aktualisierung</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">Hilfe</string>
     <string name="app_introduction" id="18">App Einführung</string>
     <string name="app_license" id="19">App-Lizenz</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Verwendete Bibliotheken</string>
 
     
@@ -35,11 +32,6 @@
     <string name="about_info" id="26">App-Information</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und Open Source Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz</string>
     <string name="about_contributors" id="28">Mitwirkende</string>
-    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">Danksagung</string>
     <string name="about_attribution" id="30">Launcher-Symbol - Freepik über Flaticon</string>
     <string name="tick" id="31">Tick</string>
@@ -60,7 +52,6 @@
 
     
     <string name="licenses" id="63">Lizenz</string>
-    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">Berechtigungen</string>
     <string name="licenses_commercial_use" id="65">Kommerzielle Benutzung</string>
     <string name="licenses_distribution" id="66">Verteilung</string>
