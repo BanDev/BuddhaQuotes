@@ -58,41 +58,6 @@ class Compatibility {
     }
 
     /**
-     * Sets navigation bar colour based off android version
-     * @param [context] context of activity (Context)
-     * @param [window] context of window (Window)
-     */
-
-    fun setNavigationBarColourGray(context: Context, window: Window, resources: Resources) {
-        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
-            when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-                Configuration.UI_MODE_NIGHT_NO -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                            APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                            APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                        )
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        @Suppress("DEPRECATION")
-                        window.decorView.systemUiVisibility =
-                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                    }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        window.navigationBarColor =
-                            ResourcesCompat.getColor(resources, R.color.background, null)
-                    } else {
-                        window.navigationBarColor = Color.GRAY
-                    }
-                }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.background, null)
-                }
-            }
-        }
-    }
-
-    /**
      * Sets navigation bar colour based off android version only for Main
      * @param [context] context of activity (Context)
      * @param [window] context of window (Window)
