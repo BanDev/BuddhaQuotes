@@ -62,7 +62,6 @@ class Timer : AppCompatActivity() {
             onBackPressed()
         }
 
-
         // When some geezer presses Pause
         binding.pause.setOnClickListener {
             // Nice haptic feedback. I like!!!!

@@ -107,7 +107,7 @@ class Main : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                addToListSheet.show()
+                showCreateListSheet()
                 true
             }
             R.id.settings -> {
@@ -132,44 +132,51 @@ class Main : AppCompatActivity() {
      */
 
     // Build the input bottom sheet that allows creation of a new list
-    val addToListSheet: InputSheet = InputSheet().build(this) {
-        title("Create new list")
-        with(InputEditText {
-            required()
-            hint("Insert name")
-            validationListener { value ->
-                when {
-                    value.contains("//") -> {
-                        Validation.failed("Cannot contain //")
-                    }
-                    value.toLowerCase(Locale.ROOT) == "favourites" -> {
-                        Validation.failed("There is already a list named Favourites")
-                    }
-                    Lists().getMasterList(requireContext())
-                        .contains(value.toLowerCase(Locale.ROOT)) -> {
-                        Validation.failed("There is already an list named $value")
-                    }
-                    else -> {
-                        Validation.success()
+    private fun showCreateListSheet() {
+        // Retrieve the lists
+        val pref = getSharedPreferences("List_system", 0)
+        val lists = pref.getString("MASTER_LIST", "Favourites")?.toLowerCase(Locale.ROOT)
+            ?.split("//".toRegex())?.toTypedArray()
+
+        InputSheet().show(this) {
+            title("Create new list")
+            closeButtonDrawable(R.drawable.ic_down_arrow)
+            with(InputEditText {
+                required()
+                hint("Insert name")
+                validationListener { value ->
+                    when {
+                        value.contains("//") -> {
+                            Validation.failed("Cannot contain //")
+                        }
+                        value.toLowerCase(Locale.ROOT) == "favourites" -> {
+                            Validation.failed("There is already a list named Favourites")
+                        }
+                        lists!!.contains(value.toLowerCase(Locale.ROOT)) -> {
+                            Validation.failed("There is already an list named $value")
+                        }
+                        else -> {
+                            Validation.success()
+                        }
                     }
                 }
-            }
-            resultListener { value ->
-                Lists().newList(value.toString(), requireContext())
-            }
-        })
-        onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-        onPositive("Add") {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            } else {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
+                resultListener { value ->
+                    Lists().newList(value.toString(), requireContext())
+                }
+            })
+            onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+            onPositive("Add") {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
 
-            //Refresh fragments
-            binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-            binding.viewPager.setCurrentItem(1, false)
-            binding.bottomBar.setupWithViewPager2(binding.viewPager)
+                //Refresh fragments
+                binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+                binding.viewPager.setCurrentItem(1, false)
+                binding.bottomBar.setupWithViewPager2(binding.viewPager)
+            }
         }
     }
 }
