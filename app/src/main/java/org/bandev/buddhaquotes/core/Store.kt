@@ -21,4 +21,5 @@ class Store(context: Context) {
             editor.putInt("quoteID", value)
             editor.commit()
         }
+
 }

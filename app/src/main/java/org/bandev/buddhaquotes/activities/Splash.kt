@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import org.bandev.buddhaquotes.core.Store
 
 class Splash : AppCompatActivity() {
 
@@ -17,6 +18,11 @@ class Splash : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val darkmode = sharedPreferences.getBoolean("dark_mode", false)
         val sys = sharedPreferences.getBoolean("sys", true)
+
+        // Clear the user's data
+        Store(this).fragment = 0
+        Store(this).quoteID = 0
+
         when {
             sys -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

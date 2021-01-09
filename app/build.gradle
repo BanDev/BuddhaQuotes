@@ -52,7 +52,7 @@ dependencies {
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.6.3'
+    implementation 'com.mikepenz:aboutlibraries-core:8.6.4'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
