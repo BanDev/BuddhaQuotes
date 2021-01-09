@@ -74,25 +74,25 @@ class QuoteFragment : Fragment() {
         binding.more.setOnClickListener {
             OptionsSheet().show(requireContext()) {
                 displayMode(DisplayMode.LIST)
-                title("More")
+                title(R.string.more)
                 closeButtonDrawable(R.drawable.ic_down_arrow)
                 with(
-                    Option(R.drawable.ic_share, "Share"),
-                    Option(R.drawable.ic_add_circle, "Add to list")
+                    Option(R.drawable.ic_share, R.string.share),
+                    Option(R.drawable.ic_add_circle, R.string.addToList)
                 )
                 onPositive { index: Int, option: Option ->
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     if (index == 0) {
                         val sendIntent: Intent = Intent().apply {
                             action = Intent.ACTION_SEND
-                            val text = binding.quote.text.toString() + "\n\n~Gautama Buddha"
+                            val text = binding.quote.text.toString() + R.string.attribution_buddha
                             putExtra(Intent.EXTRA_TEXT, text)
                             type = "text/plain"
                         }
                         val shareIntent = Intent.createChooser(sendIntent, null)
                         startActivity(shareIntent)
                     } else {
-                        dismiss()
+                        showSecondBottomSheet()
                     }
                 }
             }
@@ -106,6 +106,20 @@ class QuoteFragment : Fragment() {
         })
     }
 
+    private fun showSecondBottomSheet() {
+        OptionsSheet().show(requireContext()) {
+            displayMode(DisplayMode.LIST)
+            title(R.string.addToList)
+            closeButtonDrawable(R.drawable.ic_down_arrow)
+            with(
+                Option("Hello")
+            )
+            onPositive { index: Int, option: Option ->
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+        }
+    }
+
     /**
      * Refreshes the quote on screen
      */
@@ -113,7 +127,7 @@ class QuoteFragment : Fragment() {
     private fun newQuote(quoteId: Int) {
         val quote = quotes.getQuote(quoteId, requireContext())
         binding.quote.text = quote
-        binding.number.text = getString(R.string.quote_number, quotes.quotenumberglobal)
+        binding.number.text = getString(R.string.quote_number) + " #" + quotes.quotenumberglobal
         Store(requireContext()).quoteID = quotes.quotenumberglobal
         val icon = if (Lists().queryInList(quote, "Favourites", context)) {
             liked = true

@@ -51,7 +51,8 @@ class Timer : AppCompatActivity() {
         // Work out a lovely string version of the maximum time
         maxTime = GoodTime().convertToString(
             durationTimeInMillis / 60,
-            durationTimeInMillis % 60
+            durationTimeInMillis % 60,
+            this
         )
 
         // Begin the timer
