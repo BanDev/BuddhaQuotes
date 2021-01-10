@@ -1,3 +1,23 @@
+/**
+
+Buddha Quotes
+Copyright (C) 2021  BanDev
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+ */
+
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
@@ -12,6 +32,7 @@ import com.maxkeppeler.bottomsheets.options.DisplayMode
 import com.maxkeppeler.bottomsheets.options.Option
 import com.maxkeppeler.bottomsheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
@@ -28,6 +49,17 @@ import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
  */
 
 class QuoteFragment : Fragment() {
+
+    lateinit var mCallback: TextClickedListener
+
+    //defining Interface
+    interface TextClickedListener {
+        fun sendText(text: String)
+    }
+
+    fun setOnTextClickedListener(callback: TextClickedListener) {
+        this.mCallback = callback
+    }
 
     private var _binding: FragmentQuoteBinding? = null
     private val binding get() = _binding!!
@@ -157,6 +189,7 @@ class QuoteFragment : Fragment() {
                     R.drawable.heart_full_red
                 )
             )
+            mCallback.sendText("YOUR TEXT")
             binding.likeAnimator.likeAnimation()
         } else {
             binding.like.setImageDrawable(
