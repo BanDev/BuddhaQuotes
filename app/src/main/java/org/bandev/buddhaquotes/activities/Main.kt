@@ -1,3 +1,23 @@
+/**
+
+Buddha Quotes
+Copyright (C) 2021  BanDev
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+ */
+
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
@@ -7,6 +27,8 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.maxkeppeler.bottomsheets.input.InputSheet
 import com.maxkeppeler.bottomsheets.input.Validation
 import com.maxkeppeler.bottomsheets.input.type.InputEditText
@@ -15,7 +37,10 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.bandev.buddhaquotes.fragments.QuoteFragment
 import java.util.*
+
 
 /**
  * Main is the main page of Buddha Quotes
@@ -27,7 +52,7 @@ import java.util.*
  * @author jack.txt & Fennec_exe
  */
 
-class Main : AppCompatActivity() {
+class Main : AppCompatActivity(), QuoteFragment.TextClickedListener {
 
     private lateinit var binding: MainActivityBinding
 
@@ -72,12 +97,12 @@ class Main : AppCompatActivity() {
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
+        binding.viewPager.offscreenPageLimit = 1
         val sharedPreferences2 = getSharedPreferences("timer", 0)
 
         if (sharedPreferences2.getBoolean("new", true)) {
             binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge("New"))
         }
-
 
         binding.bottomBar.setOnTabInterceptListener(object :
             AnimatedBottomBar.OnTabInterceptListener {
@@ -179,4 +204,15 @@ class Main : AppCompatActivity() {
             }
         }
     }
+
+    override fun sendText(text: String) {
+        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+    }
+
+    override fun onAttachFragment(fragment: Fragment) {
+        if (fragment is QuoteFragment) {
+            fragment.setOnTextClickedListener(this)
+        }
+    }
+
 }
