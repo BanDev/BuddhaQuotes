@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="app_name" translatable="false">Buddha Quotes</string>
+    <string name="version" translatable="false">v2.0.0</string>
 
     
     <string name="refresh" id="1">更新</string>
@@ -19,6 +21,7 @@
     <string name="help" id="17">助けて</string>
     <string name="app_introduction" id="18">アプリ紹介</string>
     <string name="app_license" id="19">アプリライセンス</string>
+    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">使用したライブラリ</string>
 
     
@@ -32,6 +35,11 @@
     <string name="about_info" id="26">アプリ情報</string>
     <string name="about_info_paragraph" id="27">Buddha Quotesは、プライバシーに重点を置いたAndroid用の無料のオープンソースBuddhaQuotesアプリを作成するための共同プロジェクトです。</string>
     <string name="about_contributors" id="28">寄稿者</string>
+    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
+    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
+    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
+    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
+    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">謝辞</string>
     <string name="about_attribution" id="30">ランチャーアイコン-Flaticon経由のFreepik</string>
     <string name="tick" id="31">ティック</string>
@@ -52,6 +60,7 @@
 
     
     <string name="licenses" id="63">ライセンス</string>
+    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">権限</string>
     <string name="licenses_commercial_use" id="65">商用利用</string>
     <string name="licenses_distribution" id="66">分布</string>
@@ -60,7 +69,7 @@
     <string name="licenses_private_use" id="69">私用</string>
     <string name="licenses_conditions" id="70">条件</string>
     <string name="licenses_disclose_source" id="71">ソースを開示する</string>
-    <string name="licenses_copyright_notice" id="72">ライセンスと著作権の通知</string>
+    <string name="licenses_copyright_notice" id="72">ライセンスと著作権に関する通知</string>
     <string name="licenses_same_license" id="73">同じライセンス</string>
     <string name="licenses_state_changes" id="74">状態変化</string>
     <string name="licenses_limitations" id="75">制限事項</string>
@@ -86,9 +95,6 @@
     <string name="about_no_ads" id="91">広告なし</string>
 
     
-
-    
-
     <string name="lists_title" id="92">あなたのリスト</string>
     <string name="lists_add_item" id="93">リストに追加する</string>
     <string name="lists_add_lists" id="94">新しいリストを作成する</string>
@@ -157,7 +163,7 @@
     <string name="hr">クロアチア語</string>
     <string name="cs">チェコ語</string>
     <string name="da">デンマーク語</string>
-    <string name="dv">Divehi、Dhivehi、モルディブ</string>
+    <string name="dv">ディベヒ語、ディベヒ語、ディベヒ語</string>
     <string name="nl">オランダ語、フラマン語</string>
     <string name="dz">ゾンカ語</string>
     <string name="en">英語</string>
@@ -200,7 +206,7 @@
     <string name="jv">ジャワ語</string>
     <string name="kn">カンナダ語</string>
     <string name="kr">カヌリ語</string>
-    <string name="ks">カシミール人</string>
+    <string name="ks">カシミリ</string>
     <string name="kk">カザフ</string>
     <string name="rw">ルワンダ語</string>
     <string name="kv">コミ</string>
@@ -300,7 +306,7 @@
     <string name="xh">コサ語</string>
     <string name="yi">イディッシュ語</string>
     <string name="yo">ヨルバ</string>
-    <string name="za">荘、チュアン</string>
+    <string name="za">荘、荘</string>
     <string name="zu">ズールー</string>
 
     
@@ -309,11 +315,11 @@
     <string name="appintro2_title" id="300">230以上の引用</string>
     <string name="appintro2_description" id="301">仏陀からの230以上の引用</string>
     <string name="appintro3_title" id="302">お気に入り</string>
-    <string name="appintro3_description" id="303">お気に入りのボタンを押すと、お気に入りの見積もりを作成できます</string>
+    <string name="appintro3_description" id="303">お気に入りのボタンを押すか、画面をダブルタップすることで、お気に入りの見積もりを作成できます</string>
     <string name="appintro4_title" id="304">カスタマイズ可能</string>
     <string name="appintro4_description" id="305">アクセントカラーやシェイプモードなど、さまざまなユーザーインターフェイスオプションがあります</string>
     <string name="appintro5_title" id="306">始めましょう！</string>
-    <string name="appintro5_description" id="307">アプリをお楽しみください。機能をリクエストしたり、問題を提起したりできるGitLabリポジトリがあります。</string>
+    <string name="appintro5_description" id="307">アプリを楽しんでいただければ幸いです。機能をリクエストしたり、問題を提起したりできるGitLabリポジトリがあります。</string>
 
     
 
@@ -324,14 +330,14 @@
     <string name="quote_2" id="311">間違いや不完全さを指摘し、悪を叱責する良き友人は、隠された財宝の秘密を明かすかのように尊敬されるべきです。</string>
     <string name="quote_3" id="312">たった一人の個人の偉大な人間革命は、国の運命の変化を達成するのを助け、さらに、すべての人類の運命の変化を可能にすることさえできます</string>
     <string name="quote_4" id="313">男はゴータマブッダに「幸せが欲しい」と尋ねました。仏陀は「まず自我である「私」を取り除き、次に欲望である「欲しい」を取り除いてください。今あなたは「幸福」だけを残されているのを見てください。</string>
-    <string name="quote_5" id="314">男は話したり話したりするので賢明とは呼ばれません。しかし、彼が平和で、愛情深く、恐れを知らないのであれば、彼は実際には賢明と呼ばれています</string>
+    <string name="quote_5" id="314">男は話したり話したりするので賢明とは呼ばれません。しかし、彼が平和で、愛情深く、恐れを知らないなら、彼は真実に賢明と呼ばれています</string>
     <string name="quote_6" id="315">幸運の気まぐれ、解放された悲しみ、清められた汚れ、解放された恐れから解放された心-これは最大の祝福です</string>
     <string name="quote_7" id="316">どんなに絶望的な状況であっても、他の人に希望を与える人は、真のリーダーです</string>
     <string name="quote_8" id="317">他人に対する真に思いやりのある態度は、たとえ彼らが否定的に振る舞ったり、あなたを傷つけたりしても変わりません。</string>
     <string name="quote_9" id="318">何よりも、歩きたいという気持ちを失わないでください</string>
     <string name="quote_10" id="319">「すべての条件付けられたものは永続的ではありません」-これを知恵で見ると、苦しみから目をそらします</string>
     <string name="quote_11" id="320">すべての経験は、精神によって作成された、彼らのマスターとしての精神を持って、精神によって先行されます</string>
-    <string name="quote_12" id="321">依存するため、すべての現象が本質的に存在するわけではありません。依存的に代入されるため、すべての現象が本質的に存在するわけではありません</string>
+    <string name="quote_12" id="321">すべての現象は、依存的に発生するため、本質的に存在するわけではありません。依存的に代入されるため、すべての現象が本質的に存在するわけではありません</string>
     <string name="quote_13" id="322">すべての苦しみは無知によって引き起こされます。人々は自分の幸福や満足を利己的に追求することで他人に苦痛を与えます</string>
     <string name="quote_14" id="323">すべてが暴力に震えます。すべてが死を恐れています。自分を他人の代わりに置いて、人を殺したり、他人を殺させたりしてはいけません</string>
     <string name="quote_15" id="324">すべての不正行為は精神のために起こります。精神が変化した場合、間違ったことは残る可能性がありますか？</string>
@@ -342,8 +348,8 @@
     <string name="quote_20" id="329">恨みの思いが心に大切にされている限り、怒りは消えることはありません。恨みの想いを忘れるとすぐに怒りが消える</string>
     <string name="quote_21" id="330">今日はやらなければならないことを熱心に行います。知るか？明日、死が来る</string>
     <string name="quote_22" id="331">私がそうであるように、これらもそうです。これらがそうであるように、私もそうです。あなた自身との類似点を描き、殺したり、他の人を殺させたりしないでください</string>
-    <string name="quote_23" id="332">可愛くて美しい花として、それでも無臭であるにもかかわらず、実を結ばないというのは、それを実践していない人のよく言われる言葉です。</string>
-    <string name="quote_24" id="333">蓮の花は水中で生まれ、水中で成長し、水面から浮き上がって汚れのない上に立つので、世界で生まれ、世界を乗り越えて育った私は、世界に汚れのない生活を送っています。</string>
+    <string name="quote_23" id="332">可愛くて美しいが無臭の花として、それでも実を結ばないというのは、それを実践しない人のよく言われる言葉です</string>
+    <string name="quote_24" id="333">蓮の花は水中で生まれ、水中で成長し、水面から浮き上がって汚れのない上に立つので、世界で生まれ、世界を乗り越えて育った私は、世界に汚れのない生活を送っています</string>
     <string name="quote_25" id="334">蓮の葉の水玉として、赤いユリの水として付着しないので、賢人は見たり、聞いたり、感じたりするのに付着しません</string>
     <string name="quote_26" id="335">戦場の象は弓から矢を放ちますが、それでも虐待に耐えます。</string>
     <string name="quote_27" id="336">愛着は苦しみにつながる</string>
@@ -364,7 +370,7 @@
     <string name="quote_42" id="351">悪をやめ、善を育み、心を浄化する：これが仏陀の教えです</string>
     <string name="quote_43" id="352">楽観的になることを選択してください、それは気分が良くなります</string>
     <string name="quote_44" id="353">優しさで怒りを、優しさで不親切を、寛大さで貪欲を、真実で虚偽を克服する</string>
-    <string name="quote_45" id="354">非怒りで怒りを征服します。善で悪を征服する。寛大さで卑劣さを征服してください。真実で不正直を征服する</string>
+    <string name="quote_45" id="354">非怒りで怒りを征服します。善で悪を征服する。寛大さで卑劣さを征服してください。真実で不正を征服する</string>
     <string name="quote_46" id="355">怒らないことで怒っている人を征服します。善によって邪悪な者を征服する。寛大さでけちを征服し、真実を話すことで嘘つきを征服する</string>
     <string name="quote_47" id="356">満足は最大の富です</string>
     <string name="quote_48" id="357">気配りを楽しんでください！あなたの考えをしっかり守ってください！</string>
@@ -375,7 +381,7 @@
     <string name="quote_53" id="362">宇宙の大きさを考えないでください、それは単にあなたの頭を傷つけるでしょう</string>
     <string name="quote_54" id="363">一滴ずつ水ポットが満たされています。同様に、賢い人は少しずつそれを集めて、自分自身を善で満たします</string>
     <string name="quote_55" id="364">感情は欲望から生じ、それゆえ幻想</string>
-    <string name="quote_56" id="365">忍耐力は最も難しい分野の1つですが、最後の勝利が来るのは耐え忍ぶ人です</string>
+    <string name="quote_56" id="365">持久力は最も難しい分野の1つですが、最後の勝利が来るのは忍耐力のある人です</string>
     <string name="quote_57" id="366">固い岩が風によって揺さぶられなくても、賢明な人は賞賛や非難によって揺さぶられません</string>
     <string name="quote_58" id="367">期待どおりに展開しなくても、がっかりしたり、あきらめたりしないでください。前進し続ける者が最終的に勝ちます</string>
     <string name="quote_59" id="368">すべてが変化し、すべてが現れたり消えたりします。生と死の苦しみを乗り越えるまで、至福の平和はありません。</string>
@@ -398,24 +404,24 @@
     <string name="quote_76" id="385">何も持っていない人にとって、それはどれほど幸福なこ​​とでしょう。知恵の達成者は何もない人々です。彼が苦しんでいるのを見てください、何かを持っている人、人と心に縛られている人</string>
     <string name="quote_77" id="386">どんなに多くの聖なる言葉を読んでも、どんなに多くのことを話しても、あなたがそれらに基づいて行動しなければ、それらはあなたにどんな良いことをしますか？</string>
     <string name="quote_78" id="387">私は世界と争いません。むしろ私と争うのは世界です</string>
-    <string name="quote_79" id="388">私は雨の中でここに住むだろう、冬はそこに、夏は他の場所に」と愚か者はミューズし、死の近さに気づいていない</string>
+    <string name="quote_79" id="388">私は雨の中でここに住むでしょう、冬はそこに、夏は他の場所に」</string>
     <string name="quote_80" id="389">私は欠点を見つけることを目的とした他のボウルを見ません：観察されるべきトレーニング</string>
     <string name="quote_81" id="390">川に降りて、腫れ、速く流れる人が流れに流された場合、彼はどのようにして他の人を助けることができますか？</string>
     <string name="quote_82" id="391">旅行者が彼のより良い、または彼の同等の人と会わない場合、彼に彼の孤独な旅をしっかりと続けさせてください。愚か者との交際はありません</string>
     <string name="quote_83" id="392">やりがいのあることがあれば、心を込めてやってください</string>
     <string name="quote_84" id="393">現象の無私無欲を分析し、この分析を培うと、涅槃を達成する効果が生まれます。他の理由で平和になることはありません</string>
-    <string name="quote_85" id="394">他の人が助けを必要としているときに私たちが他の人の世話をしなかった場合、誰が私たちの世話をしますか？</string>
+    <string name="quote_85" id="394">他の人が助けを必要としているときに私たちが他の人の世話をしない場合、誰が私たちの世話をしますか？</string>
     <string name="quote_86" id="395">純粋な心で人が話したり行動したりすると、幸せは決して離れない影のように彼らに従います</string>
     <string name="quote_87" id="396">あなたが正しい態度を養うことができれば、あなたの敵はあなたの最高のスピリチュアルティーチャーです。なぜなら彼らの存在はあなたにあなたの寛容、忍耐そして理解を高めそして発展させる機会を与えるからです。</string>
     <string name="quote_88" id="397">霊的な道であなたをサポートする人が見つからない場合は、一人で歩いてください未熟な人との交際はありません</string>
     <string name="quote_89" id="398">私が与える力について私が知っていることを知っているなら、あなたはそれを何らかの方法で共有せずに一食を通過させないでしょう</string>
-    <string name="quote_90" id="399">あなたが誰かを愛しているが、めったに彼らに自分自身を利用可能にしないなら、それは本当の愛ではありません</string>
+    <string name="quote_90" id="399">あなたが誰かを愛しているが、彼らが自分自身を利用できるようにすることはめったにない場合、それは本当の愛ではありません</string>
     <string name="quote_91" id="400">他の人を幸せにしたいのなら、思いやりを実践してください。幸せになりたいなら、思いやりを実践してください</string>
     <string name="quote_92" id="401">人生において、私たちは変化を避けられず、喪失を避けられません。自由と幸福は、私たちが変化を乗り越える柔軟性と容易さにあります。</string>
     <string name="quote_93" id="402">前向きな行動をとるためには、ここで前向きなビジョンを展開する必要があります</string>
     <string name="quote_94" id="403">生き物に同情がない人：彼を追放者として知ってください</string>
-    <string name="quote_95" id="404">彼を邪悪な道に誘い込むのは、敵や敵ではなく、人間自身の心です。</string>
-    <string name="quote_96" id="405">他人の欠点を見るのは簡単ですが、自分の欠点を見るのは難しいです。 1つは、風に吹き飛ばされた籾殻のような他の欠点を示していますが、狡猾なギャンブラーが自分のサイコロを隠すため、1つは自分の欠点を隠しています。</string>
+    <string name="quote_95" id="404">彼を邪悪な道に誘うのは、敵や敵ではなく、人間自身の心です。</string>
+    <string name="quote_96" id="405">他人の欠点を見るのは簡単ですが、自分の欠点を見るのは難しいです。 1つは、風に吹かれて籾殻を吹き飛ばすような他の欠点を示していますが、狡猾なギャンブラーがサイコロを隠すため、自分の欠点を隠しています</string>
     <string name="quote_97" id="406">後悔のない人に喜びが生じるのは、物事の本質です。</string>
     <string name="quote_98" id="407">勉強から生まれた知識と、日常生活の中での誠実な実践を組み合わせる必要があります。これらの2つは一緒に行かなければなりません</string>
     <string name="quote_99" id="408">思いやりがあるだけでは十分ではありません、私たちは行動しなければなりません</string>
@@ -435,7 +441,7 @@
     <string name="quote_113" id="422">手放すことは私たちに自由を与えます、そして自由は幸福のための唯一の条件です。私たちの心の中で、怒り、不安、所有物など、まだ何かにしがみついている場合、私たちは自由になることはできません</string>
     <string name="quote_114" id="423">人生は常に流れる川です。物をつかまないでください。一生懸命働く</string>
     <string name="quote_115" id="424">人生は今の瞬間にしか利用できません</string>
-    <string name="quote_116" id="425">色とりどりで香りに欠ける可愛らしい花のように、教えていることを実践していない人の言葉です</string>
+    <string name="quote_116" id="425">色とりどりで香りのない素敵な花のように、教えていることを実践していない人の言葉です</string>
     <string name="quote_117" id="426">宝物を指し示す人のように、あなたの欠点を見て指摘する賢い人です。そのような賢人と関連付ける</string>
     <string name="quote_118" id="427">ウォーターポットが水滴で満たされると、人は少しずつ邪悪になります。ウォーターポットが水滴で満たされると、少しずつ人が良くなります</string>
     <string name="quote_119" id="428">それがあなたの最後であるかのように、すべての行為を完全に生きる</string>
@@ -469,7 +475,7 @@
     <string name="quote_147" id="456">意見のある人はただお互いに迷惑をかけて回る</string>
     <string name="quote_148" id="457">おそらく、私たちが死を恐れる最も深い理由は、私たちが誰であるかを知らないからです。</string>
     <string name="quote_149" id="458">賛美と非難、獲得と喪失、喜びと悲しみは風のように行き来します。幸せになるために、それらすべての真ん中で巨大な木のように休んでください</string>
-    <string name="quote_150" id="459">純粋な手足、白い天蓋付き、一輪、カートの役割。来る彼を見てください：完璧な、ストリームカッター、ボンドレスの彼</string>
+    <string name="quote_150" id="459">純粋な手足、白い天蓋、一輪、カートの役割。来る彼を見てください：完璧な、ストリームカッター、ボンドレスの彼</string>
     <string name="quote_151" id="460">純度と不純物は自分自身に依存します。誰も他を浄化することはできません</string>
     <string name="quote_152" id="461">全世界に向けて無限の愛を放ちます-上、下、そして向こう側-妨げられず、悪意もなく、敵意もなく</string>
     <string name="quote_153" id="462">本当の寛大さは、決して見つけられない誰かのために何か良いことをしている</string>
@@ -478,15 +484,15 @@
     <string name="quote_156" id="465">官能的な渇望は悲しみを引き起こします。官能的な渇望は恐怖を引き起こします。官能的な渇望から解放された人のために悲しみはありません。そして、どこから恐れがありますか？</string>
     <string name="quote_157" id="466">善を行うことに心を向けなさい。何度も何度もやりなさい、そうすればあなたは喜びで満たされるでしょう</string>
     <string name="quote_158" id="467">人が善を行うならば、彼に何度もそれをさせてください。彼に喜びを見つけさせてください。幸福は善の蓄積です。</string>
-    <string name="quote_159" id="468">探求者がより良いまたは同等の仲間を見つけられない場合は、彼らに断固として孤独なコースを追求させてください</string>
+    <string name="quote_159" id="468">探求者がより良いまたは同等の仲間を見つけられない場合は、彼らに孤独なコースを断固として追求させてください</string>
     <string name="quote_160" id="469">自分の欠点を指摘する賢明な批評家を見つけたら、隠された宝のガイドと同じように彼に従ってください</string>
     <string name="quote_161" id="470">沈黙は時々最良の答えです</string>
-    <string name="quote_162" id="471">怒っている人を愛で沈黙させなさい。やさしさで性格の悪い男を黙らせなさい。寛大に悲惨な人を沈黙させなさい。嘘つきを真実で沈黙させる</string>
+    <string name="quote_162" id="471">怒っている人を愛で沈黙させなさい。やさしさで性格の悪い男を黙らせなさい。寛大にけちを沈黙させなさい。嘘つきを真実で沈黙させる</string>
     <string name="quote_163" id="472">私たちが死ななければならないことを理解していない人もいますが、これに気付いた人は喧嘩を解決します</string>
     <string name="quote_164" id="473">時にはあなたの喜びがあなたの笑顔の源ですが、時にはあなたの笑顔があなたの喜びの源になることがあります</string>
     <string name="quote_165" id="474">愛情のこもったスピーチ、歓迎されるスピーチだけを話してください。スピーチは、それが他の人に悪をもたらさないとき、楽しいことです</string>
     <string name="quote_166" id="475">真実を話し、怒らないで、少しでも尋ねられたら与えてください。これらの3つの条件によって、1つは神々の存在に行きます</string>
-    <string name="quote_167" id="476">落ち着いた言葉は、よく話されていることが最善だと言います。第二に、その人は、不義ではなく、正しいことを言うべきです。第三に、不快ではなく、喜ばれること。第四に、偽ではなく真である</string>
+    <string name="quote_167" id="476">落ち着いた言葉は、よく話されていることが最善だと言います。第二に、それは不義ではなく正しいことを言うべきです。第三に、不快ではなく、喜ばれること。第四に、偽ではなく真である</string>
     <string name="quote_168" id="477">最も暗い夜は無知です</string>
     <string name="quote_169" id="478">真実の贈り物は他のすべての贈り物よりも優れています</string>
     <string name="quote_170" id="479">知恵の成長は、不機嫌の減少によって正確に測定されるかもしれません</string>
@@ -494,7 +500,7 @@
     <string name="quote_172" id="481">持っているものが少なければ少ないほど、心配する必要は少なくなります</string>
     <string name="quote_173" id="482">自分を愛することがいかに重要かを見た瞬間、他人を苦しめるのをやめます</string>
     <string name="quote_174" id="483">あなたが愛に動機づけられるほど、あなたの行動はより恐れを知らず、自由になります</string>
-    <string name="quote_175" id="484">悪を行わないこと、巧みなことを実行すること、自分の心を浄化すること：これは目覚めた者の教えです</string>
+    <string name="quote_175" id="484">悪を行わないこと、巧みなことの実行、自分の心の浄化：これは目覚めた者の教えです</string>
     <string name="quote_176" id="485">永続する渇望と渇きがもはや存在しない人。目覚めたもの、無軌道、そして無限の範囲をどのように追跡できますか</string>
     <string name="quote_177" id="486">自分を征服した人は、千人の男を千回倒した人よりもはるかに偉大な英雄です</string>
     <string name="quote_178" id="487">雨が金色に変わる可能性がありますが、それでもあなたの渇きは消えません。欲望は、天国でさえ、消すことができないか、涙で終わります</string>
@@ -537,14 +543,14 @@
     <string name="quote_215" id="524">私たちは愛を育み、それを実践し、それを道と基礎の両方にします…</string>
     <string name="quote_216" id="525">私たちは、愛情のこもった心の解放を発展させ、育み、それを私たちの乗り物にし、それを私たちの基盤にし、それを安定させ、その中で自分自身を行使し、そしてそれを完全に完成させます</string>
     <string name="quote_217" id="526">僧侶が考え、熟考し続けるものは何でも、それは彼の意識の傾向になります</string>
-    <string name="quote_218" id="527">敵が敵に何をするにしても、敵が敵に何をするにしても、方向性の悪い心はあなたにさらに悪いことをする可能性があります</string>
+    <string name="quote_218" id="527">敵が敵に何をするにしても、敵が敵に何をするにしても、方向性の悪い精神はあなたにさらに悪いことをする可能性があります</string>
     <string name="quote_219" id="528">発生する性質を持つものは何でも、停止する性質を持っています</string>
     <string name="quote_220" id="529">あなたのものではないものは何でも：それを手放します。あなたがそれを手放すことはあなたの長期的な幸福のためになります</string>
     <string name="quote_221" id="530">天の世界にどんな貴重な宝石があっても、目覚めた人に匹敵するものはありません</string>
     <string name="quote_222" id="531">悪を嫌うとき、落ち着きを感じるとき、良い教えを聞くことに喜びを感じます。人がこれらの感情を持ってそれらを感謝するとき、人は恐れから解放されます</string>
     <string name="quote_223" id="532">骨材が発生すると、崩壊して死にます、O bhikkhu、あなたが生まれるたびに、崩壊して死にます</string>
     <string name="quote_224" id="533">自分の世話をするときは、他の人の世話をします。他人の世話をするとき、あなたは自分の世話をします</string>
-    <string name="quote_225" id="534">私たちが他人に愛と優しさを感じるとき、それは他人を愛され、世話をされていると感じるだけでなく、私たちが内面の幸福と平和を育むのにも役立ちます</string>
+    <string name="quote_225" id="534">私たちが他人に愛と優しさを感じるとき、それは他人を愛され、世話をされていると感じさせるだけでなく、私たちが内面の幸福と平和を育むのにも役立ちます</string>
     <string name="quote_226" id="535">すべての人に利益と幸福をもたらす道に出くわしたら、月が星を旅するときにこのコースに従ってください</string>
     <string name="quote_227" id="536">感謝の気持ちを実践するとき、他人への敬意があります</string>
     <string name="quote_228" id="537">すべての人間の絆を置き去りにし、天国の絆を捨てた者、あらゆる場所のすべての絆から切り離された：彼は私がバラモンと呼ぶものです</string>
@@ -568,5 +574,48 @@
 
     <string name="fragment_quote">見積もり</string>
     <string name="fragment_lists">リスト</string>
-    <string name="fragment_meditation">瞑想</string>
+    <string name="fragment_meditation">瞑想する</string>
+
+    <string name="updateTitle">新年、新しい仏の引用</string>
+    <string name="updateSubheading">私たちはたくさん変更しました、そしてあなたがそれを試すのを待つことができません！</string>
+    <string name="carry_on">継続する</string>
+    <string name="read">ブログ投稿</string>
+
+    <string name="meditate_title">瞑想する</string>
+    <string name="meditate_subheading">簡単だ</string>
+
+    <string name="meditate_space">スペース</string>
+    <string name="meditate_space_desc">邪魔されない静かな場所を選んでください。</string>
+
+    <string name="meditate_posture">スペース</string>
+    <string name="meditate_posture_desc">床または背もたれのある椅子に座ります。重要なのは快適であることです！</string>
+
+    <string name="meditate_breath">呼吸</string>
+    <string name="meditate_breath_desc">深くゆっくりと呼吸し、胃に息を吹き込んでみてください。</string>
+
+    <string name="play">履歴書</string>
+    <string name="pause">一時停止</string>
+    <string name="reset">リセット</string>
+
+    <string name="time_left">残り時間</string>
+    <string name="meditating_for">瞑想</string>
+    <string name="has_been_paused">一時停止されました</string>
+    <string name="meditation_timer">瞑想タイマー</string>
+
+    <string name="more">もっと</string>
+    <string name="addToList">リストに追加する</string>
+    <string name="attribution_buddha">〜ゴータマブッダ</string>
+
+    <string name="seconds">秒</string>
+    <string name="minutes">分</string>
+    <string name="and">そして</string>
+
+    <string name="createNewList">新しいリストを作成する</string>
+    <string name="insertName">名前を挿入</string>
+    <string name="validationRule1">//を含めることはできません</string>
+    <string name="validationRule2">お気に入りという名前のリストがすでにあります</string>
+    <string name="validationRule3">すでにという名前のリストがあります</string>
+    <string name="add">追加</string>
+    <string name="new_str">新着</string>
+    <string name="added">に引用を追加</string>
 </resources>
