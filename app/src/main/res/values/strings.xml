@@ -314,11 +314,11 @@
 
     <string name="appintro1_description" id="299">A Free and Open Source Buddha Quotes app</string>
     <string name="appintro2_title" id="300">Over 230 quotes</string>
-    <string name="appintro2_description" id="301">Over 230 quotes from The Buddha</string>
+    <string name="appintro2_description" id="301">Over 230 quotes from The Buddha. \n Swipe down to refresh!</string>
     <string name="appintro3_title" id="302">Favourites</string>
     <string name="appintro3_description" id="303">You can favourite quotes by pressing the favourite button or double tapping on the screen</string>
     <string name="appintro4_title" id="304">Customisable</string>
-    <string name="appintro4_description" id="305">There is a variety of user interface options, such as accent colours and shapes mode</string>
+    <string name="appintro4_description" id="305">There is a variety of user interface options, such as accent colours and dark mode</string>
     <string name="appintro5_title" id="306">Let\'s get started!</string>
     <string name="appintro5_description" id="307">We hope you enjoy the app - we have a GitLab repository where you can request features or raise issues</string>
 
