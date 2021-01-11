@@ -45,8 +45,6 @@ import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 class Settings : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private lateinit var timerData: Bundle
-    private var paused: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -258,7 +256,7 @@ class Settings : AppCompatActivity() {
                     Option(R.drawable.ic_palette, R.string.follow_system_default)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { index: Int, option: Option ->
+                onPositive { index: Int, _: Option ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {

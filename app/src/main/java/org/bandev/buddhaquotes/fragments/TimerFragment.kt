@@ -23,25 +23,17 @@ package org.bandev.buddhaquotes.fragments
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import nl.dionsegijn.konfetti.models.Shape
-import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.Timer
-import org.bandev.buddhaquotes.core.TimerStore
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 class TimerFragment : Fragment() {
@@ -58,18 +50,8 @@ class TimerFragment : Fragment() {
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
-    private lateinit var countDownTimer: CountDownTimer
     private lateinit var timeSheet: TimeSheet
-    private var isRunning: Boolean = false
-    private var isPaused: Boolean = false
     var timeInMilliSeconds: Long = 0L
-    private var duration: Long = 0L
-    private var durationM: Long = 0L
-    private var maxMin: Int = 0
-    private var maxSec: Int = 0
-    private lateinit var builder: NotificationCompat.Builder
-    lateinit var mediaPlayer: MediaPlayer
-    private var data = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -98,21 +80,13 @@ class TimerFragment : Fragment() {
 
                 val sharedpreferences: SharedPreferences? =
                     requireContext().getSharedPreferences("timer", Context.MODE_PRIVATE)
-
                 val editor = sharedpreferences?.edit()
-
-                if (editor != null) {
-                    editor.putBoolean("new", false)
-                    editor.apply()
-                }
-
-
+                editor?.putBoolean("new", false)
+                editor?.apply()
 
                 val toTimer = Intent(context, Timer::class.java)
                 toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
                 startActivity(toTimer)
-
-
             }
         }
 
@@ -120,7 +94,5 @@ class TimerFragment : Fragment() {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             timeSheet.show()
         }
-
-
     }
 }

@@ -27,7 +27,6 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
@@ -36,7 +35,6 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import org.bandev.buddhaquotes.fragments.QuoteFragment
 import java.util.*
 
 
@@ -98,7 +96,10 @@ class Main : AppCompatActivity() {
         val sharedPreferences2 = getSharedPreferences("timer", 0)
 
         if (sharedPreferences2.getBoolean("new", true)) {
-            binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge(getString(R.string.new_str)))
+            binding.bottomBar.setBadgeAtTabIndex(
+                2,
+                AnimatedBottomBar.Badge(getString(R.string.new_str))
+            )
         }
 
         binding.bottomBar.setOnTabInterceptListener(object :
@@ -149,7 +150,6 @@ class Main : AppCompatActivity() {
 
     /**
      * On options menu item selected
-     * @param item [MenuItem]
      * @return [Boolean]
      */
 

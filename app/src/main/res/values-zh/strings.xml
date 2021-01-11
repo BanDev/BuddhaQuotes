@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.0.0</string>
 
     
     <string name="refresh" id="1">刷新</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">救命</string>
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用许可</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">使用的图书馆</string>
 
     
@@ -35,11 +32,6 @@
     <string name="about_info" id="26">应用程式资讯</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes是一个合作项目，旨在为Android创建免费和开源的Buddha Quotes应用程序。</string>
     <string name="about_contributors" id="28">贡献者</string>
-    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
     <string name="tick" id="31">蜱</string>
@@ -60,7 +52,6 @@
 
     
     <string name="licenses" id="63">执照</string>
-    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">权限</string>
     <string name="licenses_commercial_use" id="65">商业用途</string>
     <string name="licenses_distribution" id="66">分配</string>
@@ -453,7 +444,7 @@
     <string name="quote_125" id="434">爱自己，看着-今天，明天，永远</string>
     <string name="quote_126" id="435">许多人没有意识到我们必须死。对于那些意识到这一点的人，争吵结束了</string>
     <string name="quote_127" id="436">愿众生心境快乐</string>
-    <string name="quote_128" id="437">冥想...不要拖延，以免以后您后悔</string>
+    <string name="quote_128" id="437">冥想…不要拖延，以免以后您后悔</string>
     <string name="quote_129" id="438">思考，Ānanda，请不要延迟，否则稍后您会后悔。这是我们对您的指示</string>
     <string name="quote_130" id="439">冥想带来智慧；缺乏冥想会导致无知。清楚地知道什么导致您前进，什么阻碍您前进，并选择通往智慧的道路</string>
     <string name="quote_131" id="440">僧侣们，即使土匪用一把双柄锯子残酷地割断了你，即使如此，你们当中谁生病了也不会坚持我的教导</string>
