@@ -37,7 +37,6 @@ import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import java.util.*
 
-
 /**
  * Main is the main page of Buddha Quotes
  *
@@ -162,29 +161,31 @@ class Main : AppCompatActivity() {
 
         InputSheet().show(this) {
             title(R.string.createNewList)
-            with(InputEditText {
-                required()
-                hint(R.string.insertName)
-                validationListener { value ->
-                    when {
-                        value.contains("//") -> {
-                            Validation.failed(getString(R.string.validationRule1))
-                        }
-                        value.toLowerCase(Locale.ROOT) == "favourites" -> {
-                            Validation.failed(getString(R.string.validationRule2))
-                        }
-                        lists!!.contains(value.toLowerCase(Locale.ROOT)) -> {
-                            Validation.failed(getString(R.string.validationRule3) + " $value")
-                        }
-                        else -> {
-                            Validation.success()
+            with(
+                InputEditText {
+                    required()
+                    hint(R.string.insertName)
+                    validationListener { value ->
+                        when {
+                            value.contains("//") -> {
+                                Validation.failed(getString(R.string.validationRule1))
+                            }
+                            value.toLowerCase(Locale.ROOT) == "favourites" -> {
+                                Validation.failed(getString(R.string.validationRule2))
+                            }
+                            lists!!.contains(value.toLowerCase(Locale.ROOT)) -> {
+                                Validation.failed(getString(R.string.validationRule3) + " $value")
+                            }
+                            else -> {
+                                Validation.success()
+                            }
                         }
                     }
+                    resultListener { value ->
+                        Lists().newList(value.toString(), requireContext())
+                    }
                 }
-                resultListener { value ->
-                    Lists().newList(value.toString(), requireContext())
-                }
-            })
+            )
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive(R.string.add) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -193,7 +194,7 @@ class Main : AppCompatActivity() {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
 
-                //Refresh fragments
+                // Refresh fragments
                 binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
                 binding.viewPager.setCurrentItem(1, false)
                 binding.bottomBar.setupWithViewPager2(binding.viewPager)

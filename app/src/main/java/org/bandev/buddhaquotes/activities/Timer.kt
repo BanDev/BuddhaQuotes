@@ -107,7 +107,6 @@ class Timer : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     // Timer is done so must be for reset
@@ -132,7 +131,6 @@ class Timer : AppCompatActivity() {
 
                 // Restart timer now
                 startTimer(durationTimeInMillis * 1000)
-
             }
         }
     }
@@ -253,7 +251,7 @@ class Timer : AppCompatActivity() {
             notify(0, notifBuilder.build())
         }
 
-        //Show the minutes and seconds
+        // Show the minutes and seconds
         binding.timerText.text = "$minute:$seconds"
     }
 
@@ -266,5 +264,4 @@ class Timer : AppCompatActivity() {
         // Finish the activity
         finish()
     }
-
 }

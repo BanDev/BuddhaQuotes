@@ -47,6 +47,6 @@ abstract class OnDoubleClickListener : View.OnClickListener {
     abstract fun onDoubleClick(v: View?)
 
     companion object {
-        private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 //milliseconds
+        private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 // milliseconds
     }
 }

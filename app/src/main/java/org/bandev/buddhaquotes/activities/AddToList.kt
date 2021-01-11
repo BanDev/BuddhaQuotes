@@ -71,8 +71,10 @@ class AddToList : AppCompatActivity() {
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString(list, "")
-                val listArrPref: MutableList<String> = (listArr?.split("//")
-                    ?: return@OnItemClickListener).toMutableList()
+                val listArrPref: MutableList<String> = (
+                    listArr?.split("//")
+                        ?: return@OnItemClickListener
+                    ).toMutableList()
                 val listArrFinal = LinkedList(listArrPref)
                 val intent2 = Intent(this, ScrollingActivity::class.java)
                 val mBundle = Bundle()

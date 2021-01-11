@@ -24,9 +24,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.items.ListItem
 import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
 import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.bandev.buddhaquotes.items.ListItem
 
 class ListRecycler(
 
@@ -56,8 +56,10 @@ class ListRecycler(
 
     override fun getItemCount(): Int = scrollingLists.size
 
-    inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener, View.OnLongClickListener {
+    inner class ScrollingViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView),
+        View.OnClickListener,
+        View.OnLongClickListener {
         val binding: CardListsFragmentBinding = CardListsFragmentBinding.bind(itemView)
 
         init {
@@ -93,4 +95,3 @@ class ListRecycler(
         }
     }
 }
-

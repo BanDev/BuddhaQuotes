@@ -93,7 +93,6 @@ class QuoteFragment : Fragment() {
             toggleFavouriteQuote()
         }
 
-
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
             OptionsSheet().show(requireContext()) {

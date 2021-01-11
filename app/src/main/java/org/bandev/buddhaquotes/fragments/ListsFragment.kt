@@ -128,7 +128,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             instance.arguments = args
             return instance
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
