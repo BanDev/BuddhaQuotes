@@ -28,21 +28,21 @@ class TimerStore(context: Context) {
     private var sharedPref: SharedPreferences = context.getSharedPreferences("TimerStore", 0)
     private var editor: SharedPreferences.Editor = sharedPref.edit()
 
-    var active: Boolean
+    private var active: Boolean
         get() = sharedPref.getBoolean("active", false)
         set(value) {
             editor.putBoolean("active", value)
             editor.commit()
         }
 
-    var duration: Long
+    private var duration: Long
         get() = sharedPref.getLong("duration", 0L)
         set(value) {
             editor.putLong("duration", value)
             editor.commit()
         }
 
-    var progress: Long
+    private var progress: Long
         get() = sharedPref.getLong("progress", 0L)
         set(value) {
             editor.putLong("progress", value)

@@ -55,7 +55,7 @@ class QuoteFragment : Fragment() {
     private var quotes = Quotes()
     private var liked = false
     private var options = mutableListOf<Option>()
-    private var options_str = mutableListOf<String>()
+    private var optionStr = mutableListOf<String>()
 
     /**
      * Sets the correct view of the Fragment
@@ -140,15 +140,15 @@ class QuoteFragment : Fragment() {
             onPositive { index: Int, option: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
-                if (!Lists().queryInList(quote, options_str[index], requireContext())) {
-                    Lists().addToList(quote, options_str[index], requireContext())
+                if (!Lists().queryInList(quote, optionStr[index], requireContext())) {
+                    Lists().addToList(quote, optionStr[index], requireContext())
                     Snackbar.make(
                         binding.root,
-                        getString(R.string.added) + " " + options_str[index],
+                        getString(R.string.added) + " " + optionStr[index],
                         Snackbar.LENGTH_LONG
                     )
                         .show()
-                    if (options_str[index] == "Favourites") {
+                    if (optionStr[index] == "Favourites") {
                         binding.like.setImageDrawable(
                             ContextCompat.getDrawable(
                                 requireContext(),
@@ -159,12 +159,10 @@ class QuoteFragment : Fragment() {
                 } else {
                     Snackbar.make(
                         binding.root,
-                        getString(R.string.exists) + " " + options_str[index],
+                        getString(R.string.exists) + " " + optionStr[index],
                         Snackbar.LENGTH_LONG
-                    )
-                        .show()
+                    ).show()
                 }
-
             }
         }
     }
@@ -237,7 +235,7 @@ class QuoteFragment : Fragment() {
 
     private fun updateOptionsList() {
         options.clear()
-        options_str.clear()
+        optionStr.clear()
         for (list in Lists().getMasterList(requireContext())) {
             val drawable = if (list == "Favourites") {
                 R.drawable.ic_heart_octicons
@@ -245,7 +243,7 @@ class QuoteFragment : Fragment() {
                 R.drawable.ic_list_octicons
             }
             options.add(Option(drawable, list))
-            options_str.add(list)
+            optionStr.add(list)
         }
     }
 

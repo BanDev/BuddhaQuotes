@@ -1,0 +1,16 @@
+2.0.0  - (2021-01-11)
+
+Most of the app has be rewritten in this update
+
+Added
+
+- Animated bottom bar
+- Meditation timer
+- Bottom Sheets
+- Dialogs
+- Lots more languages
+
+Changed
+
+- Lists moved to main page
+- Lots of optimisations and fixes
