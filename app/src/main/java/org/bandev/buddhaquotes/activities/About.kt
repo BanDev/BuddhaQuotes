@@ -77,6 +77,49 @@ class About : AppCompatActivity() {
         binding.translatorsList.divider = null
         binding.translatorsList.isClickable = false
         justifyListViewHeightBasedOnChildren(binding.translatorsList)
+
+        var done = false
+
+        // Show confetti when the user scrolls to the bottom of the page
+        binding.scrollView.viewTreeObserver
+            .addOnScrollChangedListener {
+                if (binding.scrollView.getChildAt(0).bottom <= binding.scrollView.height + binding.scrollView.scrollY && !done) {
+                    binding.viewKonfetti.build()
+                        .addColors(
+                            Color.parseColor("#A864FD"),
+                            Color.parseColor("#29CDFF"),
+                            Color.parseColor("#78FF44"),
+                            Color.parseColor("#FF718D"),
+                            Color.parseColor("#FDFF6A")
+                        )
+                        .setDirection(0.0, 359.0)
+                        .setSpeed(1f, 5f)
+                        .setFadeOutEnabled(true)
+                        .setTimeToLive(2000L)
+                        .addShapes(
+                            Shape.Square,
+                            Shape.Circle
+                        )
+                        .addSizes(Size(10))
+                        .setPosition(-50f, binding.viewKonfetti.width + 50f, -50f, -50f)
+                        .streamFor(100, 1000L)
+                    done = true
+
+                    // Vibrate device for 0.2 seconds
+                    val vibrator = this.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(
+                            VibrationEffect.createOneShot(
+                                200,
+                                VibrationEffect.DEFAULT_AMPLITUDE
+                            )
+                        )
+                    } else {
+                        @Suppress("DEPRECATION")
+                        vibrator.vibrate(200)
+                    }
+                }
+            }
     }
 
     private fun justifyListViewHeightBasedOnChildren(listView: ListView) {
