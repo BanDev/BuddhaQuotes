@@ -528,7 +528,7 @@
     <string name="quote_200" id="509">Des milliers de bougies peuvent être allumées à partir d\'une seule bougie et la durée de vie de la bougie ne sera pas raccourcie. Le bonheur ne diminue jamais en étant partagé</string>
     <string name="quote_201" id="510">Trois choses ne peuvent pas être longtemps cachées: le soleil, la lune et la vérité</string>
     <string name="quote_202" id="511">Les temps de luxe ne durent pas longtemps, mais disparaissent très vite, rien dans ce monde ne peut être apprécié longtemps</string>
-    <string name="quote_203" id="512">Être beau signifie être soi-même. Vous n \\'avez pas besoin d \\' être accepté par les autres. Vous devez vous accepter</string>
+    <string name="quote_203" id="512">Être beau signifie être soi-même. Vous n \'avez pas besoin d \' être accepté par les autres. Vous devez vous accepter</string>
     <string name="quote_204" id="513">Devenir végétarien, c\'est entrer dans le courant qui mène au nirvana</string>
     <string name="quote_205" id="514">Insister sur une pratique spirituelle qui vous a servi dans le passé, c\'est porter le radeau sur le dos après avoir traversé la rivière</string>
     <string name="quote_206" id="515">Garder le corps en bonne santé est un devoir ... sinon nous ne pourrons pas garder notre esprit fort et clair</string>
@@ -612,10 +612,12 @@
 
     <string name="createNewList">Créer une nouvelle liste</string>
     <string name="insertName">Insérer le nom</string>
-    <string name="validationRule1">Ne peut pas contenir //</string>
+    <string name="validationRule1">Ne peut pas contenir </string>
     <string name="validationRule2">Il existe déjà une liste nommée Favoris</string>
     <string name="validationRule3">Il existe déjà une liste nommée</string>
     <string name="add">Ajouter</string>
     <string name="new_str">Nouveau</string>
     <string name="added">Citation ajoutée à</string>
+    <string name="exists">Cette citation existe déjà en</string>
+    <string name="start">Début</string>
 </resources>

@@ -618,4 +618,6 @@
     <string name="add">Hinzufügen</string>
     <string name="new_str">Neu</string>
     <string name="added">Zitat hinzugefügt zu</string>
+    <string name="exists">Dieses Zitat existiert bereits in</string>
+    <string name="start">Start</string>
 </resources>

@@ -618,4 +618,6 @@
     <string name="add">追加</string>
     <string name="new_str">新着</string>
     <string name="added">に引用を追加</string>
+    <string name="exists">この見積もりはすでに存在します</string>
+    <string name="start">開始</string>
 </resources>
