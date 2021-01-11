@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="app_name" translatable="false">Buddha Quotes</string>
+    <string name="version" translatable="false">v2.0.0</string>
 
     
     <string name="refresh" id="1">刷新</string>
@@ -19,6 +21,7 @@
     <string name="help" id="17">救命</string>
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用许可</string>
+    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">使用的图书馆</string>
 
     
@@ -30,8 +33,13 @@
     <string name="about_offline_app" id="24">离线应用</string>
     <string name="about_free_and_open_source" id="25">免费和开源</string>
     <string name="about_info" id="26">应用程式资讯</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes是一个协作项目，旨在为Android创建免费和开源的Buddha Quotes应用程序。</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes是一个合作项目，旨在为Android创建免费和开源的Buddha Quotes应用程序。</string>
     <string name="about_contributors" id="28">贡献者</string>
+    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
+    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
+    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
+    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
+    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
     <string name="tick" id="31">蜱</string>
@@ -52,6 +60,7 @@
 
     
     <string name="licenses" id="63">执照</string>
+    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
     <string name="licenses_permissions" id="64">权限</string>
     <string name="licenses_commercial_use" id="65">商业用途</string>
     <string name="licenses_distribution" id="66">分配</string>
@@ -86,9 +95,6 @@
     <string name="about_no_ads" id="91">无广告</string>
 
     
-
-    
-
     <string name="lists_title" id="92">您的清单</string>
     <string name="lists_add_item" id="93">添加到列表</string>
     <string name="lists_add_lists" id="94">建立新清单</string>
@@ -309,7 +315,7 @@
     <string name="appintro2_title" id="300">超过230条报价</string>
     <string name="appintro2_description" id="301">佛陀超过230句名言</string>
     <string name="appintro3_title" id="302">收藏夹</string>
-    <string name="appintro3_description" id="303">您可以通过按“收藏夹”按钮收藏喜欢的报价</string>
+    <string name="appintro3_description" id="303">您可以通过按“收藏夹”按钮或双击屏幕上的收藏夹引号</string>
     <string name="appintro4_title" id="304">可订制</string>
     <string name="appintro4_description" id="305">有多种用户界面选项，例如重点色和形状模式</string>
     <string name="appintro5_title" id="306">让我们开始吧！</string>
@@ -330,11 +336,11 @@
     <string name="quote_8" id="317">对他人的真正富有同情心的态度不会改变，即使他们的举止负面或伤害您</string>
     <string name="quote_9" id="318">最重要的是，不要失去行走的欲望</string>
     <string name="quote_10" id="319">“所有有条件的事物都是无常的”-当人们以智慧看到这一点时，就摆脱了苦难</string>
-    <string name="quote_11" id="320">所有经验都先于思想，以思想为主，由思想创造</string>
+    <string name="quote_11" id="320">所有经验都先于思想，以思想为主人，由思想创造</string>
     <string name="quote_12" id="321">由于存在依赖关系，并非所有现象都固有地不存在。由于被依赖推导，所有现象都不固有地存在</string>
     <string name="quote_13" id="322">所有的苦难都是无知造成的。人们自私地追求自己的幸福或满足感时，会给他人带来痛苦</string>
     <string name="quote_14" id="323">所有人都因暴力而战栗；所有人都害怕死亡。把自己放在另一个地方，一个人不应该杀死也不应该使另一个人杀死</string>
-    <string name="quote_15" id="324">所有的错误行为都是由于头脑而产生的。如果思想转变了，做错了还会继续吗？</string>
+    <string name="quote_15" id="324">所有的错误行为都是由于头脑而产生的。如果思想转变了，会继续犯错误吗？</string>
     <string name="quote_16" id="325">开放的心是开放的思想</string>
     <string name="quote_17" id="326">通过特殊的洞察力进行分析并意识到内在存在的缺失构成了对无价值者的理解</string>
     <string name="quote_18" id="327">愤怒是您内心平静的最终破坏者</string>
@@ -344,7 +350,7 @@
     <string name="quote_22" id="331">我也是，这些也是。同样，我也是。与自己比较，既不杀人也不杀人</string>
     <string name="quote_23" id="332">作为一朵美丽而无味的花，即使如此，无果也是不实践它的人的口语。</string>
     <string name="quote_24" id="333">因为莲花在水中出生，在水中生长，然后从水中升起，站在它上面而未受污染，所以我在世界上出生，在世界上长大，克服了世界，在世界上不被污染</string>
-    <string name="quote_25" id="334">因为荷叶上的水珠不像红色百合上的水那样附着，所以贤哲不附着于所见，所闻或所感知的事物</string>
+    <string name="quote_25" id="334">因为荷叶上的水珠不像红色百合上的水那样附着，所以圣人不附着于所见，所闻或所感知的事物</string>
     <string name="quote_26" id="335">由于战场上的大象能抵御四处弓箭射出的箭，即使如此，我也要忍受虐待</string>
     <string name="quote_27" id="336">依恋导致痛苦</string>
     <string name="quote_28" id="337">注意是慷慨的最稀有和最纯净的形式</string>
@@ -359,11 +365,11 @@
     <string name="quote_37" id="346">最好是有一天看到事物的兴衰，而不是生活一百年却没有看到事物的兴衰。</string>
     <string name="quote_38" id="347">一个有用的词胜过一千个无用的词，听到它就能获得和平。</string>
     <string name="quote_39" id="348">遵守公义律律比敬拜神更好</string>
-    <string name="quote_40" id="349">通过深深地活在当下，我们可以更好地了解过去，并为美好的未来做准备</string>
+    <string name="quote_40" id="349">通过深深地活在当下，我们可以更好地了解过去，并为更美好的未来做准备</string>
     <string name="quote_41" id="350">冷静的头脑会带来内在的力量和自信，因此这对于保持健康非常重要</string>
-    <string name="quote_42" id="351">停止作恶，培养善良，净化心灵：这是佛陀的教导</string>
+    <string name="quote_42" id="351">不再作恶，修养善良，净化心灵：这是佛陀的教导</string>
     <string name="quote_43" id="352">选择保持乐观，感觉会更好</string>
-    <string name="quote_44" id="353">通过温柔来征服愤怒，通过仁慈来克服不友善，通过慷慨来贪婪，通过真理来掩盖虚假</string>
+    <string name="quote_44" id="353">通过温柔来征服愤怒，通过仁慈来征服他人，通过慷慨而贪婪，并通过真理来欺骗人</string>
     <string name="quote_45" id="354">用非愤怒征服愤怒。用善胜恶。慷慨地征服卑鄙。用真理征服不诚实</string>
     <string name="quote_46" id="355">通过不生气来征服愤怒的人；用善胜恶人慷慨地克服st气，讲真话来骗人。</string>
     <string name="quote_47" id="356">知足是最大的财富</string>
@@ -371,14 +377,14 @@
     <string name="quote_49" id="358">令人不愉快的是公众不喜悦的森林。那里没有激情，没有寻求感官享受</string>
     <string name="quote_50" id="359">谈论佛法不是坚持的。通过与佛法和谐相处来维护佛法……</string>
     <string name="quote_51" id="360">不要把注意力放在别人做或不做的事情上；把它交给你做或不做的事</string>
-    <string name="quote_52" id="361">不要高估收到的内容，也不要嫉妒他人。羡慕别人的人无法安心</string>
+    <string name="quote_52" id="361">不要高估收到的内容，也不要嫉妒他人。羡慕别人的人没有安心</string>
     <string name="quote_53" id="362">不要想宇宙有多大，只会伤到你的头</string>
     <string name="quote_54" id="363">一滴一滴地把水罐装满了。同样，聪明的人一点一点地收集起来，就使自己充满了美好。</string>
     <string name="quote_55" id="364">欲望源于情感，因此产生幻觉</string>
-    <string name="quote_56" id="365">耐力是最困难的学科之一，但对于那些坚持不懈的人来说，最后的胜利是</string>
+    <string name="quote_56" id="365">耐力是最困难的学科之一，但对于那些坚持不懈的人来说，最终的胜利是</string>
     <string name="quote_57" id="366">即使坚硬的岩石被风吹动，明智的人也因赞美或责备而动摇</string>
     <string name="quote_58" id="367">即使事情没有达到您的预期，也不要灰心或放弃。继续前进的人将最终获胜</string>
-    <string name="quote_59" id="368">一切都是多变的，一切都会出现和消失，除非一个人超越了生与死的痛苦，否则没有幸福的和平</string>
+    <string name="quote_59" id="368">一切都是多变的，一切都会出现和消失，直到一个人超越了生与死的痛苦，才有幸福的和平</string>
     <string name="quote_60" id="369">感觉来来往往像刮风的天空中的云彩。意识呼吸是我的锚</string>
     <string name="quote_61" id="370">穿越更深的海岸的人很少。其他人只是在这边跑来跑去</string>
     <string name="quote_62" id="371">遵循高贵的道路就像进入一个黑暗的房间，手里拿着光。黑暗将被清除，房间将充满光明</string>
@@ -387,18 +393,18 @@
     <string name="quote_65" id="374">一棵枯树从一棵枯树上绽放</string>
     <string name="quote_66" id="375">付出，即使你只有一点点</string>
     <string name="quote_67" id="376">在战斗中，比只征服一万个男人的人还强。比别人更好地征服自己</string>
-    <string name="quote_68" id="377">我们联系的真相更重要</string>
+    <string name="quote_68" id="377">我们联系的真理更重要</string>
     <string name="quote_69" id="378">幸福主要来自我们自己的态度，而不是来自外部因素</string>
-    <string name="quote_70" id="379">在这个世界上，仇恨永远不会被仇恨所掩盖。仅仅通过非仇恨就可以实现仇恨。这是法律永恒</string>
+    <string name="quote_70" id="379">在这个世界上，仇恨永远不会被仇恨所掩盖。仅仅通过非仇恨就可以实现仇恨。这是永恒的法律</string>
     <string name="quote_71" id="380">他不需要那些知道未造的人，会中断重生，会毁掉任何有好有坏的机会，并抛弃所有欲望的信仰。他确实是终极男人</string>
     <string name="quote_72" id="381">他不一样，也不是另一个</string>
     <string name="quote_73" id="382">谁能尽快遏制愤怒，只要及时解毒剂就会检查蛇毒，如此之快地蔓延开来–和尚放弃了这里和其他地方，就像毒蛇摆脱了破旧的皮肤一样</string>
     <string name="quote_74" id="383">坚定不移地走在八重高贵道路上的他一定会到达涅rv</string>
     <string name="quote_75" id="384">健康是最大的礼物，知足是最大的财富，忠诚是最好的关系</string>
-    <string name="quote_76" id="385">对于一个一无所有的人来说，这是多么幸福。智慧获得者就是一无所有的人。看到他的痛苦，一个有某些东西的人，一个与人相处的人</string>
-    <string name="quote_77" id="386">无论您读了多少圣洁的话，无论您说了多少话，如果您不对他们采取行动，他们会对您有什么好处？</string>
+    <string name="quote_76" id="385">对于一个一无所有的人来说，这是多么幸福。智慧获得者就是一无所有的人。看到他受苦，有什么东西，一个与人相处的人</string>
+    <string name="quote_77" id="386">无论您读了多少圣洁的话，无论您说了多少话，如果不对他们采取行动，他们会对您有什么好处？</string>
     <string name="quote_78" id="387">我与世界无异；而是这个世界与我发生争执</string>
-    <string name="quote_79" id="388">我将在雨中住在这里，冬天在那里，夏天在其他地方，”傻瓜沉思，不知道死亡的临近</string>
+    <string name="quote_79" id="388">我将在雨中住在这里，在冬天，在夏天，在其他地方。”傻瓜沉思，没有意识到死亡的临近</string>
     <string name="quote_80" id="389">我不会看别人的碗里寻找错误的意图：要观察的训练</string>
     <string name="quote_81" id="390">如果一个人涌入河里，肿胀而迅速地流淌，被水流带走了—他如何帮助别人渡过？</string>
     <string name="quote_82" id="391">如果旅行者没有遇到比自己更好或更平等的人，请让他坚定地保持孤独的旅程。没有傻瓜的陪伴</string>
@@ -407,15 +413,15 @@
     <string name="quote_85" id="394">如果我们在他人需要帮助时未能照顾他们，谁会照顾我们？</string>
     <string name="quote_86" id="395">如果一个人以纯洁的心态说话或行动，幸福就会像永不消逝的影子跟随着他们</string>
     <string name="quote_87" id="396">如果您能树立正确的态度，那么敌人就是您最好的精神老师，因为他们的存在为您提供了增强和发展您的宽容，耐心和理解的机会</string>
-    <string name="quote_88" id="397">如果您找不到在精神道路上支持您的人，那就独自一人走吧。</string>
-    <string name="quote_89" id="398">如果您知道我对馈赠力量的了解，那么您就不会在不以某种方式分享的情况下让一顿饭过去</string>
+    <string name="quote_88" id="397">如果您找不到在精神道路上支持您的人，请独自行走没有成熟的人没有伴侣</string>
+    <string name="quote_89" id="398">如果您知道我对馈赠力量的了解，就不会在不以某种方式分享的情况下让一顿饭过去</string>
     <string name="quote_90" id="399">如果你爱一个人，却很少让自己与别人相处，那不是真正的爱</string>
-    <string name="quote_91" id="400">如果您想让别人快乐，请练习同情心。如果你想快乐，请实践同情心</string>
+    <string name="quote_91" id="400">如果您想让别人感到幸福，请同情。如果你想快乐，请实践同情心</string>
     <string name="quote_92" id="401">在生活中，我们无法避免改变，我们无法避免损失。自由和幸福来自我们通过变革而获得的灵活性和轻松性</string>
     <string name="quote_93" id="402">为了采取积极行动，我们必须在这里发展积极的愿景</string>
     <string name="quote_94" id="403">没有同情谁的人：把他当作流浪者</string>
     <string name="quote_95" id="404">诱使他以邪恶的方式而不是敌人或敌人的是自己的思想</string>
-    <string name="quote_96" id="405">很容易看到别人的缺点，但是很难看到自己的缺点。一个显示风吹拂的谷壳中的另一个的缺点，但是一个狡猾的赌徒隐藏自己的骰子，一个人隐藏了自己的缺点</string>
+    <string name="quote_96" id="405">很容易看到别人的缺点，但是很难看到自己的缺点。一个显示风吹拂的谷壳中的另一个的错误，但是一个狡猾的赌徒隐藏自己的骰子，一个人隐藏了自己的错误</string>
     <string name="quote_97" id="406">在没有悔恨的人中，快乐是在事物的本质中产生的</string>
     <string name="quote_98" id="407">在我们的日常生活中，有必要将学习产生的知识与真诚的实践相结合。这两个必须在一起</string>
     <string name="quote_99" id="408">富有同情心是不够的，我们必须采取行动</string>
@@ -425,67 +431,67 @@
     <string name="quote_103" id="412">喜悦不是通过拥有或所有权，而是通过睿智而充满爱心</string>
     <string name="quote_104" id="413">就像暴风雨不会摇动坚硬的岩石一样，明智的人也不会受到赞美或责备的影响</string>
     <string name="quote_105" id="414">就像大海洋只有一种味道，盐的味道一样，这门教学和学科也只有一种味道，解放的味道</string>
-    <string name="quote_106" id="415">从裂缝和缝隙中的河流知道：小河道中的水流嘈杂，大河中的水无声。任何未满的东西都会发出声音。装满的东西都是安静的</string>
-    <string name="quote_107" id="416">清楚地知道什么导致您前进，什么阻碍您前进，并选择通往智慧的道路</string>
+    <string name="quote_106" id="415">从裂缝和缝隙中的河流中知道：小河道中的水流嘈杂，大河中的水无声。任何未满的东西都会发出声音。装满的东西都是安静的</string>
+    <string name="quote_107" id="416">清楚地知道什么会带领你前进，什么会阻碍你前进，并选择通往智慧的道路</string>
     <string name="quote_108" id="417">从水中学习：大声飞溅小溪，但海洋深处平静</string>
     <string name="quote_109" id="418">抛弃对玫瑰色未来的被动梦想。幸福的能量存在于如今扎根于现实土壤中的生活中</string>
     <string name="quote_110" id="419">让万物包容一切的想法归您所有</string>
     <string name="quote_111" id="420">让他不要欺骗别人，也不要鄙视任何人。生气或生病会让他不想再生病</string>
-    <string name="quote_112" id="421">不要让别人发现缺点。不要让任何人看到别人的遗漏和委托。但是让一个人看到自己的行为，既完成又完成</string>
-    <string name="quote_113" id="422">放手给我们自由，自由是幸福的唯一条件。如果我们内心仍然坚持任何事情-愤怒，焦虑或财产-我们将无法自由</string>
+    <string name="quote_112" id="421">不要让别人发现缺点。不要让任何人看到别人的遗漏和委托。但是让一个人看到自己的行为，已完成和未完成</string>
+    <string name="quote_113" id="422">放手给我们自由，而自由是幸福的唯一条件。如果我们内心仍然坚持任何事情-愤怒，焦虑或财产-我们将无法自由</string>
     <string name="quote_114" id="423">生命是一条永远流淌的河流。不要紧紧抓住东西。努力工作</string>
     <string name="quote_115" id="424">生活只有当下</string>
-    <string name="quote_116" id="425">就像一朵充满色彩但缺乏香味的可爱花朵，是那些不练习所教知识的人的话。</string>
+    <string name="quote_116" id="425">那些没有实践所教知识的人的话就像一朵充满色彩但缺乏香味的可爱花朵</string>
     <string name="quote_117" id="426">就像有人指着宝藏一样，聪明的人会看到你的缺点并指出它们。与这样的圣人相关</string>
     <string name="quote_118" id="427">一个人一点一点地变得邪恶，因为水壶里滴满了水滴。一个人逐渐变得好起来，因为水壶里滴满了水滴</string>
     <string name="quote_119" id="428">充分实践每一幕，好像这是你的最后一幕</string>
     <string name="quote_120" id="429">没有“我的”感觉，没有形成对体验的依恋</string>
-    <string name="quote_121" id="430">醒着的人夜晚漫漫；对疲倦的人而言，路途遥远。不懂真实律法的愚昧人的寿命长</string>
+    <string name="quote_121" id="430">醒着的人夜晚漫漫。对疲倦的人而言，路途遥远。不懂真实律法的愚昧人的寿命长</string>
     <string name="quote_122" id="431">从各个角度看待情况，您将变得更加开放</string>
     <string name="quote_123" id="432">爱和同情心是必需品，而不是奢侈品。没有他们，人类将无法生存</string>
     <string name="quote_124" id="433">爱是没有判断力</string>
-    <string name="quote_125" id="434">爱自己，看着-今天，明天和永远</string>
+    <string name="quote_125" id="434">爱自己，看着-今天，明天，永远</string>
     <string name="quote_126" id="435">许多人没有意识到我们必须死。对于那些意识到这一点的人，争吵结束了</string>
     <string name="quote_127" id="436">愿众生心境快乐</string>
-    <string name="quote_128" id="437">冥想…不要拖延，以免以后您后悔</string>
-    <string name="quote_129" id="438">思考，Ānanda，请不要延迟，否则以后您会后悔的。这是我们对您的指示</string>
-    <string name="quote_130" id="439">冥想带来智慧；缺乏冥想会导致无知。清楚地知道什么导致你前进，什么阻碍你前进，并选择通往智慧的道路</string>
+    <string name="quote_128" id="437">冥想...不要拖延，以免以后您后悔</string>
+    <string name="quote_129" id="438">思考，Ānanda，请不要延迟，否则稍后您会后悔。这是我们对您的指示</string>
+    <string name="quote_130" id="439">冥想带来智慧；缺乏冥想会导致无知。清楚地知道什么导致您前进，什么阻碍您前进，并选择通往智慧的道路</string>
     <string name="quote_131" id="440">僧侣们，即使土匪用一把双柄锯子残酷地割断了你，即使如此，你们当中谁生病了也不会坚持我的教导</string>
-    <string name="quote_132" id="441">比那些恨你的人多于所有敌人，无纪律的思想所带来的伤害更大。</string>
+    <string name="quote_132" id="441">比那些恨你的人多于所有敌人，一个无纪律的心所带来的伤害更大。</string>
     <string name="quote_133" id="442">如果您给他们足够的时间和空间，大多数问题最终都会使自己疲惫不堪</string>
     <string name="quote_134" id="443">火与风，生与死都不能抹杀我们的善行</string>
     <string name="quote_135" id="444">没有人可以拯救我们，只有我们自己。没有人可以也没有人可以。我们自己必须走这条路</string>
     <string name="quote_136" id="445">没有什么比没有防备的想法对您的伤害更大</string>
     <string name="quote_137" id="446">除了改变，没有什么是永远的</string>
     <string name="quote_138" id="447">危害人类的不被称为贵族。不伤害众生被称为贵族</string>
-    <string name="quote_139" id="448">弟兄们，见解是疾病。意见是肿瘤；意见很痛。弟兄们，那些克服了一切见解的人被称为圣人，他知道</string>
+    <string name="quote_139" id="448">弟兄们，见解是疾病。意见是肿瘤；意见很痛。弟兄们，那些克服了一切意见的人被称为圣人，他知道</string>
     <string name="quote_140" id="449">我们自己的生活必须成为我们的信息</string>
     <string name="quote_141" id="450">我们这一生的主要目的是帮助他人。如果您不能帮助他们，至少不要伤害他们</string>
-    <string name="quote_142" id="451">那里有树的根。那边的空屋。练习禅修，和尚。不要无所事事</string>
+    <string name="quote_142" id="451">那里有树的根。那边的空屋。练习禅修和尚。不要无所事事</string>
     <string name="quote_143" id="452">忍耐是最高的禁欲主义</string>
     <string name="quote_144" id="453">和平并不意味着没有冲突。差异将永远存在。和平意味着通过和平手段解决这些分歧。通过对话，教育，知识；并通过人道的方式</string>
-    <string name="quote_145" id="454">人们很难摆脱苦难。出于对未知的恐惧，他们喜欢熟悉的痛苦</string>
+    <string name="quote_145" id="454">人们很难摆脱痛苦。出于对未知的恐惧，他们喜欢熟悉的痛苦</string>
     <string name="quote_146" id="455">人们走不同的道路寻求满足和幸福。仅仅因为他们不在路上并不意味着他们迷路了</string>
     <string name="quote_147" id="456">有意见的人四处打扰</string>
-    <string name="quote_148" id="457">我们害怕死亡的最深层原因可能是因为我们不知道自己是谁</string>
-    <string name="quote_149" id="458">赞美与责备，得失与失落，快乐与悲伤像风一样来去去去。为了快乐，在他们中间像一棵大树一样休息</string>
-    <string name="quote_150" id="459">手推车角色为纯脚，白色檐篷，单轮。看到他的到来：完美无瑕，断流，无拘无束的他</string>
+    <string name="quote_148" id="457">我们害怕死亡的最深层原因也许是因为我们不知道自己是谁</string>
+    <string name="quote_149" id="458">赞美与责备，得失与失落，快乐与悲伤如风。为了快乐，在他们中间像一棵大树一样休息</string>
+    <string name="quote_150" id="459">手推车角色为纯脚，白色篷顶，单轮。看到他的到来：完美无瑕，断流无情的他</string>
     <string name="quote_151" id="460">纯度和杂质取决于自己。没有人可以净化另一个</string>
-    <string name="quote_152" id="461">将无穷无尽的爱散发给整个世界-上下，上下-不受阻碍，没有恶意，没有敌意</string>
+    <string name="quote_152" id="461">将无穷无尽的爱散发给整个世界-上下，上下以及整个世界-不受阻碍，没有恶意，没有敌意</string>
     <string name="quote_153" id="462">真正的慷慨对那些永远不会发现的人来说是一件好事</string>
     <string name="quote_154" id="463">坚决训练自己实现和平</string>
     <string name="quote_155" id="464">看到他们，在他们的思想意识中挣扎，就像一条干stream的水坑里的鱼一样-看到这一点，他们没有地雷生活，没有对成为状态的依恋</string>
     <string name="quote_156" id="465">感性的渴望引起悲伤；感性的渴望引起恐惧。对于摆脱了肉欲的人来说，没有悲伤。从何而来呢？</string>
     <string name="quote_157" id="466">放心做好事。一遍又一遍地做，你会充满喜悦</string>
     <string name="quote_158" id="467">一个人应该做的很好，让他一次又一次地做。让他在其中找到快乐，因为幸福是积累的美好</string>
-    <string name="quote_159" id="468">如果寻求者没有找到一个更好或更平等的伴侣，就让他们坚决地追求一个孤独的道路。</string>
+    <string name="quote_159" id="468">如果寻求者没有找到一个更好或更平等的伴侣，就让他们坚决地寻求一个孤独的道路。</string>
     <string name="quote_160" id="469">如果您找到一个明智的批评家指出您的缺点，请跟随他，就像您将自己作为隐藏宝藏的指南一样</string>
     <string name="quote_161" id="470">沉默有时是最好的答案</string>
     <string name="quote_162" id="471">用爱使愤怒的人沉默。使善恶的人沉默。用慷慨大方的沉默沉默。用真理沉默骗子</string>
     <string name="quote_163" id="472">有些人不明白我们必须死，但是那些意识到这一点的人解决了他们的争吵</string>
     <string name="quote_164" id="473">有时，快乐是微笑的源泉，但有时，微笑是快乐的源泉</string>
-    <string name="quote_165" id="474">只讲可爱的演讲，欢迎演讲。言语在不给他人带来邪恶的情况下是一件令人愉快的事情</string>
-    <string name="quote_166" id="475">说出真相，不要生气，在被问到时就给，即使只是一点点。通过这三个条件，一个进入了众神的存在</string>
+    <string name="quote_165" id="474">只讲可爱的演讲，欢迎演讲。说话不会给别人带来邪恶，这是一件令人愉快的事情</string>
+    <string name="quote_166" id="475">说出真相，不要生气，在被问到时甚至要付出一点。通过这三个条件，一个进入了众神的存在</string>
     <string name="quote_167" id="476">冷静的人说最好的话是最好的。第二，应该说正确的事，而不是不义的话；第三，令人愉悦而不是令人不快第四，什么是正确的，不是错误的</string>
     <string name="quote_168" id="477">最黑暗的夜晚是无知</string>
     <string name="quote_169" id="478">真理的礼物胜过其他所有礼物</string>
@@ -497,37 +503,37 @@
     <string name="quote_175" id="484">不做任何恶事，熟练地表现自己的思想，清洗自己的思想：这是觉醒者的教导</string>
     <string name="quote_176" id="485">一个不再存在的渴望和渴望永存的人；您如何跟踪那个觉醒的，无轨迹的和无限范围的</string>
     <string name="quote_177" id="486">征服自己的人比击败千千人的英雄更大</string>
-    <string name="quote_178" id="487">雨可能变成金子，但您的渴求仍未消除。欲望是不可遏制的，或者即使在天堂也要流下眼泪</string>
+    <string name="quote_178" id="487">雨水可能变成金子，但您的渴求仍未消除。欲望是无法消灭的，或者即使在天堂，也流下了眼泪</string>
     <string name="quote_179" id="488">苦难的根源是依恋</string>
     <string name="quote_180" id="489">所有善良的根源在于对善良的欣赏</string>
     <string name="quote_181" id="490">爱的根源在我们内心深处，我们可以帮助他人实现很多幸福。一句话一行动一个想法就能减轻另一个人的痛苦并带给那个人快乐</string>
-    <string name="quote_182" id="491">宇宙本身就是变化，生命本身就是变化，但是你认为它是什么</string>
+    <string name="quote_182" id="491">宇宙本身就是改变，生命本身就是改变，但你认为它是什么</string>
     <string name="quote_183" id="492">善良的人对这个世界感到高兴，而他对下一个世界感到高兴</string>
     <string name="quote_184" id="493">改变别人想法的方法是充满感情，而不是愤怒</string>
-    <string name="quote_185" id="494">智者使自己成为孤岛，洪水无法淹没</string>
+    <string name="quote_185" id="494">智者使自己成为孤岛，没有洪水可以淹没</string>
     <string name="quote_186" id="495">世界受死亡和腐朽之苦。但是，明智的人在意识到世界的本质后不会感到悲伤</string>
     <string name="quote_187" id="496">没有像仇恨这样的束缚……依靠兄弟的过错使自己倍增。您距离旅程的终点​​还很远</string>
     <string name="quote_188" id="497">对于一个头脑里没有欲望的人没有恐惧</string>
     <string name="quote_189" id="498">没有激情如火，没有仇恨的鲨鱼，没有愚蠢的网罗，没有贪婪的洪流</string>
     <string name="quote_190" id="499">没有什么比没有纪律的人更容易听话，也没有什么比没有纪律的人更听话。</string>
     <string name="quote_191" id="500">他们责怪那些​​保持沉默的人，他们责怪那些​​说话的人，他们责备那些谦虚的人。世界上没有人不应该受到指责</string>
-    <string name="quote_192" id="501">不要轻易以为邪恶，想想“不会来。”一滴一滴地注满了水壶。同样，傻瓜一点一点地收集起来，就充满了邪恶。</string>
+    <string name="quote_192" id="501">不要轻易地想着邪恶，说：“它不会来找我。”一滴一滴地注满了水的锅。同样，傻瓜一点一点地收集起来，就充满了邪恶。</string>
     <string name="quote_193" id="502">由原因产生的那些不产生。它们没有生产的内在本质。那些取决于原因的东西被认为是空的。那些知道空虚的人知道</string>
-    <string name="quote_194" id="503">那些独立出现的没有固有的存在</string>
+    <string name="quote_194" id="503">那些独立产生的没有固有的存在</string>
     <string name="quote_195" id="504">那些没有怨恨想法的人肯定会找到和平</string>
     <string name="quote_196" id="505">那些坚持看法和观点的人在世界上冒犯了人们</string>
     <string name="quote_197" id="506">那些没有为真理努力的人错过了生活的目的</string>
-    <string name="quote_198" id="507">那些真正寻求启蒙之路的人会说出自己的想法。然后他们坚定地前进</string>
+    <string name="quote_198" id="507">那些真正寻求启蒙之路的人会在脑海中支配术语。然后他们坚定地前进</string>
     <string name="quote_199" id="508">尽管一个人应该在没有智慧和控制的情况下生活一百年，但更好的是，确实是一个有智慧和冥想的人的一天</string>
     <string name="quote_200" id="509">一根蜡烛可以点燃数千支蜡烛，并且蜡烛的寿命不会缩短。幸福永远不会通过共享减少</string>
     <string name="quote_201" id="510">三件事不能长期隐藏：太阳，月亮和真理</string>
-    <string name="quote_202" id="511">奢侈的时代不会持续很长时间，但是很快就会逝世，这个世界上的任何事物都无法长期享受</string>
+    <string name="quote_202" id="511">奢侈的时代不会持续很长时间，但是很快就会逝世</string>
     <string name="quote_203" id="512">美丽意味着成为自己。您不需要被别人接受。你需要接受自己</string>
     <string name="quote_204" id="513">成为素食者是进入涅ni的溪流</string>
     <string name="quote_205" id="514">坚持过去曾经为您服务的精神实践，就是在您过河后将木筏背在背上</string>
     <string name="quote_206" id="515">保持身体健康是一种责任……否则我们将无法保持头脑清醒</string>
     <string name="quote_207" id="516">要生活在不可避免的痛苦，衰老，衰老和死亡的意识中，我们必须摆脱生活，摆脱一切可能的生活</string>
-    <string name="quote_208" id="517">避免邪恶和烈酒，始终坚守美德；这是好运</string>
+    <string name="quote_208" id="517">避免邪恶和烈酒，并始终坚守品德；这是好运</string>
     <string name="quote_209" id="518">支持父母，珍惜妻子和孩子，从事和平职业-这是最大的祝福</string>
     <string name="quote_210" id="519">真正的改变在内部，而外部则保持原样</string>
     <string name="quote_211" id="520">理解是口语表达的核心</string>
@@ -535,26 +541,26 @@
     <string name="quote_213" id="522">善良的人总是放手。他们不喜欢享乐和欲望。先知被幸福感动，然后被痛苦感动，贤者没有表现出被兴高采烈或沮丧的迹象。</string>
     <string name="quote_214" id="523">我们在这里从分离的幻想中醒来</string>
     <string name="quote_215" id="524">我们将发展爱，我们将实践它，我们将使它成为一种方式和基础……</string>
-    <string name="quote_216" id="525">我们将通过仁爱来发展和培养思想的解放，使其成为我们的工具，使其成为我们的基础，稳定它，在其中锻炼自己，并充分完善它</string>
-    <string name="quote_217" id="526">无论修士不断追求思想和思考，这都会成为他的意识的倾向</string>
-    <string name="quote_218" id="527">敌人可能对敌人造成什么影响，或者敌人受到敌人的伤害，思维混乱的头脑都会对您造成更大的伤害</string>
+    <string name="quote_216" id="525">我们将通过爱来发展和培养思想的解放，使之成为我们的工具，成为我们的基础，稳定它，在其中锻炼自己，并充分完善它</string>
+    <string name="quote_217" id="526">不管修士如何坚持自己的思想和思考，这都会成为他的意识的倾向</string>
+    <string name="quote_218" id="527">敌人对敌人可能做的任何事情，或者敌人对敌人的坏事，方向错误的头脑都会对您造成更大的伤害</string>
     <string name="quote_219" id="528">具有产生性质的事物具有停止性质的事物</string>
     <string name="quote_220" id="529">不管您的是什么：放开它。您的放手是为了您的长期幸福</string>
     <string name="quote_221" id="530">天堂世界上无论有什么珍贵的珠宝，都无法与被唤醒的珠宝相提并论。</string>
-    <string name="quote_222" id="531">当一个人不喜欢邪恶的感觉时，当一个人感到平静时，就可以从聆听好的教导中找到乐趣。当一个人拥有这些感觉并欣赏它们时，一个人就无需恐惧</string>
+    <string name="quote_222" id="531">当一个人不喜欢邪恶的感觉时，当一个人感到平静时，一个人在聆听良好的教义时会感到愉悦。当一个人拥有这些感觉并欣赏它们时，一个人就无需恐惧</string>
     <string name="quote_223" id="532">比哈克（Obhikkhu），当骨料出现，衰败和死亡时，每一个出生，衰败和死亡的时刻</string>
     <string name="quote_224" id="533">照顾自己时，您会照顾别人。当照顾别人时，你照顾自己</string>
     <string name="quote_225" id="534">当我们感受到对他人的爱与友善时，不仅使他人感到被爱与关怀，而且还有助于我们发展内心的幸福与和平</string>
     <string name="quote_226" id="535">当您走上一条为所有人带来福祉和幸福的道路时，请沿着月亮走过星星的过程进行操作</string>
     <string name="quote_227" id="536">当您练习感恩时，就会有对他人的尊重感</string>
     <string name="quote_228" id="537">谁抛弃了一切人类的束缚，抛弃了天堂的束缚，脱离了世界各地的束缚：他就是我所说的婆罗门</string>
-    <string name="quote_229" id="538">谁不怒视谁生气，谁就赢得一场艰苦的战斗</string>
+    <string name="quote_229" id="538">谁不怒视谁生气的人就赢得了一场艰难的胜利</string>
     <string name="quote_230" id="539">看到我的人看到教义，看到我的教条</string>
     <string name="quote_231" id="540">对于傻瓜，没有伴侣。与其与自私，自负，争吵和固执的男人住在一起，不如让男人独自行走</string>
     <string name="quote_232" id="541">通过实现自己的潜力和自信，人们可以建立一个更美好的世界</string>
     <string name="quote_233" id="542">没有健康，生命就不是生命；它只是语言和痛苦的状态-死亡的图像</string>
     <string name="quote_234" id="543">您现在是社区。自己做一盏灯。成为自己的避难所。别无他求。万物必须过去。努力奋斗。不要放弃</string>
-    <string name="quote_235" id="544">您不会通过拔出花瓣来绽放花朵的美</string>
+    <string name="quote_235" id="544">你不会通过拔花瓣来收集花的美丽</string>
     <string name="quote_236" id="545">你自己是你的主人。还有谁呢？拥有良好的控制权，您很难找到一个主人</string>
     <string name="quote_237" id="546">你自己必须努力。佛陀只指明道路</string>
 
@@ -568,5 +574,48 @@
 
     <string name="fragment_quote">引用</string>
     <string name="fragment_lists">清单</string>
-    <string name="fragment_meditation">冥想</string>
+    <string name="fragment_meditation">幽思</string>
+
+    <string name="updateTitle">新年，新佛行情</string>
+    <string name="updateSubheading">我们已经进行了很多更改，等不及要尝试！</string>
+    <string name="carry_on">继续</string>
+    <string name="read">博客文章</string>
+
+    <string name="meditate_title">幽思</string>
+    <string name="meditate_subheading">这很简单</string>
+
+    <string name="meditate_space">空间</string>
+    <string name="meditate_space_desc">选择一个安静的地方，您不会被打扰。</string>
+
+    <string name="meditate_posture">空间</string>
+    <string name="meditate_posture_desc">坐在地板上或直背椅子上。关键是要舒适！</string>
+
+    <string name="meditate_breath">呼吸</string>
+    <string name="meditate_breath_desc">深呼吸，尝试呼吸到胃。</string>
+
+    <string name="play">恢复</string>
+    <string name="pause">暂停</string>
+    <string name="reset">重启</string>
+
+    <string name="time_left">剩下的时间</string>
+    <string name="meditating_for">冥想</string>
+    <string name="has_been_paused">已暂停</string>
+    <string name="meditation_timer">冥想计时器</string>
+
+    <string name="more">更多</string>
+    <string name="addToList">添加到列表</string>
+    <string name="attribution_buddha">〜释迦牟尼佛</string>
+
+    <string name="seconds">秒</string>
+    <string name="minutes">分钟</string>
+    <string name="and">和</string>
+
+    <string name="createNewList">建立新清单</string>
+    <string name="insertName">插入名称</string>
+    <string name="validationRule1">不能包含//</string>
+    <string name="validationRule2">已经有一个名为“收藏夹”的列表</string>
+    <string name="validationRule3">已经有一个名为</string>
+    <string name="add">加</string>
+    <string name="new_str">新</string>
+    <string name="added">添加报价到</string>
 </resources>
