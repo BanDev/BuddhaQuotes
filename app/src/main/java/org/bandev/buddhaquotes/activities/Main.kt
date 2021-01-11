@@ -98,7 +98,7 @@ class Main : AppCompatActivity() {
         val sharedPreferences2 = getSharedPreferences("timer", 0)
 
         if (sharedPreferences2.getBoolean("new", true)) {
-            binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge("New"))
+            binding.bottomBar.setBadgeAtTabIndex(2, AnimatedBottomBar.Badge(getString(R.string.new_str)))
         }
 
         binding.bottomBar.setOnTabInterceptListener(object :
@@ -161,20 +161,20 @@ class Main : AppCompatActivity() {
             ?.split("//".toRegex())?.toTypedArray()
 
         InputSheet().show(this) {
-            title("Create new list")
+            title(R.string.createNewList)
             with(InputEditText {
                 required()
-                hint("Insert name")
+                hint(R.string.insertName)
                 validationListener { value ->
                     when {
                         value.contains("//") -> {
-                            Validation.failed("Cannot contain //")
+                            Validation.failed(getString(R.string.validationRule1))
                         }
                         value.toLowerCase(Locale.ROOT) == "favourites" -> {
-                            Validation.failed("There is already a list named Favourites")
+                            Validation.failed(getString(R.string.validationRule2))
                         }
                         lists!!.contains(value.toLowerCase(Locale.ROOT)) -> {
-                            Validation.failed("There is already an list named $value")
+                            Validation.failed(getString(R.string.validationRule3) + " $value")
                         }
                         else -> {
                             Validation.success()
@@ -186,7 +186,7 @@ class Main : AppCompatActivity() {
                 }
             })
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-            onPositive("Add") {
+            onPositive(R.string.add) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                 } else {

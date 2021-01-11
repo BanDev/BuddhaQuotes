@@ -610,4 +610,13 @@
     <string name="seconds">seconds</string>
     <string name="minutes">minutes</string>
     <string name="and">and</string>
+
+    <string name="createNewList">Create New List</string>
+    <string name="insertName">Insert name</string>
+    <string name="validationRule1">Cannot contain //</string>
+    <string name="validationRule2">There is already a list named Favourites</string>
+    <string name="validationRule3">There is already an list named</string>
+    <string name="add">Add</string>
+    <string name="new_str">New</string>
+    <string name="added">Added quote to </string>
 </resources>
