@@ -189,9 +189,9 @@ class Settings : AppCompatActivity() {
         private fun showLanguagePopup() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
-            val singleItems = resources.getStringArray(R.array.language_entries)
+            resources.getStringArray(R.array.language_entries)
             val values = resources.getStringArray(R.array.language_values)
-            val checkedItem = sharedPrefs.getInt("app_language_int", 0)
+            sharedPrefs.getInt("app_language_int", 0)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
@@ -209,7 +209,7 @@ class Settings : AppCompatActivity() {
                     Option(R.drawable.ic_language, R.string.pl)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { index: Int, option: Option ->
+                onPositive { index: Int, _: Option ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     } else {
@@ -238,14 +238,13 @@ class Settings : AppCompatActivity() {
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
             }
-
         }
 
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
-            val singleItems = resources.getStringArray(R.array.theme_entries)
-            val checkedItem = pref.getInt("appThemeInt", 2)
+            resources.getStringArray(R.array.theme_entries)
+            pref.getInt("appThemeInt", 2)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)

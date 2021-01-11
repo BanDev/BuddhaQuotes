@@ -43,7 +43,8 @@ class UpdateInfo : AppCompatActivity() {
 
         // Change these each update
         updateTag = getString(R.string.version)
-        updateBlogLink = "https://medium.com/bandev/re-writing-to-make-it-better-buddha-quotes-v2-0-0-499eda297c6b?source=friends_link&sk=f5be0ec80ddf66c058c9a55883c9f29c"
+        updateBlogLink =
+            "https://medium.com/bandev/re-writing-to-make-it-better-buddha-quotes-v2-0-0-499eda297c6b?source=friends_link&sk=f5be0ec80ddf66c058c9a55883c9f29c"
 
         // Inflate binding for update_info.xml
         binding = UpdateInfoBinding.inflate(layoutInflater)

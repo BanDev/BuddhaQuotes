@@ -100,10 +100,10 @@ internal fun updateAppWidget(
 // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget)
     views.setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
-    //views.setImageViewResource(R.id.like, R.drawable.like)
+    // views.setImageViewResource(R.id.like, R.drawable.like)
     views.setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
     views.setImageViewResource(R.id.logo, R.drawable.ic_buddha)
-    //views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
+    // views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
 
     views.setTextViewText(R.id.appwidget_text, Quotes().getQuote(0, context))
 
@@ -117,4 +117,3 @@ fun getPenIntent(context: Context): PendingIntent {
     intent.action = MainWidget().widgetButton
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
-
