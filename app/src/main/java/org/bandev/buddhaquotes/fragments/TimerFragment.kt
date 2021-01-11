@@ -35,8 +35,8 @@ import android.view.ViewGroup
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
-import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
-import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
+import com.maxkeppeler.sheets.time.TimeFormat
+import com.maxkeppeler.sheets.time.TimeSheet
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import org.bandev.buddhaquotes.R
@@ -86,7 +86,6 @@ class TimerFragment : Fragment() {
         // Builds the bottom sheet that allows for an input of time
         timeSheet = TimeSheet().build(requireContext()) {
             title("Meditation timer")
-            closeButtonDrawable(R.drawable.ic_down_arrow)
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->

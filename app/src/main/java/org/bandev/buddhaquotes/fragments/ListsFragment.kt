@@ -158,18 +158,4 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
-
-    fun updateText(text: String) {
-        masterlist = Lists().getMasterList(requireContext())
-
-        masterListFinal = generateMasterList(masterlist.size, masterlist)
-
-        with(binding.recyclerView) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ListRecycler(masterListFinal, this@ListsFragment)
-            setHasFixedSize(false)
-        }
-    }
-
-
 }

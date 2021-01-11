@@ -33,7 +33,9 @@ class GoodTime {
                 "$minutes " + context.getString(R.string.minutes)
             } else {
                 // There is at least a second
-                "$minutes " + context.getString(R.string.minutes) + " " + context.getString(R.string.and) + " $seconds" + context.getString(R.string.seconds)
+                "$minutes " + context.getString(R.string.minutes) + " " + context.getString(R.string.and) + " $seconds" + context.getString(
+                    R.string.seconds
+                )
             }
         } else {
             // There is less than a minute
