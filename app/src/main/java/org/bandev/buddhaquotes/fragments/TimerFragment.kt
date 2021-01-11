@@ -96,6 +96,17 @@ class TimerFragment : Fragment() {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
 
+                val sharedpreferences: SharedPreferences? =
+                    requireContext().getSharedPreferences("timer", Context.MODE_PRIVATE)
+
+                val editor = sharedpreferences?.edit()
+
+                if (editor != null) {
+                    editor.putBoolean("new", false)
+                    editor.apply()
+                }
+
+
 
                 val toTimer = Intent(context, Timer::class.java)
                 toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
@@ -105,155 +116,11 @@ class TimerFragment : Fragment() {
             }
         }
 
-        mediaPlayer = MediaPlayer.create(context, R.raw.gong)
-        mediaPlayer.setOnPreparedListener {
-            print("End Media Loaded")
-        }
-
         binding.button.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            when {
-                isRunning -> {
-                    pauseTimer()
-                }
-                isPaused -> {
-
-                    //startTimer(timeInMilliSeconds)
-                }
-                else -> timeSheet.show()
-            }
+            timeSheet.show()
         }
 
-        binding.stop.setOnClickListener {
-            resetTimer()
-        }
-    }
 
-    internal fun resetTimer() {
-        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        countDownTimer.cancel()
-        binding.button.text = "Begin"
-        isRunning = false
-        isPaused = false
-        binding.stop.visibility = View.INVISIBLE
-        binding.textView4.visibility = View.VISIBLE
-        binding.textView5.visibility = View.VISIBLE
-        binding.timeLeft.visibility = View.INVISIBLE
-
-        TimerStore(requireContext()).active = false
-
-        NotificationManagerCompat.from(requireContext()).apply {
-            cancel(12)
-        }
-    }
-
-    private fun startTimer(timeInSeconds: Long) {
-
-        //Store total time in miliseconds here
-        TimerStore(requireContext()).duration = timeInSeconds
-        TimerStore(requireContext()).active = true
-
-        countDownTimer = object : CountDownTimer(timeInSeconds, 1000) {
-
-            override fun onFinish() {
-                // Stop the timer
-                resetTimer()
-
-                // Shows a burst of confetti when the timer finishes
-                builder.setContentTitle("Meditating complete!")
-                builder.setContentText("You meditated for $maxMin:$maxSec")
-                NotificationManagerCompat.from(requireContext()).apply {
-                    notify(12, builder.build())
-                }
-                binding.viewKonfetti.build()
-                    .addColors(
-                        Color.parseColor("#A864FD"),
-                        Color.parseColor("#29CDFF"),
-                        Color.parseColor("#78FF44"),
-                        Color.parseColor("#FF718D"),
-                        Color.parseColor("#FDFF6A")
-                    )
-                    .setDirection(0.0, 359.0)
-                    .setSpeed(1f, 5f)
-                    .setFadeOutEnabled(true)
-                    .setTimeToLive(2000L)
-                    .addShapes(
-                        Shape.Square,
-                        Shape.Circle
-                    )
-                    .addSizes(Size(10))
-                    .setPosition(
-                        binding.viewKonfetti.x + binding.viewKonfetti.width / 2,
-                        binding.viewKonfetti.y + binding.viewKonfetti.height / 2
-                    )
-                    .burst(100)
-                mediaPlayer.start()
-            }
-
-            // Updates the text of the timer every second
-            override fun onTick(p0: Long) {
-                updateTextUI(p0)
-            }
-        }
-        val sharedpreferences: SharedPreferences? =
-            context?.getSharedPreferences("timer", Context.MODE_PRIVATE)
-
-        val editor = sharedpreferences?.edit()
-
-        (editor ?: return).putBoolean("new", false)
-        editor.apply()
-
-        // Start the timer
-        countDownTimer.start()
-        isRunning = true
-        binding.textView4.visibility = View.INVISIBLE
-        binding.textView5.visibility = View.INVISIBLE
-        binding.timeLeft.visibility = View.VISIBLE
-        binding.button.text = "Pause"
-        binding.stop.visibility = View.VISIBLE
-
-        builder = NotificationCompat.Builder(requireContext(), "BQ.Timer").apply {
-            setContentTitle("Picture Download")
-            setContentText("Download in progress")
-            setSmallIcon(R.drawable.nav_meditate)
-            priority = NotificationCompat.PRIORITY_LOW
-            setCategory(NotificationCompat.CATEGORY_PROGRESS)
-            setOnlyAlertOnce(true)
-            setOngoing(true)
-        }
-
-        val progressMax = 100
-        val progressCurrent = 0
-
-        NotificationManagerCompat.from(requireContext()).apply {
-            // Issue the initial notification with zero progress
-            builder.setProgress(progressMax, progressCurrent, false)
-            notify(12, builder.build())
-        }
-    }
-
-    internal fun updateTextUI(time: Long) {
-        timeInMilliSeconds = time
-        val minute = (time / 1000) / 60
-        val seconds = (time / 1000) % 60
-        builder.setContentTitle("Meditating for $maxMin:$maxSec")
-        builder.setContentText("Time left: $minute:$seconds")
-        builder.setProgress(durationM.toInt(), time.toInt() / 1000, false)
-        NotificationManagerCompat.from(requireContext()).apply {
-            notify(12, builder.build())
-        }
-        binding.timeLeft.text = "$minute:$seconds"
-    }
-
-
-    private fun pauseTimer() {
-        binding.button.text = "Resume"
-        isPaused = true
-        countDownTimer.cancel()
-        binding.stop.visibility = View.VISIBLE
-        builder.setContentTitle("Meditating for $maxMin:$maxSec has been paused")
-        NotificationManagerCompat.from(requireContext()).apply {
-            notify(12, builder.build())
-        }
     }
 }

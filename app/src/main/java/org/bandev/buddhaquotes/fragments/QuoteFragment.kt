@@ -28,6 +28,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
@@ -53,6 +54,8 @@ class QuoteFragment : Fragment() {
     private val binding get() = _binding!!
     private var quotes = Quotes()
     private var liked = false
+    private var options = mutableListOf<Option>()
+    private var options_str = mutableListOf<String>()
 
     /**
      * Sets the correct view of the Fragment
@@ -90,6 +93,7 @@ class QuoteFragment : Fragment() {
             toggleFavouriteQuote()
         }
 
+
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
             OptionsSheet().show(requireContext()) {
@@ -126,14 +130,23 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
+        updateOptionsList()
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             title(R.string.addToList)
             with(
-                Option("Hello")
+                options
             )
             onPositive { index: Int, option: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
+                Lists().addToList(quote, options_str[index], requireContext())
+                Snackbar.make(
+                    binding.root,
+                    getString(R.string.added) + " " + options_str[index],
+                    Snackbar.LENGTH_LONG
+                )
+                    .show()
             }
         }
     }
@@ -201,6 +214,20 @@ class QuoteFragment : Fragment() {
                 )
             )
             binding.likeAnimator.likeAnimation()
+        }
+    }
+
+    private fun updateOptionsList() {
+        options.clear()
+        options_str.clear()
+        for (list in Lists().getMasterList(requireContext())) {
+            val drawable = if (list == "Favourites") {
+                R.drawable.ic_heart_octicons
+            } else {
+                R.drawable.ic_list_octicons
+            }
+            options.add(Option(drawable, list))
+            options_str.add(list)
         }
     }
 
