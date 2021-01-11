@@ -32,11 +32,12 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
-import com.maxkeppeler.bottomsheets.color.ColorSheet
-import com.maxkeppeler.bottomsheets.color.ColorView
-import com.maxkeppeler.bottomsheets.options.DisplayMode
-import com.maxkeppeler.bottomsheets.options.Option
-import com.maxkeppeler.bottomsheets.options.OptionsSheet
+import com.maxkeppeler.sheets.color.ColorSheet
+import com.maxkeppeler.sheets.color.ColorView
+import com.maxkeppeler.sheets.core.SheetStyle
+import com.maxkeppeler.sheets.options.DisplayMode
+import com.maxkeppeler.sheets.options.Option
+import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -196,7 +197,7 @@ class Settings : AppCompatActivity() {
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
-                closeButtonDrawable(R.drawable.ic_down_arrow)
+                style(SheetStyle.DIALOG)
                 displayMode(DisplayMode.GRID_VERTICAL)
                 with(
                     Option(R.drawable.ic_default, R.string.en),
@@ -250,7 +251,7 @@ class Settings : AppCompatActivity() {
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
-                closeButtonDrawable(R.drawable.ic_down_arrow)
+                style(SheetStyle.DIALOG)
                 with(
                     Option(R.drawable.ic_day_settings, R.string.light_mode),
                     Option(R.drawable.ic_night_settings, R.string.dark_mode),
@@ -318,7 +319,7 @@ class Settings : AppCompatActivity() {
                     )
                 )
                 title(R.string.settings_accent_colour)
-                closeButtonDrawable(R.drawable.ic_down_arrow)
+                style(SheetStyle.DIALOG)
                 defaultView(ColorView.TEMPLATE)
                 disableSwitchColorView()
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }

@@ -28,8 +28,8 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.maxkeppeler.bottomsheets.time_clock.TimeFormat
-import com.maxkeppeler.bottomsheets.time_clock.TimeSheet
+import com.maxkeppeler.sheets.time.TimeFormat
+import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -114,7 +114,6 @@ class Timer : AppCompatActivity() {
     private fun reset() {
         TimeSheet().show(this) {
             title(R.string.meditation_timer)
-            closeButtonDrawable(R.drawable.ic_down_arrow)
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->

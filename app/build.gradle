@@ -52,7 +52,7 @@ dependencies {
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.6.4'
+    implementation 'com.mikepenz:aboutlibraries-core:8.6.5'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
@@ -61,11 +61,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0-beta01'
 
     // Bottom sheets
-    implementation 'com.maxkeppeler.bottomsheets:core:1.1.2'
-    implementation 'com.maxkeppeler.bottomsheets:input:1.1.2'
-    implementation 'com.maxkeppeler.bottomsheets:color:1.1.2'
-    implementation 'com.maxkeppeler.bottomsheets:options:1.1.2'
-    implementation 'com.maxkeppeler.bottomsheets:time:1.1.2'
+    implementation 'com.maxkeppeler.sheets:core:2.0.0'
+    implementation 'com.maxkeppeler.sheets:input:2.0.0'
+    implementation 'com.maxkeppeler.sheets:color:2.0.0'
+    implementation 'com.maxkeppeler.sheets:options:2.0.0'
+    implementation 'com.maxkeppeler.sheets:time:2.0.0'
 
     // AppCompat
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'

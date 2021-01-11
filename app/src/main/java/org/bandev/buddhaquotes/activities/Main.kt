@@ -28,16 +28,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
-import com.maxkeppeler.bottomsheets.input.InputSheet
-import com.maxkeppeler.bottomsheets.input.Validation
-import com.maxkeppeler.bottomsheets.input.type.InputEditText
+import com.maxkeppeler.sheets.input.InputSheet
+import com.maxkeppeler.sheets.input.Validation
+import com.maxkeppeler.sheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import org.bandev.buddhaquotes.fragments.ListsFragment
 import org.bandev.buddhaquotes.fragments.QuoteFragment
 import java.util.*
 
@@ -52,7 +50,7 @@ import java.util.*
  * @author jack.txt & Fennec_exe
  */
 
-class Main : AppCompatActivity(), QuoteFragment.TextClickedListener {
+class Main : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
 
@@ -97,7 +95,6 @@ class Main : AppCompatActivity(), QuoteFragment.TextClickedListener {
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
-        binding.viewPager.offscreenPageLimit = 1
         val sharedPreferences2 = getSharedPreferences("timer", 0)
 
         if (sharedPreferences2.getBoolean("new", true)) {
@@ -165,7 +162,6 @@ class Main : AppCompatActivity(), QuoteFragment.TextClickedListener {
 
         InputSheet().show(this) {
             title("Create new list")
-            closeButtonDrawable(R.drawable.ic_down_arrow)
             with(InputEditText {
                 required()
                 hint("Insert name")
@@ -204,15 +200,4 @@ class Main : AppCompatActivity(), QuoteFragment.TextClickedListener {
             }
         }
     }
-
-    override fun sendText(text: String) {
-        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-    }
-
-    override fun onAttachFragment(fragment: Fragment) {
-        if (fragment is QuoteFragment) {
-            fragment.setOnTextClickedListener(this)
-        }
-    }
-
 }

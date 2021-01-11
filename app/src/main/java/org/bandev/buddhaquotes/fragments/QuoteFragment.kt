@@ -28,11 +28,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.maxkeppeler.bottomsheets.options.DisplayMode
-import com.maxkeppeler.bottomsheets.options.Option
-import com.maxkeppeler.bottomsheets.options.OptionsSheet
+import com.maxkeppeler.sheets.options.DisplayMode
+import com.maxkeppeler.sheets.options.Option
+import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Main
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
@@ -49,17 +48,6 @@ import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
  */
 
 class QuoteFragment : Fragment() {
-
-    lateinit var mCallback: TextClickedListener
-
-    //defining Interface
-    interface TextClickedListener {
-        fun sendText(text: String)
-    }
-
-    fun setOnTextClickedListener(callback: TextClickedListener) {
-        this.mCallback = callback
-    }
 
     private var _binding: FragmentQuoteBinding? = null
     private val binding get() = _binding!!
@@ -107,7 +95,6 @@ class QuoteFragment : Fragment() {
             OptionsSheet().show(requireContext()) {
                 displayMode(DisplayMode.LIST)
                 title(R.string.more)
-                closeButtonDrawable(R.drawable.ic_down_arrow)
                 with(
                     Option(R.drawable.ic_share, R.string.share),
                     Option(R.drawable.ic_add_circle, R.string.addToList)
@@ -142,7 +129,6 @@ class QuoteFragment : Fragment() {
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             title(R.string.addToList)
-            closeButtonDrawable(R.drawable.ic_down_arrow)
             with(
                 Option("Hello")
             )
@@ -189,7 +175,6 @@ class QuoteFragment : Fragment() {
                     R.drawable.heart_full_red
                 )
             )
-            mCallback.sendText("YOUR TEXT")
             binding.likeAnimator.likeAnimation()
         } else {
             binding.like.setImageDrawable(

@@ -39,7 +39,7 @@ class Splash : AppCompatActivity() {
         val darkmode = sharedPreferences.getBoolean("dark_mode", false)
         val sys = sharedPreferences.getBoolean("sys", true)
 
-        // Clear the user's data
+        // Clear the stored data
         Store(this).fragment = 0
         Store(this).quoteID = 0
 
