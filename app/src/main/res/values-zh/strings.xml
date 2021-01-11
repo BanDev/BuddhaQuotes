@@ -618,4 +618,7 @@
     <string name="add">加</string>
     <string name="new_str">新</string>
     <string name="added">添加报价到</string>
+    <string name="exists">此報價已存在於</string>
+
+    <string name="start">開始</string>
 </resources>

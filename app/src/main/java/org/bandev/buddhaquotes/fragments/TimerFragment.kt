@@ -85,7 +85,7 @@ class TimerFragment : Fragment() {
 
         // Builds the bottom sheet that allows for an input of time
         timeSheet = TimeSheet().build(requireContext()) {
-            title("Meditation timer")
+            title(R.string.meditation_timer)
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->

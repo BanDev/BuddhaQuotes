@@ -140,13 +140,31 @@ class QuoteFragment : Fragment() {
             onPositive { index: Int, option: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
-                Lists().addToList(quote, options_str[index], requireContext())
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.added) + " " + options_str[index],
-                    Snackbar.LENGTH_LONG
-                )
-                    .show()
+                if (!Lists().queryInList(quote, options_str[index], requireContext())) {
+                    Lists().addToList(quote, options_str[index], requireContext())
+                    Snackbar.make(
+                        binding.root,
+                        getString(R.string.added) + " " + options_str[index],
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
+                    if (options_str[index] == "Favourites") {
+                        binding.like.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.heart_full_red
+                            )
+                        )
+                    }
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        getString(R.string.exists) + " " + options_str[index],
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
+                }
+
             }
         }
     }

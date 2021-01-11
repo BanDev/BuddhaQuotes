@@ -619,4 +619,7 @@
     <string name="add">Add</string>
     <string name="new_str">New</string>
     <string name="added">Added quote to </string>
+    <string name="exists">This quote already exists in </string>
+
+    <string name="start">Start</string>
 </resources>
