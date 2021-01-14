@@ -20,24 +20,23 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.graphics.Color
+import android.content.res.Configuration
+import android.graphics.Color.*
+import android.os.Build
 import android.os.Bundle
-import android.view.ViewConfiguration
-import androidx.core.view.WindowCompat
+import android.view.View
+import android.view.WindowInsetsController
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
-import com.github.appintro.AppIntroPageTransformerType
 import org.bandev.buddhaquotes.R
 
 class Intro : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Make sure you don't call setContentView!
 
         isVibrate = true
         vibrateDuration = 30L
-        setTransformer(AppIntroPageTransformerType.Fade)
 
         // If this is run, user is new so mark latestShown as shown for this
         // release meaning they all of the new release rubbish until they
@@ -47,59 +46,96 @@ class Intro : AppIntro2() {
         editor.putString("latestShown", getString(R.string.version))
         editor.apply()
 
-        // Checks whether the user has a navigation bar or uses gestures
-        if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
-            // If they have a navigation bar, hide the status bar and navigation bar
-            setImmersiveMode()
-        } else {
-            // If they use gestures, show the status bar, set it transparent and draw the background behind it
-            showStatusBar(true)
-            setStatusBarColor(Color.TRANSPARENT)
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-        }
+        showStatusBar(true)
 
-        // Call addSlide passing your Fragments
-        // You can use AppIntroFragment to use a pre-built fragment
-        addSlide(
-            AppIntroFragment.newInstance(
-                title = getString(R.string.app_name),
-                description = getString(R.string.appintro1_description),
-                imageDrawable = R.drawable.ic_buddha_no_background,
-                backgroundDrawable = R.drawable.slide_1,
-            )
-        )
-        addSlide(
-            AppIntroFragment.newInstance(
-                title = getString(R.string.appintro2_title),
-                description = getString(R.string.appintro2_description),
-                imageDrawable = R.drawable.ic_quotation_marks,
-                backgroundDrawable = R.drawable.slide_2,
-            )
-        )
-        addSlide(
-            AppIntroFragment.newInstance(
-                title = getString(R.string.appintro3_title),
-                description = getString(R.string.appintro3_description),
-                imageDrawable = R.drawable.heart_full_white_large,
-                backgroundDrawable = R.drawable.slide_3,
-            )
-        )
-        addSlide(
-            AppIntroFragment.newInstance(
-                title = getString(R.string.appintro4_title),
-                description = getString(R.string.appintro4_description),
-                imageDrawable = R.drawable.ic_palette_large,
-                backgroundDrawable = R.drawable.slide_4,
-            )
-        )
-        addSlide(
-            AppIntroFragment.newInstance(
-                title = getString(R.string.appintro5_title),
-                description = getString(R.string.appintro5_description),
-                imageDrawable = R.drawable.ic_meditate,
-                backgroundDrawable = R.drawable.slide_5,
-            )
-        )
+        when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.app_name),
+                        description = getString(R.string.appintro1_description),
+                        imageDrawable = R.drawable.ic_buddha_no_background,
+                        backgroundDrawable = R.drawable.slide_1,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro2_title),
+                        description = getString(R.string.appintro2_description),
+                        imageDrawable = R.drawable.ic_quotation_marks,
+                        backgroundDrawable = R.drawable.slide_2,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro3_title),
+                        description = getString(R.string.appintro3_description),
+                        imageDrawable = R.drawable.heart_full_white_large,
+                        backgroundDrawable = R.drawable.slide_3,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro4_title),
+                        description = getString(R.string.appintro4_description),
+                        imageDrawable = R.drawable.ic_palette_large,
+                        backgroundDrawable = R.drawable.slide_4,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro5_title),
+                        description = getString(R.string.appintro5_description),
+                        imageDrawable = R.drawable.ic_meditate,
+                        backgroundDrawable = R.drawable.slide_5,
+                    )
+                )
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                setStatusBarColorRes(R.color.background)
+                setNavBarColorRes(R.color.background)
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.app_name),
+                        description = getString(R.string.appintro1_description),
+                        imageDrawable = R.drawable.ic_buddha_no_background,
+                        backgroundDrawable = R.color.background,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro2_title),
+                        description = getString(R.string.appintro2_description),
+                        imageDrawable = R.drawable.ic_quotation_marks,
+                        backgroundDrawable = R.color.background,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro3_title),
+                        description = getString(R.string.appintro3_description),
+                        imageDrawable = R.drawable.heart_full_white_large,
+                        backgroundDrawable = R.color.background,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro4_title),
+                        description = getString(R.string.appintro4_description),
+                        imageDrawable = R.drawable.ic_palette_large,
+                        backgroundDrawable = R.color.background,
+                    )
+                )
+                addSlide(
+                    AppIntroFragment.newInstance(
+                        title = getString(R.string.appintro5_title),
+                        description = getString(R.string.appintro5_description),
+                        imageDrawable = R.drawable.ic_meditate,
+                        backgroundDrawable = R.color.background,
+                    )
+                )
+            }
+        }
     }
 
     override fun onSkipPressed(currentFragment: Fragment?) {

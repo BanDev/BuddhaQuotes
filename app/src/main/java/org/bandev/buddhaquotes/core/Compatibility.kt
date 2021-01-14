@@ -49,7 +49,7 @@ class Compatibility {
      * @param [window] context of window (Window)
      */
 
-    fun setNavigationBarColourWhite(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBarColourDefault(context: Context, window: Window, resources: Resources) {
         if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
@@ -105,7 +105,7 @@ class Compatibility {
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
+                        ResourcesCompat.getColor(resources, R.color.abbBackgroundColor , null)
                 }
             }
         }
