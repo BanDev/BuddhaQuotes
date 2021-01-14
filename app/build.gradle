@@ -44,10 +44,6 @@ android {
 
     bundle {
         language {
-            // Specifies that the app bundle should not support
-            // configuration APKs for language resources. These
-            // resources are instead packaged with each base and
-            // dynamic feature APK.
             enableSplit = false
         }
     }
@@ -59,7 +55,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.quiph.ui:recyclerviewfastscroller:1.0.0'
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
-    implementation "com.github.skydoves:transformationlayout:1.0.7"
+    implementation 'com.github.skydoves:transformationlayout:1.0.7'
 
     // AboutLibraries
     implementation 'com.mikepenz:aboutlibraries-core:8.6.5'

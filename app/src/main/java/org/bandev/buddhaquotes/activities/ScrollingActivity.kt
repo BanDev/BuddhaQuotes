@@ -50,7 +50,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourWhite(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
         Languages().setLanguage(this)
 
         // Setup view binding
