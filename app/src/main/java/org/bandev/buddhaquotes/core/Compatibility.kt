@@ -105,7 +105,7 @@ class Compatibility {
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {
                     window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.abbBackgroundColor , null)
+                        ResourcesCompat.getColor(resources, R.color.abbBackgroundColor, null)
                 }
             }
         }

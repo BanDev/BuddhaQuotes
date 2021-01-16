@@ -56,7 +56,7 @@ class Timer : AppCompatActivity() {
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColourDefault(this, window, resources)
-        Languages().setLanguage(this)
+        Languages(baseContext).setLanguage()
 
         // Setup da view
         binding = ActivityTimerBinding.inflate(layoutInflater)

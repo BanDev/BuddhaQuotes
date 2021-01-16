@@ -55,7 +55,7 @@ class Settings : AppCompatActivity() {
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColourDefault(this, window, resources)
-        Languages().setLanguage(this)
+        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -181,7 +181,7 @@ class Settings : AppCompatActivity() {
 
         private fun updateLanguageSummary() {
             val language = findPreference<Preference>("app_language")
-            val int = Languages().getLanguageAsInt(requireContext())
+            val int = Languages(base = context).getLanguageAsInt(requireContext())
             val singleItems = resources.getStringArray(R.array.language_entries)
             (language ?: return).summary = singleItems[int]
         }
@@ -216,7 +216,7 @@ class Settings : AppCompatActivity() {
                         requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
 
-                    if (Languages().getLanguageAsInt(requireContext()) != index) {
+                    if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
                         editor.putInt("app_language_int", index)
                         editor.putString("app_language", values[index])
                         editor.apply()
