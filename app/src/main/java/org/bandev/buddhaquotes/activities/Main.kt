@@ -63,7 +63,7 @@ class Main : AppCompatActivity() {
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColourMain(this, window, resources)
-        Languages().setLanguage(this)
+        Languages(baseContext).setLanguage()
 
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val editor = sharedPreferences.edit()

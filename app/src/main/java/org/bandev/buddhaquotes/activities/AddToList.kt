@@ -30,10 +30,7 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.core.Quotes
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import java.util.*
 
@@ -47,7 +44,7 @@ class AddToList : AppCompatActivity() {
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColourDefault(this, window, resources)
-        Languages().setLanguage(this)
+        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = AddlistContentBinding.inflate(layoutInflater)
@@ -71,10 +68,8 @@ class AddToList : AppCompatActivity() {
                 val pref = getSharedPreferences("List_system", 0)
                 val editor = pref.edit()
                 val listArr = pref.getString(list, "")
-                val listArrPref: MutableList<String> = (
-                    listArr?.split("//")
-                        ?: return@OnItemClickListener
-                    ).toMutableList()
+                val listArrPref: MutableList<String> =
+                    (listArr?.split("//") ?: return@OnItemClickListener).toMutableList()
                 val listArrFinal = LinkedList(listArrPref)
                 val intent2 = Intent(this, ScrollingActivity::class.java)
                 val mBundle = Bundle()

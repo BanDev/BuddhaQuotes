@@ -43,7 +43,7 @@ class About : AppCompatActivity() {
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
         Compatibility().setNavigationBarColourDefault(this, window, resources)
-        Languages().setLanguage(this)
+        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityAboutBinding.inflate(layoutInflater)
