@@ -61,7 +61,7 @@ class UpdateInfo : AppCompatActivity() {
         editor.apply()
     }
 
-    fun readDocs() {
+    private fun readDocs() {
         // Open the url for our changelog for the update
         val docs = Intent(Intent.ACTION_VIEW, Uri.parse(updateBlogLink))
         startActivity(docs)
