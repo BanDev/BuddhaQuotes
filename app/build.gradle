@@ -58,7 +58,7 @@ dependencies {
     implementation 'com.github.skydoves:transformationlayout:1.0.7'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.6.5'
+    implementation 'com.mikepenz:aboutlibraries-core:8.6.8'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
@@ -80,8 +80,8 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // Navigation components
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 
     // Lifecycle components
