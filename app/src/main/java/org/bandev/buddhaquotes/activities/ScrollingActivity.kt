@@ -29,6 +29,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.skydoves.transformationlayout.TransformationAppCompatActivity
+import com.skydoves.transformationlayout.onTransformationStartContainer
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
@@ -46,6 +48,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     private lateinit var adapter: QuoteRecycler
     private lateinit var prefList: List<String>
     private var listTmp: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

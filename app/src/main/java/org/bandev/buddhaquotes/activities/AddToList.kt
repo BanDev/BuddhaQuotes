@@ -24,17 +24,18 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.ArrayAdapter
-import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
+import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
 
-class AddToList : AppCompatActivity() {
+class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
 
@@ -56,13 +57,16 @@ class AddToList : AppCompatActivity() {
             onBackPressed()
         }
 
-        val list = (intent.getStringExtra("list") ?: return).toString()
-        val names = genList()
-        val adapter: ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
+        val quotes = genList()
 
-        binding.listView.adapter = adapter
+        with(binding.recycler) {
+            adapter = AddQuoteRecycler(quotes, this@AddToList)
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
 
-        binding.listView.onItemClickListener =
+
+        /*binding.listView.onItemClickListener =
             OnItemClickListener { _, view, position, _ ->
 
                 val pref = getSharedPreferences("List_system", 0)
@@ -109,15 +113,43 @@ class AddToList : AppCompatActivity() {
                 adapter.filter.filter(p0)
                 return false
             }
-        })
+        })*/
     }
 
-    private fun genList(): ArrayList<String> {
-        val list = ArrayList<String>()
+    override fun onClick(quote: String) {
+        val list = (intent.extras ?: return).getString("list").toString()
+        val lists = Lists()
+        if (!lists.queryInList(quote, list, this)) {
+            lists.addToList(quote, list, this)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+            } else {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+
+            val intent2 = Intent(this, ScrollingActivity::class.java)
+            intent2.putExtra("list", list)
+            startActivity(intent2)
+            finish()
+
+        } else {
+            Snackbar.make(binding.root, "This quote is already in the list!", Snackbar.LENGTH_SHORT)
+                .show()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
+            } else {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+        }
+    }
+
+    private fun genList(): ArrayList<AddQuoteItem> {
+        val list = ArrayList<AddQuoteItem>()
         val max = 237
         var i = 1
         while (i != max) {
-            list.add(Quotes().getQuote(i, this))
+            val quote = Quotes().getQuote(i, this)
+            list.add(AddQuoteItem(quote))
             i++
         }
 
