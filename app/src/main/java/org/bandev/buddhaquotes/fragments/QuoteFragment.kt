@@ -254,6 +254,7 @@ class QuoteFragment : Fragment() {
             }
             options.add(Option(drawable, list))
             optionStr.add(list)
+            EventBus.getDefault().post(MessageEvent.MessageA(true))
         }
     }
 
