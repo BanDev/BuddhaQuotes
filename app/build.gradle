@@ -55,10 +55,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.quiph.ui:recyclerviewfastscroller:1.0.0'
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
-    implementation 'com.github.skydoves:transformationlayout:1.0.7'
+    implementation 'org.greenrobot:eventbus:3.2.0'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.6.8'
+    implementation 'com.mikepenz:aboutlibraries-core:8.7.0'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'

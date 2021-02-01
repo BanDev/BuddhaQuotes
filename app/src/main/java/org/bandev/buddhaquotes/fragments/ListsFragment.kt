@@ -33,6 +33,9 @@ import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * ListsFragment is the fragment that allows users to manage their lists.
@@ -65,6 +68,20 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         setHasOptionsMenu(true)
         _binding = FragmentListsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MessageEvent) {
+        masterlist = Lists().getMasterList(requireContext())
+
+        masterListFinal = generateMasterList(masterlist.size, masterlist)
+
+        with(binding.recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ListRecycler(masterListFinal, this@ListsFragment)
+            setHasFixedSize(false)
+        }
     }
 
     /**
@@ -144,7 +161,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         bundle.putString("list", masterlist[position])
         bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
-        this.startActivity(intent)
+        startActivity(intent)
         activity?.finish()
         activity?.overridePendingTransition(
             android.R.anim.fade_in,
@@ -156,5 +173,15 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         Lists().removeList(text, requireContext())
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

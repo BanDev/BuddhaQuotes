@@ -51,7 +51,6 @@ class TimerFragment : Fragment() {
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
     private lateinit var timeSheet: TimeSheet
-    var timeInMilliSeconds: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,9 +68,9 @@ class TimerFragment : Fragment() {
         timeSheet = TimeSheet().build(requireContext()) {
             title(R.string.meditation_timer)
             format(TimeFormat.MM_SS)
+            minTime(1)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                 } else {
