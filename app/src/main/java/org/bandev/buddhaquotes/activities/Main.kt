@@ -35,6 +35,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import org.bandev.buddhaquotes.fragments.ListsFragment
 import java.util.*
 
 /**
@@ -71,8 +72,7 @@ class Main : AppCompatActivity() {
         if (sharedPreferences.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            val i = Intent(this, Intro::class.java)
-            startActivity(i)
+            startActivity(Intent(this, Intro::class.java))
         } else if (sharedPreferences.getString(
                 "latestShown",
                 "null"
@@ -92,14 +92,6 @@ class Main : AppCompatActivity() {
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
-        val sharedPreferences2 = getSharedPreferences("timer", 0)
-
-        if (sharedPreferences2.getBoolean("new", true)) {
-            binding.bottomBar.setBadgeAtTabIndex(
-                2,
-                AnimatedBottomBar.Badge(getString(R.string.new_str))
-            )
-        }
 
         binding.bottomBar.setOnTabInterceptListener(object :
             AnimatedBottomBar.OnTabInterceptListener {

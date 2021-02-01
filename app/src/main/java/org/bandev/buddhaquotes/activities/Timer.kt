@@ -33,7 +33,7 @@ import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.GoodTime
+import org.bandev.buddhaquotes.core.Time
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
@@ -69,7 +69,7 @@ class Timer : AppCompatActivity() {
         durationTimeInS = durationTimeInMillis * 1000
 
         // Work out a lovely string version of the maximum time
-        maxTime = GoodTime().convertToString(
+        maxTime = Time().convertToString(
             durationTimeInMillis / 60,
             durationTimeInMillis % 60,
             this

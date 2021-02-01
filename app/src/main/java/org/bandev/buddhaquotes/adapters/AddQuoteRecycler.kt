@@ -1,3 +1,23 @@
+/**
+
+Buddha Quotes
+Copyright (C) 2021  BanDev
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+ */
+
 package org.bandev.buddhaquotes.adapters
 
 import android.view.LayoutInflater
@@ -36,7 +56,8 @@ class AddQuoteRecycler(
 
     override fun getItemCount(): Int = addquoteList.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         val binding: AddQuoteItemBinding = AddQuoteItemBinding.bind(itemView)
         val quote: TextView = binding.quote
 
@@ -53,7 +74,7 @@ class AddQuoteRecycler(
         fun onClick(quote: String)
     }
 
-    override fun getFilter() = exampleFilter
+    override fun getFilter(): Filter = exampleFilter
 
     private val exampleFilter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {

@@ -25,12 +25,11 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.skydoves.transformationlayout.TransformationAppCompatActivity
-import com.skydoves.transformationlayout.onTransformationStartContainer
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Colours
@@ -104,11 +103,13 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         return when (item.itemId) {
             R.id.add -> {
                 val intent2 = Intent(this, AddToList::class.java)
-                val b = Bundle()
-                b.putString("list", listTmp) // Your id
-                intent2.putExtras(b)
-                this.startActivity(intent2)
+                intent2.putExtra("list", listTmp)
+                startActivity(intent2)
                 finish()
+                overridePendingTransition(
+                    R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -157,9 +158,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-
-            val text = clickedItem.quote + "\n\n~Buddha"
-
+            val text = clickedItem.quote + "\n\n" + getString(R.string.attribution_buddha)
             putExtra(Intent.EXTRA_TEXT, text)
             type = "text/plain"
         }

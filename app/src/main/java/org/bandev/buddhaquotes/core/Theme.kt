@@ -31,7 +31,7 @@ class Theme {
      */
 
     fun getAppTheme(context: Context): Int {
-        val pref = context.getSharedPreferences("Settings", 0)
-        return pref.getInt("appThemeInt", 2)
+        val sharedPrefs = context.getSharedPreferences("Settings", 0)
+        return sharedPrefs.getInt("appThemeInt", 2)
     }
 }

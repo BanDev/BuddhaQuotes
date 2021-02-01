@@ -39,6 +39,10 @@ import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.core.Store
 import org.bandev.buddhaquotes.custom.OnDoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import android.widget.Toast
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
@@ -51,7 +55,7 @@ import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 class QuoteFragment : Fragment() {
 
     private var _binding: FragmentQuoteBinding? = null
-    private val binding get() = _binding!!
+    internal val binding get() = _binding!!
     private var quotes = Quotes()
     private var liked = false
     private var options = mutableListOf<Option>()
@@ -74,6 +78,10 @@ class QuoteFragment : Fragment() {
         return binding.root
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MessageEvent) {
+    }
+
     /**
      * Called when view is full made
      * @param view [View]
@@ -88,9 +96,9 @@ class QuoteFragment : Fragment() {
             setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
         }
 
-        // Toggles the quote in favourites (If favourited, unfavourite. If unfavourited, favourite)
         binding.like.setOnClickListener {
             toggleFavouriteQuote()
+            EventBus.getDefault().post(MessageEvent.MessageA(true))
         }
 
         // Shows the options bottom sheet
@@ -102,12 +110,13 @@ class QuoteFragment : Fragment() {
                     Option(R.drawable.ic_share, R.string.share),
                     Option(R.drawable.ic_add_circle, R.string.addToList)
                 )
-                onPositive { index: Int, option: Option ->
+                onPositive { index: Int, _: Option ->
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     if (index == 0) {
                         val sendIntent: Intent = Intent().apply {
                             action = Intent.ACTION_SEND
-                            val text = binding.quote.text.toString() + R.string.attribution_buddha
+                            val text =
+                                binding.quote.text.toString() + "\n\n" + getString(R.string.attribution_buddha)
                             putExtra(Intent.EXTRA_TEXT, text)
                             type = "text/plain"
                         }
@@ -123,7 +132,11 @@ class QuoteFragment : Fragment() {
         // Favourites the quote on double click
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
-                doubleClickFavouriteQuote()
+                val quote = binding.quote.text.toString()
+                if (!Lists().queryInList(quote, "Favourites", requireContext())) {
+                    doubleClickFavouriteQuote()
+                    EventBus.getDefault().post(MessageEvent.MessageA(true))
+                }
             }
         })
     }
@@ -136,7 +149,7 @@ class QuoteFragment : Fragment() {
             with(
                 options
             )
-            onPositive { index: Int, option: Option ->
+            onPositive { index: Int, _: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
                 if (!Lists().queryInList(quote, optionStr[index], requireContext())) {
@@ -220,16 +233,14 @@ class QuoteFragment : Fragment() {
 
     internal fun doubleClickFavouriteQuote() {
         val quote = binding.quote.text.toString()
-        if (!Lists().queryInList(quote, "Favourites", requireContext())) {
-            Lists().addToList(quote, "Favourites", requireContext())
-            binding.like.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.heart_full_red
-                )
+        Lists().addToList(quote, "Favourites", requireContext())
+        binding.like.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.heart_full_red
             )
-            binding.likeAnimator.likeAnimation()
-        }
+        )
+        binding.likeAnimator.likeAnimation()
     }
 
     private fun updateOptionsList() {
@@ -261,5 +272,15 @@ class QuoteFragment : Fragment() {
             instance.arguments = args
             return instance
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

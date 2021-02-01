@@ -37,7 +37,6 @@ import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
 
-
 class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
@@ -72,28 +71,30 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     override fun onClick(quote: String) {
         val list = (intent.extras ?: return).getString("list").toString()
-        val lists = Lists()
-        if (!lists.queryInList(quote, list, this)) {
-            lists.addToList(quote, list, this)
+        if (!Lists().queryInList(quote, list, this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-
+            Lists().addToList(quote, list, this)
             val intent2 = Intent(this, ScrollingActivity::class.java)
             intent2.putExtra("list", list)
             startActivity(intent2)
             finish()
+            overridePendingTransition(
+                R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right
+            )
 
         } else {
-            Snackbar.make(binding.root, "This quote is already in the list!", Snackbar.LENGTH_SHORT)
-                .show()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
+            Snackbar.make(binding.root, "This quote is already in $list", Snackbar.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -132,10 +133,12 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
     override fun onBackPressed() {
         val list = (intent.getStringExtra("list") ?: return).toString()
         val intent2 = Intent(this, ScrollingActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("list", list)
-        intent2.putExtras(mBundle)
-        this.startActivity(intent2)
+        intent2.putExtra("list", list)
+        startActivity(intent2)
         finish()
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
     }
 }

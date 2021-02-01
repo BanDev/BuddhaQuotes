@@ -23,7 +23,7 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import org.bandev.buddhaquotes.R
 
-class GoodTime {
+class Time {
 
     fun convertToString(minutes: Long, seconds: Long, context: Context): String {
         return if (minutes > 0) {
