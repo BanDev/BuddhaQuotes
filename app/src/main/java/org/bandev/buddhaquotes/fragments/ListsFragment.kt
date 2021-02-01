@@ -74,7 +74,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: MessageEvent) {
         masterlist = Lists().getMasterList(requireContext())
-
         masterListFinal = generateMasterList(masterlist.size, masterlist)
 
         with(binding.recyclerView) {
