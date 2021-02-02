@@ -10,6 +10,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/toolbar"
         android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
