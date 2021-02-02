@@ -31,6 +31,8 @@ import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
+import org.bandev.buddhaquotes.custom.Notify
+import org.bandev.buddhaquotes.custom.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 import org.greenrobot.eventbus.EventBus
@@ -70,16 +72,30 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         return binding.root
     }
 
-    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: MessageEvent) {
+    private fun setupRecycler() {
         masterlist = Lists().getMasterList(requireContext())
+
         masterListFinal = generateMasterList(masterlist.size, masterlist)
 
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
             adapter = ListRecycler(masterListFinal, this@ListsFragment)
             setHasFixedSize(false)
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventReceive(event: SendEvent) {
+        setupRecycler()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNotifyReceive(event: Notify) {
+        when (event) {
+            is Notify.NotifyNewList -> {
+                Lists().newList(event.listName, requireContext())
+                setupRecycler()
+            }
         }
     }
 
@@ -90,15 +106,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        masterlist = Lists().getMasterList(requireContext())
-
-        masterListFinal = generateMasterList(masterlist.size, masterlist)
-
-        with(binding.recyclerView) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ListRecycler(masterListFinal, this@ListsFragment)
-            setHasFixedSize(false)
-        }
+        setupRecycler()
     }
 
     /**

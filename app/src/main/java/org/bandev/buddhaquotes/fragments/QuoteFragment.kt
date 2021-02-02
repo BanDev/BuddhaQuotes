@@ -33,16 +33,13 @@ import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.core.Quotes
-import org.bandev.buddhaquotes.core.Store
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.OnDoubleClickListener
+import org.bandev.buddhaquotes.custom.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import android.widget.Toast
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
@@ -79,7 +76,7 @@ class QuoteFragment : Fragment() {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: MessageEvent) {
+    fun onMessageEvent(event: SendEvent) {
     }
 
     /**
@@ -98,7 +95,7 @@ class QuoteFragment : Fragment() {
 
         binding.like.setOnClickListener {
             toggleFavouriteQuote()
-            EventBus.getDefault().post(MessageEvent.MessageA(true))
+            EventBus.getDefault().post(SendEvent.ToListFragment(true))
         }
 
         // Shows the options bottom sheet
@@ -135,7 +132,7 @@ class QuoteFragment : Fragment() {
                 val quote = binding.quote.text.toString()
                 if (!Lists().queryInList(quote, "Favourites", requireContext())) {
                     doubleClickFavouriteQuote()
-                    EventBus.getDefault().post(MessageEvent.MessageA(true))
+                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
                 }
             }
         })
@@ -168,6 +165,7 @@ class QuoteFragment : Fragment() {
                             )
                         )
                     }
+                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
                 } else {
                     Snackbar.make(
                         binding.root,
@@ -254,7 +252,6 @@ class QuoteFragment : Fragment() {
             }
             options.add(Option(drawable, list))
             optionStr.add(list)
-            EventBus.getDefault().post(MessageEvent.MessageA(true))
         }
     }
 

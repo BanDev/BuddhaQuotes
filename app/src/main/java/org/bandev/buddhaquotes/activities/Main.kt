@@ -33,9 +33,12 @@ import com.maxkeppeler.sheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.custom.Notify
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 /**
@@ -66,14 +69,14 @@ class Main : AppCompatActivity() {
         Compatibility().setNavigationBarColourMain(this, window, resources)
         Languages(baseContext).setLanguage()
 
-        val sharedPreferences = getSharedPreferences("Settings", 0)
-        val editor = sharedPreferences.edit()
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val editor = sharedPrefs.edit()
 
-        if (sharedPreferences.getBoolean("first_time", true)) {
+        if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
             startActivity(Intent(this, Intro::class.java))
-        } else if (sharedPreferences.getString(
+        } else if (sharedPrefs.getString(
                 "latestShown",
                 "null"
             ) != getString(R.string.version)
@@ -107,6 +110,10 @@ class Main : AppCompatActivity() {
         })
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNotifyReceive(event: Notify) {
+    }
+
     /**
      * On options menu created
      * @param menu [Menu]
@@ -127,7 +134,7 @@ class Main : AppCompatActivity() {
             R.id.settings -> {
                 val intent = Intent(this, Settings::class.java)
                 intent.putExtra("from", Activities.MAIN)
-                this.startActivity(intent)
+                startActivity(intent)
                 finish()
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -174,7 +181,7 @@ class Main : AppCompatActivity() {
                         }
                     }
                     resultListener { value ->
-                        Lists().newList(value.toString(), requireContext())
+                        EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
                     }
                 }
             )
@@ -185,12 +192,17 @@ class Main : AppCompatActivity() {
                 } else {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-
-                // Refresh fragments
-                binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-                binding.viewPager.setCurrentItem(1, false)
-                binding.bottomBar.setupWithViewPager2(binding.viewPager)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }
