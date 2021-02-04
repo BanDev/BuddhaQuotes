@@ -33,7 +33,7 @@ import com.maxkeppeler.sheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.custom.Notify
+import org.bandev.buddhaquotes.core.Notify
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import org.greenrobot.eventbus.EventBus

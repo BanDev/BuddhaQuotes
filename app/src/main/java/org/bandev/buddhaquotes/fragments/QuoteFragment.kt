@@ -35,7 +35,7 @@ import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.OnDoubleClickListener
-import org.bandev.buddhaquotes.custom.SendEvent
+import org.bandev.buddhaquotes.core.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

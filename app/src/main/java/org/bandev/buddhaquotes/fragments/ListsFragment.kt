@@ -31,8 +31,8 @@ import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.custom.Notify
-import org.bandev.buddhaquotes.custom.SendEvent
+import org.bandev.buddhaquotes.core.Notify
+import org.bandev.buddhaquotes.core.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 import org.greenrobot.eventbus.EventBus

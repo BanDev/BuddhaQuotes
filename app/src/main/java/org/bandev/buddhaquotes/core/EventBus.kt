@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.custom
+package org.bandev.buddhaquotes.core
 
 sealed class SendEvent {
     data class ToListFragment(val boolean: Boolean) : SendEvent()

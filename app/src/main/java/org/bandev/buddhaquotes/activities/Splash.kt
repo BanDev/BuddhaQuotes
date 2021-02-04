@@ -35,9 +35,9 @@ class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
-        val sharedPreferences = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-        val sys = sharedPreferences.getBoolean("sys", true)
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val darkmode = sharedPrefs.getBoolean("dark_mode", false)
+        val sys = sharedPrefs.getBoolean("sys", true)
 
         // Clear the stored data
         Store(this).fragment = 0
