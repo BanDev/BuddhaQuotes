@@ -37,7 +37,6 @@ import org.bandev.buddhaquotes.R
  * @since v1.5.0
  * @updated 09/12/2020
  */
-
 class Colours {
 
     /**

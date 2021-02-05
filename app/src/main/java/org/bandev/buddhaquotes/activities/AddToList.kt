@@ -37,6 +37,11 @@ import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
 
+/**
+ * The activity where the user selects a quote to add to their list
+ * If calling, make sure to send the name of the list they want with
+ * the key "list" in the intent
+ **/
 class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding

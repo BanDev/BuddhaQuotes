@@ -20,4 +20,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.items
 
+/** Data class for QuoteRecycler **/
 data class QuoteItem(val quote: String, var resource: Int, var no_like: Boolean)

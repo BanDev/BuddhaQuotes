@@ -27,7 +27,6 @@ package org.bandev.buddhaquotes.core
  * @author jack.txt
  * @since v1.7.0
  */
-
 object Activities {
 
     const val MAIN: Int = 0

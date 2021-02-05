@@ -39,6 +39,10 @@ import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * The activity where the user can see all the quotes they have in their
+ * lists
+ */
 class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding

@@ -86,7 +86,6 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         newQuote(Store(requireContext()).quoteID)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))

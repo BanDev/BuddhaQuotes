@@ -27,6 +27,10 @@ import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import org.bandev.buddhaquotes.R
 
+/**
+ * The Intro activity is the first thing people see on buddha quotes
+ * AppIntro is used to make it more simple
+ */
 class Intro : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
