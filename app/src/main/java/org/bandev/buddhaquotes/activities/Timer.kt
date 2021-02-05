@@ -28,12 +28,15 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.maxkeppeler.sheets.input.InputSheet
+import com.maxkeppeler.sheets.input.type.InputCheckBox
+import com.maxkeppeler.sheets.input.type.InputSpinner
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Time
+import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
@@ -49,9 +52,13 @@ class Timer : AppCompatActivity() {
     private lateinit var gong: MediaPlayer
     private var isPaused = false
     private var isRunning = false
+    private lateinit var settings: Timer.Settings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Get an instance of settings
+        settings = Timer().Settings(this)
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
@@ -62,6 +69,9 @@ class Timer : AppCompatActivity() {
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // On settings click
+        binding.settings.setOnClickListener { settings() }
+
         // Get the duration (mili seconds) of the timer
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
@@ -69,7 +79,7 @@ class Timer : AppCompatActivity() {
         durationTimeInS = durationTimeInMillis * 1000
 
         // Work out a lovely string version of the maximum time
-        maxTime = Time().convertToString(
+        maxTime = Timer().convertToString(
             durationTimeInMillis / 60,
             durationTimeInMillis % 60,
             this
@@ -106,6 +116,30 @@ class Timer : AppCompatActivity() {
                     reset()
                 }
             }
+        }
+    }
+
+    private fun settings() {
+        var sounds = mutableListOf("Chime", "No")
+        InputSheet().show(this) {
+            title("Timer Settings")
+            content("DESC")
+
+            // Vibrate every second?
+            with(InputCheckBox {
+                text("Vibrate every second")
+                defaultValue(settings.vibrateSecond)
+                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+            })
+
+            // The sound to play at the end
+            with(InputSpinner {
+                required()
+                label("Play sound after   ")
+                selected(settings.endSoundID)
+                options(sounds)
+                resultListener { settings.endSoundID = it }
+            })
         }
     }
 
@@ -201,8 +235,11 @@ class Timer : AppCompatActivity() {
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
-                // Vibrate the phone sorta but its nice
-                binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+
+                if (settings.vibrateSecond) {
+                    // Vibrate the phone sorta but its nice
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+                }
 
                 // Save the time for pause thingy
                 progressTimeInMillis = p0
@@ -264,4 +301,4 @@ class Timer : AppCompatActivity() {
         // Finish the activity
         finish()
     }
-}
+ }

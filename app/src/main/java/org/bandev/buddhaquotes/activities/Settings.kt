@@ -42,6 +42,9 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
+/**
+ * Where the user can customise their app
+ */
 class Settings : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding

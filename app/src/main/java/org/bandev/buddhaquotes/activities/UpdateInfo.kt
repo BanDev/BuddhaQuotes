@@ -31,7 +31,6 @@ import org.bandev.buddhaquotes.databinding.UpdateInfoBinding
  * The activity that shows the user a little message about the new update.
  * Make sure you update the contents of this for each update !!!!!!!!!!!!!
  */
-
 class UpdateInfo : AppCompatActivity() {
 
     private var updateTag = ""

@@ -36,6 +36,9 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.Timer
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
+/**
+ * The timer where the meditiation timer button is shown
+ */
 class TimerFragment : Fragment() {
     companion object {
         fun newInstance(position: Int): TimerFragment {

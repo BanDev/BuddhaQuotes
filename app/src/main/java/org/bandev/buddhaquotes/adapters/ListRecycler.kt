@@ -24,10 +24,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.bandev.buddhaquotes.adapters.AddQuoteRecycler.ClickListener
 import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
 import org.bandev.buddhaquotes.fragments.ListsFragment
 import org.bandev.buddhaquotes.items.ListItem
 
+/**
+ * Recycler adapter for the [RecyclerView] used in the [ListsFragment]
+ * activity. This adapter updated for view binding
+ * and supports item clicks.
+ *
+ * @author Fennec
+ * @param scrollingLists [List<ListItem>]
+ * @param listener [ListsFragment]
+ */
 class ListRecycler(
 
     private val scrollingLists: List<ListItem>,

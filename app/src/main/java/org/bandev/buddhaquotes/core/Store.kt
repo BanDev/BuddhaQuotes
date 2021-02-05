@@ -23,6 +23,10 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * Store is used for storing the current quote and fragment
+ */
+
 class Store(context: Context) {
 
     private var sharedPrefs: SharedPreferences = context.getSharedPreferences("Store", 0)

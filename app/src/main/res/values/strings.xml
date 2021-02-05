@@ -111,11 +111,11 @@
     <string name="settings_language" id="102">Language</string>
 
     <!-- colours & their corresponding values -->
-    <string name="original" id="103">Original</string>
+    <string name="original" id="103">Default</string>
     <string name="blue" id="104">Blue</string>
     <string name="green" id="105">Green</string>
     <string name="orange" id="106">Orange</string>
-    <string name="yellow" id="107">Yellow</string>
+    <string name="yellow" id="107">Orignal</string>
     <string name="teal" id="108">Teal</string>
     <string name="violet" id="109">Violet</string>
     <string name="pink" id="110">Pink</string>

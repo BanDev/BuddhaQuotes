@@ -32,6 +32,15 @@ import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Recycler adapter for the [RecyclerView] used in the [AddToList]
+ * activity. This adapter is filterable, updated for view binding
+ * and supports item clicks.
+ *
+ * @author Jack Devey
+ * @param addquoteList [MutableList<AddQuoteItem>]
+ * @param listener [ClickListener]
+ */
 class AddQuoteRecycler(
 
     private val addquoteList: MutableList<AddQuoteItem>,
