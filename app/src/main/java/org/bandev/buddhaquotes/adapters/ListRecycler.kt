@@ -24,7 +24,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.adapters.AddQuoteRecycler.ClickListener
 import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
 import org.bandev.buddhaquotes.fragments.ListsFragment
 import org.bandev.buddhaquotes.items.ListItem
