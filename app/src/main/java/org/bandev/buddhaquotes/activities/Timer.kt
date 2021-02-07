@@ -70,7 +70,10 @@ class Timer : AppCompatActivity() {
         setContentView(binding.root)
 
         // On settings click
-        binding.settings.setOnClickListener { settings() }
+        binding.settings.setOnClickListener {
+            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            settingsSheet()
+        }
 
         // Get the duration (mili seconds) of the timer
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
@@ -119,11 +122,12 @@ class Timer : AppCompatActivity() {
         }
     }
 
-    private fun settings() {
-        var sounds = mutableListOf("Chime", "No")
+    private fun settingsSheet() {
+        val vibrateSecondOriginal = Timer().Settings(this).vibrateSecond
+        val endSoundOriginal = Timer().Settings(this).endSoundID
+        val sounds = mutableListOf("Chime", "No")
         InputSheet().show(this) {
             title("Timer Settings")
-            content("DESC")
 
             // Vibrate every second?
             with(InputCheckBox {
@@ -135,11 +139,18 @@ class Timer : AppCompatActivity() {
             // The sound to play at the end
             with(InputSpinner {
                 required()
-                label("Play sound after   ")
+                label("Play sound on finish")
                 selected(settings.endSoundID)
                 options(sounds)
                 resultListener { settings.endSoundID = it }
             })
+            onNegative {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                // Reset their settings if they cancel the sheet
+                settings.vibrateSecond = vibrateSecondOriginal
+                settings.endSoundID = endSoundOriginal
+            }
+            onPositive { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         }
     }
 
@@ -246,7 +257,7 @@ class Timer : AppCompatActivity() {
             }
         }
 
-        // Set is running to true
+        // Set isRunning to true
         isRunning = true
 
         // Start the timer
@@ -301,4 +312,4 @@ class Timer : AppCompatActivity() {
         // Finish the activity
         finish()
     }
- }
+}

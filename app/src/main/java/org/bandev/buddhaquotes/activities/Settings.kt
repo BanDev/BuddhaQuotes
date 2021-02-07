@@ -376,8 +376,7 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this@Settings, Main::class.java)
-        startActivity(intent)
+        startActivity(Intent(this@Settings, Main::class.java))
         finish()
         overridePendingTransition(
             R.anim.anim_slide_in_right,

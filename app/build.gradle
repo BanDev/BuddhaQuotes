@@ -58,7 +58,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.7.0'
+    implementation 'com.mikepenz:aboutlibraries-core:8.8.2'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.0.0'
@@ -103,5 +103,5 @@ dependencies {
     // Swipe to refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
-    implementation 'com.github.BanDevApps:Xplosion:1.0.1'
+    implementation 'com.github.BanDev:Xplosion:1.0.2'
 }
