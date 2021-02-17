@@ -20,9 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -79,12 +77,6 @@ class TimerFragment : Fragment() {
                     } else {
                         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
-
-                    val sharedPrefs: SharedPreferences? =
-                        requireContext().getSharedPreferences("timer", Context.MODE_PRIVATE)
-                    val editor = sharedPrefs?.edit()
-                    editor?.putBoolean("new", false)
-                    editor?.apply()
 
                     val toTimer = Intent(context, Timer::class.java)
                     toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
