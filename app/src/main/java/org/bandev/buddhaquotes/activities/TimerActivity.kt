@@ -25,6 +25,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.HapticFeedbackConstants
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -40,7 +41,7 @@ import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
-class Timer : AppCompatActivity() {
+class TimerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTimerBinding
     private lateinit var notifBuilder: NotificationCompat.Builder
@@ -123,8 +124,9 @@ class Timer : AppCompatActivity() {
     }
 
     private fun settingsSheet() {
-        val vibrateSecondOriginal = Timer().Settings(this).vibrateSecond
-        val endSoundOriginal = Timer().Settings(this).endSoundID
+        val vibrateSecondOriginal = settings.vibrateSecond
+        val endSoundOriginal = settings.endSoundID
+        val endNotificationOriginal = settings.showNotificaton
         val sounds = mutableListOf("Chime", "No")
         InputSheet().show(this) {
             title("Timer Settings")
@@ -134,6 +136,36 @@ class Timer : AppCompatActivity() {
                 text("Vibrate every second")
                 defaultValue(settings.vibrateSecond)
                 changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+            })
+
+            with(InputCheckBox {
+                text("Show notifcation")
+                defaultValue(settings.showNotificaton)
+                changeListener {
+                    settings.showNotificaton = !settings.showNotificaton
+                    if (!settings.showNotificaton) {
+                        NotificationManagerCompat.from(applicationContext).cancel(0)
+                    } else {
+                        notifBuilder = NotificationCompat.Builder(requireContext(), "BQ.Timer")
+                            .apply {
+                                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+                                setContentText(getString(R.string.time_left))
+                                setSmallIcon(R.drawable.nav_meditate)
+                                priority = NotificationCompat.PRIORITY_LOW
+                                setCategory(NotificationCompat.CATEGORY_PROGRESS)
+                                setOnlyAlertOnce(true)
+                                setSound(null)
+                                setOngoing(false)
+                            }
+
+                        // Push the notification
+                        NotificationManagerCompat.from(requireContext()).apply {
+                            // Issue the initial notification with zero progress
+                            //notifBuilder.setProgress(100, 100, false)
+                            notify(0, notifBuilder.build())
+                        }
+                    }
+                }
             })
 
             // The sound to play at the end
@@ -149,6 +181,7 @@ class Timer : AppCompatActivity() {
                 // Reset their settings if they cancel the sheet
                 settings.vibrateSecond = vibrateSecondOriginal
                 settings.endSoundID = endSoundOriginal
+                settings.showNotificaton = endNotificationOriginal
             }
             onPositive { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         }
@@ -206,9 +239,15 @@ class Timer : AppCompatActivity() {
         countDownTimer.cancel()
 
         // Update notification
-        notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime " + getString(R.string.has_been_paused))
-        NotificationManagerCompat.from(this).apply {
-            notify(0, notifBuilder.build())
+        if (settings.showNotificaton) {
+            notifBuilder.setContentTitle(
+                getString(R.string.meditating_for) + " $maxTime " + getString(
+                    R.string.has_been_paused
+                )
+            )
+            NotificationManagerCompat.from(this).apply {
+                notify(0, notifBuilder.build())
+            }
         }
 
         isPaused = true
@@ -223,7 +262,9 @@ class Timer : AppCompatActivity() {
                 isRunning = false
 
                 // Remove the notification
-                NotificationManagerCompat.from(applicationContext).cancel(0)
+                if (settings.showNotificaton) {
+                    NotificationManagerCompat.from(applicationContext).cancel(0)
+                }
 
                 // Change button text & icon
                 binding.pause.text = getString(R.string.reset)
@@ -264,22 +305,24 @@ class Timer : AppCompatActivity() {
         countDownTimer.start()
 
         // Make the notification so the user can leave the app and do something else
-        notifBuilder = NotificationCompat.Builder(this, "BQ.Timer")
-            .apply {
-                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-                setContentText(getString(R.string.time_left))
-                setSmallIcon(R.drawable.nav_meditate)
-                priority = NotificationCompat.PRIORITY_LOW
-                setCategory(NotificationCompat.CATEGORY_PROGRESS)
-                setOnlyAlertOnce(true)
-                setOngoing(true)
-            }
+        if (settings.showNotificaton) {
+            notifBuilder = NotificationCompat.Builder(this, "BQ.Timer")
+                .apply {
+                    setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+                    setContentText(getString(R.string.time_left))
+                    setSmallIcon(R.drawable.nav_meditate)
+                    priority = NotificationCompat.PRIORITY_LOW
+                    setCategory(NotificationCompat.CATEGORY_PROGRESS)
+                    setOnlyAlertOnce(true)
+                    setOngoing(false)
+                }
 
-        // Push the notification
-        NotificationManagerCompat.from(this).apply {
-            // Issue the initial notification with zero progress
-            notifBuilder.setProgress(0, 0, false)
-            notify(0, notifBuilder.build())
+            // Push the notification
+            NotificationManagerCompat.from(this).apply {
+                // Issue the initial notification with zero progress
+                //notifBuilder.setProgress(100, 100, false)
+                notify(0, notifBuilder.build())
+            }
         }
 
         // Load the gong
@@ -292,11 +335,17 @@ class Timer : AppCompatActivity() {
         val seconds = "%02d".format((time / 1000) % 60)
 
         // Update the notification text and progress
-        notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-        notifBuilder.setContentText("$minute:$seconds")
-        notifBuilder.setProgress(durationTimeInMillis.toInt(), time.toInt() / 1000, false)
-        NotificationManagerCompat.from(this).apply {
-            notify(0, notifBuilder.build())
+        if (settings.showNotificaton) {
+            notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+            notifBuilder.setContentText("$minute:$seconds")
+            notifBuilder.setProgress(
+                durationTimeInMillis.toInt(),
+                durationTimeInMillis.toInt() - time.toInt() / 1000,
+                false
+            )
+            NotificationManagerCompat.from(this).apply {
+                notify(0, notifBuilder.build())
+            }
         }
 
         // Show the minutes and seconds

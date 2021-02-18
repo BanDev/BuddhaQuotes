@@ -31,7 +31,7 @@ import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Timer
+import org.bandev.buddhaquotes.activities.TimerActivity
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 /**
@@ -78,7 +78,7 @@ class TimerFragment : Fragment() {
                         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
 
-                    val toTimer = Intent(context, Timer::class.java)
+                    val toTimer = Intent(context, TimerActivity::class.java)
                     toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
                     startActivity(toTimer)
                 }
