@@ -28,16 +28,18 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.res.ResourcesCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.input.type.InputSpinner
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
+import io.karn.notify.Notify
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
 class Timer : AppCompatActivity() {
@@ -205,12 +207,6 @@ class Timer : AppCompatActivity() {
         // Stop the timer
         countDownTimer.cancel()
 
-        // Update notification
-        notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime " + getString(R.string.has_been_paused))
-        NotificationManagerCompat.from(this).apply {
-            notify(0, notifBuilder.build())
-        }
-
         isPaused = true
     }
 
@@ -221,9 +217,6 @@ class Timer : AppCompatActivity() {
             override fun onFinish() {
                 // Set is running to false
                 isRunning = false
-
-                // Remove the notification
-                NotificationManagerCompat.from(applicationContext).cancel(0)
 
                 // Change button text & icon
                 binding.pause.text = getString(R.string.reset)
@@ -263,24 +256,23 @@ class Timer : AppCompatActivity() {
         // Start the timer
         countDownTimer.start()
 
-        // Make the notification so the user can leave the app and do something else
-        notifBuilder = NotificationCompat.Builder(this, "BQ.Timer")
-            .apply {
-                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-                setContentText(getString(R.string.time_left))
-                setSmallIcon(R.drawable.nav_meditate)
-                priority = NotificationCompat.PRIORITY_LOW
-                setCategory(NotificationCompat.CATEGORY_PROGRESS)
-                setOnlyAlertOnce(true)
-                setOngoing(true)
+        Notify
+            .with(this)
+            .header {
+                icon = R.drawable.nav_meditate
+                color = ResourcesCompat.getColor(resources, R.color.colorPrimary, null)
+                showTimestamp = false
             }
-
-        // Push the notification
-        NotificationManagerCompat.from(this).apply {
-            // Issue the initial notification with zero progress
-            notifBuilder.setProgress(0, 0, false)
-            notify(0, notifBuilder.build())
-        }
+            .asBigText {
+                title = getString(R.string.meditating_for) + " $maxTime"
+                expandedText = getString(R.string.time_left)
+            }
+            .progress {
+                showProgress = true
+                enablePercentage = true
+                progressPercent = (100 - (((progressTimeInMillis.toInt() * 1000) / durationTimeInS.toInt()) * 100))
+            }
+            .show()
 
         // Load the gong
         gong = MediaPlayer.create(applicationContext, R.raw.gong)
@@ -291,23 +283,14 @@ class Timer : AppCompatActivity() {
         val minute = "%02d".format((time / 1000) / 60)
         val seconds = "%02d".format((time / 1000) % 60)
 
-        // Update the notification text and progress
-        notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-        notifBuilder.setContentText("$minute:$seconds")
-        notifBuilder.setProgress(durationTimeInMillis.toInt(), time.toInt() / 1000, false)
-        NotificationManagerCompat.from(this).apply {
-            notify(0, notifBuilder.build())
-        }
-
         // Show the minutes and seconds
         binding.timerText.text = "$minute:$seconds"
     }
 
     // User has given up, they want to do something else
     override fun onBackPressed() {
-        // Stop the timer & remove notification
+        // Stop the timer
         countDownTimer.cancel()
-        NotificationManagerCompat.from(applicationContext).cancel(0)
 
         // Finish the activity
         finish()
