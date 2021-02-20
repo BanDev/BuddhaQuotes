@@ -57,8 +57,8 @@ class Intro : AppIntro2() {
 
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                setupNavBarForLightMode()
                 setupStatusBarForLightMode()
+                setupNavBarForLightMode()
                 lightModeSlides()
             }
             Configuration.UI_MODE_NIGHT_YES -> {
@@ -173,6 +173,20 @@ class Intro : AppIntro2() {
         )
     }
 
+    private fun setupStatusBarForLightMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.decorView.windowInsetsController?.setSystemBarsAppearance(
+                APPEARANCE_LIGHT_STATUS_BARS, // value
+                APPEARANCE_LIGHT_STATUS_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+        setStatusBarColor(Color.WHITE)
+    }
+
     private fun setupNavBarForLightMode() {
         if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -187,20 +201,6 @@ class Intro : AppIntro2() {
             }
         }
         setNavBarColor(Color.WHITE)
-    }
-
-    private fun setupStatusBarForLightMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.decorView.windowInsetsController?.setSystemBarsAppearance(
-                APPEARANCE_LIGHT_STATUS_BARS, // value
-                APPEARANCE_LIGHT_STATUS_BARS // mask
-            )
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-        setStatusBarColor(Color.WHITE)
     }
 
     override fun onSkipPressed(currentFragment: Fragment?) {
