@@ -20,12 +20,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.HapticFeedbackConstants
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -37,8 +37,8 @@ import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.Timer
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
 class TimerActivity : AppCompatActivity() {
@@ -146,24 +146,8 @@ class TimerActivity : AppCompatActivity() {
                     if (!settings.showNotificaton) {
                         NotificationManagerCompat.from(applicationContext).cancel(0)
                     } else {
-                        notifBuilder = NotificationCompat.Builder(requireContext(), "BQ.Timer")
-                            .apply {
-                                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-                                setContentText(getString(R.string.time_left))
-                                setSmallIcon(R.drawable.nav_meditate)
-                                priority = NotificationCompat.PRIORITY_LOW
-                                setCategory(NotificationCompat.CATEGORY_PROGRESS)
-                                setOnlyAlertOnce(true)
-                                setSound(null)
-                                setOngoing(false)
-                            }
-
-                        // Push the notification
-                        NotificationManagerCompat.from(requireContext()).apply {
-                            // Issue the initial notification with zero progress
-                            //notifBuilder.setProgress(100, 100, false)
-                            notify(0, notifBuilder.build())
-                        }
+                        buildNotification(requireContext())
+                        pushNotification(requireContext())
                     }
                 }
             })
@@ -202,7 +186,7 @@ class TimerActivity : AppCompatActivity() {
                 }
 
                 // Change button text & icon
-                binding.pause.text = this.getString(R.string.pause)
+                binding.pause.text = getString(R.string.pause)
                 binding.pause.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.ic_pause, 0, 0, 0
                 )
@@ -245,9 +229,7 @@ class TimerActivity : AppCompatActivity() {
                     R.string.has_been_paused
                 )
             )
-            NotificationManagerCompat.from(this).apply {
-                notify(0, notifBuilder.build())
-            }
+            pushNotification(this)
         }
 
         isPaused = true
@@ -287,13 +269,12 @@ class TimerActivity : AppCompatActivity() {
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
-
                 if (settings.vibrateSecond) {
                     // Vibrate the phone sorta but its nice
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
                 }
 
-                // Save the time for pause thingy
+                // Save the time for pause
                 progressTimeInMillis = p0
             }
         }
@@ -306,23 +287,8 @@ class TimerActivity : AppCompatActivity() {
 
         // Make the notification so the user can leave the app and do something else
         if (settings.showNotificaton) {
-            notifBuilder = NotificationCompat.Builder(this, "BQ.Timer")
-                .apply {
-                    setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-                    setContentText(getString(R.string.time_left))
-                    setSmallIcon(R.drawable.nav_meditate)
-                    priority = NotificationCompat.PRIORITY_LOW
-                    setCategory(NotificationCompat.CATEGORY_PROGRESS)
-                    setOnlyAlertOnce(true)
-                    setOngoing(false)
-                }
-
-            // Push the notification
-            NotificationManagerCompat.from(this).apply {
-                // Issue the initial notification with zero progress
-                //notifBuilder.setProgress(100, 100, false)
-                notify(0, notifBuilder.build())
-            }
+            buildNotification(this)
+            pushNotification(this)
         }
 
         // Load the gong
@@ -343,13 +309,33 @@ class TimerActivity : AppCompatActivity() {
                 durationTimeInMillis.toInt() - time.toInt() / 1000,
                 false
             )
-            NotificationManagerCompat.from(this).apply {
-                notify(0, notifBuilder.build())
-            }
+            pushNotification(this)
         }
 
         // Show the minutes and seconds
         binding.timerText.text = "$minute:$seconds"
+    }
+
+    private fun buildNotification(context: Context) {
+        notifBuilder = NotificationCompat.Builder(context, "BQ.Timer")
+            .apply {
+                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+                setContentText(getString(R.string.time_left))
+                setSmallIcon(R.drawable.nav_meditate)
+                priority = NotificationCompat.PRIORITY_LOW
+                setCategory(NotificationCompat.CATEGORY_PROGRESS)
+                setOnlyAlertOnce(true)
+                setSilent(true)
+                setOngoing(false)
+                setShowWhen(false)
+            }
+    }
+
+    private fun pushNotification(context: Context) {
+        // Push the notification
+        NotificationManagerCompat.from(context).apply {
+            notify(0, notifBuilder.build())
+        }
     }
 
     // User has given up, they want to do something else
