@@ -69,7 +69,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // Sheets
-    def sheets_version = "2.1.2"
+    def sheets_version = "2.1.3"
     implementation "com.maxkeppeler.sheets:core:$sheets_version"
     implementation "com.maxkeppeler.sheets:input:$sheets_version"
     implementation "com.maxkeppeler.sheets:color:$sheets_version"
