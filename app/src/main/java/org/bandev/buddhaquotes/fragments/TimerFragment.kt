@@ -20,9 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -33,9 +31,12 @@ import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.Timer
+import org.bandev.buddhaquotes.activities.TimerActivity
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
+/**
+ * The timer where the meditiation timer button is shown
+ */
 class TimerFragment : Fragment() {
     companion object {
         fun newInstance(position: Int): TimerFragment {
@@ -50,8 +51,6 @@ class TimerFragment : Fragment() {
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
-    private lateinit var timeSheet: TimeSheet
-    var timeInMilliSeconds: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,34 +64,25 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Builds the bottom sheet that allows for an input of time
-        timeSheet = TimeSheet().build(requireContext()) {
-            title(R.string.meditation_timer)
-            format(TimeFormat.MM_SS)
-            onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-            onPositive { durationTimeInMillis: Long ->
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-
-                val sharedpreferences: SharedPreferences? =
-                    requireContext().getSharedPreferences("timer", Context.MODE_PRIVATE)
-                val editor = sharedpreferences?.edit()
-                editor?.putBoolean("new", false)
-                editor?.apply()
-
-                val toTimer = Intent(context, Timer::class.java)
-                toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
-                startActivity(toTimer)
-            }
-        }
-
         binding.button.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            timeSheet.show()
+            TimeSheet().show(requireContext()) {
+                title(R.string.meditation_timer)
+                format(TimeFormat.MM_SS)
+                minTime(1)
+                onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+                onPositive { durationTimeInMillis: Long ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
+
+                    val toTimer = Intent(context, TimerActivity::class.java)
+                    toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
+                    startActivity(toTimer)
+                }
+            }
         }
     }
 }

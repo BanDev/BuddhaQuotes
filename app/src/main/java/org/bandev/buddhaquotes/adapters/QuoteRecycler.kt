@@ -27,7 +27,17 @@ import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
+import org.bandev.buddhaquotes.fragments.ListsFragment
 
+/**
+ * Recycler adapter for the [RecyclerView] used in the [QuoteRecycler]
+ * activity. This adapter updated for view binding and supports item
+ * clicks.
+ *
+ * @author Fennec
+ * @param scrollingLists [List<QuoteItem>]
+ * @param listener [OnItemClickFinder]
+ */
 class QuoteRecycler(
 
     private val scrollingList: List<QuoteItem>,

@@ -28,7 +28,6 @@ import android.os.Build
 import androidx.preference.PreferenceManager
 import java.util.*
 
-
 /**
  * The Languages class manages the languages that Buddha Quotes supports. The language in ISO 639
  * format is stored in shared preferences with the key "app_language"

@@ -20,6 +20,9 @@
       <a href="https://github.com/KotlinBy/awesome-kotlin" target="_blank">
       <img src="https://kotlin.link/awesome-kotlin.svg"/>
       </a>
+      <a href="https://www.buymeacoffee.com/bandev" target="_blank">
+      <img src="https://img.shields.io/badge/donate-%C2%A35-orange" >
+      </a>
       </div>
       <br>
 <div align="center">
@@ -90,6 +93,10 @@
 <ul>
 <li><a href="https://www.flaticon.com/authors/freepik">Launcher Icon</a> - Freepik via Flaticon</li>
 </ul>
+
+<h2 id="license">Donate</h2>
+<p><a href="https://www.buymeacoffee.com/bandev" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<br><!-- RUSSELL PLS WRITE YOUR STUFF HERE THANKS --></p>
 
 <h2 id="license">License</h2>
 <p><a href="http://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://www.gnu.org/graphics/gplv3-127x51.png" alt="GNU GPLv3 Image"></a><br>Buddha Quotes is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.  </p>

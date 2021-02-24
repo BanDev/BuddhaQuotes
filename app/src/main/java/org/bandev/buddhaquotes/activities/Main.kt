@@ -33,8 +33,12 @@ import com.maxkeppeler.sheets.input.type.InputEditText
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Notify
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 /**
@@ -65,15 +69,14 @@ class Main : AppCompatActivity() {
         Compatibility().setNavigationBarColourMain(this, window, resources)
         Languages(baseContext).setLanguage()
 
-        val sharedPreferences = getSharedPreferences("Settings", 0)
-        val editor = sharedPreferences.edit()
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val editor = sharedPrefs.edit()
 
-        if (sharedPreferences.getBoolean("first_time", true)) {
+        if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            val i = Intent(this, Intro::class.java)
-            startActivity(i)
-        } else if (sharedPreferences.getString(
+            startActivity(Intent(this, Intro::class.java))
+        } else if (sharedPrefs.getString(
                 "latestShown",
                 "null"
             ) != getString(R.string.version)
@@ -92,14 +95,6 @@ class Main : AppCompatActivity() {
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(Store(this).fragment, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
-        val sharedPreferences2 = getSharedPreferences("timer", 0)
-
-        if (sharedPreferences2.getBoolean("new", true)) {
-            binding.bottomBar.setBadgeAtTabIndex(
-                2,
-                AnimatedBottomBar.Badge(getString(R.string.new_str))
-            )
-        }
 
         binding.bottomBar.setOnTabInterceptListener(object :
             AnimatedBottomBar.OnTabInterceptListener {
@@ -113,6 +108,10 @@ class Main : AppCompatActivity() {
                 return true
             }
         })
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNotifyReceive(event: Notify) {
     }
 
     /**
@@ -135,7 +134,7 @@ class Main : AppCompatActivity() {
             R.id.settings -> {
                 val intent = Intent(this, Settings::class.java)
                 intent.putExtra("from", Activities.MAIN)
-                this.startActivity(intent)
+                startActivity(intent)
                 finish()
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -182,7 +181,7 @@ class Main : AppCompatActivity() {
                         }
                     }
                     resultListener { value ->
-                        Lists().newList(value.toString(), requireContext())
+                        EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
                     }
                 }
             )
@@ -193,12 +192,17 @@ class Main : AppCompatActivity() {
                 } else {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
-
-                // Refresh fragments
-                binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-                binding.viewPager.setCurrentItem(1, false)
-                binding.bottomBar.setupWithViewPager2(binding.viewPager)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

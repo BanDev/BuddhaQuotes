@@ -24,19 +24,28 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.ArrayAdapter
-import android.widget.SearchView
+import android.view.Menu
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
+import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
 
-class AddToList : AppCompatActivity() {
+/**
+ * The activity where the user selects a quote to add to their list
+ * If calling, make sure to send the name of the list they want with
+ * the key "list" in the intent
+ **/
+class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
+    private lateinit var rAdapter: AddQuoteRecycler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,81 +65,85 @@ class AddToList : AppCompatActivity() {
             onBackPressed()
         }
 
-        val list = (intent.getStringExtra("list") ?: return).toString()
-        val names = genList()
-        val adapter: ArrayAdapter<String> = ArrayAdapter(this, R.layout.quotes_search, names)
+        rAdapter = AddQuoteRecycler(genList(), this@AddToList)
 
-        binding.listView.adapter = adapter
-
-        binding.listView.onItemClickListener =
-            OnItemClickListener { _, view, position, _ ->
-
-                val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
-                val listArr = pref.getString(list, "")
-                val listArrPref: MutableList<String> =
-                    (listArr?.split("//") ?: return@OnItemClickListener).toMutableList()
-                val listArrFinal = LinkedList(listArrPref)
-                val intent2 = Intent(this, ScrollingActivity::class.java)
-                val mBundle = Bundle()
-                mBundle.putString("list", list)
-                intent2.putExtras(mBundle)
-                if (listArrFinal.contains(binding.listView.getItemAtPosition(position) as String?)) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
-                    } else {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    Snackbar.make(view, "This quote is already in the list!", Snackbar.LENGTH_SHORT)
-                        .show()
-                } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    listArrFinal.push(binding.listView.getItemAtPosition(position) as String?)
-                    this.startActivity(intent2)
-                    finish()
-                }
-
-                val stringOut = listArrFinal.joinToString(separator = "//")
-
-                editor.putString(list, stringOut)
-                editor.apply()
-            }
-
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                adapter.filter.filter(p0)
-                return false
-            }
-        })
+        with(binding.recycler) {
+            adapter = rAdapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
     }
 
-    private fun genList(): ArrayList<String> {
-        val list = ArrayList<String>()
+    override fun onClick(quote: String) {
+        val list = (intent.extras ?: return).getString("list").toString()
+        if (!Lists().queryInList(quote, list, this)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+            } else {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+            Lists().addToList(quote, list, this)
+            val intent2 = Intent(this, ScrollingActivity::class.java)
+            intent2.putExtra("list", list)
+            startActivity(intent2)
+            finish()
+            overridePendingTransition(
+                R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_right
+            )
+
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
+            } else {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+            Snackbar.make(binding.root, "This quote is already in $list", Snackbar.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    private fun genList(): ArrayList<AddQuoteItem> {
+        val list = ArrayList<AddQuoteItem>()
         val max = 237
         var i = 1
         while (i != max) {
-            list.add(Quotes().getQuote(i, this))
+            val quote = Quotes().getQuote(i, this)
+            list.add(AddQuoteItem(quote))
             i++
         }
 
         return list
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search, menu)
+
+        val searchItem = menu!!.findItem(R.id.appSearchBar)
+        val searchView = searchItem.actionView as SearchView
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                rAdapter.filter.filter(newText)
+                return false
+            }
+        })
+        return true
+    }
+
     override fun onBackPressed() {
         val list = (intent.getStringExtra("list") ?: return).toString()
         val intent2 = Intent(this, ScrollingActivity::class.java)
-        val mBundle = Bundle()
-        mBundle.putString("list", list)
-        intent2.putExtras(mBundle)
-        this.startActivity(intent2)
+        intent2.putExtra("list", list)
+        startActivity(intent2)
         finish()
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
     }
 }

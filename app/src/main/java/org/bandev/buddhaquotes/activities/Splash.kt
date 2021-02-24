@@ -30,14 +30,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import org.bandev.buddhaquotes.core.Store
 
+/**
+ * The splash screen
+ */
 class Splash : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
-        val sharedPreferences = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-        val sys = sharedPreferences.getBoolean("sys", true)
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val darkmode = sharedPrefs.getBoolean("dark_mode", false)
+        val sys = sharedPrefs.getBoolean("sys", true)
 
         // Clear the stored data
         Store(this).fragment = 0
@@ -54,9 +57,7 @@ class Splash : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        val intent = Intent(this, Main::class.java)
-        intent.putExtra("data_safe", false)
-        startActivity(intent)
+        startActivity(Intent(this, Main::class.java))
         finish()
     }
 

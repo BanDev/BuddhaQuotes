@@ -23,20 +23,24 @@ package org.bandev.buddhaquotes.core
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * Store is used for storing the current quote and fragment
+ */
+
 class Store(context: Context) {
 
-    private var sharedPref: SharedPreferences = context.getSharedPreferences("Store", 0)
-    private var editor: SharedPreferences.Editor = sharedPref.edit()
+    private var sharedPrefs: SharedPreferences = context.getSharedPreferences("Store", 0)
+    private var editor: SharedPreferences.Editor = sharedPrefs.edit()
 
     var fragment: Int
-        get() = sharedPref.getInt("fragment", Fragments.QUOTE)
+        get() = sharedPrefs.getInt("fragment", Fragments.QUOTE)
         set(value) {
             editor.putInt("fragment", value)
             editor.commit()
         }
 
     var quoteID: Int
-        get() = sharedPref.getInt("quoteID", 0)
+        get() = sharedPrefs.getInt("quoteID", 0)
         set(value) {
             editor.putInt("quoteID", value)
             editor.commit()

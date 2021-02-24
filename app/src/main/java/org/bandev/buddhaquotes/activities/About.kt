@@ -32,6 +32,9 @@ import org.bandev.buddhaquotes.core.Compatibility
 import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 
+/**
+ * The about page
+ */
 class About : AppCompatActivity() {
 
     // Declare view binding variables

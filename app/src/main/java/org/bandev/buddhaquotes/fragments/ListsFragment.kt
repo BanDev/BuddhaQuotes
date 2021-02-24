@@ -31,8 +31,13 @@ import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.Fragments
 import org.bandev.buddhaquotes.core.Lists
+import org.bandev.buddhaquotes.core.Notify
+import org.bandev.buddhaquotes.core.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * ListsFragment is the fragment that allows users to manage their lists.
@@ -67,13 +72,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         return binding.root
     }
 
-    /**
-     * Called when view is full made
-     * @param view [View]
-     * @param savedInstanceState [Bundle]
-     */
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    private fun setupRecycler() {
         masterlist = Lists().getMasterList(requireContext())
 
         masterListFinal = generateMasterList(masterlist.size, masterlist)
@@ -83,6 +82,31 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             adapter = ListRecycler(masterListFinal, this@ListsFragment)
             setHasFixedSize(false)
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEventReceive(event: SendEvent) {
+        setupRecycler()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNotifyReceive(event: Notify) {
+        when (event) {
+            is Notify.NotifyNewList -> {
+                Lists().newList(event.listName, requireContext())
+                setupRecycler()
+            }
+        }
+    }
+
+    /**
+     * Called when view is full made
+     * @param view [View]
+     * @param savedInstanceState [Bundle]
+     */
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupRecycler()
     }
 
     /**
@@ -144,17 +168,23 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         bundle.putString("list", masterlist[position])
         bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
-        this.startActivity(intent)
+        startActivity(intent)
         activity?.finish()
-        activity?.overridePendingTransition(
-            android.R.anim.fade_in,
-            android.R.anim.fade_out
-        )
     }
 
     override fun onBinClick(position: Int, text: String) {
         Lists().removeList(text, requireContext())
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

@@ -42,15 +42,15 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
+/**
+ * Where the user can customise their app
+ */
 class Settings : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Check if the data is safe to get
-        // if so set timer data
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
@@ -72,9 +72,9 @@ class Settings : AppCompatActivity() {
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
-            val sharedPreferences = getSharedPreferences("Settings", 0)
-            val darkmode = sharedPreferences.getBoolean("dark_mode", false)
-            val sys = sharedPreferences.getBoolean("sys", true)
+            val sharedPrefs = getSharedPreferences("Settings", 0)
+            val darkmode = sharedPrefs.getBoolean("dark_mode", false)
+            val sys = sharedPrefs.getBoolean("sys", true)
             when {
                 sys -> {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
@@ -106,13 +106,8 @@ class Settings : AppCompatActivity() {
         }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-            val pref = requireContext().getSharedPreferences("Settings", 0)
-
-            pref.getBoolean("dark_mode", false)
-            pref.getBoolean("sys", false)
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
-            preferenceScreen
 
             updateColorSummary()
             updateThemeSummary()
@@ -186,9 +181,7 @@ class Settings : AppCompatActivity() {
         private fun showLanguagePopup() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
-            resources.getStringArray(R.array.language_entries)
             val values = resources.getStringArray(R.array.language_values)
-            sharedPrefs.getInt("app_language_int", 0)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
@@ -218,9 +211,7 @@ class Settings : AppCompatActivity() {
                         editor.putString("app_language", values[index])
                         editor.apply()
                         val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("lang", true)
-                        intent2.putExtras(mBundle)
+                        intent2.putExtra("lang", true)
                         startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(
@@ -240,8 +231,6 @@ class Settings : AppCompatActivity() {
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
-            resources.getStringArray(R.array.theme_entries)
-            pref.getInt("appThemeInt", 2)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
@@ -281,9 +270,7 @@ class Settings : AppCompatActivity() {
                         }
                         editor.apply()
                         val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("switch", true)
-                        intent2.putExtras(mBundle)
+                        intent2.putExtra("switch", true)
                         startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(0, 0)
@@ -349,9 +336,7 @@ class Settings : AppCompatActivity() {
                         updateColorSummary()
 
                         val intent2 = Intent(context, Settings::class.java)
-                        val mBundle = Bundle()
-                        mBundle.putBoolean("switch", true)
-                        intent2.putExtras(mBundle)
+                        intent2.putExtra("switch", true)
                         startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(
@@ -367,8 +352,7 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this@Settings, Main::class.java)
-        startActivity(intent)
+        startActivity(Intent(this@Settings, Main::class.java))
         finish()
         overridePendingTransition(
             R.anim.anim_slide_in_right,
