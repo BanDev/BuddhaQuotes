@@ -26,7 +26,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -98,15 +98,9 @@ class Settings : AppCompatActivity() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
-                "About" -> {
-                    startActivity(Intent(activity, About::class.java))
-                }
-                "Help" -> {
-                    startActivity(Intent(activity, Intro::class.java))
-                }
-                "AboutLibraries" -> {
-                    startActivity(Intent(activity, AboutLibraries::class.java))
-                }
+                "About" -> startActivity(Intent(activity, About::class.java))
+                "Help" -> startActivity(Intent(activity, Intro::class.java))
+                "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
         }
@@ -332,46 +326,25 @@ class Settings : AppCompatActivity() {
 
                     // Checks if the chosen color is not the same as the current color
                     if (Colours().getAccentColourAsInt(requireContext()) != color) {
-                        var colorOut = "original"
-                        when (color) {
-                            ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
-                                colorOut = "pink"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
-                                colorOut = "violet"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
-                                colorOut = "blue"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
-                                colorOut = "lightBlue"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
-                                colorOut = "teal"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
-                                colorOut = "green"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
-                                colorOut = "lime"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
-                                colorOut = "yellow"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
-                                colorOut = "orange"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
-                                colorOut = "red"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
-                                colorOut = "crimson"
-                            }
+                        val colorOut = when (color) {
+                            getColor(requireContext(), R.color.pinkAccent) -> "pink"
+                            getColor(requireContext(), R.color.violetAccent) -> "violet"
+                            getColor(requireContext(), R.color.blueAccent) -> "blue"
+                            getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
+                            getColor(requireContext(), R.color.tealAccent) -> "teal"
+                            getColor(requireContext(), R.color.greenAccent) -> "green"
+                            getColor(requireContext(), R.color.limeAccent) -> "lime"
+                            getColor(requireContext(), R.color.yellowAccent) -> "yellow"
+                            getColor(requireContext(), R.color.orangeAccent) -> "orange"
+                            getColor(requireContext(), R.color.redAccent) -> "red"
+                            getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
+                            else -> "original"
                         }
-                        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-                        val editor = sharedPrefs.edit()
-                        editor.putString("accent_color", colorOut)
-                        editor.apply()
+
+                        PreferenceManager.getDefaultSharedPreferences(context)
+                            .edit()
+                            .putString("accent_color", colorOut)
+                            .apply()
 
                         updateColorSummary()
 
