@@ -31,6 +31,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
 
+/** The widget **/
 class MainWidget : AppWidgetProvider() {
 
     var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"

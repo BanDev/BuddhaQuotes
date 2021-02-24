@@ -9,10 +9,11 @@
     <color name="redError">#70df5252</color>
     <color name="splashEndColor">#FFB332</color>
     <color name="darkModeBar">#333333</color>
-    <color name="abbBackgroundColor">@color/background</color>
+    <color name="abbBackgroundColor">@android:color/white</color>
     <color name="ic_launcher_background">#E80054</color>
 
     <color name="bandev">#5E17EB</color>
+    <color name="line">#d3d3d3</color>
 
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F5F5F5</color>
@@ -23,7 +24,7 @@
 
     <color name="blueAccent">#4285F4</color>
     <color name="greenAccent">#3DDC84</color>
-    <color name="yellowAccent">#FFC933</color>
+    <color name="yellowAccent">#FFBD59</color> <!-- The OG Buddha Quotes Colour ;) -->
     <color name="orangeAccent">#FF7522</color>
     <color name="tealAccent">#00CCB8</color>
     <color name="violetAccent">#BB69C9</color>
