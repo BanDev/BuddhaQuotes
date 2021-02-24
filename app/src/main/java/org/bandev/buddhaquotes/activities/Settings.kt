@@ -26,7 +26,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -98,15 +98,9 @@ class Settings : AppCompatActivity() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
-                "About" -> {
-                    startActivity(Intent(activity, About::class.java))
-                }
-                "Help" -> {
-                    startActivity(Intent(activity, Intro::class.java))
-                }
-                "AboutLibraries" -> {
-                    startActivity(Intent(activity, AboutLibraries::class.java))
-                }
+                "About" -> startActivity(Intent(activity, About::class.java))
+                "Help" -> startActivity(Intent(activity, Intro::class.java))
+                "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
         }
@@ -119,66 +113,69 @@ class Settings : AppCompatActivity() {
             updateThemeSummary()
             updateLanguageSummary()
 
-            val accentColorButton = findPreference<Preference>("accent_color")
-            (accentColorButton ?: return).onPreferenceClickListener =
-                Preference.OnPreferenceClickListener {
+            findPreference<Preference>("accent_color")?.apply {
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showColorPopup()
                     true
                 }
+            }
 
-            val appThemeButton = findPreference<Preference>("theme")
-            (appThemeButton ?: return).onPreferenceClickListener =
-                Preference.OnPreferenceClickListener {
+            findPreference<Preference>("theme")?.apply {
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showThemePopup()
                     true
                 }
+            }
 
-            val languageButton = findPreference<Preference>("app_language")
-            (languageButton ?: return).onPreferenceClickListener =
-                Preference.OnPreferenceClickListener {
+            findPreference<Preference>("app_language")?.apply {
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showLanguagePopup()
                     true
                 }
+            }
         }
 
         private fun updateColorSummary() {
-            val accentColor = findPreference<Preference>("accent_color")
-            when (Colours().getAccentColourAsString(requireContext())) {
-                "pink" -> (accentColor ?: return).summary = getString(R.string.pink)
-                "violet" -> (accentColor ?: return).summary = getString(R.string.violet)
-                "blue" -> (accentColor ?: return).summary = getString(R.string.blue)
-                "lightBlue" -> (accentColor ?: return).summary = getString(R.string.lightBlue)
-                "teal" -> (accentColor ?: return).summary = getString(R.string.teal)
-                "green" -> (accentColor ?: return).summary = getString(R.string.green)
-                "lime" -> (accentColor ?: return).summary = getString(R.string.lime)
-                "yellow" -> (accentColor ?: return).summary = getString(R.string.yellow)
-                "orange" -> (accentColor ?: return).summary = getString(R.string.orange)
-                "red" -> (accentColor ?: return).summary = getString(R.string.red)
-                "crimson" -> (accentColor ?: return).summary = getString(R.string.crimson)
-                else -> (accentColor ?: return).summary = getString(R.string.original)
+            findPreference<Preference>("accent_color")?.apply {
+                this.summary = when (Colours().getAccentColourAsString(requireContext())) {
+                    "pink" -> getString(R.string.pink)
+                    "violet" -> getString(R.string.violet)
+                    "blue" -> getString(R.string.blue)
+                    "lightBlue" -> getString(R.string.lightBlue)
+                    "teal" -> getString(R.string.teal)
+                    "green" -> getString(R.string.green)
+                    "lime" -> getString(R.string.lime)
+                    "yellow" -> getString(R.string.yellow)
+                    "orange" -> getString(R.string.orange)
+                    "red" -> getString(R.string.red)
+                    "crimson" -> getString(R.string.crimson)
+                    else -> getString(R.string.original)
+                }
             }
         }
 
         private fun updateThemeSummary() {
-            val theme = findPreference<Preference>("theme")
-            when (Theme().getAppTheme(requireContext())) {
-                0 -> {
-                    (theme ?: return).summary = getString(R.string.light_mode)
-                    theme.setIcon(R.drawable.ic_day_settings)
+            findPreference<Preference>("theme")?.apply {
+                this.summary = when (Theme().getAppTheme(requireContext())) {
+                    0 -> {
+                        this.setIcon(R.drawable.ic_day_settings)
+                        getString(R.string.light_mode)
+                    }
+                    1 -> {
+                        this.setIcon(R.drawable.ic_night_settings)
+                        getString(R.string.dark_mode)
+                    }
+                    else -> getString(R.string.follow_system_default)
                 }
-                1 -> {
-                    (theme ?: return).summary = getString(R.string.dark_mode)
-                    theme.setIcon(R.drawable.ic_night_settings)
-                }
-                else -> (theme ?: return).summary = getString(R.string.follow_system_default)
             }
         }
 
         private fun updateLanguageSummary() {
-            val language = findPreference<Preference>("app_language")
-            val int = Languages(base = context).getLanguageAsInt(requireContext())
-            val singleItems = resources.getStringArray(R.array.language_entries)
-            (language ?: return).summary = singleItems[int]
+            findPreference<Preference>("app_language")?.apply {
+                val int = Languages(base = context).getLanguageAsInt(requireContext())
+                val singleItems = resources.getStringArray(R.array.language_entries)
+                this.summary = singleItems[int]
+            }
         }
 
         private fun showLanguagePopup() {
@@ -316,46 +313,25 @@ class Settings : AppCompatActivity() {
 
                     // Checks if the chosen color is not the same as the current color
                     if (Colours().getAccentColourAsInt(requireContext()) != color) {
-                        var colorOut = "original"
-                        when (color) {
-                            ContextCompat.getColor(requireContext(), R.color.pinkAccent) -> {
-                                colorOut = "pink"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.violetAccent) -> {
-                                colorOut = "violet"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.blueAccent) -> {
-                                colorOut = "blue"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.lightBlueAccent) -> {
-                                colorOut = "lightBlue"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.tealAccent) -> {
-                                colorOut = "teal"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.greenAccent) -> {
-                                colorOut = "green"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.limeAccent) -> {
-                                colorOut = "lime"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.yellowAccent) -> {
-                                colorOut = "yellow"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.orangeAccent) -> {
-                                colorOut = "orange"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.redAccent) -> {
-                                colorOut = "red"
-                            }
-                            ContextCompat.getColor(requireContext(), R.color.crimsonAccent) -> {
-                                colorOut = "crimson"
-                            }
+                        val colorOut = when (color) {
+                            getColor(requireContext(), R.color.pinkAccent) -> "pink"
+                            getColor(requireContext(), R.color.violetAccent) -> "violet"
+                            getColor(requireContext(), R.color.blueAccent) -> "blue"
+                            getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
+                            getColor(requireContext(), R.color.tealAccent) -> "teal"
+                            getColor(requireContext(), R.color.greenAccent) -> "green"
+                            getColor(requireContext(), R.color.limeAccent) -> "lime"
+                            getColor(requireContext(), R.color.yellowAccent) -> "yellow"
+                            getColor(requireContext(), R.color.orangeAccent) -> "orange"
+                            getColor(requireContext(), R.color.redAccent) -> "red"
+                            getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
+                            else -> "original"
                         }
-                        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-                        val editor = sharedPrefs.edit()
-                        editor.putString("accent_color", colorOut)
-                        editor.apply()
+
+                        PreferenceManager.getDefaultSharedPreferences(context)
+                            .edit()
+                            .putString("accent_color", colorOut)
+                            .apply()
 
                         updateColorSummary()
 
