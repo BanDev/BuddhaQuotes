@@ -59,7 +59,7 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.8.2'
+    implementation 'com.mikepenz:aboutlibraries-core:8.8.3'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.1.0'
@@ -93,10 +93,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Recycler View
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta02'
 
     // Android KTX
-    implementation 'androidx.core:core-ktx:1.5.0-beta01'
+    implementation 'androidx.core:core-ktx:1.5.0-beta02'
 
     // [Testing] Basic
     testImplementation 'junit:junit:4.13.2'
@@ -106,5 +106,5 @@ dependencies {
     // Swipe to refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
 
-    implementation 'com.github.BanDev:Xplosion:1.0.2'
+    implementation 'com.github.BanDev:Xplosion:1.0.3'
 }
