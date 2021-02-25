@@ -84,9 +84,8 @@
     </style>
 
     <style name="Splash" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="android:windowBackground">@drawable/launch_theme</item>
     </style>
 
