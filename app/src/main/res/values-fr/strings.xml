@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.1.0</string>
 
     
     <string name="refresh" id="1">Rafraîchir</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">Aider</string>
     <string name="app_introduction" id="18">Présentation de l\'application</string>
     <string name="app_license" id="19">Licence d\'application</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Bibliothèques utilisées</string>
 
     
@@ -35,12 +32,6 @@
     <string name="about_info" id="26">Informations sur l\'application</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes est un projet collaboratif pour créer une application gratuite et open source Buddha Quotes pour Android avec un accent sur la confidentialité</string>
     <string name="about_contributors" id="28">Contributeurs</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
     <string name="about_acknowledgements" id="29">Remerciements</string>
     <string name="about_attribution" id="30">Icône du lanceur - Freepik via Flaticon</string>
     <string name="tick" id="31">Cocher</string>
@@ -354,7 +345,7 @@
     <string name="quote_47" id="356">Le contentement est la plus grande richesse</string>
     <string name="quote_48" id="357">Délectez-vous de l\'attention! Gardez bien vos pensées!</string>
     <string name="quote_49" id="358">Ravissantes sont les forêts où le public ne se réjouit pas. Là, le plaisir sans passion, Ne cherche pas le plaisir sensuel</string>
-    <string name="quote_50" id="359">Le Dharma n\'est pas soutenu en en parlant. Le Dharma est soutenu en vivant en harmonie avec lui ...</string>
+    <string name="quote_50" id="359">Le Dharma n\'est pas soutenu en en parlant. Le Dharma est soutenu en vivant en harmonie avec lui …</string>
     <string name="quote_51" id="360">Ne prêtez pas attention à ce que les autres font ou ne font pas; donnez-le à ce que vous faites ou ne faites pas</string>
     <string name="quote_52" id="361">Ne surestimez pas ce que vous avez reçu et n\'enviez pas les autres. Celui qui envie les autres n\'obtient pas la tranquillité d\'esprit</string>
     <string name="quote_53" id="362">Ne pensez pas à la taille de l\'univers, cela vous blessera simplement la tête</string>
@@ -510,7 +501,7 @@
     <string name="quote_203" id="512">Être beau signifie être soi-même. Vous n \'avez pas besoin d \' être accepté par les autres. Vous devez vous accepter</string>
     <string name="quote_204" id="513">Devenir végétarien, c\'est entrer dans le courant qui mène au nirvana</string>
     <string name="quote_205" id="514">Insister sur une pratique spirituelle qui vous a servi dans le passé, c\'est porter le radeau sur le dos après avoir traversé la rivière</string>
-    <string name="quote_206" id="515">Garder le corps en bonne santé est un devoir ... sinon nous ne pourrons pas garder notre esprit fort et clair</string>
+    <string name="quote_206" id="515">Garder le corps en bonne santé est un devoir … sinon nous ne pourrons pas garder notre esprit fort et clair</string>
     <string name="quote_207" id="516">Vivre dans la conscience de l\'inévitabilité de la souffrance, de l\'affaiblissement, de la vieillesse et de la mort, est impossible - nous devons nous libérer de la vie, de toute vie possible</string>
     <string name="quote_208" id="517">S\'abstenir du mal et des boissons fortes et être toujours ferme dans la vertu; c\'est la bonne chance</string>
     <string name="quote_209" id="518">Soutenir la mère et le père, chérir sa femme et ses enfants et s\'engager dans une occupation pacifique - c\'est la plus grande bénédiction</string>

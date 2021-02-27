@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.1.0</string>
 
     
     <string name="refresh" id="1">Aktualisierung</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">Hilfe</string>
     <string name="app_introduction" id="18">App Einführung</string>
     <string name="app_license" id="19">App-Lizenz</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Verwendete Bibliotheken</string>
 
     
@@ -35,12 +32,6 @@
     <string name="about_info" id="26">App-Information</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und Open Source Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz</string>
     <string name="about_contributors" id="28">Mitwirkende</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
     <string name="about_acknowledgements" id="29">Danksagung</string>
     <string name="about_attribution" id="30">Launcher-Symbol - Freepik über Flaticon</string>
     <string name="tick" id="31">Tick</string>
@@ -491,7 +482,7 @@
     <string name="quote_184" id="493">Der Weg, die Meinung anderer zu ändern, ist mit Zuneigung und nicht mit Wut</string>
     <string name="quote_185" id="494">Der Weise macht aus sich eine Insel, die keine Flut überwältigen kann</string>
     <string name="quote_186" id="495">Die Welt ist von Tod und Verfall betroffen. Aber die Weisen trauern nicht, nachdem sie die Natur der Welt erkannt haben</string>
-    <string name="quote_187" id="496">Es gibt keine Ketten wie Hass ... Das Verweilen in den Fehlern deines Bruders vervielfacht deine eigenen. Sie sind weit vom Ende Ihrer Reise entfernt</string>
+    <string name="quote_187" id="496">Es gibt keine Ketten wie Hass … Das Verweilen in den Fehlern deines Bruders vervielfacht deine eigenen. Sie sind weit vom Ende Ihrer Reise entfernt</string>
     <string name="quote_188" id="497">Es gibt keine Angst für jemanden, dessen Geist nicht mit Wünschen erfüllt ist</string>
     <string name="quote_189" id="498">Es gibt kein Feuer wie Leidenschaft, es gibt keinen Hai wie Hass, es gibt keine Schlinge wie Torheit, es gibt keinen Strom wie Gier</string>
     <string name="quote_190" id="499">Nichts ist so ungehorsam wie ein undisziplinierter Geist, und nichts ist so gehorsam wie ein disziplinierter Geist</string>
@@ -519,7 +510,7 @@
     <string name="quote_212" id="521">Der Sieg erzeugt Hass. Die Besiegten leben unter Schmerzen. Glücklicherweise leben die friedlichen Menschen und geben Sieg und Niederlage auf</string>
     <string name="quote_213" id="522">Tugendhafte Menschen lassen immer los. Sie schwatzen nicht über Freuden und Wünsche. Berührt vom Glück und dann vom Leiden zeigt der Weise keine Anzeichen von Hochstimmung oder Depression</string>
     <string name="quote_214" id="523">Wir sind hier, um aus unserer Illusion der Getrenntheit zu erwachen</string>
-    <string name="quote_215" id="524">Wir werden Liebe entwickeln, wir werden sie praktizieren, wir werden sie sowohl als Weg als auch als Grundlage machen ...</string>
+    <string name="quote_215" id="524">Wir werden Liebe entwickeln, wir werden sie praktizieren, wir werden sie sowohl als Weg als auch als Grundlage machen …</string>
     <string name="quote_216" id="525">Wir werden die Befreiung des Geistes durch Liebenswürdigkeit entwickeln und kultivieren, sie zu unserem Vehikel machen, sie zu unserer Basis machen, sie stabilisieren, uns darin üben und sie vollständig vervollkommnen</string>
     <string name="quote_217" id="526">Was auch immer ein Mönch mit seinem Denken und Nachdenken verfolgt, das wird zur Neigung seines Bewusstseins</string>
     <string name="quote_218" id="527">Was auch immer ein Feind einem Feind oder ein Feind einem Feind antun mag, der schlecht gelenkte Verstand kann Ihnen noch Schlimmeres antun</string>
