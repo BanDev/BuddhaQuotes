@@ -76,12 +76,6 @@ class Main : AppCompatActivity() {
             editor.putBoolean("first_time", false)
             editor.apply()
             startActivity(Intent(this, Intro::class.java))
-        } else if (sharedPrefs.getString(
-                "latestShown",
-                "null"
-            ) != getString(R.string.version)
-        ) {
-            startActivity(Intent(this, UpdateInfo::class.java))
         }
 
         // Setup view binding

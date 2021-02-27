@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.0.0</string>
+    <string name="version" translatable="false">v2.1.0</string>
 
     <!-- Main page -->
     <string name="refresh" id="1">Refresh</string>
@@ -556,11 +556,6 @@
     <string name="fragment_lists">Lists</string>
     <string name="fragment_meditation">Meditate</string>
 
-    <string name="updateTitle">New year, New Buddha Quotes</string>
-    <string name="updateSubheading">We have changed lots, and can\'t wait for you to try it!</string>
-    <string name="carry_on">Continue</string>
-    <string name="read">Blog post</string>
-
     <string name="meditate_title">Meditate</string>
     <string name="meditate_subheading">It\'s simple &amp; easy</string>
 
@@ -585,6 +580,7 @@
     <string name="more">More</string>
     <string name="addToList">Add to list</string>
     <string name="searchHint">Search…</string>
+    <string name="search">Search</string>
     <string name="attribution_buddha">  ~Gautama Buddha</string>
 
     <string name="seconds">seconds</string>
@@ -602,4 +598,6 @@
     <string name="exists">This quote already exists in </string>
 
     <string name="start">Start</string>
+    <string name="show_notification">Show notifcation</string>
+    <string name="vibrate_second">Vibrate every second</string>
 </resources>

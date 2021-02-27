@@ -133,13 +133,14 @@ class TimerActivity : AppCompatActivity() {
 
             // Vibrate every second?
             with(InputCheckBox {
-                text("Vibrate every second")
+                text(R.string.vibrate_second)
                 defaultValue(settings.vibrateSecond)
                 changeListener { settings.vibrateSecond = !settings.vibrateSecond }
             })
 
+            // Show notification?
             with(InputCheckBox {
-                text("Show notifcation")
+                text(R.string.show_notification)
                 defaultValue(settings.showNotificaton)
                 changeListener {
                     settings.showNotificaton = !settings.showNotificaton
@@ -150,15 +151,6 @@ class TimerActivity : AppCompatActivity() {
                         pushNotification(requireContext())
                     }
                 }
-            })
-
-            // The sound to play at the end
-            with(InputSpinner {
-                required()
-                label("Play sound on finish")
-                selected(settings.endSoundID)
-                options(sounds)
-                resultListener { settings.endSoundID = it }
             })
             onNegative {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
