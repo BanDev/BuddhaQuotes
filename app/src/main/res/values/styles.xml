@@ -145,24 +145,4 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView.ActionBar">
-        <item name="layout">@layout/toolbar_search_view</item>
-        <item name="commitIcon">@drawable/ic_arrow_back</item>
-        <item name="colorControlNormal">#fff</item>
-        <item name="colorControlHighlight">#000</item>
-        <item name="android:textColor">#000</item>
-        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextViewStyle</item>
-        <item name="suggestionRowLayout">@layout/search_view_suggestion_row</item>
-        <item name="android:maxWidth">9999dp</item>
-    </style>
-
-    <style name="AutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-        <item name="android:popupBackground">@drawable/search_suggestions_bg</item>
-        <item name="android:popupElevation">0dp</item>
-    </style>
-
-    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="searchViewStyle">@style/SearchViewTheme</item>
-    </style>
-
 </resources>
