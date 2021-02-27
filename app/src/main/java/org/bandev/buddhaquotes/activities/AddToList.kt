@@ -20,15 +20,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.content.res.TypedArray
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
-import android.view.Menu
+import android.view.*
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.TranslateAnimation
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
@@ -36,6 +49,7 @@ import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*
+
 
 /**
  * The activity where the user selects a quote to add to their list
@@ -46,6 +60,7 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
     private lateinit var rAdapter: AddQuoteRecycler
+    private lateinit var mToolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +87,8 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
+
+        mToolbar = binding.toolbar
     }
 
     override fun onClick(quote: String) {
@@ -118,11 +135,34 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search, menu)
-
         val searchItem = menu!!.findItem(R.id.appSearchBar)
-        val searchView = searchItem.actionView as SearchView
+        val searchView = searchItem.actionView as android.widget.SearchView
+        searchView.isActivated = true
+        val searchMagIcon = resources.getIdentifier("search_mag_icon", "id", "android")
+        val SearchHintIcon: ImageView = searchView.findViewById<View>(searchMagIcon) as ImageView
+        SearchHintIcon.setImageResource(0)
+        val id = searchView.context.resources.getIdentifier("android:id/search_src_text", null, null)
+        val textView = searchView.findViewById<View>(id) as TextView
+        textView.setTextColor(Color.BLACK)
         searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        MenuItemCompat.setOnActionExpandListener(
+            searchItem,
+            object : MenuItemCompat.OnActionExpandListener {
+                override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                    // Called when SearchView is collapsing
+                    if (searchItem.isActionViewExpanded()) {
+                        animateSearchToolbar(1, false, false)
+                    }
+                    return true
+                }
+
+                override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                    // Called when SearchView is expanding
+                    animateSearchToolbar(1, true, true)
+                    return true
+                }
+            })
+        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
@@ -133,6 +173,102 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             }
         })
         return true
+    }
+
+    fun animateSearchToolbar(numberOfMenuIcon: Int, containsOverflow: Boolean, show: Boolean) {
+        mToolbar.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white))
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.md_blue_grey_100));
+        if (show) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val width: Int = mToolbar.getWidth() -
+                        (if (containsOverflow) resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_overflow_material) else 0) -
+                        resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_material) * numberOfMenuIcon / 2
+                val createCircularReveal = ViewAnimationUtils.createCircularReveal(
+                    mToolbar,
+                    if (isRtl(resources)) mToolbar.getWidth() - width else width,
+                    mToolbar.getHeight() / 2,
+                    0.0f,
+                    width.toFloat()
+                )
+                createCircularReveal.duration = 250
+                createCircularReveal.start()
+            } else {
+                val translateAnimation =
+                    TranslateAnimation(0.0f, 0.0f, -mToolbar.getHeight() as Float, 0.0f)
+                translateAnimation.duration = 220
+                mToolbar.clearAnimation()
+                mToolbar.startAnimation(translateAnimation)
+            }
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val width: Int = mToolbar.getWidth() -
+                        (if (containsOverflow) resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_overflow_material) else 0) -
+                        resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_material) * numberOfMenuIcon / 2
+                val createCircularReveal = ViewAnimationUtils.createCircularReveal(
+                    mToolbar,
+                    if (isRtl(resources)) mToolbar.getWidth() - width else width,
+                    mToolbar.getHeight() / 2,
+                    width.toFloat(),
+                    0.0f
+                )
+                createCircularReveal.duration = 250
+                createCircularReveal.addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        super.onAnimationEnd(animation)
+                        mToolbar.setBackgroundColor(
+                            getThemeColor(
+                                this@AddToList,
+                                R.attr.colorPrimary
+                            )
+                        )
+                        getWindow().setStatusBarColor(
+                            ContextCompat.getColor(
+                                applicationContext,
+                                R.color.md_blue_grey_100
+                            )
+                        );
+
+                    }
+                })
+                createCircularReveal.start()
+            } else {
+                val alphaAnimation = AlphaAnimation(1.0f, 0.0f)
+                val translateAnimation: Animation =
+                    TranslateAnimation(0.0f, 0.0f, 0.0f, -mToolbar.getHeight() as Float)
+                val animationSet = AnimationSet(true)
+                animationSet.addAnimation(alphaAnimation)
+                animationSet.addAnimation(translateAnimation)
+                animationSet.duration = 220
+                animationSet.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation?) {}
+                    override fun onAnimationEnd(animation: Animation?) {
+                        mToolbar.setBackgroundColor(
+                            getThemeColor(
+                                this@AddToList,
+                                R.attr.colorPrimary
+                            )
+                        )
+                    }
+
+                    override fun onAnimationRepeat(animation: Animation?) {}
+                })
+                mToolbar.startAnimation(animationSet)
+            }
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.md_blue_grey_100));
+
+        }
+    }
+
+    private fun isRtl(resources: Resources): Boolean {
+        return resources.getConfiguration().getLayoutDirection() === View.LAYOUT_DIRECTION_RTL
+    }
+
+    private fun getThemeColor(context: Context, id: Int): Int {
+        val theme: Resources.Theme = context.getTheme()
+        val a: TypedArray = theme.obtainStyledAttributes(intArrayOf(id))
+        val result = a.getColor(0, 0)
+        a.recycle()
+        return result
     }
 
     override fun onBackPressed() {
