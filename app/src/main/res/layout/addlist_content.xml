@@ -7,52 +7,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/addlist">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:paddingStart="8dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/toolbar"
-            android:paddingStart="8dp"
-            android:paddingEnd="10dp"
-            app:collapseIcon="@drawable/ic_arrow_back_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:popupTheme="@style/PopupTheme"
-            app:theme="@style/ToolbarTheme"
-            app:title="@string/lists_add_item"
-            app:titleTextAppearance="@style/toolbarText"
-            app:titleTextColor="@android:color/white" />
-
-        <View
-            android:id="@+id/anchor_dropdown"
-            android:layout_width="match_parent"
-            android:layout_height="0dp" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/lists_add_item"
+        app:titleTextAppearance="@style/toolbarText"
+        app:titleTextColor="@android:color/white" />
 
     <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
         android:id="@+id/fastscroller"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         app:handleDrawable="@drawable/handle_drawable"
-        app:handleHeight="36dp"
         app:handleVisibilityDuration="1"
         app:handleWidth="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBar">
+        app:handleHeight="36dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
