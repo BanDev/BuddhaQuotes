@@ -6,5 +6,5 @@
         android:icon="@drawable/ic_breath"
         android:title="Search"
         app:showAsAction="ifRoom|withText"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        app:actionViewClass="android.widget.SearchView"/>
 </menu>
