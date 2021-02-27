@@ -36,11 +36,12 @@
     <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
 </string>
     <string name="about_contributors" id="28">Contributors</string>
-    <string name="about_fennec" id="UNTRANSLATE" translatable="false">"@Fennec_exe"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jack.txt"</string>
+    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
+    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
     <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
     <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
     <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
+    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
     <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
     <string name="tick" id="31">Tick</string>
@@ -58,28 +59,6 @@
     <string name="forward_arrow" id="60">Return</string>
     <string name="icon" id="61">Icon</string>
     <string name="title" id="62">Title</string>
-
-    <!-- Licenses page -->
-    <string name="licenses" id="63">License</string>
-    <string name="licenses_license" id="UNTRANSLATE" translatable="false">GPL-3.0+</string>
-    <string name="licenses_permissions" id="64">Permissions</string>
-    <string name="licenses_commercial_use" id="65">Commercial use</string>
-    <string name="licenses_distribution" id="66">Distribution</string>
-    <string name="licenses_modification" id="67">Modification</string>
-    <string name="licenses_patent_use" id="68">Patent use</string>
-    <string name="licenses_private_use" id="69">Private use</string>
-    <string name="licenses_conditions" id="70">Conditions</string>
-    <string name="licenses_disclose_source" id="71">Disclose source</string>
-    <string name="licenses_copyright_notice" id="72">License and copyright notice</string>
-    <string name="licenses_same_license" id="73">Same license</string>
-    <string name="licenses_state_changes" id="74">State changes</string>
-    <string name="licenses_limitations" id="75">Limitations</string>
-    <string name="licenses_liability" id="76">Liability</string>
-    <string name="licenses_warranty" id="77">Warranty</string>
-    <string name="licenses_full_license" id="78">Full License</string>
-    <string name="green_circle" id="79">Green circle</string>
-    <string name="blue_circle" id="80">Blue circle</string>
-    <string name="red_circle" id="81">Red circle</string>
 
     <!-- Miscellaneous  -->
     <string name="title_activity_settings" id="82">SettingsActivity</string>
@@ -605,6 +584,7 @@
 
     <string name="more">More</string>
     <string name="addToList">Add to list</string>
+    <string name="searchHint">Search…</string>
     <string name="attribution_buddha">  ~Gautama Buddha</string>
 
     <string name="seconds">seconds</string>

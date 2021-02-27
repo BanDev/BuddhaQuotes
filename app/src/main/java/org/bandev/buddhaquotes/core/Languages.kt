@@ -44,8 +44,7 @@ class Languages(base: Context?) : ContextWrapper(base) {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val language = sharedPrefs.getString("app_language", "en").toString()
             val config = context.resources.configuration
-            val sysLocale: Locale?
-            sysLocale = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+            val sysLocale: Locale = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
                 getSystemLocale(config)
             } else {
                 getSystemLocaleLegacy(config)
