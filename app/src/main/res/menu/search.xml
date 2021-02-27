@@ -5,6 +5,6 @@
         android:id="@+id/appSearchBar"
         android:icon="@drawable/ic_breath"
         android:title="Search"
-        app:showAsAction="ifRoom|withText"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        app:actionLayout="@layout/search_view_layout"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>
