@@ -124,8 +124,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             if (listIn[i] == "Favourites") {
                 special = true
             }
-            var summary: String
-            summary = if (count != 1) {
+            val summary: String = if (count != 1) {
                 "$count items"
             } else {
                 "$count item"

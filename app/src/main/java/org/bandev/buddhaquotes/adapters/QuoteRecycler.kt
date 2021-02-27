@@ -24,10 +24,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.QuoteRecycler.OnItemClickFinder
 import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
-import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.bandev.buddhaquotes.items.QuoteItem
 
 /**
  * Recycler adapter for the [RecyclerView] used in the [QuoteRecycler]

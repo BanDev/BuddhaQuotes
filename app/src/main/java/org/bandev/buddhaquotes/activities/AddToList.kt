@@ -26,9 +26,9 @@ import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
-import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -123,12 +123,23 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         menuInflater.inflate(R.menu.search, menu)
 
         val searchItem = menu!!.findItem(R.id.appSearchBar)
-        val searchView = searchItem.actionView as android.widget.SearchView
+        val searchView = searchItem.actionView as SearchView
+
+        val searchCloseBtn =
+            searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
+        searchCloseBtn.setColorFilter(Color.WHITE)
+
+        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
+        searchIcon.setColorFilter(Color.WHITE)
+
+        val searchEditText =
+            searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(Color.WHITE)
+        searchEditText.setHintTextColor(Color.WHITE)
+        searchEditText.hint = getString(R.string.searchHint)
+
         searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-        val id = searchView.context.resources.getIdentifier("android:id/search_src_text", null, null)
-        val textView = searchView.findViewById<View>(id) as TextView
-        textView.setTextColor(Color.WHITE)
-        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }

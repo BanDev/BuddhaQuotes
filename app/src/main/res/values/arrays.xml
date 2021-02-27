@@ -43,11 +43,12 @@
     </string-array>
 
     <string-array name="contributors">
-        <item>@string/about_fennec</item>
+        <item>@string/about_russell</item>
         <item>@string/about_jack</item>
         <item>@string/about_izzysoft</item>
         <item>@string/about_licaon</item>
         <item>@string/about_poussinou</item>
+        <item>@string/about_j_m_hoffman</item>
     </string-array>
 
     <string-array name="translators">
