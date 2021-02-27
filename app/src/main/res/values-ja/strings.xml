@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.1.0</string>
 
     
     <string name="refresh" id="1">更新</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">助けて</string>
     <string name="app_introduction" id="18">アプリ紹介</string>
     <string name="app_license" id="19">アプリライセンス</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">使用したライブラリ</string>
 
     
@@ -35,12 +32,6 @@
     <string name="about_info" id="26">アプリ情報</string>
     <string name="about_info_paragraph" id="27">Buddha Quotesは、プライバシーに重点を置いたAndroid用の無料のオープンソースBuddhaQuotesアプリを作成するための共同プロジェクトです。</string>
     <string name="about_contributors" id="28">寄稿者</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
     <string name="about_acknowledgements" id="29">謝辞</string>
     <string name="about_attribution" id="30">ランチャーアイコン-Flaticon経由のFreepik</string>
     <string name="tick" id="31">ティック</string>

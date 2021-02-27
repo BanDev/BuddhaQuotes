@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">Buddha Quotes</string>
-    <string name="version" translatable="false">v2.1.0</string>
 
     
     <string name="refresh" id="1">Actualizar</string>
@@ -21,7 +19,6 @@
     <string name="help" id="17">Ayuda</string>
     <string name="app_introduction" id="18">Introducción a la aplicación</string>
     <string name="app_license" id="19">Licencia de la aplicación</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Bibliotecas utilizadas</string>
 
     
@@ -35,12 +32,6 @@
     <string name="about_info" id="26">Informacion de la applicacion</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes es un proyecto colaborativo para crear una aplicación gratuita y de código abierto de Buddha Quotes para Android con un enfoque en la privacidad.</string>
     <string name="about_contributors" id="28">Colaboradores</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
     <string name="about_acknowledgements" id="29">Agradecimientos</string>
     <string name="about_attribution" id="30">Icono de lanzador - Freepik a través de Flaticon</string>
     <string name="tick" id="31">Garrapata</string>
@@ -354,7 +345,7 @@
     <string name="quote_47" id="356">El contentamiento es la mayor riqueza</string>
     <string name="quote_48" id="357">¡Deléitate con la atención! ¡Guarda bien tus pensamientos!</string>
     <string name="quote_49" id="358">Hermosos son los bosques donde el público no deleita. Allí el deleite sin pasión, sin buscar el placer sensual</string>
-    <string name="quote_50" id="359">El Dharma no se sostiene hablando de él. El Dharma se mantiene viviendo en armonía con él ...</string>
+    <string name="quote_50" id="359">El Dharma no se sostiene hablando de él. El Dharma se mantiene viviendo en armonía con él …</string>
     <string name="quote_51" id="360">No preste atención a lo que otros hacen o dejan de hacer; dáselo a lo que haces o dejas de hacer</string>
     <string name="quote_52" id="361">No sobrevalore lo que ha recibido, ni envidie a los demás. El que envidia a los demás no obtiene tranquilidad</string>
     <string name="quote_53" id="362">No pienses en lo grande que es el universo, simplemente te lastimará la cabeza.</string>
@@ -406,7 +397,7 @@
     <string name="quote_99" id="408">No basta con ser compasivo, debemos actuar</string>
     <string name="quote_100" id="409">Es posible vivir las 24 horas en un estado de amor</string>
     <string name="quote_101" id="410">Es muy importante generar una buena actitud, un buen corazón, tanto como sea posible. De esto vendrá la felicidad tanto a corto como a largo plazo tanto para ti como para los demás.</string>
-    <string name="quote_102" id="411">Es tu camino ... y solo tuyo ... Otros pueden caminar contigo, pero nadie puede hacerlo por ti. No importa el camino que elijas, síguelo.</string>
+    <string name="quote_102" id="411">Es tu camino … y solo tuyo ... Otros pueden caminar contigo, pero nadie puede hacerlo por ti. No importa el camino que elijas, síguelo.</string>
     <string name="quote_103" id="412">La alegría no proviene de la posesión o propiedad, sino de un corazón sabio y amoroso.</string>
     <string name="quote_104" id="413">Así como una roca sólida no es sacudida por la tormenta, así los sabios no se ven afectados por la alabanza o la culpa.</string>
     <string name="quote_105" id="414">Así como el gran océano tiene un sabor, el sabor de la sal, así también esta enseñanza y disciplina tiene un sabor, el sabor de la liberación.</string>
@@ -491,7 +482,7 @@
     <string name="quote_184" id="493">La forma de cambiar la mente de los demás es con afecto y no con ira.</string>
     <string name="quote_185" id="494">El sabio se convierte en una isla que ninguna inundación puede abrumar</string>
     <string name="quote_186" id="495">El mundo está afligido por la muerte y la decadencia. Pero los sabios no se afligen, habiendo comprendido la naturaleza del mundo.</string>
-    <string name="quote_187" id="496">No hay cadenas como el odio ... Vivir en las faltas de tu hermano multiplica las tuyas. Estás lejos del final de tu viaje</string>
+    <string name="quote_187" id="496">No hay cadenas como el odio … Vivir en las faltas de tu hermano multiplica las tuyas. Estás lejos del final de tu viaje</string>
     <string name="quote_188" id="497">No hay miedo para alguien cuya mente no está llena de deseos.</string>
     <string name="quote_189" id="498">No hay fuego como la pasión, no hay tiburón como el odio, no hay trampa como la locura, no hay torrente como la codicia.</string>
     <string name="quote_190" id="499">No hay nada tan desobediente como una mente indisciplinada, y no hay nada tan obediente como una mente disciplinada.</string>
@@ -510,7 +501,7 @@
     <string name="quote_203" id="512">Ser bello significa ser uno mismo. No necesitas ser aceptado por otros. Necesitas aceptarte a ti mismo</string>
     <string name="quote_204" id="513">Convertirse en vegetariano es adentrarse en la corriente que conduce al nirvana.</string>
     <string name="quote_205" id="514">Insistir en una práctica espiritual que te sirvió en el pasado es cargar la balsa en tu espalda después de haber cruzado el río.</string>
-    <string name="quote_206" id="515">Mantener el cuerpo en buen estado de salud es un deber ... de lo contrario, no podremos mantener nuestra mente fuerte y clara.</string>
+    <string name="quote_206" id="515">Mantener el cuerpo en buen estado de salud es un deber … de lo contrario, no podremos mantener nuestra mente fuerte y clara.</string>
     <string name="quote_207" id="516">Vivir en la conciencia de la inevitabilidad del sufrimiento, del debilitamiento, de la vejez y de la muerte, es imposible: debemos liberarnos de la vida, de toda vida posible.</string>
     <string name="quote_208" id="517">Abstenerse del mal y de las bebidas alcohólicas y ser siempre firmes en la virtud; esta es la buena suerte</string>
     <string name="quote_209" id="518">Apoyar a la madre y al padre, apreciar a la esposa y los hijos y participar en una ocupación pacífica: esta es la mayor bendición.</string>
@@ -519,7 +510,7 @@
     <string name="quote_212" id="521">La victoria engendra odio. Los derrotados viven con dolor. Felizmente los pacíficos viven, renunciando a la victoria y la derrota</string>
     <string name="quote_213" id="522">La gente virtuosa siempre deja ir. No parlotean sobre placeres y deseos. Tocado por la felicidad y luego por el sufrimiento, el sabio no muestra signos de estar eufórico o deprimido.</string>
     <string name="quote_214" id="523">Estamos aquí para despertar de nuestra ilusión de separación.</string>
-    <string name="quote_215" id="524">Desarrollaremos el amor, lo practicaremos, lo haremos a la vez un camino y una base ...</string>
+    <string name="quote_215" id="524">Desarrollaremos el amor, lo practicaremos, lo haremos a la vez un camino y una base …</string>
     <string name="quote_216" id="525">Desarrollaremos y cultivaremos la liberación de la mente mediante la bondad, la convertiremos en nuestro vehículo, la convertiremos en nuestra base, la estabilizaremos, nos ejercitaremos en ella y la perfeccionaremos por completo.</string>
     <string name="quote_217" id="526">Cualquier cosa que un monje siga persiguiendo con su pensamiento y ponderación, se convierte en la inclinación de su conciencia.</string>
     <string name="quote_218" id="527">Lo que sea que un enemigo pueda hacerle a un enemigo, o un enemigo a un enemigo, la mente mal dirigida puede hacerte aún peor.</string>
