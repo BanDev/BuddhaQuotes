@@ -76,6 +76,9 @@ class Main : AppCompatActivity() {
             editor.putBoolean("first_time", false)
             editor.apply()
             startActivity(Intent(this, Intro::class.java))
+        } else {
+            editor.putBoolean("old_quotes", true)
+            editor.apply()
         }
 
         // Setup view binding
