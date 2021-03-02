@@ -79,13 +79,15 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     override fun onClick(quote: String) {
         val list = (intent.extras ?: return).getString("list").toString()
-        if (!Lists().queryInList(quote, list, this)) {
+        val lists2 = ListsV2(this)
+        val quoteID = Quotes().getFromString(quote, this)
+        if (!lists2.queryInList(quoteID, list)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-            Lists().addToList(quote, list, this)
+            lists2.addToList(quoteID, list)
             val intent2 = Intent(this, ScrollingActivity::class.java)
             intent2.putExtra("list", list)
             startActivity(intent2)

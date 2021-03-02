@@ -126,29 +126,11 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             if (clickedItem.resource == R.drawable.heart_full_red) {
                 clickedItem.resource = R.drawable.like
 
-                val pref = getSharedPreferences("ListV2", 0)
-                val editor = pref.edit()
-                val listArr = pref.getString("Favourites", "")
-                val listArrTemp: MutableList<String> =
-                    (listArr?.split("//") ?: return).toMutableList()
-                val listArrFinal = LinkedList(listArrTemp)
-                listArrFinal.remove(text)
-                val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                ListsV2(this).removeFromList(Quotes().getFromString(text, this), "Favourites")
             } else {
                 clickedItem.resource = R.drawable.heart_full_red
 
-                val pref = getSharedPreferences("ListV2", 0)
-                val editor = pref.edit()
-                val listArr = pref.getString("Favourites", "")
-                val listArrTemp: MutableList<String> =
-                    (listArr?.split("//") ?: return).toMutableList()
-                val listArrFinal = LinkedList(listArrTemp)
-                listArrFinal.push(text)
-                val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                ListsV2(this).addToList(Quotes().getFromString(text, this), "Favourites")
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             adapter.notifyItemChanged(position)
@@ -176,52 +158,32 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
 
-        val pref = getSharedPreferences("ListV2", 0)
-        val editor = pref.edit()
-        val listArr = pref.getString(listTmp, "")
-        val listArrTemp: MutableList<String> =
-            (listArr?.split("//") ?: return).toMutableList()
-        val listArrFinal = LinkedList(listArrTemp)
-        listArrFinal.remove(text)
-        val stringOut = listArrFinal.joinToString(separator = "//")
-        editor.putString(listTmp, stringOut)
-        editor.apply()
+        ListsV2(this).removeFromList(Quotes().getFromString(text, this), listTmp)
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
 
         val list = ArrayList<QuoteItem>()
-
-        var i = 0
         var item: QuoteItem
 
-        val pref = getSharedPreferences("ListV2", 0)
-        val listArr = pref.getString("Favourites", "")
-        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
-        val listArrFinal = LinkedList(listArrTemp)
+        val favs = ListsV2(this).getList("Favourites")
 
-        while (i != max) {
-            var special = false
-            if (listTmp == "Favourites") {
-                special = true
-            }
-            if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
-                item = QuoteItem(
-                    Quotes().getQuote(prefList[i], this),
-                    R.drawable.heart_full_red,
-                    special
-                )
-                list += item
+        for (id in prefList) {
+            val special = listTmp == "Favourites"
+            if (id == -1) continue
+
+            val drawable = if (favs.contains(id)) {
+                R.drawable.heart_full_red
             } else {
-                item = QuoteItem(
-                    Quotes().getQuote(prefList[i], this),
-                    R.drawable.like,
-                    special
-                )
-                list += item
+                R.drawable.like
             }
 
-            i++
+            item = QuoteItem(
+                Quotes().getQuote(id, this),
+                drawable,
+                special
+            )
+            list += item
         }
         return list
     }

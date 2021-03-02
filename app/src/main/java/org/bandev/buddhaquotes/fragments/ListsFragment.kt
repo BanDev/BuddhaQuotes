@@ -29,10 +29,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.Fragments
-import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.core.Notify
-import org.bandev.buddhaquotes.core.SendEvent
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 import org.greenrobot.eventbus.EventBus
@@ -73,7 +70,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     private fun setupRecycler() {
-        masterlist = Lists().getMasterList(requireContext())
+        masterlist = ListsV2(requireContext()).getMasterList()
 
         masterListFinal = generateMasterList(masterlist.size, masterlist)
 
@@ -93,7 +90,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     fun onNotifyReceive(event: Notify) {
         when (event) {
             is Notify.NotifyNewList -> {
-                Lists().newList(event.listName, requireContext())
+                ListsV2(requireContext()).newEmptyList(event.listName)
                 setupRecycler()
             }
         }
@@ -115,12 +112,12 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     private fun generateMasterList(max: Int, listIn: List<String>): ArrayList<ListItem> {
         val list = ArrayList<ListItem>()
+        val lists = ListsV2(requireContext())
         var i = 0
         while (i != max) {
             var special = false
-            val pref = requireContext().getSharedPreferences("List_system", 0)
-            val array2 = pref.getString(listIn[i], "")!!.split("//")
-            val count: Int = array2.size - 1
+            val individualList = lists.getList(listIn[i])
+            val count: Int = individualList.size - 1
             if (listIn[i] == "Favourites") {
                 special = true
             }
