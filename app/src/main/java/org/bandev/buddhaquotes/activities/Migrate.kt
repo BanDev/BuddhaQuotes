@@ -32,13 +32,7 @@ class Migrate : AppCompatActivity() {
         val lists = Lists()
         val newLists = ListsV2(this)
         val quotes = Quotes()
-        var first = true
         for (listTitle in lists.getMasterList(this)) {
-            if (first){
-                first = false
-                continue
-            }
-            first = false
             Toast.makeText(this, "Started translating $listTitle", Toast.LENGTH_SHORT).show()
             val list = lists.getList(listTitle, this)
             val newList = mutableListOf<Int>()
