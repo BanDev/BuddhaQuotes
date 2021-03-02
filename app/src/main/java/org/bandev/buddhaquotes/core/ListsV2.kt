@@ -37,8 +37,9 @@ class ListsV2(context: Context) {
 
     fun newList(name: String, data: List<Int>) {
         val current = sharedPrefs.getString("MASTER_LIST", "Favourites")
+        val lists = getMasterList()
+        if (!lists.contains(name)) editor.putString("MASTER_LIST", "$current//$name")
         editor.putString(name, data.joinToString(separator = "//"))
-        editor.putString("MASTER_LIST", "$current//$name")
         editor.commit()
     }
 
