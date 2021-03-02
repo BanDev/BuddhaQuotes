@@ -21,8 +21,11 @@ class Migrate : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.yes.setOnClickListener { begin() }
+
         val sharedPrefs = getSharedPreferences("Settings", 0)
-        startActivity(Intent(this, Main::class.java))
+        if (!sharedPrefs.getBoolean("old_quotes", true)){
+            startActivity(Intent(this, Main::class.java))
+        }
     }
 
     private fun begin() {
@@ -40,6 +43,7 @@ class Migrate : AppCompatActivity() {
                 newList.add(id)
             }
             Toast.makeText(this, "translating of $listTitle complete", Toast.LENGTH_SHORT).show()
+            newList.add(-1)
             newLists.newList(listTitle, newList)
         }
         val sharedPrefs = getSharedPreferences("Settings", 0)
