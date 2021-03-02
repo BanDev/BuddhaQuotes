@@ -1,5 +1,6 @@
 package org.bandev.buddhaquotes.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,8 @@ class Migrate : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.yes.setOnClickListener { begin() }
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        startActivity(Intent(this, Main::class.java))
     }
 
     private fun begin() {
@@ -39,6 +42,11 @@ class Migrate : AppCompatActivity() {
             Toast.makeText(this, "translating of $listTitle complete", Toast.LENGTH_SHORT).show()
             newLists.newList(listTitle, newList)
         }
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val editor = sharedPrefs.edit()
+        editor.putBoolean("old_quotes", false)
+        editor.apply()
+        startActivity(Intent(this, Main::class.java))
     }
 
 
