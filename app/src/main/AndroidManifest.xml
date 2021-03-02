@@ -49,6 +49,7 @@
             android:name=".activities.About"
             android:label="@string/about"
             android:theme="@style/About" />
+        <activity android:name=".activities.Migrate" />
         <activity
             android:name=".activities.TimerActivity"
             android:theme="@style/Settings" />
