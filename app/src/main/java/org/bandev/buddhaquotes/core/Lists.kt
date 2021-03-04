@@ -32,6 +32,7 @@ import java.util.*
  * @updated 10/12/2020
  */
 
+@Deprecated("This is deprecated use Listsv2 instead")
 open class Lists {
 
     /**
