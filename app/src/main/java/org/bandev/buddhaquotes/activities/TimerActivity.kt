@@ -29,10 +29,16 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -68,6 +74,33 @@ class TimerActivity : AppCompatActivity() {
         // Setup da view
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.mute.setImageDrawable(
+            IconicsDrawable(
+                this,
+                Octicons.Icon.oct_mute
+            ).apply {
+                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
+                sizeDp = 24
+            })
+
+        binding.posture.setImageDrawable(
+            IconicsDrawable(
+                this,
+                Octicons.Icon.oct_person
+            ).apply {
+                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
+                sizeDp = 24
+            })
+
+        binding.breathe.setImageDrawable(
+            IconicsDrawable(
+                this,
+                Octicons.Icon.oct_heart
+            ).apply {
+                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
+                sizeDp = 24
+            })
 
         // On settings click
         binding.settings.setOnClickListener {

@@ -9,6 +9,8 @@
     <style name="AppTheme.MainActivity" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="materialDrawerStyle">@style/Widget.MaterialDrawerStyle</item>
+        <item name="materialDrawerHeaderStyle">@style/Widget.MaterialDrawerHeaderStyle</item>
     </style>
 
     <style name="AppTheme.Original" parent="Theme.MaterialComponents.DayNight.NoActionBar">

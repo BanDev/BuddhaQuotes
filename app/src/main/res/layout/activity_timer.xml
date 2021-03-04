@@ -60,14 +60,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/breathe"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView12"
-        app:srcCompat="@drawable/ic_breath" />
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/textView12"
@@ -94,14 +93,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/mute"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
-        app:srcCompat="@drawable/ic_mute" />
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -158,14 +156,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/posture"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView14"
-        app:srcCompat="@drawable/ic_posture" />
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

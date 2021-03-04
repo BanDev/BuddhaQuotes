@@ -61,6 +61,14 @@ dependencies {
     // AboutLibraries
     implementation 'com.mikepenz:aboutlibraries-core:8.8.3'
 
+    // Material Drawer
+    implementation 'com.mikepenz:materialdrawer:8.3.3'
+    implementation 'com.mikepenz:materialdrawer-iconics:8.3.3'
+    implementation 'androidx.annotation:annotation:1.2.0-rc01'
+    implementation 'com.mikepenz:iconics-core:5.2.8'
+    implementation 'com.mikepenz:google-material-typeface-rounded:4.0.0.1-kotlin@aar'
+    implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
+
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.1.0'
 
