@@ -590,4 +590,6 @@
     <string name="start">शुरू</string>
     <string name="show_notification">नोटिफिकेशन दिखाएं</string>
     <string name="vibrate_second">हर सेकंड वाइब्रेट करें</string>
+
+    <string name="favourites">पसंदीदा</string>
 </resources>

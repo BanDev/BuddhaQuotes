@@ -60,10 +60,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if ((intent.extras ?: return).getBoolean("duplicate", false)) {
-            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT).show()
-        }
-
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list

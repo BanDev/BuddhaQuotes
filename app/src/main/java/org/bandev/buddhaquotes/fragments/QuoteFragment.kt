@@ -55,7 +55,7 @@ class QuoteFragment : Fragment() {
     private var _binding: FragmentQuoteBinding? = null
     internal val binding get() = _binding!!
     private var quotes = Quotes()
-    private lateinit var lists : ListsV2
+    private lateinit var lists: ListsV2
     private var liked = false
     private var options = mutableListOf<Option>()
     private var optionStr = mutableListOf<String>()
@@ -132,7 +132,11 @@ class QuoteFragment : Fragment() {
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
                 val quote = binding.quote.text.toString()
-                if (!lists.queryInList(quotes.getFromString(quote, requireContext()), "Favourites")) {
+                if (!lists.queryInList(
+                        quotes.getFromString(quote, requireContext()),
+                        "Favourites"
+                    )
+                ) {
                     doubleClickFavouriteQuote()
                     EventBus.getDefault().post(SendEvent.ToListFragment(true))
                 }
@@ -153,9 +157,12 @@ class QuoteFragment : Fragment() {
                 val quoteID = Quotes().getFromString(quote, requireContext())
                 if (!lists2.queryInList(quoteID, optionStr[index])) {
                     lists2.addToList(quoteID, optionStr[index])
+                    val outName = if (optionStr[index] == "Favourites") {
+                        getString(R.string.favourites)
+                    } else optionStr[index]
                     Snackbar.make(
                         binding.root,
-                        getString(R.string.added) + " " + optionStr[index],
+                        getString(R.string.added) + " " + outName,
                         Snackbar.LENGTH_LONG
                     )
                         .show()
@@ -249,13 +256,19 @@ class QuoteFragment : Fragment() {
     private fun updateOptionsList() {
         options.clear()
         optionStr.clear()
+        val listName: MutableList<String> = mutableListOf()
         for (list in lists.getMasterList()) {
             val drawable = if (list == "Favourites") {
                 R.drawable.ic_heart_octicons
             } else {
                 R.drawable.ic_list_octicons
             }
-            options.add(Option(drawable, list))
+            val outName = if (list == "Favourites") {
+                getString(R.string.favourites)
+            } else list
+
+            listName.add(outName)
+            options.add(Option(drawable, outName))
             optionStr.add(list)
         }
     }
