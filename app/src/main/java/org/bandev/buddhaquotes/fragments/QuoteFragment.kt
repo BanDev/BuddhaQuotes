@@ -26,17 +26,19 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.OnDoubleClickListener
-import org.bandev.buddhaquotes.core.SendEvent
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -168,11 +170,13 @@ class QuoteFragment : Fragment() {
                         .show()
                     if (optionStr[index] == "Favourites") {
                         binding.like.setImageDrawable(
-                            ContextCompat.getDrawable(
+                            IconicsDrawable(
                                 requireContext(),
-                                R.drawable.heart_full_red
-                            )
-                        )
+                                RoundedGoogleMaterial.Icon.gmr_favorite
+                            ).apply {
+                                colorInt = getColor(requireContext(), R.color.heart)
+                                sizeDp = 24
+                            })
                     }
                     EventBus.getDefault().post(SendEvent.ToListFragment(true))
                 } else {
@@ -195,19 +199,28 @@ class QuoteFragment : Fragment() {
         binding.quote.text = quote
         binding.number.text = getString(R.string.quote_number) + " #" + quotes.quotenumberglobal
         Store(requireContext()).quoteID = quotes.quotenumberglobal
-        val icon = if (lists.queryInList(quotes.quotenumberglobal, "Favourites")) {
+
+        if (Lists().queryInList(quote, "Favourites", context)) {
             liked = true
-            R.drawable.heart_full_red
+            binding.like.setImageDrawable(
+                IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_favorite
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.heart)
+                    sizeDp = 24
+                })
         } else {
             liked = false
-            R.drawable.like
+            binding.like.setImageDrawable(
+                IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_favorite_outline
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 24
+                })
         }
-        binding.like.setImageDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                icon
-            )
-        )
     }
 
     /**
@@ -218,18 +231,24 @@ class QuoteFragment : Fragment() {
         val quote = binding.quote.text.toString()
         if (lists.toggleInList(quotes.getFromString(quote, requireContext()), "Favourites")) {
             binding.like.setImageDrawable(
-                ContextCompat.getDrawable(
+                IconicsDrawable(
                     requireContext(),
-                    R.drawable.heart_full_red
-                )
+                    RoundedGoogleMaterial.Icon.gmr_favorite
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.heart)
+                    sizeDp = 24
+                }
             )
             binding.likeAnimator.likeAnimation()
         } else {
             binding.like.setImageDrawable(
-                ContextCompat.getDrawable(
+                IconicsDrawable(
                     requireContext(),
-                    R.drawable.like
-                )
+                    RoundedGoogleMaterial.Icon.gmr_favorite_outline
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 24
+                }
             )
         }
     }
@@ -245,10 +264,13 @@ class QuoteFragment : Fragment() {
             "Favourites"
         )
         binding.like.setImageDrawable(
-            ContextCompat.getDrawable(
+            IconicsDrawable(
                 requireContext(),
-                R.drawable.heart_full_red
-            )
+                RoundedGoogleMaterial.Icon.gmr_favorite
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.heart)
+                sizeDp = 24
+            }
         )
         binding.likeAnimator.likeAnimation()
     }

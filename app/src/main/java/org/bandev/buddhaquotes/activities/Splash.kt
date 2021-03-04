@@ -42,10 +42,6 @@ class Splash : AppCompatActivity() {
         val darkmode = sharedPrefs.getBoolean("dark_mode", false)
         val sys = sharedPrefs.getBoolean("sys", true)
 
-        // Clear the stored data
-        Store(this).fragment = 0
-        Store(this).quoteID = 0
-
         when {
             sys -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

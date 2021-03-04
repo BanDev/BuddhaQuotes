@@ -27,13 +27,19 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
-import nl.joery.animatedbottombar.AnimatedBottomBar
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.materialdrawer.iconics.iconicsIcon
+import com.mikepenz.materialdrawer.model.DividerDrawerItem
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
+import com.mikepenz.materialdrawer.model.interfaces.descriptionRes
+import com.mikepenz.materialdrawer.model.interfaces.iconDrawable
+import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.core.Notify
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import org.greenrobot.eventbus.EventBus
@@ -63,6 +69,9 @@ class Main : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Setup view binding
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Set theme, navigation bar and language
         Colours().setAccentColour(this, window, resources)
@@ -78,34 +87,86 @@ class Main : AppCompatActivity() {
             startActivity(Intent(this, Intro::class.java))
         }
 
-        // Setup view binding
-        binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
 
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-        binding.viewPager.setCurrentItem(Store(this).fragment, false)
+        binding.viewPager.setCurrentItem(0, false)
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
+        binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
+        binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
 
-        binding.bottomBar.setOnTabInterceptListener(object :
-            AnimatedBottomBar.OnTabInterceptListener {
-            override fun onTabIntercepted(
-                lastIndex: Int,
-                lastTab: AnimatedBottomBar.Tab?,
-                newIndex: Int,
-                newTab: AnimatedBottomBar.Tab
-            ): Boolean {
-                Store(applicationContext).fragment = newIndex
-                return true
+        val item0 = PrimaryDrawerItem().apply {
+            nameRes = R.string.app_name; iconDrawable =
+            ContextCompat.getDrawable(applicationContext, R.drawable.ic_buddha); isSelectable =
+            false; identifier = 0
+        }
+        val item1 = PrimaryDrawerItem().apply {
+            nameRes = R.string.fragment_quote; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier = 1
+        }
+        val item2 = PrimaryDrawerItem().apply {
+            nameRes = R.string.fragment_lists; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_list; isSelectable = false; identifier = 2
+        }
+        val item3 = PrimaryDrawerItem().apply {
+            nameRes = R.string.fragment_meditation; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable = false; identifier = 3
+        }
+        val item4 = PrimaryDrawerItem().apply {
+            nameRes = R.string.settings; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
+        }
+        val item5 = PrimaryDrawerItem().apply {
+            nameRes = R.string.about; descriptionRes = R.string.view_app_details; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
+        }
+        val item6 = PrimaryDrawerItem().apply {
+            nameRes = R.string.open_source_libraries; descriptionRes =
+            R.string.libraries_used; iconicsIcon =
+            RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier = 6
+        }
+
+        binding.slider.itemAdapter.add(
+            item0,
+            DividerDrawerItem(),
+            item1,
+            item2,
+            item3,
+            item4,
+            item5,
+            item6
+        )
+
+        var intent: Intent? = null
+        binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
+            when (drawerItem.identifier) {
+                0L -> intent = Intent(this, Settings::class.java).putExtra("from", Activities.MAIN)
+                1L -> binding.bottomBar.selectTabAt(0, true)
+                2L -> binding.bottomBar.selectTabAt(1, true)
+                3L -> binding.bottomBar.selectTabAt(2, true)
+                4L -> intent = Intent(this, Settings::class.java).putExtra("from", Activities.MAIN)
+                5L -> intent = Intent(this, About::class.java)
+                6L -> intent = Intent(this, AboutLibraries::class.java)
+                else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
             }
-        })
+            if (intent != null) {
+                startActivity(intent)
+            }
+            intent = null
+
+            false
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onNotifyReceive(event: Notify) {
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNotifyReceive(event: SendEvent.ToListFragment) {
     }
 
     /**
@@ -129,11 +190,6 @@ class Main : AppCompatActivity() {
                 val intent = Intent(this, Settings::class.java)
                 intent.putExtra("from", Activities.MAIN)
                 startActivity(intent)
-                finish()
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -194,5 +250,23 @@ class Main : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         EventBus.getDefault().unregister(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Colours().setAccentColour(this, window, resources)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
+        binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
+        EventBus.getDefault().post(SendEvent.ToListFragment(true))
+    }
+
+    override fun onBackPressed() {
+        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        if (binding.root.isDrawerOpen(binding.slider)) {
+            binding.root.closeDrawer(binding.slider)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -67,6 +68,7 @@ class Settings : AppCompatActivity() {
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -352,11 +354,6 @@ class Settings : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@Settings, Main::class.java))
         finish()
-        overridePendingTransition(
-            R.anim.anim_slide_in_right,
-            R.anim.anim_slide_out_right
-        )
     }
 }

@@ -167,7 +167,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
         startActivity(intent)
-        activity?.finish()
     }
 
     override fun onBinClick(position: Int, text: String) {

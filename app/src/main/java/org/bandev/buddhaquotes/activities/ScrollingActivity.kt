@@ -185,7 +185,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this@ScrollingActivity, Main::class.java))
         finish()
     }
 }
