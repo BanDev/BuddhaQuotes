@@ -600,4 +600,7 @@
     <string name="start">Start</string>
     <string name="show_notification">Show notifcation</string>
     <string name="vibrate_second">Vibrate every second</string>
+
+    <string name="favourites">Favourites</string>
+    <string name="duplicate">This quote is already in</string>
 </resources>

@@ -590,4 +590,6 @@
     <string name="start">Начинать</string>
     <string name="show_notification">Показать уведомление</string>
     <string name="vibrate_second">Вибрировать каждую секунду</string>
+
+    <string name="favourites">Избранное</string>
 </resources>

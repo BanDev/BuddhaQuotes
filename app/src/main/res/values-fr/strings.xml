@@ -590,4 +590,6 @@
     <string name="start">Début</string>
     <string name="show_notification">Afficher la notification</string>
     <string name="vibrate_second">Vibrer chaque seconde</string>
+
+    <string name="favourites">Favoris</string>
 </resources>

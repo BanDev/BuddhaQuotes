@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
@@ -50,6 +51,7 @@ class Intro : AppIntro2() {
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val editor = sharedPreferences.edit()
         editor.putString("latestShown", getString(R.string.version))
+        editor.putBoolean("old_quotes", false)
         editor.apply()
 
         showStatusBar(true)
@@ -205,12 +207,12 @@ class Intro : AppIntro2() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         // Decide what to do when the user clicks on "Skip"
-        finish()
+        startActivity(Intent(this, Main::class.java))
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
-        finish()
+        startActivity(Intent(this, Main::class.java))
     }
 }
