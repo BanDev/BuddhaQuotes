@@ -590,4 +590,7 @@
     <string name="start">開始</string>
     <string name="show_notification">通知を表示する</string>
     <string name="vibrate_second">毎秒振動する</string>
+
+    <string name="favourites">お気に入り</string>
+
 </resources>

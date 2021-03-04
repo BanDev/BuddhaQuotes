@@ -590,4 +590,7 @@
     <string name="start">开始</string>
     <string name="show_notification">显示通知</string>
     <string name="vibrate_second">每秒振动</string>
+
+    <string name="favourites">收藏夹</string>
+
 </resources>

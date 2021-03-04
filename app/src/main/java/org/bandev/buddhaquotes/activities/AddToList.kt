@@ -103,7 +103,10 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-            Snackbar.make(binding.root, "This quote is already in $list", Snackbar.LENGTH_SHORT)
+            val outName = if (list == "Favourites") {
+                getString(R.string.favourites)
+            } else list
+            Snackbar.make(binding.root, getString(R.string.duplicate) + " $outName", Snackbar.LENGTH_SHORT)
                 .show()
         }
     }
