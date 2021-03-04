@@ -250,7 +250,6 @@ class QuoteFragment : Fragment() {
         options.clear()
         optionStr.clear()
         for (list in lists.getMasterList()) {
-            Toast.makeText(requireContext(), list, Toast.LENGTH_SHORT).show()
             val drawable = if (list == "Favourites") {
                 R.drawable.ic_heart_octicons
             } else {

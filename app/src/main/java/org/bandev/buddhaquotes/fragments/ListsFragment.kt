@@ -111,6 +111,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
      */
 
     private fun generateMasterList(max: Int, listIn: List<String>): ArrayList<ListItem> {
+        val listNames = mutableListOf<String>()
         val list = ArrayList<ListItem>()
         val lists = ListsV2(requireContext())
         var i = 0
@@ -119,14 +120,15 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             val individualList = lists.getList(listIn[i])
             val count: Int = individualList.size - 1
             if (listIn[i] == "Favourites") {
+                listNames.add(getString(R.string.favourites))
                 special = true
-            }
+            } else listNames.add(listIn[i])
             val summary: String = if (count != 1) {
                 "$count items"
             } else {
                 "$count item"
             }
-            val item = ListItem(listIn[i], summary, special)
+            val item = ListItem(listNames[i], summary, special)
             list += item
             i++
         }
@@ -169,7 +171,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
-        Lists().removeList(text, requireContext())
+        ListsV2(requireContext()).removeList(text)
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }

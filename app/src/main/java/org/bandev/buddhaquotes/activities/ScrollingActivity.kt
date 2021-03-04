@@ -25,7 +25,6 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -74,12 +73,13 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         prefListTmp.remove("null")
 
         prefList = ListsV2(this).getList(listTmp)
-        Toast.makeText(applicationContext, prefList.toString(), Toast.LENGTH_SHORT).show()
         scrollingList = generateDummyList(prefList.size)
         adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = listTmp
+        binding.toolbar.title = if (listTmp == "Favourites") {
+            getString(R.string.favourites)
+        } else listTmp
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
