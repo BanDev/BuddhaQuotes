@@ -258,7 +258,6 @@ class Main : AppCompatActivity() {
         binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
         binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
         binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
-        EventBus.getDefault().post(SendEvent.ToListFragment(true))
     }
 
     override fun onBackPressed() {
