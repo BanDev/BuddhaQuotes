@@ -43,6 +43,31 @@ class ListsV2(context: Context) {
         editor.commit()
     }
 
+    /**
+     * Removes a whole list
+     * @param name [String] - The name of the list
+     * @author Jack Devey
+     * @since v2.2.0 (01/03/2021)
+     */
+
+    fun removeList(name: String) {
+        val listArr = sharedPrefs.getString("MASTER_LIST", "Favourites")
+        val listArrTemp: MutableList<String> = (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
+        listArrFinal.remove(name)
+        val stringOut = listArrFinal.joinToString(separator = "//")
+        editor.remove(name)
+        editor.putString("MASTER_LIST", stringOut)
+        editor.apply()
+    }
+
+    /**
+     * Creates a new empty list
+     * @param name [String] - The name of the list
+     * @author Jack Devey
+     * @since v2.2.0 (01/03/2021)
+     */
+
     fun newEmptyList(name: String) {
         val current = sharedPrefs.getString("MASTER_LIST", "Favourites")
         editor.putString(name, "-1")
