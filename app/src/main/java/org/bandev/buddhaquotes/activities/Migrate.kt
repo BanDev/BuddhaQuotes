@@ -27,10 +27,12 @@ class Migrate : AppCompatActivity() {
             editor.putBoolean("first_time", false)
             editor.apply()
             startActivity(Intent(this, Intro::class.java))
+            finish()
         }
 
         if (!sharedPrefs.getBoolean("old_quotes", true)){
             startActivity(Intent(this, Main::class.java))
+            finish()
         }
     }
 
