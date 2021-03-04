@@ -175,6 +175,11 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupRecycler()
+    }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
