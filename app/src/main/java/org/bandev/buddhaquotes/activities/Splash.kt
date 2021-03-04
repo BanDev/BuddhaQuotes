@@ -57,7 +57,7 @@ class Splash : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-        startActivity(Intent(this, Main::class.java))
+        startActivity(Intent(this, Migrate::class.java))
         finish()
     }
 

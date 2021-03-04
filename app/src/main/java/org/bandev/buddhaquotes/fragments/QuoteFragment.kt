@@ -26,6 +26,7 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -54,6 +55,7 @@ class QuoteFragment : Fragment() {
     private var _binding: FragmentQuoteBinding? = null
     internal val binding get() = _binding!!
     private var quotes = Quotes()
+    private lateinit var lists: ListsV2
     private var liked = false
     private var options = mutableListOf<Option>()
     private var optionStr = mutableListOf<String>()
@@ -86,6 +88,7 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lists = ListsV2(requireContext())
         newQuote(Store(requireContext()).quoteID)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))
@@ -129,7 +132,11 @@ class QuoteFragment : Fragment() {
         binding.content.setOnClickListener(object : OnDoubleClickListener() {
             override fun onDoubleClick(v: View?) {
                 val quote = binding.quote.text.toString()
-                if (!Lists().queryInList(quote, "Favourites", requireContext())) {
+                if (!lists.queryInList(
+                        quotes.getFromString(quote, requireContext()),
+                        "Favourites"
+                    )
+                ) {
                     doubleClickFavouriteQuote()
                     EventBus.getDefault().post(SendEvent.ToListFragment(true))
                 }
@@ -142,17 +149,20 @@ class QuoteFragment : Fragment() {
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             title(R.string.addToList)
-            with(
-                options
-            )
+            with(options)
             onPositive { index: Int, _: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
-                if (!Lists().queryInList(quote, optionStr[index], requireContext())) {
-                    Lists().addToList(quote, optionStr[index], requireContext())
+                val lists2 = ListsV2(requireContext())
+                val quoteID = Quotes().getFromString(quote, requireContext())
+                if (!lists2.queryInList(quoteID, optionStr[index])) {
+                    lists2.addToList(quoteID, optionStr[index])
+                    val outName = if (optionStr[index] == "Favourites") {
+                        getString(R.string.favourites)
+                    } else optionStr[index]
                     Snackbar.make(
                         binding.root,
-                        getString(R.string.added) + " " + optionStr[index],
+                        getString(R.string.added) + " " + outName,
                         Snackbar.LENGTH_LONG
                     )
                         .show()
@@ -185,7 +195,7 @@ class QuoteFragment : Fragment() {
         binding.quote.text = quote
         binding.number.text = getString(R.string.quote_number) + " #" + quotes.quotenumberglobal
         Store(requireContext()).quoteID = quotes.quotenumberglobal
-        val icon = if (Lists().queryInList(quote, "Favourites", context)) {
+        val icon = if (lists.queryInList(quotes.quotenumberglobal, "Favourites")) {
             liked = true
             R.drawable.heart_full_red
         } else {
@@ -206,7 +216,7 @@ class QuoteFragment : Fragment() {
 
     private fun toggleFavouriteQuote() {
         val quote = binding.quote.text.toString()
-        if (Lists().toggleInList(quote, "Favourites", requireContext())) {
+        if (lists.toggleInList(quotes.getFromString(quote, requireContext()), "Favourites")) {
             binding.like.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireContext(),
@@ -230,7 +240,10 @@ class QuoteFragment : Fragment() {
 
     internal fun doubleClickFavouriteQuote() {
         val quote = binding.quote.text.toString()
-        Lists().addToList(quote, "Favourites", requireContext())
+        lists.addToList(
+            quotes.getFromString(quote, requireContext()),
+            "Favourites"
+        )
         binding.like.setImageDrawable(
             ContextCompat.getDrawable(
                 requireContext(),
@@ -243,13 +256,19 @@ class QuoteFragment : Fragment() {
     private fun updateOptionsList() {
         options.clear()
         optionStr.clear()
-        for (list in Lists().getMasterList(requireContext())) {
+        val listName: MutableList<String> = mutableListOf()
+        for (list in lists.getMasterList()) {
             val drawable = if (list == "Favourites") {
                 R.drawable.ic_heart_octicons
             } else {
                 R.drawable.ic_list_octicons
             }
-            options.add(Option(drawable, list))
+            val outName = if (list == "Favourites") {
+                getString(R.string.favourites)
+            } else list
+
+            listName.add(outName)
+            options.add(Option(drawable, outName))
             optionStr.add(list)
         }
     }

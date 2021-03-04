@@ -76,9 +76,6 @@ class Main : AppCompatActivity() {
             editor.putBoolean("first_time", false)
             editor.apply()
             startActivity(Intent(this, Intro::class.java))
-        } else {
-            editor.putBoolean("old_quotes", true)
-            editor.apply()
         }
 
         // Setup view binding
@@ -151,9 +148,7 @@ class Main : AppCompatActivity() {
     // Build the input bottom sheet that allows creation of a new list
     private fun showCreateListSheet() {
         // Retrieve the lists
-        val pref = getSharedPreferences("List_system", 0)
-        val lists = pref.getString("MASTER_LIST", "Favourites")?.toLowerCase(Locale.ROOT)
-            ?.split("//".toRegex())?.toTypedArray()
+        val lists = ListsV2(this).getMasterList()
 
         InputSheet().show(this) {
             title(R.string.createNewList)
@@ -169,12 +164,10 @@ class Main : AppCompatActivity() {
                             value.toLowerCase(Locale.ROOT) == "favourites" -> {
                                 Validation.failed(getString(R.string.validationRule2))
                             }
-                            lists!!.contains(value.toLowerCase(Locale.ROOT)) -> {
+                            lists.contains(value.toLowerCase(Locale.ROOT)) -> {
                                 Validation.failed(getString(R.string.validationRule3) + " $value")
                             }
-                            else -> {
-                                Validation.success()
-                            }
+                            else -> Validation.success()
                         }
                     }
                     resultListener { value ->

@@ -31,9 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
@@ -48,7 +46,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     private lateinit var binding: ActivityScrollingBinding
     private lateinit var scrollingList: ArrayList<QuoteItem>
     private lateinit var adapter: QuoteRecycler
-    private lateinit var prefList: List<String>
+    private lateinit var prefList: List<Int>
     private var listTmp: String = ""
 
 
@@ -62,24 +60,22 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if ((intent.extras ?: return).getBoolean("duplicate", false)) {
-            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT).show()
-        }
-
         val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
-        val pref = getSharedPreferences("List_system", 0)
+        val pref = getSharedPreferences("ListV2", 0)
         val prefString = pref.getString(listTmp, "")
         val prefListTmp: MutableList<String> = (prefString ?: return).split("//").toMutableList()
         prefListTmp.remove("null")
 
-        prefList = prefListTmp
+        prefList = ListsV2(this).getList(listTmp)
         scrollingList = generateDummyList(prefList.size)
         adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = listTmp
+        binding.toolbar.title = if (listTmp == "Favourites") {
+            getString(R.string.favourites)
+        } else listTmp
 
         (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
@@ -126,29 +122,11 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             if (clickedItem.resource == R.drawable.heart_full_red) {
                 clickedItem.resource = R.drawable.like
 
-                val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
-                val listArr = pref.getString("Favourites", "")
-                val listArrTemp: MutableList<String> =
-                    (listArr?.split("//") ?: return).toMutableList()
-                val listArrFinal = LinkedList(listArrTemp)
-                listArrFinal.remove(text)
-                val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                ListsV2(this).removeFromList(Quotes().getFromString(text, this), "Favourites")
             } else {
                 clickedItem.resource = R.drawable.heart_full_red
 
-                val pref = getSharedPreferences("List_system", 0)
-                val editor = pref.edit()
-                val listArr = pref.getString("Favourites", "")
-                val listArrTemp: MutableList<String> =
-                    (listArr?.split("//") ?: return).toMutableList()
-                val listArrFinal = LinkedList(listArrTemp)
-                listArrFinal.push(text)
-                val stringOut = listArrFinal.joinToString(separator = "//")
-                editor.putString("Favourites", stringOut)
-                editor.apply()
+                ListsV2(this).addToList(Quotes().getFromString(text, this), "Favourites")
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             adapter.notifyItemChanged(position)
@@ -176,46 +154,32 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
 
-        val pref = getSharedPreferences("List_system", 0)
-        val editor = pref.edit()
-        val listArr = pref.getString(listTmp, "")
-        val listArrTemp: MutableList<String> =
-            (listArr?.split("//") ?: return).toMutableList()
-        val listArrFinal = LinkedList(listArrTemp)
-        listArrFinal.remove(text)
-        val stringOut = listArrFinal.joinToString(separator = "//")
-        editor.putString(listTmp, stringOut)
-        editor.apply()
+        ListsV2(this).removeFromList(Quotes().getFromString(text, this), listTmp)
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
 
         val list = ArrayList<QuoteItem>()
-
-        var i = 0
         var item: QuoteItem
 
-        val pref = getSharedPreferences("List_system", 0)
-        val listArr = pref.getString("Favourites", "")
-        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
-        val listArrFinal = LinkedList(listArrTemp)
+        val favs = ListsV2(this).getList("Favourites")
 
-        while (i != max) {
-            var special = false
-            if (listTmp == "Favourites") {
-                special = true
-            }
-            if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
-                if (prefList[i] != "") {
-                    item = QuoteItem(prefList[i], R.drawable.heart_full_red, special)
-                    list += item
-                }
+        for (id in prefList) {
+            val special = listTmp == "Favourites"
+            if (id == -1) continue
+
+            val drawable = if (favs.contains(id)) {
+                R.drawable.heart_full_red
             } else {
-                item = QuoteItem(prefList[i], R.drawable.like, special)
-                list += item
+                R.drawable.like
             }
 
-            i++
+            item = QuoteItem(
+                Quotes().getQuote(id, this),
+                drawable,
+                special
+            )
+            list += item
         }
         return list
     }
