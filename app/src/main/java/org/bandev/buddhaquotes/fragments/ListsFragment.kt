@@ -21,10 +21,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
@@ -153,7 +158,12 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val addIcon = IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add).apply {
+            colorInt = Color.WHITE
+            sizeDp = 16
+        }
         inflater.inflate(R.menu.add_menu, menu)
+        menu.findItem(R.id.add).icon = addIcon
         super.onCreateOptionsMenu(menu, inflater)
     }
 

@@ -5,7 +5,6 @@
         app:title="@string/settings_general">
 
         <Preference
-            app:icon="@drawable/ic_language_big"
             app:key="app_language"
             app:title="@string/settings_language"
             app:summary="@string/settings_language"
@@ -17,14 +16,12 @@
         app:title="@string/appearance">
 
         <Preference
-            app:icon="@drawable/ic_palette"
             app:key="theme"
             app:title="@string/app_theme"
             android:summary="@string/app_theme"
             app:useSimpleSummaryProvider="true" />
 
         <Preference
-            app:icon="@drawable/ic_palette"
             app:key="accent_color"
             app:title="@string/settings_accent_colour"
             android:summary="@string/settings_accent_colour"

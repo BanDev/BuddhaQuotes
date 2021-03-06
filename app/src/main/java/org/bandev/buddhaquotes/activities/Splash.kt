@@ -28,7 +28,6 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import org.bandev.buddhaquotes.core.Store
 
 /**
  * The splash screen

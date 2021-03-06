@@ -30,7 +30,7 @@ class Migrate : AppCompatActivity() {
             finish()
         }
 
-        if (!sharedPrefs.getBoolean("old_quotes", true)){
+        if (!sharedPrefs.getBoolean("old_quotes", true)) {
             startActivity(Intent(this, Main::class.java))
             finish()
         }

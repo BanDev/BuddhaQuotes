@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -27,10 +28,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -58,7 +64,14 @@ class AboutLibraries : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             finish()
         }
@@ -97,9 +110,7 @@ class AboutLibraries : AppCompatActivity() {
 
                 if (library.author.isNotEmpty()) {
                     binding.authorTextView.text = library.author
-                } else {
-                    binding.authorTextView.visibility = View.GONE
-                }
+                } else binding.authorTextView.visibility = View.GONE
 
                 val license = library.licenses?.firstOrNull()
                 if (license != null) {

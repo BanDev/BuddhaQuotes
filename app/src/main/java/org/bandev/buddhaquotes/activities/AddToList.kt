@@ -31,8 +31,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -63,7 +68,14 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         setContentView(binding.root)
 
         // Setup toolbar
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -106,8 +118,11 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             val outName = if (list == "Favourites") {
                 getString(R.string.favourites)
             } else list
-            Snackbar.make(binding.root, getString(R.string.duplicate) + " $outName", Snackbar.LENGTH_SHORT)
-                .show()
+            Snackbar.make(
+                binding.root,
+                getString(R.string.duplicate) + " $outName",
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 

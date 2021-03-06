@@ -59,15 +59,20 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 
     // AboutLibraries
-    implementation 'com.mikepenz:aboutlibraries-core:8.8.3'
+    implementation 'com.mikepenz:aboutlibraries-core:8.8.4'
 
-    // Material Drawer
-    implementation 'com.mikepenz:materialdrawer:8.3.3'
-    implementation 'com.mikepenz:materialdrawer-iconics:8.3.3'
-    implementation 'androidx.annotation:annotation:1.2.0-rc01'
-    implementation 'com.mikepenz:iconics-core:5.2.8'
+    // Android Iconics
+    def iconics_version = "5.2.8"
+    implementation "com.mikepenz:iconics-core:$iconics_version"
+    implementation "com.mikepenz:iconics-views:$iconics_version"
     implementation 'com.mikepenz:google-material-typeface-rounded:4.0.0.1-kotlin@aar'
     implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
+
+    // Material Drawer
+    def drawer_version = "8.3.3"
+    implementation "com.mikepenz:materialdrawer:$drawer_version"
+    implementation "com.mikepenz:materialdrawer-iconics:$drawer_version"
+    implementation 'androidx.annotation:annotation:1.2.0-rc01'
 
     // AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.1.0'

@@ -94,7 +94,7 @@ class ListsV2(context: Context) {
      * @since v2.2.0 (02/03/2021)
      */
 
-    fun saveList(list: List<Int>, name: String) {
+    private fun saveList(list: List<Int>, name: String) {
         val stringOut = list.joinToString(separator = "//")
         editor.putString(name, stringOut)
         editor.apply()
