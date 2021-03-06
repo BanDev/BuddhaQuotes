@@ -20,12 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -90,6 +92,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        checkListSize(this)
 
         binding.recyclerView.adapter = adapter
 
@@ -161,11 +165,18 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onBinClick(position: Int, text: String) {
         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-
         scrollingList.removeAt(position)
         adapter.notifyItemRemoved(position)
-
         ListsV2(this).removeFromList(Quotes().getFromString(text, this), listTmp)
+        checkListSize(this)
+    }
+
+    private fun checkListSize(context: Context) {
+        if (ListsV2(context).getList(listTmp).size > 1) {
+            binding.noQuotesText.visibility = View.GONE
+        } else {
+            binding.noQuotesText.visibility = View.VISIBLE
+        }
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
