@@ -103,7 +103,7 @@ class Settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> startActivity(Intent(activity, About::class.java))
-                "Help" -> startActivity(Intent(activity, Intro::class.java))
+                "Intro" -> startActivity(Intent(activity, Intro::class.java))
                 "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
@@ -113,13 +113,13 @@ class Settings : AppCompatActivity() {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-            updateColorSummary()
-            updateThemeSummary()
             updateLanguageSummary()
+            updateThemeSummary()
+            updateColorSummary()
 
-            findPreference<Preference>("accent_color")?.apply {
+            findPreference<Preference>("app_language")?.apply {
                 this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showColorPopup()
+                    showLanguagePopup()
                     true
                 }
             }
@@ -131,10 +131,93 @@ class Settings : AppCompatActivity() {
                 }
             }
 
-            findPreference<Preference>("app_language")?.apply {
+            findPreference<Preference>("accent_color")?.apply {
                 this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showLanguagePopup()
+                    showColorPopup()
                     true
+                }
+            }
+
+            findPreference<Preference>("About")?.apply {
+                val infoDrawable =
+                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
+                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        sizeDp = 20
+                    }
+                this.icon = infoDrawable
+            }
+
+            findPreference<Preference>("Intro")?.apply {
+                val introDrawable = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_view_carousel
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+                this.icon = introDrawable
+            }
+
+            findPreference<Preference>("AboutLibraries")?.apply {
+                val librariesDrawable = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_library_books
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+                this.icon = librariesDrawable
+            }
+        }
+
+        private fun updateLanguageSummary() {
+            val languageDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_language).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+            findPreference<Preference>("app_language")?.apply {
+                this.icon = languageDrawable
+                val int = Languages(base = context).getLanguageAsInt(requireContext())
+                val singleItems = resources.getStringArray(R.array.language_entries)
+                this.summary = singleItems[int]
+            }
+        }
+
+        private fun updateThemeSummary() {
+            val lightModeDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+            val darkModeDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_nights_stay
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                sizeDp = 20
+            }
+            val systemDefaultDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_brightness_medium
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                sizeDp = 20
+            }
+            findPreference<Preference>("theme")?.apply {
+                this.summary = when (Theme().getAppTheme(requireContext())) {
+                    0 -> {
+                        this.icon = lightModeDrawable
+                        getString(R.string.light_mode)
+                    }
+                    1 -> {
+                        this.icon = darkModeDrawable
+                        getString(R.string.dark_mode)
+                    }
+                    else -> {
+                        this.icon = systemDefaultDrawable
+                        getString(R.string.follow_system_default)
+                    }
                 }
             }
         }
@@ -164,76 +247,13 @@ class Settings : AppCompatActivity() {
             }
         }
 
-        private fun updateThemeSummary() {
-            val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 22
-                }
-            val darkModeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_nights_stay
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 22
-            }
-            val systemDefaultDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_brightness_medium
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 22
-            }
-            findPreference<Preference>("theme")?.apply {
-                this.summary = when (Theme().getAppTheme(requireContext())) {
-                    0 -> {
-                        this.icon = lightModeDrawable
-                        getString(R.string.light_mode)
-                    }
-                    1 -> {
-                        this.icon = darkModeDrawable
-                        getString(R.string.dark_mode)
-                    }
-                    else -> {
-                        this.icon = systemDefaultDrawable
-                        getString(R.string.follow_system_default)
-                    }
-                }
-            }
-        }
-
-        private fun updateLanguageSummary() {
-            val languageDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_language).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 22
-                }
-            findPreference<Preference>("app_language")?.apply {
-                this.icon = languageDrawable
-                val int = Languages(base = context).getLanguageAsInt(requireContext())
-                val singleItems = resources.getStringArray(R.array.language_entries)
-                this.summary = singleItems[int]
-            }
-        }
-
         private fun showLanguagePopup() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
             val values = resources.getStringArray(R.array.language_values)
             val defaultDrawable =
-                IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review).apply {
-                    colorInt = Color.BLACK
-                    sizeDp = 24
-                }
-            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu).apply {
-                colorInt = Color.BLACK
-                sizeDp = 24
-            }
-            val languageDrawable =
-                IconicsDrawable(requireContext(), Octicons.Icon.oct_globe).apply {
-                    colorInt = Color.BLACK
-                    sizeDp = 24
-                }
+                IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review).apply {}
+            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu).apply {}
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)

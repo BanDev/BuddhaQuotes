@@ -180,6 +180,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onBinClick(position: Int, text: String) {
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         ListsV2(requireContext()).removeList(text)
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)

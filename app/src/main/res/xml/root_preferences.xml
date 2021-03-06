@@ -37,20 +37,17 @@
         <Preference
             android:key="About"
             android:title="@string/about"
-            android:summary="@string/view_app_details"
-            app:icon="@drawable/ic_info" />
+            android:summary="@string/view_app_details" />
 
         <Preference
-            android:key="Help"
-            android:title="@string/help"
-            android:summary="@string/app_introduction"
-            app:icon="@drawable/ic_help" />
+            android:key="Intro"
+            android:title="@string/intro"
+            android:summary="@string/app_introduction" />
 
         <Preference
             android:key="AboutLibraries"
             android:title="@string/open_source_libraries"
-            android:summary="@string/libraries_used"
-            app:icon="@drawable/ic_library_books" />
+            android:summary="@string/libraries_used" />
 
     </PreferenceCategory>
 
