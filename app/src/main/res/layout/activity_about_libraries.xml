@@ -17,13 +17,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/toolbar"
             android:paddingStart="8dp"
             android:paddingEnd="10dp"
             app:title="@string/open_source_libraries"
             app:titleTextAppearance="@style/toolbarText"
             app:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/ic_arrow_back"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -39,6 +40,11 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.typeface.library.octicons.Octicons
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -62,12 +68,14 @@ class Settings : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (intent.extras?.getBoolean("paused") == true) {
-            Snackbar.make(binding.root, "Timer has been paused", LENGTH_SHORT).show()
-        }
-
         // Setup toolbar
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -78,15 +86,9 @@ class Settings : AppCompatActivity() {
             val darkmode = sharedPrefs.getBoolean("dark_mode", false)
             val sys = sharedPrefs.getBoolean("sys", true)
             when {
-                sys -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                }
-                darkmode -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                }
-                else -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
+                sys -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                darkmode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
 
@@ -138,7 +140,13 @@ class Settings : AppCompatActivity() {
         }
 
         private fun updateColorSummary() {
+            val paletteDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_palette).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
             findPreference<Preference>("accent_color")?.apply {
+                this.icon = paletteDrawable
                 this.summary = when (Colours().getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
                     "violet" -> getString(R.string.violet)
@@ -157,23 +165,51 @@ class Settings : AppCompatActivity() {
         }
 
         private fun updateThemeSummary() {
+            val lightModeDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 22
+                }
+            val darkModeDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_nights_stay
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                sizeDp = 22
+            }
+            val systemDefaultDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_brightness_medium
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                sizeDp = 22
+            }
             findPreference<Preference>("theme")?.apply {
                 this.summary = when (Theme().getAppTheme(requireContext())) {
                     0 -> {
-                        this.setIcon(R.drawable.ic_day_settings)
+                        this.icon = lightModeDrawable
                         getString(R.string.light_mode)
                     }
                     1 -> {
-                        this.setIcon(R.drawable.ic_night_settings)
+                        this.icon = darkModeDrawable
                         getString(R.string.dark_mode)
                     }
-                    else -> getString(R.string.follow_system_default)
+                    else -> {
+                        this.icon = systemDefaultDrawable
+                        getString(R.string.follow_system_default)
+                    }
                 }
             }
         }
 
         private fun updateLanguageSummary() {
+            val languageDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_language).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 22
+                }
             findPreference<Preference>("app_language")?.apply {
+                this.icon = languageDrawable
                 val int = Languages(base = context).getLanguageAsInt(requireContext())
                 val singleItems = resources.getStringArray(R.array.language_entries)
                 this.summary = singleItems[int]
@@ -184,20 +220,34 @@ class Settings : AppCompatActivity() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
             val values = resources.getStringArray(R.array.language_values)
+            val defaultDrawable =
+                IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review).apply {
+                    colorInt = Color.BLACK
+                    sizeDp = 24
+                }
+            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu).apply {
+                colorInt = Color.BLACK
+                sizeDp = 24
+            }
+            val languageDrawable =
+                IconicsDrawable(requireContext(), Octicons.Icon.oct_globe).apply {
+                    colorInt = Color.BLACK
+                    sizeDp = 24
+                }
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
                 style(SheetStyle.DIALOG)
                 displayMode(DisplayMode.GRID_VERTICAL)
                 with(
-                    Option(R.drawable.ic_default, R.string.en),
-                    Option(R.drawable.ic_machine, R.string.fr),
-                    Option(R.drawable.ic_machine, R.string.de),
-                    Option(R.drawable.ic_machine, R.string.es),
-                    Option(R.drawable.ic_machine, R.string.ru),
-                    Option(R.drawable.ic_machine, R.string.zh),
-                    Option(R.drawable.ic_machine, R.string.ja),
-                    Option(R.drawable.ic_machine, R.string.hi),
+                    Option(defaultDrawable, R.string.en),
+                    Option(machineDrawable, R.string.fr),
+                    Option(machineDrawable, R.string.de),
+                    Option(machineDrawable, R.string.es),
+                    Option(machineDrawable, R.string.ru),
+                    Option(machineDrawable, R.string.zh),
+                    Option(machineDrawable, R.string.ja),
+                    Option(machineDrawable, R.string.hi),
                     Option(R.drawable.ic_language, R.string.pl)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
@@ -233,14 +283,31 @@ class Settings : AppCompatActivity() {
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
+            val lightModeDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
+                    sizeDp = 24
+                }
+            val darkModeDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_nights_stay
+            ).apply {
+                sizeDp = 24
+            }
+            val systemDefaultDrawable =
+                IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_brightness_medium
+                ).apply {
+                    sizeDp = 24
+                }
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
                 style(SheetStyle.DIALOG)
                 with(
-                    Option(R.drawable.ic_day_settings, R.string.light_mode),
-                    Option(R.drawable.ic_night_settings, R.string.dark_mode),
-                    Option(R.drawable.ic_palette, R.string.follow_system_default)
+                    Option(lightModeDrawable, R.string.light_mode),
+                    Option(darkModeDrawable, R.string.dark_mode),
+                    Option(systemDefaultDrawable, R.string.follow_system_default)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { index: Int, _: Option ->

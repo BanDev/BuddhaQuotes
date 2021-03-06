@@ -20,12 +20,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -53,7 +59,14 @@ class About : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }

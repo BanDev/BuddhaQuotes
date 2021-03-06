@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -75,32 +76,18 @@ class TimerActivity : AppCompatActivity() {
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.mute.setImageDrawable(
-            IconicsDrawable(
-                this,
-                Octicons.Icon.oct_mute
-            ).apply {
-                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
-                sizeDp = 24
-            })
-
-        binding.posture.setImageDrawable(
-            IconicsDrawable(
-                this,
-                Octicons.Icon.oct_person
-            ).apply {
-                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
-                sizeDp = 24
-            })
-
-        binding.breathe.setImageDrawable(
-            IconicsDrawable(
-                this,
-                Octicons.Icon.oct_heart
-            ).apply {
-                colorInt = ContextCompat.getColor(this@TimerActivity, R.color.textColorPrimary)
-                sizeDp = 24
-            })
+        // Setup toolbar
+        val closeDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_close).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.navigationIcon = closeDrawable
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         // On settings click
         binding.settings.setOnClickListener {
@@ -108,7 +95,7 @@ class TimerActivity : AppCompatActivity() {
             settingsSheet()
         }
 
-        // Get the duration (mili seconds) of the timer
+        // Get the duration (milli seconds) of the timer
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
         // Work out the other things we now know
@@ -124,11 +111,6 @@ class TimerActivity : AppCompatActivity() {
         // Begin the timer
         startTimer(durationTimeInS)
 
-        // Handle the people that want to leave
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-
         // When some geezer presses Pause
         binding.pause.setOnClickListener {
             // Nice haptic feedback. I like!!!!
@@ -139,18 +121,9 @@ class TimerActivity : AppCompatActivity() {
             }
 
             when {
-                isPaused -> {
-                    // Resume timer
-                    resume()
-                }
-                isRunning -> {
-                    // Pause timer
-                    pause()
-                }
-                else -> {
-                    // Reset the timer once it has finished
-                    reset()
-                }
+                isPaused -> resume()
+                isRunning -> pause()
+                else -> reset()
             }
         }
     }

@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -31,7 +32,10 @@ import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
+import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
@@ -176,7 +180,12 @@ class Main : AppCompatActivity() {
      */
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val settingsIcon = IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
+            colorInt = Color.WHITE
+            sizeDp = 18
+        }
         menuInflater.inflate(R.menu.settings_menu, menu)
+        menu?.findItem(R.id.settings)?.icon = settingsIcon
         return true
     }
 

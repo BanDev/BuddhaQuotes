@@ -21,14 +21,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -60,7 +63,12 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
+
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
         val pref = getSharedPreferences("ListV2", 0)
@@ -80,7 +88,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
 
-        binding.toolbar.navigationIcon = back
+        binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -94,7 +102,12 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val addIcon = IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
+            colorInt = Color.WHITE
+            sizeDp = 16
+        }
         menuInflater.inflate(R.menu.add_menu, menu)
+        menu?.findItem(R.id.add)?.icon = addIcon
         return true
     }
 

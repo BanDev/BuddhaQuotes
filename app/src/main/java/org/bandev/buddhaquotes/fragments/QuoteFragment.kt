@@ -91,7 +91,7 @@ class QuoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         lists = ListsV2(requireContext())
-        newQuote(Store(requireContext()).quoteID)
+        newQuote(0)
         with(binding.swipeRefresh) {
             setColorSchemeColors(Colours().getAccentColourAsInt(context))
             setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
@@ -104,12 +104,22 @@ class QuoteFragment : Fragment() {
 
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
+            val shareDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share).apply {
+                    sizeDp = 24
+                }
+            val addCircleDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_add_circle_outline
+            ).apply {
+                sizeDp = 24
+            }
             OptionsSheet().show(requireContext()) {
                 displayMode(DisplayMode.LIST)
                 title(R.string.more)
                 with(
-                    Option(R.drawable.ic_share, R.string.share),
-                    Option(R.drawable.ic_add_circle, R.string.addToList)
+                    Option(shareDrawable, R.string.share),
+                    Option(addCircleDrawable, R.string.addToList)
                 )
                 onPositive { index: Int, _: Option ->
                     binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -276,14 +286,24 @@ class QuoteFragment : Fragment() {
     }
 
     private fun updateOptionsList() {
+        val heartDrawable =
+            IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_favorite_outline
+            ).apply { sizeDp = 24 }
+        val listDrawable =
+            IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_format_list_bulleted
+            ).apply { sizeDp = 24 }
         options.clear()
         optionStr.clear()
         val listName: MutableList<String> = mutableListOf()
         for (list in lists.getMasterList()) {
             val drawable = if (list == "Favourites") {
-                R.drawable.ic_heart_octicons
+                heartDrawable
             } else {
-                R.drawable.ic_list_octicons
+                listDrawable
             }
             val outName = if (list == "Favourites") {
                 getString(R.string.favourites)
