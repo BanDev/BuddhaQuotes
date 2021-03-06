@@ -210,7 +210,7 @@ class QuoteFragment : Fragment() {
         binding.number.text = getString(R.string.quote_number) + " #" + quotes.quotenumberglobal
         Store(requireContext()).quoteID = quotes.quotenumberglobal
 
-        if (Lists().queryInList(quote, "Favourites", context)) {
+        if (ListsV2(requireContext()).queryInList(quotes.quotenumberglobal, "Favourites")) {
             liked = true
             binding.like.setImageDrawable(
                 IconicsDrawable(
