@@ -27,6 +27,7 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
@@ -63,12 +64,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
         val pref = getSharedPreferences("ListV2", 0)
@@ -80,14 +75,17 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         scrollingList = generateDummyList(prefList.size)
         adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
+        // Setup toolbar
+        val returnDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         setSupportActionBar(binding.toolbar)
         binding.toolbar.title = if (listTmp == "Favourites") {
             getString(R.string.favourites)
         } else listTmp
-
-        (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
-        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
-
+        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
         binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()

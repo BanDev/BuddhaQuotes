@@ -18,7 +18,7 @@
     <string name="information" id="14">Information</string>
     <string name="about" id="15">About</string>
     <string name="view_app_details" id="16">View app details</string>
-    <string name="help" id="17">Help</string>
+    <string name="intro" id="17">Intro</string>
     <string name="app_introduction" id="18">App introduction</string>
     <string name="app_license" id="19">App License</string>
     <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>

@@ -84,7 +84,6 @@ class Main : AppCompatActivity() {
 
         val sharedPrefs = getSharedPreferences("Settings", 0)
         val editor = sharedPrefs.edit()
-
         if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
@@ -92,8 +91,17 @@ class Main : AppCompatActivity() {
         }
 
         // Setup toolbar
+        val menuDrawable =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_menu).apply {
+                colorInt = Color.WHITE
+                sizeDp = 20
+            }
         setSupportActionBar(binding.toolbar)
         binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.navigationIcon = menuDrawable
+        binding.toolbar.setNavigationOnClickListener {
+            binding.root.openDrawer(binding.slider)
+        }
 
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
@@ -182,7 +190,7 @@ class Main : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val settingsIcon = IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
             colorInt = Color.WHITE
-            sizeDp = 18
+            sizeDp = 20
         }
         menuInflater.inflate(R.menu.settings_menu, menu)
         menu?.findItem(R.id.settings)?.icon = settingsIcon

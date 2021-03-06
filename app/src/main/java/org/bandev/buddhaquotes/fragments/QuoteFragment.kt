@@ -332,6 +332,11 @@ class QuoteFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.swipeRefresh.setColorSchemeColors(Colours().getAccentColourAsInt(requireContext()))
+    }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)

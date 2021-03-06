@@ -16,7 +16,7 @@
     <string name="information" id="14">Información</string>
     <string name="about" id="15">Sobre</string>
     <string name="view_app_details" id="16">Ver detalles de la aplicación</string>
-    <string name="help" id="17">Ayuda</string>
+    <string name="intro" id="17">Ayuda</string>
     <string name="app_introduction" id="18">Introducción a la aplicación</string>
     <string name="app_license" id="19">Licencia de la aplicación</string>
     <string name="libraries_used" id="20">Bibliotecas utilizadas</string>
