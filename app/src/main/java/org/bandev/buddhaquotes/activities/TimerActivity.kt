@@ -61,6 +61,9 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Setup view binding
+        binding = ActivityTimerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Get an instance of settings
         settings = Timer().Settings(this)
@@ -70,10 +73,6 @@ class TimerActivity : AppCompatActivity() {
         Colours().setStatusBar(this, window)
         Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
-
-        // Setup da view
-        binding = ActivityTimerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         // Setup toolbar
         val closeDrawable =
@@ -89,6 +88,7 @@ class TimerActivity : AppCompatActivity() {
         }
 
         // On settings click
+        binding.settings.setBackgroundColor(Colours().getAccentColourAsInt(this))
         binding.settings.setOnClickListener {
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             settingsSheet()
@@ -111,8 +111,8 @@ class TimerActivity : AppCompatActivity() {
         startTimer(durationTimeInS)
 
         // When some geezer presses Pause
+        binding.pause.setBackgroundColor(Colours().getAccentColourAsInt(this))
         binding.pause.setOnClickListener {
-            // Nice haptic feedback. I like!!!!
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             } else {

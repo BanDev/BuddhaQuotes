@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable-night/meditate.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable-night/toolbar.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/ic_palette_large.xml" value="0.29907407407407405" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/ic_settings.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/ic_settings_black_24dp.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/meditate.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/nav_your_lists.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/drawable/toolbar.xml" value="0.3" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/layout/activity_migrate.xml" value="0.3125" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/layout/activity_timer.xml" value="0.11114797611147977" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/layout/layout_list_item.xml" value="0.3125" />
+        <entry key="..\:/Users/DesktopPC/Documents/GitHub/buddha-quotes/app/src/main/res/layout/main_activity.xml" value="0.1697061803444782" />
+      </map>
+    </option>
+  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="org.greenrobot.eventbus.Subscribe" />
