@@ -31,7 +31,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.mikepenz.iconics.IconicsDrawable
@@ -59,8 +58,9 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -74,7 +74,7 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
                 sizeDp = 16
             }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()

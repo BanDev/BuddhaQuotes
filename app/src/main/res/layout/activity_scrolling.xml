@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="{oct-issue-opened}\nThis list is empty!"
+        android:text="@string/emptyList"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

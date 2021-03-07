@@ -29,7 +29,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
@@ -58,8 +57,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -87,7 +87,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         binding.toolbar.title = if (listTmp == "Favourites") {
             getString(R.string.favourites)
         } else listTmp
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()

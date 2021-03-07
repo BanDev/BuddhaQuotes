@@ -27,7 +27,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.iconics.utils.colorInt
@@ -50,8 +49,9 @@ class About : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -65,7 +65,7 @@ class About : AppCompatActivity() {
                 sizeDp = 16
             }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()

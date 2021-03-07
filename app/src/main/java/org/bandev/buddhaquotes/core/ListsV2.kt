@@ -2,7 +2,6 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import java.util.*
 
 class ListsV2(context: Context) {

@@ -603,4 +603,5 @@
 
     <string name="favourites">Favourites</string>
     <string name="duplicate">This quote is already in</string>
+    <string name="emptyList">{oct-issue-opened}\nThis list is empty!</string>
 </resources>
