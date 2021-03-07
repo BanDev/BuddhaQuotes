@@ -28,7 +28,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
@@ -55,8 +54,9 @@ class AboutLibraries : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -70,7 +70,7 @@ class AboutLibraries : AppCompatActivity() {
                 sizeDp = 16
             }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = returnDrawable
         binding.toolbar.setNavigationOnClickListener {
             finish()

@@ -77,9 +77,8 @@ class Main : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourMain(this, window, resources)
+        // Set navigation bar and language
+        Compatibility().setNavigationBarColourMain(this, window)
         Languages(baseContext).setLanguage()
 
         val sharedPrefs = getSharedPreferences("Settings", 0)
@@ -97,7 +96,7 @@ class Main : AppCompatActivity() {
                 sizeDp = 20
             }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = menuDrawable
         binding.toolbar.setNavigationOnClickListener {
             binding.root.openDrawer(binding.slider)
@@ -271,8 +270,9 @@ class Main : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Colours().setAccentColour(this, window, resources)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
         binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
     }

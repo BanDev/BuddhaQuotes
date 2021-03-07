@@ -22,14 +22,13 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.Window
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat.getColor
 import org.bandev.buddhaquotes.R
 
 /**
@@ -49,7 +48,7 @@ class Compatibility {
      * @param [window] context of window (Window)
      */
 
-    fun setNavigationBarColourDefault(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBarColourDefault(context: Context, window: Window) {
         if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
@@ -70,8 +69,7 @@ class Compatibility {
                     }
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.background, null)
+                    window.navigationBarColor = getColor(context, R.color.background)
                 }
             }
         }
@@ -83,7 +81,7 @@ class Compatibility {
      * @param [window] context of window (Window)
      */
 
-    fun setNavigationBarColourMain(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBarColourMain(context: Context, window: Window) {
         if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
@@ -104,8 +102,7 @@ class Compatibility {
                     }
                 }
                 Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.abbBackgroundColor, null)
+                    window.navigationBarColor = getColor(context, R.color.abbBackgroundColor)
                 }
             }
         }

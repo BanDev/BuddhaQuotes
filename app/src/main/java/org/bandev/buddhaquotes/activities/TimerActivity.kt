@@ -30,14 +30,12 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
@@ -68,8 +66,9 @@ class TimerActivity : AppCompatActivity() {
         settings = Timer().Settings(this)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
         // Setup da view
@@ -83,7 +82,7 @@ class TimerActivity : AppCompatActivity() {
                 sizeDp = 16
             }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.background = ContextCompat.getDrawable(this, R.drawable.toolbar)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
         binding.toolbar.navigationIcon = closeDrawable
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
