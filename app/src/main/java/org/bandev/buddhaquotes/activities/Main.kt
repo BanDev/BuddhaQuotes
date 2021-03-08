@@ -27,6 +27,7 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.input.InputSheet
@@ -36,12 +37,14 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
+import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.descriptionRes
+import com.mikepenz.materialdrawer.model.SectionDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.iconDrawable
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
+import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.MainActivityBinding
@@ -64,6 +67,9 @@ import java.util.*
 class Main : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
+
+    private lateinit var headerView: AccountHeaderView
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     /**
      * On activity created
@@ -102,6 +108,23 @@ class Main : AppCompatActivity() {
             binding.root.openDrawer(binding.slider)
         }
 
+        actionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            binding.root,
+            binding.toolbar,
+            com.mikepenz.materialdrawer.R.string.material_drawer_open,
+            com.mikepenz.materialdrawer.R.string.material_drawer_close
+        )
+
+        fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
+            headerView = AccountHeaderView(this, compact = compact).apply {
+                attachToSliderView(binding.slider)
+                headerBackground = ImageHolder(R.drawable.header)
+
+                withSavedInstance(savedInstanceState)
+            }
+        }
+
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.setCurrentItem(0, false)
@@ -109,47 +132,49 @@ class Main : AppCompatActivity() {
         binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
         binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
 
-        val item0 = PrimaryDrawerItem().apply {
-            nameRes = R.string.app_name; iconDrawable =
-            ContextCompat.getDrawable(applicationContext, R.drawable.ic_buddha); isSelectable =
-            false; identifier = 0
-        }
-        val item1 = PrimaryDrawerItem().apply {
-            nameRes = R.string.fragment_quote; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier = 1
-        }
-        val item2 = PrimaryDrawerItem().apply {
-            nameRes = R.string.fragment_lists; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_list; isSelectable = false; identifier = 2
-        }
-        val item3 = PrimaryDrawerItem().apply {
-            nameRes = R.string.fragment_meditation; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable = false; identifier = 3
-        }
-        val item4 = PrimaryDrawerItem().apply {
-            nameRes = R.string.settings; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
-        }
-        val item5 = PrimaryDrawerItem().apply {
-            nameRes = R.string.about; descriptionRes = R.string.view_app_details; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
-        }
-        val item6 = PrimaryDrawerItem().apply {
-            nameRes = R.string.open_source_libraries; descriptionRes =
-            R.string.libraries_used; iconicsIcon =
-            RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier = 6
-        }
+        buildHeader(false, savedInstanceState)
 
-        binding.slider.itemAdapter.add(
-            item0,
-            DividerDrawerItem(),
-            item1,
-            item2,
-            item3,
-            item4,
-            item5,
-            item6
-        )
+        binding.slider.apply {
+            itemAdapter.add(
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.app_name; iconDrawable =
+                    ContextCompat.getDrawable(
+                        applicationContext,
+                        R.drawable.ic_buddha
+                    ); isSelectable =
+                    false; identifier = 0
+                },
+                SectionDrawerItem().apply { nameRes = R.string.vibrate_second },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.fragment_quote; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier =
+                    1
+                },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.fragment_lists; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_list; isSelectable = false; identifier = 2
+                },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.fragment_meditation; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
+                    false; identifier = 3
+                },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.about; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
+                },
+                DividerDrawerItem(),
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.settings; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
+                },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.open_source_libraries; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier =
+                    6
+                })
+            setSavedInstance(savedInstanceState)
+        }
 
         var intent: Intent? = null
         binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
