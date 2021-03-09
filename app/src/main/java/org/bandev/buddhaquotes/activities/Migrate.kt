@@ -46,7 +46,7 @@ class Migrate : AppCompatActivity() {
         if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            startActivity(Intent(this, Intro::class.java))
+            startActivity(Intent(this, Intro::class.java).putExtra("backto", 1))
             finish()
         }
 

@@ -207,12 +207,19 @@ class Intro : AppIntro2() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         // Decide what to do when the user clicks on "Skip"
-        startActivity(Intent(this, Main::class.java))
+        end()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
-        startActivity(Intent(this, Main::class.java))
+        end()
+    }
+
+    private fun end() {
+        when (intent.extras?.getInt("backto", 0)) {
+            0 -> finish()
+            1 -> startActivity(Intent(this, Main::class.java))
+        }
     }
 }
