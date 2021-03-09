@@ -104,7 +104,7 @@ class Settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> startActivity(Intent(activity, About::class.java))
-                "Intro" -> startActivity(Intent(activity, Intro::class.java))
+                "Intro" -> startActivity(Intent(activity, Intro::class.java).putExtra("backto", 0))
                 "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
