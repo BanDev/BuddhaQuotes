@@ -64,16 +64,17 @@ class AboutLibraries : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.navigationIcon = returnDrawable
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
+        with(binding.toolbar) {
+            navigationIcon =
+                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                    colorInt = Color.WHITE
+                    sizeDp = 16
+                }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         with(binding.recyclerView) {
@@ -82,6 +83,7 @@ class AboutLibraries : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     class LibraryAdapter(private val itemList: List<Library>) :
         RecyclerView.Adapter<LibraryAdapter.LibraryViewHolder>() {
 
@@ -121,10 +123,7 @@ class AboutLibraries : AppCompatActivity() {
                                 license.licenseShortDescription,
                                 Html.FROM_HTML_MODE_COMPACT
                             )
-                        } else {
-                            @Suppress("DEPRECATION")
-                            Html.fromHtml(license.licenseShortDescription)
-                        }
+                        } else Html.fromHtml(license.licenseShortDescription)
                 } else {
                     binding.licenseNameTextView.visibility = View.GONE
                     binding.licenseDescriptionTextView.visibility = View.GONE

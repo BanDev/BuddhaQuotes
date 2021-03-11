@@ -64,13 +64,10 @@ class Compatibility {
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.navigationBarColor = Color.WHITE
-                    } else {
-                        window.navigationBarColor = Color.GRAY
-                    }
+                    } else window.navigationBarColor = Color.GRAY
                 }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor = getColor(context, R.color.background)
-                }
+                Configuration.UI_MODE_NIGHT_YES -> window.navigationBarColor =
+                    getColor(context, R.color.background)
             }
         }
     }
@@ -97,13 +94,10 @@ class Compatibility {
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.navigationBarColor = Color.WHITE
-                    } else {
-                        window.navigationBarColor = Color.GRAY
-                    }
+                    } else window.navigationBarColor = Color.GRAY
                 }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor = getColor(context, R.color.abbBackgroundColor)
-                }
+                Configuration.UI_MODE_NIGHT_YES -> window.navigationBarColor =
+                    getColor(context, R.color.abbBackgroundColor)
             }
         }
     }

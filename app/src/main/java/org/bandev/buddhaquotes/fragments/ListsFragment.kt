@@ -158,12 +158,12 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val addIcon = IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add).apply {
-            colorInt = Color.WHITE
-            sizeDp = 16
-        }
         inflater.inflate(R.menu.add_menu, menu)
-        menu.findItem(R.id.add).icon = addIcon
+        menu.findItem(R.id.add).icon =
+            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         super.onCreateOptionsMenu(menu, inflater)
     }
 

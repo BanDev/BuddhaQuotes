@@ -78,19 +78,20 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         // Setup toolbar
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.title = if (listTmp == "Favourites") {
-            getString(R.string.favourites)
-        } else listTmp
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.navigationIcon = returnDrawable
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+        with(binding.toolbar) {
+            title = if (listTmp == "Favourites") {
+                getString(R.string.favourites)
+            } else listTmp
+            navigationIcon =
+                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                    colorInt = Color.WHITE
+                    sizeDp = 16
+                }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         checkListSize(this)
@@ -136,11 +137,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
             if (clickedItem.resource == R.drawable.heart_full_red) {
                 clickedItem.resource = R.drawable.like
-
                 ListsV2(this).removeFromList(Quotes().getFromString(text, this), "Favourites")
             } else {
                 clickedItem.resource = R.drawable.heart_full_red
-
                 ListsV2(this).addToList(Quotes().getFromString(text, this), "Favourites")
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -174,9 +173,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     private fun checkListSize(context: Context) {
         if (ListsV2(context).getList(listTmp).size > 1) {
             binding.noQuotesText.visibility = View.GONE
-        } else {
-            binding.noQuotesText.visibility = View.VISIBLE
-        }
+        } else binding.noQuotesText.visibility = View.VISIBLE
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
@@ -192,9 +189,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
             val drawable = if (favs.contains(id)) {
                 R.drawable.heart_full_red
-            } else {
-                R.drawable.like
-            }
+            } else R.drawable.like
 
             item = QuoteItem(
                 Quotes().getQuote(id, this),

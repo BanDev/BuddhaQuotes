@@ -72,12 +72,8 @@ class Colours {
 
     fun setStatusBar(context: Context, window: Window) {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = getAccentColourAsInt(context)
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.statusBarColor = getColor(context, R.color.darkModeBar)
-            }
+            Configuration.UI_MODE_NIGHT_NO -> window.statusBarColor = getAccentColourAsInt(context)
+            Configuration.UI_MODE_NIGHT_YES -> window.statusBarColor = getColor(context, R.color.darkModeBar)
         }
     }
 
@@ -89,12 +85,8 @@ class Colours {
 
     fun toolbarColour(context: Context): Int {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                return getAccentColourAsInt(context)
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                return getColor(context, R.color.darkModeBar)
-            }
+            Configuration.UI_MODE_NIGHT_NO -> return getAccentColourAsInt(context)
+            Configuration.UI_MODE_NIGHT_YES -> return getColor(context, R.color.darkModeBar)
         }
         return -1
     }

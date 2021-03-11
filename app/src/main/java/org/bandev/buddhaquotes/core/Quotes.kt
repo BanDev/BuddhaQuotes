@@ -534,7 +534,6 @@ class Quotes {
             context.getString(R.string.quote_235) -> 235
             context.getString(R.string.quote_236) -> 236
             context.getString(R.string.quote_237) -> 237
-            "Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy" -> 1000
             else -> -1
         }
     }

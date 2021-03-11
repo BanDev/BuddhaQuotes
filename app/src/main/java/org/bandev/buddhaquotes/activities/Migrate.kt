@@ -78,6 +78,4 @@ class Migrate : AppCompatActivity() {
         startActivity(Intent(this, Main::class.java))
         finish()
     }
-
-
 }

@@ -59,48 +59,36 @@ class About : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.navigationIcon = returnDrawable
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+        with(binding.toolbar) {
+            navigationIcon =
+                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                    colorInt = Color.WHITE
+                    sizeDp = 16
+                }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         // Setup contributors array
         val contributors = resources.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
-        binding.contributorsList.adapter = contributorsAdapter
-        binding.contributorsList.divider = null
-        binding.contributorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(binding.contributorsList)
+        with(binding.contributorsList) {
+            adapter = contributorsAdapter
+            divider = null
+            isClickable = false
+        }
 
         // Setup translators array
         val translators = resources.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-        binding.translatorsList.adapter = translatorsAdapter
-        binding.translatorsList.divider = null
-        binding.translatorsList.isClickable = false
-        justifyListViewHeightBasedOnChildren(binding.translatorsList)
-    }
-
-    private fun justifyListViewHeightBasedOnChildren(listView: ListView) {
-        val adapter = listView.adapter ?: return
-        val vg: ViewGroup = listView
-        var totalHeight = 0
-        for (i in 0 until adapter.count) {
-            val listItem: View = adapter.getView(i, null, vg)
-            listItem.measure(0, 0)
-            totalHeight += listItem.measuredHeight + 10
+        with(binding.translatorsList) {
+            adapter = translatorsAdapter
+            divider = null
+            isClickable = false
         }
-        val par = listView.layoutParams
-        par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
-        listView.layoutParams = par
-        listView.requestLayout()
     }
 
     override fun onBackPressed() {

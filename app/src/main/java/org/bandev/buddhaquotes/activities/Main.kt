@@ -96,16 +96,28 @@ class Main : AppCompatActivity() {
         }
 
         // Setup toolbar
-        val menuDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_menu).apply {
+        setSupportActionBar(binding.toolbar)
+        with(binding.toolbar) {
+            navigationIcon = IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_menu).apply {
                 colorInt = Color.WHITE
                 sizeDp = 20
             }
-        setSupportActionBar(binding.toolbar)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.navigationIcon = menuDrawable
-        binding.toolbar.setNavigationOnClickListener {
-            binding.root.openDrawer(binding.slider)
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
+        }
+
+        // Setup viewPager with FragmentAdapter
+        with(binding.viewPager) {
+            adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+            setCurrentItem(0, false)
+        }
+
+        with(binding.bottomBar) {
+            setupWithViewPager2(binding.viewPager)
+            tabColorSelected = Colours().getAccentColourAsInt(context)
+            indicatorColor = Colours().getAccentColourAsInt(context)
         }
 
         actionBarDrawerToggle = ActionBarDrawerToggle(
@@ -125,13 +137,6 @@ class Main : AppCompatActivity() {
             }
         }
 
-        // Setup viewPager with FragmentAdapter
-        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-        binding.viewPager.setCurrentItem(0, false)
-        binding.bottomBar.setupWithViewPager2(binding.viewPager)
-        binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
-        binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
-
         buildHeader(false, savedInstanceState)
 
         binding.slider.apply {
@@ -139,7 +144,7 @@ class Main : AppCompatActivity() {
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.app_name; iconDrawable =
                     ContextCompat.getDrawable(
-                        applicationContext,
+                        context,
                         R.drawable.ic_buddha
                     ); isSelectable =
                     false; identifier = 0
@@ -212,12 +217,12 @@ class Main : AppCompatActivity() {
      */
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val settingsIcon = IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
-            colorInt = Color.WHITE
-            sizeDp = 20
-        }
         menuInflater.inflate(R.menu.settings_menu, menu)
-        menu?.findItem(R.id.settings)?.icon = settingsIcon
+        menu?.findItem(R.id.settings)?.icon =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
+                colorInt = Color.WHITE
+                sizeDp = 20
+            }
         return true
     }
 
@@ -228,9 +233,7 @@ class Main : AppCompatActivity() {
                 true
             }
             R.id.settings -> {
-                val intent = Intent(this, Settings::class.java)
-                intent.putExtra("from", Activities.MAIN)
-                startActivity(intent)
+                startActivity(Intent(this, Settings::class.java).putExtra("from", Activities.MAIN))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -255,15 +258,13 @@ class Main : AppCompatActivity() {
                     hint(R.string.insertName)
                     validationListener { value ->
                         when {
-                            value.contains("//") -> {
-                                Validation.failed(getString(R.string.validationRule1))
-                            }
-                            value.toLowerCase(Locale.ROOT) == "favourites" -> {
-                                Validation.failed(getString(R.string.validationRule2))
-                            }
-                            lists.contains(value.toLowerCase(Locale.ROOT)) -> {
-                                Validation.failed(getString(R.string.validationRule3) + " $value")
-                            }
+                            value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
+                            value.toLowerCase(Locale.ROOT) == "favourites" -> Validation.failed(
+                                getString(R.string.validationRule2)
+                            )
+                            lists.contains(value.toLowerCase(Locale.ROOT)) -> Validation.failed(
+                                getString(R.string.validationRule3) + " $value"
+                            )
                             else -> Validation.success()
                         }
                     }
@@ -283,6 +284,17 @@ class Main : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
+        with(binding.bottomBar) {
+            tabColorSelected = Colours().getAccentColourAsInt(context)
+            indicatorColor = Colours().getAccentColourAsInt(context)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
@@ -293,21 +305,10 @@ class Main : AppCompatActivity() {
         EventBus.getDefault().unregister(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.bottomBar.tabColorSelected = Colours().getAccentColourAsInt(this)
-        binding.bottomBar.indicatorColor = Colours().getAccentColourAsInt(this)
-    }
-
     override fun onBackPressed() {
         //handle the back press :D close the drawer first and if the drawer is closed close the activity
         if (binding.root.isDrawerOpen(binding.slider)) {
             binding.root.closeDrawer(binding.slider)
-        } else {
-            super.onBackPressed()
-        }
+        } else super.onBackPressed()
     }
 }
