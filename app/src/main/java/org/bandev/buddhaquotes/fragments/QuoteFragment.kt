@@ -105,15 +105,9 @@ class QuoteFragment : Fragment() {
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
             val shareDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share).apply {
-                    sizeDp = 24
-                }
-            val addCircleDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_add_circle_outline
-            ).apply {
-                sizeDp = 24
-            }
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share)
+            val addCircleDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
             OptionsSheet().show(requireContext()) {
                 displayMode(DisplayMode.LIST)
                 title(R.string.more)
@@ -287,15 +281,9 @@ class QuoteFragment : Fragment() {
 
     private fun updateOptionsList() {
         val heartDrawable =
-            IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_favorite_outline
-            ).apply { sizeDp = 24 }
+            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_favorite_outline)
         val listDrawable =
-            IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_format_list_bulleted
-            ).apply { sizeDp = 24 }
+            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_format_list_bulleted)
         options.clear()
         optionStr.clear()
         val listName: MutableList<String> = mutableListOf()

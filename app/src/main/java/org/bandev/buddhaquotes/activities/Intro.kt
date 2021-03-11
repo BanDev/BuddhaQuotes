@@ -62,9 +62,7 @@ class Intro : AppIntro2() {
                 setupNavBarForLightMode()
                 lightModeSlides()
             }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                darkModeSlides()
-            }
+            Configuration.UI_MODE_NIGHT_YES -> darkModeSlides()
         }
     }
 

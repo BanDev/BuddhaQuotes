@@ -70,16 +70,17 @@ class Settings : AppCompatActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.navigationIcon = returnDrawable
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+        with(binding.toolbar) {
+            navigationIcon =
+                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                    colorInt = Color.WHITE
+                    sizeDp = 16
+                }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
@@ -140,45 +141,43 @@ class Settings : AppCompatActivity() {
             }
 
             findPreference<Preference>("About")?.apply {
-                val infoDrawable =
+                this.icon =
                     IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
                         colorInt = getColor(requireContext(), R.color.textColorPrimary)
                         sizeDp = 20
                     }
-                this.icon = infoDrawable
             }
 
             findPreference<Preference>("Intro")?.apply {
-                val introDrawable = IconicsDrawable(
+                this.icon = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_view_carousel
                 ).apply {
                     colorInt = getColor(requireContext(), R.color.textColorPrimary)
                     sizeDp = 20
                 }
-                this.icon = introDrawable
             }
 
             findPreference<Preference>("AboutLibraries")?.apply {
-                val librariesDrawable = IconicsDrawable(
+                this.icon = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_library_books
                 ).apply {
                     colorInt = getColor(requireContext(), R.color.textColorPrimary)
                     sizeDp = 20
                 }
-                this.icon = librariesDrawable
             }
         }
 
         private fun updateLanguageSummary() {
-            val languageDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_language).apply {
+            findPreference<Preference>("app_language")?.apply {
+                this.icon = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_language
+                ).apply {
                     colorInt = getColor(requireContext(), R.color.textColorPrimary)
                     sizeDp = 20
                 }
-            findPreference<Preference>("app_language")?.apply {
-                this.icon = languageDrawable
                 val int = Languages(base = context).getLanguageAsInt(requireContext())
                 val singleItems = resources.getStringArray(R.array.language_entries)
                 this.summary = singleItems[int]
@@ -252,9 +251,8 @@ class Settings : AppCompatActivity() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
             val values = resources.getStringArray(R.array.language_values)
-            val defaultDrawable =
-                IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review).apply {}
-            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu).apply {}
+            val defaultDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
+            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
@@ -275,9 +273,7 @@ class Settings : AppCompatActivity() {
                 onPositive { index: Int, _: Option ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
+                    } else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                     if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
                         editor.putInt("app_language_int", index)
@@ -305,22 +301,11 @@ class Settings : AppCompatActivity() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
             val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
-                    sizeDp = 24
-                }
-            val darkModeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_nights_stay
-            ).apply {
-                sizeDp = 24
-            }
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny)
+            val darkModeDrawable =
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_nights_stay)
             val systemDefaultDrawable =
-                IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_brightness_medium
-                ).apply {
-                    sizeDp = 24
-                }
+                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_brightness_medium)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)

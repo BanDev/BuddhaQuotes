@@ -68,16 +68,17 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         setContentView(binding.root)
 
         // Setup toolbar
-        val returnDrawable =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
-        binding.toolbar.navigationIcon = returnDrawable
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+        with(binding.toolbar) {
+            navigationIcon =
+                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+                    colorInt = Color.WHITE
+                    sizeDp = 16
+                }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
         rAdapter = AddQuoteRecycler(genList(), this@AddToList)
@@ -144,31 +145,34 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
         val searchItem = menu!!.findItem(R.id.appSearchBar)
         val searchView = searchItem.actionView as SearchView
-
+        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
         val searchCloseBtn =
             searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
-        searchCloseBtn.setColorFilter(Color.WHITE)
-
-        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
-        searchIcon.setColorFilter(Color.WHITE)
-
         val searchEditText =
             searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        searchEditText.setTextColor(Color.WHITE)
-        searchEditText.setHintTextColor(Color.WHITE)
-        searchEditText.hint = getString(R.string.searchHint)
 
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
+        searchCloseBtn.setColorFilter(Color.WHITE)
+        searchIcon.setColorFilter(Color.WHITE)
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                rAdapter.filter.filter(newText)
-                return false
-            }
-        })
+        with(searchEditText) {
+            setTextColor(Color.WHITE)
+            setHintTextColor(Color.WHITE)
+            hint = getString(R.string.searchHint)
+        }
+
+        with(searchView) {
+            imeOptions = EditorInfo.IME_ACTION_DONE
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    rAdapter.filter.filter(newText)
+                    return false
+                }
+            })
+        }
         return true
     }
 
