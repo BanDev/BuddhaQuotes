@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.Main"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.MainActivity" />
 
@@ -58,7 +58,7 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.Intro" />
+            android:name=".activities.IntroActivity" />
         <activity
             android:name=".activities.AboutLibraries" />
 

@@ -179,7 +179,7 @@
                 app:layout_constraintStart_toStartOf="@+id/view2"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-            <org.bandev.buddhaquotes.core.NonScrollListView
+            <org.bandev.buddhaquotes.custom.NonScrollListView
                 android:id="@+id/contributorsList"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
@@ -318,7 +318,7 @@
                 app:srcCompat="@drawable/ic_buddha"
                 android:contentDescription="@string/buddha_quotes_logo" />
 
-            <org.bandev.buddhaquotes.core.NonScrollListView
+            <org.bandev.buddhaquotes.custom.NonScrollListView
                 android:id="@+id/translatorsList"
                 android:layout_width="0dp"
                 android:layout_height="100dp"

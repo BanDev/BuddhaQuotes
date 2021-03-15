@@ -18,12 +18,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package org.bandev.buddhaquotes.core
+package org.bandev.buddhaquotes.custom
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ListView
-
 
 class NonScrollListView : ListView {
     constructor(context: Context?) : super(context)

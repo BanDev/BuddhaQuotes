@@ -162,9 +162,11 @@ class TimerActivity : AppCompatActivity() {
             onNegative {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 // Reset their settings if they cancel the sheet
-                settings.vibrateSecond = vibrateSecondOriginal
-                settings.endSoundID = endSoundOriginal
-                settings.showNotificaton = endNotificationOriginal
+                with(settings) {
+                    vibrateSecond = vibrateSecondOriginal
+                    endSoundID = endSoundOriginal
+                    showNotificaton = endNotificationOriginal
+                }
             }
             onPositive { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         }

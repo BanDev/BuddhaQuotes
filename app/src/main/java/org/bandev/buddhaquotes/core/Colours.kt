@@ -73,7 +73,8 @@ class Colours {
     fun setStatusBar(context: Context, window: Window) {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> window.statusBarColor = getAccentColourAsInt(context)
-            Configuration.UI_MODE_NIGHT_YES -> window.statusBarColor = getColor(context, R.color.darkModeBar)
+            Configuration.UI_MODE_NIGHT_YES -> window.statusBarColor =
+                getColor(context, R.color.darkModeBar)
         }
     }
 
@@ -104,7 +105,6 @@ class Colours {
 
     /**
      * Gets the current colour and returns it as an int
-     *
      * @param [context] context of activity (Context)
      * @return The accent colour (Int)
      */

@@ -52,7 +52,7 @@ import java.util.*
 class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
-    private lateinit var rAdapter: AddQuoteRecycler
+    private lateinit var recyclerAdapter: AddQuoteRecycler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,10 +81,10 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             }
         }
 
-        rAdapter = AddQuoteRecycler(genList(), this@AddToList)
+        recyclerAdapter = AddQuoteRecycler(genList(), this@AddToList)
 
         with(binding.recycler) {
-            adapter = rAdapter
+            adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
@@ -168,7 +168,7 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
                 }
 
                 override fun onQueryTextChange(newText: String): Boolean {
-                    rAdapter.filter.filter(newText)
+                    recyclerAdapter.filter.filter(newText)
                     return false
                 }
             })
@@ -178,9 +178,7 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     override fun onBackPressed() {
         val list = (intent.getStringExtra("list") ?: return).toString()
-        val intent2 = Intent(this, ScrollingActivity::class.java)
-        intent2.putExtra("list", list)
-        startActivity(intent2)
+        startActivity(Intent(this, ScrollingActivity::class.java).putExtra("list", list))
         finish()
         overridePendingTransition(
             R.anim.anim_slide_in_right,
