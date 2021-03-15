@@ -105,7 +105,7 @@ class Settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> startActivity(Intent(activity, About::class.java))
-                "Intro" -> startActivity(Intent(activity, Intro::class.java).putExtra("backto", 0))
+                "Intro" -> startActivity(Intent(activity, IntroActivity::class.java).putExtra("backto", 0))
                 "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
@@ -120,28 +120,28 @@ class Settings : AppCompatActivity() {
             updateColorSummary()
 
             findPreference<Preference>("app_language")?.apply {
-                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showLanguagePopup()
                     true
                 }
             }
 
             findPreference<Preference>("theme")?.apply {
-                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showThemePopup()
                     true
                 }
             }
 
             findPreference<Preference>("accent_color")?.apply {
-                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showColorPopup()
                     true
                 }
             }
 
             findPreference<Preference>("About")?.apply {
-                this.icon =
+                icon =
                     IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
                         colorInt = getColor(requireContext(), R.color.textColorPrimary)
                         sizeDp = 20
@@ -149,7 +149,7 @@ class Settings : AppCompatActivity() {
             }
 
             findPreference<Preference>("Intro")?.apply {
-                this.icon = IconicsDrawable(
+                icon = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_view_carousel
                 ).apply {
@@ -159,7 +159,7 @@ class Settings : AppCompatActivity() {
             }
 
             findPreference<Preference>("AboutLibraries")?.apply {
-                this.icon = IconicsDrawable(
+                icon = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_library_books
                 ).apply {
@@ -171,7 +171,7 @@ class Settings : AppCompatActivity() {
 
         private fun updateLanguageSummary() {
             findPreference<Preference>("app_language")?.apply {
-                this.icon = IconicsDrawable(
+                icon = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_language
                 ).apply {
@@ -180,7 +180,7 @@ class Settings : AppCompatActivity() {
                 }
                 val int = Languages(base = context).getLanguageAsInt(requireContext())
                 val singleItems = resources.getStringArray(R.array.language_entries)
-                this.summary = singleItems[int]
+                summary = singleItems[int]
             }
         }
 
@@ -205,17 +205,17 @@ class Settings : AppCompatActivity() {
                 sizeDp = 20
             }
             findPreference<Preference>("theme")?.apply {
-                this.summary = when (Theme().getAppTheme(requireContext())) {
+                summary = when (Theme().getAppTheme(requireContext())) {
                     0 -> {
-                        this.icon = lightModeDrawable
+                        icon = lightModeDrawable
                         getString(R.string.light_mode)
                     }
                     1 -> {
-                        this.icon = darkModeDrawable
+                        icon = darkModeDrawable
                         getString(R.string.dark_mode)
                     }
                     else -> {
-                        this.icon = systemDefaultDrawable
+                        icon = systemDefaultDrawable
                         getString(R.string.follow_system_default)
                     }
                 }
@@ -229,8 +229,8 @@ class Settings : AppCompatActivity() {
                     sizeDp = 20
                 }
             findPreference<Preference>("accent_color")?.apply {
-                this.icon = paletteDrawable
-                this.summary = when (Colours().getAccentColourAsString(requireContext())) {
+                icon = paletteDrawable
+                summary = when (Colours().getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
                     "violet" -> getString(R.string.violet)
                     "blue" -> getString(R.string.blue)
@@ -273,23 +273,21 @@ class Settings : AppCompatActivity() {
                 onPositive { index: Int, _: Option ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    } else {
+                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
 
                     if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
                         editor.putInt("app_language_int", index)
                         editor.putString("app_language", values[index])
                         editor.apply()
-                        val intent2 = Intent(context, Settings::class.java)
-                        intent2.putExtra("lang", true)
-                        startActivity(intent2)
+                        startActivity(Intent(context, Settings::class.java).putExtra("lang", true))
                         activity?.finish()
                         activity?.overridePendingTransition(
                             android.R.anim.fade_in,
                             android.R.anim.fade_out
                         )
-                    } else {
-                        dismiss()
-                    }
+                    } else dismiss()
                 }
                 onNegative {
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -344,14 +342,15 @@ class Settings : AppCompatActivity() {
                             }
                         }
                         editor.apply()
-                        val intent2 = Intent(context, Settings::class.java)
-                        intent2.putExtra("switch", true)
-                        startActivity(intent2)
+                        startActivity(
+                            Intent(context, Settings::class.java).putExtra(
+                                "switch",
+                                true
+                            )
+                        )
                         activity?.finish()
                         activity?.overridePendingTransition(0, 0)
-                    } else {
-                        dismiss()
-                    }
+                    } else dismiss()
                 }
             }
         }
@@ -410,17 +409,18 @@ class Settings : AppCompatActivity() {
 
                         updateColorSummary()
 
-                        val intent2 = Intent(context, Settings::class.java)
-                        intent2.putExtra("switch", true)
-                        startActivity(intent2)
+                        startActivity(
+                            Intent(context, Settings::class.java).putExtra(
+                                "switch",
+                                true
+                            )
+                        )
                         activity?.finish()
                         activity?.overridePendingTransition(
                             android.R.anim.fade_in,
                             android.R.anim.fade_out
                         )
-                    } else {
-                        dismiss()
-                    }
+                    } else dismiss()
                 }
             }
         }

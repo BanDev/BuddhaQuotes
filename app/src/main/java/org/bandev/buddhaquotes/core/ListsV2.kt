@@ -56,10 +56,11 @@ class ListsV2(context: Context) {
 
     fun newList(name: String, data: List<Int>) {
         val current = sharedPrefs.getString("MASTER_LIST", "Favourites")
-        val lists = getMasterList()
-        if (!lists.contains(name)) editor.putString("MASTER_LIST", "$current//$name")
-        editor.putString(name, data.joinToString(separator = "//"))
-        editor.commit()
+        if (!getMasterList().contains(name)) editor.putString("MASTER_LIST", "$current//$name")
+        with(editor) {
+            putString(name, data.joinToString(separator = "//"))
+            apply()
+        }
     }
 
     /**
@@ -75,9 +76,11 @@ class ListsV2(context: Context) {
         val listArrFinal = LinkedList(listArrTemp)
         listArrFinal.remove(name)
         val stringOut = listArrFinal.joinToString(separator = "//")
-        editor.remove(name)
-        editor.putString("MASTER_LIST", stringOut)
-        editor.apply()
+        with(editor) {
+            remove(name)
+            putString("MASTER_LIST", stringOut)
+            apply()
+        }
     }
 
     /**
@@ -89,9 +92,11 @@ class ListsV2(context: Context) {
 
     fun newEmptyList(name: String) {
         val current = sharedPrefs.getString("MASTER_LIST", "Favourites")
-        editor.putString(name, "-1")
-        editor.putString("MASTER_LIST", "$current//$name")
-        editor.commit()
+        with(editor) {
+            putString(name, "-1")
+            putString("MASTER_LIST", "$current//$name")
+            apply()
+        }
     }
 
     /**
@@ -115,8 +120,10 @@ class ListsV2(context: Context) {
 
     private fun saveList(list: List<Int>, name: String) {
         val stringOut = list.joinToString(separator = "//")
-        editor.putString(name, stringOut)
-        editor.apply()
+        with(editor) {
+            putString(name, stringOut)
+            apply()
+        }
     }
 
     /**

@@ -22,10 +22,7 @@ package org.bandev.buddhaquotes.activities
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
@@ -48,15 +45,15 @@ class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set theme, navigation bar and language
+        // Setup view binding
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Set accent colour, navigation bar and language
         Colours().setAccentColour(this)
         Colours().setStatusBar(this, window)
         Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
-
-        // Setup view binding
-        binding = ActivityAboutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)

@@ -64,10 +64,9 @@ import java.util.*
  * @author jack.txt & Fennec_exe
  */
 
-class Main : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
-
     private lateinit var headerView: AccountHeaderView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -92,7 +91,7 @@ class Main : AppCompatActivity() {
         if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            startActivity(Intent(this, Intro::class.java))
+            startActivity(Intent(this, IntroActivity::class.java))
         }
 
         // Setup toolbar
@@ -114,11 +113,8 @@ class Main : AppCompatActivity() {
             setCurrentItem(0, false)
         }
 
-        with(binding.bottomBar) {
-            setupWithViewPager2(binding.viewPager)
-            tabColorSelected = Colours().getAccentColourAsInt(context)
-            indicatorColor = Colours().getAccentColourAsInt(context)
-        }
+        // Setup bottomBar with the viewpager
+        binding.bottomBar.setupWithViewPager2(binding.viewPager)
 
         actionBarDrawerToggle = ActionBarDrawerToggle(
             this,
@@ -164,11 +160,11 @@ class Main : AppCompatActivity() {
                     RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
                     false; identifier = 3
                 },
+                DividerDrawerItem(),
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.about; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
                 },
-                DividerDrawerItem(),
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.settings; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
@@ -285,6 +281,7 @@ class Main : AppCompatActivity() {
     }
 
     override fun onResume() {
+        // Set the colour of everything to the accent colour when the user returns to the Main Activity
         super.onResume()
         Colours().setAccentColour(this)
         Colours().setStatusBar(this, window)
@@ -306,7 +303,7 @@ class Main : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        //handle the back press :D close the drawer first and if the drawer is closed close the activity
+        // If the drawer is open, close it. If it is already closed, exit the app
         if (binding.root.isDrawerOpen(binding.slider)) {
             binding.root.closeDrawer(binding.slider)
         } else super.onBackPressed()

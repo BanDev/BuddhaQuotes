@@ -79,11 +79,12 @@ class TimerFragment : Fragment() {
                         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
 
-                    val toTimer = Intent(context, TimerActivity::class.java).putExtra(
-                        "durationTimeInMillis",
-                        durationTimeInMillis
+                    startActivity(
+                        Intent(context, TimerActivity::class.java).putExtra(
+                            "durationTimeInMillis",
+                            durationTimeInMillis
+                        )
                     )
-                    startActivity(toTimer)
                 }
             }
         }

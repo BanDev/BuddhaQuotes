@@ -20,6 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -38,7 +39,7 @@ import org.bandev.buddhaquotes.R
  * The Intro activity is the first thing people see on buddha quotes
  * AppIntro is used to make it more simple
  */
-class Intro : AppIntro2() {
+class IntroActivity : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -59,7 +60,7 @@ class Intro : AppIntro2() {
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 setupStatusBarForLightMode()
-                setupNavBarForLightMode()
+                setupNavBarForLightMode(this)
                 lightModeSlides()
             }
             Configuration.UI_MODE_NIGHT_YES -> darkModeSlides()
@@ -186,8 +187,8 @@ class Intro : AppIntro2() {
         setStatusBarColor(Color.WHITE)
     }
 
-    private fun setupNavBarForLightMode() {
-        if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
+    private fun setupNavBarForLightMode(context: Context) {
+        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 window.decorView.windowInsetsController?.setSystemBarsAppearance(
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
@@ -217,7 +218,7 @@ class Intro : AppIntro2() {
     private fun end() {
         when (intent.extras?.getInt("backto", 0)) {
             0 -> finish()
-            1 -> startActivity(Intent(this, Main::class.java))
+            1 -> startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }

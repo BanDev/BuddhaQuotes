@@ -92,9 +92,8 @@ class QuoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         lists = ListsV2(requireContext())
         newQuote(0)
-        with(binding.swipeRefresh) {
-            setColorSchemeColors(Colours().getAccentColourAsInt(context))
-            setOnRefreshListener { newQuote(0); binding.swipeRefresh.isRefreshing = false }
+        binding.swipeRefresh.setOnRefreshListener {
+            newQuote(0); binding.swipeRefresh.isRefreshing = false
         }
 
         binding.like.setOnClickListener {
@@ -125,11 +124,8 @@ class QuoteFragment : Fragment() {
                             putExtra(Intent.EXTRA_TEXT, text)
                             type = "text/plain"
                         }
-                        val shareIntent = Intent.createChooser(sendIntent, null)
-                        startActivity(shareIntent)
-                    } else {
-                        showSecondBottomSheet()
-                    }
+                        startActivity(Intent.createChooser(sendIntent, null))
+                    } else showSecondBottomSheet()
                 }
             }
         }
@@ -287,6 +283,7 @@ class QuoteFragment : Fragment() {
         options.clear()
         optionStr.clear()
         val listName: MutableList<String> = mutableListOf()
+
         for (list in lists.getMasterList()) {
             val drawable = if (list == "Favourites") {
                 heartDrawable
@@ -321,6 +318,7 @@ class QuoteFragment : Fragment() {
     }
 
     override fun onResume() {
+        // Set the colour of the swipe to refresh icon to the accent colour when the user returns to the Main Activity
         super.onResume()
         binding.swipeRefresh.setColorSchemeColors(Colours().getAccentColourAsInt(requireContext()))
     }

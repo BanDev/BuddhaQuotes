@@ -50,7 +50,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
     private lateinit var scrollingList: ArrayList<QuoteItem>
-    private lateinit var adapter: QuoteRecycler
+    private lateinit var recyclerAdapter: QuoteRecycler
     private lateinit var prefList: List<Int>
     private var listTmp: String = ""
 
@@ -75,7 +75,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         prefList = ListsV2(this).getList(listTmp)
         scrollingList = generateDummyList(prefList.size)
-        adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
+        recyclerAdapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -96,30 +96,27 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         checkListSize(this)
 
-        binding.recyclerView.adapter = adapter
-
         with(binding.recyclerView) {
+            adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(false)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val addIcon = IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
-            colorInt = Color.WHITE
-            sizeDp = 16
-        }
         menuInflater.inflate(R.menu.add_menu, menu)
-        menu?.findItem(R.id.add)?.icon = addIcon
+        menu?.findItem(R.id.add)?.icon =
+            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                val intent2 = Intent(this, AddToList::class.java)
-                intent2.putExtra("list", listTmp)
-                startActivity(intent2)
+                startActivity(Intent(this, AddToList::class.java).putExtra("list", listTmp))
                 finish()
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -143,7 +140,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                 ListsV2(this).addToList(Quotes().getFromString(text, this), "Favourites")
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            adapter.notifyItemChanged(position)
+            recyclerAdapter.notifyItemChanged(position)
         }
     }
 
@@ -165,7 +162,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onBinClick(position: Int, text: String) {
         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         scrollingList.removeAt(position)
-        adapter.notifyItemRemoved(position)
+        recyclerAdapter.notifyItemRemoved(position)
         ListsV2(this).removeFromList(Quotes().getFromString(text, this), listTmp)
         checkListSize(this)
     }

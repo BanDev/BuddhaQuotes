@@ -46,12 +46,12 @@ class Migrate : AppCompatActivity() {
         if (sharedPrefs.getBoolean("first_time", true)) {
             editor.putBoolean("first_time", false)
             editor.apply()
-            startActivity(Intent(this, Intro::class.java).putExtra("backto", 1))
+            startActivity(Intent(this, IntroActivity::class.java).putExtra("backto", 1))
             finish()
         }
 
         if (!sharedPrefs.getBoolean("old_quotes", true)) {
-            startActivity(Intent(this, Main::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
@@ -75,7 +75,7 @@ class Migrate : AppCompatActivity() {
         val editor = sharedPrefs.edit()
         editor.putBoolean("old_quotes", false)
         editor.apply()
-        startActivity(Intent(this, Main::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }
