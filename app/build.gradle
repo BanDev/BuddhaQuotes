@@ -116,5 +116,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-alpha04'
 
     // Xplosion - https://github.com/BanDev/Xplosion
-    implementation 'com.github.BanDev:Xplosion:1.0.4'
+    implementation 'uk.bandev:xplosion:1.0.5'
 }

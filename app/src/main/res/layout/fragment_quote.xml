@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <org.bandev.libraries.xplosion.XplosionView
+            <uk.bandev.xplosion.XplosionView
                 android:id="@+id/likeAnimator"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -73,7 +73,7 @@
                     android:layout_gravity="center"
                     app:iiv_icon="gmr-favorite" />
 
-            </org.bandev.libraries.xplosion.XplosionView>
+            </uk.bandev.xplosion.XplosionView>
 
             <com.mikepenz.iconics.view.IconicsImageView
                 android:id="@+id/more"
