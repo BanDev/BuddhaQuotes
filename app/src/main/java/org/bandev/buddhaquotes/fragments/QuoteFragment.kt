@@ -193,14 +193,13 @@ class QuoteFragment : Fragment() {
     /**
      * Refreshes the quote on screen
      */
-
     private fun newQuote(quoteId: Int) {
         val quote = quotes.getQuote(quoteId, requireContext())
         binding.quote.text = quote
-        binding.number.text = getString(R.string.quote_number) + " #" + quotes.quotenumberglobal
-        Store(requireContext()).quoteID = quotes.quotenumberglobal
+        binding.number.text = "${getString(R.string.quote_number)} #${quotes.quoteIdGlobal}"
+        Store(requireContext()).quoteID = quotes.quoteIdGlobal
 
-        if (ListsV2(requireContext()).queryInList(quotes.quotenumberglobal, "Favourites")) {
+        if (ListsV2(requireContext()).queryInList(quotes.quoteIdGlobal, "Favourites")) {
             liked = true
             binding.like.setImageDrawable(
                 IconicsDrawable(
