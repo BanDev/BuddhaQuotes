@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <uk.bandev.xplosion.XplosionView
+            <org.bandev.libraries.xplosion.XplosionView
                 android:id="@+id/likeAnimator"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -66,26 +66,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/number">
 
-                <com.mikepenz.iconics.view.IconicsImageView
+                <ImageView
                     android:id="@+id/like"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
+                    android:layout_width="@dimen/quoteFragmentActionSize"
+                    android:layout_height="@dimen/quoteFragmentActionSize"
                     android:layout_gravity="center"
-                    app:iiv_icon="gmr-favorite" />
+                    app:srcCompat="@drawable/like" />
 
-            </uk.bandev.xplosion.XplosionView>
+            </org.bandev.libraries.xplosion.XplosionView>
 
-            <com.mikepenz.iconics.view.IconicsImageView
+            <ImageView
                 android:id="@+id/more"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="@dimen/quoteFragmentActionSize"
+                android:layout_height="@dimen/quoteFragmentActionSize"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
-                app:iiv_color="@color/textColorPrimary"
-                app:iiv_icon="gmr-more-vert"
                 app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
                 app:layout_constraintStart_toEndOf="@+id/likeAnimator"
-                app:layout_constraintTop_toTopOf="@+id/likeAnimator" />
+                app:layout_constraintTop_toTopOf="@+id/likeAnimator"
+                app:srcCompat="@drawable/ic_more" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

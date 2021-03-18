@@ -21,32 +21,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
+import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.color.ColorView
 import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.typeface.library.octicons.Octicons
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.core.Theme
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
 /**
@@ -60,27 +53,22 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (intent.extras?.getBoolean("paused") == true) {
+            Snackbar.make(binding.root, "Timer has been paused", LENGTH_SHORT).show()
+        }
+
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
@@ -88,9 +76,15 @@ class Settings : AppCompatActivity() {
             val darkmode = sharedPrefs.getBoolean("dark_mode", false)
             val sys = sharedPrefs.getBoolean("sys", true)
             when {
-                sys -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                darkmode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sys -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                }
+                darkmode -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+                else -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
             }
         }
 
@@ -105,7 +99,7 @@ class Settings : AppCompatActivity() {
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
                 "About" -> startActivity(Intent(activity, About::class.java))
-                "Intro" -> startActivity(Intent(activity, IntroActivity::class.java).putExtra("backto", 0))
+                "Help" -> startActivity(Intent(activity, Intro::class.java))
                 "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
             }
             return true
@@ -115,122 +109,35 @@ class Settings : AppCompatActivity() {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-            updateLanguageSummary()
-            updateThemeSummary()
             updateColorSummary()
-
-            findPreference<Preference>("app_language")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showLanguagePopup()
-                    true
-                }
-            }
-
-            findPreference<Preference>("theme")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showThemePopup()
-                    true
-                }
-            }
+            updateThemeSummary()
+            updateLanguageSummary()
 
             findPreference<Preference>("accent_color")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     showColorPopup()
                     true
                 }
             }
 
-            findPreference<Preference>("About")?.apply {
-                icon =
-                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
-                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                        sizeDp = 20
-                    }
-            }
-
-            findPreference<Preference>("Intro")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_view_carousel
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-            }
-
-            findPreference<Preference>("AboutLibraries")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_library_books
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-            }
-        }
-
-        private fun updateLanguageSummary() {
-            findPreference<Preference>("app_language")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_language
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-                val int = Languages(base = context).getLanguageAsInt(requireContext())
-                val singleItems = resources.getStringArray(R.array.language_entries)
-                summary = singleItems[int]
-            }
-        }
-
-        private fun updateThemeSummary() {
-            val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-            val darkModeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_nights_stay
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 20
-            }
-            val systemDefaultDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_brightness_medium
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 20
-            }
             findPreference<Preference>("theme")?.apply {
-                summary = when (Theme().getAppTheme(requireContext())) {
-                    0 -> {
-                        icon = lightModeDrawable
-                        getString(R.string.light_mode)
-                    }
-                    1 -> {
-                        icon = darkModeDrawable
-                        getString(R.string.dark_mode)
-                    }
-                    else -> {
-                        icon = systemDefaultDrawable
-                        getString(R.string.follow_system_default)
-                    }
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    showThemePopup()
+                    true
+                }
+            }
+
+            findPreference<Preference>("app_language")?.apply {
+                this.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    showLanguagePopup()
+                    true
                 }
             }
         }
 
         private fun updateColorSummary() {
-            val paletteDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_palette).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
             findPreference<Preference>("accent_color")?.apply {
-                icon = paletteDrawable
-                summary = when (Colours().getAccentColourAsString(requireContext())) {
+                this.summary = when (Colours().getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
                     "violet" -> getString(R.string.violet)
                     "blue" -> getString(R.string.blue)
@@ -247,26 +154,48 @@ class Settings : AppCompatActivity() {
             }
         }
 
+        private fun updateThemeSummary() {
+            findPreference<Preference>("theme")?.apply {
+                this.summary = when (Theme().getAppTheme(requireContext())) {
+                    0 -> {
+                        this.setIcon(R.drawable.ic_day_settings)
+                        getString(R.string.light_mode)
+                    }
+                    1 -> {
+                        this.setIcon(R.drawable.ic_night_settings)
+                        getString(R.string.dark_mode)
+                    }
+                    else -> getString(R.string.follow_system_default)
+                }
+            }
+        }
+
+        private fun updateLanguageSummary() {
+            findPreference<Preference>("app_language")?.apply {
+                val int = Languages(base = context).getLanguageAsInt(requireContext())
+                val singleItems = resources.getStringArray(R.array.language_entries)
+                this.summary = singleItems[int]
+            }
+        }
+
         private fun showLanguagePopup() {
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val editor = sharedPrefs.edit()
             val values = resources.getStringArray(R.array.language_values)
-            val defaultDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
-            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.settings_language)
                 style(SheetStyle.DIALOG)
                 displayMode(DisplayMode.GRID_VERTICAL)
                 with(
-                    Option(defaultDrawable, R.string.en),
-                    Option(machineDrawable, R.string.fr),
-                    Option(machineDrawable, R.string.de),
-                    Option(machineDrawable, R.string.es),
-                    Option(machineDrawable, R.string.ru),
-                    Option(machineDrawable, R.string.zh),
-                    Option(machineDrawable, R.string.ja),
-                    Option(machineDrawable, R.string.hi),
+                    Option(R.drawable.ic_default, R.string.en),
+                    Option(R.drawable.ic_machine, R.string.fr),
+                    Option(R.drawable.ic_machine, R.string.de),
+                    Option(R.drawable.ic_machine, R.string.es),
+                    Option(R.drawable.ic_machine, R.string.ru),
+                    Option(R.drawable.ic_machine, R.string.zh),
+                    Option(R.drawable.ic_machine, R.string.ja),
+                    Option(R.drawable.ic_machine, R.string.hi),
                     Option(R.drawable.ic_language, R.string.pl)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
@@ -281,13 +210,17 @@ class Settings : AppCompatActivity() {
                         editor.putInt("app_language_int", index)
                         editor.putString("app_language", values[index])
                         editor.apply()
-                        startActivity(Intent(context, Settings::class.java).putExtra("lang", true))
+                        val intent2 = Intent(context, Settings::class.java)
+                        intent2.putExtra("lang", true)
+                        startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(
                             android.R.anim.fade_in,
                             android.R.anim.fade_out
                         )
-                    } else dismiss()
+                    } else {
+                        dismiss()
+                    }
                 }
                 onNegative {
                     requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
@@ -298,20 +231,14 @@ class Settings : AppCompatActivity() {
         private fun showThemePopup() {
             val pref = requireContext().getSharedPreferences("Settings", 0)
             val editor = pref.edit()
-            val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny)
-            val darkModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_nights_stay)
-            val systemDefaultDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_brightness_medium)
 
             OptionsSheet().show(requireContext()) {
                 title(R.string.app_theme)
                 style(SheetStyle.DIALOG)
                 with(
-                    Option(lightModeDrawable, R.string.light_mode),
-                    Option(darkModeDrawable, R.string.dark_mode),
-                    Option(systemDefaultDrawable, R.string.follow_system_default)
+                    Option(R.drawable.ic_day_settings, R.string.light_mode),
+                    Option(R.drawable.ic_night_settings, R.string.dark_mode),
+                    Option(R.drawable.ic_palette, R.string.follow_system_default)
                 )
                 onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { index: Int, _: Option ->
@@ -342,15 +269,14 @@ class Settings : AppCompatActivity() {
                             }
                         }
                         editor.apply()
-                        startActivity(
-                            Intent(context, Settings::class.java).putExtra(
-                                "switch",
-                                true
-                            )
-                        )
+                        val intent2 = Intent(context, Settings::class.java)
+                        intent2.putExtra("switch", true)
+                        startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(0, 0)
-                    } else dismiss()
+                    } else {
+                        dismiss()
+                    }
                 }
             }
         }
@@ -409,24 +335,28 @@ class Settings : AppCompatActivity() {
 
                         updateColorSummary()
 
-                        startActivity(
-                            Intent(context, Settings::class.java).putExtra(
-                                "switch",
-                                true
-                            )
-                        )
+                        val intent2 = Intent(context, Settings::class.java)
+                        intent2.putExtra("switch", true)
+                        startActivity(intent2)
                         activity?.finish()
                         activity?.overridePendingTransition(
                             android.R.anim.fade_in,
                             android.R.anim.fade_out
                         )
-                    } else dismiss()
+                    } else {
+                        dismiss()
+                    }
                 }
             }
         }
     }
 
     override fun onBackPressed() {
+        startActivity(Intent(this@Settings, Main::class.java))
         finish()
+        overridePendingTransition(
+            R.anim.anim_slide_in_right,
+            R.anim.anim_slide_out_right
+        )
     }
 }

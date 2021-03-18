@@ -4,10 +4,10 @@
     <dimen name="text_margin">16dp</dimen>
 
     <!-- Quote fragment -->
-    <dimen name="quoteTextSize">26sp</dimen>
+    <dimen name="quoteTextSize">28sp</dimen>
     <dimen name="quoteNumberSize">16sp</dimen>
-    <dimen name="quoteFragmentActionSize">28dp</dimen>
-    <dimen name="quoteFragmentActionPadding">8dp</dimen>
+    <dimen name="quoteFragmentActionSize">30dp</dimen>
+    <dimen name="quoteFragmentActionPadding">10dp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.Main"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.MainActivity" />
 
@@ -49,7 +49,6 @@
             android:name=".activities.About"
             android:label="@string/about"
             android:theme="@style/About" />
-        <activity android:name=".activities.Migrate" />
         <activity
             android:name=".activities.TimerActivity"
             android:theme="@style/Settings" />
@@ -58,7 +57,7 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.IntroActivity" />
+            android:name=".activities.Intro" />
         <activity
             android:name=".activities.AboutLibraries" />
 

@@ -16,7 +16,7 @@
     <string name="information" id="14">Información</string>
     <string name="about" id="15">Sobre</string>
     <string name="view_app_details" id="16">Ver detalles de la aplicación</string>
-    <string name="intro" id="17">Ayuda</string>
+    <string name="help" id="17">Ayuda</string>
     <string name="app_introduction" id="18">Introducción a la aplicación</string>
     <string name="app_license" id="19">Licencia de la aplicación</string>
     <string name="libraries_used" id="20">Bibliotecas utilizadas</string>
@@ -397,7 +397,7 @@
     <string name="quote_99" id="408">No basta con ser compasivo, debemos actuar</string>
     <string name="quote_100" id="409">Es posible vivir las 24 horas en un estado de amor</string>
     <string name="quote_101" id="410">Es muy importante generar una buena actitud, un buen corazón, tanto como sea posible. De esto vendrá la felicidad tanto a corto como a largo plazo tanto para ti como para los demás.</string>
-    <string name="quote_102" id="411">Es tu camino … y solo tuyo … Otros pueden caminar contigo, pero nadie puede hacerlo por ti. No importa el camino que elijas, síguelo.</string>
+    <string name="quote_102" id="411">Es tu camino … y solo tuyo ... Otros pueden caminar contigo, pero nadie puede hacerlo por ti. No importa el camino que elijas, síguelo.</string>
     <string name="quote_103" id="412">La alegría no proviene de la posesión o propiedad, sino de un corazón sabio y amoroso.</string>
     <string name="quote_104" id="413">Así como una roca sólida no es sacudida por la tormenta, así los sabios no se ven afectados por la alabanza o la culpa.</string>
     <string name="quote_105" id="414">Así como el gran océano tiene un sabor, el sabor de la sal, así también esta enseñanza y disciplina tiene un sabor, el sabor de la liberación.</string>
@@ -590,6 +590,4 @@
     <string name="start">Comienzo</string>
     <string name="show_notification">Mostrar notifcación</string>
     <string name="vibrate_second">Vibra cada segundo</string>
-
-    <string name="favourites">Favoritos</string>
 </resources>

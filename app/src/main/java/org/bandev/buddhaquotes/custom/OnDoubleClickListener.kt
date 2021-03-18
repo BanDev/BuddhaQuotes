@@ -27,7 +27,7 @@ import android.view.View
  * click time delay change [DOUBLE_CLICK_TIME_DELTA] variable.
  *
  * @author jack.txt
- * @since v2.0.0
+ * @since v1.7.0
  * @updated 09/12/2020
  */
 

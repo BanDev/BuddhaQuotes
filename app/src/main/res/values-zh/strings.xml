@@ -16,7 +16,7 @@
     <string name="information" id="14">信息</string>
     <string name="about" id="15">关于</string>
     <string name="view_app_details" id="16">查看应用程序详细信息</string>
-    <string name="intro" id="17">帮助</string>
+    <string name="help" id="17">帮助</string>
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用程式授权</string>
     <string name="libraries_used" id="20">使用的图书馆</string>
@@ -590,7 +590,4 @@
     <string name="start">开始</string>
     <string name="show_notification">显示通知</string>
     <string name="vibrate_second">每秒振动</string>
-
-    <string name="favourites">收藏夹</string>
-
 </resources>
