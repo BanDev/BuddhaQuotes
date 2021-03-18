@@ -1,9 +1,0 @@
-<resources>
-
-    <!-- Quote fragment -->
-    <dimen name="quoteTextSize">21sp</dimen>
-    <dimen name="quoteNumberSize">15sp</dimen>
-    <dimen name="quoteFragmentActionSize">25dp</dimen>
-    <dimen name="quoteFragmentActionPadding">4dp</dimen>
-
-</resources>

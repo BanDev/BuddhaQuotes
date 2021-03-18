@@ -32,6 +32,7 @@ import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
+import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 /**
@@ -78,11 +79,19 @@ class TimerFragment : Fragment() {
                         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
 
-                    val toTimer = Intent(context, TimerActivity::class.java)
-                    toTimer.putExtra("durationTimeInMillis", durationTimeInMillis)
-                    startActivity(toTimer)
+                    startActivity(
+                        Intent(context, TimerActivity::class.java).putExtra(
+                            "durationTimeInMillis",
+                            durationTimeInMillis
+                        )
+                    )
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.button.setBackgroundColor(Colours().getAccentColourAsInt(requireContext()))
     }
 }

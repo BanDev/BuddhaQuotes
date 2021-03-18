@@ -21,18 +21,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.Fragments
-import org.bandev.buddhaquotes.core.Lists
-import org.bandev.buddhaquotes.core.Notify
-import org.bandev.buddhaquotes.core.SendEvent
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 import org.greenrobot.eventbus.EventBus
@@ -73,7 +75,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     private fun setupRecycler() {
-        masterlist = Lists().getMasterList(requireContext())
+        masterlist = ListsV2(requireContext()).getMasterList()
 
         masterListFinal = generateMasterList(masterlist.size, masterlist)
 
@@ -93,7 +95,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     fun onNotifyReceive(event: Notify) {
         when (event) {
             is Notify.NotifyNewList -> {
-                Lists().newList(event.listName, requireContext())
+                ListsV2(requireContext()).newEmptyList(event.listName)
                 setupRecycler()
             }
         }
@@ -114,22 +116,24 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
      */
 
     private fun generateMasterList(max: Int, listIn: List<String>): ArrayList<ListItem> {
+        val listNames = mutableListOf<String>()
         val list = ArrayList<ListItem>()
+        val lists = ListsV2(requireContext())
         var i = 0
         while (i != max) {
             var special = false
-            val pref = requireContext().getSharedPreferences("List_system", 0)
-            val array2 = pref.getString(listIn[i], "")!!.split("//")
-            val count: Int = array2.size - 1
+            val individualList = lists.getList(listIn[i])
+            val count: Int = individualList.size - 1
             if (listIn[i] == "Favourites") {
+                listNames.add(getString(R.string.favourites))
                 special = true
-            }
+            } else listNames.add(listIn[i])
             val summary: String = if (count != 1) {
                 "$count items"
             } else {
                 "$count item"
             }
-            val item = ListItem(listIn[i], summary, special)
+            val item = ListItem(listNames[i], summary, special)
             list += item
             i++
         }
@@ -155,6 +159,11 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_menu, menu)
+        menu.findItem(R.id.add).icon =
+            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -168,13 +177,18 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
         startActivity(intent)
-        activity?.finish()
     }
 
     override fun onBinClick(position: Int, text: String) {
-        Lists().removeList(text, requireContext())
+        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+        ListsV2(requireContext()).removeList(text)
         masterListFinal.removeAt(position)
         binding.recyclerView.adapter?.notifyItemRemoved(position)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupRecycler()
     }
 
     override fun onStart() {

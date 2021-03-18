@@ -23,44 +23,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/more"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/like"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_alignTop="@+id/quote"
+            android:layout_alignBottom="@+id/share"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            app:iiv_color="@color/textColorPrimary"
+            app:iiv_icon="gmr-favorite-border"
+            app:layout_constraintBottom_toBottomOf="@+id/share"
+            app:layout_constraintStart_toStartOf="@+id/quote"
+            app:layout_constraintTop_toBottomOf="@+id/quote" />
+
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/share"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_below="@+id/quote"
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
+            app:iiv_color="@color/textColorPrimary"
+            app:iiv_icon="gmr-share"
             app:layout_constraintStart_toEndOf="@+id/like"
-            app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/share"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toBottomOf="@+id/quote" />
 
-        <ImageView
+        <com.mikepenz.iconics.view.IconicsImageView
             android:id="@+id/bin"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_below="@+id/quote"
-            android:layout_alignParentStart="true"
             android:layout_marginTop="15dp"
+            app:iiv_color="@color/textColorPrimary"
+            app:iiv_icon="gmr-delete-outline"
             app:layout_constraintEnd_toEndOf="@+id/quote"
-            app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/ic_delete"
-            android:contentDescription="TODO" />
-
-        <ImageView
-            android:id="@+id/like"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignTop="@+id/quote"
-            android:layout_alignBottom="@+id/more"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
-            app:layout_constraintBottom_toBottomOf="@+id/more"
-            app:layout_constraintStart_toStartOf="@+id/quote"
-            app:layout_constraintTop_toBottomOf="@+id/quote"
-            app:srcCompat="@drawable/like"
-            android:contentDescription="TODO" />
+            app:layout_constraintTop_toBottomOf="@+id/quote" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

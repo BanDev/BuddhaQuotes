@@ -22,14 +22,13 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.Window
 import android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat.getColor
 import org.bandev.buddhaquotes.R
 
 /**
@@ -38,9 +37,10 @@ import org.bandev.buddhaquotes.R
  *
  * @author Fennec_exe
  * @since v1.5.0
- * @updated 29/10/2020
+ * @updated 13/03/2021
  */
 
+@Suppress("DEPRECATION")
 class Compatibility {
 
     /**
@@ -49,30 +49,33 @@ class Compatibility {
      * @param [window] context of window (Window)
      */
 
-    fun setNavigationBarColourDefault(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBarColourDefault(context: Context, window: Window) {
+        // Only run the code if the user has a navigation bar
         if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
+                    // If using >= Android 11, set the navigation bar icons to be dark using the newer function
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         window.decorView.windowInsetsController?.setSystemBarsAppearance(
                             APPEARANCE_LIGHT_NAVIGATION_BARS, // value
                             APPEARANCE_LIGHT_NAVIGATION_BARS // mask
                         )
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        @Suppress("DEPRECATION")
+                    }
+                    // If using Android 8-10, set the navigation bar icons to be dark with the deprecated function
+                    else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.decorView.systemUiVisibility =
                             View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                     }
+                    // If using >= Android 8, set the navigation bar colour to white to match dark icons
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.navigationBarColor = Color.WHITE
-                    } else {
-                        window.navigationBarColor = Color.GRAY
                     }
+                    // If using < Android 8, set the navigation bar colour to gray as dark icons were not supported before Android 8
+                    else window.navigationBarColor = Color.GRAY
                 }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.background, null)
-                }
+                // If using dark mode, set the navigation bar colour to the colour of the background
+                Configuration.UI_MODE_NIGHT_YES -> window.navigationBarColor =
+                    getColor(context, R.color.background)
             }
         }
     }
@@ -83,30 +86,33 @@ class Compatibility {
      * @param [window] context of window (Window)
      */
 
-    fun setNavigationBarColourMain(context: Context, window: Window, resources: Resources) {
+    fun setNavigationBarColourMain(context: Context, window: Window) {
+        // Only run the code if the user has a navigation bar
         if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
             when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_NO -> {
+                    // If using >= Android 11, set the navigation bar icons to be dark using the newer function
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         window.decorView.windowInsetsController?.setSystemBarsAppearance(
                             APPEARANCE_LIGHT_NAVIGATION_BARS, // value
                             APPEARANCE_LIGHT_NAVIGATION_BARS // mask
                         )
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        @Suppress("DEPRECATION")
+                    }
+                    // If using Android 8-10, set the navigation bar icons to be dark with the deprecated function
+                    else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.decorView.systemUiVisibility =
                             View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                     }
+                    // If using >= Android 8, set the navigation bar colour to white to match dark icons
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         window.navigationBarColor = Color.WHITE
-                    } else {
-                        window.navigationBarColor = Color.GRAY
                     }
+                    // If using < Android 8, set the navigation bar colour to gray as dark icons were not supported before Android 8
+                    else window.navigationBarColor = Color.GRAY
                 }
-                Configuration.UI_MODE_NIGHT_YES -> {
-                    window.navigationBarColor =
-                        ResourcesCompat.getColor(resources, R.color.abbBackgroundColor, null)
-                }
+                // If using dark mode, set the navigation bar colour to the same colour as the bottom bar on the Main Activity
+                Configuration.UI_MODE_NIGHT_YES -> window.navigationBarColor =
+                    getColor(context, R.color.abbBackgroundColor)
             }
         }
     }

@@ -16,7 +16,7 @@
     <string name="information" id="14">Informations</string>
     <string name="about" id="15">À propos de</string>
     <string name="view_app_details" id="16">Afficher les détails de l\'application</string>
-    <string name="help" id="17">Aider</string>
+    <string name="intro" id="17">Aider</string>
     <string name="app_introduction" id="18">Présentation de l\'application</string>
     <string name="app_license" id="19">Licence d\'application</string>
     <string name="libraries_used" id="20">Bibliothèques utilisées</string>
@@ -590,4 +590,6 @@
     <string name="start">Début</string>
     <string name="show_notification">Afficher la notification</string>
     <string name="vibrate_second">Vibrer chaque seconde</string>
+
+    <string name="favourites">Favoris</string>
 </resources>
