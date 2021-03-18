@@ -20,7 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -32,10 +31,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -54,9 +49,8 @@ class AboutLibraries : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -65,16 +59,8 @@ class AboutLibraries : AppCompatActivity() {
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
 
         with(binding.recyclerView) {
@@ -83,7 +69,6 @@ class AboutLibraries : AppCompatActivity() {
         }
     }
 
-    @Suppress("DEPRECATION")
     class LibraryAdapter(private val itemList: List<Library>) :
         RecyclerView.Adapter<LibraryAdapter.LibraryViewHolder>() {
 
@@ -112,7 +97,9 @@ class AboutLibraries : AppCompatActivity() {
 
                 if (library.author.isNotEmpty()) {
                     binding.authorTextView.text = library.author
-                } else binding.authorTextView.visibility = View.GONE
+                } else {
+                    binding.authorTextView.visibility = View.GONE
+                }
 
                 val license = library.licenses?.firstOrNull()
                 if (license != null) {
@@ -123,7 +110,10 @@ class AboutLibraries : AppCompatActivity() {
                                 license.licenseShortDescription,
                                 Html.FROM_HTML_MODE_COMPACT
                             )
-                        } else Html.fromHtml(license.licenseShortDescription)
+                        } else {
+                            @Suppress("DEPRECATION")
+                            Html.fromHtml(license.licenseShortDescription)
+                        }
                 } else {
                     binding.licenseNameTextView.visibility = View.GONE
                     binding.licenseDescriptionTextView.visibility = View.GONE

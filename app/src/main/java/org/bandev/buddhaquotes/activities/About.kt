@@ -20,14 +20,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -45,47 +43,51 @@ class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Set theme, navigation bar and language
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Languages(baseContext).setLanguage()
+
         // Setup view binding
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set accent colour, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
-        Languages(baseContext).setLanguage()
-
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
 
         // Setup contributors array
         val contributors = resources.getStringArray(R.array.contributors)
         val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
-        with(binding.contributorsList) {
-            adapter = contributorsAdapter
-            divider = null
-            isClickable = false
-        }
+        binding.contributorsList.adapter = contributorsAdapter
+        binding.contributorsList.divider = null
+        binding.contributorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(binding.contributorsList)
 
         // Setup translators array
         val translators = resources.getStringArray(R.array.translators)
         val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-        with(binding.translatorsList) {
-            adapter = translatorsAdapter
-            divider = null
-            isClickable = false
+        binding.translatorsList.adapter = translatorsAdapter
+        binding.translatorsList.divider = null
+        binding.translatorsList.isClickable = false
+        justifyListViewHeightBasedOnChildren(binding.translatorsList)
+    }
+
+    private fun justifyListViewHeightBasedOnChildren(listView: ListView) {
+        val adapter = listView.adapter ?: return
+        val vg: ViewGroup = listView
+        var totalHeight = 0
+        for (i in 0 until adapter.count) {
+            val listItem: View = adapter.getView(i, null, vg)
+            listItem.measure(0, 0)
+            totalHeight += listItem.measuredHeight + 10
         }
+        val par = listView.layoutParams
+        par.height = totalHeight + listView.dividerHeight * (adapter.count - 1)
+        listView.layoutParams = par
+        listView.requestLayout()
     }
 
     override fun onBackPressed() {

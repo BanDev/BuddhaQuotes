@@ -20,23 +20,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
+import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.Compatibility
+import org.bandev.buddhaquotes.core.Languages
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
@@ -50,54 +47,51 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
     private lateinit var scrollingList: ArrayList<QuoteItem>
-    private lateinit var recyclerAdapter: QuoteRecycler
-    private lateinit var prefList: List<Int>
+    private lateinit var adapter: QuoteRecycler
+    private lateinit var prefList: List<String>
     private var listTmp: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if ((intent.extras ?: return).getBoolean("duplicate", false)) {
+            Snackbar.make(binding.scrolling, "Already in list!", Snackbar.LENGTH_SHORT).show()
+        }
+
+        val back = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
-        val pref = getSharedPreferences("ListV2", 0)
+        val pref = getSharedPreferences("List_system", 0)
         val prefString = pref.getString(listTmp, "")
         val prefListTmp: MutableList<String> = (prefString ?: return).split("//").toMutableList()
         prefListTmp.remove("null")
 
-        prefList = ListsV2(this).getList(listTmp)
+        prefList = prefListTmp
         scrollingList = generateDummyList(prefList.size)
-        recyclerAdapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
+        adapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
-        // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            title = if (listTmp == "Favourites") {
-                getString(R.string.favourites)
-            } else listTmp
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+        binding.toolbar.title = listTmp
+
+        (supportActionBar ?: return).setDisplayShowTitleEnabled(true)
+        (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
+
+        binding.toolbar.navigationIcon = back
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
 
-        checkListSize(this)
+        binding.recyclerView.adapter = adapter
 
         with(binding.recyclerView) {
-            adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(false)
         }
@@ -105,18 +99,15 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_menu, menu)
-        menu?.findItem(R.id.add)?.icon =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                startActivity(Intent(this, AddToList::class.java).putExtra("list", listTmp))
+                val intent2 = Intent(this, AddToList::class.java)
+                intent2.putExtra("list", listTmp)
+                startActivity(intent2)
                 finish()
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
@@ -134,13 +125,33 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
             if (clickedItem.resource == R.drawable.heart_full_red) {
                 clickedItem.resource = R.drawable.like
-                ListsV2(this).removeFromList(Quotes().getFromString(text, this), "Favourites")
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val listArr = pref.getString("Favourites", "")
+                val listArrTemp: MutableList<String> =
+                    (listArr?.split("//") ?: return).toMutableList()
+                val listArrFinal = LinkedList(listArrTemp)
+                listArrFinal.remove(text)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
+                editor.apply()
             } else {
                 clickedItem.resource = R.drawable.heart_full_red
-                ListsV2(this).addToList(Quotes().getFromString(text, this), "Favourites")
+
+                val pref = getSharedPreferences("List_system", 0)
+                val editor = pref.edit()
+                val listArr = pref.getString("Favourites", "")
+                val listArrTemp: MutableList<String> =
+                    (listArr?.split("//") ?: return).toMutableList()
+                val listArrFinal = LinkedList(listArrTemp)
+                listArrFinal.push(text)
+                val stringOut = listArrFinal.joinToString(separator = "//")
+                editor.putString("Favourites", stringOut)
+                editor.apply()
             }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            recyclerAdapter.notifyItemChanged(position)
+            adapter.notifyItemChanged(position)
         }
     }
 
@@ -161,44 +172,56 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onBinClick(position: Int, text: String) {
         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        scrollingList.removeAt(position)
-        recyclerAdapter.notifyItemRemoved(position)
-        ListsV2(this).removeFromList(Quotes().getFromString(text, this), listTmp)
-        checkListSize(this)
-    }
 
-    private fun checkListSize(context: Context) {
-        if (ListsV2(context).getList(listTmp).size > 1) {
-            binding.noQuotesText.visibility = View.GONE
-        } else binding.noQuotesText.visibility = View.VISIBLE
+        scrollingList.removeAt(position)
+        adapter.notifyItemRemoved(position)
+
+        val pref = getSharedPreferences("List_system", 0)
+        val editor = pref.edit()
+        val listArr = pref.getString(listTmp, "")
+        val listArrTemp: MutableList<String> =
+            (listArr?.split("//") ?: return).toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
+        listArrFinal.remove(text)
+        val stringOut = listArrFinal.joinToString(separator = "//")
+        editor.putString(listTmp, stringOut)
+        editor.apply()
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
 
         val list = ArrayList<QuoteItem>()
+
+        var i = 0
         var item: QuoteItem
 
-        val favs = ListsV2(this).getList("Favourites")
+        val pref = getSharedPreferences("List_system", 0)
+        val listArr = pref.getString("Favourites", "")
+        val listArrTemp: MutableList<String> = listArr?.split("//")!!.toMutableList()
+        val listArrFinal = LinkedList(listArrTemp)
 
-        for (id in prefList) {
-            val special = listTmp == "Favourites"
-            if (id == -1) continue
+        while (i != max) {
+            var special = false
+            if (listTmp == "Favourites") {
+                special = true
+            }
+            if ((listArrFinal as MutableList<String?>).contains(prefList[i])) {
+                if (prefList[i] != "") {
+                    item = QuoteItem(prefList[i], R.drawable.heart_full_red, special)
+                    list += item
+                }
+            } else {
+                item = QuoteItem(prefList[i], R.drawable.like, special)
+                list += item
+            }
 
-            val drawable = if (favs.contains(id)) {
-                R.drawable.heart_full_red
-            } else R.drawable.like
-
-            item = QuoteItem(
-                Quotes().getQuote(id, this),
-                drawable,
-                special
-            )
-            list += item
+            i++
         }
         return list
     }
 
     override fun onBackPressed() {
+        startActivity(Intent(this@ScrollingActivity, Main::class.java))
         finish()
     }
 }

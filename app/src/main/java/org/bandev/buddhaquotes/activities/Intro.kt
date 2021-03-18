@@ -20,8 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
@@ -39,7 +37,7 @@ import org.bandev.buddhaquotes.R
  * The Intro activity is the first thing people see on buddha quotes
  * AppIntro is used to make it more simple
  */
-class IntroActivity : AppIntro2() {
+class Intro : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,7 +50,6 @@ class IntroActivity : AppIntro2() {
         val sharedPreferences = getSharedPreferences("Settings", 0)
         val editor = sharedPreferences.edit()
         editor.putString("latestShown", getString(R.string.version))
-        editor.putBoolean("old_quotes", false)
         editor.apply()
 
         showStatusBar(true)
@@ -60,10 +57,12 @@ class IntroActivity : AppIntro2() {
         when (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 setupStatusBarForLightMode()
-                setupNavBarForLightMode(this)
+                setupNavBarForLightMode()
                 lightModeSlides()
             }
-            Configuration.UI_MODE_NIGHT_YES -> darkModeSlides()
+            Configuration.UI_MODE_NIGHT_YES -> {
+                darkModeSlides()
+            }
         }
     }
 
@@ -187,8 +186,8 @@ class IntroActivity : AppIntro2() {
         setStatusBarColor(Color.WHITE)
     }
 
-    private fun setupNavBarForLightMode(context: Context) {
-        if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
+    private fun setupNavBarForLightMode() {
+        if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 window.decorView.windowInsetsController?.setSystemBarsAppearance(
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
@@ -206,19 +205,12 @@ class IntroActivity : AppIntro2() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         // Decide what to do when the user clicks on "Skip"
-        end()
+        finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         // Decide what to do when the user clicks on "Done"
-        end()
-    }
-
-    private fun end() {
-        when (intent.extras?.getInt("backto", 0)) {
-            0 -> finish()
-            1 -> startActivity(Intent(this, MainActivity::class.java))
-        }
+        finish()
     }
 }

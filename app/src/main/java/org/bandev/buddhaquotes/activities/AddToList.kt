@@ -33,10 +33,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -52,15 +48,14 @@ import java.util.*
 class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
-    private lateinit var recyclerAdapter: AddQuoteRecycler
+    private lateinit var rAdapter: AddQuoteRecycler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        Colours().setAccentColour(this, window, resources)
+        Compatibility().setNavigationBarColourDefault(this, window, resources)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -69,22 +64,14 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
         }
 
-        recyclerAdapter = AddQuoteRecycler(genList(), this@AddToList)
+        rAdapter = AddQuoteRecycler(genList(), this@AddToList)
 
         with(binding.recycler) {
-            adapter = recyclerAdapter
+            adapter = rAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
@@ -92,15 +79,13 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     override fun onClick(quote: String) {
         val list = (intent.extras ?: return).getString("list").toString()
-        val lists2 = ListsV2(this)
-        val quoteID = Quotes().getFromString(quote, this)
-        if (!lists2.queryInList(quoteID, list)) {
+        if (!Lists().queryInList(quote, list, this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-            lists2.addToList(quoteID, list)
+            Lists().addToList(quote, list, this)
             val intent2 = Intent(this, ScrollingActivity::class.java)
             intent2.putExtra("list", list)
             startActivity(intent2)
@@ -116,14 +101,8 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             } else {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
-            val outName = if (list == "Favourites") {
-                getString(R.string.favourites)
-            } else list
-            Snackbar.make(
-                binding.root,
-                getString(R.string.duplicate) + " $outName",
-                Snackbar.LENGTH_SHORT
-            ).show()
+            Snackbar.make(binding.root, "This quote is already in $list", Snackbar.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -145,40 +124,39 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
         val searchItem = menu!!.findItem(R.id.appSearchBar)
         val searchView = searchItem.actionView as SearchView
-        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
+
         val searchCloseBtn =
             searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
-        val searchEditText =
-            searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-
         searchCloseBtn.setColorFilter(Color.WHITE)
+
+        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
         searchIcon.setColorFilter(Color.WHITE)
 
-        with(searchEditText) {
-            setTextColor(Color.WHITE)
-            setHintTextColor(Color.WHITE)
-            hint = getString(R.string.searchHint)
-        }
+        val searchEditText =
+            searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(Color.WHITE)
+        searchEditText.setHintTextColor(Color.WHITE)
+        searchEditText.hint = getString(R.string.searchHint)
 
-        with(searchView) {
-            imeOptions = EditorInfo.IME_ACTION_DONE
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    return false
-                }
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    recyclerAdapter.filter.filter(newText)
-                    return false
-                }
-            })
-        }
+            override fun onQueryTextChange(newText: String): Boolean {
+                rAdapter.filter.filter(newText)
+                return false
+            }
+        })
         return true
     }
 
     override fun onBackPressed() {
         val list = (intent.getStringExtra("list") ?: return).toString()
-        startActivity(Intent(this, ScrollingActivity::class.java).putExtra("list", list))
+        val intent2 = Intent(this, ScrollingActivity::class.java)
+        intent2.putExtra("list", list)
+        startActivity(intent2)
         finish()
         overridePendingTransition(
             R.anim.anim_slide_in_right,
