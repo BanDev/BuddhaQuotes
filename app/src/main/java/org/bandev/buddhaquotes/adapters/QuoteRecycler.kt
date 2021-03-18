@@ -72,7 +72,7 @@ class QuoteRecycler(
 
         init {
             binding.like.setOnClickListener(this)
-            binding.more.setOnClickListener {
+            binding.share.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     listener.onCardClick(position)

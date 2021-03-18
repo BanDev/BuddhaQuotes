@@ -32,7 +32,8 @@ import java.util.*
  * @updated 10/12/2020
  */
 
-class Lists {
+@Deprecated("This is deprecated use Listsv2 instead")
+open class Lists {
 
     /**
      * Sets activity's theme based off setting from preferences
@@ -156,6 +157,14 @@ class Lists {
         val stringOut = listArrFinal.joinToString(separator = "//")
         editor.putString(name, stringOut)
         editor.apply()
+    }
+
+    fun getList(name: String, context: Context): List<String> {
+        val pref = context.getSharedPreferences("List_system", 0)
+        val prefString = pref.getString(name, "")
+        val prefListTmp: MutableList<String> = prefString!!.split("//").toMutableList()
+        prefListTmp.remove("null")
+        return prefListTmp
     }
 
 }

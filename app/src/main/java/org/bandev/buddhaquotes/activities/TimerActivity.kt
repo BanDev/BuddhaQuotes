@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -33,6 +34,10 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Colours
 import org.bandev.buddhaquotes.core.Compatibility
@@ -56,26 +61,42 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Setup view binding
+        binding = ActivityTimerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Get an instance of settings
         settings = Timer().Settings(this)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this, window, resources)
-        Compatibility().setNavigationBarColourDefault(this, window, resources)
+        Colours().setAccentColour(this)
+        Colours().setStatusBar(this, window)
+        Compatibility().setNavigationBarColourDefault(this, window)
         Languages(baseContext).setLanguage()
 
-        // Setup da view
-        binding = ActivityTimerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // On settings click
-        binding.settings.setOnClickListener {
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            settingsSheet()
+        // Setup toolbar
+        setSupportActionBar(binding.toolbar)
+        with(binding.toolbar) {
+            navigationIcon = IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_close).apply {
+                colorInt = Color.WHITE
+                sizeDp = 16
+            }
+            setBackgroundColor(Colours().toolbarColour(context))
+            setNavigationOnClickListener {
+                onBackPressed()
+            }
         }
 
-        // Get the duration (mili seconds) of the timer
+        // On settings click
+        with(binding.settings) {
+            setBackgroundColor(Colours().getAccentColourAsInt(context))
+            setOnClickListener {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                settingsSheet()
+            }
+        }
+
+        // Get the duration (milli seconds) of the timer
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
         // Work out the other things we now know
@@ -91,32 +112,20 @@ class TimerActivity : AppCompatActivity() {
         // Begin the timer
         startTimer(durationTimeInS)
 
-        // Handle the people that want to leave
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-
         // When some geezer presses Pause
-        binding.pause.setOnClickListener {
-            // Nice haptic feedback. I like!!!!
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            } else {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
+        with(binding.pause) {
+            setBackgroundColor(Colours().getAccentColourAsInt(context))
+            setOnClickListener {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
 
-            when {
-                isPaused -> {
-                    // Resume timer
-                    resume()
-                }
-                isRunning -> {
-                    // Pause timer
-                    pause()
-                }
-                else -> {
-                    // Reset the timer once it has finished
-                    reset()
+                when {
+                    isPaused -> resume()
+                    isRunning -> pause()
+                    else -> reset()
                 }
             }
         }
@@ -126,7 +135,6 @@ class TimerActivity : AppCompatActivity() {
         val vibrateSecondOriginal = settings.vibrateSecond
         val endSoundOriginal = settings.endSoundID
         val endNotificationOriginal = settings.showNotificaton
-        val sounds = mutableListOf("Chime", "No")
         InputSheet().show(this) {
             title("Timer Settings")
 
@@ -154,9 +162,11 @@ class TimerActivity : AppCompatActivity() {
             onNegative {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 // Reset their settings if they cancel the sheet
-                settings.vibrateSecond = vibrateSecondOriginal
-                settings.endSoundID = endSoundOriginal
-                settings.showNotificaton = endNotificationOriginal
+                with(settings) {
+                    vibrateSecond = vibrateSecondOriginal
+                    endSoundID = endSoundOriginal
+                    showNotificaton = endNotificationOriginal
+                }
             }
             onPositive { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         }
@@ -177,10 +187,12 @@ class TimerActivity : AppCompatActivity() {
                 }
 
                 // Change button text & icon
-                binding.pause.text = getString(R.string.pause)
-                binding.pause.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_pause, 0, 0, 0
-                )
+                with(binding.pause) {
+                    text = getString(R.string.pause)
+                    setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.ic_pause, 0, 0, 0
+                    )
+                }
 
                 // Restart timer now
                 startTimer(durationTimeInMillis * 1000)
@@ -191,10 +203,12 @@ class TimerActivity : AppCompatActivity() {
     // Resume timer
     private fun resume() {
         // Change button text & icon
-        binding.pause.text = getString(R.string.pause)
-        binding.pause.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.ic_pause, 0, 0, 0
-        )
+        with(binding.pause) {
+            text = getString(R.string.pause)
+            setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_pause, 0, 0, 0
+            )
+        }
 
         // Start the timer from the last recorded progress
         startTimer(progressTimeInMillis)
@@ -205,10 +219,12 @@ class TimerActivity : AppCompatActivity() {
     // Pause timer
     private fun pause() {
         // Change button text & icon
-        binding.pause.text = getString(R.string.play)
-        binding.pause.setCompoundDrawablesWithIntrinsicBounds(
-            R.drawable.ic_play, 0, 0, 0
-        )
+        with(binding.pause) {
+            text = getString(R.string.play)
+            setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_play, 0, 0, 0
+            )
+        }
 
         // Stop the timer
         countDownTimer.cancel()
@@ -240,10 +256,12 @@ class TimerActivity : AppCompatActivity() {
                 }
 
                 // Change button text & icon
-                binding.pause.text = getString(R.string.reset)
-                binding.pause.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_refresh, 0, 0, 0
-                )
+                with(binding.pause) {
+                    text = getString(R.string.reset)
+                    setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.ic_refresh, 0, 0, 0
+                    )
+                }
 
                 // Play the gong
                 gong.start()
@@ -293,13 +311,15 @@ class TimerActivity : AppCompatActivity() {
 
         // Update the notification text and progress
         if (settings.showNotificaton) {
-            notifBuilder.setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-            notifBuilder.setContentText("$minute:$seconds")
-            notifBuilder.setProgress(
-                durationTimeInMillis.toInt(),
-                durationTimeInMillis.toInt() - time.toInt() / 1000,
-                false
-            )
+            with(notifBuilder) {
+                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+                setContentText("$minute:$seconds")
+                setProgress(
+                    durationTimeInMillis.toInt(),
+                    durationTimeInMillis.toInt() - time.toInt() / 1000,
+                    false
+                )
+            }
             pushNotification(this)
         }
 

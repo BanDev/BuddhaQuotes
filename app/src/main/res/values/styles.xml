@@ -3,84 +3,71 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorWaveDark</item>
     </style>
 
     <style name="AppTheme.MainActivity" parent="AppTheme">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="materialDrawerStyle">@style/Widget.MaterialDrawerStyle</item>
+        <item name="materialDrawerHeaderStyle">@style/Widget.MaterialDrawerHeaderStyle</item>
     </style>
 
     <style name="AppTheme.Original" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorWaveDark</item>
     </style>
 
     <style name="AppTheme.Blue" parent="AppTheme">
         <item name="colorAccent">@color/blueAccent</item>
         <item name="colorPrimary">@color/blueAccent</item>
-        <item name="colorPrimaryDark">@color/blueAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Green" parent="AppTheme">
         <item name="colorAccent">@color/greenAccent</item>
         <item name="colorPrimary">@color/greenAccent</item>
-        <item name="colorPrimaryDark">@color/greenAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Orange" parent="AppTheme">
         <item name="colorAccent">@color/orangeAccent</item>
         <item name="colorPrimary">@color/orangeAccent</item>
-        <item name="colorPrimaryDark">@color/orangeAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Yellow" parent="AppTheme">
         <item name="colorAccent">@color/yellowAccent</item>
         <item name="colorPrimary">@color/yellowAccent</item>
-        <item name="colorPrimaryDark">@color/yellowAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Teal" parent="AppTheme">
         <item name="colorAccent">@color/tealAccent</item>
         <item name="colorPrimary">@color/tealAccent</item>
-        <item name="colorPrimaryDark">@color/tealAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Violet" parent="AppTheme">
         <item name="colorAccent">@color/violetAccent</item>
         <item name="colorPrimary">@color/violetAccent</item>
-        <item name="colorPrimaryDark">@color/violetAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Pink" parent="AppTheme">
         <item name="colorAccent">@color/pinkAccent</item>
         <item name="colorPrimary">@color/pinkAccent</item>
-        <item name="colorPrimaryDark">@color/pinkAccentSecondary</item>
     </style>
 
     <style name="AppTheme.LightBlue" parent="AppTheme">
         <item name="colorAccent">@color/lightBlueAccent</item>
         <item name="colorPrimary">@color/lightBlueAccent</item>
-        <item name="colorPrimaryDark">@color/lightBlueAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Red" parent="AppTheme">
         <item name="colorAccent">@color/redAccent</item>
         <item name="colorPrimary">@color/redAccent</item>
-        <item name="colorPrimaryDark">@color/redAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Lime" parent="AppTheme">
         <item name="colorAccent">@color/limeAccent</item>
         <item name="colorPrimary">@color/limeAccent</item>
-        <item name="colorPrimaryDark">@color/limeAccentSecondary</item>
     </style>
 
     <style name="AppTheme.Crimson" parent="AppTheme">
         <item name="colorAccent">@color/crimsonAccent</item>
         <item name="colorPrimary">@color/crimsonAccent</item>
-        <item name="colorPrimaryDark">@color/crimsonAccentSecondary</item>
     </style>
 
     <style name="Splash" parent="Theme.MaterialComponents.NoActionBar">
@@ -117,19 +104,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="UpdateInfo" parent="AppTheme">
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:fitsSystemWindows">false</item>
-    </style>
 
     <style name="About" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="PopupTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
     </style>
 
     <style name="Title.Text.Popup" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">

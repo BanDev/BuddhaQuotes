@@ -25,7 +25,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.TypedValue
 import android.view.Window
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
 
@@ -42,10 +42,9 @@ class Colours {
     /**
      * Sets activity's theme based off setting from preferences
      * @param [context] context of activity (Context)
-     * @param [window] context of window (Window)
      */
 
-    fun setAccentColour(context: Context, window: Window, resources: Resources) {
+    fun setAccentColour(context: Context) {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
 
         //Set the accent
@@ -63,21 +62,38 @@ class Colours {
             "crimson" -> context.setTheme(R.style.AppTheme_Crimson)
             else -> context.setTheme(R.style.AppTheme_Original)
         }
+    }
 
+    /**
+     * Sets status bar as accent colour when in light mode or a dark grey when in dark mode
+     * @param [context] context of activity (Context)
+     * @param [window] context of window (Window)
+     */
+
+    fun setStatusBar(context: Context, window: Window) {
         when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                window.statusBarColor = getAccentColourAsInt(context)
-            }
-            Configuration.UI_MODE_NIGHT_YES -> {
-                window.statusBarColor =
-                    ResourcesCompat.getColor(resources, R.color.darkModeBar, null)
-            }
+            Configuration.UI_MODE_NIGHT_NO -> window.statusBarColor = getAccentColourAsInt(context)
+            Configuration.UI_MODE_NIGHT_YES -> window.statusBarColor =
+                getColor(context, R.color.darkModeBar)
         }
     }
 
     /**
+     * Returns the accent colour when in light mode or a dark grey when in dark mode
+     * @param [context] context of activity (Context)
+     * @return The integer of the colour (Int)
+     */
+
+    fun toolbarColour(context: Context): Int {
+        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> return getAccentColourAsInt(context)
+            Configuration.UI_MODE_NIGHT_YES -> return getColor(context, R.color.darkModeBar)
+        }
+        return -1
+    }
+
+    /**
      * Gets the current colour and returns it as a string
-     *
      * @param [context] context of activity (Context)
      * @return The name of the colour (String)
      */
@@ -89,7 +105,6 @@ class Colours {
 
     /**
      * Gets the current colour and returns it as an int
-     *
      * @param [context] context of activity (Context)
      * @return The accent colour (Int)
      */

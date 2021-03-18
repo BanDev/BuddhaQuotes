@@ -32,18 +32,10 @@ class Store(context: Context) {
     private var sharedPrefs: SharedPreferences = context.getSharedPreferences("Store", 0)
     private var editor: SharedPreferences.Editor = sharedPrefs.edit()
 
-    var fragment: Int
-        get() = sharedPrefs.getInt("fragment", Fragments.QUOTE)
-        set(value) {
-            editor.putInt("fragment", value)
-            editor.commit()
-        }
-
     var quoteID: Int
         get() = sharedPrefs.getInt("quoteID", 0)
         set(value) {
             editor.putInt("quoteID", value)
             editor.commit()
         }
-
 }
