@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
-    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+    implementation 'nl.joery.animatedbottombar:library:1.0.9' // Still hosted on JCenter, waiting for migration
 
     // AppIntro - https://github.com/AppIntro/AppIntro
     implementation 'com.github.AppIntro:AppIntro:6.1.0'
