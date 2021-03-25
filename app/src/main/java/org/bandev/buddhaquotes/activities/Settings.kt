@@ -104,9 +104,12 @@ class Settings : AppCompatActivity() {
 
         override fun onPreferenceTreeClick(preference: Preference?): Boolean {
             when (preference?.key) {
-                "About" -> startActivity(Intent(activity, About::class.java))
-                "Intro" -> startActivity(Intent(activity, IntroActivity::class.java).putExtra("backto", 0))
-                "AboutLibraries" -> startActivity(Intent(activity, AboutLibraries::class.java))
+                "intro" -> startActivity(
+                    Intent(
+                        activity,
+                        IntroActivity::class.java
+                    ).putExtra("backto", 0)
+                )
             }
             return true
         }
@@ -115,61 +118,6 @@ class Settings : AppCompatActivity() {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-            updateLanguageSummary()
-            updateThemeSummary()
-            updateColorSummary()
-
-            findPreference<Preference>("app_language")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showLanguagePopup()
-                    true
-                }
-            }
-
-            findPreference<Preference>("theme")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showThemePopup()
-                    true
-                }
-            }
-
-            findPreference<Preference>("accent_color")?.apply {
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    showColorPopup()
-                    true
-                }
-            }
-
-            findPreference<Preference>("About")?.apply {
-                icon =
-                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
-                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                        sizeDp = 20
-                    }
-            }
-
-            findPreference<Preference>("Intro")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_view_carousel
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-            }
-
-            findPreference<Preference>("AboutLibraries")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_library_books
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
-                }
-            }
-        }
-
-        private fun updateLanguageSummary() {
             findPreference<Preference>("app_language")?.apply {
                 icon = IconicsDrawable(
                     requireContext(),
@@ -181,30 +129,81 @@ class Settings : AppCompatActivity() {
                 val int = Languages(base = context).getLanguageAsInt(requireContext())
                 val singleItems = resources.getStringArray(R.array.language_entries)
                 summary = singleItems[int]
-            }
-        }
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+                    val editor = sharedPrefs.edit()
+                    val values = resources.getStringArray(R.array.language_values)
+                    val defaultDrawable =
+                        IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
+                    val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
 
-        private fun updateThemeSummary() {
-            val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny).apply {
+                    OptionsSheet().show(requireContext()) {
+                        title(R.string.settings_language)
+                        style(SheetStyle.DIALOG)
+                        displayMode(DisplayMode.GRID_VERTICAL)
+                        with(
+                            Option(defaultDrawable, R.string.en),
+                            Option(machineDrawable, R.string.fr),
+                            Option(machineDrawable, R.string.de),
+                            Option(machineDrawable, R.string.es),
+                            Option(machineDrawable, R.string.ru),
+                            Option(machineDrawable, R.string.zh),
+                            Option(machineDrawable, R.string.ja),
+                            Option(machineDrawable, R.string.hi),
+                            Option(R.drawable.ic_language, R.string.pl)
+                        )
+                        onPositive { index: Int, _: Option ->
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
+
+                            if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
+                                editor.putInt("app_language_int", index)
+                                editor.putString("app_language", values[index])
+                                editor.apply()
+                                startActivity(
+                                    Intent(context, Settings::class.java).putExtra(
+                                        "lang",
+                                        true
+                                    )
+                                )
+                                activity?.finish()
+                                activity?.overridePendingTransition(
+                                    android.R.anim.fade_in,
+                                    android.R.anim.fade_out
+                                )
+                            } else dismiss()
+                        }
+                    }
+                    true
+                }
+            }
+
+            findPreference<Preference>("theme")?.apply {
+                val lightModeDrawable =
+                    IconicsDrawable(
+                        requireContext(),
+                        RoundedGoogleMaterial.Icon.gmr_wb_sunny
+                    ).apply {
+                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        sizeDp = 20
+                    }
+                val darkModeDrawable = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_nights_stay
+                ).apply {
                     colorInt = getColor(requireContext(), R.color.textColorPrimary)
                     sizeDp = 20
                 }
-            val darkModeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_nights_stay
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 20
-            }
-            val systemDefaultDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_brightness_medium
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                sizeDp = 20
-            }
-            findPreference<Preference>("theme")?.apply {
+                val systemDefaultDrawable = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_brightness_medium
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
                 summary = when (Theme().getAppTheme(requireContext())) {
                     0 -> {
                         icon = lightModeDrawable
@@ -219,16 +218,71 @@ class Settings : AppCompatActivity() {
                         getString(R.string.follow_system_default)
                     }
                 }
-            }
-        }
 
-        private fun updateColorSummary() {
-            val paletteDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_palette).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
+                val sharedPrefs = requireContext().getSharedPreferences("Settings", 0)
+                val editor = sharedPrefs.edit()
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    OptionsSheet().show(requireContext()) {
+                        title(R.string.app_theme)
+                        style(SheetStyle.DIALOG)
+                        with(
+                            Option(lightModeDrawable, R.string.light_mode),
+                            Option(darkModeDrawable, R.string.dark_mode),
+                            Option(systemDefaultDrawable, R.string.follow_system_default)
+                        )
+                        onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+                        onPositive { index: Int, _: Option ->
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
+                            if (Theme().getAppTheme(requireContext()) != index) {
+                                when (index) {
+                                    0 -> {
+                                        // Light mode
+                                        editor.putBoolean("dark_mode", false)
+                                        editor.putBoolean("sys", false)
+                                        editor.putInt("appThemeInt", 0)
+                                    }
+                                    1 -> {
+                                        // Dark mode
+                                        editor.putBoolean("dark_mode", true)
+                                        editor.putBoolean("sys", false)
+                                        editor.putInt("appThemeInt", 1)
+                                    }
+                                    2 -> {
+                                        // System default
+                                        editor.putBoolean("dark_mode", false)
+                                        editor.putBoolean("sys", true)
+                                        editor.putInt("appThemeInt", 2)
+                                    }
+                                }
+                                editor.apply()
+                                startActivity(
+                                    Intent(context, Settings::class.java).putExtra(
+                                        "switch",
+                                        true
+                                    )
+                                )
+                                activity?.finish()
+                                activity?.overridePendingTransition(0, 0)
+                            } else dismiss()
+                        }
+                    }
+                    true
                 }
+            }
+
             findPreference<Preference>("accent_color")?.apply {
+                val paletteDrawable =
+                    IconicsDrawable(
+                        requireContext(),
+                        RoundedGoogleMaterial.Icon.gmr_palette
+                    ).apply {
+                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        sizeDp = 20
+                    }
                 icon = paletteDrawable
                 summary = when (Colours().getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
@@ -244,189 +298,114 @@ class Settings : AppCompatActivity() {
                     "crimson" -> getString(R.string.crimson)
                     else -> getString(R.string.original)
                 }
-            }
-        }
-
-        private fun showLanguagePopup() {
-            val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-            val editor = sharedPrefs.edit()
-            val values = resources.getStringArray(R.array.language_values)
-            val defaultDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
-            val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
-
-            OptionsSheet().show(requireContext()) {
-                title(R.string.settings_language)
-                style(SheetStyle.DIALOG)
-                displayMode(DisplayMode.GRID_VERTICAL)
-                with(
-                    Option(defaultDrawable, R.string.en),
-                    Option(machineDrawable, R.string.fr),
-                    Option(machineDrawable, R.string.de),
-                    Option(machineDrawable, R.string.es),
-                    Option(machineDrawable, R.string.ru),
-                    Option(machineDrawable, R.string.zh),
-                    Option(machineDrawable, R.string.ja),
-                    Option(machineDrawable, R.string.hi),
-                    Option(R.drawable.ic_language, R.string.pl)
-                )
-                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { index: Int, _: Option ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-
-                    if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
-                        editor.putInt("app_language_int", index)
-                        editor.putString("app_language", values[index])
-                        editor.apply()
-                        startActivity(Intent(context, Settings::class.java).putExtra("lang", true))
-                        activity?.finish()
-                        activity?.overridePendingTransition(
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out
-                        )
-                    } else dismiss()
-                }
-                onNegative {
-                    requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-            }
-        }
-
-        private fun showThemePopup() {
-            val pref = requireContext().getSharedPreferences("Settings", 0)
-            val editor = pref.edit()
-            val lightModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_wb_sunny)
-            val darkModeDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_nights_stay)
-            val systemDefaultDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_brightness_medium)
-
-            OptionsSheet().show(requireContext()) {
-                title(R.string.app_theme)
-                style(SheetStyle.DIALOG)
-                with(
-                    Option(lightModeDrawable, R.string.light_mode),
-                    Option(darkModeDrawable, R.string.dark_mode),
-                    Option(systemDefaultDrawable, R.string.follow_system_default)
-                )
-                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { index: Int, _: Option ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    if (Theme().getAppTheme(requireContext()) != index) {
-                        when (index) {
-                            0 -> {
-                                // Light mode
-                                editor.putBoolean("dark_mode", false)
-                                editor.putBoolean("sys", false)
-                                editor.putInt("appThemeInt", 0)
-                            }
-                            1 -> {
-                                // Dark mode
-                                editor.putBoolean("dark_mode", true)
-                                editor.putBoolean("sys", false)
-                                editor.putInt("appThemeInt", 1)
-                            }
-                            2 -> {
-                                // System default
-                                editor.putBoolean("dark_mode", false)
-                                editor.putBoolean("sys", true)
-                                editor.putInt("appThemeInt", 2)
-                            }
-                        }
-                        editor.apply()
-                        startActivity(
-                            Intent(context, Settings::class.java).putExtra(
-                                "switch",
-                                true
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    ColorSheet().show(requireContext()) {
+                        colors(
+                            mutableListOf(
+                                R.color.pinkAccent,
+                                R.color.violetAccent,
+                                R.color.blueAccent,
+                                R.color.lightBlueAccent,
+                                R.color.tealAccent,
+                                R.color.greenAccent,
+                                R.color.limeAccent,
+                                R.color.yellowAccent,
+                                R.color.orangeAccent,
+                                R.color.redAccent,
+                                R.color.crimsonAccent,
+                                R.color.colorPrimary
                             )
                         )
-                        activity?.finish()
-                        activity?.overridePendingTransition(0, 0)
-                    } else dismiss()
-                }
-            }
-        }
+                        title(R.string.settings_accent_colour)
+                        style(SheetStyle.DIALOG)
+                        defaultView(ColorView.TEMPLATE)
+                        disableSwitchColorView()
+                        onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+                        onPositive { color ->
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
 
-        private fun showColorPopup() {
-            ColorSheet().show(requireContext()) {
-                colors(
-                    mutableListOf(
-                        R.color.pinkAccent,
-                        R.color.violetAccent,
-                        R.color.blueAccent,
-                        R.color.lightBlueAccent,
-                        R.color.tealAccent,
-                        R.color.greenAccent,
-                        R.color.limeAccent,
-                        R.color.yellowAccent,
-                        R.color.orangeAccent,
-                        R.color.redAccent,
-                        R.color.crimsonAccent,
-                        R.color.colorPrimary
-                    )
-                )
-                title(R.string.settings_accent_colour)
-                style(SheetStyle.DIALOG)
-                defaultView(ColorView.TEMPLATE)
-                disableSwitchColorView()
-                onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { color ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
+                            // Checks if the chosen color is not the same as the current color
+                            if (Colours().getAccentColourAsInt(requireContext()) != color) {
+                                val colorOut = when (color) {
+                                    getColor(requireContext(), R.color.pinkAccent) -> "pink"
+                                    getColor(requireContext(), R.color.violetAccent) -> "violet"
+                                    getColor(requireContext(), R.color.blueAccent) -> "blue"
+                                    getColor(
+                                        requireContext(),
+                                        R.color.lightBlueAccent
+                                    ) -> "lightBlue"
+                                    getColor(requireContext(), R.color.tealAccent) -> "teal"
+                                    getColor(requireContext(), R.color.greenAccent) -> "green"
+                                    getColor(requireContext(), R.color.limeAccent) -> "lime"
+                                    getColor(requireContext(), R.color.yellowAccent) -> "yellow"
+                                    getColor(requireContext(), R.color.orangeAccent) -> "orange"
+                                    getColor(requireContext(), R.color.redAccent) -> "red"
+                                    getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
+                                    else -> "original"
+                                }
 
-                    // Checks if the chosen color is not the same as the current color
-                    if (Colours().getAccentColourAsInt(requireContext()) != color) {
-                        val colorOut = when (color) {
-                            getColor(requireContext(), R.color.pinkAccent) -> "pink"
-                            getColor(requireContext(), R.color.violetAccent) -> "violet"
-                            getColor(requireContext(), R.color.blueAccent) -> "blue"
-                            getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
-                            getColor(requireContext(), R.color.tealAccent) -> "teal"
-                            getColor(requireContext(), R.color.greenAccent) -> "green"
-                            getColor(requireContext(), R.color.limeAccent) -> "lime"
-                            getColor(requireContext(), R.color.yellowAccent) -> "yellow"
-                            getColor(requireContext(), R.color.orangeAccent) -> "orange"
-                            getColor(requireContext(), R.color.redAccent) -> "red"
-                            getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
-                            else -> "original"
+                                PreferenceManager.getDefaultSharedPreferences(context)
+                                    .edit()
+                                    .putString("accent_color", colorOut)
+                                    .apply()
+
+                                startActivity(
+                                    Intent(context, Settings::class.java).putExtra(
+                                        "switch",
+                                        true
+                                    )
+                                )
+                                activity?.finish()
+                                activity?.overridePendingTransition(
+                                    android.R.anim.fade_in,
+                                    android.R.anim.fade_out
+                                )
+                            } else dismiss()
                         }
+                    }
+                    true
+                }
+            }
 
-                        PreferenceManager.getDefaultSharedPreferences(context)
-                            .edit()
-                            .putString("accent_color", colorOut)
-                            .apply()
+            findPreference<Preference>("about")?.apply {
+                icon =
+                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
+                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        sizeDp = 20
+                    }
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    startActivity(Intent(activity, About::class.java))
+                    true
+                }
+            }
 
-                        updateColorSummary()
+            findPreference<Preference>("intro")?.apply {
+                icon = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_view_carousel
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+            }
 
-                        startActivity(
-                            Intent(context, Settings::class.java).putExtra(
-                                "switch",
-                                true
-                            )
-                        )
-                        activity?.finish()
-                        activity?.overridePendingTransition(
-                            android.R.anim.fade_in,
-                            android.R.anim.fade_out
-                        )
-                    } else dismiss()
+            findPreference<Preference>("about_libraries")?.apply {
+                icon = IconicsDrawable(
+                    requireContext(),
+                    RoundedGoogleMaterial.Icon.gmr_library_books
+                ).apply {
+                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    sizeDp = 20
+                }
+                onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    startActivity(Intent(activity, AboutLibraries::class.java))
+                    true
                 }
             }
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 }
