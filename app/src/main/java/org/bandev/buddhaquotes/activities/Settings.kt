@@ -102,18 +102,6 @@ class Settings : AppCompatActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
-        override fun onPreferenceTreeClick(preference: Preference?): Boolean {
-            when (preference?.key) {
-                "intro" -> startActivity(
-                    Intent(
-                        activity,
-                        IntroActivity::class.java
-                    ).putExtra("backto", 0)
-                )
-            }
-            return true
-        }
-
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -380,16 +368,6 @@ class Settings : AppCompatActivity() {
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     startActivity(Intent(activity, About::class.java))
                     true
-                }
-            }
-
-            findPreference<Preference>("intro")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_view_carousel
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 20
                 }
             }
 

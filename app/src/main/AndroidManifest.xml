@@ -58,8 +58,6 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.IntroActivity" />
-        <activity
             android:name=".activities.AboutLibraries" />
 
     </application>

@@ -86,14 +86,6 @@ class MainActivity : AppCompatActivity() {
         Compatibility().setNavigationBarColourMain(this, window)
         Languages(baseContext).setLanguage()
 
-        val sharedPrefs = getSharedPreferences("Settings", 0)
-        val editor = sharedPrefs.edit()
-        if (sharedPrefs.getBoolean("first_time", true)) {
-            editor.putBoolean("first_time", false)
-            editor.apply()
-            startActivity(Intent(this, IntroActivity::class.java))
-        }
-
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
