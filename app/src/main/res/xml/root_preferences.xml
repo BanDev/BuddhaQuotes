@@ -40,11 +40,6 @@
             android:summary="@string/view_app_details" />
 
         <Preference
-            android:key="intro"
-            android:title="@string/intro"
-            android:summary="@string/app_introduction" />
-
-        <Preference
             android:key="about_libraries"
             android:title="@string/open_source_libraries"
             android:summary="@string/libraries_used" />
