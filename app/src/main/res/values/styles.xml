@@ -8,6 +8,7 @@
     <style name="AppTheme.MainActivity" parent="AppTheme">
         <item name="materialDrawerStyle">@style/Widget.MaterialDrawerStyle</item>
         <item name="materialDrawerHeaderStyle">@style/Widget.MaterialDrawerHeaderStyle</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme.Original" parent="Theme.MaterialComponents.DayNight.NoActionBar">

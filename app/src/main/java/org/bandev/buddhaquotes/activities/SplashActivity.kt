@@ -27,12 +27,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.*
 
 /**
  * The splash screen
  */
-class Splash : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +42,11 @@ class Splash : AppCompatActivity() {
         val sys = sharedPrefs.getBoolean("sys", true)
 
         when {
-            sys -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            darkmode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+            darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
+            else -> setDefaultNightMode(MODE_NIGHT_NO)
         }
-        startActivity(Intent(this, Migrate::class.java))
+        startActivity(Intent(this, MigrateActivity::class.java))
         finish()
     }
 

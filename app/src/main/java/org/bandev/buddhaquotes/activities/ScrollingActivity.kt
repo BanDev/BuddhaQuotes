@@ -57,9 +57,9 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -88,7 +88,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
                     colorInt = Color.WHITE
                     sizeDp = 16
                 }
-            setBackgroundColor(Colours().toolbarColour(context))
+            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener {
                 onBackPressed()
             }
@@ -116,7 +116,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                startActivity(Intent(this, AddToList::class.java).putExtra("list", listTmp))
+                startActivity(Intent(this, AddToListActivity::class.java).putExtra("list", listTmp))
                 finish()
                 overridePendingTransition(
                     R.anim.anim_slide_in_left,
