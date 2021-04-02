@@ -29,25 +29,24 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.SectionDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.iconDrawable
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.databinding.MainActivityBinding
+import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -66,7 +65,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: MainActivityBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var headerView: AccountHeaderView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -79,11 +78,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Setup view binding
-        binding = MainActivityBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Set navigation bar and language
-        Compatibility().setNavigationBarColourMain(this, window)
+        window.setNavigationBarColourMain(this)
         Languages(baseContext).setLanguage()
 
         // Setup toolbar
@@ -91,12 +90,11 @@ class MainActivity : AppCompatActivity() {
         with(binding.toolbar) {
             navigationIcon = IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_menu).apply {
                 colorInt = Color.WHITE
-                sizeDp = 20
+                sizeDp = 18
             }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
+            updateInsetsPadding()
         }
 
         // Setup viewPager with FragmentAdapter
@@ -129,15 +127,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.slider.apply {
             itemAdapter.add(
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.app_name; iconDrawable =
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_buddha
-                    ); isSelectable =
-                    false; identifier = 0
-                },
-                SectionDrawerItem().apply { nameRes = R.string.vibrate_second },
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.fragment_quote; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier =
@@ -172,13 +161,13 @@ class MainActivity : AppCompatActivity() {
         var intent: Intent? = null
         binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
             when (drawerItem.identifier) {
-                0L -> intent = Intent(this, Settings::class.java).putExtra("from", Activities.MAIN)
                 1L -> binding.bottomBar.selectTabAt(0, true)
                 2L -> binding.bottomBar.selectTabAt(1, true)
                 3L -> binding.bottomBar.selectTabAt(2, true)
-                4L -> intent = Intent(this, Settings::class.java).putExtra("from", Activities.MAIN)
-                5L -> intent = Intent(this, About::class.java)
-                6L -> intent = Intent(this, AboutLibraries::class.java)
+                4L -> intent =
+                    Intent(this, SettingsActivity::class.java).putExtra("from", Activities.MAIN)
+                5L -> intent = Intent(this, AboutActivity::class.java)
+                6L -> intent = Intent(this, LibrariesActivity::class.java)
                 else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
             }
             if (intent != null) {
@@ -221,7 +210,12 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.settings -> {
-                startActivity(Intent(this, Settings::class.java).putExtra("from", Activities.MAIN))
+                startActivity(
+                    Intent(this, SettingsActivity::class.java).putExtra(
+                        "from",
+                        Activities.MAIN
+                    )
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -237,9 +231,17 @@ class MainActivity : AppCompatActivity() {
     private fun showCreateListSheet() {
         // Retrieve the lists
         val lists = ListsV2(this).getMasterList()
+        val closeDrawable = IconicsDrawable(
+            this,
+            RoundedGoogleMaterial.Icon.gmr_expand_more
+        ).apply {
+            sizeDp = 24
+            paddingDp = 6
+        }
 
         InputSheet().show(this) {
             title(R.string.createNewList)
+            closeIconButton(IconButton(closeDrawable))
             with(
                 InputEditText {
                     required()
@@ -263,11 +265,10 @@ class MainActivity : AppCompatActivity() {
             )
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive(R.string.add) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.CONFIRM
+                )
+                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
         }
     }
@@ -275,12 +276,12 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         // Set the colour of everything to the accent colour when the user returns to the Main Activity
         super.onResume()
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        binding.toolbar.setBackgroundColor(Colours().toolbarColour(this))
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        binding.toolbar.setBackgroundColor(toolbarColour(this))
         with(binding.bottomBar) {
-            tabColorSelected = Colours().getAccentColourAsInt(context)
-            indicatorColor = Colours().getAccentColourAsInt(context)
+            tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
+            indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
         }
     }
 

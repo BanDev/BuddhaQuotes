@@ -26,7 +26,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -43,16 +43,13 @@ import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.core.Theme
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 
 /**
  * Where the user can customise their app
  */
-class Settings : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
 
@@ -60,9 +57,9 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -77,10 +74,8 @@ class Settings : AppCompatActivity() {
                     colorInt = Color.WHITE
                     sizeDp = 16
                 }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         if ((intent.extras ?: return).getBoolean("switch")) {
@@ -88,9 +83,9 @@ class Settings : AppCompatActivity() {
             val darkmode = sharedPrefs.getBoolean("dark_mode", false)
             val sys = sharedPrefs.getBoolean("sys", true)
             when {
-                sys -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                darkmode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
+                else -> setDefaultNightMode(MODE_NIGHT_NO)
             }
         }
 
@@ -128,31 +123,30 @@ class Settings : AppCompatActivity() {
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)
                         style(SheetStyle.DIALOG)
-                        displayMode(DisplayMode.GRID_VERTICAL)
+                        displayMode(DisplayMode.LIST)
                         with(
+                            Option(machineDrawable, R.string.zh),
                             Option(defaultDrawable, R.string.en),
                             Option(machineDrawable, R.string.fr),
                             Option(machineDrawable, R.string.de),
-                            Option(machineDrawable, R.string.es),
-                            Option(machineDrawable, R.string.ru),
-                            Option(machineDrawable, R.string.zh),
-                            Option(machineDrawable, R.string.ja),
                             Option(machineDrawable, R.string.hi),
-                            Option(R.drawable.ic_language, R.string.pl)
+                            Option(machineDrawable, R.string.ja),
+                            Option(R.drawable.ic_language, R.string.pl),
+                            Option(machineDrawable, R.string.ru),
+                            Option(machineDrawable, R.string.es)
                         )
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
+                                HapticFeedbackConstants.CONFIRM
+                            )
+                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                             if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
                                 editor.putInt("app_language_int", index)
                                 editor.putString("app_language", values[index])
                                 editor.apply()
                                 startActivity(
-                                    Intent(context, Settings::class.java).putExtra(
+                                    Intent(context, SettingsActivity::class.java).putExtra(
                                         "lang",
                                         true
                                     )
@@ -192,7 +186,7 @@ class Settings : AppCompatActivity() {
                     colorInt = getColor(requireContext(), R.color.textColorPrimary)
                     sizeDp = 20
                 }
-                summary = when (Theme().getAppTheme(requireContext())) {
+                summary = when (getAppTheme(requireContext())) {
                     0 -> {
                         icon = lightModeDrawable
                         getString(R.string.light_mode)
@@ -213,6 +207,7 @@ class Settings : AppCompatActivity() {
                     OptionsSheet().show(requireContext()) {
                         title(R.string.app_theme)
                         style(SheetStyle.DIALOG)
+                        displayMode(DisplayMode.LIST)
                         with(
                             Option(lightModeDrawable, R.string.light_mode),
                             Option(darkModeDrawable, R.string.dark_mode),
@@ -220,12 +215,11 @@ class Settings : AppCompatActivity() {
                         )
                         onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
-                            if (Theme().getAppTheme(requireContext()) != index) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
+                                HapticFeedbackConstants.CONFIRM
+                            )
+                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            if (getAppTheme(requireContext()) != index) {
                                 when (index) {
                                     0 -> {
                                         // Light mode
@@ -248,7 +242,7 @@ class Settings : AppCompatActivity() {
                                 }
                                 editor.apply()
                                 startActivity(
-                                    Intent(context, Settings::class.java).putExtra(
+                                    Intent(context, SettingsActivity::class.java).putExtra(
                                         "switch",
                                         true
                                     )
@@ -272,7 +266,7 @@ class Settings : AppCompatActivity() {
                         sizeDp = 20
                     }
                 icon = paletteDrawable
-                summary = when (Colours().getAccentColourAsString(requireContext())) {
+                summary = when (getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
                     "violet" -> getString(R.string.violet)
                     "blue" -> getString(R.string.blue)
@@ -310,22 +304,18 @@ class Settings : AppCompatActivity() {
                         disableSwitchColorView()
                         onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                         onPositive { color ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
+                                HapticFeedbackConstants.CONFIRM
+                            )
+                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                             // Checks if the chosen color is not the same as the current color
-                            if (Colours().getAccentColourAsInt(requireContext()) != color) {
+                            if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {
                                 val colorOut = when (color) {
                                     getColor(requireContext(), R.color.pinkAccent) -> "pink"
                                     getColor(requireContext(), R.color.violetAccent) -> "violet"
                                     getColor(requireContext(), R.color.blueAccent) -> "blue"
-                                    getColor(
-                                        requireContext(),
-                                        R.color.lightBlueAccent
-                                    ) -> "lightBlue"
+                                    getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
                                     getColor(requireContext(), R.color.tealAccent) -> "teal"
                                     getColor(requireContext(), R.color.greenAccent) -> "green"
                                     getColor(requireContext(), R.color.limeAccent) -> "lime"
@@ -342,7 +332,7 @@ class Settings : AppCompatActivity() {
                                     .apply()
 
                                 startActivity(
-                                    Intent(context, Settings::class.java).putExtra(
+                                    Intent(context, SettingsActivity::class.java).putExtra(
                                         "switch",
                                         true
                                     )
@@ -366,7 +356,7 @@ class Settings : AppCompatActivity() {
                         sizeDp = 20
                     }
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    startActivity(Intent(activity, About::class.java))
+                    startActivity(Intent(activity, AboutActivity::class.java))
                     true
                 }
             }
@@ -380,7 +370,7 @@ class Settings : AppCompatActivity() {
                     sizeDp = 20
                 }
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    startActivity(Intent(activity, AboutLibraries::class.java))
+                    startActivity(Intent(activity, LibrariesActivity::class.java))
                     true
                 }
             }

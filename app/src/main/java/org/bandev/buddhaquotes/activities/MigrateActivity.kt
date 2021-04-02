@@ -28,13 +28,12 @@ import org.bandev.buddhaquotes.core.ListsV2
 import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.ActivityMigrateBinding
 
-class Migrate : AppCompatActivity() {
+class MigrateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMigrateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Setup view
         binding = ActivityMigrateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

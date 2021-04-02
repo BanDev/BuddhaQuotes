@@ -28,11 +28,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
-import org.bandev.buddhaquotes.core.Colours
+import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 /**
@@ -66,18 +71,25 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.button.setOnClickListener {
+            val closeDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_expand_more
+            ).apply {
+                sizeDp = 24
+                paddingDp = 6
+            }
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             TimeSheet().show(requireContext()) {
                 title(R.string.meditation_timer)
+                closeIconButton(IconButton(closeDrawable))
                 format(TimeFormat.MM_SS)
                 minTime(1)
                 onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                 onPositive { durationTimeInMillis: Long ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                        HapticFeedbackConstants.CONFIRM
+                    )
+                    else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                     startActivity(
                         Intent(context, TimerActivity::class.java).putExtra(
@@ -92,6 +104,6 @@ class TimerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.button.setBackgroundColor(Colours().getAccentColourAsInt(requireContext()))
+        binding.button.setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
     }
 }

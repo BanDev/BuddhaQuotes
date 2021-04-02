@@ -39,10 +39,7 @@ import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMateria
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
-import org.bandev.buddhaquotes.core.Timer
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
 class TimerActivity : AppCompatActivity() {
@@ -69,9 +66,9 @@ class TimerActivity : AppCompatActivity() {
         settings = Timer().Settings(this)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup toolbar
@@ -81,15 +78,13 @@ class TimerActivity : AppCompatActivity() {
                 colorInt = Color.WHITE
                 sizeDp = 16
             }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         // On settings click
         with(binding.settings) {
-            setBackgroundColor(Colours().getAccentColourAsInt(context))
+            setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 settingsSheet()
@@ -114,13 +109,12 @@ class TimerActivity : AppCompatActivity() {
 
         // When some geezer presses Pause
         with(binding.pause) {
-            setBackgroundColor(Colours().getAccentColourAsInt(context))
+            setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.CONFIRM
+                )
+                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                 when {
                     isPaused -> resume()
@@ -179,12 +173,10 @@ class TimerActivity : AppCompatActivity() {
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->
-                // Nice Clicky thing
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.CONFIRM
+                )
+                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                 // Change button text & icon
                 with(binding.pause) {
@@ -267,11 +259,10 @@ class TimerActivity : AppCompatActivity() {
                 gong.start()
 
                 // Haptic feedback
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                    HapticFeedbackConstants.CONFIRM
+                )
+                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             }
 
             // Updates the text of the timer every second

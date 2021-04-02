@@ -22,12 +22,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = 1.8
+        jvmTarget = '1.8'
     }
 
     buildFeatures {
@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.mikepenz:aboutlibraries-core:8.8.4'
 
     // Android Iconics - https://github.com/mikepenz/Android-Iconics
-    def iconics_version = "5.2.8"
+    def iconics_version = "5.3.0-b01"
     implementation "com.mikepenz:iconics-core:$iconics_version"
     implementation "com.mikepenz:iconics-views:$iconics_version"
     implementation 'com.mikepenz:google-material-typeface-rounded:4.0.0.1-kotlin@aar'
@@ -77,9 +77,6 @@ dependencies {
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.0.9' // Still hosted on JCenter, waiting for migration
-
-    // AppIntro - https://github.com/AppIntro/AppIntro
-    implementation 'com.github.AppIntro:AppIntro:6.1.0'
 
     // Eventbus - https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'

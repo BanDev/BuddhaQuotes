@@ -37,16 +37,14 @@ import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMateria
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityAboutLibrariesBinding
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
 /**
  * Activity that shows all the libraries we use
  */
-class AboutLibraries : AppCompatActivity() {
+class LibrariesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAboutLibrariesBinding
 
@@ -54,9 +52,9 @@ class AboutLibraries : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -71,10 +69,8 @@ class AboutLibraries : AppCompatActivity() {
                     colorInt = Color.WHITE
                     sizeDp = 16
                 }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         with(binding.recyclerView) {

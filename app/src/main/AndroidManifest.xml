@@ -33,11 +33,11 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".activities.AddToList"
+            android:name=".activities.AddToListActivity"
             android:label="addList"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".activities.Splash"
+            android:name=".activities.SplashActivity"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,19 +46,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.About"
+            android:name=".activities.AboutActivity"
             android:label="@string/about"
             android:theme="@style/About" />
-        <activity android:name=".activities.Migrate" />
+        <activity android:name=".activities.MigrateActivity" />
         <activity
             android:name=".activities.TimerActivity"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.Settings"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:theme="@style/Settings" />
         <activity
-            android:name=".activities.AboutLibraries" />
+            android:name=".activities.LibrariesActivity" />
 
     </application>
 

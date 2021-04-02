@@ -29,15 +29,13 @@ import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMateria
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Colours
-import org.bandev.buddhaquotes.core.Compatibility
-import org.bandev.buddhaquotes.core.Languages
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 
 /**
  * The about page
  */
-class About : AppCompatActivity() {
+class AboutActivity : AppCompatActivity() {
 
     // Declare view binding variables
     private lateinit var binding: ActivityAboutBinding
@@ -50,9 +48,9 @@ class About : AppCompatActivity() {
         setContentView(binding.root)
 
         // Set accent colour, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup toolbar
@@ -63,10 +61,8 @@ class About : AppCompatActivity() {
                     colorInt = Color.WHITE
                     sizeDp = 16
                 }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         // Setup contributors array
@@ -86,9 +82,5 @@ class About : AppCompatActivity() {
             divider = null
             isClickable = false
         }
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 }

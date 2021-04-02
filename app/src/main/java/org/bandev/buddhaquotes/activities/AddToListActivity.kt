@@ -49,7 +49,7 @@ import java.util.*
  * If calling, make sure to send the name of the list they want with
  * the key "list" in the intent
  **/
-class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
+class AddToListActivity : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
     private lateinit var recyclerAdapter: AddQuoteRecycler
@@ -58,9 +58,9 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         super.onCreate(savedInstanceState)
 
         // Set theme, navigation bar and language
-        Colours().setAccentColour(this)
-        Colours().setStatusBar(this, window)
-        Compatibility().setNavigationBarColourDefault(this, window)
+        setAccentColour(this)
+        window.setStatusBarAsAccentColour(this)
+        window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
 
         // Setup view binding
@@ -75,13 +75,11 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
                     colorInt = Color.WHITE
                     sizeDp = 16
                 }
-            setBackgroundColor(Colours().toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setBackgroundColor(toolbarColour(context))
+            setNavigationOnClickListener { onBackPressed() }
         }
 
-        recyclerAdapter = AddQuoteRecycler(genList(), this@AddToList)
+        recyclerAdapter = AddQuoteRecycler(genList(), this@AddToListActivity)
 
         with(binding.recycler) {
             adapter = recyclerAdapter
@@ -95,11 +93,10 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         val lists2 = ListsV2(this)
         val quoteID = Quotes().getFromString(quote, this)
         if (!lists2.queryInList(quoteID, list)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-            } else {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                HapticFeedbackConstants.CONFIRM
+            )
+            else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             lists2.addToList(quoteID, list)
             val intent2 = Intent(this, ScrollingActivity::class.java)
             intent2.putExtra("list", list)
@@ -111,14 +108,12 @@ class AddToList : AppCompatActivity(), AddQuoteRecycler.ClickListener {
             )
 
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
-            } else {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
-            val outName = if (list == "Favourites") {
-                getString(R.string.favourites)
-            } else list
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
+                HapticFeedbackConstants.REJECT
+            )
+            else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            val outName = if (list == "Favourites") getString(R.string.favourites)
+            else list
             Snackbar.make(
                 binding.root,
                 getString(R.string.duplicate) + " $outName",

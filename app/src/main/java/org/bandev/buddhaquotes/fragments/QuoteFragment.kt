@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
@@ -29,12 +30,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
@@ -107,9 +110,17 @@ class QuoteFragment : Fragment() {
                 IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share)
             val addCircleDrawable =
                 IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
+            val closeDrawable = IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_expand_more
+            ).apply {
+                sizeDp = 24
+                paddingDp = 6
+            }
             OptionsSheet().show(requireContext()) {
                 displayMode(DisplayMode.LIST)
                 title(R.string.more)
+                closeIconButton(IconButton(closeDrawable))
                 with(
                     Option(shareDrawable, R.string.share),
                     Option(addCircleDrawable, R.string.addToList)
@@ -159,9 +170,9 @@ class QuoteFragment : Fragment() {
                 val quoteID = Quotes().getFromString(quote, requireContext())
                 if (!lists2.queryInList(quoteID, optionStr[index])) {
                     lists2.addToList(quoteID, optionStr[index])
-                    val outName = if (optionStr[index] == "Favourites") {
-                        getString(R.string.favourites)
-                    } else optionStr[index]
+                    val outName =
+                        if (optionStr[index] == "Favourites") getString(R.string.favourites)
+                        else optionStr[index]
                     Snackbar.make(
                         binding.root,
                         getString(R.string.added) + " " + outName,
@@ -179,13 +190,11 @@ class QuoteFragment : Fragment() {
                             })
                     }
                     EventBus.getDefault().post(SendEvent.ToListFragment(true))
-                } else {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.exists) + " " + optionStr[index],
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
+                } else Snackbar.make(
+                    binding.root,
+                    getString(R.string.exists) + " " + optionStr[index],
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -239,17 +248,15 @@ class QuoteFragment : Fragment() {
                 }
             )
             binding.likeAnimator.likeAnimation()
-        } else {
-            binding.like.setImageDrawable(
-                IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_favorite_outline
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
-                    sizeDp = 24
-                }
-            )
-        }
+        } else binding.like.setImageDrawable(
+            IconicsDrawable(
+                requireContext(),
+                RoundedGoogleMaterial.Icon.gmr_favorite_outline
+            ).apply {
+                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                sizeDp = 24
+            }
+        )
     }
 
     /**
@@ -284,14 +291,10 @@ class QuoteFragment : Fragment() {
         val listName: MutableList<String> = mutableListOf()
 
         for (list in lists.getMasterList()) {
-            val drawable = if (list == "Favourites") {
-                heartDrawable
-            } else {
-                listDrawable
-            }
-            val outName = if (list == "Favourites") {
-                getString(R.string.favourites)
-            } else list
+            val drawable = if (list == "Favourites") heartDrawable
+            else listDrawable
+            val outName = if (list == "Favourites") getString(R.string.favourites)
+            else list
 
             listName.add(outName)
             options.add(Option(drawable, outName))
@@ -319,7 +322,7 @@ class QuoteFragment : Fragment() {
     override fun onResume() {
         // Set the colour of the swipe to refresh icon to the accent colour when the user returns to the Main Activity
         super.onResume()
-        binding.swipeRefresh.setColorSchemeColors(Colours().getAccentColourAsInt(requireContext()))
+        binding.swipeRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
     }
 
     override fun onStart() {
