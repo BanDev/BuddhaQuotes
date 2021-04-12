@@ -125,15 +125,15 @@ class SettingsActivity : AppCompatActivity() {
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(machineDrawable, R.string.zh),
                             Option(defaultDrawable, R.string.en),
                             Option(machineDrawable, R.string.fr),
                             Option(machineDrawable, R.string.de),
-                            Option(machineDrawable, R.string.hi),
-                            Option(machineDrawable, R.string.ja),
-                            Option(R.drawable.ic_language, R.string.pl),
+                            Option(machineDrawable, R.string.es),
                             Option(machineDrawable, R.string.ru),
-                            Option(machineDrawable, R.string.es)
+                            Option(machineDrawable, R.string.zh),
+                            Option(machineDrawable, R.string.ja),
+                            Option(machineDrawable, R.string.hi),
+                            Option(R.drawable.ic_language, R.string.pl)
                         )
                         onPositive { index: Int, _: Option ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
