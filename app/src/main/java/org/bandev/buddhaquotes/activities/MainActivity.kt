@@ -43,6 +43,7 @@ import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
+import com.mikepenz.materialdrawer.util.addStickyDrawerItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        buildHeader(false, savedInstanceState)
+        buildHeader(true, savedInstanceState)
 
         binding.slider.apply {
             itemAdapter.add(
@@ -143,18 +144,20 @@ class MainActivity : AppCompatActivity() {
                 },
                 DividerDrawerItem(),
                 PrimaryDrawerItem().apply {
-                    nameRes = R.string.about; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
-                },
+                    nameRes = R.string.open_source_libraries; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier =
+                    6
+                })
+            addStickyDrawerItems(
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.settings; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
                 },
                 PrimaryDrawerItem().apply {
-                    nameRes = R.string.open_source_libraries; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier =
-                    6
-                })
+                    nameRes = R.string.about; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
+                }
+            )
             setSavedInstance(savedInstanceState)
         }
 
