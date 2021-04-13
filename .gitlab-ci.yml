@@ -59,7 +59,7 @@ lintDebug:
     name: lintDebug
     paths: 
       - app/build/outputs/
-    expire_in: 1 second
+    expire_in: 1 week
     when: always
 
 # Make Project
@@ -72,7 +72,7 @@ assembleDebug:
     name: assembleDebug
     paths:
       - app/build/outputs/
-    expire_in: 1 second
+    expire_in: 1 week
     when: always
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
@@ -85,5 +85,5 @@ debugTests:
     name: debugTests
     paths:
       - app/build/outputs/
-    expire_in: 1 second
+    expire_in: 1 week
     when: always
