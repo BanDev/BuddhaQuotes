@@ -282,7 +282,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     ColorSheet().show(requireContext()) {
-                        colors(
+                        colorsRes(
                             mutableListOf(
                                 R.color.pinkAccent,
                                 R.color.violetAccent,
