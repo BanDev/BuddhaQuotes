@@ -31,8 +31,11 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.preference.PreferenceManager
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 
 /**
@@ -165,6 +168,29 @@ fun getAppTheme(context: Context): Int {
 }
 
 /**
+ * A function to draw behind system bars
+ * @param [view] The view
+ * @param [window] The window
+ * @param [customInsets] The customInsets
+ */
+fun fitSystemBars(view: View, window: Window, customInsets: CustomInsets) {
+    WindowCompat.setDecorFitsSystemWindows(window, false)
+
+    ViewCompat.setOnApplyWindowInsetsListener(view.rootView) { _, insets ->
+        customInsets.setCustomInsets(insets)
+        insets
+    }
+}
+
+/**
+ * Custom Insets interface for each activity to get custom insets
+ */
+
+interface CustomInsets {
+    fun setCustomInsets(insets: WindowInsetsCompat)
+}
+
+/**
  * Updates the padding for the toolbar to the height of the status bar
  */
 @Suppress("DEPRECATION")
@@ -179,6 +205,20 @@ fun Toolbar.updateInsetsPadding() {
         insets
     }
 }
+
+@Suppress("DEPRECATION")
+fun AnimatedBottomBar.updateInsetsPadding() {
+    ViewCompat.setOnApplyWindowInsetsListener(this.rootView) { _, insets ->
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.updatePadding(
+            bottom = insets.getInsets(
+                WindowInsets.Type.navigationBars()
+            ).bottom
+        )
+        else this.updatePadding(bottom = insets.systemWindowInsetBottom)
+        insets
+    }
+}
+
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
     val typedValue = TypedValue()
