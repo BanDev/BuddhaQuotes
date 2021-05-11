@@ -58,7 +58,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta02'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'androidx.core:core-ktx:1.6.0-alpha02'
+    implementation 'androidx.core:core-ktx:1.6.0-alpha03'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
@@ -100,7 +100,7 @@ dependencies {
     implementation 'com.quiph.ui:recyclerviewfastscroller:1.0.0'
 
     // Sheets - https://github.com/maxkeppeler/sheets
-    def sheets_version = "2.2.2"
+    def sheets_version = "2.2.3"
     implementation "com.maxkeppeler.sheets:core:$sheets_version"
     implementation "com.maxkeppeler.sheets:input:$sheets_version"
     implementation "com.maxkeppeler.sheets:color:$sheets_version"
