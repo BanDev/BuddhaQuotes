@@ -94,10 +94,7 @@ class MainActivity : AppCompatActivity(), CustomInsets {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon = IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_menu).apply {
-                colorInt = Color.WHITE
-                sizeDp = 18
-            }
+            navigationIcon = context.hamburgerMenuIcon()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }

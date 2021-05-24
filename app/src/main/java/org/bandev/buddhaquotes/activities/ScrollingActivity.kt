@@ -80,14 +80,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            title = if (listTmp == "Favourites") {
-                getString(R.string.favourites)
-            } else listTmp
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
+            title = if (listTmp == "Favourites") getString(R.string.favourites) else listTmp
+            navigationIcon = context.backIcon()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener {
                 onBackPressed()

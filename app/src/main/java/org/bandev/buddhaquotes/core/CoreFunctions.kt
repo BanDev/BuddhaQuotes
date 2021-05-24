@@ -35,6 +35,10 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.preference.PreferenceManager
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 
@@ -232,3 +236,15 @@ fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     val colorRes = if (resolvedAttr.resourceId != 0) resolvedAttr.resourceId else resolvedAttr.data
     return ContextCompat.getColor(this, colorRes)
 }
+
+fun Context.hamburgerMenuIcon(): IconicsDrawable =
+    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_menu).apply {
+        colorInt = Color.WHITE
+        sizeDp = 18
+    }
+
+fun Context.backIcon(): IconicsDrawable =
+    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
+        colorInt = Color.WHITE
+        sizeDp = 16
+    }

@@ -74,10 +74,7 @@ class TimerActivity : AppCompatActivity() {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon = IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_close).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
+            navigationIcon = context.backIcon()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
@@ -347,6 +344,6 @@ class TimerActivity : AppCompatActivity() {
         NotificationManagerCompat.from(applicationContext).cancel(0)
 
         // Finish the activity
-        finish()
+        super.onBackPressed()
     }
 }
