@@ -20,6 +20,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.custom
 
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 
 /**
@@ -31,22 +33,32 @@ import android.view.View
  * @updated 09/12/2020
  */
 
-abstract class OnDoubleClickListener : View.OnClickListener {
-
+abstract class DoubleClickListener : View.OnClickListener {
+    private var handler: Handler? = null
+    private val delay = 400
     private var lastClickTime: Long = 0
-
-    override fun onClick(v: View?) {
+    override fun onClick(view: View?) {
         val clickTime = System.currentTimeMillis()
-        if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-            onDoubleClick(v)
-            lastClickTime = 0
-        }
+        if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) processDoubleClickEvent(view)
+        else processSingleClickEvent(view)
         lastClickTime = clickTime
     }
 
-    abstract fun onDoubleClick(v: View?)
+    private fun processSingleClickEvent(view: View?) {
+        handler = Handler(Looper.getMainLooper())
+        val runnable = Runnable { onSingleClick(view) }
+        (handler ?: return).postDelayed(runnable, delay.toLong())
+    }
+
+    private fun processDoubleClickEvent(view: View?) {
+        if (handler != null) (handler ?: return).removeCallbacksAndMessages(null)
+        onDoubleClick(view)
+    }
+
+    abstract fun onSingleClick(view: View?)
+    abstract fun onDoubleClick(view: View?)
 
     companion object {
-        private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 // milliseconds
+        private const val DOUBLE_CLICK_TIME_DELTA: Long = 300
     }
 }
