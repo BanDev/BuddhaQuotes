@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
@@ -41,7 +40,7 @@ import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.custom.OnDoubleClickListener
+import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -142,8 +141,9 @@ class QuoteFragment : Fragment() {
         }
 
         // Favourites the quote on double click
-        binding.content.setOnClickListener(object : OnDoubleClickListener() {
-            override fun onDoubleClick(v: View?) {
+        binding.content.setOnClickListener(object : DoubleClickListener() {
+            override fun onSingleClick(view: View?) {}
+            override fun onDoubleClick(view: View?) {
                 val quote = binding.quote.text.toString()
                 if (!lists.queryInList(
                         quotes.getFromString(quote, requireContext()),
@@ -225,7 +225,7 @@ class QuoteFragment : Fragment() {
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_favorite_outline
                 ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    colorInt = requireContext().resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 24
                 })
         }
@@ -253,7 +253,7 @@ class QuoteFragment : Fragment() {
                 requireContext(),
                 RoundedGoogleMaterial.Icon.gmr_favorite_outline
             ).apply {
-                colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                colorInt = requireContext().resolveColorAttr(android.R.attr.textColorPrimary)
                 sizeDp = 24
             }
         )
@@ -291,10 +291,8 @@ class QuoteFragment : Fragment() {
         val listName: MutableList<String> = mutableListOf()
 
         for (list in lists.getMasterList()) {
-            val drawable = if (list == "Favourites") heartDrawable
-            else listDrawable
-            val outName = if (list == "Favourites") getString(R.string.favourites)
-            else list
+            val drawable = if (list == "Favourites") heartDrawable else listDrawable
+            val outName = if (list == "Favourites") getString(R.string.favourites) else list
 
             listName.add(outName)
             options.add(Option(drawable, outName))
