@@ -70,11 +70,7 @@ class AddToListActivity : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon =
-                IconicsDrawable(context, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-                    colorInt = Color.WHITE
-                    sizeDp = 16
-                }
+            navigationIcon = context.backIcon()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
