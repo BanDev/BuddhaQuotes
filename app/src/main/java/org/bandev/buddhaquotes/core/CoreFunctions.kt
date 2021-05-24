@@ -38,6 +38,7 @@ import androidx.preference.PreferenceManager
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
@@ -194,36 +195,6 @@ interface CustomInsets {
     fun setCustomInsets(insets: WindowInsetsCompat)
 }
 
-/**
- * Updates the padding for the toolbar to the height of the status bar
- */
-@Suppress("DEPRECATION")
-fun Toolbar.updateInsetsPadding() {
-    ViewCompat.setOnApplyWindowInsetsListener(this.rootView) { _, insets ->
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.updatePadding(
-            top = insets.getInsets(
-                WindowInsets.Type.statusBars()
-            ).top
-        )
-        else this.updatePadding(top = insets.systemWindowInsetTop)
-        insets
-    }
-}
-
-@Suppress("DEPRECATION")
-fun AnimatedBottomBar.updateInsetsPadding() {
-    ViewCompat.setOnApplyWindowInsetsListener(this.rootView) { _, insets ->
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.updatePadding(
-            bottom = insets.getInsets(
-                WindowInsets.Type.navigationBars()
-            ).bottom
-        )
-        else this.updatePadding(bottom = insets.systemWindowInsetBottom)
-        insets
-    }
-}
-
-
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
     val typedValue = TypedValue()
     theme.resolveAttribute(attrRes, typedValue, true)
@@ -247,4 +218,16 @@ fun Context.backIcon(): IconicsDrawable =
     IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
         colorInt = Color.WHITE
         sizeDp = 16
+    }
+
+fun Context.addIcon(): IconicsDrawable =
+    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
+        colorInt = Color.WHITE
+        sizeDp = 16
+    }
+
+fun Context.settingsIcon(): IconicsDrawable =
+    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
+        colorInt = Color.WHITE
+        sizeDp = 20
     }

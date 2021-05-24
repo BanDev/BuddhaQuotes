@@ -202,8 +202,8 @@ class QuoteFragment : Fragment() {
     /**
      * Refreshes the quote on screen
      */
-    private fun newQuote(quoteId: Int) {
-        val quote = quotes.getQuote(quoteId, requireContext())
+    private fun newQuote(quoteID: Int) {
+        val quote = quotes.getQuote(quoteID, requireContext())
         binding.quote.text = quote
         binding.number.text = "${getString(R.string.quote_number)} #${quotes.quoteIdGlobal}"
         Store(requireContext()).quoteID = quotes.quoteIdGlobal

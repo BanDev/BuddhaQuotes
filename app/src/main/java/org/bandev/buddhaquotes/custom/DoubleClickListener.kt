@@ -25,12 +25,7 @@ import android.os.Looper
 import android.view.View
 
 /**
- * onDoubleClickListener extends onClickListener but allows for detecting double clicks. To change
- * click time delay change [DOUBLE_CLICK_TIME_DELTA] variable.
- *
- * @author jack.txt
- * @since v2.0.0
- * @updated 09/12/2020
+ * DoubleClickListener extends onClickListener, allowing for the detection of double clicks.
  */
 
 abstract class DoubleClickListener : View.OnClickListener {

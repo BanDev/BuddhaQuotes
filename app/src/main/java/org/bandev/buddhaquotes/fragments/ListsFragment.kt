@@ -21,15 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ScrollingActivity
 import org.bandev.buddhaquotes.adapters.ListRecycler
@@ -128,11 +123,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
                 listNames.add(getString(R.string.favourites))
                 special = true
             } else listNames.add(listIn[i])
-            val summary: String = if (count != 1) {
-                "$count items"
-            } else {
-                "$count item"
-            }
+            val summary: String = if (count != 1) "$count items" else "$count item"
             val item = ListItem(listNames[i], summary, special)
             list += item
             i++
@@ -159,11 +150,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_menu, menu)
-        menu.findItem(R.id.add).icon =
-            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
+        menu.findItem(R.id.add).icon = requireContext().addIcon()
         super.onCreateOptionsMenu(menu, inflater)
     }
 

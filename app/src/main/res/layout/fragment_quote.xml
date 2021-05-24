@@ -81,7 +81,7 @@
                 android:layout_height="22dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
-                app:iiv_color="@color/textColorPrimary"
+                app:iiv_color="?android:textColorPrimary"
                 app:iiv_icon="gmr-more-vert"
                 app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
                 app:layout_constraintStart_toEndOf="@+id/likeAnimator"

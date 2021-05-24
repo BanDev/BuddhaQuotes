@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
-import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -30,13 +29,14 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
@@ -47,7 +47,7 @@ class TimerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimerBinding
     private lateinit var notifBuilder: NotificationCompat.Builder
     private var durationTimeInMillis: Long = 0L
-    private var durationTimeInS: Long = 0L
+    private var durationTimeInSeconds: Long = 0L
     private var progressTimeInMillis: Long = 0L
     private var maxTime: String = "Error"
     private lateinit var countDownTimer: CountDownTimer
@@ -58,9 +58,6 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Setup view binding
-        binding = ActivityTimerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         // Get an instance of settings
         settings = Timer().Settings(this)
@@ -70,6 +67,10 @@ class TimerActivity : AppCompatActivity() {
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
         Languages(baseContext).setLanguage()
+
+        // Setup view binding
+        binding = ActivityTimerBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -92,7 +93,7 @@ class TimerActivity : AppCompatActivity() {
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
         // Work out the other things we now know
-        durationTimeInS = durationTimeInMillis * 1000
+        durationTimeInSeconds = durationTimeInMillis * 1000
 
         // Work out a lovely string version of the maximum time
         maxTime = Timer().convertToString(
@@ -102,7 +103,7 @@ class TimerActivity : AppCompatActivity() {
         )
 
         // Begin the timer
-        startTimer(durationTimeInS)
+        startTimer(durationTimeInSeconds)
 
         // When some geezer presses Pause
         with(binding.pause) {
@@ -126,8 +127,16 @@ class TimerActivity : AppCompatActivity() {
         val vibrateSecondOriginal = settings.vibrateSecond
         val endSoundOriginal = settings.endSoundID
         val endNotificationOriginal = settings.showNotificaton
+        val closeDrawable = IconicsDrawable(
+            this,
+            RoundedGoogleMaterial.Icon.gmr_expand_more
+        ).apply {
+            sizeDp = 24
+            paddingDp = 6
+        }
         InputSheet().show(this) {
             title("Timer Settings")
+            closeIconButton(IconButton(closeDrawable))
 
             // Vibrate every second?
             with(InputCheckBox {
@@ -165,8 +174,16 @@ class TimerActivity : AppCompatActivity() {
 
     // Timer is done so must be for reset
     private fun reset() {
+        val closeDrawable = IconicsDrawable(
+            this,
+            RoundedGoogleMaterial.Icon.gmr_expand_more
+        ).apply {
+            sizeDp = 24
+            paddingDp = 6
+        }
         TimeSheet().show(this) {
             title(R.string.meditation_timer)
+            closeIconButton(IconButton(closeDrawable))
             format(TimeFormat.MM_SS)
             onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive { durationTimeInMillis: Long ->
