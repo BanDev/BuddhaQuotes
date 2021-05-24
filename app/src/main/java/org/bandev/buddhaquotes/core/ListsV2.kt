@@ -26,8 +26,8 @@ import java.util.*
 
 class ListsV2(context: Context) {
 
-    var sharedPrefs: SharedPreferences = context.getSharedPreferences("ListV2", 0)
-    var editor: SharedPreferences.Editor = sharedPrefs.edit()
+    private var sharedPrefs: SharedPreferences = context.getSharedPreferences("ListV2", 0)
+    private var editor: SharedPreferences.Editor = sharedPrefs.edit()
 
     /**
      * Get a list of quotes

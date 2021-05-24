@@ -36,7 +36,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="oct-mute"
-        app:iiv_color="@color/textColorPrimary"
+        app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/spaceDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spaceTitle" />
@@ -72,7 +72,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="oct-person"
-        app:iiv_color="@color/textColorPrimary"
+        app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/postureDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/postureTitle" />
@@ -108,7 +108,7 @@
         android:layout_height="26dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="oct-heart"
-        app:iiv_color="@color/textColorPrimary"
+        app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/breatheDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/breatheTitle" />

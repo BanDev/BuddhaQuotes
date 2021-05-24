@@ -22,7 +22,6 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
@@ -30,10 +29,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -83,9 +78,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             title = if (listTmp == "Favourites") getString(R.string.favourites) else listTmp
             navigationIcon = context.backIcon()
             setBackgroundColor(toolbarColour(context))
-            setNavigationOnClickListener {
-                onBackPressed()
-            }
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         checkListSize(this)
@@ -99,11 +92,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_menu, menu)
-        menu?.findItem(R.id.add)?.icon =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
-                colorInt = Color.WHITE
-                sizeDp = 16
-            }
+        menu?.findItem(R.id.add)?.icon = this.addIcon()
         return true
     }
 
@@ -162,9 +151,8 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
     }
 
     private fun checkListSize(context: Context) {
-        if (ListsV2(context).getList(listTmp).size > 1) {
-            binding.noQuotesText.visibility = View.GONE
-        } else binding.noQuotesText.visibility = View.VISIBLE
+        val visibility = if (ListsV2(context).getList(listTmp).size > 1) View.GONE else View.VISIBLE
+        binding.noQuotesText.visibility = visibility
     }
 
     private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
@@ -178,9 +166,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             val special = listTmp == "Favourites"
             if (id == -1) continue
 
-            val drawable = if (favs.contains(id)) {
-                R.drawable.heart_full_red
-            } else R.drawable.like
+            val drawable = if (favs.contains(id)) R.drawable.heart_full_red else R.drawable.like
 
             item = QuoteItem(
                 Quotes().getQuote(id, this),
@@ -190,9 +176,5 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
             list += item
         }
         return list
-    }
-
-    override fun onBackPressed() {
-        finish()
     }
 }

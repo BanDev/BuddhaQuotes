@@ -6,7 +6,6 @@
     <color name="background">#121212</color>
     <color name="darkModeBar">#333333</color>
     <color name="abbBackgroundColor">@color/darkModeBar</color>
-    <color name="textColorPrimary">@android:color/white</color>
 
     <color name="meditateBack">@color/bandev</color>
 

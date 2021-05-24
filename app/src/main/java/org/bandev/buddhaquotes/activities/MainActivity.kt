@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -38,7 +37,6 @@ import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import com.mikepenz.materialdrawer.holder.ImageHolder
@@ -174,9 +172,7 @@ class MainActivity : AppCompatActivity(), CustomInsets {
                 6L -> intent = Intent(this, LibrariesActivity::class.java)
                 else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
             }
-            if (intent != null) {
-                startActivity(intent)
-            }
+            if (intent != null) startActivity(intent)
             intent = null
 
             false
@@ -199,11 +195,7 @@ class MainActivity : AppCompatActivity(), CustomInsets {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.settings_menu, menu)
-        menu?.findItem(R.id.settings)?.icon =
-            IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
-                colorInt = Color.WHITE
-                sizeDp = 20
-            }
+        menu?.findItem(R.id.settings)?.icon = this.settingsIcon()
         return true
     }
 
@@ -279,7 +271,7 @@ class MainActivity : AppCompatActivity(), CustomInsets {
 
     @Suppress("DEPRECATION")
     override fun setCustomInsets(insets: WindowInsetsCompat) {
-        var bottomInsets = 0
+        val bottomInsets: Int
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // Get the insets for the system bars
             val ins = insets.getInsets(WindowInsets.Type.systemBars())
@@ -325,8 +317,6 @@ class MainActivity : AppCompatActivity(), CustomInsets {
 
     override fun onBackPressed() {
         // If the drawer is open, close it. If it is already closed, exit the app
-        if (binding.root.isDrawerOpen(binding.slider)) {
-            binding.root.closeDrawer(binding.slider)
-        } else super.onBackPressed()
+        if (binding.root.isDrawerOpen(binding.slider)) binding.root.closeDrawer(binding.slider) else super.onBackPressed()
     }
 }

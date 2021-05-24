@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -102,7 +101,7 @@ class SettingsActivity : AppCompatActivity() {
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_language
                 ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
                 val int = Languages(base = context).getLanguageAsInt(requireContext())
@@ -134,13 +133,14 @@ class SettingsActivity : AppCompatActivity() {
                         onPositive { index: Int, _: Option ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
                                 HapticFeedbackConstants.CONFIRM
-                            )
-                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            ) else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
                             if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
-                                editor.putInt("app_language_int", index)
-                                editor.putString("app_language", values[index])
-                                editor.apply()
+                                editor
+                                    .putInt("app_language_int", index)
+                                    .putString("app_language", values[index])
+                                    .apply()
+
                                 startActivity(
                                     Intent(context, SettingsActivity::class.java).putExtra(
                                         "lang",
@@ -165,21 +165,21 @@ class SettingsActivity : AppCompatActivity() {
                         requireContext(),
                         RoundedGoogleMaterial.Icon.gmr_wb_sunny
                     ).apply {
-                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                         sizeDp = 20
                     }
                 val darkModeDrawable = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_nights_stay
                 ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
                 val systemDefaultDrawable = IconicsDrawable(
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_brightness_medium
                 ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
                 summary = when (getAppTheme(requireContext())) {
@@ -258,7 +258,7 @@ class SettingsActivity : AppCompatActivity() {
                         requireContext(),
                         RoundedGoogleMaterial.Icon.gmr_palette
                     ).apply {
-                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                         sizeDp = 20
                     }
                 icon = paletteDrawable
@@ -348,7 +348,7 @@ class SettingsActivity : AppCompatActivity() {
             findPreference<Preference>("about")?.apply {
                 icon =
                     IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
-                        colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                         sizeDp = 20
                     }
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
@@ -362,7 +362,7 @@ class SettingsActivity : AppCompatActivity() {
                     requireContext(),
                     RoundedGoogleMaterial.Icon.gmr_library_books
                 ).apply {
-                    colorInt = getColor(requireContext(), R.color.textColorPrimary)
+                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
