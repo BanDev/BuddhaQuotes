@@ -29,6 +29,7 @@ import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
@@ -42,7 +43,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
-class TimerActivity : AppCompatActivity() {
+class TimerActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityTimerBinding
     private lateinit var notifBuilder: NotificationCompat.Builder
@@ -66,7 +67,6 @@ class TimerActivity : AppCompatActivity() {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityTimerBinding.inflate(layoutInflater)

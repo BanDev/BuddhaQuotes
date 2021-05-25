@@ -29,6 +29,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.R
@@ -39,7 +40,7 @@ import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 /**
  * Activity that shows all the libraries we use
  */
-class LibrariesActivity : AppCompatActivity() {
+class LibrariesActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityAboutLibrariesBinding
 
@@ -50,7 +51,6 @@ class LibrariesActivity : AppCompatActivity() {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
@@ -64,7 +64,7 @@ class LibrariesActivity : AppCompatActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        with(binding.recyclerView) {
+        with(binding.librariesRecycler) {
             layoutManager = LinearLayoutManager(context)
             adapter = LibraryAdapter(Libs(context).libraries)
         }

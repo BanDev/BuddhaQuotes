@@ -28,9 +28,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowInsets
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
@@ -65,7 +65,7 @@ import java.util.*
  * @author jack.txt & Fennec_exe
  */
 
-class MainActivity : AppCompatActivity(), CustomInsets {
+class MainActivity : LocalizationActivity(), CustomInsets {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var headerView: AccountHeaderView
@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity(), CustomInsets {
 
         // Set navigation bar and language
         window.setNavigationBarColourMain(this)
-        Languages(baseContext).setLanguage()
 
         fitSystemBars(binding.root, window, this)
 
