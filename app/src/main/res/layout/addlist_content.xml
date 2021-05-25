@@ -22,7 +22,7 @@
         app:titleTextColor="@android:color/white" />
 
     <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-        android:id="@+id/fastscroller"
+        android:id="@+id/fast_scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"

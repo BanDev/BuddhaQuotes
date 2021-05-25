@@ -9,47 +9,42 @@
     app:cardCornerRadius="11dp"
     android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
-            android:text="Title"
+            android:text="@string/title"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp"
-            android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="normal" />
 
         <TextView
-            android:id="@+id/summary"
+            android:id="@+id/summary_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
-            android:text="Summary"
+            android:text="@string/summary"
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            android:layout_below="@+id/title_text" />
 
         <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/bin"
+            android:id="@+id/bin_icon_button"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-delete-outline"
-            app:layout_constraintBottom_toBottomOf="@+id/summary"
-            app:layout_constraintEnd_toEndOf="@+id/title"
-            app:layout_constraintTop_toTopOf="@+id/title" />
+            app:iiv_icon="gmr-delete-outline" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

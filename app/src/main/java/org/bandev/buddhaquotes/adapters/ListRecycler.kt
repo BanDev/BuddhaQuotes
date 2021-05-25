@@ -55,11 +55,11 @@ class ListRecycler(
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
         val currentItem = scrollingLists[position]
 
-        holder.binding.title.text = currentItem.title
-        holder.binding.summary.text = currentItem.summary
+        holder.binding.titleText.text = currentItem.title
+        holder.binding.summaryText.text = currentItem.summary
 
         if (currentItem.special) {
-            holder.binding.bin.visibility = View.GONE
+            holder.binding.binIconButton.visibility = View.GONE
         }
     }
 
@@ -79,10 +79,10 @@ class ListRecycler(
                 }
             }
 
-            binding.bin.setOnClickListener {
+            binding.binIconButton.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, binding.title.text.toString())
+                    listener.onBinClick(position, binding.titleText.text.toString())
                 }
             }
         }
@@ -90,14 +90,14 @@ class ListRecycler(
         override fun onClick(v: View?) {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.title.toString())
+                listener.onLikeClick(position, binding.titleText.toString())
             }
         }
 
         override fun onLongClick(view: View): Boolean {
             val position = bindingAdapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.title.toString())
+                listener.onLikeClick(position, binding.titleText.toString())
             }
             // Return true to indicate the click was handled
             return true
