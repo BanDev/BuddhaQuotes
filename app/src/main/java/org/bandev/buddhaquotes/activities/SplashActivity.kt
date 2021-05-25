@@ -24,28 +24,33 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.preference.PreferenceManager
 
 /**
  * The splash screen
  */
 class SplashActivity : AppCompatActivity() {
 
+    private lateinit var sharedPrefs: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createNotificationChannel()
-        val sharedPrefs = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPrefs.getBoolean("dark_mode", false)
-        val sys = sharedPrefs.getBoolean("sys", true)
 
-        when {
-            sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-            darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
-            else -> setDefaultNightMode(MODE_NIGHT_NO)
-        }
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
+        setDefaultNightMode(
+            when (sharedPrefs.getInt("appThemeInt", 2)) {
+                0 -> MODE_NIGHT_NO
+                1 -> MODE_NIGHT_YES
+                else -> MODE_NIGHT_FOLLOW_SYSTEM
+            }
+        )
         startActivity(Intent(this, MigrateActivity::class.java))
         finish()
     }

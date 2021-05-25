@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
@@ -75,15 +76,6 @@ class SettingsActivity : LocalizationActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        val sharedPrefs = getSharedPreferences("Settings", 0)
-        val darkmode = sharedPrefs.getBoolean("dark_mode", false)
-        val sys = sharedPrefs.getBoolean("sys", true)
-        when {
-            sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-            darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
-            else -> setDefaultNightMode(MODE_NIGHT_NO)
-        }
-
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.settings, SettingsFragment())
@@ -92,9 +84,14 @@ class SettingsActivity : LocalizationActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
-        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        private lateinit var sharedPrefs: SharedPreferences
+        private lateinit var editor: SharedPreferences.Editor
 
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
+            sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+            editor = sharedPrefs.edit()
 
             findPreference<Preference>("app_language")?.apply {
                 icon = IconicsDrawable(
@@ -177,23 +174,19 @@ class SettingsActivity : LocalizationActivity() {
                     colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
-                summary = when (getAppTheme(requireContext())) {
-                    0 -> {
-                        icon = lightModeDrawable
-                        getString(R.string.light_mode)
-                    }
-                    1 -> {
-                        icon = darkModeDrawable
-                        getString(R.string.dark_mode)
-                    }
-                    else -> {
-                        icon = systemDefaultDrawable
-                        getString(R.string.follow_system_default)
-                    }
+
+                val appTheme = sharedPrefs.getInt("appThemeInt", 2)
+                summary = when (appTheme) {
+                    0 -> getString(R.string.light_mode)
+                    1 -> getString(R.string.dark_mode)
+                    else -> getString(R.string.follow_system_default)
+                }
+                icon = when (appTheme) {
+                    0 -> lightModeDrawable
+                    1 -> darkModeDrawable
+                    else -> systemDefaultDrawable
                 }
 
-                val sharedPrefs = requireContext().getSharedPreferences("Settings", 0)
-                val editor = sharedPrefs.edit()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     OptionsSheet().show(requireContext()) {
                         title(R.string.app_theme)
@@ -210,37 +203,26 @@ class SettingsActivity : LocalizationActivity() {
                                 HapticFeedbackConstants.CONFIRM
                             )
                             else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            if (getAppTheme(requireContext()) != index) {
+                            setDefaultNightMode(
                                 when (index) {
-                                    0 -> {
-                                        // Light mode
-                                        editor.putBoolean("dark_mode", false)
-                                        editor.putBoolean("sys", false)
-                                        editor.putInt("appThemeInt", 0)
-                                    }
-                                    1 -> {
-                                        // Dark mode
-                                        editor.putBoolean("dark_mode", true)
-                                        editor.putBoolean("sys", false)
-                                        editor.putInt("appThemeInt", 1)
-                                    }
-                                    2 -> {
-                                        // System default
-                                        editor.putBoolean("dark_mode", false)
-                                        editor.putBoolean("sys", true)
-                                        editor.putInt("appThemeInt", 2)
-                                    }
+                                    0 -> MODE_NIGHT_NO
+                                    1 -> MODE_NIGHT_YES
+                                    else -> MODE_NIGHT_FOLLOW_SYSTEM
                                 }
-                                editor.apply()
-                                startActivity(
-                                    Intent(context, SettingsActivity::class.java).putExtra(
-                                        "switch",
-                                        true
-                                    )
-                                )
-                                activity?.finish()
-                                activity?.overridePendingTransition(0, 0)
-                            } else dismiss()
+                            )
+                            if (index != sharedPrefs.getInt("appThemeInt", 2)) {
+                                summary = when (index) {
+                                    0 -> getString(R.string.light_mode)
+                                    1 -> getString(R.string.dark_mode)
+                                    else -> getString(R.string.follow_system_default)
+                                }
+                                icon = when (index) {
+                                    0 -> lightModeDrawable
+                                    1 -> darkModeDrawable
+                                    else -> systemDefaultDrawable
+                                }
+                                editor.putInt("appThemeInt", index).apply()
+                            }
                         }
                     }
                     true
@@ -306,10 +288,7 @@ class SettingsActivity : LocalizationActivity() {
                                     getColor(requireContext(), R.color.pinkAccent) -> "pink"
                                     getColor(requireContext(), R.color.violetAccent) -> "violet"
                                     getColor(requireContext(), R.color.blueAccent) -> "blue"
-                                    getColor(
-                                        requireContext(),
-                                        R.color.lightBlueAccent
-                                    ) -> "lightBlue"
+                                    getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
                                     getColor(requireContext(), R.color.tealAccent) -> "teal"
                                     getColor(requireContext(), R.color.greenAccent) -> "green"
                                     getColor(requireContext(), R.color.limeAccent) -> "lime"
@@ -325,18 +304,13 @@ class SettingsActivity : LocalizationActivity() {
                                     .putString("accent_color", colorOut)
                                     .apply()
 
-                                startActivity(
-                                    Intent(context, SettingsActivity::class.java).putExtra(
-                                        "switch",
-                                        true
-                                    )
-                                )
+                                startActivity(Intent(context, SettingsActivity::class.java))
                                 activity?.finish()
                                 activity?.overridePendingTransition(
                                     android.R.anim.fade_in,
                                     android.R.anim.fade_out
                                 )
-                            } else dismiss()
+                            }
                         }
                     }
                     true
