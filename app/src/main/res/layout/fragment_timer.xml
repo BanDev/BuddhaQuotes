@@ -1,54 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="fragments.TimerFragment">
 
-    <ImageView
-        android:layout_width="359dp"
-        android:layout_height="251dp"
-        android:src="@drawable/meditate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/start"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        app:cornerRadius="11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/meditate_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/meditate_title"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/subtitle_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/meditate_text"
+        android:layout_centerHorizontal="true"
         android:text="@string/meditate_subheading"
         android:textColor="?android:attr/textColorSecondary"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        android:textSize="25sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/subtitle_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/start"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        app:cornerRadius="11dp" />
+
+    <ImageView
+        android:layout_width="359dp"
+        android:layout_height="251dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/meditate"
+        android:contentDescription="@string/two_people_meditating" />
+
+</RelativeLayout>

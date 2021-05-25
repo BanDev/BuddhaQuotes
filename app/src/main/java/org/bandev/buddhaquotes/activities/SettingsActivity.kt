@@ -298,11 +298,7 @@ class SettingsActivity : LocalizationActivity() {
                                     getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
                                     else -> "original"
                                 }
-
-                                PreferenceManager.getDefaultSharedPreferences(context)
-                                    .edit()
-                                    .putString("accent_color", colorOut)
-                                    .apply()
+                                editor.putString("accent_color", colorOut).apply()
 
                                 startActivity(Intent(context, SettingsActivity::class.java))
                                 activity?.finish()
