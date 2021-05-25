@@ -161,7 +161,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         val intent = Intent(context, ScrollingActivity::class.java)
         val bundle = Bundle()
         bundle.putString("list", masterlist[position])
-        bundle.putInt("from", Fragments.LISTS)
         intent.putExtras(bundle)
         startActivity(intent)
     }

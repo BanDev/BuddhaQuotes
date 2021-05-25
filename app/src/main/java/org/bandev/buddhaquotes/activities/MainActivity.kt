@@ -79,12 +79,13 @@ class MainActivity : LocalizationActivity(), CustomInsets {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set navigation bar
+        window.setNavigationBarColourMain(this)
+
         // Setup view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Set navigation bar and language
-        window.setNavigationBarColourMain(this)
 
         fitSystemBars(binding.root, window, this)
 
@@ -166,7 +167,7 @@ class MainActivity : LocalizationActivity(), CustomInsets {
                 2L -> binding.bottomBar.selectTabAt(1, true)
                 3L -> binding.bottomBar.selectTabAt(2, true)
                 4L -> intent =
-                    Intent(this, SettingsActivity::class.java).putExtra("from", Activities.MAIN)
+                    Intent(this, SettingsActivity::class.java)
                 5L -> intent = Intent(this, AboutActivity::class.java)
                 6L -> intent = Intent(this, LibrariesActivity::class.java)
                 else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
@@ -186,31 +187,10 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     fun onNotifyReceive(event: SendEvent.ToListFragment) {
     }
 
-    /**
-     * On options menu created
-     * @param menu [Menu]
-     * @return [Boolean]
-     */
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.settings_menu, menu)
-        menu?.findItem(R.id.settings)?.icon = this.settingsIcon()
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
                 showCreateListSheet()
-                true
-            }
-            R.id.settings -> {
-                startActivity(
-                    Intent(this, SettingsActivity::class.java).putExtra(
-                        "from",
-                        Activities.MAIN
-                    )
-                )
                 true
             }
             else -> super.onOptionsItemSelected(item)

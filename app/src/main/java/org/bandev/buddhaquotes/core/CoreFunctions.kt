@@ -162,17 +162,6 @@ fun getAccentColourAsString(context: Context): String {
 }
 
 /**
- * Returns 0 for light mode, 1 for dark mode, 2 for system default
- * @param [context] context of activity (Context)
- * @return 0 for light mode, 1 for dark mode, 2 for system default (Int)
- */
-
-fun getAppTheme(context: Context): Int {
-    val sharedPrefs = context.getSharedPreferences("Settings", 0)
-    return sharedPrefs.getInt("appThemeInt", 2)
-}
-
-/**
  * A function to draw behind system bars
  * @param [view] The view
  * @param [window] The window
