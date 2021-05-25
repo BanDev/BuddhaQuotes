@@ -27,8 +27,8 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -41,7 +41,7 @@ import kotlin.collections.ArrayList
  * The activity where the user can see all the quotes they have in their
  * lists
  */
-class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
+class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinder {
 
     private lateinit var binding: ActivityScrollingBinding
     private lateinit var scrollingList: ArrayList<QuoteItem>
@@ -55,7 +55,6 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityScrollingBinding.inflate(layoutInflater)
@@ -83,7 +82,7 @@ class ScrollingActivity : AppCompatActivity(), QuoteRecycler.OnItemClickFinder {
 
         checkListSize(this)
 
-        with(binding.recyclerView) {
+        with(binding.quotesRecycler) {
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(false)

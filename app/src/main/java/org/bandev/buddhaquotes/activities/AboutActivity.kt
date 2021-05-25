@@ -22,7 +22,7 @@ package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
@@ -30,7 +30,7 @@ import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 /**
  * The about page
  */
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : LocalizationActivity() {
 
     // Declare view binding variables
     private lateinit var binding: ActivityAboutBinding
@@ -42,7 +42,6 @@ class AboutActivity : AppCompatActivity() {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivityAboutBinding.inflate(layoutInflater)

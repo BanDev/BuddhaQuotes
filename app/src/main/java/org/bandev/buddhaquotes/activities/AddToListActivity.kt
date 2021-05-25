@@ -29,9 +29,9 @@ import android.view.Menu
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
@@ -45,7 +45,7 @@ import java.util.*
  * If calling, make sure to send the name of the list they want with
  * the key "list" in the intent
  **/
-class AddToListActivity : AppCompatActivity(), AddQuoteRecycler.ClickListener {
+class AddToListActivity : LocalizationActivity(), AddQuoteRecycler.ClickListener {
 
     private lateinit var binding: AddlistContentBinding
     private lateinit var recyclerAdapter: AddQuoteRecycler
@@ -57,7 +57,6 @@ class AddToListActivity : AppCompatActivity(), AddQuoteRecycler.ClickListener {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = AddlistContentBinding.inflate(layoutInflater)
@@ -73,7 +72,7 @@ class AddToListActivity : AppCompatActivity(), AddQuoteRecycler.ClickListener {
 
         recyclerAdapter = AddQuoteRecycler(genList(), this@AddToListActivity)
 
-        with(binding.recycler) {
+        with(binding.allQuotesRecycler) {
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)

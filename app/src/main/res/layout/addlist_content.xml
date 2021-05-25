@@ -32,7 +32,7 @@
         app:handleHeight="36dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+            android:id="@+id/all_quotes_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"

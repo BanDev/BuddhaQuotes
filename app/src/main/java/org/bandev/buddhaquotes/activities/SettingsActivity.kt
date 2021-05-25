@@ -24,12 +24,14 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
+import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.color.ColorView
 import com.maxkeppeler.sheets.core.SheetStyle
@@ -44,11 +46,12 @@ import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
+import java.util.*
 
 /**
  * Where the user can customise their app
  */
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
 
@@ -59,7 +62,6 @@ class SettingsActivity : AppCompatActivity() {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
-        Languages(baseContext).setLanguage()
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -73,15 +75,13 @@ class SettingsActivity : AppCompatActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        if ((intent.extras ?: return).getBoolean("switch")) {
-            val sharedPrefs = getSharedPreferences("Settings", 0)
-            val darkmode = sharedPrefs.getBoolean("dark_mode", false)
-            val sys = sharedPrefs.getBoolean("sys", true)
-            when {
-                sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-                darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
-                else -> setDefaultNightMode(MODE_NIGHT_NO)
-            }
+        val sharedPrefs = getSharedPreferences("Settings", 0)
+        val darkmode = sharedPrefs.getBoolean("dark_mode", false)
+        val sys = sharedPrefs.getBoolean("sys", true)
+        when {
+            sys -> setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+            darkmode -> setDefaultNightMode(MODE_NIGHT_YES)
+            else -> setDefaultNightMode(MODE_NIGHT_NO)
         }
 
         supportFragmentManager
@@ -104,24 +104,19 @@ class SettingsActivity : AppCompatActivity() {
                     colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
                     sizeDp = 20
                 }
-                val int = Languages(base = context).getLanguageAsInt(requireContext())
-                val singleItems = resources.getStringArray(R.array.language_entries)
-                summary = singleItems[int]
+                summary = getLanguage(requireContext()).toString()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-                    val editor = sharedPrefs.edit()
-                    val values = resources.getStringArray(R.array.language_values)
                     val defaultDrawable =
                         IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
                     val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
-
+                    val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(machineDrawable, R.string.zh),
                             Option(defaultDrawable, R.string.en),
+                            Option(machineDrawable, R.string.zh),
                             Option(machineDrawable, R.string.fr),
                             Option(machineDrawable, R.string.de),
                             Option(machineDrawable, R.string.hi),
@@ -134,25 +129,25 @@ class SettingsActivity : AppCompatActivity() {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
                                 HapticFeedbackConstants.CONFIRM
                             ) else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-
-                            if (Languages(base = context).getLanguageAsInt(requireContext()) != index) {
-                                editor
-                                    .putInt("app_language_int", index)
-                                    .putString("app_language", values[index])
-                                    .apply()
-
-                                startActivity(
-                                    Intent(context, SettingsActivity::class.java).putExtra(
-                                        "lang",
-                                        true
-                                    )
-                                )
+                            when (index) {
+                                0 -> setLanguage(requireContext(), Locale("en"))
+                                1 -> setLanguage(requireContext(), Locale("zh"))
+                                2 -> setLanguage(requireContext(), Locale("fr"))
+                                3 -> setLanguage(requireContext(), Locale("de"))
+                                4 -> setLanguage(requireContext(), Locale("hi"))
+                                5 -> setLanguage(requireContext(), Locale("ja"))
+                                6 -> setLanguage(requireContext(), Locale("pl"))
+                                7 -> setLanguage(requireContext(), Locale("ru"))
+                                8 -> setLanguage(requireContext(), Locale("es"))
+                            }
+                            if (getLanguage(requireContext()) != currentLangauge) {
+                                startActivity(Intent(context, SettingsActivity::class.java))
                                 activity?.finish()
                                 activity?.overridePendingTransition(
                                     android.R.anim.fade_in,
                                     android.R.anim.fade_out
                                 )
-                            } else dismiss()
+                            }
                         }
                     }
                     true
@@ -311,7 +306,10 @@ class SettingsActivity : AppCompatActivity() {
                                     getColor(requireContext(), R.color.pinkAccent) -> "pink"
                                     getColor(requireContext(), R.color.violetAccent) -> "violet"
                                     getColor(requireContext(), R.color.blueAccent) -> "blue"
-                                    getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
+                                    getColor(
+                                        requireContext(),
+                                        R.color.lightBlueAccent
+                                    ) -> "lightBlue"
                                     getColor(requireContext(), R.color.tealAccent) -> "teal"
                                     getColor(requireContext(), R.color.greenAccent) -> "green"
                                     getColor(requireContext(), R.color.limeAccent) -> "lime"

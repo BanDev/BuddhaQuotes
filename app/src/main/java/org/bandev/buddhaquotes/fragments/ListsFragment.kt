@@ -74,7 +74,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
         masterListFinal = generateMasterList(masterlist.size, masterlist)
 
-        with(binding.recyclerView) {
+        with(binding.listsRecycler) {
             layoutManager = LinearLayoutManager(context)
             adapter = ListRecycler(masterListFinal, this@ListsFragment)
             setHasFixedSize(false)
@@ -170,7 +170,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         ListsV2(requireContext()).removeList(text)
         masterListFinal.removeAt(position)
-        binding.recyclerView.adapter?.notifyItemRemoved(position)
+        binding.listsRecycler.adapter?.notifyItemRemoved(position)
     }
 
     override fun onResume() {
