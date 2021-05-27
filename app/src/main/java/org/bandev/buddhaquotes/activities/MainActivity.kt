@@ -140,12 +140,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
                     nameRes = R.string.fragment_meditation; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
                     false; identifier = 3
-                },
-                DividerDrawerItem(),
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.open_source_libraries; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_library_books; isSelectable = false; identifier =
-                    6
                 })
             addStickyDrawerItems(
                 PrimaryDrawerItem().apply {
@@ -169,7 +163,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
                 4L -> intent =
                     Intent(this, SettingsActivity::class.java)
                 5L -> intent = Intent(this, AboutActivity::class.java)
-                6L -> intent = Intent(this, LibrariesActivity::class.java)
                 else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
             }
             if (intent != null) startActivity(intent)
@@ -273,7 +266,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     }
 
     override fun onResume() {
-        // Set the colour of everything to the accent colour when the user returns to the Main Activity
         super.onResume()
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)

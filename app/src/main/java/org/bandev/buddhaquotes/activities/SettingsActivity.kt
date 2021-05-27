@@ -324,20 +324,6 @@ class SettingsActivity : LocalizationActivity() {
                     true
                 }
             }
-
-            findPreference<Preference>("about_libraries")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_library_books
-                ).apply {
-                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                    sizeDp = 20
-                }
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    startActivity(Intent(activity, LibrariesActivity::class.java))
-                    true
-                }
-            }
         }
     }
 }
