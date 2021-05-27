@@ -113,6 +113,7 @@ class SettingsActivity : LocalizationActivity() {
                         displayMode(DisplayMode.LIST)
                         with(
                             Option(defaultDrawable, R.string.en),
+                            Option(machineDrawable, R.string.ar),
                             Option(machineDrawable, R.string.zh),
                             Option(machineDrawable, R.string.fr),
                             Option(machineDrawable, R.string.de),
@@ -128,14 +129,15 @@ class SettingsActivity : LocalizationActivity() {
                             ) else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             when (index) {
                                 0 -> setLanguage(requireContext(), Locale("en"))
-                                1 -> setLanguage(requireContext(), Locale("zh"))
-                                2 -> setLanguage(requireContext(), Locale("fr"))
-                                3 -> setLanguage(requireContext(), Locale("de"))
-                                4 -> setLanguage(requireContext(), Locale("hi"))
-                                5 -> setLanguage(requireContext(), Locale("ja"))
-                                6 -> setLanguage(requireContext(), Locale("pl"))
-                                7 -> setLanguage(requireContext(), Locale("ru"))
-                                8 -> setLanguage(requireContext(), Locale("es"))
+                                1 -> setLanguage(requireContext(), Locale("ar"))
+                                2 -> setLanguage(requireContext(), Locale("zh"))
+                                3 -> setLanguage(requireContext(), Locale("fr"))
+                                4 -> setLanguage(requireContext(), Locale("de"))
+                                5 -> setLanguage(requireContext(), Locale("hi"))
+                                6 -> setLanguage(requireContext(), Locale("ja"))
+                                7 -> setLanguage(requireContext(), Locale("pl"))
+                                8 -> setLanguage(requireContext(), Locale("ru"))
+                                9 -> setLanguage(requireContext(), Locale("es"))
                             }
                             if (getLanguage(requireContext()) != currentLangauge) {
                                 startActivity(Intent(context, SettingsActivity::class.java))
