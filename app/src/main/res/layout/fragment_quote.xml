@@ -1,93 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.QuoteFragment">
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/content"
+        <TextView
+            android:id="@+id/number"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/textview"
+            android:textAlignment="textStart"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/quoteNumberSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quote" />
 
-            <TextView
-                android:id="@+id/number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/textview"
-                android:textAlignment="textStart"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="@dimen/quoteNumberSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quote" />
+        <TextView
+            android:id="@+id/quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="20dp"
+            android:text="@string/textview"
+            android:textAlignment="textStart"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/quoteTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/quote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:paddingStart="0dp"
-                android:paddingEnd="20dp"
-                android:text="@string/textview"
-                android:textAlignment="textStart"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/quoteTextSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <uk.bandev.xplosion.XplosionView
-                android:id="@+id/likeAnimator"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="@dimen/quoteFragmentActionPadding"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/number">
-
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:id="@+id/like"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_gravity="center"
-                    app:iiv_icon="gmr-favorite" />
-
-            </uk.bandev.xplosion.XplosionView>
+        <uk.bandev.xplosion.XplosionView
+            android:id="@+id/likeAnimator"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="@dimen/quoteFragmentActionPadding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/number">
 
             <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/more"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:id="@+id/like"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="5dp"
-                app:iiv_color="?android:textColorPrimary"
-                app:iiv_icon="gmr-more-vert"
-                app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
-                app:layout_constraintStart_toEndOf="@+id/likeAnimator"
-                app:layout_constraintTop_toTopOf="@+id/likeAnimator" />
+                app:iiv_icon="gmr-favorite" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </uk.bandev.xplosion.XplosionView>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/more"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            app:iiv_color="?android:textColorPrimary"
+            app:iiv_icon="gmr-more-vert"
+            app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
+            app:layout_constraintStart_toEndOf="@+id/likeAnimator"
+            app:layout_constraintTop_toTopOf="@+id/likeAnimator" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

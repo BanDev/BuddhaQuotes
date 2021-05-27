@@ -115,7 +115,7 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
             headerView = AccountHeaderView(this, compact = compact).apply {
                 attachToSliderView(binding.slider)
-                headerBackground = ImageHolder(R.drawable.header)
+                headerBackground = ImageHolder(R.color.colorPrimary)
 
                 withSavedInstance(savedInstanceState)
             }
@@ -158,8 +158,7 @@ class MainActivity : LocalizationActivity(), CustomInsets {
                 1L -> binding.bottomBar.selectTabAt(0, true)
                 2L -> binding.bottomBar.selectTabAt(1, true)
                 3L -> binding.bottomBar.selectTabAt(2, true)
-                4L -> intent =
-                    Intent(this, SettingsActivity::class.java)
+                4L -> intent = Intent(this, SettingsActivity::class.java)
                 5L -> intent = Intent(this, AboutActivity::class.java)
                 else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
             }
@@ -285,7 +284,10 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     }
 
     override fun onBackPressed() {
-        // If the drawer is open, close it. If it is already closed, exit the app
-        if (binding.root.isDrawerOpen(binding.slider)) binding.root.closeDrawer(binding.slider) else super.onBackPressed()
+        when {
+            binding.root.isDrawerOpen(binding.slider) -> binding.root.closeDrawer(binding.slider)
+            binding.bottomBar.selectedIndex != 0 -> binding.bottomBar.selectTabAt(0)
+            else -> super.onBackPressed()
+        }
     }
 }

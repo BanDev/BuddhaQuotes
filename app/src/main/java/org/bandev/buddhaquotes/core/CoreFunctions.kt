@@ -214,9 +214,3 @@ fun Context.addIcon(): IconicsDrawable =
         colorInt = Color.WHITE
         sizeDp = 16
     }
-
-fun Context.settingsIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_settings).apply {
-        colorInt = Color.WHITE
-        sizeDp = 20
-    }
