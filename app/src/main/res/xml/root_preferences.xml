@@ -39,11 +39,6 @@
             android:title="@string/about"
             android:summary="@string/view_app_details" />
 
-        <Preference
-            android:key="about_libraries"
-            android:title="@string/open_source_libraries"
-            android:summary="@string/libraries_used" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

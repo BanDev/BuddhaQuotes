@@ -22,32 +22,35 @@ package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
+import org.bandev.buddhaquotes.fragments.AboutFragment
+import org.bandev.buddhaquotes.fragments.LibrariesFragment
 
 /**
  * The about page
  */
 class AboutActivity : LocalizationActivity() {
 
-    // Declare view binding variables
     private lateinit var binding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set accent colour, navigation bar and language
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
 
-        // Setup view binding
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = context.backIcon()
@@ -55,22 +58,45 @@ class AboutActivity : LocalizationActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        // Setup contributors array
-        val contributors = resources.getStringArray(R.array.contributors)
-        val contributorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, contributors)
-        with(binding.contributorsList) {
-            adapter = contributorsAdapter
-            divider = null
-            isClickable = false
+        binding.tabLayout.setBackgroundColor(toolbarColour(this))
+
+        // Set up the ViewPager with the sections adapter
+        binding.viewPager.adapter = AboutStateAdapter(this)
+        TabLayoutMediator(
+            binding.tabLayout,
+            binding.viewPager
+        ) { tab: TabLayout.Tab, position: Int ->
+            when (position) {
+                POS_ABOUT -> tab.setText(R.string.about)
+                POS_LICENSE -> tab.setText(R.string.libraries)
+                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+            }
+        }.attach()
+    }
+
+    /**
+     * A [FragmentStateAdapter] that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+
+    class AboutStateAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                Companion.POS_ABOUT -> AboutFragment()
+                Companion.POS_LICENSE -> LibrariesFragment()
+                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
+            }
         }
 
-        // Setup translators array
-        val translators = resources.getStringArray(R.array.translators)
-        val translatorsAdapter = ArrayAdapter(this, R.layout.layout_list_item, translators)
-        with(binding.translatorsList) {
-            adapter = translatorsAdapter
-            divider = null
-            isClickable = false
+        override fun getItemCount(): Int {
+            return Companion.TOTAL_COUNT
         }
+    }
+
+    companion object {
+        private const val POS_ABOUT = 0
+        private const val POS_LICENSE = 1
+        private const val TOTAL_COUNT = 2
     }
 }

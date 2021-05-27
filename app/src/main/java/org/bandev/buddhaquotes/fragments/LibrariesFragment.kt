@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package org.bandev.buddhaquotes.activities
+package org.bandev.buddhaquotes.fragments
 
 import android.os.Build
 import android.os.Bundle
@@ -26,47 +26,34 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.databinding.ActivityAboutLibrariesBinding
+import org.bandev.buddhaquotes.databinding.FragmentLibrariesBinding
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
-/**
- * Activity that shows all the libraries we use
- */
-class LibrariesActivity : LocalizationActivity() {
+class LibrariesFragment : Fragment() {
+    private var _binding: FragmentLibrariesBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var binding: ActivityAboutLibrariesBinding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentLibrariesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Set theme, navigation bar and language
-        setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
-
-        // Setup view binding
-        binding = ActivityAboutLibrariesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Setup toolbar
-        setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = context.backIcon()
-            setBackgroundColor(toolbarColour(context))
-            setNavigationOnClickListener { onBackPressed() }
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         with(binding.librariesRecycler) {
             layoutManager = LinearLayoutManager(context)
-            adapter = LibraryAdapter(Libs(context).libraries)
+            adapter = LibraryAdapter(
+                Libs(context).libraries
+            )
         }
     }
 
