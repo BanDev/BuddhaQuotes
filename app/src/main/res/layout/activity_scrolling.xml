@@ -21,12 +21,12 @@
         app:titleTextAppearance="@style/toolbarText"
         app:titleTextColor="@android:color/white" />
 
-    <com.mikepenz.iconics.view.IconicsTextView
+    <TextView
         android:id="@+id/noQuotesText"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="@string/emptyList"
+        android:text="@string/empty_list"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
