@@ -607,4 +607,5 @@
     <string name="empty_list">This list is empty!</string>
     <string name="two_people_meditating">Two people meditating</string>
     <string name="summary">Summary</string>
+    <string name="text">Text</string>
 </resources>

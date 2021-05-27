@@ -158,10 +158,18 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
+        val closeDrawable = IconicsDrawable(
+            requireContext(),
+            RoundedGoogleMaterial.Icon.gmr_expand_more
+        ).apply {
+            sizeDp = 24
+            paddingDp = 6
+        }
         updateOptionsList()
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             title(R.string.addToList)
+            closeIconButton(IconButton(closeDrawable))
             with(options)
             onPositive { index: Int, _: Option ->
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
