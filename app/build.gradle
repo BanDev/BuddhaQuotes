@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
-    implementation 'nl.joery.animatedbottombar:library:1.0.9' // Still hosted on JCenter, waiting for migration
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
 
     // Eventbus - https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
