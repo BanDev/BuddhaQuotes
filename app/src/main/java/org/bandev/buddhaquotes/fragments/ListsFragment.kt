@@ -81,12 +81,12 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     fun onEventReceive(event: SendEvent) {
         setupRecycler()
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     fun onNotifyReceive(event: Notify) {
         when (event) {
             is Notify.NotifyNewList -> {

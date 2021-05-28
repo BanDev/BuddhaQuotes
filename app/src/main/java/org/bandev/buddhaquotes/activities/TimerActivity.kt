@@ -26,7 +26,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.HapticFeedbackConstants
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.akexorcist.localizationactivity.ui.LocalizationActivity

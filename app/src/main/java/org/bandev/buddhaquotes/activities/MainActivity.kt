@@ -169,11 +169,11 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     fun onNotifyReceive(event: Notify) {
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     fun onNotifyReceive(event: SendEvent.ToListFragment) {
     }
 
