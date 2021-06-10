@@ -16,7 +16,7 @@
         app:title="@string/appearance">
 
         <Preference
-            app:key="theme"
+            app:key="app_theme"
             app:title="@string/app_theme"
             android:summary="@string/app_theme"
             app:useSimpleSummaryProvider="true" />
