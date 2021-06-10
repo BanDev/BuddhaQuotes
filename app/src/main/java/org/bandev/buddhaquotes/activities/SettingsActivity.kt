@@ -76,10 +76,12 @@ class SettingsActivity : LocalizationActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.settings, SettingsFragment())
-            .commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.settings, SettingsFragment())
+                .commit()
+        }
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -153,7 +155,7 @@ class SettingsActivity : LocalizationActivity() {
                 }
             }
 
-            findPreference<Preference>("theme")?.apply {
+            findPreference<Preference>("app_theme")?.apply {
                 val lightModeDrawable =
                     IconicsDrawable(
                         requireContext(),
@@ -191,8 +193,8 @@ class SettingsActivity : LocalizationActivity() {
 
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     OptionsSheet().show(requireContext()) {
-                        title(R.string.app_theme)
                         style(SheetStyle.DIALOG)
+                        displayToolbar(false)
                         displayMode(DisplayMode.LIST)
                         with(
                             Option(lightModeDrawable, R.string.light_mode),
