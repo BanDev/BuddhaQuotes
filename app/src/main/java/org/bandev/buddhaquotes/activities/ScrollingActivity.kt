@@ -32,6 +32,7 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
@@ -98,12 +99,15 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                startActivity(Intent(this, AddToListActivity::class.java).putExtra("list", listTmp))
-                finish()
-                overridePendingTransition(
-                    R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left
-                )
+//                startActivity(Intent(this, AddToListActivity::class.java).putExtra("list", listTmp))
+//                finish()
+//                overridePendingTransition(
+//                    R.anim.anim_slide_in_left,
+//                    R.anim.anim_slide_out_left
+//                )
+                AddQuoteSheet().show(this) {
+
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

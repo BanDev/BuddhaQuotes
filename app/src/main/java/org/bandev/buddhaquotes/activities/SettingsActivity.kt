@@ -41,7 +41,6 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.typeface.library.octicons.Octicons
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
@@ -106,8 +105,9 @@ class SettingsActivity : LocalizationActivity() {
                 summary = getLanguage(requireContext()).toString()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     val defaultDrawable =
-                        IconicsDrawable(requireContext(), Octicons.Icon.oct_code_review)
-                    val machineDrawable = IconicsDrawable(requireContext(), Octicons.Icon.oct_cpu)
+                        IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_message)
+                    val machineDrawable =
+                        IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_memory)
                     val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)
@@ -121,14 +121,16 @@ class SettingsActivity : LocalizationActivity() {
                             Option(machineDrawable, R.string.de),
                             Option(machineDrawable, R.string.hi),
                             Option(machineDrawable, R.string.ja),
-                            Option(R.drawable.ic_language, R.string.pl),
+                            Option(machineDrawable, R.string.pl),
                             Option(machineDrawable, R.string.ru),
                             Option(machineDrawable, R.string.es)
                         )
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
-                                HapticFeedbackConstants.CONFIRM
-                            ) else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
                             when (index) {
                                 0 -> setLanguage(requireContext(), Locale("en"))
                                 1 -> setLanguage(requireContext(), Locale("ar"))
@@ -203,10 +205,11 @@ class SettingsActivity : LocalizationActivity() {
                         )
                         onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
-                                HapticFeedbackConstants.CONFIRM
-                            )
-                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                view?.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
                             setDefaultNightMode(
                                 when (index) {
                                     0 -> MODE_NIGHT_NO
@@ -279,14 +282,16 @@ class SettingsActivity : LocalizationActivity() {
                         style(SheetStyle.DIALOG)
                         defaultView(ColorView.TEMPLATE)
                         disableSwitchColorView()
-                        onNegative(R.string.cancel) { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+                        onNegative(R.string.cancel) {
+                            requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        }
                         onPositive(R.string.okay) { color ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
-                                HapticFeedbackConstants.CONFIRM
-                            )
-                            else requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                view?.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
 
-                            // Checks if the chosen color is not the same as the current color
                             if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {
                                 val colorOut = when (color) {
                                     getColor(requireContext(), R.color.pinkAccent) -> "pink"
@@ -313,18 +318,6 @@ class SettingsActivity : LocalizationActivity() {
                             }
                         }
                     }
-                    true
-                }
-            }
-
-            findPreference<Preference>("about")?.apply {
-                icon =
-                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_info).apply {
-                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                        sizeDp = 20
-                    }
-                onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    startActivity(Intent(activity, AboutActivity::class.java))
                     true
                 }
             }

@@ -43,9 +43,7 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
      * @return [Int]
      */
 
-    override fun getItemCount(): Int {
-        return fragmentCount
-    }
+    override fun getItemCount(): Int = fragmentCount
 
     /**
      * Show the correct fragment based on the position

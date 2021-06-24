@@ -27,18 +27,6 @@
             android:summary="@string/settings_accent_colour"
             app:useSimpleSummaryProvider="true" />
 
-
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:title="@string/information">
-
-        <Preference
-            android:key="about"
-            android:title="@string/about"
-            android:summary="@string/view_app_details" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

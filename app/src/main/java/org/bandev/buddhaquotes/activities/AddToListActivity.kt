@@ -36,6 +36,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AddQuoteRecycler
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.databinding.AddlistContentBinding
 import org.bandev.buddhaquotes.items.AddQuoteItem
 import java.util.*

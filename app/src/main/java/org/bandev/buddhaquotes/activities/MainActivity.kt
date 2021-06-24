@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.MenuItem
 import android.view.WindowInsets
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -46,6 +47,7 @@ import com.mikepenz.materialdrawer.util.addStickyDrawerItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.database.Database
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import org.greenrobot.eventbus.EventBus
@@ -60,7 +62,7 @@ import java.util.*
  * It uses [FragmentAdapter] as a fragment adapter and
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
  * @since v1.0.0
- * @author jack.txt & Fennec_exe
+ * @author Jack Devey & Fennec_exe
  */
 
 class MainActivity : LocalizationActivity(), CustomInsets {
@@ -77,6 +79,10 @@ class MainActivity : LocalizationActivity(), CustomInsets {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val database = Database(this)
+        val qt = database.getQuote(7)
+        Toast.makeText(this, qt.quote, Toast.LENGTH_SHORT).show()
 
         window.setNavigationBarColourMain(this)
 

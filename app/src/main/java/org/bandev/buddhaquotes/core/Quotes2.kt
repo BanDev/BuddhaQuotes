@@ -33,7 +33,7 @@ import kotlin.random.nextInt
  * @updated 18/03/2020
  */
 
-class Quotes {
+object Quotes2 {
 
     var quoteIdGlobal: Int = 0
     private val lastQuoteId = 237
