@@ -99,10 +99,11 @@ class AddToListActivity : LocalizationActivity(), AddQuoteRecycler.ClickListener
             )
 
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                HapticFeedbackConstants.REJECT
-            )
-            else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.REJECT)
+            } else {
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
             val outName = if (list == "Favourites") getString(R.string.favourites)
             else list
             Snackbar.make(

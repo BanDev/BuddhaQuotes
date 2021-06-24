@@ -40,7 +40,18 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createNotificationChannel()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Meditation Timer"
+            val descriptionText = "Meditation Timer Stuff"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("BQ.Timer", name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
@@ -55,20 +66,4 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Meditation Timer"
-            val descriptionText = "Meditation Timer Stuff"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("BQ.Timer", name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
 }

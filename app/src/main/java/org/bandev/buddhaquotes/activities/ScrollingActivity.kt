@@ -68,7 +68,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
         prefListTmp.remove("null")
 
         prefList = ListsV2(this).getList(listTmp)
-        scrollingList = generateDummyList(prefList.size)
+        scrollingList = generateDummyList()
         recyclerAdapter = QuoteRecycler(scrollingList, this@ScrollingActivity)
 
         // Setup toolbar
@@ -154,7 +154,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
         binding.noQuotesText.visibility = visibility
     }
 
-    private fun generateDummyList(max: Int): ArrayList<QuoteItem> {
+    private fun generateDummyList(): ArrayList<QuoteItem> {
 
         val list = ArrayList<QuoteItem>()
         var item: QuoteItem

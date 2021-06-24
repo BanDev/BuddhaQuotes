@@ -59,19 +59,15 @@ class TimerActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Get an instance of settings
         settings = Timer().Settings(this)
 
-        // Set theme, navigation bar and language
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         window.setNavigationBarColourDefault(this)
 
-        // Setup view binding
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = context.backIcon()
@@ -79,7 +75,6 @@ class TimerActivity : LocalizationActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        // On settings click
         with(binding.settings) {
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
@@ -88,30 +83,26 @@ class TimerActivity : LocalizationActivity() {
             }
         }
 
-        // Get the duration (milli seconds) of the timer
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
-        // Work out the other things we now know
         durationTimeInSeconds = durationTimeInMillis * 1000
 
-        // Work out a lovely string version of the maximum time
-        maxTime = Timer().convertToString(
+        maxTime = convertToString(
             durationTimeInMillis / 60,
             durationTimeInMillis % 60,
             this
         )
 
-        // Begin the timer
         startTimer(durationTimeInSeconds)
 
-        // When some geezer presses Pause
         with(binding.pause) {
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.CONFIRM
-                )
-                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
 
                 when {
                     isPaused -> resume()
@@ -137,14 +128,12 @@ class TimerActivity : LocalizationActivity() {
             title("Timer Settings")
             closeIconButton(IconButton(closeDrawable))
 
-            // Vibrate every second?
             with(InputCheckBox {
                 text(R.string.vibrate_second)
                 defaultValue(settings.vibrateSecond)
                 changeListener { settings.vibrateSecond = !settings.vibrateSecond }
             })
 
-            // Show notification?
             with(InputCheckBox {
                 text(R.string.show_notification)
                 defaultValue(settings.showNotificaton)
@@ -158,16 +147,15 @@ class TimerActivity : LocalizationActivity() {
                     }
                 }
             })
-            onNegative {
+            onNegative(R.string.cancel) {
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                // Reset their settings if they cancel the sheet
                 with(settings) {
                     vibrateSecond = vibrateSecondOriginal
                     endSoundID = endSoundOriginal
                     showNotificaton = endNotificationOriginal
                 }
             }
-            onPositive { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+            onPositive(R.string.okay) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
         }
     }
 
@@ -184,14 +172,14 @@ class TimerActivity : LocalizationActivity() {
             title(R.string.meditation_timer)
             closeIconButton(IconButton(closeDrawable))
             format(TimeFormat.MM_SS)
-            onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-            onPositive { durationTimeInMillis: Long ->
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.CONFIRM
-                )
-                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            onNegative(R.string.cancel) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+            onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
 
-                // Change button text & icon
                 with(binding.pause) {
                     text = getString(R.string.pause)
                     setCompoundDrawablesWithIntrinsicBounds(
@@ -199,7 +187,6 @@ class TimerActivity : LocalizationActivity() {
                     )
                 }
 
-                // Restart timer now
                 startTimer(durationTimeInMillis * 1000)
             }
         }
@@ -231,10 +218,8 @@ class TimerActivity : LocalizationActivity() {
             )
         }
 
-        // Stop the timer
         countDownTimer.cancel()
 
-        // Update notification
         if (settings.showNotificaton) {
             notifBuilder.setContentTitle(
                 getString(R.string.meditating_for) + " $maxTime " + getString(
@@ -252,15 +237,12 @@ class TimerActivity : LocalizationActivity() {
         countDownTimer = object : CountDownTimer(timeInSeconds, 1000) {
 
             override fun onFinish() {
-                // Set is running to false
                 isRunning = false
 
-                // Remove the notification
                 if (settings.showNotificaton) {
                     NotificationManagerCompat.from(applicationContext).cancel(0)
                 }
 
-                // Change button text & icon
                 with(binding.pause) {
                     text = getString(R.string.reset)
                     setCompoundDrawablesWithIntrinsicBounds(
@@ -268,43 +250,35 @@ class TimerActivity : LocalizationActivity() {
                     )
                 }
 
-                // Play the gong
                 gong.start()
 
-                // Haptic feedback
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.CONFIRM
-                )
-                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                } else {
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
             }
 
-            // Updates the text of the timer every second
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
                 if (settings.vibrateSecond) {
-                    // Vibrate the phone sorta but its nice
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
                 }
 
-                // Save the time for pause
                 progressTimeInMillis = p0
             }
         }
 
-        // Set isRunning to true
         isRunning = true
 
-        // Start the timer
         countDownTimer.start()
 
-        // Make the notification so the user can leave the app and do something else
         if (settings.showNotificaton) {
             buildNotification(this)
             pushNotification(this)
         }
 
-        // Load the gong
         gong = MediaPlayer.create(applicationContext, R.raw.gong)
     }
 
@@ -346,20 +320,31 @@ class TimerActivity : LocalizationActivity() {
             }
     }
 
-    private fun pushNotification(context: Context) {
-        // Push the notification
-        NotificationManagerCompat.from(context).apply {
-            notify(0, notifBuilder.build())
+    fun convertToString(minutes: Long, seconds: Long, context: Context): String {
+        return if (minutes > 0) {
+            // There is at least a minute
+            if (seconds == 0L) {
+                // There are no seconds e.g. exactly 5 mins
+                "$minutes " + context.getString(R.string.minutes)
+            } else {
+                // There is at least a second
+                "$minutes " + context.getString(R.string.minutes) + " " + context.getString(R.string.and) + " $seconds" + context.getString(
+                    R.string.seconds
+                )
+            }
+        } else {
+            // There is less than a minute
+            "$seconds " + context.getString(R.string.seconds)
         }
     }
 
-    // User has given up, they want to do something else
+    private fun pushNotification(context: Context) {
+        NotificationManagerCompat.from(context).apply { notify(0, notifBuilder.build()) }
+    }
+
     override fun onBackPressed() {
-        // Stop the timer & remove notification
         countDownTimer.cancel()
         NotificationManagerCompat.from(applicationContext).cancel(0)
-
-        // Finish the activity
         super.onBackPressed()
     }
 }

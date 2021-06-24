@@ -50,24 +50,8 @@ class AddQuoteRecycler(
 
     private val addquoteListFull = ArrayList(addquoteList)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = AddQuoteItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
-        return ViewHolder(binding.root)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = addquoteList[position]
-        holder.quote.text = currentItem.quote
-    }
-
-    override fun getItemCount(): Int = addquoteList.size
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class ViewHolder(binding: AddQuoteItemBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
-        val binding: AddQuoteItemBinding = AddQuoteItemBinding.bind(itemView)
         val quote: TextView = binding.quote
 
         init {
@@ -78,6 +62,23 @@ class AddQuoteRecycler(
             listener.onClick(quote.text.toString())
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            AddQuoteItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentItem = addquoteList[position]
+        holder.quote.text = currentItem.quote
+    }
+
+    override fun getItemCount(): Int = addquoteList.size
 
     interface ClickListener {
         fun onClick(quote: String)
@@ -92,9 +93,9 @@ class AddQuoteRecycler(
                 filteredList.addAll(addquoteListFull)
             } else {
                 val filterPattern =
-                    constraint.toString().toLowerCase(Locale.ROOT).trim { it <= ' ' }
+                    constraint.toString().lowercase(Locale.ROOT).trim { it <= ' ' }
                 for (item in addquoteListFull) {
-                    if (item.quote.toLowerCase(Locale.ROOT).contains(filterPattern)) {
+                    if (item.quote.lowercase(Locale.ROOT).contains(filterPattern)) {
                         filteredList.add(item)
                     }
                 }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 
 android {
@@ -58,7 +57,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0-beta02'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'androidx.core:core-ktx:1.6.0-beta02'
+    implementation 'androidx.core:core-ktx:1.6.0-rc01'
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01'
@@ -87,7 +86,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Material Drawer - https://github.com/mikepenz/MaterialDrawer
-    def drawer_version = "8.4.0"
+    def drawer_version = "8.4.1"
     implementation "com.mikepenz:materialdrawer:$drawer_version"
     implementation "com.mikepenz:materialdrawer-iconics:$drawer_version"
 
@@ -107,6 +106,7 @@ dependencies {
     implementation "com.maxkeppeler.sheets:options:$sheets_version"
     implementation "com.maxkeppeler.sheets:time:$sheets_version"
 
+    // Localization - https://github.com/akexorcist/Localization
     implementation 'com.akexorcist:localization:1.2.10'
 
     // [Testing] Basic

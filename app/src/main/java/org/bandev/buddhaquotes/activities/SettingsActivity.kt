@@ -279,8 +279,8 @@ class SettingsActivity : LocalizationActivity() {
                         style(SheetStyle.DIALOG)
                         defaultView(ColorView.TEMPLATE)
                         disableSwitchColorView()
-                        onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                        onPositive { color ->
+                        onNegative(R.string.cancel) { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+                        onPositive(R.string.okay) { color ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) requireView().performHapticFeedback(
                                 HapticFeedbackConstants.CONFIRM
                             )
