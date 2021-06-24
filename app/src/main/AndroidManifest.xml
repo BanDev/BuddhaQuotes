@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.bandev.buddhaquotes">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:allowBackup="true"
-        android:fullBackupContent="@xml/backup_descriptor"
+        android:allowBackup="false"
+        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -49,7 +50,6 @@
             android:name=".activities.AboutActivity"
             android:label="@string/about"
             android:theme="@style/About" />
-        <activity android:name=".activities.MigrateActivity" />
         <activity
             android:name=".activities.TimerActivity"
             android:theme="@style/Settings" />

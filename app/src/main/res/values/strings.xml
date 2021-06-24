@@ -14,10 +14,8 @@
     <string name="light_mode" id="7">Light</string>
     <string name="dark_mode" id="8">Dark</string>
     <string name="follow_system_default" id="9">Follow system</string>
-    <string name="information" id="14">Information</string>
     <string name="about" id="15">About</string>
     <string name="about_app">About Buddha Quotes</string>
-    <string name="view_app_details" id="16">View app details</string>
     <string name="intro" id="17">Intro</string>
     <string name="app_introduction" id="18">App introduction</string>
     <string name="app_license" id="19">App License</string>
@@ -45,8 +43,6 @@
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
     <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
     <string name="tick" id="31">Tick</string>
-
-    <!-- Slides was here (32-54) removed in v1.5.1 -->
 
     <!-- Favourited Quote page -->
     <string name="favourited_quote" id="55">Favourited Quote</string>

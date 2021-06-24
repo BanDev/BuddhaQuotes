@@ -62,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
                 else -> MODE_NIGHT_FOLLOW_SYSTEM
             }
         )
-        startActivity(Intent(this, MigrateActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
