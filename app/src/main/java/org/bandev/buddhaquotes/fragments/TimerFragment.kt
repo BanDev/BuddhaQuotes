@@ -63,7 +63,6 @@ class TimerFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         _binding = FragmentTimerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -84,12 +83,17 @@ class TimerFragment : Fragment() {
                 closeIconButton(IconButton(closeDrawable))
                 format(TimeFormat.MM_SS)
                 minTime(1)
-                onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-                onPositive { durationTimeInMillis: Long ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                        HapticFeedbackConstants.CONFIRM
+                onNegative(R.string.cancel) {
+                    binding.root.performHapticFeedback(
+                        HapticFeedbackConstants.VIRTUAL_KEY
                     )
-                    else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+                onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    } else {
+                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    }
 
                     startActivity(
                         Intent(context, TimerActivity::class.java).putExtra(

@@ -58,8 +58,6 @@ class AboutActivity : LocalizationActivity() {
         }
 
         binding.tabLayout.setBackgroundColor(toolbarColour(this))
-
-        // Set up the ViewPager with the sections adapter
         binding.viewPager.adapter = AboutStateAdapter(this)
         TabLayoutMediator(
             binding.tabLayout,

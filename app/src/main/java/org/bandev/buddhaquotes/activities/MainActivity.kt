@@ -78,16 +78,13 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set navigation bar
         window.setNavigationBarColourMain(this)
 
-        // Setup view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         fitSystemBars(binding.root, window, this)
 
-        // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = context.hamburgerMenuIcon()
@@ -101,7 +98,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
             setCurrentItem(0, false)
         }
 
-        // Setup bottomBar with the viewpager
         binding.bottomBar.setupWithViewPager2(binding.viewPager)
 
         actionBarDrawerToggle = ActionBarDrawerToggle(
@@ -180,61 +176,55 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-                showCreateListSheet()
+                val lists = ListsV2(this).getMasterList()
+                val closeDrawable = IconicsDrawable(
+                    this,
+                    RoundedGoogleMaterial.Icon.gmr_expand_more
+                ).apply {
+                    sizeDp = 24
+                    paddingDp = 6
+                }
+
+                InputSheet().show(this) {
+                    title(R.string.createNewList)
+                    closeIconButton(IconButton(closeDrawable))
+                    with(
+                        InputEditText {
+                            required()
+                            hint(R.string.insertName)
+                            validationListener { value ->
+                                when {
+                                    value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
+                                    value.lowercase(Locale.ROOT) == getString(R.string.favourites).lowercase(
+                                        Locale.ROOT
+                                    ) -> Validation.failed(getString(R.string.validationRule2))
+                                    lists.contains(value.lowercase(Locale.ROOT)) -> Validation.failed(
+                                        getString(R.string.validationRule3) + " $value"
+                                    )
+                                    else -> Validation.success()
+                                }
+                            }
+                            resultListener { value ->
+                                EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
+                            }
+                        }
+                    )
+                    onNegative(R.string.cancel) {
+                        binding.root.performHapticFeedback(
+                            HapticFeedbackConstants.VIRTUAL_KEY
+                        )
+                    }
+                    onPositive(R.string.add) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                        } else {
+                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        }
+                    }
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    /**
-     * On options menu item selected
-     * @return [Boolean]
-     */
-
-    // Build the input bottom sheet that allows creation of a new list
-    private fun showCreateListSheet() {
-        // Retrieve the lists
-        val lists = ListsV2(this).getMasterList()
-        val closeDrawable = IconicsDrawable(
-            this,
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
-
-        InputSheet().show(this) {
-            title(R.string.createNewList)
-            closeIconButton(IconButton(closeDrawable))
-            with(
-                InputEditText {
-                    required()
-                    hint(R.string.insertName)
-                    validationListener { value ->
-                        when {
-                            value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
-                            value.toLowerCase(Locale.ROOT) == "favourites" -> Validation.failed(
-                                getString(R.string.validationRule2)
-                            )
-                            lists.contains(value.toLowerCase(Locale.ROOT)) -> Validation.failed(
-                                getString(R.string.validationRule3) + " $value"
-                            )
-                            else -> Validation.success()
-                        }
-                    }
-                    resultListener { value ->
-                        EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
-                    }
-                }
-            )
-            onNegative { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-            onPositive(R.string.add) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) binding.root.performHapticFeedback(
-                    HapticFeedbackConstants.CONFIRM
-                )
-                else binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            }
         }
     }
 
@@ -242,9 +232,7 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun setCustomInsets(insets: WindowInsetsCompat) {
         val bottomInsets: Int
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // Get the insets for the system bars
             val ins = insets.getInsets(WindowInsets.Type.systemBars())
-            // Set the padding for the bottom sheet to the navigation bar height
             with(binding) {
                 toolbar.updatePadding(top = ins.top)
                 bottomBar.updatePadding(bottom = ins.bottom)

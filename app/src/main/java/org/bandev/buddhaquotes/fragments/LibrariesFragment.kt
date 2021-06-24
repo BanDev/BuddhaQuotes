@@ -51,9 +51,7 @@ class LibrariesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding.librariesRecycler) {
             layoutManager = LinearLayoutManager(context)
-            adapter = LibraryAdapter(
-                Libs(context).libraries
-            )
+            adapter = LibraryAdapter(Libs(context).libraries)
         }
     }
 
