@@ -24,28 +24,18 @@
         android:layout_height="60dp"
         android:layout_centerInParent="true"
         android:gravity="center"
+        android:visibility="gone"
         android:text="@string/empty_list"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="24sp" />
 
-    <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
-        android:id="@+id/fastscroller"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/quotes_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        app:handleDrawable="@drawable/handle_drawable"
-        app:handleVisibilityDuration="1"
-        app:handleWidth="14dp"
-        app:handleHeight="36dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/quotes_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:padding="10dp"
-            tools:listitem="@layout/card_quote_fragment" />
-
-    </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
+        android:layout_below="@+id/toolbar"
+        android:clipToPadding="false"
+        android:padding="10dp"
+        tools:listitem="@layout/card_quote_fragment" />
 
 </RelativeLayout>

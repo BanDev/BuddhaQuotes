@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -5,8 +6,8 @@
     android:focusable="true"
     android:background="?attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/quote"
+    <com.maxkeppeler.sheets.core.views.SheetsContent
+        android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -16,15 +17,12 @@
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/appwidget_text"
         android:text="@string/appwidget_text"
-        android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp" />
 
-    <View
+    <com.maxkeppeler.sheets.core.views.SheetsDivider
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:layout_below="@+id/quote"
-        android:background="@color/line" />
+        android:layout_below="@+id/text_view" />
 
 </RelativeLayout>
-

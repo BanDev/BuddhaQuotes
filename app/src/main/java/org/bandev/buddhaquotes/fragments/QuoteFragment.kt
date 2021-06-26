@@ -105,6 +105,7 @@ class QuoteFragment : Fragment() {
 
         // Shows the options bottom sheet
         binding.more.setOnClickListener {
+            binding.more.isEnabled = false
             val shareDrawable =
                 IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share)
             val addCircleDrawable =
@@ -137,6 +138,7 @@ class QuoteFragment : Fragment() {
                         startActivity(Intent.createChooser(sendIntent, null))
                     } else showSecondBottomSheet()
                 }
+                onClose { binding.more.isEnabled = true }
             }
         }
 

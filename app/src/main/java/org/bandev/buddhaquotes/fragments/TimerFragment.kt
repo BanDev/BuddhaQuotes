@@ -68,8 +68,9 @@ class TimerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         binding.button.setOnClickListener {
+            binding.button.isEnabled = false
+            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             val closeDrawable = IconicsDrawable(
                 requireContext(),
                 RoundedGoogleMaterial.Icon.gmr_expand_more
@@ -77,16 +78,13 @@ class TimerFragment : Fragment() {
                 sizeDp = 24
                 paddingDp = 6
             }
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             TimeSheet().show(requireContext()) {
                 title(R.string.meditation_timer)
                 closeIconButton(IconButton(closeDrawable))
                 format(TimeFormat.MM_SS)
                 minTime(1)
                 onNegative(R.string.cancel) {
-                    binding.root.performHapticFeedback(
-                        HapticFeedbackConstants.VIRTUAL_KEY
-                    )
+                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 }
                 onPositive(R.string.okay) { durationTimeInMillis: Long ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -94,7 +92,6 @@ class TimerFragment : Fragment() {
                     } else {
                         binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                     }
-
                     startActivity(
                         Intent(context, TimerActivity::class.java).putExtra(
                             "durationTimeInMillis",
@@ -102,6 +99,7 @@ class TimerFragment : Fragment() {
                         )
                     )
                 }
+                onClose { binding.button.isEnabled = true }
             }
         }
     }

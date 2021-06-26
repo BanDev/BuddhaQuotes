@@ -22,6 +22,7 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
@@ -29,6 +30,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.maxkeppeler.sheets.core.IconButton
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
+import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.core.*
@@ -48,6 +54,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
     private lateinit var scrollingList: ArrayList<QuoteItem>
     private lateinit var recyclerAdapter: QuoteRecycler
     private lateinit var prefList: List<Int>
+    private var toolbarMenu: Menu? = null
     private var listTmp: String = ""
 
 
@@ -92,21 +99,35 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_menu, menu)
+        toolbarMenu = menu
         menu?.findItem(R.id.add)?.icon = this.addIcon()
-        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add -> {
-//                startActivity(Intent(this, AddToListActivity::class.java).putExtra("list", listTmp))
-//                finish()
-//                overridePendingTransition(
-//                    R.anim.anim_slide_in_left,
-//                    R.anim.anim_slide_out_left
-//                )
+                toolbarMenu?.findItem(R.id.add)?.isEnabled = false
+                val closeDrawable = IconicsDrawable(
+                    this,
+                    RoundedGoogleMaterial.Icon.gmr_expand_more
+                ).apply {
+                    sizeDp = 24
+                    paddingDp = 6
+                }
                 AddQuoteSheet().show(this) {
-
+                    title(R.string.addToList)
+                    closeIconButton(IconButton(closeDrawable))
+                    onPositive {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                        } else {
+                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        }
+                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+                    }
+                    onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+                    onDismiss { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                 }
                 true
             }
