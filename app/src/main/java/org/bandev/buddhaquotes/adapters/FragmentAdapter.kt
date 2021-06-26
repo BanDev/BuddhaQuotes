@@ -18,12 +18,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package org.bandev.buddhaquotes.fragments
+package org.bandev.buddhaquotes.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import org.bandev.buddhaquotes.fragments.ListsFragment
+import org.bandev.buddhaquotes.fragments.QuoteFragment
+import org.bandev.buddhaquotes.fragments.TimerFragment
 
 /**
  * Fragment adapter for MainActivity

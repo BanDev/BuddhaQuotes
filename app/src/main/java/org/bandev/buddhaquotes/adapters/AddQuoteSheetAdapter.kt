@@ -37,8 +37,6 @@ class AddQuoteSheetAdapter(
 ) :
     RecyclerView.Adapter<AddQuoteSheetAdapter.ViewHolder>() {
 
-    private val quotes = Quotes()
-
     class ViewHolder(binding: AddQuoteSheetItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val textView: TextView = binding.textView
         val root: RelativeLayout = binding.root
@@ -56,7 +54,7 @@ class AddQuoteSheetAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         with(viewHolder) {
-            textView.text = quotes.getQuote(list[position].resource, ctx)
+            textView.text = ctx.getText(list[position].resource)
             root.setOnClickListener { onClick(position) }
         }
     }
