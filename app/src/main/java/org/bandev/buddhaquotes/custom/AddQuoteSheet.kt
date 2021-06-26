@@ -9,8 +9,9 @@ import androidx.annotation.StringRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.AddQuoteSheetAdapter
-import org.bandev.buddhaquotes.database.Database
+import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetBinding
+import org.bandev.buddhaquotes.items.Quote
 
 private typealias PositiveListener = () -> Unit
 
@@ -18,6 +19,7 @@ private typealias PositiveListener = () -> Unit
 class AddQuoteSheet : Sheet() {
 
     private lateinit var binding: AddQuoteSheetBinding
+    private lateinit var quotes: List<Quote>
 
     fun onPositive(positiveListener: PositiveListener) {
         this.positiveListener = positiveListener
@@ -38,16 +40,15 @@ class AddQuoteSheet : Sheet() {
             .also { binding = it }.root
     }
 
+    fun with(list: List<Quote>) {
+        quotes = list
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         displayButtonsView(false)
 
-        val addQuoteSheetAdapter = AddQuoteSheetAdapter(requireContext()) { position ->
-            Toast.makeText(
-                context,
-                Database(requireContext()).getQuote(position + 1).quote,
-                Toast.LENGTH_SHORT
-            ).show()
+        val addQuoteSheetAdapter = AddQuoteSheetAdapter(requireContext(), quotes) { position ->
             dismiss()
         }
 
