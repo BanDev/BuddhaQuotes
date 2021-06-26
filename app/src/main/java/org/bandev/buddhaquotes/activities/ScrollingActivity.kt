@@ -133,10 +133,8 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
                             } else {
                                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             }
-                            toolbarMenu?.findItem(R.id.add)?.isEnabled = true
                         }
                         onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
-                        onDismiss { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                     }
                 }
                 true

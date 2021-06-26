@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.core
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
@@ -30,6 +31,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -42,6 +44,7 @@ import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.items.Quote
 
 /**
  * Sets navigation bar colour based off android version
@@ -214,3 +217,15 @@ fun Context.addIcon(): IconicsDrawable =
         colorInt = Color.WHITE
         sizeDp = 16
     }
+
+fun Context.shareQuote(quote: Quote) {
+    val sendIntent: Intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(
+            Intent.EXTRA_TEXT,
+            getString(quote.resource) + "\n\n" + getString(R.string.attribution_buddha)
+        )
+        type = "text/plain"
+    }
+    startActivity(Intent.createChooser(sendIntent, null))
+}
