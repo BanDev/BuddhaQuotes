@@ -41,7 +41,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-import org.bandev.buddhaquotes.fragments.FragmentAdapter
+import org.bandev.buddhaquotes.adapters.FragmentAdapter
 
 /**
  * Main is the main page of Buddha Quotes

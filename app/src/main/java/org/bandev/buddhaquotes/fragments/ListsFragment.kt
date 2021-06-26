@@ -43,7 +43,6 @@ import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import kotlin.collections.ArrayList
 

@@ -36,9 +36,6 @@ import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
