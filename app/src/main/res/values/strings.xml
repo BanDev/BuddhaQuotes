@@ -31,8 +31,7 @@
     <string name="about_offline_app" id="24">Offline app</string>
     <string name="about_free_and_open_source" id="25">Free and Open Source</string>
     <string name="about_info" id="26">App Info</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
-</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy</string>
     <string name="about_contributors" id="28">Contributors</string>
     <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
     <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
@@ -534,7 +533,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <string name="quote_number">Quote</string>
+    <string name="quote_number">Quote #%d</string>
 
     <string name="fragment_quote">Quote</string>
     <string name="fragment_lists">Lists</string>

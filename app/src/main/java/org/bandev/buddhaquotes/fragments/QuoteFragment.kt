@@ -20,28 +20,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
-import com.maxkeppeler.sheets.core.IconButton
+import androidx.lifecycle.ViewModelProvider
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
+import org.bandev.buddhaquotes.items.Quote
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -49,40 +43,22 @@ import org.greenrobot.eventbus.ThreadMode
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
  * It is the first item in the [FragmentAdapter] on MainActivity
- * @author jack.txt
- * @since 1.7.0
- * @updated 09/12/2020
  */
 
 class QuoteFragment : Fragment() {
 
-    private var _binding: FragmentQuoteBinding? = null
-    internal val binding get() = _binding!!
-    private var quotes = Quotes()
-    private lateinit var lists: ListsV2
-    private var liked = false
-    private var options = mutableListOf<Option>()
-    private var optionStr = mutableListOf<String>()
-
-    /**
-     * Sets the correct view of the Fragment
-     * @param inflater [LayoutInflater]
-     * @param container [ViewGroup]
-     * @param savedInstanceState [Bundle]
-     * @return [View]
-     */
+    private lateinit var binding: FragmentQuoteBinding
+    private lateinit var model: QuoteViewModel
+    private lateinit var icons: Icons
+    private lateinit var quote: Quote
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentQuoteBinding.inflate(inflater, container, false)
+        binding = FragmentQuoteBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: SendEvent) {
     }
 
     /**
@@ -92,231 +68,145 @@ class QuoteFragment : Fragment() {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        lists = ListsV2(requireContext())
-        newQuote(0)
+        // Attach to viewmodel
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(requireActivity().application)
+            .create(QuoteViewModel::class.java)
+
+        // Get icons class
+        icons = Icons(requireContext())
+
+        // On refresh get a new quote
         binding.swipeRefresh.setOnRefreshListener {
-            newQuote(0); binding.swipeRefresh.isRefreshing = false
+            randomQuote()
+            binding.swipeRefresh.isRefreshing = false
         }
 
+        // On content liked
         binding.like.setOnClickListener {
-            toggleFavouriteQuote()
-            EventBus.getDefault().post(SendEvent.ToListFragment(true))
+            onLikeClicked()
         }
 
-        // Shows the options bottom sheet
-        binding.more.setOnClickListener {
-            binding.more.isEnabled = false
-            val shareDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_share)
-            val addCircleDrawable =
-                IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
-            val closeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_expand_more
-            ).apply {
-                sizeDp = 24
-                paddingDp = 6
-            }
-            OptionsSheet().show(requireContext()) {
-                displayMode(DisplayMode.LIST)
-                title(R.string.more)
-                closeIconButton(IconButton(closeDrawable))
-                with(
-                    Option(shareDrawable, R.string.share),
-                    Option(addCircleDrawable, R.string.addToList)
-                )
-                onPositive { index: Int, _: Option ->
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    if (index == 0) {
-                        val sendIntent: Intent = Intent().apply {
-                            action = Intent.ACTION_SEND
-                            val text =
-                                binding.quote.text.toString() + "\n\n" + getString(R.string.attribution_buddha)
-                            putExtra(Intent.EXTRA_TEXT, text)
-                            type = "text/plain"
-                        }
-                        startActivity(Intent.createChooser(sendIntent, null))
-                    } else showSecondBottomSheet()
-                }
-                onClose { binding.more.isEnabled = true }
-            }
-        }
+        // When more is pressed
+        binding.more.setOnClickListener { showOptionsSheet() }
 
-        // Favourites the quote on double click
+        // When screen double tapped
         binding.content.setOnClickListener(object : DoubleClickListener() {
             override fun onSingleClick(view: View?) {}
             override fun onDoubleClick(view: View?) {
-                val quote = binding.quote.text.toString()
-                if (!lists.queryInList(
-                        quotes.getFromString(quote, requireContext()),
-                        "Favourites"
-                    )
-                ) {
-                    doubleClickFavouriteQuote()
-                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
-                }
+                if (!quote.liked) onLikeClicked()
             }
         })
+
+        // Start with a quote
+        randomQuote()
+    }
+
+    private fun randomQuote() {
+        model.getRandom {
+            quote = it
+            binding.number.text = getString(R.string.quote_number, quote.id)
+            binding.quote.text = getString(quote.resource)
+            binding.like.setImageDrawable(icons.heart(quote.liked))
+        }
+    }
+
+    internal fun onLikeClicked() {
+        quote.liked = !quote.liked
+        binding.like.setImageDrawable(icons.heart(quote.liked))
+        if (quote.liked) binding.likeAnimator.likeAnimation()
+        model.setLike(quote.id, quote.liked)
+    }
+
+    private fun showOptionsSheet() {
+        binding.more.isEnabled = false
+        OptionsSheet().show(requireContext()) {
+            displayMode(DisplayMode.LIST)
+            title(R.string.more)
+            closeIconButton(icons.closeSheet())
+            with(
+                Option(icons.share(), R.string.share),
+                Option(icons.addCircle(), R.string.addToList)
+            )
+            onPositive { index: Int, _: Option ->
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                if (index == 0) context?.shareQuote(quote)
+                else showSecondBottomSheet()
+            }
+            onClose { binding.more.isEnabled = true }
+        }
     }
 
     private fun showSecondBottomSheet() {
-        val closeDrawable = IconicsDrawable(
-            requireContext(),
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
-        updateOptionsList()
-        OptionsSheet().show(requireContext()) {
-            displayMode(DisplayMode.LIST)
-            title(R.string.addToList)
-            closeIconButton(IconButton(closeDrawable))
-            with(options)
-            onPositive { index: Int, _: Option ->
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
-                val lists2 = ListsV2(requireContext())
-                val quoteID = Quotes().getFromString(quote, requireContext())
-                if (!lists2.queryInList(quoteID, optionStr[index])) {
-                    lists2.addToList(quoteID, optionStr[index])
-                    val outName =
-                        if (optionStr[index] == "Favourites") getString(R.string.favourites)
-                        else optionStr[index]
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.added) + " " + outName,
-                        Snackbar.LENGTH_LONG
-                    )
-                        .show()
-                    if (optionStr[index] == "Favourites") {
-                        binding.like.setImageDrawable(
-                            IconicsDrawable(
-                                requireContext(),
-                                RoundedGoogleMaterial.Icon.gmr_favorite
-                            ).apply {
-                                colorInt = getColor(requireContext(), R.color.heart)
-                                sizeDp = 24
-                            })
-                    }
-                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
-                } else Snackbar.make(
-                    binding.root,
-                    getString(R.string.exists) + " " + optionStr[index],
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
-    }
-
-    /**
-     * Refreshes the quote on screen
-     */
-    private fun newQuote(quoteID: Int) {
-        val quote = quotes.getQuote(quoteID, requireContext())
-        binding.quote.text = quote
-        binding.number.text = "${getString(R.string.quote_number)} #${quotes.quoteIdGlobal}"
-        Store(requireContext()).quoteID = quotes.quoteIdGlobal
-
-        if (ListsV2(requireContext()).queryInList(quotes.quoteIdGlobal, "Favourites")) {
-            liked = true
-            binding.like.setImageDrawable(
-                IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_favorite
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.heart)
-                    sizeDp = 24
-                })
-        } else {
-            liked = false
-            binding.like.setImageDrawable(
-                IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_favorite_outline
-                ).apply {
-                    colorInt = requireContext().resolveColorAttr(android.R.attr.textColorPrimary)
-                    sizeDp = 24
-                })
-        }
-    }
-
-    /**
-     * Adds the quote to "Favourites" list using [Lists.toggleInList]
-     */
-
-    private fun toggleFavouriteQuote() {
-        val quote = binding.quote.text.toString()
-        if (lists.toggleInList(quotes.getFromString(quote, requireContext()), "Favourites")) {
-            binding.like.setImageDrawable(
-                IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_favorite
-                ).apply {
-                    colorInt = getColor(requireContext(), R.color.heart)
-                    sizeDp = 24
-                }
-            )
-            binding.likeAnimator.likeAnimation()
-        } else binding.like.setImageDrawable(
-            IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_favorite_outline
-            ).apply {
-                colorInt = requireContext().resolveColorAttr(android.R.attr.textColorPrimary)
-                sizeDp = 24
-            }
-        )
-    }
-
-    /**
-     * Adds the quote to favourites through double clicking using [Lists.queryInList] and [Lists.addToList]
-     */
-
-    internal fun doubleClickFavouriteQuote() {
-        val quote = binding.quote.text.toString()
-        lists.addToList(
-            quotes.getFromString(quote, requireContext()),
-            "Favourites"
-        )
-        binding.like.setImageDrawable(
-            IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_favorite
-            ).apply {
-                colorInt = getColor(requireContext(), R.color.heart)
-                sizeDp = 24
-            }
-        )
-        binding.likeAnimator.likeAnimation()
+//        val closeDrawable = IconicsDrawable(
+//            requireContext(),
+//            RoundedGoogleMaterial.Icon.gmr_expand_more
+//        ).apply {
+//            sizeDp = 24
+//            paddingDp = 6
+//        }
+//        updateOptionsList()
+//        OptionsSheet().show(requireContext()) {
+//            displayMode(DisplayMode.LIST)
+//            title(R.string.addToList)
+//            closeIconButton(IconButton(closeDrawable))
+//            with(options)
+//            onPositive { index: Int, _: Option ->
+//                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+//                val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
+//                val lists2 = ListsV2(requireContext())
+//                val quoteID = Quotes().getFromString(quote, requireContext())
+//                if (!lists2.queryInList(quoteID, optionStr[index])) {
+//                    lists2.addToList(quoteID, optionStr[index])
+//                    val outName =
+//                        if (optionStr[index] == "Favourites") getString(R.string.favourites)
+//                        else optionStr[index]
+//                    Snackbar.make(
+//                        binding.root,
+//                        getString(R.string.added) + " " + outName,
+//                        Snackbar.LENGTH_LONG
+//                    )
+//                        .show()
+//                    if (optionStr[index] == "Favourites") {
+//                        binding.like.setImageDrawable(
+//                            IconicsDrawable(
+//                                requireContext(),
+//                                RoundedGoogleMaterial.Icon.gmr_favorite
+//                            ).apply {
+//                                colorInt = getColor(requireContext(), R.color.heart)
+//                                sizeDp = 24
+//                            })
+//                    }
+//                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
+//                } else Snackbar.make(
+//                    binding.root,
+//                    getString(R.string.exists) + " " + optionStr[index],
+//                    Snackbar.LENGTH_LONG
+//                ).show()
+//            }
+//        }
     }
 
     private fun updateOptionsList() {
-        val heartDrawable =
-            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_favorite_outline)
-        val listDrawable =
-            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_format_list_bulleted)
-        options.clear()
-        optionStr.clear()
-        val listName: MutableList<String> = mutableListOf()
-
-        for (list in lists.getMasterList()) {
-            val drawable = if (list == "Favourites") heartDrawable else listDrawable
-            val outName = if (list == "Favourites") getString(R.string.favourites) else list
-
-            listName.add(outName)
-            options.add(Option(drawable, outName))
-            optionStr.add(list)
-        }
+//        val heartDrawable =
+//            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_favorite_outline)
+//        val listDrawable =
+//            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_format_list_bulleted)
+//        options.clear()
+//        optionStr.clear()
+//        val listName: MutableList<String> = mutableListOf()
+//
+//        for (list in lists.getMasterList()) {
+//            val drawable = if (list == "Favourites") heartDrawable else listDrawable
+//            val outName = if (list == "Favourites") getString(R.string.favourites) else list
+//
+//            listName.add(outName)
+//            options.add(Option(drawable, outName))
+//            optionStr.add(list)
+//        }
     }
 
     companion object {
-
-        /**
-         * Called on new instance request
-         * @param position [Int]
-         * @return [QuoteFragment]
-         */
 
         fun newInstance(position: Int): QuoteFragment {
             val instance = QuoteFragment()
@@ -328,18 +218,7 @@ class QuoteFragment : Fragment() {
     }
 
     override fun onResume() {
-        // Set the colour of the swipe to refresh icon to the accent colour when the user returns to the Main Activity
         super.onResume()
         binding.swipeRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 }
