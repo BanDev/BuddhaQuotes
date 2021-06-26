@@ -23,22 +23,13 @@ package org.bandev.buddhaquotes.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
-import android.view.MenuItem
 import android.view.WindowInsets
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.maxkeppeler.sheets.core.IconButton
-import com.maxkeppeler.sheets.input.InputSheet
-import com.maxkeppeler.sheets.input.Validation
-import com.maxkeppeler.sheets.input.type.InputEditText
-import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
@@ -52,8 +43,6 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -71,17 +60,11 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     private lateinit var headerView: AccountHeaderView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
-    /**
-     * On activity created
-     *
-     * @param savedInstanceState [Bundle]
-     */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val database = Database(this)
-        val qt = database.getQuote(7)
+        val qt = database.getQuote((1..237).random())
         Toast.makeText(this, qt.quote, Toast.LENGTH_SHORT).show()
 
         window.setNavigationBarColourMain(this)
@@ -171,69 +154,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         }
     }
 
-    @Subscribe
-    fun onNotifyReceive(event: Notify) {
-    }
-
-    @Subscribe
-    fun onNotifyReceive(event: SendEvent.ToListFragment) {
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.add -> {
-                val lists = ListsV2(this).getMasterList()
-                val closeDrawable = IconicsDrawable(
-                    this,
-                    RoundedGoogleMaterial.Icon.gmr_expand_more
-                ).apply {
-                    sizeDp = 24
-                    paddingDp = 6
-                }
-
-                InputSheet().show(this) {
-                    title(R.string.createNewList)
-                    closeIconButton(IconButton(closeDrawable))
-                    with(
-                        InputEditText {
-                            required()
-                            hint(R.string.insertName)
-                            validationListener { value ->
-                                when {
-                                    value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
-                                    value.lowercase(Locale.ROOT) == getString(R.string.favourites).lowercase(
-                                        Locale.ROOT
-                                    ) -> Validation.failed(getString(R.string.validationRule2))
-                                    lists.contains(value.lowercase(Locale.ROOT)) -> Validation.failed(
-                                        getString(R.string.validationRule3) + " $value"
-                                    )
-                                    else -> Validation.success()
-                                }
-                            }
-                            resultListener { value ->
-                                EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
-                            }
-                        }
-                    )
-                    onNegative(R.string.cancel) {
-                        binding.root.performHapticFeedback(
-                            HapticFeedbackConstants.VIRTUAL_KEY
-                        )
-                    }
-                    onPositive(R.string.add) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                        } else {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                        }
-                    }
-                }
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     @Suppress("DEPRECATION")
     override fun setCustomInsets(insets: WindowInsetsCompat) {
         val bottomInsets: Int
@@ -265,16 +185,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
             tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
             indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 
     override fun onBackPressed() {

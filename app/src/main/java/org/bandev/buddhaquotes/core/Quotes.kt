@@ -22,15 +22,9 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import org.bandev.buddhaquotes.R
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 /**
  * Quotes manages all of our quotes
- *
- * @author jack.txt & Fennec_exe &
- * @since v1.2.0
- * @updated 18/03/2020
  */
 
 class Quotes {
@@ -47,7 +41,7 @@ class Quotes {
      * @return the quote (String)
      */
     fun getQuote(id: Int, context: Context): String {
-        quoteIdGlobal = if (id in allQuoteIds) id else Random.nextInt(allQuoteIds)
+        quoteIdGlobal = if (id in allQuoteIds) id else (allQuoteIds).random()
 
         val quoteResource = when (quoteIdGlobal) {
             1 -> R.string.quote_1
