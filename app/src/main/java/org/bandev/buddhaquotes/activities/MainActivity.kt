@@ -28,6 +28,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
 import com.mikepenz.materialdrawer.holder.ImageHolder
@@ -37,12 +38,10 @@ import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import com.mikepenz.materialdrawer.util.addStickyDrawerItems
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.database.Database
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 
 /**
  * Main is the main page of Buddha Quotes
@@ -59,18 +58,21 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     private lateinit var binding: ActivityMainBinding
     private lateinit var headerView: AccountHeaderView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var model: QuoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val database = Database(this)
-        val qt = database.getQuote((1..237).random())
-        Toast.makeText(this, qt.quote, Toast.LENGTH_SHORT).show()
-
         window.setNavigationBarColourMain(this)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        model = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            .create(QuoteViewModel::class.java)
+
+        model.get(58) {
+            Toast.makeText(this, it.id.toString(), Toast.LENGTH_SHORT).show()
+        }
 
         fitSystemBars(binding.root, window, this)
 

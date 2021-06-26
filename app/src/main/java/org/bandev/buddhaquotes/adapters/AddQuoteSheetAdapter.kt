@@ -26,12 +26,18 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.database.Database
+import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetItemBinding
+import org.bandev.buddhaquotes.items.Quote
 
-class AddQuoteSheetAdapter(private val ctx: Context, val onClick: (Int) -> Unit) :
+class AddQuoteSheetAdapter(
+    private val ctx: Context,
+    private val list: List<Quote>,
+    private val onClick: (Int) -> Unit
+) :
     RecyclerView.Adapter<AddQuoteSheetAdapter.ViewHolder>() {
 
+    private val quotes = Quotes()
 
     class ViewHolder(binding: AddQuoteSheetItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val textView: TextView = binding.textView
@@ -49,13 +55,11 @@ class AddQuoteSheetAdapter(private val ctx: Context, val onClick: (Int) -> Unit)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val database = Database(ctx)
-        val qt = database.getQuote(position + 1)
         with(viewHolder) {
-            textView.text = qt.quote
+            textView.text = quotes.getQuote(list[position].resource, ctx)
             root.setOnClickListener { onClick(position) }
         }
     }
 
-    override fun getItemCount(): Int = 237
+    override fun getItemCount(): Int = list.size
 }

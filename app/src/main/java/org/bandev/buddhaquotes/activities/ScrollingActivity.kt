@@ -28,6 +28,7 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
@@ -37,9 +38,11 @@ import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
+import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
+import org.bandev.buddhaquotes.items.Quote
 import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
 import kotlin.collections.ArrayList
@@ -56,6 +59,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
     private lateinit var prefList: List<Int>
     private var toolbarMenu: Menu? = null
     private var listTmp: String = ""
+    private lateinit var model: QuoteViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +71,9 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
         // Setup view binding
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        model = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            .create(QuoteViewModel::class.java)
 
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
@@ -115,19 +122,22 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
                     sizeDp = 24
                     paddingDp = 6
                 }
-                AddQuoteSheet().show(this) {
-                    title(R.string.addToList)
-                    closeIconButton(IconButton(closeDrawable))
-                    onPositive {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                        } else {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                model.getAll { quotes ->
+                    AddQuoteSheet().show(this) {
+                        title(R.string.addToList)
+                        with(quotes)
+                        closeIconButton(IconButton(closeDrawable))
+                        onPositive {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                            } else {
+                                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            }
+                            toolbarMenu?.findItem(R.id.add)?.isEnabled = true
                         }
-                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+                        onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+                        onDismiss { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                     }
-                    onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
-                    onDismiss { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                 }
                 true
             }
