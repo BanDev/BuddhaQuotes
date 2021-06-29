@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginTop="15dp"
-            android:translationZ="20dp"
+            android:translationZ="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,9 +65,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
             android:layout_marginTop="20dp"
-            android:translationZ="20dp"
+            android:layout_marginEnd="25dp"
+            android:translationZ="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
                     android:src="@drawable/nav_home"
-                    app:tint="?android:textColorSecondary"/>
+                    app:tint="?android:textColorSecondary" />
 
                 <ImageButton
                     android:id="@+id/more"

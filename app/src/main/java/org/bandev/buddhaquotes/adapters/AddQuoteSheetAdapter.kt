@@ -61,4 +61,5 @@ class AddQuoteSheetAdapter(
     }
 
     override fun getItemCount(): Int = list.size
+
 }

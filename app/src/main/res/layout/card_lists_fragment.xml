@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
     android:layout_margin="10dp"
-    app:cardCornerRadius="11dp"
-    android:focusable="true">
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:translationZ="15dp"
+    app:cardCornerRadius="11dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,12 +30,12 @@
             android:id="@+id/summary_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/title_text"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
             android:text="@string/summary"
             android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp"
-            android:layout_below="@+id/title_text" />
+            android:textSize="14sp" />
 
         <com.mikepenz.iconics.view.IconicsImageView
             android:id="@+id/bin_icon_button"

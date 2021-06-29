@@ -23,10 +23,11 @@ package org.bandev.buddhaquotes.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
-import org.bandev.buddhaquotes.fragments.ListsFragment
-import org.bandev.buddhaquotes.items.ListItem
 import org.bandev.buddhaquotes.items.QuoteList
 
 /**
@@ -36,67 +37,40 @@ import org.bandev.buddhaquotes.items.QuoteList
 class QuoteListRecycler(
 
     private val list: List<QuoteList>,
-    private val listener: ListsFragment,
+    private val listener: Listener,
 
-    ) : RecyclerView.Adapter<QuoteListRecycler.ScrollingViewHolder>() {
+    ) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
+    class ViewHolder(binding: CardListsFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.titleText
+        val summary: TextView = binding.summaryText
+        val binIcon: ImageView = binding.binIconButton
+        val root: CardView = binding.root
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CardListsFragmentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
-        return ScrollingViewHolder(binding.root)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.binding.titleText.text = item.title
-        holder.binding.summaryText.text = item.title
+        holder.title.text = item.title
+        holder.summary.text = item.title
 
         if (item.system) {
-            holder.binding.binIconButton.visibility = View.GONE
+            holder.binIcon.visibility = View.GONE
         }
+        holder.root.setOnClickListener { listener.select(item) }
     }
 
     override fun getItemCount(): Int = list.size
 
-    inner class ScrollingViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView),
-        View.OnClickListener,
-        View.OnLongClickListener {
-        val binding: CardListsFragmentBinding = CardListsFragmentBinding.bind(itemView)
-
-        init {
-            itemView.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onCardClick(position)
-                }
-            }
-
-            binding.binIconButton.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, binding.titleText.text.toString())
-                }
-            }
-        }
-
-        override fun onClick(v: View?) {
-            val position = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.titleText.toString())
-            }
-        }
-
-        override fun onLongClick(view: View): Boolean {
-            val position = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.titleText.toString())
-            }
-            // Return true to indicate the click was handled
-            return true
-        }
+    interface Listener {
+        fun select(list: QuoteList)
     }
 }

@@ -81,6 +81,10 @@ abstract class Db : RoomDatabase() {
         @Query("SELECT * FROM quotes")
         suspend fun getAll(): List<Quote>
 
+        // Get all quotes in favourites
+        @Query("SELECT * FROM quotes WHERE `like` = 1")
+        suspend fun getAllFavourites(): List<Quote>
+
         // Count quotes
         @Query("SELECT COUNT(*) FROM quotes")
         suspend fun count(): Int
