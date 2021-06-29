@@ -87,6 +87,11 @@ class TimerActivity : LocalizationActivity() {
                     closeIconButton(icons.closeSheet())
                     displayButtons(false)
                     with(InputCheckBox {
+                        text("Play Gong at end")
+                        defaultValue(settings.endSound)
+                        changeListener { settings.endSound = !settings.endSound }
+                    })
+                    with(InputCheckBox {
                         text(R.string.vibrate_second)
                         defaultValue(settings.vibrateSecond)
                         changeListener { settings.vibrateSecond = !settings.vibrateSecond }
@@ -225,7 +230,7 @@ class TimerActivity : LocalizationActivity() {
                     )
                 }
 
-                gong.start()
+                if(settings.endSound) gong.start()
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)

@@ -24,31 +24,24 @@ import android.app.Application
 import org.bandev.buddhaquotes.items.Quote
 
 /**
- * Repository acts as a level of
- * abstraction when making db requests.
+ * QuoteRepository acts as a level of
+ * abstraction when making db requests
+ * for quote objects.
  */
 
-class Repository(application: Application) {
-    private val database = Db.getInstance(application.applicationContext)!!
+class QuoteRepository(application: Application) {
+    private val database = Db.getInstance(application.applicationContext)!!.quotes()
     private val quoteFinder = QuoteFinder()
 
     /** Get a Quote using its key */
-    suspend fun get(id: Int): Quote {
-        val quote = database.quotes().get(id)
-        return Quote(quote.id, quoteFinder.resource(quote.id), quote.like)
-    }
+    suspend fun get(id: Int): Quote = quoteFinder.convert(database.get(id))
 
     /** Get all Quotes */
-    suspend fun getAll(): List<Quote> {
-        val dbqs = database.quotes().getAll()
-        val list = mutableListOf<Quote>()
-        for ((id, like) in dbqs) list.add(Quote(id, quoteFinder.resource(id), like))
-        return list
-    }
+    suspend fun getAll(): List<Quote> = quoteFinder.convertList(database.getAll())
 
     /** Count the number of quotes */
-    suspend fun count(): Int = database.quotes().count()
+    suspend fun count(): Int = database.count()
 
     /** Define if a quote is liked or not */
-    suspend fun setLike(id: Int, like: Boolean): Unit = database.quotes().setLike(id, like)
+    suspend fun setLike(id: Int, like: Boolean): Unit = database.setLike(id, like)
 }

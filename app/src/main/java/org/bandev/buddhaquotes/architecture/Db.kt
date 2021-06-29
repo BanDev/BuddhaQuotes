@@ -25,7 +25,7 @@ import androidx.room.*
 
 @Database(
     version = 1,
-    entities = [Db.Quote::class, Db.QuoteList::class]
+    entities = [Db.Quote::class, Db.QuoteList::class, Db.ListQuoteLink::class]
 )
 
 /**
@@ -74,7 +74,7 @@ abstract class Db : RoomDatabase() {
     @Dao
     interface QuoteDao {
         // Get just one quote
-        @Query("SELECT * FROM quotes WHERE id = :id")
+        @Query("SELECT * FROM quotes WHERE quoteId = :id")
         suspend fun get(id: Int): Quote
 
         // Get all quotes
@@ -86,7 +86,7 @@ abstract class Db : RoomDatabase() {
         suspend fun count(): Int
 
         // Define if a quote is liked or not
-        @Query("UPDATE quotes SET 'like' = :like WHERE id = :id")
+        @Query("UPDATE quotes SET 'like' = :like WHERE quoteId = :id")
         suspend fun setLike(id: Int, like: Boolean)
     }
 
@@ -99,16 +99,22 @@ abstract class Db : RoomDatabase() {
     @Dao
     interface QuoteListDao {
         // Get all lists
+        @Transaction
         @Query("SELECT * FROM lists")
-        suspend fun getAll(): List<QuoteList>
+        suspend fun getAll(): List<ListAndQuotes>
 
         // Get just one list
-        @Query("SELECT * FROM lists WHERE id = :id")
-        suspend fun get(id: Int): QuoteList
+        @Transaction
+        @Query("SELECT * FROM lists WHERE listId = :id")
+        suspend fun get(id: Int): ListAndQuotes
 
         // Delete a list
         @Delete
         suspend fun delete(list: QuoteList)
+
+        // Create a list
+        @Insert
+        suspend fun new(list: QuoteList)
     }
 
     /**
@@ -117,9 +123,9 @@ abstract class Db : RoomDatabase() {
 
     @Entity(tableName = "lists")
     data class QuoteList(
-        @PrimaryKey val id: Int, // The unique list id
+        @PrimaryKey val listId: Int, // The unique list id
         @ColumnInfo(name = "title") val title: String, // Title of the list
-        @ColumnInfo(name = "system") val system: Int // Can you delete the list?
+        @ColumnInfo(name = "system") val system: Boolean // Can you delete the list?
     )
 
     /**
@@ -128,11 +134,37 @@ abstract class Db : RoomDatabase() {
 
     @Entity(tableName = "quotes")
     data class Quote(
-        @PrimaryKey val id: Int, // The unique quote id
+        @PrimaryKey val quoteId: Int, // The unique quote id
         @ColumnInfo(name = "like", defaultValue = "0") val like: Boolean, // Has it been liked?
         // Each quote doesn't actually hold the quote!
         // It is pulled from strings resources each time
         // for translations.
+    )
+
+    /**
+     * Entity for a linking table in order
+     * to maintain a many -> many relationship
+     */
+
+    @Entity(primaryKeys = ["listId", "quoteId"])
+    data class ListQuoteLink(
+        val listId: Int,
+        val quoteId: Int,
+    )
+
+    /**
+     * Entity for getting lists with their inner
+     * quotes.
+     */
+
+    data class ListAndQuotes(
+        @Embedded val list: QuoteList,
+        @Relation(
+            parentColumn = "listId",
+            entityColumn = "quoteId",
+            associateBy = Junction(ListQuoteLink::class)
+        )
+        val quotes: List<Quote>
     )
 
 }
