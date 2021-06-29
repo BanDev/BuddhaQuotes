@@ -107,14 +107,6 @@ abstract class Db : RoomDatabase() {
         @Transaction
         @Query("SELECT * FROM lists WHERE listId = :id")
         suspend fun get(id: Int): ListAndQuotes
-
-        // Delete a list
-        @Delete
-        suspend fun delete(list: QuoteList)
-
-        // Create a list
-        @Insert
-        suspend fun new(list: QuoteList)
     }
 
     /**

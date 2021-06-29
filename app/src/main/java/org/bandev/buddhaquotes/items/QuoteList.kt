@@ -18,16 +18,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-
 package org.bandev.buddhaquotes.items
 
 /**
- * An individual List with all of it's quotes
+ * A list of quotes without the
+ * actual quotes to save memory in
+ * the recyclerview :)
  */
 
-data class ListWithQuotes(
+data class QuoteList(
     val id: Int,
     val title: String,
-    var system: Boolean,
-    var quotes: List<Quote>
+    val system: Boolean
 )

@@ -25,19 +25,16 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ScrollingActivity
-import org.bandev.buddhaquotes.adapters.ListRecycler
+import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
+import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.ListItem
@@ -56,12 +53,14 @@ import kotlin.collections.ArrayList
 
 class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
 
-    private var _binding: FragmentListsBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentListsBinding
+    private lateinit var model: ListViewModel
+    private lateinit var icons: Icons
+
     private lateinit var masterListFinal: ArrayList<ListItem>
     private lateinit var masterlist: List<String>
     private var toolbarMenu: Menu? = null
-    private lateinit var icons: Icons
+
 
     /**
      * Sets the correct view of the Fragment
@@ -77,19 +76,35 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         savedInstanceState: Bundle?
     ): View {
         setHasOptionsMenu(true)
-        _binding = FragmentListsBinding.inflate(inflater, container, false)
+        binding = FragmentListsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Attach to viewmodel
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(requireActivity().application)
+            .create(ListViewModel::class.java)
+
+        // Get icons class
+        icons = Icons(requireContext())
+
+        // Setup the recyclerview
+        setupRecycler()
+    }
+
+    /**
+     * Get some quotes from the db and
+     * show them in the recycler
+     */
+
     private fun setupRecycler() {
-        masterlist = ListsV2(requireContext()).getMasterList()
-
-        masterListFinal = generateMasterList(masterlist.size, masterlist)
-
-        with(binding.listsRecycler) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ListRecycler(masterListFinal, this@ListsFragment)
-            setHasFixedSize(false)
+        model.getAllNoQuotes {
+            with(binding.listsRecycler) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = QuoteListRecycler(it, this@ListsFragment)
+                setHasFixedSize(false)
+            }
         }
     }
 
@@ -98,16 +113,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         binding.listsRecycler.adapter?.notifyItemChanged(0)
     }
 
-    /**
-     * Called when view is full made
-     * @param view [View]
-     * @param savedInstanceState [Bundle]
-     */
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        icons = Icons(requireContext())
-        setupRecycler()
-    }
 
     /**
      * Generates a list of lists with the ListItem custom data type
