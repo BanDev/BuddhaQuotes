@@ -54,6 +54,7 @@ import java.util.*
 class SettingsActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
+    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,10 +68,12 @@ class SettingsActivity : LocalizationActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        icons = Icons(this)
+
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon = context.backIcon()
+            navigationIcon = icons.back()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
@@ -87,12 +90,14 @@ class SettingsActivity : LocalizationActivity() {
 
         private lateinit var sharedPrefs: SharedPreferences
         private lateinit var editor: SharedPreferences.Editor
+        private lateinit var icons: Icons
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             editor = sharedPrefs.edit()
+            icons = Icons(requireContext())
 
             findPreference<Preference>("app_language")?.apply {
                 icon = IconicsDrawable(
@@ -104,32 +109,30 @@ class SettingsActivity : LocalizationActivity() {
                 }
                 summary = getLanguage(requireContext()).toString()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    val defaultDrawable =
-                        IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_message)
-                    val machineDrawable =
-                        IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_memory)
+                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_message)
+                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_memory)
                     val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(defaultDrawable, R.string.en),
-                            Option(machineDrawable, R.string.ar),
-                            Option(machineDrawable, R.string.zh),
-                            Option(machineDrawable, R.string.fr),
-                            Option(machineDrawable, R.string.de),
-                            Option(machineDrawable, R.string.hi),
-                            Option(machineDrawable, R.string.ja),
-                            Option(machineDrawable, R.string.pl),
-                            Option(machineDrawable, R.string.ru),
-                            Option(machineDrawable, R.string.es)
+                            Option(icons.message(), R.string.en),
+                            Option(icons.memory(), R.string.ar),
+                            Option(icons.memory(), R.string.zh),
+                            Option(icons.memory(), R.string.fr),
+                            Option(icons.memory(), R.string.de),
+                            Option(icons.memory(), R.string.hi),
+                            Option(icons.memory(), R.string.ja),
+                            Option(icons.memory(), R.string.pl),
+                            Option(icons.memory(), R.string.ru),
+                            Option(icons.memory(), R.string.es)
                         )
                         onPositive { index: Int, _: Option ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                             } else {
-                                requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             }
                             when (index) {
                                 0 -> setLanguage(requireContext(), Locale("en"))
@@ -158,29 +161,6 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("app_theme")?.apply {
-                val lightModeDrawable =
-                    IconicsDrawable(
-                        requireContext(),
-                        RoundedGoogleMaterial.Icon.gmr_wb_sunny
-                    ).apply {
-                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                        sizeDp = 20
-                    }
-                val darkModeDrawable = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_nights_stay
-                ).apply {
-                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                    sizeDp = 20
-                }
-                val systemDefaultDrawable = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_brightness_medium
-                ).apply {
-                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                    sizeDp = 20
-                }
-
                 val appTheme = sharedPrefs.getInt("appThemeInt", 2)
                 summary = when (appTheme) {
                     0 -> getString(R.string.light_mode)
@@ -188,9 +168,9 @@ class SettingsActivity : LocalizationActivity() {
                     else -> getString(R.string.follow_system_default)
                 }
                 icon = when (appTheme) {
-                    0 -> lightModeDrawable
-                    1 -> darkModeDrawable
-                    else -> systemDefaultDrawable
+                    0 -> icons.lightMode()
+                    1 -> icons.darkMode()
+                    else -> icons.systemDefault()
                 }
 
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
@@ -199,16 +179,16 @@ class SettingsActivity : LocalizationActivity() {
                         displayToolbar(false)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(lightModeDrawable, R.string.light_mode),
-                            Option(darkModeDrawable, R.string.dark_mode),
-                            Option(systemDefaultDrawable, R.string.follow_system_default)
+                            Option(icons.lightMode(), R.string.light_mode),
+                            Option(icons.darkMode(), R.string.dark_mode),
+                            Option(icons.systemDefault(), R.string.follow_system_default)
                         )
                         onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                         onPositive { index: Int, _: Option ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                             } else {
-                                view?.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             }
                             setDefaultNightMode(
                                 when (index) {
@@ -224,9 +204,9 @@ class SettingsActivity : LocalizationActivity() {
                                     else -> getString(R.string.follow_system_default)
                                 }
                                 icon = when (index) {
-                                    0 -> lightModeDrawable
-                                    1 -> darkModeDrawable
-                                    else -> systemDefaultDrawable
+                                    0 -> icons.lightMode()
+                                    1 -> icons.darkMode()
+                                    else -> icons.systemDefault()
                                 }
                                 editor.putInt("appThemeInt", index).apply()
                             }
@@ -237,15 +217,7 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("accent_color")?.apply {
-                val paletteDrawable =
-                    IconicsDrawable(
-                        requireContext(),
-                        RoundedGoogleMaterial.Icon.gmr_palette
-                    ).apply {
-                        colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                        sizeDp = 20
-                    }
-                icon = paletteDrawable
+                icon = icons.palette()
                 summary = when (getAccentColourAsString(requireContext())) {
                     "pink" -> getString(R.string.pink)
                     "violet" -> getString(R.string.violet)
@@ -287,9 +259,9 @@ class SettingsActivity : LocalizationActivity() {
                         }
                         onPositive(R.string.okay) { color ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                view?.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                             } else {
-                                view?.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             }
 
                             if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {

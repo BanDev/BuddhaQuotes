@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.core
 
 import android.content.Context
-import android.graphics.drawable.Icon
+import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.core.IconButton
 import com.mikepenz.iconics.IconicsDrawable
@@ -32,19 +32,18 @@ import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 
-
 class Icons(var context: Context) {
 
     private val defaultDp = 24
     private val defaultColorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
 
-    fun heart(liked: Boolean): IconicsDrawable {
-        val colour = if (liked) ContextCompat.getColor(context, R.color.heart) else
-            defaultColorInt
-        val iicon = if (liked) RoundedGoogleMaterial.Icon.gmr_favorite else
-            RoundedGoogleMaterial.Icon.gmr_favorite_outline
-        return icon(iicon, colour)
-    }
+    fun add(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add, Color.WHITE, 16)
+
+    fun addCircle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
+
+    fun back(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_arrow_back, Color.WHITE, 16)
+
+    fun close(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_close, Color.WHITE, 16)
 
     fun closeSheet(): IconButton {
         val icon = icon(RoundedGoogleMaterial.Icon.gmr_expand_more)
@@ -52,8 +51,32 @@ class Icons(var context: Context) {
         return IconButton(icon)
     }
 
+    fun darkMode(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_nights_stay, defaultColorInt, 20)
+
+    fun menu(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_menu, Color.WHITE, 18)
+
+    fun heart(liked: Boolean): IconicsDrawable {
+        val colour = if (liked) ContextCompat.getColor(context, R.color.heart) else defaultColorInt
+        val iicon =
+            if (liked) RoundedGoogleMaterial.Icon.gmr_favorite else RoundedGoogleMaterial.Icon.gmr_favorite_outline
+        return icon(iicon, colour)
+    }
+
+    fun lightMode(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, defaultColorInt, 20)
+
+    fun memory(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_memory)
+
+    fun message(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_message)
+
+    fun palette(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_palette, defaultColorInt, 20)
+
     fun share(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_share)
-    fun addCircle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
+
+    fun systemDefault(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_brightness_medium, defaultColorInt, 20)
 
     private fun icon(
         iicon: IIcon,

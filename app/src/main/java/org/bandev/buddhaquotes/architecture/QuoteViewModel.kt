@@ -22,16 +22,17 @@ package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import kotlinx.coroutines.runBlocking
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.items.Quote
 
 class QuoteViewModel(application: Application) : AndroidViewModel(application) {
 
-    var repository: Repository = Repository(application)
+    private var repository: Repository = Repository(application)
 
     /** Get a Quote using its key */
     fun get(id: Int, after: (quote: Quote) -> Unit) {
-        runBlocking {
+        viewModelScope.launch {
             after(repository.get(id))
         }
     }
@@ -45,23 +46,22 @@ class QuoteViewModel(application: Application) : AndroidViewModel(application) {
 
     /** Get all Quotes */
     fun getAll(after: (quote: List<Quote>) -> Unit) {
-        runBlocking {
+        viewModelScope.launch {
             after(repository.getAll())
         }
     }
 
     /** Count the number of quotes */
     private fun count(after: (num: Int) -> Unit) {
-        runBlocking {
+        viewModelScope.launch {
             after(repository.count())
         }
     }
 
     /** Define if a quote is liked or not */
     fun setLike(id: Int, like: Boolean) {
-        runBlocking {
+        viewModelScope.launch {
             repository.setLike(id, like)
         }
     }
-
 }

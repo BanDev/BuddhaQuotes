@@ -22,13 +22,12 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.os.Build
-import android.os.Bundle
-import android.os.CountDownTimer
+import android.os.*
 import android.view.HapticFeedbackConstants
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
@@ -55,6 +54,7 @@ class TimerActivity : LocalizationActivity() {
     private var isPaused = false
     private var isRunning = false
     private lateinit var settings: Timer.Settings
+    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +68,11 @@ class TimerActivity : LocalizationActivity() {
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        icons = Icons(this)
+
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon = context.backIcon()
+            navigationIcon = icons.close()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
@@ -78,8 +80,32 @@ class TimerActivity : LocalizationActivity() {
         with(binding.settings) {
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
+                binding.settings.isEnabled = false
                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                settingsSheet()
+                InputSheet().show(context) {
+                    title("Timer Settings")
+                    closeIconButton(icons.closeSheet())
+                    displayButtons(false)
+                    with(InputCheckBox {
+                        text(R.string.vibrate_second)
+                        defaultValue(settings.vibrateSecond)
+                        changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+                    })
+                    with(InputCheckBox {
+                        text(R.string.show_notification)
+                        defaultValue(settings.showNotificaton)
+                        changeListener {
+                            settings.showNotificaton = !settings.showNotificaton
+                            if (!settings.showNotificaton) {
+                                NotificationManagerCompat.from(applicationContext).cancel(0)
+                            } else {
+                                buildNotification(requireContext())
+                                pushNotification(requireContext())
+                            }
+                        }
+                    })
+                    onClose { binding.settings.isEnabled = true }
+                }
             }
         }
 
@@ -113,64 +139,12 @@ class TimerActivity : LocalizationActivity() {
         }
     }
 
-    private fun settingsSheet() {
-        val vibrateSecondOriginal = settings.vibrateSecond
-        val endSoundOriginal = settings.endSoundID
-        val endNotificationOriginal = settings.showNotificaton
-        val closeDrawable = IconicsDrawable(
-            this,
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
-        InputSheet().show(this) {
-            title("Timer Settings")
-            closeIconButton(IconButton(closeDrawable))
-
-            with(InputCheckBox {
-                text(R.string.vibrate_second)
-                defaultValue(settings.vibrateSecond)
-                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
-            })
-
-            with(InputCheckBox {
-                text(R.string.show_notification)
-                defaultValue(settings.showNotificaton)
-                changeListener {
-                    settings.showNotificaton = !settings.showNotificaton
-                    if (!settings.showNotificaton) {
-                        NotificationManagerCompat.from(applicationContext).cancel(0)
-                    } else {
-                        buildNotification(requireContext())
-                        pushNotification(requireContext())
-                    }
-                }
-            })
-            onNegative(R.string.cancel) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                with(settings) {
-                    vibrateSecond = vibrateSecondOriginal
-                    endSoundID = endSoundOriginal
-                    showNotificaton = endNotificationOriginal
-                }
-            }
-            onPositive(R.string.okay) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-        }
-    }
-
     // Timer is done so must be for reset
     private fun reset() {
-        val closeDrawable = IconicsDrawable(
-            this,
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
+        binding.pause.isEnabled = false
         TimeSheet().show(this) {
             title(R.string.meditation_timer)
-            closeIconButton(IconButton(closeDrawable))
+            closeIconButton(icons.closeSheet())
             format(TimeFormat.MM_SS)
             onNegative(R.string.cancel) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
             onPositive(R.string.okay) { durationTimeInMillis: Long ->
@@ -189,6 +163,7 @@ class TimerActivity : LocalizationActivity() {
 
                 startTimer(durationTimeInMillis * 1000)
             }
+            onClose { binding.pause.isEnabled = true }
         }
     }
 
@@ -317,10 +292,11 @@ class TimerActivity : LocalizationActivity() {
                 setSilent(true)
                 setOngoing(false)
                 setShowWhen(false)
+                color = context.resolveColorAttr(R.attr.colorPrimary)
             }
     }
 
-    fun convertToString(minutes: Long, seconds: Long, context: Context): String {
+    private fun convertToString(minutes: Long, seconds: Long, context: Context): String {
         return if (minutes > 0) {
             // There is at least a minute
             if (seconds == 0L) {
@@ -342,9 +318,9 @@ class TimerActivity : LocalizationActivity() {
         NotificationManagerCompat.from(context).apply { notify(0, notifBuilder.build()) }
     }
 
-    override fun onBackPressed() {
+    override fun onDestroy() {
         countDownTimer.cancel()
         NotificationManagerCompat.from(applicationContext).cancel(0)
-        super.onBackPressed()
+        super.onDestroy()
     }
 }

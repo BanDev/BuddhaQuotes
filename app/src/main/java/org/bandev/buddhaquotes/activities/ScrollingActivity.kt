@@ -28,6 +28,7 @@ import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -42,7 +43,6 @@ import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
-import org.bandev.buddhaquotes.items.Quote
 import org.bandev.buddhaquotes.items.QuoteItem
 import java.util.*
 import kotlin.collections.ArrayList
@@ -60,6 +60,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
     private var toolbarMenu: Menu? = null
     private var listTmp: String = ""
     private lateinit var model: QuoteViewModel
+    private lateinit var icons: Icons
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +75,8 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
 
         model = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
             .create(QuoteViewModel::class.java)
+
+        icons = Icons(this)
 
         val list = (intent.getStringExtra("list") ?: return).toString()
         listTmp = list
@@ -90,7 +93,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             title = if (listTmp == "Favourites") getString(R.string.favourites) else listTmp
-            navigationIcon = context.backIcon()
+            navigationIcon = icons.back()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
@@ -107,7 +110,7 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.add_menu, menu)
         toolbarMenu = menu
-        menu?.findItem(R.id.add)?.icon = this.addIcon()
+        menu?.findItem(R.id.add)?.icon = icons.add()
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -115,24 +118,18 @@ class ScrollingActivity : LocalizationActivity(), QuoteRecycler.OnItemClickFinde
         return when (item.itemId) {
             R.id.add -> {
                 toolbarMenu?.findItem(R.id.add)?.isEnabled = false
-                val closeDrawable = IconicsDrawable(
-                    this,
-                    RoundedGoogleMaterial.Icon.gmr_expand_more
-                ).apply {
-                    sizeDp = 24
-                    paddingDp = 6
-                }
                 model.getAll { quotes ->
                     AddQuoteSheet().show(this) {
-                        title(R.string.addToList)
+                        displayToolbar(false)
+                        displayHandle(true)
                         with(quotes)
-                        closeIconButton(IconButton(closeDrawable))
-                        onPositive {
+                        onPositive { quote ->
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                                 binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                             } else {
                                 binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             }
+                            Toast.makeText(context, quote, Toast.LENGTH_SHORT).show()
                         }
                         onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                     }

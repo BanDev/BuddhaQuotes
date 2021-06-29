@@ -26,23 +26,17 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.util.TypedValue
-import android.view.*
+import android.view.View
+import android.view.ViewConfiguration
+import android.view.Window
+import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.preference.PreferenceManager
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
-import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.Quote
 
@@ -199,24 +193,6 @@ fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     val colorRes = if (resolvedAttr.resourceId != 0) resolvedAttr.resourceId else resolvedAttr.data
     return ContextCompat.getColor(this, colorRes)
 }
-
-fun Context.hamburgerMenuIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_menu).apply {
-        colorInt = Color.WHITE
-        sizeDp = 18
-    }
-
-fun Context.backIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-        colorInt = Color.WHITE
-        sizeDp = 16
-    }
-
-fun Context.addIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
-        colorInt = Color.WHITE
-        sizeDp = 16
-    }
 
 fun Context.shareQuote(quote: Quote) {
     val sendIntent: Intent = Intent().apply {

@@ -34,10 +34,6 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/ScrollingActivity" />
         <activity
-            android:name=".activities.AddToListActivity"
-            android:label="addList"
-            android:theme="@style/ScrollingActivity" />
-        <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/Splash">
             <intent-filter>

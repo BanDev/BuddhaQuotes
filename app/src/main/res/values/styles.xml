@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
+        <item name="sheetsHandleFillColor">?attr/colorPrimary</item>
     </style>
 
     <style name="AppTheme.MainActivity" parent="AppTheme">
@@ -123,6 +124,14 @@
 
     <style name="AnimatedBottomBarText">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="button">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:capitalize">sentences</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:translationZ">40dp</item>
     </style>
 
 </resources>
