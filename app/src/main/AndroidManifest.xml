@@ -30,7 +30,7 @@
         </receiver>
 
         <activity
-            android:name=".activities.ScrollingActivity"
+            android:name=".activities.ListActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/ScrollingActivity" />
         <activity

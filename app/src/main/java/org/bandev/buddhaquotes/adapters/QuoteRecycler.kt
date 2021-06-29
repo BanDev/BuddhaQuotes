@@ -20,96 +20,59 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.adapters.QuoteRecycler.OnItemClickFinder
 import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
-import org.bandev.buddhaquotes.items.QuoteItem
+import org.bandev.buddhaquotes.items.Quote
 
 /**
- * Recycler adapter for the [RecyclerView] used in the [QuoteRecycler]
- * activity. This adapter updated for view binding and supports item
- * clicks.
- *
- * @author Fennec
- * @param scrollingLists [List<QuoteItem>]
- * @param listener [OnItemClickFinder]
+ * Scroll through quotes
  */
+
 class QuoteRecycler(
 
-    private val scrollingList: List<QuoteItem>,
-    private val listener: OnItemClickFinder,
+    private val list: List<Quote>,
+    private val context: Context,
+    private val listener: Listener,
 
-    ) : RecyclerView.Adapter<QuoteRecycler.ScrollingViewHolder>() {
+    ) : RecyclerView.Adapter<QuoteRecycler.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
+    class ViewHolder(binding: CardQuoteFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
+        val quote: TextView = binding.quote
+        val likeIcon: ImageView = binding.like
+        val root: CardView = binding.root
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CardQuoteFragmentBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
-        return ScrollingViewHolder(binding.root)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
-        val currentItem = scrollingList[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = list[position]
 
-        holder.binding.quote.text = currentItem.quote
-        holder.binding.like.setImageResource(currentItem.resource)
+        holder.quote.text = context.getString(item.resource)
 
-        if (currentItem.no_like) {
-            holder.binding.like.setImageResource(R.drawable.heart_full_red)
+        if (item.liked) {
+            holder.likeIcon.setImageResource(R.drawable.heart_full_red)
         }
+        holder.root.setOnClickListener { listener.select(item) }
     }
 
-    override fun getItemCount(): Int = scrollingList.size
+    override fun getItemCount(): Int = list.size
 
-    inner class ScrollingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener, View.OnLongClickListener {
-        val binding: CardQuoteFragmentBinding = CardQuoteFragmentBinding.bind(itemView)
-
-        init {
-            binding.like.setOnClickListener(this)
-            binding.share.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onCardClick(position)
-                }
-            }
-
-            binding.bin.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener.onBinClick(position, binding.quote.text.toString())
-                }
-            }
-        }
-
-        override fun onClick(v: View?) {
-            val position = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.quote.text.toString())
-            }
-        }
-
-        override fun onLongClick(view: View): Boolean {
-            val position = bindingAdapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onLikeClick(position, binding.quote.text.toString())
-            }
-            // Return true to indicate the click was handled
-            return true
-        }
+    interface Listener {
+        fun select(quote: Quote)
     }
 
-    interface OnItemClickFinder {
-        fun onLikeClick(position: Int, text: String)
-
-        fun onCardClick(position: Int)
-
-        fun onBinClick(position: Int, text: String)
-    }
 }
 

@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
@@ -30,23 +31,41 @@ import org.bandev.buddhaquotes.items.QuoteListWithQuotes
  * for list objects.
  */
 
-class ListRepository(application: Application) {
-    private val database = Db.getInstance(application.applicationContext)!!.lists()
+class ListRepository(val application: Application) {
+    private val database = Db.getInstance(application.applicationContext)!!
     private val quoteFinder = QuoteFinder()
 
     /** Get a List & Quotes using its key */
     suspend fun get(id: Int): QuoteListWithQuotes {
-        val list = database.get(id)
+        if (id == 0) return getFavourites()
+        val list = database.lists().get(id)
         return QuoteListWithQuotes(
             list.list.listId, list.list.title,
             list.list.system, quoteFinder.convertList(list.quotes)
         )
     }
 
+    /** Get the favourites list */
+    private suspend fun getFavourites(): QuoteListWithQuotes {
+        return QuoteListWithQuotes(
+            0, application.getString(R.string.favourites),
+            true, quoteFinder.convertList(database.quotes().getAllFavourites())
+        )
+    }
+
+    /** Get the favourites list with no quotes */
+    private fun getFavouritesNoQuotes(): QuoteList {
+        return QuoteList(
+            0, application.getString(R.string.favourites),
+            true
+        )
+    }
+
     /** Get all Lists and their quotes */
     suspend fun getAll(): List<QuoteListWithQuotes> {
         val newLists = mutableListOf<QuoteListWithQuotes>()
-        for (list in database.getAll()) {
+        newLists.add(getFavourites())
+        for (list in database.lists().getAll()) {
             newLists.add(
                 QuoteListWithQuotes(
                     list.list.listId,
@@ -62,7 +81,8 @@ class ListRepository(application: Application) {
     /** Get all Lists but not their quotes */
     suspend fun getAllNoQuotes(): List<QuoteList> {
         val newLists = mutableListOf<QuoteList>()
-        for (list in database.getAll()) {
+        newLists.add(getFavouritesNoQuotes())
+        for (list in database.lists().getAll()) {
             newLists.add(
                 QuoteList(
                     list.list.listId,

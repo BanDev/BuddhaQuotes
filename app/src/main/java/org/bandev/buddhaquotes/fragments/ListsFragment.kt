@@ -31,34 +31,26 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.ScrollingActivity
+import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
-import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
-import org.bandev.buddhaquotes.items.ListItem
+import org.bandev.buddhaquotes.items.QuoteList
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
- * ListsFragment is the fragment that allows users to manage their lists.
- * It is the second item in the [FragmentAdapter] on MainActivity
- * @author jack.txt
- * @since 1.7.0
- * @updated 11/12/2020
+ * Shows a list of lists to the user
  */
 
-class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
+class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
     private lateinit var icons: Icons
 
-    private lateinit var masterListFinal: ArrayList<ListItem>
-    private lateinit var masterlist: List<String>
     private var toolbarMenu: Menu? = null
 
 
@@ -108,35 +100,13 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         }
     }
 
+    override fun select(list: QuoteList) {
+        startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
+    }
+
     @Subscribe
     fun onEventReceive(event: SendEvent) {
         binding.listsRecycler.adapter?.notifyItemChanged(0)
-    }
-
-
-    /**
-     * Generates a list of lists with the ListItem custom data type
-     */
-
-    private fun generateMasterList(max: Int, listIn: List<String>): ArrayList<ListItem> {
-        val listNames = mutableListOf<String>()
-        val list = ArrayList<ListItem>()
-        val lists = ListsV2(requireContext())
-        var i = 0
-        while (i != max) {
-            var special = false
-            val individualList = lists.getList(listIn[i])
-            val count: Int = individualList.size - 1
-            if (listIn[i] == "Favourites") {
-                listNames.add(getString(R.string.favourites))
-                special = true
-            } else listNames.add(listIn[i])
-            val summary: String = if (count != 1) "$count items" else "$count item"
-            val item = ListItem(listNames[i], summary, special)
-            list += item
-            i++
-        }
-        return list
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -194,24 +164,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         }
     }
 
-    override fun onLikeClick(position: Int, text: String) {
-    }
-
-    override fun onCardClick(position: Int) {
-        val intent = Intent(context, ScrollingActivity::class.java)
-        val bundle = Bundle()
-        bundle.putString("list", masterlist[position])
-        intent.putExtras(bundle)
-        startActivity(intent)
-    }
-
-    override fun onBinClick(position: Int, text: String) {
-        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        ListsV2(requireContext()).removeList(text)
-        masterListFinal.removeAt(position)
-        binding.listsRecycler.adapter?.notifyItemRemoved(position)
-    }
-
     override fun onResume() {
         super.onResume()
         setupRecycler()
@@ -228,13 +180,6 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     }
 
     companion object {
-
-        /**
-         * Called on new instance request
-         * @param position [Int]
-         * @return [Lists]
-         */
-
         fun newInstance(position: Int): ListsFragment {
             val instance = ListsFragment()
             val args = Bundle()
