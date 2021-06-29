@@ -39,6 +39,7 @@ import org.bandev.buddhaquotes.fragments.LibrariesFragment
 class AboutActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityAboutBinding
+    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +51,11 @@ class AboutActivity : LocalizationActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        icons = Icons(this)
+
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
-            navigationIcon = context.backIcon()
+            navigationIcon = icons.back()
             setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }

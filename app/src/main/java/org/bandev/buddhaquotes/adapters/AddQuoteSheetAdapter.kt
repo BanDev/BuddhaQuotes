@@ -26,14 +26,14 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.core.Quotes
+import org.bandev.buddhaquotes.custom.AddQuoteListener
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetItemBinding
 import org.bandev.buddhaquotes.items.Quote
 
 class AddQuoteSheetAdapter(
     private val ctx: Context,
     private val list: List<Quote>,
-    private val onClick: (Int) -> Unit
+    private val listener: AddQuoteListener,
 ) :
     RecyclerView.Adapter<AddQuoteSheetAdapter.ViewHolder>() {
 
@@ -54,8 +54,9 @@ class AddQuoteSheetAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         with(viewHolder) {
-            textView.text = ctx.getText(list[position].resource)
-            root.setOnClickListener { onClick(position) }
+            val quote = ctx.getText(list[position].resource)
+            textView.text = quote
+            root.setOnClickListener { listener.select(quote) }
         }
     }
 

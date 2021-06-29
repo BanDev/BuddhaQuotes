@@ -22,7 +22,6 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import org.bandev.buddhaquotes.R
 
 /**
  * Timer helps with the meditation timer

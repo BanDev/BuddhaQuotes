@@ -72,7 +72,6 @@
 
     <!-- Lists -->
     <string name="lists_title" id="92">Your Lists</string>
-    <string name="lists_add_item" id="93">Add to List</string>
     <string name="lists_add_lists" id="94">Create new List</string>
     <string name="lists_add_lists_go" id="95">Add</string>
     <string name="lists_add_lists_name" id="96">Name</string>
@@ -590,4 +589,5 @@
     <string name="two_people_meditating">Two people meditating</string>
     <string name="summary">Summary</string>
     <string name="text">Text</string>
+    <string name="_00_00">00:00</string>
 </resources>

@@ -119,8 +119,8 @@ class QuoteFragment : Fragment() {
         binding.more.isEnabled = false
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
-            title(R.string.more)
-            closeIconButton(icons.closeSheet())
+            displayToolbar(false)
+            displayHandle(true)
             with(
                 Option(icons.share(), R.string.share),
                 Option(icons.addCircle(), R.string.addToList)
@@ -135,72 +135,20 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
-//        val closeDrawable = IconicsDrawable(
-//            requireContext(),
-//            RoundedGoogleMaterial.Icon.gmr_expand_more
-//        ).apply {
-//            sizeDp = 24
-//            paddingDp = 6
-//        }
-//        updateOptionsList()
-//        OptionsSheet().show(requireContext()) {
-//            displayMode(DisplayMode.LIST)
-//            title(R.string.addToList)
-//            closeIconButton(IconButton(closeDrawable))
-//            with(options)
-//            onPositive { index: Int, _: Option ->
-//                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-//                val quote = quotes.getQuote(Store(requireContext()).quoteID, requireContext())
-//                val lists2 = ListsV2(requireContext())
-//                val quoteID = Quotes().getFromString(quote, requireContext())
-//                if (!lists2.queryInList(quoteID, optionStr[index])) {
-//                    lists2.addToList(quoteID, optionStr[index])
-//                    val outName =
-//                        if (optionStr[index] == "Favourites") getString(R.string.favourites)
-//                        else optionStr[index]
-//                    Snackbar.make(
-//                        binding.root,
-//                        getString(R.string.added) + " " + outName,
-//                        Snackbar.LENGTH_LONG
-//                    )
-//                        .show()
-//                    if (optionStr[index] == "Favourites") {
-//                        binding.like.setImageDrawable(
-//                            IconicsDrawable(
-//                                requireContext(),
-//                                RoundedGoogleMaterial.Icon.gmr_favorite
-//                            ).apply {
-//                                colorInt = getColor(requireContext(), R.color.heart)
-//                                sizeDp = 24
-//                            })
-//                    }
-//                    EventBus.getDefault().post(SendEvent.ToListFragment(true))
-//                } else Snackbar.make(
-//                    binding.root,
-//                    getString(R.string.exists) + " " + optionStr[index],
-//                    Snackbar.LENGTH_LONG
-//                ).show()
-//            }
-//        }
+        OptionsSheet().show(requireContext()) {
+            displayMode(DisplayMode.LIST)
+            displayToolbar(false)
+            displayHandle(true)
+            with(Option(icons.heart(false), R.string.favourites))
+            onPositive { index: Int, _: Option ->
+                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            }
+        }
     }
 
-    private fun updateOptionsList() {
-//        val heartDrawable =
-//            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_favorite_outline)
-//        val listDrawable =
-//            IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_format_list_bulleted)
-//        options.clear()
-//        optionStr.clear()
-//        val listName: MutableList<String> = mutableListOf()
-//
-//        for (list in lists.getMasterList()) {
-//            val drawable = if (list == "Favourites") heartDrawable else listDrawable
-//            val outName = if (list == "Favourites") getString(R.string.favourites) else list
-//
-//            listName.add(outName)
-//            options.add(Option(drawable, outName))
-//            optionStr.add(list)
-//        }
+    override fun onResume() {
+        super.onResume()
+        binding.swipeRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
     }
 
     companion object {
@@ -212,10 +160,5 @@ class QuoteFragment : Fragment() {
             instance.arguments = args
             return instance
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.swipeRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
     }
 }

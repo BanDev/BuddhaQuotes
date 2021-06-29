@@ -24,35 +24,41 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.AddQuoteSheetAdapter
-import org.bandev.buddhaquotes.core.Quotes
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetBinding
 import org.bandev.buddhaquotes.items.Quote
 
-private typealias PositiveListener = () -> Unit
+typealias AddItemListener = (quote: CharSequence) -> Unit
 
 @Suppress("unused")
 class AddQuoteSheet : Sheet() {
 
     private lateinit var binding: AddQuoteSheetBinding
     private lateinit var quotes: List<Quote>
+    private var listener: AddItemListener? = null
 
-    fun onPositive(positiveListener: PositiveListener) {
-        this.positiveListener = positiveListener
+    private val adapterListener = object : AddQuoteListener {
+        override fun select(quote: CharSequence) {
+            listener?.invoke(quote)
+            dismiss()
+        }
     }
 
-    fun onPositive(@StringRes positiveRes: Int, positiveListener: PositiveListener? = null) {
+    fun onPositive(listener: AddItemListener) {
+        this.listener = listener
+    }
+
+    fun onPositive(@StringRes positiveRes: Int, listener: AddItemListener? = null) {
         this.positiveText = windowContext.getString(positiveRes)
-        this.positiveListener = positiveListener
+        this.listener = listener
     }
 
-    fun onPositive(positiveText: String, positiveListener: PositiveListener? = null) {
+    fun onPositive(positiveText: String, listener: AddItemListener? = null) {
         this.positiveText = positiveText
-        this.positiveListener = positiveListener
+        this.listener = listener
     }
 
     override fun onCreateLayoutView(): View {
@@ -68,9 +74,7 @@ class AddQuoteSheet : Sheet() {
         super.onViewCreated(view, savedInstanceState)
         displayButtonsView(false)
 
-        val addQuoteSheetAdapter = AddQuoteSheetAdapter(requireContext(), quotes) { position ->
-            dismiss()
-        }
+        val addQuoteSheetAdapter = AddQuoteSheetAdapter(requireContext(), quotes, adapterListener)
 
         with(binding.exampleRecyclerView) {
             layoutManager = LinearLayoutManager(context)

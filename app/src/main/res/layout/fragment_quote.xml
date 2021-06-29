@@ -12,13 +12,112 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginTop="15dp"
+            android:translationZ="20dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/quote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Hello"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/textview"
+                    android:textAlignment="textStart"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="@dimen/quoteNumberSize" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="20dp"
+            android:translationZ="20dp"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <uk.bandev.xplosion.XplosionView
+                    android:id="@+id/likeAnimator"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp">
+
+                    <com.mikepenz.iconics.view.IconicsImageView
+                        android:id="@+id/like"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        app:iiv_icon="gmr-favorite" />
+
+                </uk.bandev.xplosion.XplosionView>
+
+                <ImageButton
+                    android:id="@+id/next"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:src="@drawable/nav_home"
+                    app:tint="?android:textColorSecondary"/>
+
+                <ImageButton
+                    android:id="@+id/more"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:src="@drawable/nav_home"
+                    app:tint="?android:textColorSecondary" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
-            android:id="@+id/number"
+            android:id="@+id/numbder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -31,10 +130,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quote" />
+            app:layout_constraintTop_toBottomOf="@+id/quoted" />
 
         <TextView
-            android:id="@+id/quote"
+            android:id="@+id/quoted"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -51,35 +150,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <uk.bandev.xplosion.XplosionView
-            android:id="@+id/likeAnimator"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="@dimen/quoteFragmentActionPadding"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/number">
-
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/like"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                app:iiv_icon="gmr-favorite" />
-
-        </uk.bandev.xplosion.XplosionView>
-
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/more"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-more-vert"
-            app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
-            app:layout_constraintStart_toEndOf="@+id/likeAnimator"
-            app:layout_constraintTop_toTopOf="@+id/likeAnimator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

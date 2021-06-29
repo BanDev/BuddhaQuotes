@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="00:00"
+        android:text="@string/_00_00"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="80sp"
         android:textStyle="normal"
@@ -32,10 +32,10 @@
 
     <com.mikepenz.iconics.view.IconicsImageView
         android:id="@+id/spaceDrawable"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="25dp"
-        app:iiv_icon="oct-mute"
+        app:iiv_icon="gmr-volume-off"
         app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/spaceDescription"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,10 +68,10 @@
 
     <com.mikepenz.iconics.view.IconicsImageView
         android:id="@+id/postureDrawable"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="25dp"
-        app:iiv_icon="oct-person"
+        app:iiv_icon="gmr-self-improvement"
         app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/postureDescription"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,10 +104,10 @@
 
     <com.mikepenz.iconics.view.IconicsImageView
         android:id="@+id/breatheDrawable"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="25dp"
-        app:iiv_icon="oct-heart"
+        app:iiv_icon="gmr-favorite-border"
         app:iiv_color="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/breatheDescription"
         app:layout_constraintStart_toStartOf="parent"

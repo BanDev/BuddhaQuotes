@@ -74,13 +74,17 @@ dependencies {
     implementation "com.mikepenz:iconics-core:$iconics_version"
     implementation "com.mikepenz:iconics-views:$iconics_version"
     implementation 'com.mikepenz:google-material-typeface-rounded:4.0.0.1-kotlin@aar'
-    implementation 'com.mikepenz:octicons-typeface:11.1.0.0-kotlin@aar'
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
 
     // Eventbus - https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
+
+    // Kotlin coroutines - https://github.com/Kotlin/kotlinx.coroutines
+    def coroutines_version = "1.5.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Lifecycle components
     def lifecycle_version = "2.3.1"
@@ -121,4 +125,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3-rc01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-rc01'
+
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+
 }

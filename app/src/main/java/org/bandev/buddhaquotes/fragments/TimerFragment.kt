@@ -37,6 +37,7 @@ import com.mikepenz.iconics.utils.paddingDp
 import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
+import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
@@ -44,19 +45,10 @@ import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
  * The timer where the meditiation timer button is shown
  */
 class TimerFragment : Fragment() {
-    companion object {
-        fun newInstance(position: Int): TimerFragment {
-            val instance =
-                TimerFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
-        }
-    }
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
+    private lateinit var icons: Icons
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,19 +60,15 @@ class TimerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        icons = Icons(requireContext())
+
         binding.button.setOnClickListener {
             binding.button.isEnabled = false
             binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            val closeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_expand_more
-            ).apply {
-                sizeDp = 24
-                paddingDp = 6
-            }
             TimeSheet().show(requireContext()) {
                 title(R.string.meditation_timer)
-                closeIconButton(IconButton(closeDrawable))
+                closeIconButton(icons.closeSheet())
                 format(TimeFormat.MM_SS)
                 minTime(1)
                 onNegative(R.string.cancel) {
@@ -101,6 +89,17 @@ class TimerFragment : Fragment() {
                 }
                 onClose { binding.button.isEnabled = true }
             }
+        }
+    }
+
+    companion object {
+        fun newInstance(position: Int): TimerFragment {
+            val instance =
+                TimerFragment()
+            val args = Bundle()
+            args.putInt("position", position)
+            instance.arguments = args
+            return instance
         }
     }
 

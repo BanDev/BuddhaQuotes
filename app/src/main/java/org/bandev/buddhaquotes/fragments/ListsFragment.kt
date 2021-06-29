@@ -61,6 +61,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     private lateinit var masterListFinal: ArrayList<ListItem>
     private lateinit var masterlist: List<String>
     private var toolbarMenu: Menu? = null
+    private lateinit var icons: Icons
 
     /**
      * Sets the correct view of the Fragment
@@ -104,6 +105,7 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
      */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        icons = Icons(requireContext())
         setupRecycler()
     }
 
@@ -132,27 +134,10 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
         return list
     }
 
-    companion object {
-
-        /**
-         * Called on new instance request
-         * @param position [Int]
-         * @return [Lists]
-         */
-
-        fun newInstance(position: Int): ListsFragment {
-            val instance = ListsFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_menu, menu)
         toolbarMenu = menu
-        menu.findItem(R.id.add).icon = requireContext().addIcon()
+        menu.findItem(R.id.add).icon = icons.add()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -161,16 +146,9 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             R.id.add -> {
                 toolbarMenu?.findItem(R.id.add)?.isEnabled = false
                 val lists = ListsV2(requireContext()).getMasterList()
-                val closeDrawable = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_expand_more
-                ).apply {
-                    sizeDp = 24
-                    paddingDp = 6
-                }
                 InputSheet().show(requireContext()) {
                     title(R.string.createNewList)
-                    closeIconButton(IconButton(closeDrawable))
+                    closeIconButton(icons.closeSheet())
                     with(
                         InputEditText {
                             required()
@@ -242,5 +220,22 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
     override fun onStop() {
         super.onStop()
         EventBus.getDefault().unregister(this)
+    }
+
+    companion object {
+
+        /**
+         * Called on new instance request
+         * @param position [Int]
+         * @return [Lists]
+         */
+
+        fun newInstance(position: Int): ListsFragment {
+            val instance = ListsFragment()
+            val args = Bundle()
+            args.putInt("position", position)
+            instance.arguments = args
+            return instance
+        }
     }
 }

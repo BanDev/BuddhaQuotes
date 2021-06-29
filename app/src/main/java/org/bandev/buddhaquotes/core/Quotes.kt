@@ -29,7 +29,7 @@ import org.bandev.buddhaquotes.R
 
 class Quotes {
 
-    var quoteIdGlobal: Int = 0
+    private var quoteIdGlobal: Int = 0
     private val lastQuoteId = 237
     private val allQuoteIds = 1..lastQuoteId
 

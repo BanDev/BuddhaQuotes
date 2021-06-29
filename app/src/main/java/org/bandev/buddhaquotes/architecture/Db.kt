@@ -58,9 +58,7 @@ abstract class Db : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     context.applicationContext,
                     Db::class.java, "db"
-                )
-                    .createFromAsset("db.db")
-                    .build()
+                ).createFromAsset("db.db").build()
             }
             return instance
         }

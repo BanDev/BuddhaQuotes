@@ -23,16 +23,13 @@ package org.bandev.buddhaquotes.architecture
 import org.bandev.buddhaquotes.R
 
 /**
- * Find a quote based on it's database
- * id
+ * Find a quote based on it's database id
  */
 
 class QuoteFinder {
 
     /** Get a quote resource */
-    fun resource(id: Int): Int {
-        return quotes.getValue(id)
-    }
+    fun resource(id: Int): Int = quotes.getValue(id)
 
     /** Hash map of all quotes in the app */
     var quotes: Map<Int, Int> = mapOf(
@@ -116,5 +113,4 @@ class QuoteFinder {
         232 to R.string.quote_232, 233 to R.string.quote_233, 234 to R.string.quote_234,
         235 to R.string.quote_235, 236 to R.string.quote_236, 237 to R.string.quote_237,
     )
-
 }
