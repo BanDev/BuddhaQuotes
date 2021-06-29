@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/rounded_square.xml" value="0.163" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_main.xml" value="0.11322463768115942" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/add_quote_sheet.xml" value="0.11322463768115942" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/addlist_content.xml" value="0.1" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/card_quote_fragment.xml" value="0.11322463768115942" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_quote.xml" value="0.33" />
       </map>
     </option>
   </component>

@@ -28,12 +28,12 @@ import org.bandev.buddhaquotes.items.Quote
 
 class QuoteViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var repository: Repository = Repository(application)
+    private var quoteRepository: QuoteRepository = QuoteRepository(application)
 
     /** Get a Quote using its key */
     fun get(id: Int, after: (quote: Quote) -> Unit) {
         viewModelScope.launch {
-            after(repository.get(id))
+            after(quoteRepository.get(id))
         }
     }
 
@@ -47,21 +47,21 @@ class QuoteViewModel(application: Application) : AndroidViewModel(application) {
     /** Get all Quotes */
     fun getAll(after: (quote: List<Quote>) -> Unit) {
         viewModelScope.launch {
-            after(repository.getAll())
+            after(quoteRepository.getAll())
         }
     }
 
     /** Count the number of quotes */
     private fun count(after: (num: Int) -> Unit) {
         viewModelScope.launch {
-            after(repository.count())
+            after(quoteRepository.count())
         }
     }
 
     /** Define if a quote is liked or not */
     fun setLike(id: Int, like: Boolean) {
         viewModelScope.launch {
-            repository.setLike(id, like)
+            quoteRepository.setLike(id, like)
         }
     }
 }

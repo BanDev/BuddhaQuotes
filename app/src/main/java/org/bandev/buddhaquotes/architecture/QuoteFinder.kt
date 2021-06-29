@@ -21,12 +21,25 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.items.Quote
 
 /**
  * Find a quote based on it's database id
  */
 
 class QuoteFinder {
+
+    /** Convert a db class to a quote class */
+    fun convert(quote: Db.Quote): Quote {
+        return Quote(quote.quoteId, resource(quote.quoteId), quote.like)
+    }
+
+    /** Convert a list of db class to a list of quote class */
+    fun convertList(quotes: List<Db.Quote>): List<Quote> {
+        val list = mutableListOf<Quote>()
+        for ((id, like) in quotes) list.add(Quote(id, resource(id), like))
+        return list
+    }
 
     /** Get a quote resource */
     fun resource(id: Int): Int = quotes.getValue(id)

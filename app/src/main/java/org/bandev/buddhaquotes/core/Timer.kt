@@ -42,10 +42,10 @@ class Timer {
             }
 
         // Play a sound at the end?
-        var endSoundID: Int
-            get() = sharedPrefs.getInt("endSoundID", 0)
+        var endSound: Boolean
+            get() = sharedPrefs.getBoolean("endSound", true)
             set(value) {
-                editor.putInt("endSoundID", value)
+                editor.putBoolean("endSound", value)
                 editor.commit()
             }
 
