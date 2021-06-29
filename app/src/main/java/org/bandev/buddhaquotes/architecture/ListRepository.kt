@@ -21,7 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
-import org.bandev.buddhaquotes.items.ListWithQuotes
+import org.bandev.buddhaquotes.items.QuoteList
+import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
 /**
  * ListRepository acts as a level of
@@ -34,24 +35,39 @@ class ListRepository(application: Application) {
     private val quoteFinder = QuoteFinder()
 
     /** Get a List & Quotes using its key */
-    suspend fun get(id: Int): ListWithQuotes {
+    suspend fun get(id: Int): QuoteListWithQuotes {
         val list = database.get(id)
-        return ListWithQuotes(
+        return QuoteListWithQuotes(
             list.list.listId, list.list.title,
             list.list.system, quoteFinder.convertList(list.quotes)
         )
     }
 
     /** Get all Lists and their quotes */
-    suspend fun getAll(): List<ListWithQuotes> {
-        val newLists = mutableListOf<ListWithQuotes>()
+    suspend fun getAll(): List<QuoteListWithQuotes> {
+        val newLists = mutableListOf<QuoteListWithQuotes>()
         for (list in database.getAll()) {
             newLists.add(
-                ListWithQuotes(
+                QuoteListWithQuotes(
                     list.list.listId,
                     list.list.title,
                     list.list.system,
                     quoteFinder.convertList(list.quotes)
+                )
+            )
+        }
+        return newLists
+    }
+
+    /** Get all Lists but not their quotes */
+    suspend fun getAllNoQuotes(): List<QuoteList> {
+        val newLists = mutableListOf<QuoteList>()
+        for (list in database.getAll()) {
+            newLists.add(
+                QuoteList(
+                    list.list.listId,
+                    list.list.title,
+                    list.list.system
                 )
             )
         }

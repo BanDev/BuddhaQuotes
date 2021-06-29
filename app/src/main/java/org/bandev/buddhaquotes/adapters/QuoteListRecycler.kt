@@ -27,22 +27,18 @@ import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
 import org.bandev.buddhaquotes.fragments.ListsFragment
 import org.bandev.buddhaquotes.items.ListItem
+import org.bandev.buddhaquotes.items.QuoteList
 
 /**
- * Recycler adapter for the [RecyclerView] used in the [ListsFragment]
- * activity. This adapter updated for view binding
- * and supports item clicks.
- *
- * @author Fennec
- * @param scrollingLists [List<ListItem>]
- * @param listener [ListsFragment]
+ * Recycler adapter for QouteList class
  */
-class ListRecycler(
 
-    private val scrollingLists: List<ListItem>,
+class QuoteListRecycler(
+
+    private val list: List<QuoteList>,
     private val listener: ListsFragment,
 
-    ) : RecyclerView.Adapter<ListRecycler.ScrollingViewHolder>() {
+    ) : RecyclerView.Adapter<QuoteListRecycler.ScrollingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScrollingViewHolder {
         val binding = CardListsFragmentBinding.inflate(
@@ -53,17 +49,17 @@ class ListRecycler(
     }
 
     override fun onBindViewHolder(holder: ScrollingViewHolder, position: Int) {
-        val currentItem = scrollingLists[position]
+        val item = list[position]
 
-        holder.binding.titleText.text = currentItem.title
-        holder.binding.summaryText.text = currentItem.summary
+        holder.binding.titleText.text = item.title
+        holder.binding.summaryText.text = item.title
 
-        if (currentItem.special) {
+        if (item.system) {
             holder.binding.binIconButton.visibility = View.GONE
         }
     }
 
-    override fun getItemCount(): Int = scrollingLists.size
+    override fun getItemCount(): Int = list.size
 
     inner class ScrollingViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView),
