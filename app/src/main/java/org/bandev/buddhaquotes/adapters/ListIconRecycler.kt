@@ -25,33 +25,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
-import org.bandev.buddhaquotes.items.QuoteList
+import org.bandev.buddhaquotes.databinding.ListIconBinding
+import org.bandev.buddhaquotes.items.ListIcon
 
 /**
- * Recycler adapter for QouteList class
+ * Scroll through list icons
  */
 
-class QuoteListRecycler(
+class ListIconRecycler(
 
-    private val list: List<QuoteList>,
+    private val list: List<ListIcon>,
     private val listener: Listener,
 
-    ) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
+    ) : RecyclerView.Adapter<ListIconRecycler.ViewHolder>() {
 
-    class ViewHolder(binding: CardListsFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
-        val title: TextView = binding.titleText
-        val listIcon: ImageView = binding.icon.listIcon
-        val summary: TextView = binding.summaryText
-        val binIcon: ImageView = binding.binIconButton
-        val root: CardView = binding.root
+    class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
+        val listIcon: ImageView = binding.listIcon
+        val selected: ImageView = binding.selected
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardListsFragmentBinding.inflate(
+        val binding = ListIconBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -60,22 +55,25 @@ class QuoteListRecycler(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-
-        holder.title.text = item.title
-        holder.summary.text = item.title
-
-        holder.listIcon.setImageDrawable(item.icon.drawable)
-        holder.listIcon.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
-
-        if (item.system) {
-            holder.binIcon.visibility = View.GONE
+        holder.listIcon.setImageDrawable(item.drawable)
+        holder.listIcon.backgroundTintList = ColorStateList.valueOf(item.colour)
+        holder.listIcon.setOnClickListener {
+            click(holder)
+            listener.select(item)
         }
-        holder.root.setOnClickListener { listener.select(item) }
+    }
+
+    private fun click(holder: ViewHolder) {
+        holder.selected.visibility =
+            if (holder.selected.visibility == View.VISIBLE) View.INVISIBLE
+            else View.VISIBLE
     }
 
     override fun getItemCount(): Int = list.size
 
     interface Listener {
-        fun select(list: QuoteList)
+        fun select(icon: ListIcon)
     }
+
 }
+

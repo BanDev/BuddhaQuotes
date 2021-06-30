@@ -39,6 +39,7 @@ import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
+import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
 import org.bandev.buddhaquotes.items.Quote
 import org.bandev.buddhaquotes.items.QuoteItem
@@ -50,15 +51,14 @@ import kotlin.collections.ArrayList
  * The activity where the user can see all the quotes they have in their
  * lists
  */
+
 class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
     private lateinit var binding: ActivityScrollingBinding
-    private lateinit var scrollingList: ArrayList<QuoteItem>
-    private lateinit var recyclerAdapter: QuoteRecycler
-    private lateinit var prefList: List<Int>
     private var toolbarMenu: Menu? = null
     private lateinit var quoteModel: QuoteViewModel
     private lateinit var listModel: ListViewModel
+    private var listId: Int = 0
     private lateinit var icons: Icons
 
 
@@ -92,6 +92,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     private fun setupRecycler(id: Int) {
+        listId = id
         listModel.get(id) {
             with(binding.quotesRecycler) {
                 layoutManager = LinearLayoutManager(context)
@@ -108,18 +109,20 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     override fun select(quote: Quote) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.add_menu, menu)
+        menuInflater.inflate(R.menu.list_activity_menu, menu)
         toolbarMenu = menu
         menu?.findItem(R.id.add)?.icon = icons.add()
+        menu?.findItem(R.id.settings)?.icon = icons.tune()
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.settings -> showSettings()
             R.id.add -> {
                 toolbarMenu?.findItem(R.id.add)?.isEnabled = false
                 quoteModel.getAll { quotes ->
@@ -142,6 +145,15 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showSettings(): Boolean {
+        CustomiseListSheet().show(this) {
+            displayToolbar(false)
+            displayHandle(true)
+            attatchVariables(listModel, listId)
+        }
+        return true
     }
 
 }

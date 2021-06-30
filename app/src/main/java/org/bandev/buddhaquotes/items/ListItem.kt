@@ -21,4 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.items
 
 /** Data class for ListRecycler **/
-data class ListItem(val title: String, val summary: String, val special: Boolean)
+data class ListItem(
+    val title: String,
+    val summary: String,
+    val special: Boolean,
+    val icon: ListIcon
+)

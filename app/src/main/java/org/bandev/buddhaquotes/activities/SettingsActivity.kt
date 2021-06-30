@@ -39,10 +39,6 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -100,17 +96,23 @@ class SettingsActivity : LocalizationActivity() {
             icons = Icons(requireContext())
 
             findPreference<Preference>("app_language")?.apply {
-                icon = IconicsDrawable(
-                    requireContext(),
-                    RoundedGoogleMaterial.Icon.gmr_language
-                ).apply {
-                    colorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
-                    sizeDp = 20
-                }
-                summary = getLanguage(requireContext()).toString()
+                icon = icons.language()
+                summary = getString(
+                    when (getLanguage(requireContext())) {
+                        Locale("en") -> R.string.en
+                        Locale("ar") -> R.string.ar
+                        Locale("zh") -> R.string.zh
+                        Locale("fr") -> R.string.fr
+                        Locale("de") -> R.string.de
+                        Locale("hi") -> R.string.hi
+                        Locale("ja") -> R.string.ja
+                        Locale("pl") -> R.string.pl
+                        Locale("ru") -> R.string.ru
+                        Locale("es") -> R.string.es
+                        else -> R.string.settings_language
+                    }
+                )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_message)
-                    IconicsDrawable(requireContext(), RoundedGoogleMaterial.Icon.gmr_memory)
                     val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)

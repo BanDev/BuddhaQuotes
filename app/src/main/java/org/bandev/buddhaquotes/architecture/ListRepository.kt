@@ -22,6 +22,8 @@ package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.ListIcons
+import org.bandev.buddhaquotes.core.defaultIcon
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
@@ -57,7 +59,8 @@ class ListRepository(val application: Application) {
     private fun getFavouritesNoQuotes(): QuoteList {
         return QuoteList(
             0, application.getString(R.string.favourites),
-            true
+            true,
+            defaultIcon(application.applicationContext)
         )
     }
 
@@ -87,10 +90,21 @@ class ListRepository(val application: Application) {
                 QuoteList(
                     list.list.listId,
                     list.list.title,
-                    list.list.system
+                    list.list.system,
+                    ListIcons(application.applicationContext)[list.list.icon]
                 )
             )
         }
         return newLists
+    }
+
+    /** Add a new list */
+    suspend fun newList(title: String) {
+        database.lists().newList(Db.QuoteList(0, title, false, 0))
+    }
+
+    /** Update a list's icon */
+    suspend fun updateIcon(listId: Int, iconId: Int) {
+        database.lists().updateIcon(listId, iconId)
     }
 }

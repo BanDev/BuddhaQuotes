@@ -24,6 +24,7 @@ import android.content.Context
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.core.IconButton
+import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
@@ -52,7 +53,7 @@ class Icons(var context: Context) {
     }
 
     fun darkMode(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_nights_stay, defaultColorInt, 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_nights_stay, _sizeDp = 20)
 
     fun menu(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_menu, Color.WHITE, 18)
 
@@ -63,20 +64,25 @@ class Icons(var context: Context) {
         return icon(iicon, colour)
     }
 
+    fun language(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_language, _sizeDp = 20)
+
     fun lightMode(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, defaultColorInt, 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 20)
 
     fun memory(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_memory)
 
     fun message(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_message)
 
     fun palette(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_palette, defaultColorInt, 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_palette, _sizeDp = 20)
 
     fun share(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_share)
 
     fun systemDefault(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_brightness_medium, defaultColorInt, 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_brightness_medium, _sizeDp = 20)
+
+    fun tune(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_tune, Color.WHITE, 16)
 
     private fun icon(
         iicon: IIcon,

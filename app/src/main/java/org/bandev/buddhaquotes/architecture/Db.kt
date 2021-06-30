@@ -111,6 +111,14 @@ abstract class Db : RoomDatabase() {
         @Transaction
         @Query("SELECT * FROM lists WHERE listId = :id")
         suspend fun get(id: Int): ListAndQuotes
+
+        // Create a new list in the database
+        @Insert
+        suspend fun newList(record: QuoteList)
+
+        // Update a list's icon
+        @Query("UPDATE lists SET icon = :iconId WHERE listId = :listId")
+        suspend fun updateIcon(listId: Int, iconId: Int)
     }
 
     /**
@@ -119,9 +127,10 @@ abstract class Db : RoomDatabase() {
 
     @Entity(tableName = "lists")
     data class QuoteList(
-        @PrimaryKey val listId: Int, // The unique list id
+        @PrimaryKey(autoGenerate = true) val listId: Int, // The unique list id
         @ColumnInfo(name = "title") val title: String, // Title of the list
-        @ColumnInfo(name = "system") val system: Boolean // Can you delete the list?
+        @ColumnInfo(name = "system") val system: Boolean, // Can you delete the list?
+        @ColumnInfo(name = "icon") val icon: Int // What icon id?
     )
 
     /**
@@ -144,8 +153,9 @@ abstract class Db : RoomDatabase() {
 
     @Entity(primaryKeys = ["listId", "quoteId"])
     data class ListQuoteLink(
+        val id: Int?,
         val listId: Int,
-        val quoteId: Int,
+        val quoteId: Int
     )
 
     /**
@@ -154,6 +164,7 @@ abstract class Db : RoomDatabase() {
      */
 
     data class ListAndQuotes(
+        val id: Int?,
         @Embedded val list: QuoteList,
         @Relation(
             parentColumn = "listId",

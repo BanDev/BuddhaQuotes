@@ -134,4 +134,13 @@
         <item name="android:translationZ">40dp</item>
     </style>
 
+    <style name="chip" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialComponents.Chip</item>
+        <item name="closeIconEnabled">false</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialComponents.Chip" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>
