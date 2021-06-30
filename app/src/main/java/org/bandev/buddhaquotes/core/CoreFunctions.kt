@@ -32,12 +32,15 @@ import android.view.Window
 import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.Quote
 
 /**
@@ -204,4 +207,42 @@ fun Context.shareQuote(quote: Quote) {
         type = "text/plain"
     }
     startActivity(Intent.createChooser(sendIntent, null))
+}
+
+fun ListIcons(context: Context) : List<ListIcon> {
+    return listOf(
+        ListIcon(
+            0,
+            AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+            0xFF0067f4.toInt()
+        ),
+        ListIcon(
+            1,
+            AppCompatResources.getDrawable(context, R.drawable.ic_refresh)!!,
+            0xFF349334.toInt()
+        ),
+        ListIcon(
+            2,
+            AppCompatResources.getDrawable(context, R.drawable.ic_pause)!!,
+            0xFFFF5733.toInt()
+        ),
+        ListIcon(
+            3,
+            AppCompatResources.getDrawable(context, R.drawable.ic_settings)!!,
+            0xFFFF33DA.toInt()
+        ),
+        ListIcon(
+            4,
+            AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+            0xFF0A7AA7.toInt()
+        )
+    )
+}
+
+fun defaultIcon(context: Context) : ListIcon {
+    return ListIcon(
+        0,
+        AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+        0xFF0067f4.toInt()
+    )
 }

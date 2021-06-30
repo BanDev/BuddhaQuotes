@@ -24,6 +24,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
@@ -49,6 +50,22 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     fun getAllNoQuotes(after: (quote: List<QuoteList>) -> Unit) {
         viewModelScope.launch {
             after(listRepository.getAllNoQuotes())
+        }
+    }
+
+    /** Create a new list **/
+    fun newList(title: String, after: () -> Unit) {
+        viewModelScope.launch {
+            listRepository.newList(title)
+            after()
+        }
+    }
+
+    /** Update a list's icon **/
+    fun updateIcon(listId: Int, icon: ListIcon, after: () -> Unit) {
+        viewModelScope.launch {
+            listRepository.updateIcon(listId, icon.id)
+            after()
         }
     }
 }

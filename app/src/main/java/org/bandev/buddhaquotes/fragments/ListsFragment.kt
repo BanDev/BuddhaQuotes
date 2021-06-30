@@ -141,7 +141,9 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                                 }
                             }
                             resultListener { value ->
-                                ListsV2(requireContext()).newEmptyList(value.toString())
+                                model.newList(value.toString()) {
+
+                                }
                                 setupRecycler()
                             }
                         }

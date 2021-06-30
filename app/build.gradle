@@ -81,6 +81,20 @@ dependencies {
     // Eventbus - https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
 
+    // FastAdapter - https://github.com/mikepenz/FastAdapter
+    def fastadapter_version = "5.4.1"
+    implementation "com.mikepenz:fastadapter:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-expandable:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-binding:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-diff:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-drag:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-paged:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-scroll:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-swipe:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-ui:$fastadapter_version"
+    implementation "com.mikepenz:fastadapter-extensions-utils:$fastadapter_version"
+
     // Kotlin coroutines - https://github.com/Kotlin/kotlinx.coroutines
     def coroutines_version = "1.5.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
@@ -125,7 +139,5 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3-rc01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0-rc01'
-
-    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
 
 }
