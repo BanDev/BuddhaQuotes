@@ -31,7 +31,7 @@ import org.bandev.buddhaquotes.adapters.AddQuoteSheetAdapter
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetBinding
 import org.bandev.buddhaquotes.items.Quote
 
-typealias AddItemListener = (quote: CharSequence) -> Unit
+typealias AddItemListener = (quote: Quote) -> Unit
 
 @Suppress("unused")
 class AddQuoteSheet : Sheet() {
@@ -40,8 +40,8 @@ class AddQuoteSheet : Sheet() {
     private lateinit var quotes: List<Quote>
     private var listener: AddItemListener? = null
 
-    private val adapterListener = object : AddQuoteListener {
-        override fun select(quote: CharSequence) {
+    private val adapterListener = object : Listener {
+        override fun select(quote: Quote) {
             listener?.invoke(quote)
             dismiss()
         }
@@ -95,5 +95,9 @@ class AddQuoteSheet : Sheet() {
         this.func()
         this.show()
         return this
+    }
+
+    interface Listener {
+        fun select(quote: Quote)
     }
 }

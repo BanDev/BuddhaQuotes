@@ -22,13 +22,12 @@ package org.bandev.buddhaquotes.adapters
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.databinding.CardListsFragmentBinding
+import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
 /**
@@ -42,16 +41,15 @@ class QuoteListRecycler(
 
     ) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
 
-    class ViewHolder(binding: CardListsFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(binding: QuoteListRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.titleText
-        val listIcon: ImageView = binding.icon.listIcon
+        val listIcon: ImageView = binding.listIcon
         val summary: TextView = binding.summaryText
-        val binIcon: ImageView = binding.binIconButton
         val root: CardView = binding.root
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardListsFragmentBinding.inflate(
+        val binding = QuoteListRecyclerBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -67,9 +65,6 @@ class QuoteListRecycler(
         holder.listIcon.setImageDrawable(item.icon.drawable)
         holder.listIcon.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
 
-        if (item.system) {
-            holder.binIcon.visibility = View.GONE
-        }
         holder.root.setOnClickListener { listener.select(item) }
     }
 

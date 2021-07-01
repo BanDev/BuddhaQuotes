@@ -31,17 +31,29 @@ import org.bandev.buddhaquotes.items.Quote
 
 class QuoteRepository(application: Application) {
     private val database = Db.getInstance(application.applicationContext)!!.quotes()
-    private val quoteFinder = QuoteFinder()
+    private val quoteFinder = QuoteFinder(this)
 
     /** Get a Quote using its key */
-    suspend fun get(id: Int): Quote = quoteFinder.convert(database.get(id))
+    suspend fun get(id: Int): Quote = quoteFinder.convert(database.get(id), isLiked(id))
 
     /** Get all Quotes */
-    suspend fun getAll(): List<Quote> = quoteFinder.convertList(database.getAll())
+    suspend fun getAll(): List<Quote> {
+        val quotes = database.getAll()
+        for (quote in quotes) {
+            quote.like = isLiked(quote.quoteId)
+        }
+        return quoteFinder.convertList(quotes)
+    }
 
     /** Count the number of quotes */
     suspend fun count(): Int = database.count()
 
     /** Define if a quote is liked or not */
-    suspend fun setLike(id: Int, like: Boolean): Unit = database.setLike(id, like)
+    suspend fun setLike(id: Int, like: Boolean) {
+        if (like) database.like(id)
+        else database.removeLike(id)
+    }
+
+    /** See if a quote is liked or not */
+    suspend fun isLiked(id: Int): Boolean = database.isLiked(id) == 1
 }

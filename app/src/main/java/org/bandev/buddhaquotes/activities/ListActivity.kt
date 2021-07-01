@@ -40,7 +40,7 @@ import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
-import org.bandev.buddhaquotes.databinding.ActivityScrollingBinding
+import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
 import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
@@ -54,7 +54,7 @@ import kotlin.collections.ArrayList
 
 class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
-    private lateinit var binding: ActivityScrollingBinding
+    private lateinit var binding: ActivityListBinding
     private var toolbarMenu: Menu? = null
     private lateinit var quoteModel: QuoteViewModel
     private lateinit var listModel: ListViewModel
@@ -69,7 +69,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
         window.setNavigationBarColourDefault(this)
 
         // Setup view binding
-        binding = ActivityScrollingBinding.inflate(layoutInflater)
+        binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         quoteModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -109,7 +109,6 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     override fun select(quote: Quote) {
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -123,27 +122,31 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> showSettings()
-            R.id.add -> {
-                toolbarMenu?.findItem(R.id.add)?.isEnabled = false
-                quoteModel.getAll { quotes ->
-                    AddQuoteSheet().show(this) {
-                        displayToolbar(false)
-                        displayHandle(true)
-                        with(quotes)
-                        onPositive { quote ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
-                            Toast.makeText(context, quote, Toast.LENGTH_SHORT).show()
-                        }
-                        onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
-                    }
-                }
-                true
-            }
+            R.id.add -> showAddToList()
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showAddToList(): Boolean {
+        toolbarMenu?.findItem(R.id.add)?.isEnabled = false
+        quoteModel.getAll { quotes ->
+            AddQuoteSheet().show(this) {
+                displayToolbar(false)
+                displayHandle(true)
+                with(quotes)
+                onPositive { quote ->
+                    Feedback.confirm(binding.root)
+                    quoteSelected(quote)
+                }
+                onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+            }
+        }
+        return true
+    }
+
+    private fun quoteSelected(quote: Quote) {
+        listModel.addQuote(listId, quote) {
+            setupRecycler(listId)
         }
     }
 

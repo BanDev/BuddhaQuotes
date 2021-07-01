@@ -24,6 +24,7 @@
         android:layout_alignEnd="@+id/list_icon"
         android:layout_alignBottom="@+id/list_icon"
         android:contentDescription="@string/aa"
+        android:translationZ="10dp"
         android:src="@drawable/ic_check" />
 
 </RelativeLayout>

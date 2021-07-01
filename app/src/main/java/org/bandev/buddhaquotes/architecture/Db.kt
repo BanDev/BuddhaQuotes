@@ -81,17 +81,20 @@ abstract class Db : RoomDatabase() {
         @Query("SELECT * FROM quotes")
         suspend fun getAll(): List<Quote>
 
-        // Get all quotes in favourites
-        @Query("SELECT * FROM quotes WHERE `like` = 1")
-        suspend fun getAllFavourites(): List<Quote>
-
         // Count quotes
         @Query("SELECT COUNT(*) FROM quotes")
         suspend fun count(): Int
 
         // Define if a quote is liked or not
-        @Query("UPDATE quotes SET 'like' = :like WHERE quoteId = :id")
-        suspend fun setLike(id: Int, like: Boolean)
+        @Query("INSERT into ListQuoteLink (listId, quoteId) VALUES (0, :id)")
+        suspend fun like(id: Int)
+
+        // Define if a quote is liked or not
+        @Query("DELETE FROM ListQuoteLink WHERE listId = 0 AND quoteId = :id")
+        suspend fun removeLike(id: Int)
+
+        @Query("SELECT COUNT(*) FROM ListQuoteLink WHERE listId = 0 AND quoteId = :id")
+        suspend fun isLiked(id: Int): Int
     }
 
     /**
@@ -119,6 +122,14 @@ abstract class Db : RoomDatabase() {
         // Update a list's icon
         @Query("UPDATE lists SET icon = :iconId WHERE listId = :listId")
         suspend fun updateIcon(listId: Int, iconId: Int)
+
+        // Add a quote to a list
+        @Query("INSERT into ListQuoteLink (listId, quoteId) VALUES (:listId, :quoteId)")
+        suspend fun addQuote(listId: Int, quoteId: Int)
+
+        // Remove a quote from a list
+        @Query("DELETE FROM ListQuoteLink WHERE listId = :listId AND quoteId = :quoteId")
+        suspend fun deleteQuote(listId: Int, quoteId: Int)
     }
 
     /**
@@ -140,7 +151,7 @@ abstract class Db : RoomDatabase() {
     @Entity(tableName = "quotes")
     data class Quote(
         @PrimaryKey val quoteId: Int, // The unique quote id
-        @ColumnInfo(name = "like", defaultValue = "0") val like: Boolean, // Has it been liked?
+        @ColumnInfo(name = "like", defaultValue = "0") var like: Boolean, // Has it been liked?
         // Each quote doesn't actually hold the quote!
         // It is pulled from strings resources each time
         // for translations.
