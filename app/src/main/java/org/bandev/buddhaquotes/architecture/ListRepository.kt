@@ -21,9 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
-import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.ListIcons
-import org.bandev.buddhaquotes.core.defaultIcon
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
@@ -35,11 +32,12 @@ import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
 class ListRepository(val application: Application) {
     private val database = Db.getInstance(application.applicationContext)!!
-    private val quoteFinder = QuoteFinder()
+    private val quoteRepository = QuoteRepository(application)
+    private val quoteFinder = QuoteFinder(quoteRepository)
+    private val listIconManager = ListIconManager(application)
 
     /** Get a List & Quotes using its key */
     suspend fun get(id: Int): QuoteListWithQuotes {
-        if (id == 0) return getFavourites()
         val list = database.lists().get(id)
         return QuoteListWithQuotes(
             list.list.listId, list.list.title,
@@ -47,27 +45,9 @@ class ListRepository(val application: Application) {
         )
     }
 
-    /** Get the favourites list */
-    private suspend fun getFavourites(): QuoteListWithQuotes {
-        return QuoteListWithQuotes(
-            0, application.getString(R.string.favourites),
-            true, quoteFinder.convertList(database.quotes().getAllFavourites())
-        )
-    }
-
-    /** Get the favourites list with no quotes */
-    private fun getFavouritesNoQuotes(): QuoteList {
-        return QuoteList(
-            0, application.getString(R.string.favourites),
-            true,
-            defaultIcon(application.applicationContext)
-        )
-    }
-
     /** Get all Lists and their quotes */
     suspend fun getAll(): List<QuoteListWithQuotes> {
         val newLists = mutableListOf<QuoteListWithQuotes>()
-        newLists.add(getFavourites())
         for (list in database.lists().getAll()) {
             newLists.add(
                 QuoteListWithQuotes(
@@ -84,14 +64,13 @@ class ListRepository(val application: Application) {
     /** Get all Lists but not their quotes */
     suspend fun getAllNoQuotes(): List<QuoteList> {
         val newLists = mutableListOf<QuoteList>()
-        newLists.add(getFavouritesNoQuotes())
         for (list in database.lists().getAll()) {
             newLists.add(
                 QuoteList(
                     list.list.listId,
                     list.list.title,
                     list.list.system,
-                    ListIcons(application.applicationContext)[list.list.icon]
+                    listIconManager.associate(list.list.icon)
                 )
             )
         }
@@ -106,5 +85,15 @@ class ListRepository(val application: Application) {
     /** Update a list's icon */
     suspend fun updateIcon(listId: Int, iconId: Int) {
         database.lists().updateIcon(listId, iconId)
+    }
+
+    /** Update a list's icon */
+    suspend fun addQuote(listId: Int, quoteId: Int) {
+        database.lists().addQuote(listId, quoteId)
+    }
+
+    /** Delete a quote from a list */
+    suspend fun removeQuote(listId: Int, quoteId: Int) {
+        database.lists().deleteQuote(listId, quoteId)
     }
 }

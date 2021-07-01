@@ -27,17 +27,23 @@ import org.bandev.buddhaquotes.items.Quote
  * Find a quote based on it's database id
  */
 
-class QuoteFinder {
+class QuoteFinder(val quoteRepository: QuoteRepository) {
 
     /** Convert a db class to a quote class */
-    fun convert(quote: Db.Quote): Quote {
-        return Quote(quote.quoteId, resource(quote.quoteId), quote.like)
+    fun convert(quote: Db.Quote, liked: Boolean): Quote {
+        return Quote(quote.quoteId, resource(quote.quoteId), liked)
     }
 
     /** Convert a list of db class to a list of quote class */
-    fun convertList(quotes: List<Db.Quote>): List<Quote> {
+    suspend fun convertList(quotes: List<Db.Quote>): List<Quote> {
         val list = mutableListOf<Quote>()
-        for ((id, like) in quotes) list.add(Quote(id, resource(id), like))
+        for (qt in quotes) list.add(
+            Quote(
+                qt.quoteId,
+                resource(qt.quoteId),
+                quoteRepository.isLiked(qt.quoteId)
+            )
+        )
         return list
     }
 

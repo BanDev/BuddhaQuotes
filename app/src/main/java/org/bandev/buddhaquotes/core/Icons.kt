@@ -64,6 +64,10 @@ class Icons(var context: Context) {
         return icon(iicon, colour)
     }
 
+    fun heartOutline(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_favorite_outline, Color.WHITE)
+
+    fun list(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_list, Color.WHITE)
+
     fun language(): IconicsDrawable =
         icon(RoundedGoogleMaterial.Icon.gmr_language, _sizeDp = 20)
 
