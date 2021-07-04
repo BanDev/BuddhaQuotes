@@ -21,25 +21,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
+import org.bandev.buddhaquotes.core.Event
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * The timer where the meditiation timer button is shown
@@ -60,35 +57,40 @@ class TimerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         icons = Icons(requireContext())
 
         binding.button.setOnClickListener {
-            binding.button.isEnabled = false
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            TimeSheet().show(requireContext()) {
-                title(R.string.meditation_timer)
-                closeIconButton(icons.closeSheet())
-                format(TimeFormat.MM_SS)
-                minTime(1)
-                onNegative(R.string.cancel) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-                onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    startActivity(
-                        Intent(context, TimerActivity::class.java).putExtra(
-                            "durationTimeInMillis",
-                            durationTimeInMillis
-                        )
+            Feedback.virtualKey(binding.root)
+            timerSheet()
+        }
+    }
+
+    @Subscribe
+    fun onEventReceive(event: Event) {
+        if (event is Event.StartMeditationTimer) {
+            timerSheet()
+            EventBus.getDefault().post(Event.RestoreDrawerButton)
+        }
+    }
+
+    private fun timerSheet() {
+        binding.button.isEnabled = false
+        TimeSheet().show(requireContext()) {
+            title(R.string.meditation_timer)
+            closeIconButton(icons.closeSheet())
+            format(TimeFormat.MM_SS)
+            minTime(1)
+            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+            onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                Feedback.confirm(binding.root)
+                startActivity(
+                    Intent(context, TimerActivity::class.java).putExtra(
+                        "durationTimeInMillis",
+                        durationTimeInMillis
                     )
-                }
-                onClose { binding.button.isEnabled = true }
+                )
             }
+            onClose { binding.button.isEnabled = true }
         }
     }
 
@@ -106,5 +108,15 @@ class TimerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.button.setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

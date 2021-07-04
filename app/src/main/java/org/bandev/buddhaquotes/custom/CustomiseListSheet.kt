@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.ListIconRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
-import org.bandev.buddhaquotes.core.ListIcons
+import org.bandev.buddhaquotes.core.listIcons
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -17,7 +17,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
     private lateinit var model: ListViewModel
     private var listId = 0
 
-    fun attatchVariables(_model: ListViewModel, _listId: Int) {
+    fun attachVariables(_model: ListViewModel, _listId: Int) {
         model = _model
         listId = _listId
     }
@@ -26,7 +26,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
         binding = CustomiseListSheetBinding.inflate(layoutInflater)
 
         with(binding.listIconRecycler) {
-            adapter = ListIconRecycler(ListIcons(requireContext()), this@CustomiseListSheet)
+            adapter = ListIconRecycler(listIcons(requireContext()), this@CustomiseListSheet)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 

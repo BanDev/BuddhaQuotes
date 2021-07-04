@@ -22,21 +22,15 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.os.*
-import android.view.HapticFeedbackConstants
+import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.google.android.material.snackbar.Snackbar
-import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
@@ -81,7 +75,7 @@ class TimerActivity : LocalizationActivity() {
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
                 binding.settings.isEnabled = false
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                Feedback.virtualKey(binding.root)
                 InputSheet().show(context) {
                     title("Timer Settings")
                     closeIconButton(icons.closeSheet())
@@ -129,12 +123,7 @@ class TimerActivity : LocalizationActivity() {
         with(binding.pause) {
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-
+                Feedback.confirm(binding.root)
                 when {
                     isPaused -> resume()
                     isRunning -> pause()
@@ -151,14 +140,9 @@ class TimerActivity : LocalizationActivity() {
             title(R.string.meditation_timer)
             closeIconButton(icons.closeSheet())
             format(TimeFormat.MM_SS)
-            onNegative(R.string.cancel) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
             onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-
+                Feedback.confirm(binding.root)
                 with(binding.pause) {
                     text = getString(R.string.pause)
                     setCompoundDrawablesWithIntrinsicBounds(
@@ -230,21 +214,15 @@ class TimerActivity : LocalizationActivity() {
                     )
                 }
 
-                if(settings.endSound) gong.start()
+                if (settings.endSound) gong.start()
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                Feedback.confirm(binding.root)
             }
 
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
-                if (settings.vibrateSecond) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
-                }
+                if (settings.vibrateSecond) Feedback.clockTick(binding.root)
 
                 progressTimeInMillis = p0
             }

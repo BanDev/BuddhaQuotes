@@ -11,6 +11,7 @@
     <color name="heart">#FF6347</color>
     <color name="bandev">#5E17EB</color>
     <color name="line">#d3d3d3</color>
+    <color name="check">#3FC83A</color>
 
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F5F5F5</color>

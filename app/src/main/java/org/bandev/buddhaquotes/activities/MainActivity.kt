@@ -23,6 +23,8 @@ package org.bandev.buddhaquotes.activities
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.WindowInsets
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
@@ -34,11 +36,14 @@ import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import com.mikepenz.materialdrawer.util.addStickyDrawerItems
+import com.mikepenz.materialdrawer.util.getDrawerItem
 import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Main is the main page of Buddha Quotes
@@ -95,7 +100,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
             headerView = AccountHeaderView(this, compact = compact).apply {
                 attachToSliderView(binding.slider)
                 headerBackground = ImageHolder(R.color.colorPrimary)
-
                 withSavedInstance(savedInstanceState)
             }
         }
@@ -117,15 +121,20 @@ class MainActivity : LocalizationActivity(), CustomInsets {
                     nameRes = R.string.fragment_meditation; iconicsIcon =
                     RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
                     false; identifier = 3
+                },
+                PrimaryDrawerItem().apply {
+                    nameRes = R.string.start_meditation; iconicsIcon =
+                    RoundedGoogleMaterial.Icon.gmr_timer; isSelectable =
+                    false; identifier = 4
                 })
             addStickyDrawerItems(
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.settings; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
+                    RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 5
                 },
                 PrimaryDrawerItem().apply {
                     nameRes = R.string.about; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
+                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 6
                 }
             )
             setSavedInstance(savedInstanceState)
@@ -134,17 +143,32 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         var intent: Intent? = null
         binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
             when (drawerItem.identifier) {
-                1L -> binding.bottomBar.selectTabAt(0, true)
-                2L -> binding.bottomBar.selectTabAt(1, true)
-                3L -> binding.bottomBar.selectTabAt(2, true)
-                4L -> intent = Intent(this, SettingsActivity::class.java)
-                5L -> intent = Intent(this, AboutActivity::class.java)
-                else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
+                1L -> binding.bottomBar.selectTabAt(0)
+                2L -> binding.bottomBar.selectTabAt(1)
+                3L -> binding.bottomBar.selectTabAt(2)
+                4L -> {
+                    binding.bottomBar.selectTabAt(2)
+                    binding.slider.getDrawerItem(4L)!!.isEnabled = false
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        EventBus.getDefault().post(Event.StartMeditationTimer)
+                    }, 200)
+                }
+                5L -> intent = Intent(this, SettingsActivity::class.java)
+                6L -> intent = Intent(this, AboutActivity::class.java)
+                else -> binding.root.closeDrawer(binding.slider)
             }
             if (intent != null) startActivity(intent)
             intent = null
 
             false
+        }
+    }
+
+    @Subscribe
+    fun onEventReceive(event: Event) {
+        if (event is Event.RestoreDrawerButton) {
+            binding.root.closeDrawer(binding.slider)
+            (binding.slider.getDrawerItem(4L) ?: return).isEnabled = true
         }
     }
 
@@ -174,11 +198,22 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         super.onResume()
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
-        binding.toolbar.setBackgroundColor(toolbarColour(this))
-        with(binding.bottomBar) {
-            tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
-            indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
+        with(binding) {
+            toolbar.setBackgroundColor(toolbarColour(this@MainActivity))
+            root.closeDrawer(binding.slider)
+            bottomBar.tabColorSelected = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)
+            bottomBar.indicatorColor = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onBackPressed() {

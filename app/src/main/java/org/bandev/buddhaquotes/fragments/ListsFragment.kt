@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -37,7 +36,6 @@ import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.QuoteList
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
@@ -105,8 +103,8 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     }
 
     @Subscribe
-    fun onEventReceive(event: SendEvent) {
-        binding.listsRecycler.adapter?.notifyItemChanged(0)
+    fun onEventReceive(event: Event) {
+        if (event is Event.ToListFragment) binding.listsRecycler.adapter?.notifyItemChanged(0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -120,7 +118,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         return when (item.itemId) {
             R.id.add -> {
                 toolbarMenu?.findItem(R.id.add)?.isEnabled = false
-                val lists = ListsV2(requireContext()).getMasterList()
                 InputSheet().show(requireContext()) {
                     title(R.string.createNewList)
                     closeIconButton(icons.closeSheet())
@@ -130,34 +127,21 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                             hint(R.string.insertName)
                             validationListener { value ->
                                 when {
-                                    value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
-                                    value.lowercase(Locale.ROOT) == getString(R.string.favourites).lowercase(
-                                        Locale.ROOT
-                                    ) -> Validation.failed(getString(R.string.validationRule2))
-                                    lists.contains(value.lowercase(Locale.ROOT)) -> Validation.failed(
-                                        getString(R.string.validationRule3) + " $value"
+                                    value.lowercase() == getString(R.string.favourites).lowercase() -> Validation.failed(
+                                        getString(R.string.validationRule) + " " + getString(R.string.favourites).lowercase()
                                     )
                                     else -> Validation.success()
                                 }
                             }
                             resultListener { value ->
                                 model.newList(value.toString()) {
-
+                                    setupRecycler()
                                 }
-                                setupRecycler()
                             }
                         }
                     )
-                    onNegative(R.string.cancel) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-                    onPositive(R.string.add) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                        } else {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                        }
-                    }
+                    onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                    onPositive(R.string.add) { Feedback.confirm(binding.root) }
                     onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
                 }
                 true
@@ -169,16 +153,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     override fun onResume() {
         super.onResume()
         setupRecycler()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 
     companion object {

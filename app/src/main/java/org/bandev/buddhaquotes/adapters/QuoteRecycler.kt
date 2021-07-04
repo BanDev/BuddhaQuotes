@@ -62,9 +62,7 @@ class QuoteRecycler(
 
         holder.quote.text = context.getString(item.resource)
 
-        if (item.liked) {
-            holder.likeIcon.setImageResource(R.drawable.heart_full_red)
-        }
+        if (item.liked) holder.likeIcon.setImageResource(R.drawable.heart_full_red)
         holder.root.setOnClickListener { listener.select(item) }
     }
 

@@ -27,6 +27,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
@@ -49,23 +50,27 @@ class QuoteListRecycler(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = QuoteListRecyclerBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
+        return ViewHolder(
+            QuoteListRecyclerBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
         )
-        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.title.text = item.title
-        holder.summary.text = item.title
+        with(holder) {
+            title.text = item.title
+            summary.text = item.title
 
-        holder.listIcon.setImageDrawable(item.icon.drawable)
-        holder.listIcon.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
+            listIcon.setImageDrawable(item.icon.drawable)
+            listIcon.background = Icons(holder.listIcon.context).circle()
+            listIcon.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
 
-        holder.root.setOnClickListener { listener.select(item) }
+            root.setOnClickListener { listener.select(item) }
+        }
     }
 
     override fun getItemCount(): Int = list.size
