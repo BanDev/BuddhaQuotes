@@ -100,16 +100,14 @@ internal fun updateAppWidget(
 ) {
 // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.widget)
-    views.setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
-    // views.setImageViewResource(R.id.like, R.drawable.like)
-    views.setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
-    views.setImageViewResource(R.id.logo, R.drawable.ic_buddha)
-    // views.setOnClickPendingIntent(R.id.like, getPenIntent2(context))
-
-    views.setTextViewText(R.id.appwidget_text, Quotes().getQuote(0, context))
+    with(views) {
+        setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
+        setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
+        setImageViewResource(R.id.logo, R.drawable.ic_buddha)
+        setTextViewText(R.id.appwidget_text, Quotes().getQuote(0, context))
+    }
 
     getPenIntent(context)
-    // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }
 

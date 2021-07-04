@@ -22,9 +22,8 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.Preference
@@ -131,11 +130,7 @@ class SettingsActivity : LocalizationActivity() {
                             Option(icons.memory(), R.string.es)
                         )
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
+                            Feedback.confirm(view ?: return@onPositive)
                             when (index) {
                                 0 -> setLanguage(requireContext(), Locale("en"))
                                 1 -> setLanguage(requireContext(), Locale("ar"))
@@ -185,13 +180,8 @@ class SettingsActivity : LocalizationActivity() {
                             Option(icons.darkMode(), R.string.dark_mode),
                             Option(icons.systemDefault(), R.string.follow_system_default)
                         )
-                        onNegative { requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
                         onPositive { index: Int, _: Option ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
+                            Feedback.confirm(view ?: return@onPositive)
                             setDefaultNightMode(
                                 when (index) {
                                     0 -> MODE_NIGHT_NO
@@ -256,33 +246,11 @@ class SettingsActivity : LocalizationActivity() {
                         style(SheetStyle.DIALOG)
                         defaultView(ColorView.TEMPLATE)
                         disableSwitchColorView()
-                        onNegative(R.string.cancel) {
-                            requireView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                        }
+                        onNegative(R.string.cancel) { Feedback.virtualKey(requireView()) }
                         onPositive(R.string.okay) { color ->
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                            } else {
-                                (view ?: return@onPositive).performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                            }
-
+                            Feedback.confirm(view ?: return@onPositive)
                             if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {
-                                val colorOut = when (color) {
-                                    getColor(requireContext(), R.color.pinkAccent) -> "pink"
-                                    getColor(requireContext(), R.color.violetAccent) -> "violet"
-                                    getColor(requireContext(), R.color.blueAccent) -> "blue"
-                                    getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
-                                    getColor(requireContext(), R.color.tealAccent) -> "teal"
-                                    getColor(requireContext(), R.color.greenAccent) -> "green"
-                                    getColor(requireContext(), R.color.limeAccent) -> "lime"
-                                    getColor(requireContext(), R.color.yellowAccent) -> "yellow"
-                                    getColor(requireContext(), R.color.orangeAccent) -> "orange"
-                                    getColor(requireContext(), R.color.redAccent) -> "red"
-                                    getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
-                                    else -> "original"
-                                }
-                                editor.putString("accent_color", colorOut).apply()
-
+                                editor.putString("accent_color", colorOut(color)).apply()
                                 startActivity(Intent(context, SettingsActivity::class.java))
                                 activity?.finish()
                                 activity?.overridePendingTransition(
@@ -294,6 +262,23 @@ class SettingsActivity : LocalizationActivity() {
                     }
                     true
                 }
+            }
+        }
+
+        private fun colorOut(color: Int): String {
+            return when (color) {
+                getColor(requireContext(), R.color.pinkAccent) -> "pink"
+                getColor(requireContext(), R.color.violetAccent) -> "violet"
+                getColor(requireContext(), R.color.blueAccent) -> "blue"
+                getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
+                getColor(requireContext(), R.color.tealAccent) -> "teal"
+                getColor(requireContext(), R.color.greenAccent) -> "green"
+                getColor(requireContext(), R.color.limeAccent) -> "lime"
+                getColor(requireContext(), R.color.yellowAccent) -> "yellow"
+                getColor(requireContext(), R.color.orangeAccent) -> "orange"
+                getColor(requireContext(), R.color.redAccent) -> "red"
+                getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
+                else -> "original"
             }
         }
     }

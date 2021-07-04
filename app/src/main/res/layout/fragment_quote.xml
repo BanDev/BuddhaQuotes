@@ -12,7 +12,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginTop="15dp"
-            android:translationZ="15dp"
+            android:elevation="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +40,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Hello"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textSize="22sp" />
 
@@ -51,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="10dp"
-                    android:text="@string/textview"
                     android:textAlignment="textStart"
                     android:textColor="?android:attr/textColorSecondary"
                     android:textSize="@dimen/quoteNumberSize" />
@@ -67,7 +64,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:translationZ="15dp"
+            android:elevation="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +120,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            android:text="@string/textview"
             android:textAlignment="textStart"
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="@dimen/quoteNumberSize"
@@ -141,7 +137,6 @@
             android:layout_marginEnd="20dp"
             android:paddingStart="0dp"
             android:paddingEnd="20dp"
-            android:text="@string/textview"
             android:textAlignment="textStart"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/quoteTextSize"

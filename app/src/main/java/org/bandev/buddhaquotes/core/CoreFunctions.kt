@@ -32,8 +32,6 @@ import android.view.Window
 import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -209,40 +207,42 @@ fun Context.shareQuote(quote: Quote) {
     startActivity(Intent.createChooser(sendIntent, null))
 }
 
-fun ListIcons(context: Context) : List<ListIcon> {
+fun listIcons(context: Context): List<ListIcon> {
+    val icons = Icons(context)
     return listOf(
         ListIcon(
             0,
-            AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+            icons.add(),
             0xFF0067f4.toInt()
         ),
         ListIcon(
             1,
-            AppCompatResources.getDrawable(context, R.drawable.ic_refresh)!!,
+            icons.heartOutline(),
             0xFF349334.toInt()
         ),
         ListIcon(
             2,
-            AppCompatResources.getDrawable(context, R.drawable.ic_pause)!!,
+            icons.back(),
             0xFFFF5733.toInt()
         ),
         ListIcon(
             3,
-            AppCompatResources.getDrawable(context, R.drawable.ic_settings)!!,
+            icons.menu(),
             0xFFFF33DA.toInt()
         ),
         ListIcon(
             4,
-            AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+            icons.tune(),
             0xFF0A7AA7.toInt()
         )
     )
 }
 
-fun defaultIcon(context: Context) : ListIcon {
+fun defaultIcon(context: Context): ListIcon {
+    val icons = Icons(context)
     return ListIcon(
         0,
-        AppCompatResources.getDrawable(context, R.drawable.ic_play)!!,
+        icons.heartOutline(),
         0xFF0067f4.toInt()
     )
 }

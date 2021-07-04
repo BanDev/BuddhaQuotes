@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,7 +125,7 @@ class QuoteFragment : Fragment() {
                 Option(icons.addCircle(), R.string.addToList)
             )
             onPositive { index: Int, _: Option ->
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                Feedback.virtualKey(binding.root)
                 if (index == 0) context?.shareQuote(quote)
                 else showSecondBottomSheet()
             }
@@ -141,7 +140,7 @@ class QuoteFragment : Fragment() {
             displayHandle(true)
             with(Option(icons.heart(false), R.string.favourites))
             onPositive { index: Int, _: Option ->
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                Feedback.virtualKey(binding.root)
             }
         }
     }

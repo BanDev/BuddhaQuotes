@@ -16,10 +16,10 @@ class ListIconManager(application: Application) {
     init {
         listIcons.add(ListIcon(0, icons.heartOutline(), getColor(context, R.color.colorAccent)))
         listIcons.add(ListIcon(1, icons.list(), getColor(context, R.color.blueAccent)))
-        listIcons.add(ListIcon(2, icons.list(), getColor(context, R.color.blueAccent)))
+        listIcons.add(ListIcon(2, icons.heartOutline(), getColor(context, R.color.blueAccent)))
         listIcons.add(ListIcon(3, icons.list(), getColor(context, R.color.blueAccent)))
     }
 
-    fun associate(id: Int) = listIcons[id]
+    fun associate(id: Int): ListIcon = listIcons[id]
 
 }

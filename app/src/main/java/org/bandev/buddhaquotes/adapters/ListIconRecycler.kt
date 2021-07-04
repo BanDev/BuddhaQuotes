@@ -24,8 +24,9 @@ import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.mikepenz.iconics.view.IconicsImageView
+import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -41,32 +42,35 @@ class ListIconRecycler(
     ) : RecyclerView.Adapter<ListIconRecycler.ViewHolder>() {
 
     class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
-        val listIcon: ImageView = binding.listIcon
-        val selected: ImageView = binding.selected
+        val listIcon: IconicsImageView = binding.listIcon
+        val selected: IconicsImageView = binding.selected
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListIconBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
+        return ViewHolder(
+            ListIconBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent, false
+            )
         )
-        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        holder.listIcon.setImageDrawable(item.drawable)
-        holder.listIcon.backgroundTintList = ColorStateList.valueOf(item.colour)
-        holder.listIcon.setOnClickListener {
-            click(holder)
-            listener.select(item)
+        with(holder.listIcon) {
+            setImageDrawable(item.drawable)
+            background = Icons(context).circle()
+            backgroundTintList = ColorStateList.valueOf(item.colour)
+            setOnClickListener {
+                click(holder)
+                listener.select(item)
+            }
         }
     }
 
     private fun click(holder: ViewHolder) {
         holder.selected.visibility =
-            if (holder.selected.visibility == View.VISIBLE) View.INVISIBLE
-            else View.VISIBLE
+            if (holder.selected.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
     }
 
     override fun getItemCount(): Int = list.size

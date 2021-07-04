@@ -24,7 +24,6 @@ import android.content.Context
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.maxkeppeler.sheets.core.IconButton
-import com.mikepenz.iconics.Iconics
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
@@ -43,6 +42,8 @@ class Icons(var context: Context) {
     fun addCircle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
 
     fun back(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_arrow_back, Color.WHITE, 16)
+
+    fun circle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_lens)
 
     fun close(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_close, Color.WHITE, 16)
 
@@ -64,7 +65,8 @@ class Icons(var context: Context) {
         return icon(iicon, colour)
     }
 
-    fun heartOutline(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_favorite_outline, Color.WHITE)
+    fun heartOutline(): IconicsDrawable =
+        icon(RoundedGoogleMaterial.Icon.gmr_favorite_outline, Color.WHITE)
 
     fun list(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_list, Color.WHITE)
 

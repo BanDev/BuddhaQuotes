@@ -20,20 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.content.Context
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
@@ -42,10 +36,8 @@ import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
-import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * The activity where the user can see all the quotes they have in their
@@ -105,7 +97,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     private fun checkLength(list: QuoteListWithQuotes) {
-        if (list.quotes.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE
+        if (list.quotes.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE else View.GONE
     }
 
     override fun select(quote: Quote) {
@@ -151,12 +143,13 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     private fun showSettings(): Boolean {
+        toolbarMenu?.findItem(R.id.settings)?.isEnabled = false
         CustomiseListSheet().show(this) {
             displayToolbar(false)
             displayHandle(true)
-            attatchVariables(listModel, listId)
+            attachVariables(listModel, listId)
+            onClose { toolbarMenu?.findItem(R.id.settings)?.isEnabled = true }
         }
         return true
     }
-
 }

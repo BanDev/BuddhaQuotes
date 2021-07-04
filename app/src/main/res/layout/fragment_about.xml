@@ -16,7 +16,7 @@
         android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/appLogo"
+            android:id="@+id/app_logo"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
@@ -30,15 +30,27 @@
             android:text="@string/app_name"
             android:textAppearance="@android:style/TextAppearance.Large"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/appLogo" />
 
         <TextView
-            android:id="@+id/aboutAppVersion"
+            android:id="@+id/about_app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:textAppearance="@android:style/TextAppearance.Medium"
             tools:text="1.0.0" />
+
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/about_info_paragraph"
+            android:textAppearance="@android:style/TextAppearance.Medium" />
 
     </LinearLayout>
 

@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:translationZ="15dp"
+    android:elevation="5dp"
     app:cardCornerRadius="11dp">
 
     <LinearLayout
@@ -15,16 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.mikepenz.iconics.view.IconicsImageView
             android:id="@+id/list_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/circle"
             android:layout_margin="16dp"
-            android:contentDescription="@string/aa"
             android:padding="15dp"
-            android:src="@drawable/nav_home"
-            android:translationZ="10dp" />
+            android:elevation="4dp" />
 
         <LinearLayout
             android:orientation="vertical"

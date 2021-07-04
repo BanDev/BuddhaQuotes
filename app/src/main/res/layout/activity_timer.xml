@@ -17,7 +17,7 @@
         app:titleTextColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/timerText"
+        android:id="@+id/timer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -31,18 +31,18 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/spaceDrawable"
+        android:id="@+id/space_drawable"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="gmr-volume-off"
         app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/spaceDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/space_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spaceTitle" />
+        app:layout_constraintTop_toTopOf="@+id/space_title" />
 
     <TextView
-        android:id="@+id/spaceTitle"
+        android:id="@+id/space_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -52,10 +52,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+        app:layout_constraintTop_toBottomOf="@+id/timer_text" />
 
     <TextView
-        android:id="@+id/spaceDescription"
+        android:id="@+id/space_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -63,22 +63,22 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/spaceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/spaceTitle" />
+        app:layout_constraintStart_toStartOf="@+id/space_title"
+        app:layout_constraintTop_toBottomOf="@+id/space_title" />
 
     <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/postureDrawable"
+        android:id="@+id/posture_drawable"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="gmr-self-improvement"
         app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/postureDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/posture_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postureTitle" />
+        app:layout_constraintTop_toTopOf="@+id/posture_title" />
 
     <TextView
-        android:id="@+id/postureTitle"
+        android:id="@+id/posture_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -88,10 +88,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spaceDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/space_description" />
 
     <TextView
-        android:id="@+id/postureDescription"
+        android:id="@+id/posture_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -99,22 +99,22 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/spaceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/postureTitle" />
+        app:layout_constraintStart_toStartOf="@+id/space_title"
+        app:layout_constraintTop_toBottomOf="@+id/posture_title" />
 
     <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/breatheDrawable"
+        android:id="@+id/breathe_drawable"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="25dp"
         app:iiv_icon="gmr-favorite-border"
         app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/breatheDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/breathe_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/breatheTitle" />
+        app:layout_constraintTop_toTopOf="@+id/breathe_title" />
 
     <TextView
-        android:id="@+id/breatheTitle"
+        android:id="@+id/breathe_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -122,11 +122,11 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/postureDescription"
-        app:layout_constraintTop_toBottomOf="@+id/postureDescription" />
+        app:layout_constraintStart_toStartOf="@+id/posture_description"
+        app:layout_constraintTop_toBottomOf="@+id/posture_description" />
 
     <TextView
-        android:id="@+id/breatheDescription"
+        android:id="@+id/breathe_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
@@ -134,8 +134,8 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/spaceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/breatheTitle" />
+        app:layout_constraintStart_toStartOf="@+id/space_title"
+        app:layout_constraintTop_toBottomOf="@+id/breathe_title" />
 
     <Button
         android:id="@+id/pause"
