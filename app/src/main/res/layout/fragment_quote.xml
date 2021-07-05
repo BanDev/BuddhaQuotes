@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipeRefresh"
+    android:id="@+id/swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -21,8 +15,9 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginHorizontal="15dp"
             android:elevation="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,9 +56,7 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="25dp"
+            android:layout_margin="15dp"
             android:elevation="15dp"
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,62 +82,29 @@
 
                 </uk.bandev.xplosion.XplosionView>
 
-                <ImageButton
+                <com.mikepenz.iconics.view.IconicsImageButton
                     android:id="@+id/next"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
-                    android:src="@drawable/nav_home"
-                    app:tint="?android:textColorSecondary" />
+                    app:iiv_icon="gmr-navigate-next"
+                    app:iiv_size="20dp" />
 
-                <ImageButton
+                <com.mikepenz.iconics.view.IconicsImageButton
                     android:id="@+id/more"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
-                    android:src="@drawable/nav_home"
-                    app:tint="?android:textColorSecondary" />
+                    app:iiv_icon="gmr-more-vert"
+                    app:iiv_size="20dp" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/numbder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:textAlignment="textStart"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="@dimen/quoteNumberSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quoted" />
-
-        <TextView
-            android:id="@+id/quoted"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="20dp"
-            android:textAlignment="textStart"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/quoteTextSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

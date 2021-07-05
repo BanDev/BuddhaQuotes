@@ -21,12 +21,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.WindowInsets
+import android.view.WindowInsetsController
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -65,7 +70,10 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setNavigationBarColourMain(this)
+        with(window) {
+            setNavigationBarColourMain(this@MainActivity)
+            setDarkStatusIcons(this@MainActivity)
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -76,7 +84,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = icons.menu()
-            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
 
@@ -199,7 +206,6 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         setAccentColour(this)
         window.setStatusBarAsAccentColour(this)
         with(binding) {
-            toolbar.setBackgroundColor(toolbarColour(this@MainActivity))
             root.closeDrawer(binding.slider)
             bottomBar.tabColorSelected = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)
             bottomBar.indicatorColor = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)

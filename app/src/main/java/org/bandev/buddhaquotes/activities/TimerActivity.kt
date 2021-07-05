@@ -67,7 +67,6 @@ class TimerActivity : LocalizationActivity() {
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = icons.close()
-            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
 
@@ -260,7 +259,7 @@ class TimerActivity : LocalizationActivity() {
         }
 
         // Show the minutes and seconds
-        binding.timerText.text = "$minute:$seconds"
+        binding.timerText.text = getString(R.string.timer_text, minute, seconds)
     }
 
     private fun buildNotification(context: Context) {

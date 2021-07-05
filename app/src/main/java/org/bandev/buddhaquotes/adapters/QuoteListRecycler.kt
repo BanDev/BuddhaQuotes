@@ -20,14 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
-import android.content.res.ColorStateList
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import org.bandev.buddhaquotes.core.Icons
+import org.bandev.buddhaquotes.architecture.ListIconManager
 import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
@@ -39,8 +39,11 @@ class QuoteListRecycler(
 
     private val list: List<QuoteList>,
     private val listener: Listener,
+    application: Application
 
-    ) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
+) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
+
+    private val listIconManager = ListIconManager(application)
 
     class ViewHolder(binding: QuoteListRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.titleText
@@ -64,13 +67,10 @@ class QuoteListRecycler(
         with(holder) {
             title.text = item.title
             summary.text = item.title
-
-            listIcon.setImageDrawable(item.icon.drawable)
-            listIcon.background = Icons(holder.listIcon.context).circle()
-            listIcon.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
-
             root.setOnClickListener { listener.select(item) }
         }
+
+        listIconManager.draw(holder.listIcon, item.icon)
     }
 
     override fun getItemCount(): Int = list.size

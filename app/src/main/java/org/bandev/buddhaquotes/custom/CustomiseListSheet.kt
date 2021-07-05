@@ -1,13 +1,14 @@
 package org.bandev.buddhaquotes.custom
 
+import android.app.Application
 import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.ListIconRecycler
+import org.bandev.buddhaquotes.architecture.ListIconManager
 import org.bandev.buddhaquotes.architecture.ListViewModel
-import org.bandev.buddhaquotes.core.listIcons
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -15,6 +16,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
 
     private lateinit var binding: CustomiseListSheetBinding
     private lateinit var model: ListViewModel
+    private lateinit var listIconManager: ListIconManager
     private var listId = 0
 
     fun attachVariables(_model: ListViewModel, _listId: Int) {
@@ -26,7 +28,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
         binding = CustomiseListSheetBinding.inflate(layoutInflater)
 
         with(binding.listIconRecycler) {
-            adapter = ListIconRecycler(listIcons(requireContext()), this@CustomiseListSheet)
+            adapter = ListIconRecycler(listIconManager.getAll(), this@CustomiseListSheet)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
@@ -41,10 +43,12 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
 
     fun build(
         ctx: Context,
+        application: Application,
         width: Int? = null,
         func: CustomiseListSheet.() -> Unit
     ): CustomiseListSheet {
         this.windowContext = ctx
+        this.listIconManager = ListIconManager(application)
         this.width = width
         this.func()
         return this
@@ -52,10 +56,12 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
 
     fun show(
         ctx: Context,
+        application: Application,
         width: Int? = null,
         func: CustomiseListSheet.() -> Unit
     ): CustomiseListSheet {
         this.windowContext = ctx
+        this.listIconManager = ListIconManager(application)
         this.width = width
         this.func()
         this.show()

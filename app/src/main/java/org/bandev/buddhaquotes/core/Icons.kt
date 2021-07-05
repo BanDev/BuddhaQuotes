@@ -37,7 +37,7 @@ class Icons(var context: Context) {
     private val defaultDp = 24
     private val defaultColorInt = context.resolveColorAttr(android.R.attr.textColorPrimary)
 
-    fun add(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add, Color.WHITE, 16)
+    fun add(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add, _sizeDp = 16)
 
     fun addCircle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
 
@@ -45,7 +45,7 @@ class Icons(var context: Context) {
 
     fun circle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_lens)
 
-    fun close(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_close, Color.WHITE, 16)
+    fun close(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_close, _sizeDp = 16)
 
     fun closeSheet(): IconButton {
         val icon = icon(RoundedGoogleMaterial.Icon.gmr_expand_more)
@@ -56,7 +56,7 @@ class Icons(var context: Context) {
     fun darkMode(): IconicsDrawable =
         icon(RoundedGoogleMaterial.Icon.gmr_nights_stay, _sizeDp = 20)
 
-    fun menu(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_menu, Color.WHITE, 18)
+    fun menu(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_menu, _sizeDp = 18)
 
     fun heart(liked: Boolean): IconicsDrawable {
         val colour = if (liked) ContextCompat.getColor(context, R.color.heart) else defaultColorInt
@@ -74,14 +74,14 @@ class Icons(var context: Context) {
         icon(RoundedGoogleMaterial.Icon.gmr_language, _sizeDp = 20)
 
     fun lightMode(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 24)
 
     fun memory(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_memory)
 
     fun message(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_message)
 
     fun palette(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_palette, _sizeDp = 20)
+        icon(RoundedGoogleMaterial.Icon.gmr_palette)
 
     fun share(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_share)
 
@@ -101,3 +101,4 @@ class Icons(var context: Context) {
         }
     }
 }
+
