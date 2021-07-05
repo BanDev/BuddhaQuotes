@@ -92,7 +92,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         model.getAllNoQuotes {
             with(binding.listsRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteListRecycler(it, this@ListsFragment)
+                adapter = QuoteListRecycler(it, this@ListsFragment, requireActivity().application)
                 setHasFixedSize(false)
             }
         }

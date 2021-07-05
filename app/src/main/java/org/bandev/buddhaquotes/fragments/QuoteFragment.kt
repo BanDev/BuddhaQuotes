@@ -72,10 +72,13 @@ class QuoteFragment : Fragment() {
         // Get icons class
         icons = Icons(requireContext())
 
+        // Start with a quote
+        randomQuote()
+
         // On refresh get a new quote
-        binding.swipeRefresh.setOnRefreshListener {
+        binding.swipeToRefresh.setOnRefreshListener {
             randomQuote()
-            binding.swipeRefresh.isRefreshing = false
+            binding.swipeToRefresh.isRefreshing = false
         }
 
         // On content liked
@@ -93,9 +96,6 @@ class QuoteFragment : Fragment() {
                 if (!quote.liked) onLikeClicked()
             }
         })
-
-        // Start with a quote
-        randomQuote()
     }
 
     private fun randomQuote() {
@@ -147,7 +147,7 @@ class QuoteFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.swipeRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
+        binding.swipeToRefresh.setColorSchemeColors(requireContext().resolveColorAttr(R.attr.colorPrimary))
     }
 
     companion object {

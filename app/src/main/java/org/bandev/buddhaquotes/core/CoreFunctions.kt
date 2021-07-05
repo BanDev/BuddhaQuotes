@@ -93,6 +93,20 @@ fun Window.setNavigationBarColourMain(context: Context) {
     }
 }
 
+@Suppress("DEPRECATION")
+fun Window.setDarkStatusIcons(context: Context) {
+    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_NO -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
+            )
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+    }
+}
+
 /**
  * Sets activity's theme based off setting from preferences
  * @param [context] context of activity (Context)

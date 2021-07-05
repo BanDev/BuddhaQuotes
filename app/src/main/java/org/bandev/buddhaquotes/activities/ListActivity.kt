@@ -144,7 +144,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
     private fun showSettings(): Boolean {
         toolbarMenu?.findItem(R.id.settings)?.isEnabled = false
-        CustomiseListSheet().show(this) {
+        CustomiseListSheet().show(this, application) {
             displayToolbar(false)
             displayHandle(true)
             attachVariables(listModel, listId)

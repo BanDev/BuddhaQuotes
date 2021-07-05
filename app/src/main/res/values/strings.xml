@@ -26,19 +26,9 @@
 
     <!-- About page -->
     <string name="about_app_promise" id="21">App Promise</string>
-    <string name="about_no_trackers" id="22">No trackers</string>
-    <string name="about_complete_privacy" id="23">Complete privacy</string>
-    <string name="about_offline_app" id="24">Offline app</string>
-    <string name="about_free_and_open_source" id="25">Free and Open Source</string>
     <string name="about_info" id="26">App Info</string>
     <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy</string>
-    <string name="about_contributors" id="28">Contributors</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
+    <string name="about_contributors" id="28">Really great people</string>
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
     <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
     <string name="tick" id="31">Tick</string>
@@ -565,6 +555,7 @@
     <string name="search">Search</string>
     <string name="attribution_buddha">  ~Gautama Buddha</string>
 
+    <string name="timer_text">%1$s:%2$s</string>
     <string name="seconds">seconds</string>
     <string name="minutes">minutes</string>
     <string name="and">and</string>
@@ -589,4 +580,23 @@
     <string name="text">Text</string>
     <string name="_00_00">00:00</string>
     <string name="list_icon">List Icon</string>
+
+    <string name="contributors">Contributors</string>
+
+    <string-array name="contributors_people">
+        <item translatable="false">"@russellbanks"</item>
+        <item translatable="false">"@jackdevey"</item>
+        <item translatable="false">"@IzzySoft"</item>
+        <item translatable="false">"@licaon-kter"</item>
+        <item translatable="false">"@Poussinou"</item>
+        <item translatable="false">"@J_M_Hoffmann"</item>
+    </string-array>
+
+    <string-array name="app_promises">
+        <item>No trackers</item>
+        <item>Complete privacy</item>
+        <item>Offline app</item>
+        <item>Free and Open Source</item>
+    </string-array>
+
 </resources>

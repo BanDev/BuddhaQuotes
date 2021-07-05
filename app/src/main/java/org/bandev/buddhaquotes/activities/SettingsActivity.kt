@@ -22,7 +22,6 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor

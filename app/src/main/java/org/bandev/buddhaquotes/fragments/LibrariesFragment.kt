@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.AnimationUtils
 import org.bandev.buddhaquotes.databinding.FragmentLibrariesBinding
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
@@ -81,6 +82,12 @@ class LibrariesFragment : Fragment() {
 
                 binding.nameTextView.text = library.libraryName
                 binding.versionTextView.text = library.libraryVersion
+
+                binding.root.setOnClickListener {
+                    val visible = binding.cardExpandable.visibility != View.VISIBLE
+                    if (visible) AnimationUtils.expand(binding.cardExpandable)
+                    else AnimationUtils.collapse(binding.cardExpandable)
+                }
 
                 if (library.author.isNotEmpty()) {
                     binding.authorTextView.text = library.author
