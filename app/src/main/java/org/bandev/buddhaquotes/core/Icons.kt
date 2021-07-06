@@ -41,7 +41,7 @@ class Icons(var context: Context) {
 
     fun addCircle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_add_circle_outline)
 
-    fun back(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_arrow_back, Color.WHITE, 16)
+    fun back(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_arrow_back, _sizeDp = 16)
 
     fun circle(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_lens)
 
@@ -68,6 +68,8 @@ class Icons(var context: Context) {
     fun heartOutline(): IconicsDrawable =
         icon(RoundedGoogleMaterial.Icon.gmr_favorite_outline, Color.WHITE)
 
+    fun help(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_help_outline, _sizeDp = 18)
+
     fun list(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_list, Color.WHITE)
 
     fun language(): IconicsDrawable =
@@ -75,6 +77,8 @@ class Icons(var context: Context) {
 
     fun lightMode(): IconicsDrawable =
         icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 24)
+
+    fun lotus(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_spa)
 
     fun memory(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_memory)
 
@@ -88,7 +92,7 @@ class Icons(var context: Context) {
     fun systemDefault(): IconicsDrawable =
         icon(RoundedGoogleMaterial.Icon.gmr_brightness_medium, _sizeDp = 20)
 
-    fun tune(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_tune, Color.WHITE, 16)
+    fun tune(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_tune, _sizeDp = 16)
 
     private fun icon(
         iicon: IIcon,

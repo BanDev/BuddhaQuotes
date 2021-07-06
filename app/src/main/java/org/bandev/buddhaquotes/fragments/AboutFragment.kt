@@ -60,14 +60,10 @@ class AboutFragment : Fragment() {
             setHasFixedSize(true)
         }
 
-        binding.titleCard.setOnClickListener {
-            expandTitleCard()
-        }
-        binding.contributorsCard.setOnClickListener {
-            expandContributorCard()
-        }
-        binding.promiseCard.setOnClickListener {
-            expandPromiseCard()
+        with(binding) {
+            titleCard.setOnClickListener { expandTitleCard() }
+            contributorsCard.setOnClickListener { expandContributorCard() }
+            promiseCard.setOnClickListener { expandPromiseCard() }
         }
     }
 

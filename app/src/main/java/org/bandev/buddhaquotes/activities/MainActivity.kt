@@ -21,17 +21,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
 import android.view.WindowInsets
-import android.view.WindowInsetsController
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -71,15 +66,14 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         super.onCreate(savedInstanceState)
 
         with(window) {
-            setNavigationBarColourMain(this@MainActivity)
-            setDarkStatusIcons(this@MainActivity)
+            setNavigationBarColourMain(context)
+            setDarkStatusIcons(context)
+            fitSystemBars(this@MainActivity)
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         icons = Icons(this)
-
-        fitSystemBars(binding.root, window, this)
 
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
@@ -204,11 +198,10 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun onResume() {
         super.onResume()
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        with(binding) {
-            root.closeDrawer(binding.slider)
-            bottomBar.tabColorSelected = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)
-            bottomBar.indicatorColor = this@MainActivity.resolveColorAttr(R.attr.colorPrimary)
+        binding.root.closeDrawer(binding.slider)
+        with(binding.bottomBar) {
+            tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
+            indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
         }
     }
 

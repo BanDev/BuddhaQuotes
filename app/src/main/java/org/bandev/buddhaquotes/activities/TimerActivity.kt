@@ -22,20 +22,31 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.WindowInsets
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
-class TimerActivity : LocalizationActivity() {
+class TimerActivity : LocalizationActivity(), CustomInsets {
 
     private lateinit var binding: ActivityTimerBinding
     private lateinit var notifBuilder: NotificationCompat.Builder
@@ -53,14 +64,18 @@ class TimerActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        settings = Timer().Settings(this)
-
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+
+        with(window) {
+            setNavigationBarColourDefault(context)
+            setDarkStatusIcons(context)
+            fitSystemBars(this@TimerActivity)
+        }
 
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        settings = Timer().Settings(this)
 
         icons = Icons(this)
 
@@ -68,43 +83,6 @@ class TimerActivity : LocalizationActivity() {
         with(binding.toolbar) {
             navigationIcon = icons.close()
             setNavigationOnClickListener { onBackPressed() }
-        }
-
-        with(binding.settings) {
-            setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
-            setOnClickListener {
-                binding.settings.isEnabled = false
-                Feedback.virtualKey(binding.root)
-                InputSheet().show(context) {
-                    title("Timer Settings")
-                    closeIconButton(icons.closeSheet())
-                    displayButtons(false)
-                    with(InputCheckBox {
-                        text("Play Gong at end")
-                        defaultValue(settings.endSound)
-                        changeListener { settings.endSound = !settings.endSound }
-                    })
-                    with(InputCheckBox {
-                        text(R.string.vibrate_second)
-                        defaultValue(settings.vibrateSecond)
-                        changeListener { settings.vibrateSecond = !settings.vibrateSecond }
-                    })
-                    with(InputCheckBox {
-                        text(R.string.show_notification)
-                        defaultValue(settings.showNotificaton)
-                        changeListener {
-                            settings.showNotificaton = !settings.showNotificaton
-                            if (!settings.showNotificaton) {
-                                NotificationManagerCompat.from(applicationContext).cancel(0)
-                            } else {
-                                buildNotification(requireContext())
-                                pushNotification(requireContext())
-                            }
-                        }
-                    })
-                    onClose { binding.settings.isEnabled = true }
-                }
-            }
         }
 
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
@@ -132,6 +110,38 @@ class TimerActivity : LocalizationActivity() {
         }
     }
 
+    fun showSettings() {
+        Feedback.virtualKey(binding.root)
+        InputSheet().show(this) {
+            title("Timer Settings")
+            closeIconButton(icons.closeSheet())
+            displayButtons(false)
+            with(InputCheckBox {
+                text("Play Gong at end")
+                defaultValue(settings.endSound)
+                changeListener { settings.endSound = !settings.endSound }
+            })
+            with(InputCheckBox {
+                text(R.string.vibrate_second)
+                defaultValue(settings.vibrateSecond)
+                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+            })
+            with(InputCheckBox {
+                text(R.string.show_notification)
+                defaultValue(settings.showNotificaton)
+                changeListener {
+                    settings.showNotificaton = !settings.showNotificaton
+                    if (!settings.showNotificaton) {
+                        NotificationManagerCompat.from(applicationContext).cancel(0)
+                    } else {
+                        buildNotification(requireContext())
+                        pushNotification(requireContext())
+                    }
+                }
+            })
+        }
+    }
+
     // Timer is done so must be for reset
     private fun reset() {
         binding.pause.isEnabled = false
@@ -144,9 +154,7 @@ class TimerActivity : LocalizationActivity() {
                 Feedback.confirm(binding.root)
                 with(binding.pause) {
                     text = getString(R.string.pause)
-                    setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_pause, 0, 0, 0
-                    )
+                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
                 }
 
                 startTimer(durationTimeInMillis * 1000)
@@ -160,9 +168,7 @@ class TimerActivity : LocalizationActivity() {
         // Change button text & icon
         with(binding.pause) {
             text = getString(R.string.pause)
-            setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_pause, 0, 0, 0
-            )
+            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
         }
 
         // Start the timer from the last recorded progress
@@ -176,9 +182,7 @@ class TimerActivity : LocalizationActivity() {
         // Change button text & icon
         with(binding.pause) {
             text = getString(R.string.play)
-            setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_play, 0, 0, 0
-            )
+            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
         }
 
         countDownTimer.cancel()
@@ -193,6 +197,17 @@ class TimerActivity : LocalizationActivity() {
         }
 
         isPaused = true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.meditate_activity_menu, menu)
+        menu?.findItem(R.id.tune)?.icon = icons.tune()
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        showSettings()
+        return true
     }
 
     private fun startTimer(timeInSeconds: Long) {
@@ -304,5 +319,16 @@ class TimerActivity : LocalizationActivity() {
         countDownTimer.cancel()
         NotificationManagerCompat.from(applicationContext).cancel(0)
         super.onDestroy()
+    }
+
+    @Suppress("DEPRECATION")
+    override fun setCustomInsets(insets: WindowInsetsCompat) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
+            binding.pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom + 30)
+        } else {
+            binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
+            binding.pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom + 30)
+        }
     }
 }

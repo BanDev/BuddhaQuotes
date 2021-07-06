@@ -20,10 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowInsets
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -44,7 +48,7 @@ import java.util.*
  * lists
  */
 
-class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
+class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInsets {
 
     private lateinit var binding: ActivityListBinding
     private var toolbarMenu: Menu? = null
@@ -56,9 +60,14 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+
+        with(window) {
+            setNavigationBarColourDefault(context)
+            setDarkStatusIcons(context)
+            fitSystemBars(this@ListActivity)
+        }
 
         // Setup view binding
         binding = ActivityListBinding.inflate(layoutInflater)
@@ -76,7 +85,6 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = icons.back()
-            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
 
@@ -88,7 +96,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
         listModel.get(id) {
             with(binding.quotesRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteRecycler(it.quotes, this@ListActivity, this@ListActivity)
+                adapter = QuoteRecycler(it.quotes, context, this@ListActivity)
                 setHasFixedSize(false)
             }
             binding.toolbar.title = it.title
@@ -151,5 +159,14 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
             onClose { toolbarMenu?.findItem(R.id.settings)?.isEnabled = true }
         }
         return true
+    }
+
+    @Suppress("DEPRECATION")
+    override fun setCustomInsets(insets: WindowInsetsCompat) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
+        } else {
+            binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
+        }
     }
 }

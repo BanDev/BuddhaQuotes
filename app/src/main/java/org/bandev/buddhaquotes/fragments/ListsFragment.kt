@@ -26,9 +26,13 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
@@ -48,17 +52,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
     private lateinit var icons: Icons
-
     private var toolbarMenu: Menu? = null
-
-
-    /**
-     * Sets the correct view of the Fragment
-     * @param inflater [LayoutInflater]
-     * @param container [ViewGroup]
-     * @param savedInstanceState [Bundle]
-     * @return [View]
-     */
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -108,9 +102,10 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_menu, menu)
+        inflater.inflate(R.menu.lists_menu, menu)
         toolbarMenu = menu
         menu.findItem(R.id.add).icon = icons.add()
+        menu.findItem(R.id.help).icon = icons.help()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -143,6 +138,23 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                     onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
                     onPositive(R.string.add) { Feedback.confirm(binding.root) }
                     onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+                }
+                true
+            }
+            R.id.help -> {
+                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
+                InfoSheet().show(requireContext()) {
+                    title("title")
+                    content("You can do this to meditate as well as doing this hi jack are you reading this")
+                    closeIconButton(icons.closeSheet())
+                    displayButtons(false)
+                    withCoverLottieAnimation(LottieAnimation {
+                        ratio(Ratio(2, 1))
+                        setupAnimation {
+                            setAnimation(R.raw.lists)
+                        }
+                    })
+                    onClose { toolbarMenu?.findItem(R.id.help)?.isEnabled = true }
                 }
                 true
             }

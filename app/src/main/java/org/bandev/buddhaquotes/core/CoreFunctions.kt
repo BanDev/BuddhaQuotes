@@ -175,14 +175,12 @@ fun getAccentColourAsString(context: Context): String {
 
 /**
  * A function to draw behind system bars
- * @param [view] The view
- * @param [window] The window
  * @param [customInsets] The customInsets
  */
-fun fitSystemBars(view: View, window: Window, customInsets: CustomInsets) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
+fun Window.fitSystemBars(customInsets: CustomInsets) {
+    WindowCompat.setDecorFitsSystemWindows(this, false)
 
-    ViewCompat.setOnApplyWindowInsetsListener(view.rootView) { _, insets ->
+    ViewCompat.setOnApplyWindowInsetsListener(this.decorView) { _, insets ->
         customInsets.setCustomInsets(insets)
         insets
     }

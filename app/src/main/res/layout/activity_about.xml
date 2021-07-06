@@ -18,16 +18,18 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/about_app"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="?android:textColorPrimary" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@android:color/white"
-            app:tabTextColor="@android:color/white" />
+            android:background="@color/background"
+            app:tabIndicatorColor="?android:textColorPrimary"
+            app:tabTextColor="?android:textColorPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
