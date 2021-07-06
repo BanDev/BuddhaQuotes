@@ -21,11 +21,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.info.InfoSheet
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
@@ -38,7 +40,6 @@ import org.bandev.buddhaquotes.items.Quote
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
- * It is the first item in the [FragmentAdapter] on MainActivity
  */
 
 class QuoteFragment : Fragment() {
@@ -47,12 +48,14 @@ class QuoteFragment : Fragment() {
     private lateinit var model: QuoteViewModel
     private lateinit var icons: Icons
     private lateinit var quote: Quote
+    private var toolbarMenu: Menu? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         binding = FragmentQuoteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -75,21 +78,17 @@ class QuoteFragment : Fragment() {
         // Start with a quote
         randomQuote()
 
-        // On refresh get a new quote
-        binding.swipeToRefresh.setOnRefreshListener {
-            randomQuote()
-            binding.swipeToRefresh.isRefreshing = false
+        with(binding) {
+            swipeToRefresh.also {
+                it.setOnRefreshListener {
+                    randomQuote()
+                    it.isRefreshing = false
+                }
+            }
+            like.setOnClickListener { onLikeClicked() }
+            more.setOnClickListener { showOptionsSheet() }
+            quoteFragmentImage.setImageResource(R.drawable.ic_lotus)
         }
-
-        // On content liked
-        binding.like.setOnClickListener {
-            onLikeClicked()
-        }
-
-        // When more is pressed
-        binding.more.setOnClickListener { showOptionsSheet() }
-
-        // When screen double tapped
         binding.content.setOnClickListener(object : DoubleClickListener() {
             override fun onSingleClick(view: View?) {}
             override fun onDoubleClick(view: View?) {
@@ -142,6 +141,59 @@ class QuoteFragment : Fragment() {
             onPositive { index: Int, _: Option ->
                 Feedback.virtualKey(binding.root)
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.quote_menu, menu)
+        toolbarMenu = menu
+        menu.findItem(R.id.options).icon = icons.tune()
+        menu.findItem(R.id.help).icon = icons.help()
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.options -> {
+                toolbarMenu?.findItem(R.id.options)?.isEnabled = false
+                OptionsSheet().show(requireContext()) {
+                    displayMode(DisplayMode.GRID_HORIZONTAL)
+                    with(
+                        Option(R.drawable.ic_seokguram, "Buddha"),
+                        Option(icons.lotus(), "Lotus"),
+                        Option(icons.lotus(), "Lotus"),
+                        Option(icons.lotus(), "Lotus")
+                    )
+                    onPositive { index: Int, _: Option ->
+                        binding.quoteFragmentImage.also {
+                            when (index) {
+                                0 -> it.setImageResource(R.drawable.ic_lotus)
+                                1 -> it.setImageResource(R.drawable.ic_buddha_no_background)
+                            }
+                        }
+                    }
+                    onClose { toolbarMenu?.findItem(R.id.options)?.isEnabled = true }
+                }
+                true
+            }
+            R.id.help -> {
+                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
+                InfoSheet().show(requireContext()) {
+                    title("Team Collaboration")
+                    content("In the world of software projects, it is inevitable...")
+                    closeIconButton(icons.closeSheet())
+                    displayButtons(false)
+                    withCoverLottieAnimation(LottieAnimation {
+                        ratio(Ratio(2, 1))
+                        setupAnimation {
+                            setAnimation(R.raw.lotus)
+                        }
+                    })
+                    onClose { toolbarMenu?.findItem(R.id.help)?.isEnabled = true }
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -20,7 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
-import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
@@ -34,9 +33,7 @@ import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.core.AnimationUtils
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
-class LibraryAdapter(
-    private val list: Array<Library>
-) :
+class LibraryAdapter(private val list: List<Library>) :
     RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
 
     class ViewHolder(binding: LayoutItemLibraryBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -59,6 +56,7 @@ class LibraryAdapter(
         )
     }
 
+    @Suppress("DEPRECATION")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val library = list[position]
         with(viewHolder) {
@@ -67,14 +65,11 @@ class LibraryAdapter(
             authorTextView.text = library.author
             val license = library.licenses?.firstOrNull()
             licenseNameTextView.text = license?.licenseName
-            licenseDescriptionTextView.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Html.fromHtml(
+            licenseDescriptionTextView.text =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(
                     license?.licenseShortDescription,
                     Html.FROM_HTML_MODE_COMPACT
-                )
-            } else {
-                Html.fromHtml(license?.licenseShortDescription)
-            }
+                ) else Html.fromHtml(license?.licenseShortDescription)
             root.setOnClickListener {
                 val visible = cardExpandable.visibility != View.VISIBLE
                 if (visible) AnimationUtils.expand(cardExpandable)

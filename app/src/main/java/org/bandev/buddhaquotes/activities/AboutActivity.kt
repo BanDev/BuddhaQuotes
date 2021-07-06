@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -45,8 +46,11 @@ class AboutActivity : LocalizationActivity() {
         super.onCreate(savedInstanceState)
 
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+        with(window) {
+            setNavigationBarColourMain(context)
+            setDarkStatusIcons(context)
+            statusBarColor = ContextCompat.getColor(context, R.color.background)
+        }
 
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,11 +60,9 @@ class AboutActivity : LocalizationActivity() {
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = icons.back()
-            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        binding.tabLayout.setBackgroundColor(toolbarColour(this))
         binding.viewPager.adapter = AboutStateAdapter(this)
         TabLayoutMediator(
             binding.tabLayout,
@@ -89,9 +91,7 @@ class AboutActivity : LocalizationActivity() {
             }
         }
 
-        override fun getItemCount(): Int {
-            return Companion.TOTAL_COUNT
-        }
+        override fun getItemCount(): Int = Companion.TOTAL_COUNT
     }
 
     companion object {

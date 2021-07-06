@@ -112,10 +112,12 @@ dependencies {
     // Sheets - https://github.com/maxkeppeler/sheets
     def sheets_version = "2.2.4"
     implementation "com.maxkeppeler.sheets:core:$sheets_version"
-    implementation "com.maxkeppeler.sheets:input:$sheets_version"
-    implementation "com.maxkeppeler.sheets:color:$sheets_version"
+    implementation "com.maxkeppeler.sheets:info:$sheets_version"
     implementation "com.maxkeppeler.sheets:options:$sheets_version"
     implementation "com.maxkeppeler.sheets:time:$sheets_version"
+    implementation "com.maxkeppeler.sheets:input:$sheets_version"
+    implementation "com.maxkeppeler.sheets:color:$sheets_version"
+    implementation "com.maxkeppeler.sheets:lottie:$sheets_version"
 
     // Xplosion - https://github.com/BanDev/Xplosion
     implementation 'uk.bandev:xplosion:1.0.6'

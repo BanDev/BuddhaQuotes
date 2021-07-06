@@ -5,4 +5,8 @@
         android:id="@+id/add"
         android:title=""
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/help"
+        android:title=""
+        app:showAsAction="ifRoom" />
 </menu>

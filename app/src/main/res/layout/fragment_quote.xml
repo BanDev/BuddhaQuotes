@@ -90,6 +90,7 @@
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
                     app:iiv_icon="gmr-navigate-next"
+                    app:iiv_color="?android:textColorPrimary"
                     app:iiv_size="20dp" />
 
                 <com.mikepenz.iconics.view.IconicsImageButton
@@ -100,11 +101,21 @@
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
                     app:iiv_icon="gmr-more-vert"
+                    app:iiv_color="?android:textColorPrimary"
                     app:iiv_size="20dp" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/quote_fragment_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

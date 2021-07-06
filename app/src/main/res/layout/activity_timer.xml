@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -16,155 +17,216 @@
         app:titleTextAppearance="@style/toolbarText"
         app:titleTextColor="?android:textColorPrimary" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/timer_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="11dp">
+
+        <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/_00_00"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="80sp"
+            android:textStyle="normal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
-        android:id="@+id/timer_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="@string/_00_00"
+        android:text="@string/tips"
         android:textColor="?android:attr/textColorPrimary"
-        android:textSize="80sp"
-        android:textStyle="normal"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/space_drawable"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="25dp"
-        app:iiv_icon="gmr-volume-off"
-        app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/space_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/space_title" />
-
-    <TextView
-        android:id="@+id/space_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="70dp"
-        android:text="@string/meditate_space"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
+        android:textAppearance="@android:style/TextAppearance.Large"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timer_text" />
+        android:layout_margin="15dp"/>
 
-    <TextView
-        android:id="@+id/space_description"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:text="@string/meditate_space_desc"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/space_title"
-        app:layout_constraintTop_toBottomOf="@+id/space_title" />
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="11dp">
 
-    <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/posture_drawable"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="25dp"
-        app:iiv_icon="gmr-self-improvement"
-        app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/posture_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/posture_title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-    <TextView
-        android:id="@+id/posture_title"
-        android:layout_width="wrap_content"
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:scaleType="fitCenter"
+                app:iiv_color="?android:textColorSecondary"
+                app:iiv_icon="gmr-volume-off" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/meditate_space"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Small"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:text="@string/meditate_space_desc" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/meditate_posture"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space_description" />
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="11dp">
 
-    <TextView
-        android:id="@+id/posture_description"
-        android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:scaleType="fitCenter"
+                app:iiv_icon="gmr-self-improvement"
+                app:iiv_color="?android:textColorSecondary" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/meditate_posture"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Small"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:text="@string/meditate_posture_desc" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:text="@string/meditate_posture_desc"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/space_title"
-        app:layout_constraintTop_toBottomOf="@+id/posture_title" />
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="11dp">
 
-    <com.mikepenz.iconics.view.IconicsImageView
-        android:id="@+id/breathe_drawable"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="25dp"
-        app:iiv_icon="gmr-favorite-border"
-        app:iiv_color="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/breathe_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/breathe_title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-    <TextView
-        android:id="@+id/breathe_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/meditate_breath"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/posture_description"
-        app:layout_constraintTop_toBottomOf="@+id/posture_description" />
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:scaleType="fitCenter"
+                app:iiv_icon="gmr-favorite-border"
+                app:iiv_color="?android:textColorSecondary" />
 
-    <TextView
-        android:id="@+id/breathe_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:text="@string/meditate_breath_desc"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/space_title"
-        app:layout_constraintTop_toBottomOf="@+id/breathe_title" />
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/pause"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/pause"
-        android:textAlignment="viewStart"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        app:cornerRadius="11dp"
-        app:icon="@drawable/ic_pause"
-        app:iconTint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/settings"
-        app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/meditate_breath"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/settings"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        app:icon="@drawable/ic_settings"
-        app:iconTint="@android:color/white"
-        app:cornerRadius="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Small"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:text="@string/meditate_breath_desc" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1" />
+
+    <LinearLayout android:id="@+id/pauseHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/pause"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/pause"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/white"
+            app:cornerRadius="11dp"
+            app:icon="@drawable/ic_pause"
+            app:iconTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/settings"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
