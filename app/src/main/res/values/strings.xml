@@ -583,6 +583,7 @@
 
     <string name="contributors">Contributors</string>
     <string name="tips">Tips</string>
+    <string name="by_bandev">By BanDev</string>
 
     <string-array name="contributors_people">
         <item translatable="false">"@russellbanks"</item>

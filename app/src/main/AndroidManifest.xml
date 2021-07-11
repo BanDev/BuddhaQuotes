@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.MainActivity" />
+            android:label="@string/title_activity_main" />
 
         <receiver
             android:name=".widgets.MainWidget"
