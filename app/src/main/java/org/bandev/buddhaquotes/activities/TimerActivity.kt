@@ -325,10 +325,10 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
     override fun setCustomInsets(insets: WindowInsetsCompat) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             binding.toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
-            binding.pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom + 30)
+            binding.pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom)
         } else {
             binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
-            binding.pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom + 30)
+            binding.pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom)
         }
     }
 }

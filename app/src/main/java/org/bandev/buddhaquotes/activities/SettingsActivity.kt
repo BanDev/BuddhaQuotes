@@ -22,9 +22,12 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.updatePadding
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -53,10 +56,16 @@ class SettingsActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set theme, navigation bar and language
-        setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+        window.setDarkStatusIcons(this)
+
+        Insets.edgeToEdge(window) { insets ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val ins = insets.getInsets(WindowInsets.Type.systemBars())
+                binding.toolbar.updatePadding(top = ins.top)
+            } else {
+                binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
+            }
+        }
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -68,7 +77,6 @@ class SettingsActivity : LocalizationActivity() {
         setSupportActionBar(binding.toolbar)
         with(binding.toolbar) {
             navigationIcon = icons.back()
-            setBackgroundColor(toolbarColour(context))
             setNavigationOnClickListener { onBackPressed() }
         }
 

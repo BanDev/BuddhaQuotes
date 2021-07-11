@@ -1,25 +1,110 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimaryFaded">@color/primary_faded</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="sheetsHandleFillColor">?attr/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorNavigationItem">@color/menu_item_color_state</item>
     </style>
 
-    <style name="AppTheme.MainActivity" parent="AppTheme">
-        <item name="materialDrawerStyle">@style/Widget.MaterialDrawerStyle</item>
-        <item name="materialDrawerHeaderStyle">@style/Widget.MaterialDrawerHeaderStyle</item>
-        <item name="android:windowTranslucentStatus">true</item>
+    <style name="TransparentView">
+        <item name="background">@android:color/transparent</item>
+    </style>
+
+    <style name="PreferenceFragment.Material">
+        <item name="android:divider">@null</item>
+    </style>
+
+    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="itemIconTint">?attr/colorStateNavigationItem</item>
+        <item name="itemTextColor">?attr/colorStateNavigationItem</item>
+        <item name="itemBackground">?attr/drawableNavigationItemBackground</item>
+    </style>
+
+    <style name="Theme.NavigationView.Original" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryFaded">@color/primary_faded</item>
+    </style>
+
+    <style name="Theme.NavigationView.Blue" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/blueAccent</item>
+        <item name="colorPrimaryFaded">@color/blueAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Green" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/greenAccent</item>
+        <item name="colorPrimaryFaded">@color/greenAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Orange" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/orangeAccent</item>
+        <item name="colorPrimaryFaded">@color/orangeAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Yellow" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/yellowAccent</item>
+        <item name="colorPrimaryFaded">@color/yellowAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Teal" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/tealAccent</item>
+        <item name="colorPrimaryFaded">@color/tealAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Violet" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/violetAccent</item>
+        <item name="colorPrimaryFaded">@color/violetAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Pink" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/pinkAccent</item>
+        <item name="colorPrimaryFaded">@color/pinkAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.LightBlue" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/lightBlueAccent</item>
+        <item name="colorPrimaryFaded">@color/lightBlueAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Red" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/redAccent</item>
+        <item name="colorPrimaryFaded">@color/redAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Lime" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/limeAccent</item>
+        <item name="colorPrimaryFaded">@color/limeAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView.Crimson" parent="Theme.NavigationView">
+        <item name="colorPrimary">@color/crimsonAccent</item>
+        <item name="colorPrimaryFaded">@color/crimsonAccentFade</item>
+    </style>
+
+    <style name="Theme.NavigationView" parent="AppTheme">
+        <item name="colorControlHighlight">@android:color/transparent</item>
+        <item name="colorStateNavigationItem">@color/menu_item_color_state</item>
+        <item name="colorNavigationItemNormal">@color/colorPrimary</item>
+        <item name="colorNavigationItemSelected">@color/colorPrimary</item>
+        <item name="colorNavigationItemBackgroundSelected">?attr/colorPrimaryFaded</item>
+        <item name="colorNavigationItemBackgroundPressed">@color/background</item>
+        <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
+        <item name="android:listDivider">@color/line</item>
     </style>
 
     <style name="AppTheme.Original" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorPrimaryFaded">@color/primary_faded</item>
     </style>
 
     <style name="AppTheme.Blue" parent="AppTheme">
         <item name="colorAccent">@color/blueAccent</item>
         <item name="colorPrimary">@color/blueAccent</item>
+        <item name="colorPrimaryFaded">@color/blueAccentFade</item>
     </style>
 
     <style name="AppTheme.Green" parent="AppTheme">

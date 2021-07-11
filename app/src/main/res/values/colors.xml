@@ -13,6 +13,8 @@
     <color name="line">#d3d3d3</color>
     <color name="check">#3FC83A</color>
 
+    <color name="primary_faded">#26E80054</color>
+
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F5F5F5</color>
     <color name="lighter_background">#F8F8F8</color>
@@ -32,6 +34,18 @@
     <color name="redAccent">#FF5252</color>
     <color name="limeAccent">#C5DE00</color>
     <color name="crimsonAccent">#DC143C</color>
+
+    <color name="blueAccentFade">#264285F4</color>
+    <color name="greenAccentFade">#263DDC84</color>
+    <color name="yellowAccentFade">#26FFBD59</color> <!-- The OG Buddha Quotes Colour ;) -->
+    <color name="orangeAccentFade">#26FF7522</color>
+    <color name="tealAccentFade">#2600CCB8</color>
+    <color name="violetAccentFade">#26BB69C9</color>
+    <color name="pinkAccentFade">#26FF66CC</color>
+    <color name="lightBlueAccentFade">#2629B6F6</color>
+    <color name="redAccentFade">#26FF5252</color>
+    <color name="limeAccentFade">#26C5DE00</color>
+    <color name="crimsonAccentFade">#26DC143C</color>
 
     <color name="meditateBack">#5ce1e6</color>
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrolling"
+    android:background="@color/background"
     tools:context=".activities.ListActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -33,8 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:clipToPadding="false"
-        android:padding="10dp"
         tools:listitem="@layout/card_quote_fragment" />
 
 </RelativeLayout>

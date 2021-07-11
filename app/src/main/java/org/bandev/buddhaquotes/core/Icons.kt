@@ -54,7 +54,10 @@ class Icons(var context: Context) {
     }
 
     fun darkMode(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_nights_stay, _sizeDp = 20)
+        icon(
+            RoundedGoogleMaterial.Icon.gmr_nights_stay, _sizeDp = 20,
+            _colorInt = context.resolveColorAttr(android.R.attr.textColorSecondary)
+        )
 
     fun menu(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_menu, _sizeDp = 18)
 
@@ -73,10 +76,17 @@ class Icons(var context: Context) {
     fun list(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_list, Color.WHITE)
 
     fun language(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_language, _sizeDp = 20)
+        icon(
+            RoundedGoogleMaterial.Icon.gmr_language,
+            _sizeDp = 20,
+            _colorInt = context.resolveColorAttr(android.R.attr.textColorSecondary)
+        )
 
     fun lightMode(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 24)
+        icon(
+            RoundedGoogleMaterial.Icon.gmr_wb_sunny, _sizeDp = 20,
+            _colorInt = context.resolveColorAttr(android.R.attr.textColorSecondary)
+        )
 
     fun lotus(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_spa)
 
@@ -85,12 +95,18 @@ class Icons(var context: Context) {
     fun message(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_message)
 
     fun palette(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_palette)
+        icon(RoundedGoogleMaterial.Icon.gmr_palette, _sizeDp = 20,
+            _colorInt = context.resolveColorAttr(android.R.attr.textColorSecondary)
+        )
 
     fun share(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_share)
 
     fun systemDefault(): IconicsDrawable =
-        icon(RoundedGoogleMaterial.Icon.gmr_brightness_medium, _sizeDp = 20)
+        icon(
+            RoundedGoogleMaterial.Icon.gmr_brightness_medium,
+            _sizeDp = 20,
+            _colorInt = context.resolveColorAttr(android.R.attr.textColorSecondary)
+        )
 
     fun tune(): IconicsDrawable = icon(RoundedGoogleMaterial.Icon.gmr_tune, _sizeDp = 16)
 
