@@ -66,13 +66,13 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <com.mikepenz.iconics.view.IconicsImageView
+            <ImageView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:scaleType="fitCenter"
-                app:iiv_color="?android:textColorSecondary"
-                app:iiv_icon="gmr-volume-off" />
+                app:srcCompat="@drawable/ic_volume_off"
+                app:tint="?android:textColorSecondary" />
 
             <LinearLayout
                 android:layout_weight="1"
@@ -115,13 +115,13 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <com.mikepenz.iconics.view.IconicsImageView
+            <ImageView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:scaleType="fitCenter"
-                app:iiv_icon="gmr-self-improvement"
-                app:iiv_color="?android:textColorSecondary" />
+                app:srcCompat="@drawable/nav_meditate"
+                app:tint="?android:textColorSecondary" />
 
             <LinearLayout
                 android:layout_weight="1"
@@ -164,13 +164,13 @@
             android:orientation="horizontal"
             android:padding="20dp">
 
-            <com.mikepenz.iconics.view.IconicsImageView
+            <ImageView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:scaleType="fitCenter"
-                app:iiv_icon="gmr-favorite-border"
-                app:iiv_color="?android:textColorSecondary" />
+                app:srcCompat="@drawable/ic_heart_outline"
+                app:tint="?android:textColorSecondary" />
 
             <LinearLayout
                 android:layout_weight="1"
