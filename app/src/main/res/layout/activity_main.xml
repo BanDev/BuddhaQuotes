@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_menu"
             app:title="@string/app_name"
             app:titleTextAppearance="@style/toolbarText"
             app:titleTextColor="?android:textColorPrimary"

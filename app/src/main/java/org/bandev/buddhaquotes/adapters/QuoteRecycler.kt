@@ -20,13 +20,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
 import org.bandev.buddhaquotes.items.Quote
@@ -38,7 +38,6 @@ import org.bandev.buddhaquotes.items.Quote
 class QuoteRecycler(
 
     private val list: List<Quote>,
-    private val context: Context,
     private val listener: Listener,
 
     ) : RecyclerView.Adapter<QuoteRecycler.ViewHolder>() {
@@ -60,9 +59,9 @@ class QuoteRecycler(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.quote.text = context.getString(item.resource)
+        holder.quote.text = holder.quote.context.getString(item.resource)
 
-        if (item.liked) holder.likeIcon.setImageResource(R.drawable.heart_full_red)
+        if (item.liked) holder.likeIcon.load(R.drawable.ic_heart_red)
         holder.root.setOnClickListener { listener.select(item) }
     }
 

@@ -17,13 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.mikepenz.iconics.view.IconicsImageView
+        <ImageView
             android:id="@+id/list_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_margin="16dp"
-            android:padding="15dp"
-            android:elevation="4dp" />
+            android:background="@drawable/ic_circle"
+            android:elevation="4dp"
+            android:padding="15dp" />
 
         <LinearLayout
             android:orientation="vertical"

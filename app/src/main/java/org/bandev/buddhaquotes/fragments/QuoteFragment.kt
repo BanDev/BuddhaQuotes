@@ -20,10 +20,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
+import coil.load
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.lottie.LottieAnimation
@@ -33,7 +37,9 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.resolveColorAttr
+import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
@@ -46,7 +52,8 @@ class QuoteFragment : Fragment() {
 
     private lateinit var binding: FragmentQuoteBinding
     private lateinit var model: QuoteViewModel
-    private lateinit var icons: Icons
+    private lateinit var sharedPrefs: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
     private lateinit var quote: Quote
     private var toolbarMenu: Menu? = null
 
@@ -72,8 +79,8 @@ class QuoteFragment : Fragment() {
             .getInstance(requireActivity().application)
             .create(QuoteViewModel::class.java)
 
-        // Get icons class
-        icons = Icons(requireContext())
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        editor = sharedPrefs.edit()
 
         // Start with a quote
         randomQuote()
@@ -87,14 +94,31 @@ class QuoteFragment : Fragment() {
             }
             like.setOnClickListener { onLikeClicked() }
             more.setOnClickListener { showOptionsSheet() }
-            quoteFragmentImage.setImageResource(R.drawable.ic_lotus)
-        }
-        binding.content.setOnClickListener(object : DoubleClickListener() {
-            override fun onSingleClick(view: View?) {}
-            override fun onDoubleClick(view: View?) {
-                if (!quote.liked) onLikeClicked()
+            quoteFragmentImage.load(
+                when (sharedPrefs.getInt("quoteFragmentImage", 0)) {
+                    1 -> R.drawable.image_monk
+                    2 -> R.drawable.image_dharma_wheel
+                    3 -> R.drawable.image_anahata
+                    4 -> R.drawable.image_mandala
+                    5 -> R.drawable.image_endless_knot
+                    6 -> R.drawable.image_elephant
+                    7 -> R.drawable.image_temple
+                    8 -> R.drawable.image_lamp
+                    9 -> R.drawable.image_shrine
+                    10 -> R.drawable.image_lotus
+                    11 -> R.drawable.image_lotus_water
+                    else -> R.drawable.image_buddha
+                }
+            ) {
+                size(750)
             }
-        })
+            content.setOnClickListener(object : DoubleClickListener() {
+                override fun onSingleClick(view: View?) {}
+                override fun onDoubleClick(view: View?) {
+                    if (!this@QuoteFragment.quote.liked) onLikeClicked()
+                }
+            })
+        }
     }
 
     private fun randomQuote() {
@@ -102,13 +126,13 @@ class QuoteFragment : Fragment() {
             quote = it
             binding.number.text = getString(R.string.quote_number, quote.id)
             binding.quote.text = getString(quote.resource)
-            binding.like.setImageDrawable(icons.heart(quote.liked))
+            binding.like.load(heart(quote.liked))
         }
     }
 
     internal fun onLikeClicked() {
         quote.liked = !quote.liked
-        binding.like.setImageDrawable(icons.heart(quote.liked))
+        binding.like.load(heart(quote.liked))
         if (quote.liked) binding.likeAnimator.likeAnimation()
         model.setLike(quote.id, quote.liked)
     }
@@ -120,13 +144,12 @@ class QuoteFragment : Fragment() {
             displayToolbar(false)
             displayHandle(true)
             with(
-                Option(icons.share(), R.string.share),
-                Option(icons.addCircle(), R.string.addToList)
+                Option(R.drawable.ic_share, R.string.share),
+                Option(R.drawable.ic_add_circle_outline, R.string.addToList)
             )
             onPositive { index: Int, _: Option ->
                 Feedback.virtualKey(binding.root)
-                if (index == 0) context?.shareQuote(quote)
-                else showSecondBottomSheet()
+                if (index == 0) context?.shareQuote(quote) else showSecondBottomSheet()
             }
             onClose { binding.more.isEnabled = true }
         }
@@ -137,18 +160,20 @@ class QuoteFragment : Fragment() {
             displayMode(DisplayMode.LIST)
             displayToolbar(false)
             displayHandle(true)
-            with(Option(icons.heart(false), R.string.favourites))
-            onPositive { index: Int, _: Option ->
+            with(Option(heart(false), R.string.favourites))
+            onPositive { _: Int, _: Option ->
                 Feedback.virtualKey(binding.root)
             }
         }
     }
 
+    private fun heart(liked: Boolean): Int {
+        return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.quote_menu, menu)
         toolbarMenu = menu
-        menu.findItem(R.id.options).icon = icons.tune()
-        menu.findItem(R.id.help).icon = icons.help()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -156,32 +181,78 @@ class QuoteFragment : Fragment() {
         return when (item.itemId) {
             R.id.options -> {
                 toolbarMenu?.findItem(R.id.options)?.isEnabled = false
+                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
                 OptionsSheet().show(requireContext()) {
-                    displayMode(DisplayMode.GRID_HORIZONTAL)
+                    displayMode(DisplayMode.GRID_VERTICAL)
                     with(
-                        Option(R.drawable.ic_seokguram, "Buddha"),
-                        Option(icons.lotus(), "Lotus"),
-                        Option(icons.lotus(), "Lotus"),
-                        Option(icons.lotus(), "Lotus")
+                        Option(R.drawable.sheet_buddha, R.string.buddha),
+                        Option(R.drawable.sheet_monk, R.string.monk),
+                        Option(R.drawable.sheet_dharma_wheel, R.string.dharma_wheel),
+                        Option(R.drawable.sheet_anahata, R.string.anahata),
+                        Option(R.drawable.sheet_mandala, R.string.mandala),
+                        Option(R.drawable.sheet_endless_knot, R.string.endless_knot),
+                        Option(R.drawable.sheet_elephant, R.string.elephant),
+                        Option(R.drawable.sheet_temple, R.string.temple),
+                        Option(R.drawable.sheet_lamp, R.string.lamp),
+                        Option(R.drawable.sheet_shrine, R.string.shrine),
+                        Option(R.drawable.sheet_lotus, R.string.lotus),
+                        Option(R.drawable.sheet_lotus_water, R.string.water_lotus)
                     )
                     onPositive { index: Int, _: Option ->
-                        binding.quoteFragmentImage.also {
-                            when (index) {
-                                0 -> it.setImageResource(R.drawable.ic_lotus)
-                                1 -> it.setImageResource(R.drawable.ic_buddha_no_background)
+                        Feedback.confirm(binding.root)
+                        with(binding.quoteFragmentImage) {
+                            load(
+                                when (index) {
+                                    1 -> R.drawable.image_monk
+                                    2 -> R.drawable.image_dharma_wheel
+                                    3 -> R.drawable.image_anahata
+                                    4 -> R.drawable.image_mandala
+                                    5 -> R.drawable.image_endless_knot
+                                    6 -> R.drawable.image_elephant
+                                    7 -> R.drawable.image_temple
+                                    8 -> R.drawable.image_lamp
+                                    9 -> R.drawable.image_shrine
+                                    10 -> R.drawable.image_lotus
+                                    11 -> R.drawable.image_lotus_water
+                                    else -> R.drawable.image_buddha
+                                }
+                            ) {
+                                size(750)
+                                crossfade(true)
                             }
+                            contentDescription = getString(
+                                when (index) {
+                                    1 -> R.string.monk
+                                    2 -> R.string.dharma_wheel
+                                    3 -> R.string.anahata
+                                    4 -> R.string.mandala
+                                    5 -> R.string.endless_knot
+                                    6 -> R.string.elephant
+                                    7 -> R.string.temple
+                                    8 -> R.string.lamp
+                                    9 -> R.string.shrine
+                                    10 -> R.string.lotus
+                                    11 -> R.string.water_lotus
+                                    else -> R.string.buddha
+                                }
+                            )
                         }
+                        editor.putInt("quoteFragmentImage", index).apply()
                     }
-                    onClose { toolbarMenu?.findItem(R.id.options)?.isEnabled = true }
+                    onClose {
+                        toolbarMenu?.findItem(R.id.options)?.isEnabled = true
+                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
+                    }
                 }
                 true
             }
             R.id.help -> {
                 toolbarMenu?.findItem(R.id.help)?.isEnabled = false
+                toolbarMenu?.findItem(R.id.options)?.isEnabled = false
                 InfoSheet().show(requireContext()) {
                     title("Team Collaboration")
                     content("In the world of software projects, it is inevitable...")
-                    closeIconButton(icons.closeSheet())
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     displayButtons(false)
                     withCoverLottieAnimation(LottieAnimation {
                         ratio(Ratio(2, 1))
@@ -189,7 +260,10 @@ class QuoteFragment : Fragment() {
                             setAnimation(R.raw.lotus)
                         }
                     })
-                    onClose { toolbarMenu?.findItem(R.id.help)?.isEnabled = true }
+                    onClose {
+                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
+                        toolbarMenu?.findItem(R.id.options)?.isEnabled = true
+                    }
                 }
                 true
             }

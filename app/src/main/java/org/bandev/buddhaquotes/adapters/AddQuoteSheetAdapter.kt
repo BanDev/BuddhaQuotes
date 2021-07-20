@@ -20,7 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.RelativeLayout
@@ -31,7 +30,6 @@ import org.bandev.buddhaquotes.databinding.AddQuoteSheetItemBinding
 import org.bandev.buddhaquotes.items.Quote
 
 class AddQuoteSheetAdapter(
-    private val ctx: Context,
     private val list: List<Quote>,
     private val listener: AddQuoteSheet.Listener,
 ) :
@@ -55,7 +53,7 @@ class AddQuoteSheetAdapter(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val quote = list[position]
         with(viewHolder) {
-            textView.text = ctx.getText(quote.resource)
+            textView.text = textView.context.getText(quote.resource)
             root.setOnClickListener { listener.select(quote) }
         }
     }

@@ -29,7 +29,9 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.setAccentColour
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
+import org.bandev.buddhaquotes.core.setNavigationBarColourMain
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 import org.bandev.buddhaquotes.fragments.AboutFragment
 import org.bandev.buddhaquotes.fragments.LibrariesFragment
@@ -40,28 +42,22 @@ import org.bandev.buddhaquotes.fragments.LibrariesFragment
 class AboutActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityAboutBinding
-    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setAccentColour(this)
         with(window) {
-            setNavigationBarColourMain(context)
-            setDarkStatusIcons(context)
+            setNavigationBarColourMain()
+            setDarkStatusIcons()
             statusBarColor = ContextCompat.getColor(context, R.color.background)
         }
 
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        icons = Icons(this)
-
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = icons.back()
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         binding.viewPager.adapter = AboutStateAdapter(this)
         TabLayoutMediator(

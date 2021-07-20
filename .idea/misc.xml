@@ -1,65 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable-night/meditate.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/background_rounded_padded.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/background_rounded_padded_pressed.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/background_rounded_padded_selected.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/circle.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/color_primary_faded.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/custom_ripple.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/divider.xml" value="0.1035" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_buddha.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_check.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/meditate.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/menu_background_color_state.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/menu_item_color_state.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/nav_meditate.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/round_top_background.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/rounded_square.xml" value="0.163" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/about_recycler.xml" value="0.2" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_about.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_list.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_main.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_settings.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_timer.xml" value="0.22" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/add_quote_item.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/add_quote_sheet.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/add_quote_sheet_item.xml" value="0.12681159420289856" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/addlist_content.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/card_lists_fragment.xml" value="0.33" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/card_quote_fragment.xml" value="0.67" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/customise_list_sheet.xml" value="0.21" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/divider.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_about.xml" value="0.25" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_libraries.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_lists.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_quote.xml" value="0.33" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_timer.xml" value="0.25" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/layout_item_library.xml" value="0.21" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/layout_list_item.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/list_icon.xml" value="0.33" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/main_activity_side_navigation_header.xml" value="0.18" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/preference_category_layout.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/preference_layout.xml" value="0.18" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/quote_list_recycler.xml" value="0.11322463768115942" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/widget.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/menu/list_activity_menu.xml" value="0.2" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/menu/main_activity_side_navigation.xml" value="0.2" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/menu/meditate_activity_menu.xml" value="0.1046875" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/menu/meditate_menu.xml" value="0.1" />
-        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/xml/root_preferences.xml" value="0.11322463768115942" />
-      </map>
-    </option>
-  </component>
   <component name="EntryPointsManager">
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="org.greenrobot.eventbus.Subscribe" />
     </list>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

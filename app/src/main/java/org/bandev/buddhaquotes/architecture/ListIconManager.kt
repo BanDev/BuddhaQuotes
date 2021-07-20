@@ -25,31 +25,29 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.getColor
+import coil.load
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.items.ListIcon
 
 class ListIconManager(application: Application) {
 
     private val context: Context = application.applicationContext
-    private val icons: Icons = Icons(context)
     private val listIcons: MutableList<ListIcon> = mutableListOf()
 
     init {
-        listIcons.add(ListIcon(0, icons.heartOutline(), getColor(context, R.color.colorAccent)))
-        listIcons.add(ListIcon(1, icons.list(), getColor(context, R.color.blueAccent)))
-        listIcons.add(ListIcon(2, icons.palette(), getColor(context, R.color.greenAccent)))
-        listIcons.add(ListIcon(3, icons.memory(), getColor(context, R.color.yellowAccent)))
+        listIcons.add(ListIcon(0, R.drawable.ic_tune, getColor(context, R.color.colorAccent)))
+        listIcons.add(ListIcon(1, R.drawable.ic_down_arrow, getColor(context, R.color.blueAccent)))
+        listIcons.add(ListIcon(2, R.drawable.ic_arrow_back, getColor(context, R.color.greenAccent)))
+        listIcons.add(ListIcon(3, R.drawable.ic_menu, getColor(context, R.color.yellowAccent)))
     }
 
     fun associate(id: Int): ListIcon = listIcons[id]
-    
+
     fun getAll(): List<ListIcon> = listIcons
 
     fun draw(holder: ImageView, icon: ListIcon) {
         with(holder) {
-            setImageDrawable(icon.drawable)
-            background = icons.circle()
+            load(icon.drawable)
             backgroundTintList = ColorStateList.valueOf(icon.colour)
         }
     }

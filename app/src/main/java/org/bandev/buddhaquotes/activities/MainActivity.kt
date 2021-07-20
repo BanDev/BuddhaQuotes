@@ -24,19 +24,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.mikepenz.materialdrawer.holder.ImageHolder
-import com.mikepenz.materialdrawer.widget.AccountHeaderView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import java.lang.String
 
 
 /**
@@ -52,153 +46,69 @@ import java.lang.String
 class MainActivity : LocalizationActivity(), CustomInsets {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var headerView: AccountHeaderView
-    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         with(window) {
-            setNavigationBarColourMain(context)
-            setDarkStatusIcons(context)
+            setNavigationBarColourMain()
+            setDarkStatusIcons()
             fitSystemBars(this@MainActivity)
         }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        icons = Icons(this)
-
-
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = icons.menu()
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { if (!binding.root.isOpen) binding.root.open() else binding.root.close() }
 
         // Setup viewPager with FragmentAdapter
-        with(binding.viewPager) {
-            adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-            setCurrentItem(0, false)
-        }
+        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
-        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
-            menuItem.isChecked = true
+        with(binding.navigationView) {
+            setNavigationItemSelectedListener { menuItem ->
+                menuItem.isChecked = true
 
-            if (menuItem.itemId == R.id.settings) {
-                startActivity(Intent(this, SettingsActivity::class.java))
-            }
+                when (menuItem.itemId) {
+                    R.id.quote -> binding.bottomBar.selectTabAt(0)
+                    R.id.lists -> binding.bottomBar.selectTabAt(1)
+                    R.id.meditate -> binding.bottomBar.selectTabAt(2)
+                    R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
+                    R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
+                }
 
-            binding.root.close()
-            true
-        }
-
-
-        binding.bottomBar.setupWithViewPager2(binding.viewPager)
-
-//        actionBarDrawerToggle = ActionBarDrawerToggle(
-//            this,
-//            binding.root,
-//            binding.toolbar,
-//            com.mikepenz.materialdrawer.R.string.material_drawer_open,
-//            com.mikepenz.materialdrawer.R.string.material_drawer_close
-//        )
-
-        fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
-            headerView = AccountHeaderView(this, compact = compact).apply {
-                //attachToSliderView(binding.slider)
-                headerBackground = ImageHolder(R.color.colorPrimary)
-                withSavedInstance(savedInstanceState)
+                binding.root.close()
+                true
             }
         }
 
-        buildHeader(true, savedInstanceState)
-
-//        binding.slider.apply {
-//            itemAdapter.add(
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.fragment_quote; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier =
-//                    1
-//                },
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.fragment_lists; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_list; isSelectable = false; identifier = 2
-//                },
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.fragment_meditation; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
-//                    false; identifier = 3
-//                },
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.start_meditation; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_timer; isSelectable =
-//                    false; identifier = 4
-//                })
-//            addStickyDrawerItems(
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.settings; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 5
-//                },
-//                PrimaryDrawerItem().apply {
-//                    nameRes = R.string.about; iconicsIcon =
-//                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 6
-//                }
-//            )
-//            setSavedInstance(savedInstanceState)
-//        }
-
-        var intent: Intent? = null
-//        binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
-//            when (drawerItem.identifier) {
-//                1L -> binding.bottomBar.selectTabAt(0)
-//                2L -> binding.bottomBar.selectTabAt(1)
-//                3L -> binding.bottomBar.selectTabAt(2)
-//                4L -> {
-//                    binding.bottomBar.selectTabAt(2)
-//                    binding.slider.getDrawerItem(4L)!!.isEnabled = false
-//                    Handler(Looper.getMainLooper()).postDelayed({
-//                        EventBus.getDefault().post(Event.StartMeditationTimer)
-//                    }, 200)
-//                }
-//                5L -> intent = Intent(this, SettingsActivity::class.java)
-//                6L -> intent = Intent(this, AboutActivity::class.java)
-//                else -> binding.root.closeDrawer(binding.slider)
-//            }
-//            if (intent != null) startActivity(intent)
-//            intent = null
-//
-//            false
-//        }
+        with(binding.bottomBar) {
+            setupWithViewPager2(binding.viewPager)
+            onTabSelected = {
+                when (it) {
+                    binding.bottomBar.tabs[0] -> binding.navigationView.setCheckedItem(R.id.quote)
+                    binding.bottomBar.tabs[1] -> binding.navigationView.setCheckedItem(R.id.lists)
+                    binding.bottomBar.tabs[2] -> binding.navigationView.setCheckedItem(R.id.meditate)
+                }
+            }
+        }
     }
 
-    @Subscribe
-    fun onEventReceive(event: Event) {
-//        if (event is Event.RestoreDrawerButton) {
-//            binding.root.closeDrawer(binding.slider)
-//            (binding.slider.getDrawerItem(4L) ?: return).isEnabled = true
-//        }
-    }
 
     @Suppress("DEPRECATION")
     override fun setCustomInsets(insets: WindowInsetsCompat) {
-        val bottomInsets: Int
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val bottomInsets: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val ins = insets.getInsets(WindowInsets.Type.systemBars())
             with(binding) {
                 toolbar.updatePadding(top = ins.top)
                 bottomBar.updatePadding(bottom = ins.bottom)
-                //slider.updatePadding(bottom = ins.bottom)
             }
-            bottomInsets = ins.bottom
+            ins.bottom
         } else {
             with(binding) {
                 toolbar.updatePadding(top = insets.systemWindowInsetTop)
                 bottomBar.updatePadding(bottom = insets.systemWindowInsetBottom)
-                //slider.updatePadding(bottom = insets.systemWindowInsetBottom)
             }
-            bottomInsets = insets.systemWindowInsetBottom
+            insets.systemWindowInsetBottom
         }
         binding.bottomBar.minimumHeight = 170 + bottomInsets
     }
@@ -206,30 +116,17 @@ class MainActivity : LocalizationActivity(), CustomInsets {
     override fun onResume() {
         super.onResume()
         setAccentColour(this)
-       // binding.root.closeDrawer(binding.slider)
         with(binding.bottomBar) {
             tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
             indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
-    }
-
     override fun onBackPressed() {
-        binding.root.open()
-
-//        when {
-//            //binding.root.isDrawerOpen(binding.navigationView) -> binding.root.openDrawer(binding.navigationView)
-//            binding.bottomBar.selectedIndex != 0 -> binding.bottomBar.selectTabAt(0)
-//            else -> super.onBackPressed()
-//        }
+        when {
+            binding.root.isOpen -> binding.root.close()
+            binding.bottomBar.selectedIndex != 0 -> binding.bottomBar.selectTabAt(0)
+            else -> super.onBackPressed()
+        }
     }
 }

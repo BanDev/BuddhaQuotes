@@ -32,8 +32,8 @@ import android.view.Window
 import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
@@ -43,13 +43,12 @@ import org.bandev.buddhaquotes.items.Quote
 
 /**
  * Sets navigation bar colour based off android version
- * @param [context] context of activity (Context)
  */
 
 @Suppress("DEPRECATION")
-fun Window.setNavigationBarColourDefault(context: Context) {
-    if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+fun Window.setNavigationBarColourDefault() {
+    if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
+        when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
@@ -62,7 +61,7 @@ fun Window.setNavigationBarColourDefault(context: Context) {
                 else this.navigationBarColor = Color.GRAY
             }
             Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                ContextCompat.getColor(context, R.color.background)
+                getColor(this.context, R.color.background)
         }
     }
 }
@@ -73,9 +72,9 @@ fun Window.setNavigationBarColourDefault(context: Context) {
  */
 
 @Suppress("DEPRECATION")
-fun Window.setNavigationBarColourMain(context: Context) {
-    if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+fun Window.setNavigationBarColourMain() {
+    if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
+        when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
                     WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
@@ -88,21 +87,23 @@ fun Window.setNavigationBarColourMain(context: Context) {
                 else this.navigationBarColor = Color.GRAY
             }
             Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                ContextCompat.getColor(context, R.color.abbBackgroundColor)
+                getColor(this.context, R.color.abbBackgroundColor)
         }
     }
 }
 
 @Suppress("DEPRECATION")
-fun Window.setDarkStatusIcons(context: Context) {
-    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+fun Window.setDarkStatusIcons() {
+    when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
         Configuration.UI_MODE_NIGHT_NO -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
-            )
-            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
+                )
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
         }
     }
 }
@@ -132,37 +133,6 @@ fun setAccentColour(context: Context) {
 }
 
 /**
- * Sets status bar as accent colour when in light mode or a dark grey when in dark mode
- * @param [context] context of activity (Context)
- */
-
-fun Window.setStatusBarAsAccentColour(context: Context) {
-    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_NO -> this.statusBarColor =
-            context.resolveColorAttr(R.attr.colorPrimary)
-        Configuration.UI_MODE_NIGHT_YES -> this.statusBarColor =
-            ContextCompat.getColor(context, R.color.darkModeBar)
-    }
-}
-
-/**
- * Returns the accent colour when in light mode or a dark grey when in dark mode
- * @param [context] context of activity (Context)
- * @return The integer of the colour (Int)
- */
-
-fun toolbarColour(context: Context): Int {
-    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_NO -> return context.resolveColorAttr(R.attr.colorPrimary)
-        Configuration.UI_MODE_NIGHT_YES -> return ContextCompat.getColor(
-            context,
-            R.color.darkModeBar
-        )
-    }
-    return -1
-}
-
-/**
  * Gets the current colour and returns it as a string
  * @param [context] context of activity (Context)
  * @return The name of the colour (String)
@@ -180,7 +150,7 @@ fun getAccentColourAsString(context: Context): String {
 fun Window.fitSystemBars(customInsets: CustomInsets) {
     WindowCompat.setDecorFitsSystemWindows(this, false)
 
-    ViewCompat.setOnApplyWindowInsetsListener(this.decorView) { _, insets ->
+    setOnApplyWindowInsetsListener(this.decorView) { _, insets ->
         customInsets.setCustomInsets(insets)
         insets
     }
@@ -204,7 +174,7 @@ private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
 fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     val resolvedAttr = resolveThemeAttr(colorAttr)
     val colorRes = if (resolvedAttr.resourceId != 0) resolvedAttr.resourceId else resolvedAttr.data
-    return ContextCompat.getColor(this, colorRes)
+    return getColor(this, colorRes)
 }
 
 fun Context.shareQuote(quote: Quote) {
@@ -219,42 +189,40 @@ fun Context.shareQuote(quote: Quote) {
     startActivity(Intent.createChooser(sendIntent, null))
 }
 
-fun listIcons(context: Context): List<ListIcon> {
-    val icons = Icons(context)
+fun listIcons(): List<ListIcon> {
     return listOf(
         ListIcon(
             0,
-            icons.add(),
+            R.drawable.ic_add,
             0xFF0067f4.toInt()
         ),
         ListIcon(
             1,
-            icons.heartOutline(),
+            R.drawable.ic_heart_outline,
             0xFF349334.toInt()
         ),
         ListIcon(
             2,
-            icons.back(),
+            R.drawable.ic_arrow_back,
             0xFFFF5733.toInt()
         ),
         ListIcon(
             3,
-            icons.menu(),
+            R.drawable.ic_menu,
             0xFFFF33DA.toInt()
         ),
         ListIcon(
             4,
-            icons.tune(),
+            R.drawable.ic_tune,
             0xFF0A7AA7.toInt()
         )
     )
 }
 
-fun defaultIcon(context: Context): ListIcon {
-    val icons = Icons(context)
+fun defaultIcon(): ListIcon {
     return ListIcon(
         0,
-        icons.heartOutline(),
+        R.drawable.ic_heart_outline,
         0xFF0067f4.toInt()
     )
 }

@@ -26,6 +26,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
@@ -37,11 +38,11 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Event
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.QuoteList
 import org.greenrobot.eventbus.Subscribe
-import java.util.*
 
 /**
  * Shows a list of lists to the user
@@ -51,7 +52,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
-    private lateinit var icons: Icons
     private var toolbarMenu: Menu? = null
 
     override fun onCreateView(
@@ -69,9 +69,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         model = ViewModelProvider.AndroidViewModelFactory
             .getInstance(requireActivity().application)
             .create(ListViewModel::class.java)
-
-        // Get icons class
-        icons = Icons(requireContext())
 
         // Setup the recyclerview
         setupRecycler()
@@ -104,8 +101,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.lists_menu, menu)
         toolbarMenu = menu
-        menu.findItem(R.id.add).icon = icons.add()
-        menu.findItem(R.id.help).icon = icons.help()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -113,18 +108,23 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         return when (item.itemId) {
             R.id.add -> {
                 toolbarMenu?.findItem(R.id.add)?.isEnabled = false
+                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
                 InputSheet().show(requireContext()) {
                     title(R.string.createNewList)
-                    closeIconButton(icons.closeSheet())
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     with(
                         InputEditText {
                             required()
                             hint(R.string.insertName)
                             validationListener { value ->
                                 when {
-                                    value.lowercase() == getString(R.string.favourites).lowercase() -> Validation.failed(
-                                        getString(R.string.validationRule) + " " + getString(R.string.favourites).lowercase()
-                                    )
+                                    value.lowercase() == getString(R.string.favourites).lowercase() -> {
+                                        Validation.failed(
+                                            getString(R.string.validationRule) + " " + getString(
+                                                R.string.favourites
+                                            ).lowercase()
+                                        )
+                                    }
                                     else -> Validation.success()
                                 }
                             }
@@ -137,16 +137,20 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                     )
                     onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
                     onPositive(R.string.add) { Feedback.confirm(binding.root) }
-                    onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+                    onClose {
+                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
+                    }
                 }
                 true
             }
             R.id.help -> {
                 toolbarMenu?.findItem(R.id.help)?.isEnabled = false
+                toolbarMenu?.findItem(R.id.add)?.isEnabled = false
                 InfoSheet().show(requireContext()) {
-                    title("title")
-                    content("You can do this to meditate as well as doing this hi jack are you reading this")
-                    closeIconButton(icons.closeSheet())
+                    title("Title")
+                    content("You can do this to meditate")
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     displayButtons(false)
                     withCoverLottieAnimation(LottieAnimation {
                         ratio(Ratio(2, 1))
@@ -154,7 +158,10 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                             setAnimation(R.raw.lists)
                         }
                     })
-                    onClose { toolbarMenu?.findItem(R.id.help)?.isEnabled = true }
+                    onClose {
+                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
+                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+                    }
                 }
                 true
             }

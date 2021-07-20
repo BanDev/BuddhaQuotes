@@ -75,7 +75,7 @@ class MainWidget : AppWidgetProvider() {
             )
             x++
             Lists().addToList("Favourites", quoteCurrent, context)
-            views.setImageViewResource(R.id.like, R.drawable.heart_full_red)
+            views.setImageViewResource(R.id.like, R.drawable.ic_heart_red)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         }
     }
