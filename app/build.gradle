@@ -42,9 +42,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile(
-                    'proguard-android-optimize.txt'),
-                    'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -71,12 +69,6 @@ dependencies {
 
     // AboutLibraries - https://github.com/mikepenz/AboutLibraries
     implementation 'com.mikepenz:aboutlibraries-core:8.9.1'
-
-    // Android Iconics - https://github.com/mikepenz/Android-Iconics
-    def iconics_version = "5.3.0-b01"
-    implementation "com.mikepenz:iconics-core:$iconics_version"
-    implementation "com.mikepenz:iconics-views:$iconics_version"
-    implementation 'com.mikepenz:google-material-typeface-rounded:4.0.0.1-kotlin@aar'
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.1.0'

@@ -59,7 +59,7 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener { if (!binding.root.isOpen) binding.root.open() else binding.root.close() }
+        binding.toolbar.setNavigationOnClickListener { binding.root.open() }
 
         // Setup viewPager with FragmentAdapter
         binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)

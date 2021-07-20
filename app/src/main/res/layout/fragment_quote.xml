@@ -77,31 +77,28 @@
                         android:id="@+id/like"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_heart_outline" />
 
                 </uk.bandev.xplosion.XplosionView>
 
-                <com.mikepenz.iconics.view.IconicsImageButton
+                <ImageView
                     android:id="@+id/next"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
-                    app:iiv_icon="gmr-navigate-next"
-                    app:iiv_color="?android:textColorPrimary"
-                    app:iiv_size="20dp" />
+                    app:srcCompat="@drawable/ic_share" />
 
-                <com.mikepenz.iconics.view.IconicsImageButton
+                <ImageView
                     android:id="@+id/more"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:background="?android:selectableItemBackgroundBorderless"
-                    app:iiv_icon="gmr-more-vert"
-                    app:iiv_color="?android:textColorPrimary"
-                    app:iiv_size="20dp" />
+                    app:srcCompat="@drawable/ic_share" />
 
             </LinearLayout>
 

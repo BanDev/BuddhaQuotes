@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Quote" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
+        <ImageView
             android:id="@+id/like"
             android:layout_width="23dp"
             android:layout_height="23dp"
@@ -34,13 +34,12 @@
             android:layout_alignBottom="@+id/share"
             android:layout_alignParentStart="true"
             android:layout_marginTop="15dp"
-            app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-favorite-border"
+            app:srcCompat="@drawable/ic_heart_outline"
             app:layout_constraintBottom_toBottomOf="@+id/share"
             app:layout_constraintStart_toStartOf="@+id/quote"
             app:layout_constraintTop_toBottomOf="@+id/quote" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
+        <ImageView
             android:id="@+id/share"
             android:layout_width="18dp"
             android:layout_height="18dp"
@@ -48,19 +47,17 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
-            app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-share"
+            app:srcCompat="@drawable/ic_share"
             app:layout_constraintStart_toEndOf="@+id/like"
             app:layout_constraintTop_toBottomOf="@+id/quote" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
+        <ImageView
             android:id="@+id/bin"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_below="@+id/quote"
             android:layout_marginTop="15dp"
-            app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-delete-outline"
+            app:srcCompat="@drawable/ic_delete"
             app:layout_constraintEnd_toEndOf="@+id/quote"
             app:layout_constraintTop_toBottomOf="@+id/quote" />
 
