@@ -46,21 +46,22 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.aboutAppVersion.text = BuildConfig.VERSION_NAME
-
-        with(binding.contributorsPeople) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
-            setHasFixedSize(true)
-        }
-
-        with(binding.promises) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
-            setHasFixedSize(true)
-        }
 
         with(binding) {
+            aboutAppVersion.text = BuildConfig.VERSION_NAME
+
+            with(contributorsPeople) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
+                setHasFixedSize(true)
+            }
+
+            with(promises) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
+                setHasFixedSize(true)
+            }
+
             titleCard.setOnClickListener { expandTitleCard() }
             contributorsCard.setOnClickListener { expandContributorCard() }
             promiseCard.setOnClickListener { expandPromiseCard() }

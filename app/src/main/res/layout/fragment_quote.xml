@@ -73,12 +73,11 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp">
 
-                    <com.mikepenz.iconics.view.IconicsImageView
+                    <ImageView
                         android:id="@+id/like"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
-                        android:layout_gravity="center"
-                        app:iiv_icon="gmr-favorite" />
+                        android:layout_gravity="center" />
 
                 </uk.bandev.xplosion.XplosionView>
 
@@ -112,7 +111,6 @@
             android:id="@+id/quote_fragment_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

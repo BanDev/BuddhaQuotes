@@ -32,8 +32,6 @@ import org.bandev.buddhaquotes.fragments.TimerFragment
  * Fragment adapter for MainActivity
  * @param fragmentManager [FragmentManager]
  * @param lifecycle [Lifecycle]
- * @author jack.txt
- * @since 1.7.0
  */
 
 class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :

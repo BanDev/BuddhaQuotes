@@ -24,9 +24,9 @@ import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.mikepenz.iconics.view.IconicsImageView
-import org.bandev.buddhaquotes.core.Icons
+import coil.load
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -42,8 +42,8 @@ class ListIconRecycler(
     ) : RecyclerView.Adapter<ListIconRecycler.ViewHolder>() {
 
     class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
-        val listIcon: IconicsImageView = binding.listIcon
-        val selected: IconicsImageView = binding.selected
+        val listIcon: ImageView = binding.listIcon
+        val selected: ImageView = binding.selected
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -58,8 +58,7 @@ class ListIconRecycler(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         with(holder.listIcon) {
-            setImageDrawable(item.drawable)
-            background = Icons(context).circle()
+            load(item.drawable) { size(75) }
             backgroundTintList = ColorStateList.valueOf(item.colour)
             setOnClickListener {
                 click(holder)
@@ -78,6 +77,5 @@ class ListIconRecycler(
     interface Listener {
         fun select(icon: ListIcon)
     }
-
 }
 

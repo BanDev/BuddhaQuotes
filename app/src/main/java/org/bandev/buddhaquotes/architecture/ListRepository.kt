@@ -48,13 +48,13 @@ class ListRepository(val application: Application) {
     /** Get all Lists and their quotes */
     suspend fun getAll(): List<QuoteListWithQuotes> {
         val newLists = mutableListOf<QuoteListWithQuotes>()
-        for (list in database.lists().getAll()) {
+        for ((_, list1, quotes) in database.lists().getAll()) {
             newLists.add(
                 QuoteListWithQuotes(
-                    list.list.listId,
-                    list.list.title,
-                    list.list.system,
-                    quoteFinder.convertList(list.quotes)
+                    list1.listId,
+                    list1.title,
+                    list1.system,
+                    quoteFinder.convertList(quotes)
                 )
             )
         }

@@ -24,6 +24,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.lottie.LottieAnimation
@@ -32,13 +33,9 @@ import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
-import org.bandev.buddhaquotes.core.Event
 import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.core.Icons
 import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 
 /**
  * The timer where the meditiation timer button is shown
@@ -47,7 +44,6 @@ class TimerFragment : Fragment() {
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
-    private lateinit var icons: Icons
     private var toolbarMenu: Menu? = null
 
     override fun onCreateView(
@@ -61,7 +57,6 @@ class TimerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        icons = Icons(requireContext())
 
         binding.button.setOnClickListener {
             Feedback.virtualKey(binding.root)
@@ -69,19 +64,11 @@ class TimerFragment : Fragment() {
         }
     }
 
-    @Subscribe
-    fun onEventReceive(event: Event) {
-        if (event is Event.StartMeditationTimer) {
-            timerSheet()
-            EventBus.getDefault().post(Event.RestoreDrawerButton)
-        }
-    }
-
     private fun timerSheet() {
         binding.button.isEnabled = false
         TimeSheet().show(requireContext()) {
             title(R.string.meditation_timer)
-            closeIconButton(icons.closeSheet())
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
             format(TimeFormat.MM_SS)
             minTime(1)
             onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
@@ -99,9 +86,8 @@ class TimerFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.quote_menu, menu)
+        inflater.inflate(R.menu.meditate_menu, menu)
         toolbarMenu = menu
-        menu.findItem(R.id.help).icon = icons.help()
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -110,9 +96,9 @@ class TimerFragment : Fragment() {
             R.id.help -> {
                 toolbarMenu?.findItem(R.id.help)?.isEnabled = false
                 InfoSheet().show(requireContext()) {
-                    title("title")
-                    content("You can do this to meditate as well as doing this hi jack are you reading this")
-                    closeIconButton(icons.closeSheet())
+                    title("Title")
+                    content("Content")
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     displayButtons(false)
                     withCoverLottieAnimation(LottieAnimation {
                         ratio(Ratio(2, 1))
@@ -131,16 +117,6 @@ class TimerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.button.setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 
     companion object {

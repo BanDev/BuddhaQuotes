@@ -6,8 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="sheetsHandleFillColor">?attr/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
-        <item name="colorNavigationItem">@color/menu_item_color_state</item>
+        <item name="navigationViewStyle">@style/Theme.NavigationView</item>
     </style>
 
     <style name="TransparentView">
@@ -19,8 +18,8 @@
     </style>
 
     <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
-        <item name="itemIconTint">?attr/colorStateNavigationItem</item>
-        <item name="itemTextColor">?attr/colorStateNavigationItem</item>
+        <item name="itemIconTint">?android:textColorSecondary</item>
+        <item name="itemTextColor">?android:textColorSecondary</item>
         <item name="itemBackground">?attr/drawableNavigationItemBackground</item>
     </style>
 

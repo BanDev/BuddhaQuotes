@@ -74,7 +74,7 @@ class AddQuoteSheet : Sheet() {
         super.onViewCreated(view, savedInstanceState)
         displayButtonsView(false)
 
-        val addQuoteSheetAdapter = AddQuoteSheetAdapter(requireContext(), quotes, adapterListener)
+        val addQuoteSheetAdapter = AddQuoteSheetAdapter(quotes, adapterListener)
 
         with(binding.exampleRecyclerView) {
             layoutManager = LinearLayoutManager(context)

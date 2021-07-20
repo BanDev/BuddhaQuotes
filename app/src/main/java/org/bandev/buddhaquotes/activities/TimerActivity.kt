@@ -26,7 +26,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.WindowInsets
 import androidx.core.app.NotificationCompat
@@ -34,12 +33,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.maxkeppeler.sheets.core.Ratio
-import com.maxkeppeler.sheets.info.InfoSheet
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
-import com.maxkeppeler.sheets.lottie.LottieAnimation
-import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
@@ -59,7 +55,6 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
     private var isPaused = false
     private var isRunning = false
     private lateinit var settings: Timer.Settings
-    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +62,8 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         setAccentColour(this)
 
         with(window) {
-            setNavigationBarColourDefault(context)
-            setDarkStatusIcons(context)
+            setNavigationBarColourDefault()
+            setDarkStatusIcons()
             fitSystemBars(this@TimerActivity)
         }
 
@@ -77,13 +72,9 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
 
         settings = Timer().Settings(this)
 
-        icons = Icons(this)
 
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = icons.close()
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
@@ -110,12 +101,13 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         }
     }
 
-    fun showSettings() {
+    private fun showSettings() {
         Feedback.virtualKey(binding.root)
         InputSheet().show(this) {
             title("Timer Settings")
-            closeIconButton(icons.closeSheet())
-            displayButtons(false)
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+            displayPositiveButton(false)
+            displayNegativeButton(false)
             with(InputCheckBox {
                 text("Play Gong at end")
                 defaultValue(settings.endSound)
@@ -147,7 +139,7 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         binding.pause.isEnabled = false
         TimeSheet().show(this) {
             title(R.string.meditation_timer)
-            closeIconButton(icons.closeSheet())
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
             format(TimeFormat.MM_SS)
             onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
             onPositive(R.string.okay) { durationTimeInMillis: Long ->
@@ -201,7 +193,6 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.meditate_activity_menu, menu)
-        menu?.findItem(R.id.tune)?.icon = icons.tune()
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -324,11 +315,15 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
     @Suppress("DEPRECATION")
     override fun setCustomInsets(insets: WindowInsetsCompat) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            binding.toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
-            binding.pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom)
+            with(binding) {
+                toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
+                pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom)
+            }
         } else {
-            binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
-            binding.pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom)
+            with(binding) {
+                toolbar.updatePadding(top = insets.systemWindowInsetTop)
+                pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom)
+            }
         }
     }
 }

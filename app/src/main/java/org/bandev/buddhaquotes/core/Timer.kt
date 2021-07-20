@@ -37,24 +37,21 @@ class Timer {
         var vibrateSecond: Boolean
             get() = sharedPrefs.getBoolean("vibrateSecond", false)
             set(value) {
-                editor.putBoolean("vibrateSecond", value)
-                editor.commit()
+                editor.putBoolean("vibrateSecond", value).apply()
             }
 
         // Play a sound at the end?
         var endSound: Boolean
             get() = sharedPrefs.getBoolean("endSound", true)
             set(value) {
-                editor.putBoolean("endSound", value)
-                editor.commit()
+                editor.putBoolean("endSound", value).apply()
             }
 
         // Show a notification with progress?
         var showNotificaton: Boolean
             get() = sharedPrefs.getBoolean("showNotificaton", false)
             set(value) {
-                editor.putBoolean("showNotificaton", value)
-                editor.commit()
+                editor.putBoolean("showNotificaton", value).apply()
             }
     }
 }

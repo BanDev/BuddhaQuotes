@@ -2,12 +2,7 @@
 
     <string name="app_name">Buddha Quotes</string>
 
-    <!-- Main page -->
-    <string name="refresh" id="1">Refresh</string>
-    <string name="favourite" id="2">Favourite</string>
     <string name="share" id="3">Share</string>
-
-    <!-- Settings -->
     <string name="settings" id="4">Settings</string>
     <string name="appearance" id="5">Appearance</string>
     <string name="app_theme" id="6">App Theme</string>
@@ -16,13 +11,9 @@
     <string name="follow_system_default" id="9">Follow system</string>
     <string name="about" id="15">About</string>
     <string name="about_app">About Buddha Quotes</string>
-    <string name="intro" id="17">Intro</string>
     <string name="app_introduction" id="18">App introduction</string>
     <string name="app_license" id="19">App License</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Libraries used</string>
-
-    <!-- Added up to here on BanDev Localisation Thingy -->
 
     <!-- About page -->
     <string name="about_app_promise" id="21">App Promise</string>
@@ -31,31 +22,31 @@
     <string name="about_contributors" id="28">Really great people</string>
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
     <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
-    <string name="tick" id="31">Tick</string>
-
-    <!-- Favourited Quote page -->
-    <string name="favourited_quote" id="55">Favourited Quote</string>
-    <string name="favourite_quote_delete" id="56">Delete</string>
 
     <!-- Miscellaneous Content descriptions  -->
-    <string name="buddha_quotes_logo" id="57">Buddha Quotes logo</string>
-    <string name="bandev_logo" id="58">BanDev logo</string>
-    <string name="the_buddha" id="59">The Buddha</string>
-    <string name="forward_arrow" id="60">Return</string>
-    <string name="icon" id="61">Icon</string>
-    <string name="title" id="62">Title</string>
+    <string name="buddha_quotes_logo">Buddha Quotes logo</string>
+    <string name="the_buddha">The Buddha</string>
+    <string name="title">Title</string>
+
+    <string name="buddha">Buddha</string>
+    <string name="monk">Monk</string>
+    <string name="dharma_wheel">Dharma wheel</string>
+    <string name="anahata">Anahata</string>
+    <string name="mandala">Mandala</string>
+    <string name="endless_knot">Endless knot</string>
+    <string name="elephant">Elephant</string>
+    <string name="temple">Temple</string>
+    <string name="lamp">Lamp</string>
+    <string name="shrine">Shrine</string>
+    <string name="lotus">Lotus</string>
+    <string name="water_lotus">Water lotus</string>
 
     <!-- Miscellaneous  -->
     <string name="title_activity_settings" id="82">SettingsActivity</string>
-    <string name="MainActivity" id="84">Main Activity</string>
     <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
-    <string name="action_settings" id="86">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="appwidget_text" id="87">EXAMPLE</string>
-    <string name="configure" id="88">Configure</string>
-    <string name="add_widget" id="89">Add widget</string>
-    <string name="open_source_libraries" id="90">Open Source Libraries</string>
     <string name="libraries" id="90">Libraries</string>
     <string name="about_no_ads" id="91">No ads</string>
 
@@ -63,7 +54,6 @@
     <string name="lists_title" id="92">Your Lists</string>
     <string name="lists_add_lists" id="94">Create new List</string>
     <string name="lists_add_lists_go" id="95">Add</string>
-    <string name="lists_add_lists_name" id="96">Name</string>
 
     <!-- Settings -->
     <string name="settings_general" id="97">General</string>

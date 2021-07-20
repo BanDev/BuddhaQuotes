@@ -7,22 +7,21 @@
     android:layout_marginBottom="10dp"
     android:layout_marginStart="20dp">
 
-    <com.mikepenz.iconics.view.IconicsImageView
+    <ImageView
         android:id="@+id/list_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/ic_circle"
         android:padding="20dp" />
 
-    <com.mikepenz.iconics.view.IconicsImageView
+    <ImageView
         android:id="@+id/selected"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:visibility="gone"
         android:layout_alignEnd="@+id/list_icon"
         android:layout_alignBottom="@+id/list_icon"
-        app:iiv_icon="gmr-check-circle"
-        app:iiv_color="@color/check"
+        app:srcCompat="@drawable/ic_check_circle"
         android:elevation="10dp" />
 
 </RelativeLayout>

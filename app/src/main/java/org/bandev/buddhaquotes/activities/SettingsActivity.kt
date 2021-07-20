@@ -27,6 +27,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.updatePadding
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -51,12 +52,11 @@ import java.util.*
 class SettingsActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private lateinit var icons: Icons
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setDarkStatusIcons(this)
+        window.setDarkStatusIcons()
 
         Insets.edgeToEdge(window) { insets ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -71,14 +71,9 @@ class SettingsActivity : LocalizationActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        icons = Icons(this)
-
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = icons.back()
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -92,17 +87,29 @@ class SettingsActivity : LocalizationActivity() {
 
         private lateinit var sharedPrefs: SharedPreferences
         private lateinit var editor: SharedPreferences.Editor
-        private lateinit var icons: Icons
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             editor = sharedPrefs.edit()
-            icons = Icons(requireContext())
 
             findPreference<Preference>("app_language")?.apply {
-                icon = icons.language()
+                icon = getDrawable(
+                    context, when (getLanguage(requireContext())) {
+                        Locale("en") -> R.drawable.flag_england
+                        Locale("ar") -> R.drawable.flag_united_arab_emirates
+                        Locale("zh") -> R.drawable.flag_china
+                        Locale("fr") -> R.drawable.flag_france
+                        Locale("de") -> R.drawable.flag_germany
+                        Locale("hi") -> R.drawable.flag_india
+                        Locale("ja") -> R.drawable.flag_japan
+                        Locale("pl") -> R.drawable.flag_poland
+                        Locale("ru") -> R.drawable.flag_russia
+                        Locale("es") -> R.drawable.flag_spain
+                        else -> R.drawable.flag_england
+                    }
+                )
                 summary = getString(
                     when (getLanguage(requireContext())) {
                         Locale("en") -> R.string.en
@@ -125,31 +132,34 @@ class SettingsActivity : LocalizationActivity() {
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(icons.message(), R.string.en),
-                            Option(icons.memory(), R.string.ar),
-                            Option(icons.memory(), R.string.zh),
-                            Option(icons.memory(), R.string.fr),
-                            Option(icons.memory(), R.string.de),
-                            Option(icons.memory(), R.string.hi),
-                            Option(icons.memory(), R.string.ja),
-                            Option(icons.memory(), R.string.pl),
-                            Option(icons.memory(), R.string.ru),
-                            Option(icons.memory(), R.string.es)
+                            Option(R.drawable.fl_sheet_england, R.string.en),
+                            Option(R.drawable.fl_sheet_united_arab_emirates, R.string.ar),
+                            Option(R.drawable.fl_sheet_china, R.string.zh),
+                            Option(R.drawable.fl_sheet_france, R.string.fr),
+                            Option(R.drawable.fl_sheet_germany, R.string.de),
+                            Option(R.drawable.fl_sheet_india, R.string.hi),
+                            Option(R.drawable.fl_sheet_japan, R.string.ja),
+                            Option(R.drawable.fl_sheet_poland, R.string.pl),
+                            Option(R.drawable.fl_sheet_russia, R.string.ru),
+                            Option(R.drawable.fl_sheet_spain, R.string.es)
                         )
                         onPositive { index: Int, _: Option ->
                             Feedback.confirm(view ?: return@onPositive)
-                            when (index) {
-                                0 -> setLanguage(requireContext(), Locale("en"))
-                                1 -> setLanguage(requireContext(), Locale("ar"))
-                                2 -> setLanguage(requireContext(), Locale("zh"))
-                                3 -> setLanguage(requireContext(), Locale("fr"))
-                                4 -> setLanguage(requireContext(), Locale("de"))
-                                5 -> setLanguage(requireContext(), Locale("hi"))
-                                6 -> setLanguage(requireContext(), Locale("ja"))
-                                7 -> setLanguage(requireContext(), Locale("pl"))
-                                8 -> setLanguage(requireContext(), Locale("ru"))
-                                9 -> setLanguage(requireContext(), Locale("es"))
-                            }
+                            setLanguage(
+                                requireContext(), when (index) {
+                                    0 -> Locale("en")
+                                    1 -> Locale("ar")
+                                    2 -> Locale("zh")
+                                    3 -> Locale("fr")
+                                    4 -> Locale("de")
+                                    5 -> Locale("hi")
+                                    6 -> Locale("ja")
+                                    7 -> Locale("pl")
+                                    8 -> Locale("ru")
+                                    9 -> Locale("es")
+                                    else -> Locale("en")
+                                }
+                            )
                             if (getLanguage(requireContext()) != currentLangauge) {
                                 startActivity(Intent(context, SettingsActivity::class.java))
                                 activity?.finish()
@@ -171,11 +181,13 @@ class SettingsActivity : LocalizationActivity() {
                     1 -> getString(R.string.dark_mode)
                     else -> getString(R.string.follow_system_default)
                 }
-                icon = when (appTheme) {
-                    0 -> icons.lightMode()
-                    1 -> icons.darkMode()
-                    else -> icons.systemDefault()
-                }
+                icon = getDrawable(
+                    context, when (appTheme) {
+                        0 -> R.drawable.ic_light_mode
+                        1 -> R.drawable.ic_dark_mode
+                        else -> R.drawable.ic_dark_mode
+                    }
+                )
 
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     OptionsSheet().show(requireContext()) {
@@ -183,9 +195,9 @@ class SettingsActivity : LocalizationActivity() {
                         displayToolbar(false)
                         displayMode(DisplayMode.LIST)
                         with(
-                            Option(icons.lightMode(), R.string.light_mode),
-                            Option(icons.darkMode(), R.string.dark_mode),
-                            Option(icons.systemDefault(), R.string.follow_system_default)
+                            Option(R.drawable.ic_light_mode, R.string.light_mode),
+                            Option(R.drawable.ic_dark_mode, R.string.dark_mode),
+                            Option(R.drawable.ic_dark_mode, R.string.follow_system_default)
                         )
                         onPositive { index: Int, _: Option ->
                             Feedback.confirm(view ?: return@onPositive)
@@ -202,11 +214,13 @@ class SettingsActivity : LocalizationActivity() {
                                     1 -> getString(R.string.dark_mode)
                                     else -> getString(R.string.follow_system_default)
                                 }
-                                icon = when (index) {
-                                    0 -> icons.lightMode()
-                                    1 -> icons.darkMode()
-                                    else -> icons.systemDefault()
-                                }
+                                icon = getDrawable(
+                                    requireContext(), when (index) {
+                                        0 -> R.drawable.ic_light_mode
+                                        1 -> R.drawable.ic_dark_mode
+                                        else -> R.drawable.ic_dark_mode
+                                    }
+                                )
                                 editor.putInt("appThemeInt", index).apply()
                             }
                         }
@@ -216,21 +230,43 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("accent_color")?.apply {
-                icon = icons.palette()
-                summary = when (getAccentColourAsString(requireContext())) {
-                    "pink" -> getString(R.string.pink)
-                    "violet" -> getString(R.string.violet)
-                    "blue" -> getString(R.string.blue)
-                    "lightBlue" -> getString(R.string.lightBlue)
-                    "teal" -> getString(R.string.teal)
-                    "green" -> getString(R.string.green)
-                    "lime" -> getString(R.string.lime)
-                    "yellow" -> getString(R.string.yellow)
-                    "orange" -> getString(R.string.orange)
-                    "red" -> getString(R.string.red)
-                    "crimson" -> getString(R.string.crimson)
-                    else -> getString(R.string.original)
-                }
+                val drawable = getDrawable(context, R.drawable.ic_circle)
+                drawable?.setTint(
+                    getColor(
+                        context,
+                        when (getAccentColourAsString(requireContext())) {
+                            "pink" -> R.color.pinkAccent
+                            "violet" -> R.color.violetAccent
+                            "blue" -> R.color.blueAccent
+                            "lightBlue" -> R.color.lightBlueAccent
+                            "teal" -> R.color.tealAccent
+                            "green" -> R.color.greenAccent
+                            "lime" -> R.color.limeAccent
+                            "yellow" -> R.color.yellowAccent
+                            "orange" -> R.color.orangeAccent
+                            "red" -> R.color.redAccent
+                            "crimson" -> R.color.crimsonAccent
+                            else -> R.color.colorPrimary
+                        }
+                    )
+                )
+                icon = drawable
+                summary = getString(
+                    when (getAccentColourAsString(requireContext())) {
+                        "pink" -> R.string.pink
+                        "violet" -> R.string.violet
+                        "blue" -> R.string.blue
+                        "lightBlue" -> R.string.lightBlue
+                        "teal" -> R.string.teal
+                        "green" -> R.string.green
+                        "lime" -> R.string.lime
+                        "yellow" -> R.string.yellow
+                        "orange" -> R.string.orange
+                        "red" -> R.string.red
+                        "crimson" -> R.string.crimson
+                        else -> R.string.original
+                    }
+                )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     ColorSheet().show(requireContext()) {
                         colorsRes(

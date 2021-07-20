@@ -41,7 +41,6 @@ import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
-import java.util.*
 
 /**
  * The activity where the user can see all the quotes they have in their
@@ -55,8 +54,6 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     private lateinit var quoteModel: QuoteViewModel
     private lateinit var listModel: ListViewModel
     private var listId: Int = 0
-    private lateinit var icons: Icons
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +61,8 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         setAccentColour(this)
 
         with(window) {
-            setNavigationBarColourDefault(context)
-            setDarkStatusIcons(context)
+            setNavigationBarColourDefault()
+            setDarkStatusIcons()
             fitSystemBars(this@ListActivity)
         }
 
@@ -79,14 +76,9 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         listModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
             .create(ListViewModel::class.java)
 
-        icons = Icons(this)
-
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = icons.back()
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         setupRecycler((intent.extras ?: return).getInt("id"))
     }
@@ -96,7 +88,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         listModel.get(id) {
             with(binding.quotesRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteRecycler(it.quotes, context, this@ListActivity)
+                adapter = QuoteRecycler(it.quotes, this@ListActivity)
                 setHasFixedSize(false)
             }
             binding.toolbar.title = it.title
@@ -114,14 +106,12 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.list_activity_menu, menu)
         toolbarMenu = menu
-        menu?.findItem(R.id.add)?.icon = icons.add()
-        menu?.findItem(R.id.settings)?.icon = icons.tune()
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.settings -> showSettings()
+            R.id.tune -> showSettings()
             R.id.add -> showAddToList()
             else -> super.onOptionsItemSelected(item)
         }
@@ -129,6 +119,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
 
     private fun showAddToList(): Boolean {
         toolbarMenu?.findItem(R.id.add)?.isEnabled = false
+        toolbarMenu?.findItem(R.id.tune)?.isEnabled = false
         quoteModel.getAll { quotes ->
             AddQuoteSheet().show(this) {
                 displayToolbar(false)
@@ -138,7 +129,10 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
                     Feedback.confirm(binding.root)
                     quoteSelected(quote)
                 }
-                onClose { toolbarMenu?.findItem(R.id.add)?.isEnabled = true }
+                onClose {
+                    toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+                    toolbarMenu?.findItem(R.id.tune)?.isEnabled = true
+                }
             }
         }
         return true
@@ -151,12 +145,18 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     }
 
     private fun showSettings(): Boolean {
-        toolbarMenu?.findItem(R.id.settings)?.isEnabled = false
+        toolbarMenu?.findItem(R.id.tune)?.isEnabled = false
+        toolbarMenu?.findItem(R.id.add)?.isEnabled = false
         CustomiseListSheet().show(this, application) {
             displayToolbar(false)
             displayHandle(true)
+            displayPositiveButton(false)
+            displayNegativeButton(false)
             attachVariables(listModel, listId)
-            onClose { toolbarMenu?.findItem(R.id.settings)?.isEnabled = true }
+            onClose {
+                toolbarMenu?.findItem(R.id.tune)?.isEnabled = true
+                toolbarMenu?.findItem(R.id.add)?.isEnabled = true
+            }
         }
         return true
     }
