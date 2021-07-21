@@ -38,11 +38,10 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
-import org.bandev.buddhaquotes.core.Event
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.QuoteList
-import org.greenrobot.eventbus.Subscribe
+
 
 /**
  * Shows a list of lists to the user
@@ -93,11 +92,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
-    @Subscribe
-    fun onEventReceive(event: Event) {
-        if (event is Event.ToListFragment) binding.listsRecycler.adapter?.notifyItemChanged(0)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.lists_menu, menu)
         toolbarMenu = menu
@@ -116,18 +110,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
                         InputEditText {
                             required()
                             hint(R.string.insertName)
-                            validationListener { value ->
-                                when {
-                                    value.lowercase() == getString(R.string.favourites).lowercase() -> {
-                                        Validation.failed(
-                                            getString(R.string.validationRule) + " " + getString(
-                                                R.string.favourites
-                                            ).lowercase()
-                                        )
-                                    }
-                                    else -> Validation.success()
-                                }
-                            }
                             resultListener { value ->
                                 model.newList(value.toString()) {
                                     setupRecycler()
@@ -171,7 +153,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
     override fun onResume() {
         super.onResume()
-        setupRecycler()
     }
 
     companion object {

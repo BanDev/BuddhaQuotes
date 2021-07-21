@@ -27,7 +27,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ListIconManager
+import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
@@ -66,9 +68,13 @@ class QuoteListRecycler(
 
         with(holder) {
             title.text = item.title
-            summary.text = item.title
+            summary.text = root.context.getString(
+                if (item.count == 1) R.string.quote else R.string.quotes,
+                item.count
+            )
             root.setOnClickListener { listener.select(item) }
         }
+
 
         listIconManager.draw(holder.listIcon, item.icon)
     }
