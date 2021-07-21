@@ -85,11 +85,11 @@ abstract class Db : RoomDatabase() {
         @Query("SELECT COUNT(*) FROM quotes")
         suspend fun count(): Int
 
-        // Define if a quote is liked or not
+        // Like a quote
         @Query("INSERT into ListQuoteLink (listId, quoteId) VALUES (0, :id)")
         suspend fun like(id: Int)
 
-        // Define if a quote is liked or not
+        // Dislike a quote
         @Query("DELETE FROM ListQuoteLink WHERE listId = 0 AND quoteId = :id")
         suspend fun removeLike(id: Int)
 
@@ -130,6 +130,10 @@ abstract class Db : RoomDatabase() {
         // Remove a quote from a list
         @Query("DELETE FROM ListQuoteLink WHERE listId = :listId AND quoteId = :quoteId")
         suspend fun deleteQuote(listId: Int, quoteId: Int)
+
+        // Count the items of a list
+        @Query("SELECT COUNT(quoteId) FROM ListQuoteLink WHERE listId = :listId")
+        suspend fun count(listId: Int): Int
     }
 
     /**

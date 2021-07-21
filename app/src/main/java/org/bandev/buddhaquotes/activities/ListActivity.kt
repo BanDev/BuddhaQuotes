@@ -31,6 +31,7 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.google.android.material.snackbar.Snackbar
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
@@ -88,7 +89,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         listModel.get(id) {
             with(binding.quotesRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteRecycler(it.quotes, this@ListActivity)
+                adapter = QuoteRecycler(it.quotes.toMutableList(), this@ListActivity, listId)
                 setHasFixedSize(false)
             }
             binding.toolbar.title = it.title
@@ -100,7 +101,20 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         if (list.quotes.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE else View.GONE
     }
 
-    override fun select(quote: Quote) {
+    override fun like(quote: Quote) {
+        quoteModel.setLike(quote.id, true)
+        Snackbar.make(binding.root, "Liked", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun unlike(quote: Quote) {
+        quoteModel.setLike(quote.id, false)
+        Snackbar.make(binding.root, "Unliked", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun bin(quote: Quote) {
+        listModel.removeQuote(listId, quote) {
+            Snackbar.make(binding.root, "Removed", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -43,6 +43,10 @@ import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
+import org.greenrobot.eventbus.EventBus
+
+
+
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
@@ -135,6 +139,7 @@ class QuoteFragment : Fragment() {
         binding.like.load(heart(quote.liked))
         if (quote.liked) binding.likeAnimator.likeAnimation()
         model.setLike(quote.id, quote.liked)
+
     }
 
     private fun showOptionsSheet() {

@@ -21,6 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
@@ -69,6 +71,7 @@ class ListRepository(val application: Application) {
                 QuoteList(
                     list.list.listId,
                     list.list.title,
+                    count(list.list.listId),
                     list.list.system,
                     listIconManager.associate(list.list.icon)
                 )
@@ -95,5 +98,10 @@ class ListRepository(val application: Application) {
     /** Delete a quote from a list */
     suspend fun removeQuote(listId: Int, quoteId: Int) {
         database.lists().deleteQuote(listId, quoteId)
+    }
+
+    /** Count the elements of a list **/
+    suspend fun count(listId: Int): Int {
+        return database.lists().count(listId)
     }
 }

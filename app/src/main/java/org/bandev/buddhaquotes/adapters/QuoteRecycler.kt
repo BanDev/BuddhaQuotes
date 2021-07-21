@@ -37,14 +37,16 @@ import org.bandev.buddhaquotes.items.Quote
 
 class QuoteRecycler(
 
-    private val list: List<Quote>,
+    private val list: MutableList<Quote>,
     private val listener: Listener,
+    private val listId: Int
 
-    ) : RecyclerView.Adapter<QuoteRecycler.ViewHolder>() {
+) : RecyclerView.Adapter<QuoteRecycler.ViewHolder>() {
 
     class ViewHolder(binding: CardQuoteFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
         val quote: TextView = binding.quote
         val likeIcon: ImageView = binding.like
+        val bin: ImageView = binding.bin
         val root: CardView = binding.root
     }
 
@@ -62,13 +64,31 @@ class QuoteRecycler(
         holder.quote.text = holder.quote.context.getString(item.resource)
 
         if (item.liked) holder.likeIcon.load(R.drawable.ic_heart_red)
-        holder.root.setOnClickListener { listener.select(item) }
+
+        holder.likeIcon.setOnClickListener {
+            if (item.liked) listener.unlike(item)
+            else listener.like(item)
+            item.liked = !item.liked
+            if (listId != 0) notifyItemChanged(position)
+            else {
+                list.remove(item)
+                notifyItemRemoved(position)
+            }
+        }
+
+        holder.bin.setOnClickListener {
+            list.remove(item)
+            notifyItemRemoved(position)
+            listener.bin(item)
+        }
     }
 
     override fun getItemCount(): Int = list.size
 
     interface Listener {
-        fun select(quote: Quote)
+        fun like(quote: Quote)
+        fun unlike(quote: Quote)
+        fun bin(quote: Quote)
     }
 
 }

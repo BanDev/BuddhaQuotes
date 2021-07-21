@@ -85,4 +85,11 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             after()
         }
     }
+
+    /** Count the elements of a list **/
+    fun count(listId: Int, after: (count: Int) -> Unit) {
+        viewModelScope.launch {
+            after(listRepository.count(listId))
+        }
+    }
 }

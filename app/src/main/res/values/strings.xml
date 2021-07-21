@@ -575,6 +575,9 @@
     <string name="tips">Tips</string>
     <string name="by_bandev">By BanDev</string>
 
+    <string name="quote">1 quote</string>
+    <string name="quotes">%d quotes</string>
+
     <string-array name="contributors_people">
         <item translatable="false">"@russellbanks"</item>
         <item translatable="false">"@jackdevey"</item>

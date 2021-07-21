@@ -29,6 +29,7 @@ package org.bandev.buddhaquotes.items
 data class QuoteList(
     val id: Int,
     val title: String,
+    val count: Int,
     val system: Boolean,
     val icon: ListIcon
 )
