@@ -26,6 +26,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
+import android.widget.SearchView
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
@@ -54,7 +55,8 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     private var toolbarMenu: Menu? = null
     private lateinit var quoteModel: QuoteViewModel
     private lateinit var listModel: ListViewModel
-    private var listId: Int = 0
+    private lateinit var list: MutableList<Quote>
+    private var listId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,20 +87,20 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     }
 
     private fun setupRecycler(id: Int) {
-        listId = id
         listModel.get(id) {
+            list = it.quotes.toMutableList()
             with(binding.quotesRecycler) {
                 layoutManager = LinearLayoutManager(context)
                 adapter = QuoteRecycler(it.quotes.toMutableList(), this@ListActivity, listId)
                 setHasFixedSize(false)
             }
             binding.toolbar.title = it.title
-            checkLength(it)
+            checkLength(list)
         }
     }
 
-    private fun checkLength(list: QuoteListWithQuotes) {
-        if (list.quotes.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE else View.GONE
+    private fun checkLength(list: MutableList<Quote>) {
+        if (list.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE else View.GONE
     }
 
     override fun like(quote: Quote) {
@@ -115,6 +117,8 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         listModel.removeQuote(listId, quote) {
             Snackbar.make(binding.root, "Removed", Snackbar.LENGTH_SHORT).show()
         }
+        list.remove(quote)
+        checkLength(list)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -134,7 +138,9 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     private fun showAddToList(): Boolean {
         toolbarMenu?.findItem(R.id.add)?.isEnabled = false
         toolbarMenu?.findItem(R.id.tune)?.isEnabled = false
-        quoteModel.getAll { quotes ->
+        quoteModel.getAll { it ->
+            val quotes = it.toMutableList()
+            quotes.removeAll(list)
             AddQuoteSheet().show(this) {
                 displayToolbar(false)
                 displayHandle(true)
@@ -155,6 +161,8 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     private fun quoteSelected(quote: Quote) {
         listModel.addQuote(listId, quote) {
             setupRecycler(listId)
+            checkLength(list)
+            binding.noQuotesText.visibility = View.GONE
         }
     }
 
