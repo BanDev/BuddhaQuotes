@@ -30,18 +30,20 @@ import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
-import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
+import me.kosert.flowbus.EventsReceiver
+import me.kosert.flowbus.bindLifecycle
+import me.kosert.flowbus.subscribe
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.QuoteList
-
 
 /**
  * Shows a list of lists to the user
@@ -52,6 +54,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
     private var toolbarMenu: Menu? = null
+    private val receiver = EventsReceiver()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -151,8 +154,12 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
+        receiver.bindLifecycle(this)
+            .subscribe { _: UpdateLists ->
+                setupRecycler()
+            }
     }
 
     companion object {
