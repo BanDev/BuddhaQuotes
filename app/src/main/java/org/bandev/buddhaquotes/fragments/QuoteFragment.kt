@@ -35,9 +35,11 @@ import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.custom.DoubleClickListener
@@ -135,7 +137,7 @@ class QuoteFragment : Fragment() {
         binding.like.load(heart(quote.liked))
         if (quote.liked) binding.likeAnimator.likeAnimation()
         model.setLike(quote.id, quote.liked)
-
+        GlobalBus.post(UpdateLists())
     }
 
     private fun showOptionsSheet() {
