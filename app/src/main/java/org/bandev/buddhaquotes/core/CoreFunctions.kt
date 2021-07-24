@@ -33,9 +33,6 @@ import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.ListIcon
@@ -50,25 +47,22 @@ fun Window.setNavigationBarColourDefault() {
     if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
         when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                )
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.navigationBarColor =
-                    Color.WHITE
-                else this.navigationBarColor = Color.GRAY
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                    )
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
+                this.navigationBarColor = getColor(this.context, R.color.background)
             }
-            Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                getColor(this.context, R.color.background)
         }
     }
 }
 
 /**
  * Sets navigation bar colour based off android version only for Main
- * @param [context] context of activity (Context)
  */
 
 @Suppress("DEPRECATION")
@@ -76,15 +70,16 @@ fun Window.setNavigationBarColourMain() {
     if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
         when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                )
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+                    )
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
                     View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.navigationBarColor =
-                    Color.WHITE
-                else this.navigationBarColor = Color.GRAY
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    this.navigationBarColor = Color.WHITE
+                } else this.navigationBarColor = Color.GRAY
             }
             Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
                 getColor(this.context, R.color.abbBackgroundColor)
@@ -141,27 +136,6 @@ fun setAccentColour(context: Context) {
 fun getAccentColourAsString(context: Context): String {
     val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
     return sharedPrefs.getString("accent_color", "original").toString()
-}
-
-/**
- * A function to draw behind system bars
- * @param [customInsets] The customInsets
- */
-fun Window.fitSystemBars(customInsets: CustomInsets) {
-    WindowCompat.setDecorFitsSystemWindows(this, false)
-
-    setOnApplyWindowInsetsListener(this.decorView) { _, insets ->
-        customInsets.setCustomInsets(insets)
-        insets
-    }
-}
-
-/**
- * Custom Insets interface for each activity to get custom insets
- */
-
-interface CustomInsets {
-    fun setCustomInsets(insets: WindowInsetsCompat)
 }
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {

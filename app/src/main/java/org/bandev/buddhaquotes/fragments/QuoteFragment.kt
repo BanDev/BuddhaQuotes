@@ -23,6 +23,7 @@ package org.bandev.buddhaquotes.fragments
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -58,6 +59,7 @@ class QuoteFragment : Fragment() {
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var quote: Quote
     private var toolbarMenu: Menu? = null
+    private val quoteImagePref: String = "QUOTE_FRAGMENT_IMAGE"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,24 +98,7 @@ class QuoteFragment : Fragment() {
             }
             like.setOnClickListener { onLikeClicked() }
             more.setOnClickListener { showOptionsSheet() }
-            quoteFragmentImage.load(
-                when (sharedPrefs.getInt("quoteFragmentImage", 0)) {
-                    1 -> R.drawable.image_monk
-                    2 -> R.drawable.image_dharma_wheel
-                    3 -> R.drawable.image_anahata
-                    4 -> R.drawable.image_mandala
-                    5 -> R.drawable.image_endless_knot
-                    6 -> R.drawable.image_elephant
-                    7 -> R.drawable.image_temple
-                    8 -> R.drawable.image_lamp
-                    9 -> R.drawable.image_shrine
-                    10 -> R.drawable.image_lotus
-                    11 -> R.drawable.image_lotus_water
-                    else -> R.drawable.image_buddha
-                }
-            ) {
-                size(750)
-            }
+            quoteFragmentImage.loadQuoteImage(sharedPrefs.getInt(quoteImagePref, 0))
             content.setOnClickListener(object : DoubleClickListener() {
                 override fun onSingleClick(view: View?) {}
                 override fun onDoubleClick(view: View?) {
@@ -170,6 +155,44 @@ class QuoteFragment : Fragment() {
         }
     }
 
+    private fun ImageView.loadQuoteImage(int: Int) {
+        load(
+            when (int) {
+                1 -> R.drawable.image_monk
+                2 -> R.drawable.image_dharma_wheel
+                3 -> R.drawable.image_anahata
+                4 -> R.drawable.image_mandala
+                5 -> R.drawable.image_endless_knot
+                6 -> R.drawable.image_elephant
+                7 -> R.drawable.image_temple
+                8 -> R.drawable.image_lamp
+                9 -> R.drawable.image_shrine
+                10 -> R.drawable.image_lotus
+                11 -> R.drawable.image_lotus_water
+                else -> R.drawable.image_buddha
+            }
+        ) {
+            size(750)
+            crossfade(true)
+        }
+        contentDescription = getString(
+            when (int) {
+                1 -> R.string.monk
+                2 -> R.string.dharma_wheel
+                3 -> R.string.anahata
+                4 -> R.string.mandala
+                5 -> R.string.endless_knot
+                6 -> R.string.elephant
+                7 -> R.string.temple
+                8 -> R.string.lamp
+                9 -> R.string.shrine
+                10 -> R.string.lotus
+                11 -> R.string.water_lotus
+                else -> R.string.buddha
+            }
+        )
+    }
+
     private fun heart(liked: Boolean): Int {
         return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
     }
@@ -203,44 +226,8 @@ class QuoteFragment : Fragment() {
                     )
                     onPositive { index: Int, _: Option ->
                         Feedback.confirm(binding.root)
-                        with(binding.quoteFragmentImage) {
-                            load(
-                                when (index) {
-                                    1 -> R.drawable.image_monk
-                                    2 -> R.drawable.image_dharma_wheel
-                                    3 -> R.drawable.image_anahata
-                                    4 -> R.drawable.image_mandala
-                                    5 -> R.drawable.image_endless_knot
-                                    6 -> R.drawable.image_elephant
-                                    7 -> R.drawable.image_temple
-                                    8 -> R.drawable.image_lamp
-                                    9 -> R.drawable.image_shrine
-                                    10 -> R.drawable.image_lotus
-                                    11 -> R.drawable.image_lotus_water
-                                    else -> R.drawable.image_buddha
-                                }
-                            ) {
-                                size(750)
-                                crossfade(true)
-                            }
-                            contentDescription = getString(
-                                when (index) {
-                                    1 -> R.string.monk
-                                    2 -> R.string.dharma_wheel
-                                    3 -> R.string.anahata
-                                    4 -> R.string.mandala
-                                    5 -> R.string.endless_knot
-                                    6 -> R.string.elephant
-                                    7 -> R.string.temple
-                                    8 -> R.string.lamp
-                                    9 -> R.string.shrine
-                                    10 -> R.string.lotus
-                                    11 -> R.string.water_lotus
-                                    else -> R.string.buddha
-                                }
-                            )
-                        }
-                        editor.putInt("quoteFragmentImage", index).apply()
+                        binding.quoteFragmentImage.loadQuoteImage(index)
+                        editor.putInt(quoteImagePref, index).apply()
                     }
                     onClose {
                         toolbarMenu?.findItem(R.id.options)?.isEnabled = true

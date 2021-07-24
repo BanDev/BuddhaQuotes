@@ -59,7 +59,7 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.button.setOnClickListener {
-            Feedback.virtualKey(binding.root)
+            Feedback.virtualKey(binding.button)
             timerSheet()
         }
     }

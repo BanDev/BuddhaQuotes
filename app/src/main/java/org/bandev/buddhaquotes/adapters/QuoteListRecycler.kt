@@ -29,7 +29,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ListIconManager
-import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
