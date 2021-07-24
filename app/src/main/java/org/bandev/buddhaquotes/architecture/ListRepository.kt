@@ -21,8 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.items.QuoteList
 import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 

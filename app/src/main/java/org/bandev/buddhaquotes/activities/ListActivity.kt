@@ -20,36 +20,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowInsets
-import android.widget.SearchView
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.snackbar.Snackbar
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.architecture.QuoteViewModel
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.setAccentColour
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
+import org.bandev.buddhaquotes.core.setNavigationBarColourDefault
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
-import org.bandev.buddhaquotes.items.QuoteListWithQuotes
 
 /**
  * The activity where the user can see all the quotes they have in their
  * lists
  */
 
-class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInsets {
+class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
     private lateinit var binding: ActivityListBinding
     private var toolbarMenu: Menu? = null
@@ -64,10 +64,11 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         setAccentColour(this)
 
         with(window) {
+            statusBarColor = Color.TRANSPARENT
             setNavigationBarColourDefault()
             setDarkStatusIcons()
-            fitSystemBars(this@ListActivity)
         }
+        setDecorFitsSystemWindows(window, false)
 
         // Setup view binding
         binding = ActivityListBinding.inflate(layoutInflater)
@@ -90,11 +91,23 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
         listModel.get(id) {
             list = it.quotes.toMutableList()
             with(binding.quotesRecycler) {
+                applyInsetter {
+                    type(navigationBars = true) {
+                        margin(bottom = true)
+                    }
+                }
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteRecycler(it.quotes.toMutableList(), this@ListActivity, listId)
+                adapter = QuoteRecycler(list, this@ListActivity, listId)
                 setHasFixedSize(false)
             }
-            binding.toolbar.title = it.title
+            with(binding.toolbar) {
+                applyInsetter {
+                    type(statusBars = true) {
+                        margin(top = true)
+                    }
+                }
+                title = it.title
+            }
             checkLength(list)
         }
     }
@@ -138,7 +151,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
     private fun showAddToList(): Boolean {
         toolbarMenu?.findItem(R.id.add)?.isEnabled = false
         toolbarMenu?.findItem(R.id.tune)?.isEnabled = false
-        quoteModel.getAll { it ->
+        quoteModel.getAll {
             val quotes = it.toMutableList()
             quotes.removeAll(list)
             AddQuoteSheet().show(this) {
@@ -181,14 +194,5 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener, CustomInset
             }
         }
         return true
-    }
-
-    @Suppress("DEPRECATION")
-    override fun setCustomInsets(insets: WindowInsetsCompat) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            binding.toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
-        } else {
-            binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
-        }
     }
 }

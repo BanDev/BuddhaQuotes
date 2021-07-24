@@ -21,28 +21,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
+import android.graphics.Color
 import android.media.MediaPlayer
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
-import android.view.WindowInsets
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
-class TimerActivity : LocalizationActivity(), CustomInsets {
+class TimerActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityTimerBinding
     private lateinit var notifBuilder: NotificationCompat.Builder
@@ -62,19 +61,27 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         setAccentColour(this)
 
         with(window) {
+            statusBarColor = Color.TRANSPARENT
             setNavigationBarColourDefault()
             setDarkStatusIcons()
-            fitSystemBars(this@TimerActivity)
         }
+        setDecorFitsSystemWindows(window, false)
 
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         settings = Timer().Settings(this)
 
-
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
+        with(binding.toolbar) {
+            applyInsetter {
+                type(statusBars = true) {
+                    margin(top = true)
+                }
+            }
+            setNavigationOnClickListener { onBackPressed() }
+        }
 
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
 
@@ -89,6 +96,11 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         startTimer(durationTimeInSeconds)
 
         with(binding.pause) {
+            applyInsetter {
+                type(navigationBars = true) {
+                    margin(bottom = true)
+                }
+            }
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
                 Feedback.confirm(binding.root)
@@ -310,20 +322,5 @@ class TimerActivity : LocalizationActivity(), CustomInsets {
         countDownTimer.cancel()
         NotificationManagerCompat.from(applicationContext).cancel(0)
         super.onDestroy()
-    }
-
-    @Suppress("DEPRECATION")
-    override fun setCustomInsets(insets: WindowInsetsCompat) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            with(binding) {
-                toolbar.updatePadding(top = insets.getInsets(WindowInsets.Type.systemBars()).top)
-                pauseHolder.updatePadding(bottom = insets.getInsets(WindowInsets.Type.systemBars()).bottom)
-            }
-        } else {
-            with(binding) {
-                toolbar.updatePadding(top = insets.systemWindowInsetTop)
-                pauseHolder.updatePadding(bottom = insets.systemWindowInsetBottom)
-            }
-        }
     }
 }

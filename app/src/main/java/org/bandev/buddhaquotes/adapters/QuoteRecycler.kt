@@ -28,6 +28,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
 import org.bandev.buddhaquotes.items.Quote
 
@@ -66,6 +67,7 @@ class QuoteRecycler(
         if (item.liked) holder.likeIcon.load(R.drawable.ic_heart_red)
 
         holder.likeIcon.setOnClickListener {
+            Feedback.virtualKey(holder.likeIcon)
             if (item.liked) listener.unlike(item)
             else listener.like(item)
             item.liked = !item.liked
@@ -77,6 +79,7 @@ class QuoteRecycler(
         }
 
         holder.bin.setOnClickListener {
+            Feedback.virtualKey(holder.bin)
             list.remove(item)
             notifyItemRemoved(position)
             listener.bin(item)

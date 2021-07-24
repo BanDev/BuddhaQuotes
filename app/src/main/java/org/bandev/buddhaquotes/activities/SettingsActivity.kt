@@ -22,13 +22,12 @@ package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
-import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.view.updatePadding
+import androidx.core.view.WindowCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -41,6 +40,7 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -56,16 +56,12 @@ class SettingsActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setDarkStatusIcons()
-
-        Insets.edgeToEdge(window) { insets ->
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val ins = insets.getInsets(WindowInsets.Type.systemBars())
-                binding.toolbar.updatePadding(top = ins.top)
-            } else {
-                binding.toolbar.updatePadding(top = insets.systemWindowInsetTop)
-            }
+        with(window) {
+            statusBarColor = Color.TRANSPARENT
+            setNavigationBarColourDefault()
+            setDarkStatusIcons()
         }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -73,8 +69,20 @@ class SettingsActivity : LocalizationActivity() {
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        with(binding.toolbar) {
+            applyInsetter {
+                type(statusBars = true) {
+                    margin(top = true)
+                }
+            }
+            setNavigationOnClickListener { onBackPressed() }
+        }
 
+        binding.settings.applyInsetter {
+            type(navigationBars = true) {
+                margin(bottom = true)
+            }
+        }
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

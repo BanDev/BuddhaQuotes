@@ -21,17 +21,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.os.Build
+import android.graphics.Color
 import android.os.Bundle
-import android.view.WindowInsets
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.resolveColorAttr
+import org.bandev.buddhaquotes.core.setAccentColour
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
+import org.bandev.buddhaquotes.core.setNavigationBarColourMain
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-
 
 /**
  * Main is the main page of Buddha Quotes
@@ -39,11 +40,9 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
  * It has a ViewPager and allows the user to scroll between its fragments.
  * It uses [FragmentAdapter] as a fragment adapter and
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
- * @since v1.0.0
- * @author Jack Devey & Fennec_exe
  */
 
-class MainActivity : LocalizationActivity(), CustomInsets {
+class MainActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -51,66 +50,60 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         super.onCreate(savedInstanceState)
 
         with(window) {
+            statusBarColor = Color.TRANSPARENT
             setNavigationBarColourMain()
             setDarkStatusIcons()
-            fitSystemBars(this@MainActivity)
         }
+        setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener { binding.root.open() }
-
-        // Setup viewPager with FragmentAdapter
-        binding.viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-
-        with(binding.navigationView) {
-            setNavigationItemSelectedListener { menuItem ->
-                menuItem.isChecked = true
-
-                when (menuItem.itemId) {
-                    R.id.quote -> binding.bottomBar.selectTabAt(0)
-                    R.id.lists -> binding.bottomBar.selectTabAt(1)
-                    R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                    R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
-                    R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
+        with(binding) {
+            with(toolbar) {
+                applyInsetter {
+                    type(statusBars = true) {
+                        margin(top = true)
+                    }
                 }
-
-                binding.root.close()
-                true
+                setNavigationOnClickListener { binding.root.open() }
             }
-        }
 
-        with(binding.bottomBar) {
-            setupWithViewPager2(binding.viewPager)
-            onTabSelected = {
-                when (it) {
-                    binding.bottomBar.tabs[0] -> binding.navigationView.setCheckedItem(R.id.quote)
-                    binding.bottomBar.tabs[1] -> binding.navigationView.setCheckedItem(R.id.lists)
-                    binding.bottomBar.tabs[2] -> binding.navigationView.setCheckedItem(R.id.meditate)
+            viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+
+            with(navigationView) {
+                setNavigationItemSelectedListener { menuItem ->
+                    menuItem.isChecked = true
+
+                    when (menuItem.itemId) {
+                        R.id.quote -> binding.bottomBar.selectTabAt(0)
+                        R.id.lists -> binding.bottomBar.selectTabAt(1)
+                        R.id.meditate -> binding.bottomBar.selectTabAt(2)
+                        R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
+                        R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
+                    }
+
+                    binding.root.close()
+                    true
                 }
             }
-        }
-    }
 
-
-    @Suppress("DEPRECATION")
-    override fun setCustomInsets(insets: WindowInsetsCompat) {
-        val bottomInsets: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val ins = insets.getInsets(WindowInsets.Type.systemBars())
-            with(binding) {
-                toolbar.updatePadding(top = ins.top)
-                bottomBar.updatePadding(bottom = ins.bottom)
+            with(bottomBar) {
+                applyInsetter {
+                    type(navigationBars = true) {
+                        margin(bottom = true)
+                    }
+                }
+                setupWithViewPager2(binding.viewPager)
+                onTabSelected = {
+                    when (it) {
+                        binding.bottomBar.tabs[0] -> binding.navigationView.setCheckedItem(R.id.quote)
+                        binding.bottomBar.tabs[1] -> binding.navigationView.setCheckedItem(R.id.lists)
+                        binding.bottomBar.tabs[2] -> binding.navigationView.setCheckedItem(R.id.meditate)
+                    }
+                }
             }
-            ins.bottom
-        } else {
-            with(binding) {
-                toolbar.updatePadding(top = insets.systemWindowInsetTop)
-                bottomBar.updatePadding(bottom = insets.systemWindowInsetBottom)
-            }
-            insets.systemWindowInsetBottom
         }
-        binding.bottomBar.minimumHeight = 170 + bottomInsets
     }
 
     override fun onResume() {
