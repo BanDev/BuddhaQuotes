@@ -23,8 +23,15 @@ package org.bandev.buddhaquotes.activities
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.maxkeppeler.sheets.core.IconButton
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.info.InfoSheet
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
@@ -103,6 +110,64 @@ class MainActivity : LocalizationActivity() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.help_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.help -> {
+                when (binding.bottomBar.selectedIndex) {
+                    0 -> {
+                        InfoSheet().show(this) {
+                            title("Team Collaboration")
+                            content("In the world of software projects, it is inevitable...")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.lotus)
+                                }
+                            })
+                        }
+                    }
+                    1 -> {
+                        InfoSheet().show(this) {
+                            title("Title")
+                            content("You can do this to meditate")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.lists)
+                                }
+                            })
+                        }
+                    }
+                    2 -> {
+                        InfoSheet().show(this) {
+                            title("Title")
+                            content("Content")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.meditation)
+                                }
+                            })
+                        }
+                    }
+                }
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

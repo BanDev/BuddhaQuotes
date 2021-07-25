@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -50,7 +50,7 @@ class AboutActivity : LocalizationActivity() {
         with(window) {
             setNavigationBarColourMain()
             setDarkStatusIcons()
-            statusBarColor = ContextCompat.getColor(context, R.color.background)
+            statusBarColor = getColor(context, R.color.background)
         }
 
         binding = ActivityAboutBinding.inflate(layoutInflater)

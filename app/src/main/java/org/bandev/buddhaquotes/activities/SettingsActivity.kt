@@ -135,6 +135,7 @@ class SettingsActivity : LocalizationActivity() {
                 )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     val currentLangauge = getLanguage(requireContext())
+                    Feedback.virtualKey(requireView())
                     OptionsSheet().show(requireContext()) {
                         title(R.string.settings_language)
                         style(SheetStyle.DIALOG)
@@ -198,6 +199,7 @@ class SettingsActivity : LocalizationActivity() {
                 )
 
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    Feedback.virtualKey(requireView())
                     OptionsSheet().show(requireContext()) {
                         style(SheetStyle.DIALOG)
                         displayToolbar(false)
@@ -276,6 +278,7 @@ class SettingsActivity : LocalizationActivity() {
                     }
                 )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    Feedback.virtualKey(requireView())
                     ColorSheet().show(requireContext()) {
                         colorsRes(
                             mutableListOf(

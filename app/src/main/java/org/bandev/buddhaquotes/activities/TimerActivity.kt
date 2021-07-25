@@ -113,39 +113,6 @@ class TimerActivity : LocalizationActivity() {
         }
     }
 
-    private fun showSettings() {
-        Feedback.virtualKey(binding.root)
-        InputSheet().show(this) {
-            title("Timer Settings")
-            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-            displayPositiveButton(false)
-            displayNegativeButton(false)
-            with(InputCheckBox {
-                text("Play Gong at end")
-                defaultValue(settings.endSound)
-                changeListener { settings.endSound = !settings.endSound }
-            })
-            with(InputCheckBox {
-                text(R.string.vibrate_second)
-                defaultValue(settings.vibrateSecond)
-                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
-            })
-            with(InputCheckBox {
-                text(R.string.show_notification)
-                defaultValue(settings.showNotificaton)
-                changeListener {
-                    settings.showNotificaton = !settings.showNotificaton
-                    if (!settings.showNotificaton) {
-                        NotificationManagerCompat.from(applicationContext).cancel(0)
-                    } else {
-                        buildNotification(requireContext())
-                        pushNotification(requireContext())
-                    }
-                }
-            })
-        }
-    }
-
     // Timer is done so must be for reset
     private fun reset() {
         binding.pause.isEnabled = false
@@ -209,7 +176,36 @@ class TimerActivity : LocalizationActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        showSettings()
+        Feedback.virtualKey(binding.root)
+        InputSheet().show(this) {
+            title("Timer Settings")
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+            displayPositiveButton(false)
+            displayNegativeButton(false)
+            with(InputCheckBox {
+                text("Play Gong at end")
+                defaultValue(settings.endSound)
+                changeListener { settings.endSound = !settings.endSound }
+            })
+            with(InputCheckBox {
+                text(R.string.vibrate_second)
+                defaultValue(settings.vibrateSecond)
+                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+            })
+            with(InputCheckBox {
+                text(R.string.show_notification)
+                defaultValue(settings.showNotificaton)
+                changeListener {
+                    settings.showNotificaton = !settings.showNotificaton
+                    if (!settings.showNotificaton) {
+                        NotificationManagerCompat.from(applicationContext).cancel(0)
+                    } else {
+                        buildNotification(requireContext())
+                        pushNotification(requireContext())
+                    }
+                }
+            })
+        }
         return true
     }
 

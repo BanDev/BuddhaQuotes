@@ -22,13 +22,11 @@ package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.core.IconButton
-import com.maxkeppeler.sheets.core.Ratio
-import com.maxkeppeler.sheets.info.InfoSheet
-import com.maxkeppeler.sheets.lottie.LottieAnimation
-import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
@@ -44,14 +42,12 @@ class TimerFragment : Fragment() {
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
-    private var toolbarMenu: Menu? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         _binding = FragmentTimerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,58 +55,25 @@ class TimerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.button.setOnClickListener {
-            Feedback.virtualKey(binding.button)
-            timerSheet()
-        }
-    }
-
-    private fun timerSheet() {
-        binding.button.isEnabled = false
-        TimeSheet().show(requireContext()) {
-            title(R.string.meditation_timer)
-            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-            format(TimeFormat.MM_SS)
-            minTime(1)
-            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
-            onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                Feedback.confirm(binding.root)
-                startActivity(
-                    Intent(context, TimerActivity::class.java).putExtra(
-                        "durationTimeInMillis",
-                        durationTimeInMillis
+            Feedback.virtualKey(it)
+            it.isEnabled = false
+            TimeSheet().show(requireContext()) {
+                title(R.string.meditation_timer)
+                closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                format(TimeFormat.MM_SS)
+                minTime(1)
+                onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                    Feedback.confirm(binding.root)
+                    startActivity(
+                        Intent(context, TimerActivity::class.java).putExtra(
+                            "durationTimeInMillis",
+                            durationTimeInMillis
+                        )
                     )
-                )
-            }
-            onClose { binding.button.isEnabled = true }
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.meditate_menu, menu)
-        toolbarMenu = menu
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.help -> {
-                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
-                InfoSheet().show(requireContext()) {
-                    title("Title")
-                    content("Content")
-                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                    displayButtons(false)
-                    withCoverLottieAnimation(LottieAnimation {
-                        ratio(Ratio(2, 1))
-                        setupAnimation {
-                            setAnimation(R.raw.meditation)
-                        }
-                    })
-                    onClose { toolbarMenu?.findItem(R.id.help)?.isEnabled = true }
                 }
-                true
+                onClose { it.isEnabled = true }
             }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 
