@@ -27,7 +27,6 @@ import android.graphics.Color
 import android.os.Build
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewConfiguration
 import android.view.Window
 import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
@@ -44,61 +43,57 @@ import org.bandev.buddhaquotes.items.Quote
 
 @Suppress("DEPRECATION")
 fun Window.setNavigationBarColourDefault() {
-    if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
-        when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                }
-                this.navigationBarColor = getColor(this.context, R.color.background)
-            }
+    if (!inDarkMode(this.context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+        this.navigationBarColor = getColor(this.context, R.color.background)
+    }
+}
+
+@Suppress("DEPRECATION")
+fun Window.setNavigationBarColourMain() {
+    if (inDarkMode(this.context)) {
+        this.navigationBarColor = getColor(this.context, R.color.abbBackgroundColor)
+    } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.navigationBarColor = Color.WHITE
+        } else {
+            this.navigationBarColor = Color.GRAY
         }
     }
 }
 
-/**
- * Sets navigation bar colour based off android version only for Main
- */
-
-@Suppress("DEPRECATION")
-fun Window.setNavigationBarColourMain() {
-    if (!ViewConfiguration.get(this.context).hasPermanentMenuKey()) {
-        when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                    )
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    this.navigationBarColor = Color.WHITE
-                } else this.navigationBarColor = Color.GRAY
-            }
-            Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                getColor(this.context, R.color.abbBackgroundColor)
-        }
+fun inDarkMode(context: Context): Boolean {
+    return when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_YES -> true
+        else -> false
     }
 }
 
 @Suppress("DEPRECATION")
 fun Window.setDarkStatusIcons() {
-    when (this.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_NO -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
-                )
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            }
+    if (!inDarkMode(this.context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
 }

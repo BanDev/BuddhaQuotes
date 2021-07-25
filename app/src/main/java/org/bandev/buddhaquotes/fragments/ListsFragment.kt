@@ -21,18 +21,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.IconButton
-import com.maxkeppeler.sheets.core.Ratio
-import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
-import com.maxkeppeler.sheets.lottie.LottieAnimation
-import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import me.kosert.flowbus.EventsReceiver
 import me.kosert.flowbus.bindLifecycle
 import me.kosert.flowbus.subscribe
@@ -42,6 +42,7 @@ import org.bandev.buddhaquotes.adapters.QuoteListRecycler
 import org.bandev.buddhaquotes.architecture.ListViewModel
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.UpdateLists
+import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.QuoteList
 
@@ -53,15 +54,16 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
-    private var toolbarMenu: Menu? = null
     private val receiver = EventsReceiver()
+    private var accentColor: Int = 0
+    private var iconColor: Int = 0
+    private var backgroundColor: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         binding = FragmentListsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -72,8 +74,37 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
             .getInstance(requireActivity().application)
             .create(ListViewModel::class.java)
 
+        accentColor = requireContext().resolveColorAttr(R.attr.colorAccent)
+
         // Setup the recyclerview
         setupRecycler()
+
+        with(binding.createList) {
+            backgroundTintList = ColorStateList.valueOf(accentColor)
+            imageTintList = ColorStateList.valueOf(Color.WHITE)
+            setOnClickListener {
+                Feedback.virtualKey(it)
+                it.isEnabled = false
+                InputSheet().show(requireContext()) {
+                    title(R.string.createNewList)
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                    with(
+                        InputEditText {
+                            required()
+                            hint(R.string.insertName)
+                            resultListener { value ->
+                                model.newList(value.toString()) {
+                                    setupRecycler()
+                                }
+                            }
+                        }
+                    )
+                    onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                    onPositive(R.string.add) { Feedback.confirm(binding.root) }
+                    onClose { it.isEnabled = true }
+                }
+            }
+        }
     }
 
     /**
@@ -95,71 +126,21 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.lists_menu, menu)
-        toolbarMenu = menu
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.add -> {
-                toolbarMenu?.findItem(R.id.add)?.isEnabled = false
-                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
-                InputSheet().show(requireContext()) {
-                    title(R.string.createNewList)
-                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                    with(
-                        InputEditText {
-                            required()
-                            hint(R.string.insertName)
-                            resultListener { value ->
-                                model.newList(value.toString()) {
-                                    setupRecycler()
-                                }
-                            }
-                        }
-                    )
-                    onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
-                    onPositive(R.string.add) { Feedback.confirm(binding.root) }
-                    onClose {
-                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
-                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
-                    }
-                }
-                true
-            }
-            R.id.help -> {
-                toolbarMenu?.findItem(R.id.help)?.isEnabled = false
-                toolbarMenu?.findItem(R.id.add)?.isEnabled = false
-                InfoSheet().show(requireContext()) {
-                    title("Title")
-                    content("You can do this to meditate")
-                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                    displayButtons(false)
-                    withCoverLottieAnimation(LottieAnimation {
-                        ratio(Ratio(2, 1))
-                        setupAnimation {
-                            setAnimation(R.raw.lists)
-                        }
-                    })
-                    onClose {
-                        toolbarMenu?.findItem(R.id.help)?.isEnabled = true
-                        toolbarMenu?.findItem(R.id.add)?.isEnabled = true
-                    }
-                }
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         receiver.bindLifecycle(this)
             .subscribe { _: UpdateLists ->
                 setupRecycler()
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        accentColor = requireContext().resolveColorAttr(R.attr.colorAccent)
+        with(binding.createList) {
+            backgroundTintList = ColorStateList.valueOf(accentColor)
+            imageTintList = ColorStateList.valueOf(Color.WHITE)
+        }
     }
 
     companion object {

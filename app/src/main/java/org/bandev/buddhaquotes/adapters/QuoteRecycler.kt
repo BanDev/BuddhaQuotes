@@ -67,7 +67,7 @@ class QuoteRecycler(
         if (item.liked) holder.likeIcon.load(R.drawable.ic_heart_red)
 
         holder.likeIcon.setOnClickListener {
-            Feedback.virtualKey(holder.likeIcon)
+            Feedback.virtualKey(it)
             if (item.liked) listener.unlike(item)
             else listener.like(item)
             item.liked = !item.liked
@@ -79,7 +79,7 @@ class QuoteRecycler(
         }
 
         holder.bin.setOnClickListener {
-            Feedback.virtualKey(holder.bin)
+            Feedback.virtualKey(it)
             list.remove(item)
             notifyItemRemoved(position)
             listener.bin(item)

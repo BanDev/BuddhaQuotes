@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="@string/start"
-                android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 app:cornerRadius="11dp" />
 
@@ -58,11 +57,11 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:layout_width="359dp"
-        android:layout_height="251dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/meditate"
-        android:contentDescription="@string/two_people_meditating" />
+        android:src="@drawable/image_monk"
+        android:contentDescription="@string/monk" />
 
 </RelativeLayout>
