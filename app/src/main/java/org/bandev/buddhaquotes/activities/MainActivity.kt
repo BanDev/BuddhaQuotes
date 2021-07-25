@@ -21,24 +21,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.info.InfoSheet
+import com.maxkeppeler.sheets.input.InputSheet
+import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import dev.chrisbanes.insetter.applyInsetter
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
-import org.bandev.buddhaquotes.core.resolveColorAttr
-import org.bandev.buddhaquotes.core.setAccentColour
-import org.bandev.buddhaquotes.core.setDarkStatusIcons
-import org.bandev.buddhaquotes.core.setNavigationBarColourMain
+import org.bandev.buddhaquotes.architecture.ListViewModel
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 /**
@@ -52,6 +55,7 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 class MainActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var model: ListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +68,11 @@ class MainActivity : LocalizationActivity() {
         setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application)
+            .create(ListViewModel::class.java)
+
 
         setSupportActionBar(binding.toolbar)
         with(binding) {
@@ -95,6 +104,34 @@ class MainActivity : LocalizationActivity() {
                 }
             }
 
+            with(createList) {
+                hide()
+                backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+                imageTintList = ColorStateList.valueOf(Color.WHITE)
+                setOnClickListener {
+                    Feedback.virtualKey(it)
+                    it.isEnabled = false
+                    InputSheet().show(context) {
+                        title(R.string.createNewList)
+                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                        with(
+                            InputEditText {
+                                required()
+                                hint(R.string.insertName)
+                                resultListener { value ->
+                                    model.newList(value.toString()) {
+                                        GlobalBus.post(UpdateLists())
+                                    }
+                                }
+                            }
+                        )
+                        onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                        onPositive(R.string.add) { Feedback.confirm(binding.root) }
+                        onClose { it.isEnabled = true }
+                    }
+                }
+            }
+
             with(bottomBar) {
                 applyInsetter {
                     type(navigationBars = true) {
@@ -104,9 +141,24 @@ class MainActivity : LocalizationActivity() {
                 setupWithViewPager2(binding.viewPager)
                 onTabSelected = {
                     when (it) {
-                        binding.bottomBar.tabs[0] -> binding.navigationView.setCheckedItem(R.id.quote)
-                        binding.bottomBar.tabs[1] -> binding.navigationView.setCheckedItem(R.id.lists)
-                        binding.bottomBar.tabs[2] -> binding.navigationView.setCheckedItem(R.id.meditate)
+                        binding.bottomBar.tabs[0] -> {
+                            with(binding) {
+                                createList.hide()
+                                navigationView.setCheckedItem(R.id.quote)
+                            }
+                        }
+                        binding.bottomBar.tabs[1] -> {
+                            with(binding) {
+                                createList.show()
+                                navigationView.setCheckedItem(R.id.lists)
+                            }
+                        }
+                        binding.bottomBar.tabs[2] -> {
+                            with(binding) {
+                                createList.hide()
+                                navigationView.setCheckedItem(R.id.meditate)
+                            }
+                        }
                     }
                 }
             }
@@ -174,9 +226,13 @@ class MainActivity : LocalizationActivity() {
     override fun onResume() {
         super.onResume()
         setAccentColour(this)
+        with(binding.createList) {
+            backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+            imageTintList = ColorStateList.valueOf(Color.WHITE)
+        }
         with(binding.bottomBar) {
-            tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
-            indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
+            tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
+            indicatorColor = resolveColorAttr(R.attr.colorPrimary)
         }
     }
 
