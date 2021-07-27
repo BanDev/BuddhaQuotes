@@ -195,3 +195,10 @@ fun defaultIcon(): ListIcon {
         0xFF0067f4.toInt()
     )
 }
+
+fun MutableList<Quote>.find(quote: Quote): Int {
+    for (i in 0..this.size) {
+        if (this[i] == quote) return i
+    }
+    return -1
+}

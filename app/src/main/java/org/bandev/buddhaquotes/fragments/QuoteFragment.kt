@@ -26,6 +26,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -35,7 +36,7 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.QuoteViewModel
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.core.resolveColorAttr
@@ -51,7 +52,7 @@ import org.bandev.buddhaquotes.items.Quote
 class QuoteFragment : Fragment() {
 
     private lateinit var binding: FragmentQuoteBinding
-    private lateinit var model: QuoteViewModel
+    private lateinit var model: ViewModel
     private lateinit var sharedPrefs: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var quote: Quote
@@ -76,7 +77,7 @@ class QuoteFragment : Fragment() {
         // Attach to viewmodel
         model = ViewModelProvider.AndroidViewModelFactory
             .getInstance(requireActivity().application)
-            .create(QuoteViewModel::class.java)
+            .create(ViewModel::class.java)
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         editor = sharedPrefs.edit()
@@ -144,11 +145,12 @@ class QuoteFragment : Fragment() {
     }
 
     private fun randomQuote() {
-        model.getRandom {
+        model.Quotes().getRandom {
             quote = it
             binding.number.text = getString(R.string.quote_number, quote.id)
             binding.quote.text = getString(quote.resource)
-            binding.like.load(heart(quote.liked))
+            binding.like.load(heart(quote.liked)) // THIS DOESNT WORK ON THE FIRST TIME FOR SOME REASON
+            // CHECKED AND DB OUTPUT IS TOTALLY FINE
         }
     }
 
@@ -156,8 +158,10 @@ class QuoteFragment : Fragment() {
         Feedback.virtualKey(binding.root)
         quote.liked = !quote.liked
         binding.like.load(heart(quote.liked))
-        if (quote.liked) binding.likeAnimator.likeAnimation()
-        model.setLike(quote.id, quote.liked)
+        if (quote.liked) {
+            binding.likeAnimator.likeAnimation()
+        }
+        model.Quotes().setLike(quote.id, quote.liked)
         GlobalBus.post(UpdateLists())
     }
 

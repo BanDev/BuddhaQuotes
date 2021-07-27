@@ -40,7 +40,7 @@ import dev.chrisbanes.insetter.applyInsetter
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
-import org.bandev.buddhaquotes.architecture.ListViewModel
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
@@ -55,7 +55,7 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 class MainActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var model: ListViewModel
+    private lateinit var model: ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +71,7 @@ class MainActivity : LocalizationActivity() {
 
         model = ViewModelProvider.AndroidViewModelFactory
             .getInstance(application)
-            .create(ListViewModel::class.java)
+            .create(ViewModel::class.java)
 
 
         setSupportActionBar(binding.toolbar)
@@ -117,9 +117,8 @@ class MainActivity : LocalizationActivity() {
                                 required()
                                 hint(R.string.insertName)
                                 resultListener { value ->
-                                    model.newList(value.toString()) {
-                                        GlobalBus.post(UpdateLists())
-                                    }
+                                    model.Lists().new(value.toString())
+                                    GlobalBus.post(UpdateLists())
                                 }
                             }
                         )

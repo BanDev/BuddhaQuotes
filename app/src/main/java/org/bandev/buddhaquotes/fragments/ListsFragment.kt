@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,9 +34,10 @@ import me.kosert.flowbus.bindLifecycle
 import me.kosert.flowbus.subscribe
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.QuoteListRecycler
-import org.bandev.buddhaquotes.architecture.ListViewModel
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
+import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.QuoteList
 
 /**
@@ -45,7 +47,7 @@ import org.bandev.buddhaquotes.items.QuoteList
 class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
     private lateinit var binding: FragmentListsBinding
-    private lateinit var model: ListViewModel
+    private lateinit var model: ViewModel
     private val receiver = EventsReceiver()
 
     override fun onCreateView(
@@ -61,7 +63,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         // Attach to viewmodel
         model = ViewModelProvider.AndroidViewModelFactory
             .getInstance(requireActivity().application)
-            .create(ListViewModel::class.java)
+            .create(ViewModel::class.java)
 
         // Setup the recyclerview
         setupRecycler()
@@ -73,7 +75,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
      */
 
     private fun setupRecycler() {
-        model.getAllNoQuotes {
+        model.Lists().getAll {
             with(binding.listsRecycler) {
                 layoutManager = LinearLayoutManager(context)
                 adapter = QuoteListRecycler(it, this@ListsFragment, requireActivity().application)
@@ -82,7 +84,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         }
     }
 
-    override fun select(list: QuoteList) {
+    override fun select(list: List) {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
