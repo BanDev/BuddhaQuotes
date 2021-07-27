@@ -34,13 +34,12 @@ import com.google.android.material.snackbar.Snackbar
 import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.architecture.ListViewModel
-import org.bandev.buddhaquotes.architecture.QuoteViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
+import org.bandev.buddhaquotes.architecture.ViewModel
 
 /**
  * The activity where the user can see all the quotes they have in their
@@ -51,10 +50,9 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
 
     private lateinit var binding: ActivityListBinding
     private var toolbarMenu: Menu? = null
-    private lateinit var quoteModel: QuoteViewModel
-    private lateinit var listModel: ListViewModel
-    private lateinit var list: MutableList<Quote>
-    private var listId = 0
+    private lateinit var viewModel: ViewModel
+    private lateinit var quotes: MutableList<Quote>
+    private var listId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +70,8 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        quoteModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-            .create(QuoteViewModel::class.java)
-
-        listModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-            .create(ListViewModel::class.java)
+        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+            .create(ViewModel::class.java)
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
@@ -97,13 +92,13 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
             backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
             setOnClickListener { view ->
                 Feedback.virtualKey(view)
-                quoteModel.getAll {
-                    val quotes = it.toMutableList()
-                    quotes.removeAll(list)
+                viewModel.Quotes().getAll {
+                    val quotesFull = it.toMutableList()
+                    quotesFull.removeAll(quotes)
                     AddQuoteSheet().show(this@ListActivity) {
                         displayToolbar(false)
                         displayHandle(true)
-                        with(quotes)
+                        with(quotesFull)
                         onPositive { quote ->
                             Feedback.confirm(binding.root)
                             quoteSelected(quote)
@@ -113,14 +108,17 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
             }
         }
 
-        setupRecycler((intent.extras ?: return).getInt("id"))
+        viewModel.Lists().get((intent.extras ?: return).getInt("id")) {
+            listId = it.id
+            binding.toolbar.title = it.title
+            setupRecycler(it.id)
+        }
     }
 
     private fun setupRecycler(id: Int) {
-        listModel.get(id) {
-            list = it.quotes.toMutableList()
+        viewModel.ListQuotes().getFrom(id) {
+            quotes = it
             with(binding) {
-                title = it.title
                 with(quotesRecycler) {
                     applyInsetter {
                         type(navigationBars = true) {
@@ -128,11 +126,11 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
                         }
                     }
                     layoutManager = LinearLayoutManager(context)
-                    adapter = QuoteRecycler(list, this@ListActivity, listId)
+                    adapter = QuoteRecycler(quotes, this@ListActivity, listId)
                     setHasFixedSize(false)
                 }
             }
-            checkLength(list)
+            checkLength(quotes)
         }
     }
 
@@ -141,21 +139,22 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     override fun like(quote: Quote) {
-        quoteModel.setLike(quote.id, true)
+        viewModel.Quotes().setLike(quote.id, true)
         Snackbar.make(binding.root, "Liked", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun unlike(quote: Quote) {
-        quoteModel.setLike(quote.id, false)
+        if (listId == 0) return bin(quote)
+        viewModel.Quotes().setLike(quote.id, false)
         Snackbar.make(binding.root, "Unliked", Snackbar.LENGTH_SHORT).show()
     }
 
     override fun bin(quote: Quote) {
-        listModel.removeQuote(listId, quote) {
-            Snackbar.make(binding.root, "Removed", Snackbar.LENGTH_SHORT).show()
-        }
-        list.remove(quote)
-        checkLength(list)
+        viewModel.ListQuotes().removeFrom(listId, quote)
+        Snackbar.make(binding.root, "Removed", Snackbar.LENGTH_SHORT).show()
+        binding.quotesRecycler.adapter?.notifyItemRemoved(quotes.find(quote))
+        quotes.remove(quote)
+        checkLength(quotes)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -172,11 +171,11 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
     }
 
     private fun quoteSelected(quote: Quote) {
-        listModel.addQuote(listId, quote) {
-            setupRecycler(listId)
-            checkLength(list)
-            binding.noQuotesText.visibility = View.GONE
-        }
+        if (listId == 0) quote.liked = true
+        viewModel.ListQuotes().addTo(listId, quote)
+        quotes.add(quote)
+        binding.quotesRecycler.adapter?.notifyItemInserted(quotes.find(quote))
+        binding.noQuotesText.visibility = View.GONE
     }
 
     private fun showSettings(): Boolean {
@@ -186,7 +185,7 @@ class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
             displayHandle(true)
             displayPositiveButton(false)
             displayNegativeButton(false)
-            attachVariables(listModel, listId)
+            //attachVariables(, listId)
             onClose { toolbarMenu?.findItem(R.id.tune)?.isEnabled = true }
         }
         return true

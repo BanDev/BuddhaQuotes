@@ -28,8 +28,9 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.ListIconManager
+import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
+import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.QuoteList
 
 /**
@@ -38,13 +39,13 @@ import org.bandev.buddhaquotes.items.QuoteList
 
 class QuoteListRecycler(
 
-    private val list: List<QuoteList>,
+    private val list: MutableList<List>,
     private val listener: Listener,
     application: Application
 
 ) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
 
-    private val listIconManager = ListIconManager(application)
+    private val lm = ListMapper(application)
 
     class ViewHolder(binding: QuoteListRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.titleText
@@ -75,12 +76,12 @@ class QuoteListRecycler(
         }
 
 
-        listIconManager.draw(holder.listIcon, item.icon)
+        lm.draw(holder.listIcon, item.icon)
     }
 
     override fun getItemCount(): Int = list.size
 
     interface Listener {
-        fun select(list: QuoteList)
+        fun select(list: List)
     }
 }

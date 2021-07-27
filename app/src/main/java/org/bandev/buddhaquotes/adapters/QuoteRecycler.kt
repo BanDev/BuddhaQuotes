@@ -64,7 +64,7 @@ class QuoteRecycler(
 
         holder.quote.text = holder.quote.context.getString(item.resource)
 
-        if (item.liked) holder.likeIcon.load(R.drawable.ic_heart_red)
+        if (item.liked) holder.likeIcon.setImageResource(R.drawable.ic_heart_red)
 
         holder.likeIcon.setOnClickListener {
             Feedback.virtualKey(it)

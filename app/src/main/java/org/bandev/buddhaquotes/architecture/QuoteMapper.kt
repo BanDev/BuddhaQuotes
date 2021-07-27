@@ -20,30 +20,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.architecture
 
+import android.app.Application
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.Quote
 
 /**
- * Find a quote based on it's database id
+ * Find a quote based on it's database id. If
+ * you don't have much ram, you probably shouldn't
+ * scroll down. There is a massive map of id's to
+ * their translated quotes.
+ *
+ * @author Jack Devey
  */
 
-class QuoteFinder(private val quoteRepository: QuoteRepository) {
+class QuoteMapper(val application: Application) {
 
-    /** Convert a db class to a quote class */
-    fun convert(quote: Db.Quote, liked: Boolean): Quote {
-        return Quote(quote.quoteId, resource(quote.quoteId), liked)
+    /** Find a quote and nicefy it for the UI */
+    fun convert(quote: Db.Quote): Quote {
+        return Quote(quote.id, resource(quote.id), quote.like)
     }
 
-    /** Convert a list of db class to a list of quote class */
-    suspend fun convertList(quotes: List<Db.Quote>): List<Quote> {
+    /** Find all quotes and nicefy it for the UI */
+    fun convertAll(quotes: MutableList<Db.Quote>): MutableList<Quote> {
         val list = mutableListOf<Quote>()
-        for ((quoteId) in quotes) list.add(
-            Quote(
-                quoteId,
-                resource(quoteId),
-                quoteRepository.isLiked(quoteId)
-            )
-        )
+        for (quote in quotes) list.add(convert(quote))
         return list
     }
 
