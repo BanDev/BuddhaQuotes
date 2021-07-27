@@ -105,9 +105,7 @@ class MainActivity : LocalizationActivity() {
             }
 
             with(createList) {
-                hide()
                 backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-                imageTintList = ColorStateList.valueOf(Color.WHITE)
                 setOnClickListener {
                     Feedback.virtualKey(it)
                     it.isEnabled = false
@@ -226,13 +224,12 @@ class MainActivity : LocalizationActivity() {
     override fun onResume() {
         super.onResume()
         setAccentColour(this)
-        with(binding.createList) {
-            backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-            imageTintList = ColorStateList.valueOf(Color.WHITE)
-        }
-        with(binding.bottomBar) {
-            tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
-            indicatorColor = resolveColorAttr(R.attr.colorPrimary)
+        with(binding) {
+            createList.backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+            with(bottomBar) {
+                tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
+                indicatorColor = resolveColorAttr(R.attr.colorPrimary)
+            }
         }
     }
 

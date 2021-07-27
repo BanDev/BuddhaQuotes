@@ -47,7 +47,6 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ListViewModel
     private val receiver = EventsReceiver()
-    private var accentColor: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,

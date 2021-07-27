@@ -54,25 +54,28 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.button.setOnClickListener {
-            Feedback.virtualKey(it)
-            it.isEnabled = false
-            TimeSheet().show(requireContext()) {
-                title(R.string.meditation_timer)
-                closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                format(TimeFormat.MM_SS)
-                minTime(1)
-                onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
-                onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                    Feedback.confirm(binding.root)
-                    startActivity(
-                        Intent(context, TimerActivity::class.java).putExtra(
-                            "durationTimeInMillis",
-                            durationTimeInMillis
+        with(binding.button) {
+            setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
+            setOnClickListener {
+                Feedback.virtualKey(it)
+                it.isEnabled = false
+                TimeSheet().show(requireContext()) {
+                    title(R.string.meditation_timer)
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                    format(TimeFormat.MM_SS)
+                    minTime(1)
+                    onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                    onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                        Feedback.confirm(binding.root)
+                        startActivity(
+                            Intent(context, TimerActivity::class.java).putExtra(
+                                "durationTimeInMillis",
+                                durationTimeInMillis
+                            )
                         )
-                    )
+                    }
+                    onClose { it.isEnabled = true }
                 }
-                onClose { it.isEnabled = true }
             }
         }
     }
