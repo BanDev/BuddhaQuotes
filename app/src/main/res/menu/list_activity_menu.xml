@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/add"
-        android:title=""
-        android:icon="@drawable/ic_add"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/tune"
         android:title=""
         android:icon="@drawable/ic_tune"
