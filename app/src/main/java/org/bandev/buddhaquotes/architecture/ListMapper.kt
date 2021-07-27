@@ -75,13 +75,16 @@ class ListMapper(val application: Application) {
     }
 
     /** Find a list and nicefy it for the UI */
-    fun convert(list: Db.List1): List =
-        List(list.id, list.title, 69, list.system, associate(list.icon))
+    suspend fun convert(list: Db.List1, repo: Repository.ListQuotes): List =
+        List(list.id, list.title, repo.count(list.id), list.system, associate(list.icon))
 
     /** Find all lists and nicefy it for the UI */
-    fun convertAll(lists: MutableList<Db.List1>): MutableList<List> {
+    suspend fun convertAll(
+        lists: MutableList<Db.List1>,
+        repo: Repository.ListQuotes
+    ): MutableList<List> {
         val newList = mutableListOf<List>()
-        for (list in lists) newList.add(convert(list))
+        for (list in lists) newList.add(convert(list, repo))
         return newList
     }
 

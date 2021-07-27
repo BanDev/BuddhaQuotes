@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
+import android.widget.Toast
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.Quote
@@ -68,6 +69,9 @@ class Repository(val application: Application) {
         /** Count the quotes */
         suspend fun count(): Int = dao.count()
 
+        /** Count the liked quotes */
+        suspend fun countLiked(): Int = dao.countLiked()
+
     }
 
     /**
@@ -82,10 +86,10 @@ class Repository(val application: Application) {
         private var dao = db.list()
 
         /** Get just one list */
-        suspend fun get(id: Int): List = lm.convert(dao.get(id))
+        suspend fun get(id: Int): List = lm.convert(dao.get(id), this@Repository.ListQuotes())
 
         /** Get every single list */
-        suspend fun getAll(): MutableList<List> = lm.convertAll(dao.getAll())
+        suspend fun getAll(): MutableList<List> = lm.convertAll(dao.getAll(), this@Repository.ListQuotes())
 
         /** Rename a list */
         suspend fun rename(id: Int, title: String): Unit = dao.rename(id, title)
@@ -127,12 +131,15 @@ class Repository(val application: Application) {
 
         /** Remove a quote from a list */
         suspend fun removeFrom(id: Int, quote: Quote) {
-            if (id == 0) return Quotes().unlike(quote.id)
+            if (id == 0) return db.quote().unlike(quote.id)
             dao.removeFrom(id, quote.id)
         }
 
         /** Count the qoutes in a list */
-        suspend fun count(id: Int): Int = dao.count(id)
+        suspend fun count(id: Int): Int {
+            if (id == 0) return db.quote().countLiked()
+            return dao.count(id)
+        }
 
     }
 }

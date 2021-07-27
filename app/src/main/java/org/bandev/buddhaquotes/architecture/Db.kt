@@ -101,8 +101,12 @@ abstract class Db : RoomDatabase() {
         suspend fun getLiked(): MutableList<Quote>
 
         /** Count the quotes */
-        @Query("SELECT COUNT(id) FROM `quote`")
+        @Query("SELECT COUNT(id) FROM quote")
         suspend fun count(): Int
+
+        /** Count the liked quotes */
+        @Query("SELECT COUNT(`like`) FROM quote WHERE `like` = 1")
+        suspend fun countLiked(): Int
 
     }
 
