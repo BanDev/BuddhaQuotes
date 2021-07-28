@@ -26,33 +26,36 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.databinding.CardQuoteFragmentBinding
+import org.bandev.buddhaquotes.core.find
+import org.bandev.buddhaquotes.databinding.QuoteAdapterItemBinding
 import org.bandev.buddhaquotes.items.Quote
 
 /**
- * Scroll through quotes
+ * Scroll a list of quotes. Used in
+ * ListActivity.
+ *
+ * @date 28/7/21
  */
 
-class QuoteRecycler(
+class QuoteAdapter(
 
-    private val list: MutableList<Quote>,
+    private val quotes: MutableList<Quote>,
     private val listener: Listener,
-    private val listId: Int
+    private val id: Int
 
-) : RecyclerView.Adapter<QuoteRecycler.ViewHolder>() {
+) : RecyclerView.Adapter<QuoteAdapter.ViewHolder>() {
 
-    class ViewHolder(binding: CardQuoteFragmentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(binding: QuoteAdapterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val quote: TextView = binding.quote
-        val likeIcon: ImageView = binding.like
+        val like: ImageView = binding.like
         val bin: ImageView = binding.bin
         val root: CardView = binding.root
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardQuoteFragmentBinding.inflate(
+        val binding = QuoteAdapterItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -60,38 +63,39 @@ class QuoteRecycler(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = list[position]
+        val item = quotes[position]
 
         holder.quote.text = holder.quote.context.getString(item.resource)
 
-        if (item.liked) holder.likeIcon.setImageResource(R.drawable.ic_heart_red)
+        if (item.liked) holder.like.setImageResource(R.drawable.ic_heart_red)
 
-        holder.likeIcon.setOnClickListener {
+        holder.like.setOnClickListener {
             Feedback.virtualKey(it)
-            if (item.liked) listener.unlike(item)
-            else listener.like(item)
-            item.liked = !item.liked
-            if (listId != 0) notifyItemChanged(position)
-            else {
-                list.remove(item)
-                notifyItemRemoved(position)
+            if (id == 0) {
+                notifyItemRemoved(quotes.find(item))
+                quotes.remove(item)
+                listener.onQuoteRemoved(item)
+            } else {
+                if (item.liked) listener.onQuoteUnliked(item)
+                else listener.onQuoteLiked(item)
+                item.liked = !item.liked
             }
         }
 
         holder.bin.setOnClickListener {
             Feedback.virtualKey(it)
-            list.remove(item)
-            notifyItemRemoved(position)
-            listener.bin(item)
+            notifyItemRemoved(quotes.find(item))
+            quotes.remove(item)
+            listener.onQuoteRemoved(item)
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = quotes.size
 
     interface Listener {
-        fun like(quote: Quote)
-        fun unlike(quote: Quote)
-        fun bin(quote: Quote)
+        fun onQuoteLiked(quote: Quote)
+        fun onQuoteUnliked(quote: Quote)
+        fun onQuoteRemoved(quote: Quote)
     }
 
 }

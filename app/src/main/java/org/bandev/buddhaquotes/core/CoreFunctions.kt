@@ -33,6 +33,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.PreferenceManager
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.Quote
@@ -197,8 +198,26 @@ fun defaultIcon(): ListIcon {
 }
 
 fun MutableList<Quote>.find(quote: Quote): Int {
-    for (i in 0..this.size) {
+    for (i in 0 until this.size) {
         if (this[i] == quote) return i
     }
     return -1
+}
+
+const val NAVIGATIONBARS: Int = 70
+const val STATUSBARS: Int = 60
+
+
+fun View.applyInsets(type: Int) {
+    this.applyInsetter {
+        if (type == NAVIGATIONBARS) {
+            type(navigationBars = true) {
+                margin(bottom = true)
+            }
+        } else if (type == STATUSBARS) {
+            type(statusBars = true) {
+                margin(top = true)
+            }
+        }
+    }
 }
