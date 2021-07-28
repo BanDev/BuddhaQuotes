@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 .cxx
+.floo
+.flooignore
+.idea/dbnavigator.xml

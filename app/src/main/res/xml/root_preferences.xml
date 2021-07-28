@@ -2,42 +2,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="@string/settings_general">
+        app:title="@string/settings_general"
+        android:layout="@layout/preference_category_layout">
 
         <Preference
             app:key="app_language"
             app:title="@string/settings_language"
             app:summary="@string/settings_language"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/appearance">
+        app:title="@string/appearance"
+        android:layout="@layout/preference_category_layout">
 
         <Preference
             app:key="app_theme"
             app:title="@string/app_theme"
             android:summary="@string/app_theme"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
 
         <Preference
             app:key="accent_color"
             app:title="@string/settings_accent_colour"
             android:summary="@string/settings_accent_colour"
-            app:useSimpleSummaryProvider="true" />
-
-
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:title="@string/information">
-
-        <Preference
-            android:key="about"
-            android:title="@string/about"
-            android:summary="@string/view_app_details" />
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
 
     </PreferenceCategory>
 

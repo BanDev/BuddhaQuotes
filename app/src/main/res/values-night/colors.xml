@@ -3,7 +3,9 @@
 
     <color name="colorPrimary">#E80054</color>
     <color name="colorAccent">#E80054</color>
-    <color name="background">#121212</color>
+    <color name="background">#222222</color>
+    <color name="lighter_background">#252525</color>
+    <color name="line">#262626</color>
     <color name="darkModeBar">#333333</color>
     <color name="abbBackgroundColor">@color/darkModeBar</color>
 

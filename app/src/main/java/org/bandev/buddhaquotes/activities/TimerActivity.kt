@@ -21,23 +21,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Context
+import android.graphics.Color
 import android.media.MediaPlayer
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.HapticFeedbackConstants
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
+import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
@@ -59,28 +58,29 @@ class TimerActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        settings = Timer().Settings(this)
-
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+
+        with(window) {
+            statusBarColor = Color.TRANSPARENT
+            setNavigationBarColourDefault()
+            setDarkStatusIcons()
+        }
+        setDecorFitsSystemWindows(window, false)
 
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = context.backIcon()
-            setBackgroundColor(toolbarColour(context))
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        settings = Timer().Settings(this)
 
-        with(binding.settings) {
-            setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
-            setOnClickListener {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                settingsSheet()
+        setSupportActionBar(binding.toolbar)
+
+        with(binding.toolbar) {
+            applyInsetter {
+                type(statusBars = true) {
+                    margin(top = true)
+                }
             }
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         durationTimeInMillis = (intent.extras ?: return).getLong("durationTimeInMillis")
@@ -96,14 +96,14 @@ class TimerActivity : LocalizationActivity() {
         startTimer(durationTimeInSeconds)
 
         with(binding.pause) {
+            applyInsetter {
+                type(navigationBars = true) {
+                    margin(bottom = true)
+                }
+            }
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-
+                Feedback.confirm(binding.root)
                 when {
                     isPaused -> resume()
                     isRunning -> pause()
@@ -113,82 +113,24 @@ class TimerActivity : LocalizationActivity() {
         }
     }
 
-    private fun settingsSheet() {
-        val vibrateSecondOriginal = settings.vibrateSecond
-        val endSoundOriginal = settings.endSoundID
-        val endNotificationOriginal = settings.showNotificaton
-        val closeDrawable = IconicsDrawable(
-            this,
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
-        InputSheet().show(this) {
-            title("Timer Settings")
-            closeIconButton(IconButton(closeDrawable))
-
-            with(InputCheckBox {
-                text(R.string.vibrate_second)
-                defaultValue(settings.vibrateSecond)
-                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
-            })
-
-            with(InputCheckBox {
-                text(R.string.show_notification)
-                defaultValue(settings.showNotificaton)
-                changeListener {
-                    settings.showNotificaton = !settings.showNotificaton
-                    if (!settings.showNotificaton) {
-                        NotificationManagerCompat.from(applicationContext).cancel(0)
-                    } else {
-                        buildNotification(requireContext())
-                        pushNotification(requireContext())
-                    }
-                }
-            })
-            onNegative(R.string.cancel) {
-                binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                with(settings) {
-                    vibrateSecond = vibrateSecondOriginal
-                    endSoundID = endSoundOriginal
-                    showNotificaton = endNotificationOriginal
-                }
-            }
-            onPositive(R.string.okay) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
-        }
-    }
-
     // Timer is done so must be for reset
     private fun reset() {
-        val closeDrawable = IconicsDrawable(
-            this,
-            RoundedGoogleMaterial.Icon.gmr_expand_more
-        ).apply {
-            sizeDp = 24
-            paddingDp = 6
-        }
+        binding.pause.isEnabled = false
         TimeSheet().show(this) {
             title(R.string.meditation_timer)
-            closeIconButton(IconButton(closeDrawable))
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
             format(TimeFormat.MM_SS)
-            onNegative(R.string.cancel) { binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY) }
+            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
             onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-
+                Feedback.confirm(binding.root)
                 with(binding.pause) {
                     text = getString(R.string.pause)
-                    setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_pause, 0, 0, 0
-                    )
+                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
                 }
 
                 startTimer(durationTimeInMillis * 1000)
             }
+            onClose { binding.pause.isEnabled = true }
         }
     }
 
@@ -197,9 +139,7 @@ class TimerActivity : LocalizationActivity() {
         // Change button text & icon
         with(binding.pause) {
             text = getString(R.string.pause)
-            setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_pause, 0, 0, 0
-            )
+            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
         }
 
         // Start the timer from the last recorded progress
@@ -213,9 +153,7 @@ class TimerActivity : LocalizationActivity() {
         // Change button text & icon
         with(binding.pause) {
             text = getString(R.string.play)
-            setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_play, 0, 0, 0
-            )
+            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
         }
 
         countDownTimer.cancel()
@@ -230,6 +168,45 @@ class TimerActivity : LocalizationActivity() {
         }
 
         isPaused = true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.meditate_activity_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Feedback.virtualKey(binding.root)
+        InputSheet().show(this) {
+            title("Timer Settings")
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+            displayPositiveButton(false)
+            displayNegativeButton(false)
+            with(InputCheckBox {
+                text("Play Gong at end")
+                defaultValue(settings.endSound)
+                changeListener { settings.endSound = !settings.endSound }
+            })
+            with(InputCheckBox {
+                text(R.string.vibrate_second)
+                defaultValue(settings.vibrateSecond)
+                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+            })
+            with(InputCheckBox {
+                text(R.string.show_notification)
+                defaultValue(settings.showNotificaton)
+                changeListener {
+                    settings.showNotificaton = !settings.showNotificaton
+                    if (!settings.showNotificaton) {
+                        NotificationManagerCompat.from(applicationContext).cancel(0)
+                    } else {
+                        buildNotification(requireContext())
+                        pushNotification(requireContext())
+                    }
+                }
+            })
+        }
+        return true
     }
 
     private fun startTimer(timeInSeconds: Long) {
@@ -250,21 +227,15 @@ class TimerActivity : LocalizationActivity() {
                     )
                 }
 
-                gong.start()
+                if (settings.endSound) gong.start()
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                } else {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
+                Feedback.confirm(binding.root)
             }
 
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
-                if (settings.vibrateSecond) {
-                    binding.root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
-                }
+                if (settings.vibrateSecond) Feedback.clockTick(binding.root)
 
                 progressTimeInMillis = p0
             }
@@ -302,7 +273,7 @@ class TimerActivity : LocalizationActivity() {
         }
 
         // Show the minutes and seconds
-        binding.timerText.text = "$minute:$seconds"
+        binding.timerText.text = getString(R.string.timer_text, minute, seconds)
     }
 
     private fun buildNotification(context: Context) {
@@ -317,10 +288,11 @@ class TimerActivity : LocalizationActivity() {
                 setSilent(true)
                 setOngoing(false)
                 setShowWhen(false)
+                color = context.resolveColorAttr(R.attr.colorPrimary)
             }
     }
 
-    fun convertToString(minutes: Long, seconds: Long, context: Context): String {
+    private fun convertToString(minutes: Long, seconds: Long, context: Context): String {
         return if (minutes > 0) {
             // There is at least a minute
             if (seconds == 0L) {
@@ -342,9 +314,9 @@ class TimerActivity : LocalizationActivity() {
         NotificationManagerCompat.from(context).apply { notify(0, notifBuilder.build()) }
     }
 
-    override fun onBackPressed() {
+    override fun onDestroy() {
         countDownTimer.cancel()
         NotificationManagerCompat.from(applicationContext).cancel(0)
-        super.onBackPressed()
+        super.onDestroy()
     }
 }

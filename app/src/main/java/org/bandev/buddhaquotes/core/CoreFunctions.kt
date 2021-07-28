@@ -21,76 +21,79 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.core
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.util.TypedValue
-import android.view.*
+import android.view.View
+import android.view.Window
+import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.content.ContextCompat.getColor
 import androidx.preference.PreferenceManager
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.colorInt
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
-import nl.joery.animatedbottombar.AnimatedBottomBar
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.items.ListIcon
+import org.bandev.buddhaquotes.items.Quote
 
 /**
  * Sets navigation bar colour based off android version
- * @param [context] context of activity (Context)
  */
 
 @Suppress("DEPRECATION")
-fun Window.setNavigationBarColourDefault(context: Context) {
-    if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                )
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.navigationBarColor =
-                    Color.WHITE
-                else this.navigationBarColor = Color.GRAY
-            }
-            Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                ContextCompat.getColor(context, R.color.background)
+fun Window.setNavigationBarColourDefault() {
+    if (!inDarkMode(this.context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+        this.navigationBarColor = getColor(this.context, R.color.background)
+    }
+}
+
+@Suppress("DEPRECATION")
+fun Window.setNavigationBarColourMain() {
+    if (inDarkMode(this.context)) {
+        this.navigationBarColor = getColor(this.context, R.color.abbBackgroundColor)
+    } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.navigationBarColor = Color.WHITE
+        } else {
+            this.navigationBarColor = Color.GRAY
         }
     }
 }
 
-/**
- * Sets navigation bar colour based off android version only for Main
- * @param [context] context of activity (Context)
- */
+fun inDarkMode(context: Context): Boolean {
+    return when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+        Configuration.UI_MODE_NIGHT_YES -> true
+        else -> false
+    }
+}
 
 @Suppress("DEPRECATION")
-fun Window.setNavigationBarColourMain(context: Context) {
-    if (!ViewConfiguration.get(context).hasPermanentMenuKey()) {
-        when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                    WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-                )
-                else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) this.navigationBarColor =
-                    Color.WHITE
-                else this.navigationBarColor = Color.GRAY
-            }
-            Configuration.UI_MODE_NIGHT_YES -> this.navigationBarColor =
-                ContextCompat.getColor(context, R.color.abbBackgroundColor)
+fun Window.setDarkStatusIcons() {
+    if (!inDarkMode(this.context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
 }
@@ -120,37 +123,6 @@ fun setAccentColour(context: Context) {
 }
 
 /**
- * Sets status bar as accent colour when in light mode or a dark grey when in dark mode
- * @param [context] context of activity (Context)
- */
-
-fun Window.setStatusBarAsAccentColour(context: Context) {
-    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_NO -> this.statusBarColor =
-            context.resolveColorAttr(R.attr.colorPrimary)
-        Configuration.UI_MODE_NIGHT_YES -> this.statusBarColor =
-            ContextCompat.getColor(context, R.color.darkModeBar)
-    }
-}
-
-/**
- * Returns the accent colour when in light mode or a dark grey when in dark mode
- * @param [context] context of activity (Context)
- * @return The integer of the colour (Int)
- */
-
-fun toolbarColour(context: Context): Int {
-    when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_NO -> return context.resolveColorAttr(R.attr.colorPrimary)
-        Configuration.UI_MODE_NIGHT_YES -> return ContextCompat.getColor(
-            context,
-            R.color.darkModeBar
-        )
-    }
-    return -1
-}
-
-/**
  * Gets the current colour and returns it as a string
  * @param [context] context of activity (Context)
  * @return The name of the colour (String)
@@ -159,29 +131,6 @@ fun toolbarColour(context: Context): Int {
 fun getAccentColourAsString(context: Context): String {
     val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
     return sharedPrefs.getString("accent_color", "original").toString()
-}
-
-/**
- * A function to draw behind system bars
- * @param [view] The view
- * @param [window] The window
- * @param [customInsets] The customInsets
- */
-fun fitSystemBars(view: View, window: Window, customInsets: CustomInsets) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
-
-    ViewCompat.setOnApplyWindowInsetsListener(view.rootView) { _, insets ->
-        customInsets.setCustomInsets(insets)
-        insets
-    }
-}
-
-/**
- * Custom Insets interface for each activity to get custom insets
- */
-
-interface CustomInsets {
-    fun setCustomInsets(insets: WindowInsetsCompat)
 }
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
@@ -194,23 +143,62 @@ private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
 fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
     val resolvedAttr = resolveThemeAttr(colorAttr)
     val colorRes = if (resolvedAttr.resourceId != 0) resolvedAttr.resourceId else resolvedAttr.data
-    return ContextCompat.getColor(this, colorRes)
+    return getColor(this, colorRes)
 }
 
-fun Context.hamburgerMenuIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_menu).apply {
-        colorInt = Color.WHITE
-        sizeDp = 18
+fun Context.shareQuote(quote: Quote) {
+    val sendIntent: Intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(
+            Intent.EXTRA_TEXT,
+            getString(quote.resource) + "\n\n" + getString(R.string.attribution_buddha)
+        )
+        type = "text/plain"
     }
+    startActivity(Intent.createChooser(sendIntent, null))
+}
 
-fun Context.backIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_arrow_back).apply {
-        colorInt = Color.WHITE
-        sizeDp = 16
-    }
+fun listIcons(): List<ListIcon> {
+    return listOf(
+        ListIcon(
+            0,
+            R.drawable.ic_add,
+            0xFF0067f4.toInt()
+        ),
+        ListIcon(
+            1,
+            R.drawable.ic_heart_outline,
+            0xFF349334.toInt()
+        ),
+        ListIcon(
+            2,
+            R.drawable.ic_arrow_back,
+            0xFFFF5733.toInt()
+        ),
+        ListIcon(
+            3,
+            R.drawable.ic_menu,
+            0xFFFF33DA.toInt()
+        ),
+        ListIcon(
+            4,
+            R.drawable.ic_tune,
+            0xFF0A7AA7.toInt()
+        )
+    )
+}
 
-fun Context.addIcon(): IconicsDrawable =
-    IconicsDrawable(this, RoundedGoogleMaterial.Icon.gmr_add).apply {
-        colorInt = Color.WHITE
-        sizeDp = 16
+fun defaultIcon(): ListIcon {
+    return ListIcon(
+        0,
+        R.drawable.ic_heart_outline,
+        0xFF0067f4.toInt()
+    )
+}
+
+fun MutableList<Quote>.find(quote: Quote): Int {
+    for (i in 0..this.size) {
+        if (this[i] == quote) return i
     }
+    return -1
+}

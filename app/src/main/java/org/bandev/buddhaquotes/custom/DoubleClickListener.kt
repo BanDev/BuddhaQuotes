@@ -30,7 +30,7 @@ import android.view.View
 
 abstract class DoubleClickListener : View.OnClickListener {
     private var handler: Handler? = null
-    private val delay = 400
+    private val delay = 400L
     private var lastClickTime: Long = 0
     override fun onClick(view: View?) {
         val clickTime = System.currentTimeMillis()
@@ -42,7 +42,7 @@ abstract class DoubleClickListener : View.OnClickListener {
     private fun processSingleClickEvent(view: View?) {
         handler = Handler(Looper.getMainLooper())
         val runnable = Runnable { onSingleClick(view) }
-        (handler ?: return).postDelayed(runnable, delay.toLong())
+        (handler ?: return).postDelayed(runnable, delay)
     }
 
     private fun processDoubleClickEvent(view: View?) {

@@ -21,9 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,12 +29,9 @@ import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
@@ -44,16 +39,6 @@ import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
  * The timer where the meditiation timer button is shown
  */
 class TimerFragment : Fragment() {
-    companion object {
-        fun newInstance(position: Int): TimerFragment {
-            val instance =
-                TimerFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
-        }
-    }
 
     private var _binding: FragmentTimerBinding? = null
     internal val binding get() = _binding!!
@@ -69,38 +54,27 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.button.setOnClickListener {
-            val closeDrawable = IconicsDrawable(
-                requireContext(),
-                RoundedGoogleMaterial.Icon.gmr_expand_more
-            ).apply {
-                sizeDp = 24
-                paddingDp = 6
-            }
-            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            TimeSheet().show(requireContext()) {
-                title(R.string.meditation_timer)
-                closeIconButton(IconButton(closeDrawable))
-                format(TimeFormat.MM_SS)
-                minTime(1)
-                onNegative(R.string.cancel) {
-                    binding.root.performHapticFeedback(
-                        HapticFeedbackConstants.VIRTUAL_KEY
-                    )
-                }
-                onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    } else {
-                        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                    }
-
-                    startActivity(
-                        Intent(context, TimerActivity::class.java).putExtra(
-                            "durationTimeInMillis",
-                            durationTimeInMillis
+        with(binding.button) {
+            setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
+            setOnClickListener {
+                Feedback.virtualKey(it)
+                it.isEnabled = false
+                TimeSheet().show(requireContext()) {
+                    title(R.string.meditation_timer)
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                    format(TimeFormat.MM_SS)
+                    minTime(1)
+                    onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                    onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                        Feedback.confirm(binding.root)
+                        startActivity(
+                            Intent(context, TimerActivity::class.java).putExtra(
+                                "durationTimeInMillis",
+                                durationTimeInMillis
+                            )
                         )
-                    )
+                    }
+                    onClose { it.isEnabled = true }
                 }
             }
         }
@@ -109,5 +83,15 @@ class TimerFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.button.setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
+    }
+
+    companion object {
+        fun newInstance(position: Int): TimerFragment {
+            val instance = TimerFragment()
+            val args = Bundle()
+            args.putInt("position", position)
+            instance.arguments = args
+            return instance
+        }
     }
 }
