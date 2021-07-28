@@ -26,167 +26,177 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
-import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.adapters.QuoteRecycler
+import org.bandev.buddhaquotes.adapters.QuoteAdapter
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.Quote
-import org.bandev.buddhaquotes.architecture.ViewModel
+
 
 /**
- * The activity where the user can see all the quotes they have in their
- * lists
+ * The activity where the user can see all the
+ * quotes they have in their lists and make some
+ * list adjustements.
+ *
+ * @date 28/7/21
  */
 
-class ListActivity : LocalizationActivity(), QuoteRecycler.Listener {
+class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
 
     private lateinit var binding: ActivityListBinding
-    private var toolbarMenu: Menu? = null
-    private lateinit var viewModel: ViewModel
+    private lateinit var menu: Menu
+    private lateinit var vm: ViewModel
     private lateinit var quotes: MutableList<Quote>
-    private var listId: Int = 0
+    private var id: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAccentColour(this)
-
-        with(window) {
-            statusBarColor = Color.TRANSPARENT
-            setNavigationBarColourDefault()
-            setDarkStatusIcons()
-        }
-        setDecorFitsSystemWindows(window, false)
-
-        // Setup view binding
+        // Bind to view
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        // Styling things
+        setAccentColour(this)
+        with(window) {
+            statusBarColor = Color.TRANSPARENT
+            navigationBarColor = Color.TRANSPARENT
+            setDarkStatusIcons()
+        }
+        Animations().toolbarShadowScroll(binding.recycler, binding.appBar)
+        setDecorFitsSystemWindows(window, false)
+        binding.add.backgroundTintList =
+            ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+
+        // Do insets
+        binding.toolbar.applyInsets(STATUSBARS)
+        binding.add.applyInsets(NAVIGATIONBARS)
+
+        // Create or get ViewModel
+        vm = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application)
             .create(ViewModel::class.java)
 
         // Setup toolbar
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            setNavigationOnClickListener { onBackPressed() }
-            applyInsetter {
-                type(statusBars = true) {
-                    margin(top = true)
-                }
-            }
-        }
-        with(binding.addQuote) {
-            applyInsetter {
-                type(navigationBars = true) {
-                    margin(bottom = true)
-                }
-            }
-            backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-            setOnClickListener { view ->
-                Feedback.virtualKey(view)
-                viewModel.Quotes().getAll {
-                    val quotesFull = it.toMutableList()
-                    quotesFull.removeAll(quotes)
-                    AddQuoteSheet().show(this@ListActivity) {
-                        displayToolbar(false)
-                        displayHandle(true)
-                        with(quotesFull)
-                        onPositive { quote ->
-                            Feedback.confirm(binding.root)
-                            quoteSelected(quote)
-                        }
-                    }
-                }
-            }
+
+        // On back button pressed
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+
+        // On add button pressed
+        binding.add.setOnClickListener { add() }
+
+        // Get id from intent extras
+        id = (intent.extras ?: return).getInt("id")
+
+        // Get metadata about the list from db
+        vm.Lists().get(id) { list ->
+            binding.toolbar.title = list.title
         }
 
-        viewModel.Lists().get((intent.extras ?: return).getInt("id")) {
-            listId = it.id
-            binding.toolbar.title = it.title
-            setupRecycler(it.id)
-        }
-    }
-
-    private fun setupRecycler(id: Int) {
-        viewModel.ListQuotes().getFrom(id) {
+        // Get quotes from the list
+        vm.ListQuotes().getFrom(id) {
             quotes = it
-            with(binding) {
-                with(quotesRecycler) {
-                    applyInsetter {
-                        type(navigationBars = true) {
-                            margin(bottom = true)
-                        }
-                    }
-                    layoutManager = LinearLayoutManager(context)
-                    adapter = QuoteRecycler(quotes, this@ListActivity, listId)
-                    setHasFixedSize(false)
+            binding.recycler.adapter = QuoteAdapter(quotes, this, id)
+            binding.recycler.layoutManager = LinearLayoutManager(this)
+            binding.recycler.setHasFixedSize(false)
+            checkLength()
+        }
+    }
+
+    fun add() {
+        // Show a sheet with all avaliable quotes
+        vm.Quotes().getAll {
+            AddQuoteSheet().show(this) {
+                it.removeAll(quotes)
+                displayToolbar(false)
+                displayHandle(true)
+                with(it)
+                onPositive { quote ->
+                    Feedback.confirm(binding.root)
+                    onQuoteAdded(quote)
                 }
             }
-            checkLength(quotes)
         }
     }
 
-    private fun checkLength(list: MutableList<Quote>) {
-        if (list.isEmpty()) binding.noQuotesText.visibility = View.VISIBLE else View.GONE
-    }
-
-    override fun like(quote: Quote) {
-        viewModel.Quotes().setLike(quote.id, true)
-        Snackbar.make(binding.root, "Liked", Snackbar.LENGTH_SHORT).show()
-    }
-
-    override fun unlike(quote: Quote) {
-        if (listId == 0) return bin(quote)
-        viewModel.Quotes().setLike(quote.id, false)
-        Snackbar.make(binding.root, "Unliked", Snackbar.LENGTH_SHORT).show()
-    }
-
-    override fun bin(quote: Quote) {
-        viewModel.ListQuotes().removeFrom(listId, quote)
-        Snackbar.make(binding.root, "Removed", Snackbar.LENGTH_SHORT).show()
-        binding.quotesRecycler.adapter?.notifyItemRemoved(quotes.find(quote))
-        quotes.remove(quote)
-        checkLength(quotes)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.list_activity_menu, menu)
-        toolbarMenu = menu
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.tune -> showSettings()
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun quoteSelected(quote: Quote) {
-        if (listId == 0) quote.liked = true
-        viewModel.ListQuotes().addTo(listId, quote)
-        quotes.add(quote)
-        binding.quotesRecycler.adapter?.notifyItemInserted(quotes.find(quote))
-        binding.noQuotesText.visibility = View.GONE
-    }
-
-    private fun showSettings(): Boolean {
-        toolbarMenu?.findItem(R.id.tune)?.isEnabled = false
+    fun settings() {
+        // Show a sheet with some settings
+        menu.findItem(R.id.tune).isEnabled = false
         CustomiseListSheet().show(this, application) {
             displayToolbar(false)
             displayHandle(true)
             displayPositiveButton(false)
             displayNegativeButton(false)
-            //attachVariables(, listId)
-            onClose { toolbarMenu?.findItem(R.id.tune)?.isEnabled = true }
+            onClose { menu.findItem(R.id.tune).isEnabled = true }
+        }
+    }
+
+    private fun checkLength() {
+        if (quotes.isEmpty()) binding.empty.visibility = View.VISIBLE else View.GONE
+    }
+
+    override fun onQuoteLiked(quote: Quote) {
+        // Like the quote in the db
+        vm.Quotes().setLike(quote.id, true)
+        snackbar("Liked quote")
+    }
+
+    override fun onQuoteUnliked(quote: Quote) {
+        // Unlike the quote in the db
+        vm.Quotes().setLike(quote.id, false)
+        if (id == 0) quotes.remove(quote)
+        checkLength()
+        snackbar("Unliked quote")
+    }
+
+    override fun onQuoteRemoved(quote: Quote) {
+        // Remove the quote from the db
+        vm.ListQuotes().removeFrom(id, quote)
+        quotes.remove(quote)
+        checkLength()
+        snackbar("Removed quote")
+    }
+
+    private fun onQuoteAdded(quote: Quote) {
+        // Add a quote to the list
+        if (id == 0) quote.liked = true
+        vm.ListQuotes().addTo(id, quote)
+        quotes.add(quote)
+        binding.recycler.adapter?.notifyItemInserted(quotes.find(quote))
+        binding.empty.visibility = View.GONE
+        snackbar("Quote added")
+    }
+
+    fun snackbar(string: String) {
+        val s = Snackbar.make(binding.root, string, LENGTH_SHORT)
+        s.anchorView = binding.add
+        s.show()
+    }
+
+    override fun onCreateOptionsMenu(_menu: Menu?): Boolean {
+        // Inflate custom menu
+        menuInflater.inflate(R.menu.list_activity_menu, _menu)
+        menu = _menu!!
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle menu clicks
+        when (item.itemId) {
+            R.id.tune -> settings()
+            else -> super.onOptionsItemSelected(item)
         }
         return true
     }
