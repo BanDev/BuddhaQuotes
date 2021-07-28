@@ -2,85 +2,58 @@
 
     <string name="app_name">Buddha Quotes</string>
 
-    <!-- Main page -->
-    <string name="refresh" id="1">Refresh</string>
-    <string name="favourite" id="2">Favourite</string>
     <string name="share" id="3">Share</string>
-
-    <!-- Settings -->
     <string name="settings" id="4">Settings</string>
     <string name="appearance" id="5">Appearance</string>
     <string name="app_theme" id="6">App Theme</string>
     <string name="light_mode" id="7">Light</string>
     <string name="dark_mode" id="8">Dark</string>
     <string name="follow_system_default" id="9">Follow system</string>
-    <string name="information" id="14">Information</string>
     <string name="about" id="15">About</string>
     <string name="about_app">About Buddha Quotes</string>
-    <string name="view_app_details" id="16">View app details</string>
-    <string name="intro" id="17">Intro</string>
     <string name="app_introduction" id="18">App introduction</string>
     <string name="app_license" id="19">App License</string>
-    <string name="gplv3" id="UNTRANSLATE" translatable="false">GPLv3 Logo</string>
     <string name="libraries_used" id="20">Libraries used</string>
-
-    <!-- Added up to here on BanDev Localisation Thingy -->
 
     <!-- About page -->
     <string name="about_app_promise" id="21">App Promise</string>
-    <string name="about_no_trackers" id="22">No trackers</string>
-    <string name="about_complete_privacy" id="23">Complete privacy</string>
-    <string name="about_offline_app" id="24">Offline app</string>
-    <string name="about_free_and_open_source" id="25">Free and Open Source</string>
     <string name="about_info" id="26">App Info</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy
-</string>
-    <string name="about_contributors" id="28">Contributors</string>
-    <string name="about_russell" id="UNTRANSLATE" translatable="false">"@russellbanks"</string>
-    <string name="about_jack" id="UNTRANSLATE" translatable="false">"@jackdevey"</string>
-    <string name="about_izzysoft" id="UNTRANSLATE" translatable="false">"@IzzySoft"</string>
-    <string name="about_licaon" id="UNTRANSLATE" translatable="false">"@licaon-kter"</string>
-    <string name="about_poussinou" id="UNTRANSLATE" translatable="false">"@Poussinou"</string>
-    <string name="about_j_m_hoffman" id="UNTRANSLATE" translatable="false">"@J_M_Hoffmann"</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy</string>
+    <string name="about_contributors" id="28">Really great people</string>
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
     <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
-    <string name="tick" id="31">Tick</string>
-
-    <!-- Slides was here (32-54) removed in v1.5.1 -->
-
-    <!-- Favourited Quote page -->
-    <string name="favourited_quote" id="55">Favourited Quote</string>
-    <string name="favourite_quote_delete" id="56">Delete</string>
 
     <!-- Miscellaneous Content descriptions  -->
-    <string name="buddha_quotes_logo" id="57">Buddha Quotes logo</string>
-    <string name="bandev_logo" id="58">BanDev logo</string>
-    <string name="the_buddha" id="59">The Buddha</string>
-    <string name="forward_arrow" id="60">Return</string>
-    <string name="icon" id="61">Icon</string>
-    <string name="title" id="62">Title</string>
+    <string name="buddha_quotes_logo">Buddha Quotes logo</string>
+    <string name="the_buddha">The Buddha</string>
+    <string name="title">Title</string>
+
+    <string name="buddha">Buddha</string>
+    <string name="monk">Monk</string>
+    <string name="dharma_wheel">Dharma wheel</string>
+    <string name="anahata">Anahata</string>
+    <string name="mandala">Mandala</string>
+    <string name="endless_knot">Endless knot</string>
+    <string name="elephant">Elephant</string>
+    <string name="temple">Temple</string>
+    <string name="lamp">Lamp</string>
+    <string name="shrine">Shrine</string>
+    <string name="lotus">Lotus</string>
+    <string name="water_lotus">Water lotus</string>
 
     <!-- Miscellaneous  -->
     <string name="title_activity_settings" id="82">SettingsActivity</string>
-    <string name="textview" id="83">TextView</string>
-    <string name="MainActivity" id="84">Main Activity</string>
     <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
-    <string name="action_settings" id="86">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="appwidget_text" id="87">EXAMPLE</string>
-    <string name="configure" id="88">Configure</string>
-    <string name="add_widget" id="89">Add widget</string>
-    <string name="open_source_libraries" id="90">Open Source Libraries</string>
     <string name="libraries" id="90">Libraries</string>
     <string name="about_no_ads" id="91">No ads</string>
 
     <!-- Lists -->
     <string name="lists_title" id="92">Your Lists</string>
-    <string name="lists_add_item" id="93">Add to List</string>
     <string name="lists_add_lists" id="94">Create new List</string>
     <string name="lists_add_lists_go" id="95">Add</string>
-    <string name="lists_add_lists_name" id="96">Name</string>
 
     <!-- Settings -->
     <string name="settings_general" id="97">General</string>
@@ -538,11 +511,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <string name="quote_number">Quote</string>
+    <string name="quote_number">Quote #%d</string>
 
     <string name="fragment_quote">Quote</string>
     <string name="fragment_lists">Lists</string>
     <string name="fragment_meditation">Meditate</string>
+    <string name="start_meditation">Start meditation</string>
 
     <string name="meditate_title">Meditate</string>
     <string name="meditate_subheading">It\'s simple &amp; easy</string>
@@ -571,15 +545,14 @@
     <string name="search">Search</string>
     <string name="attribution_buddha">  ~Gautama Buddha</string>
 
+    <string name="timer_text">%1$s:%2$s</string>
     <string name="seconds">seconds</string>
     <string name="minutes">minutes</string>
     <string name="and">and</string>
 
     <string name="createNewList">Create New List</string>
     <string name="insertName">Insert name</string>
-    <string name="validationRule1">Cannot contain //</string>
-    <string name="validationRule2">There is already a list named Favourites</string>
-    <string name="validationRule3">There is already an list named</string>
+    <string name="validationRule">There is already a list named</string>
     <string name="add">Add</string>
     <string name="new_str">New</string>
     <string name="added">Added quote to </string>
@@ -595,4 +568,30 @@
     <string name="two_people_meditating">Two people meditating</string>
     <string name="summary">Summary</string>
     <string name="text">Text</string>
+    <string name="_00_00">00:00</string>
+    <string name="list_icon">List Icon</string>
+
+    <string name="contributors">Contributors</string>
+    <string name="tips">Tips</string>
+    <string name="by_bandev">By BanDev</string>
+
+    <string name="quote">1 quote</string>
+    <string name="quotes">%d quotes</string>
+
+    <string-array name="contributors_people">
+        <item translatable="false">"@russellbanks"</item>
+        <item translatable="false">"@jackdevey"</item>
+        <item translatable="false">"@IzzySoft"</item>
+        <item translatable="false">"@licaon-kter"</item>
+        <item translatable="false">"@Poussinou"</item>
+        <item translatable="false">"@J_M_Hoffmann"</item>
+    </string-array>
+
+    <string-array name="app_promises">
+        <item>No trackers</item>
+        <item>Complete privacy</item>
+        <item>Offline app</item>
+        <item>Free and Open Source</item>
+    </string-array>
+
 </resources>

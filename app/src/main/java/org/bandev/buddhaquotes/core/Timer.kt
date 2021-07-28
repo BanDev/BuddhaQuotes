@@ -22,7 +22,6 @@ package org.bandev.buddhaquotes.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import org.bandev.buddhaquotes.R
 
 /**
  * Timer helps with the meditation timer
@@ -38,24 +37,21 @@ class Timer {
         var vibrateSecond: Boolean
             get() = sharedPrefs.getBoolean("vibrateSecond", false)
             set(value) {
-                editor.putBoolean("vibrateSecond", value)
-                editor.commit()
+                editor.putBoolean("vibrateSecond", value).apply()
             }
 
         // Play a sound at the end?
-        var endSoundID: Int
-            get() = sharedPrefs.getInt("endSoundID", 0)
+        var endSound: Boolean
+            get() = sharedPrefs.getBoolean("endSound", true)
             set(value) {
-                editor.putInt("endSoundID", value)
-                editor.commit()
+                editor.putBoolean("endSound", value).apply()
             }
 
         // Show a notification with progress?
         var showNotificaton: Boolean
             get() = sharedPrefs.getBoolean("showNotificaton", false)
             set(value) {
-                editor.putBoolean("showNotificaton", value)
-                editor.commit()
+                editor.putBoolean("showNotificaton", value).apply()
             }
     }
 }

@@ -22,123 +22,81 @@ package org.bandev.buddhaquotes.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.activities.ScrollingActivity
-import org.bandev.buddhaquotes.adapters.ListRecycler
-import org.bandev.buddhaquotes.adapters.QuoteRecycler
-import org.bandev.buddhaquotes.core.*
+import me.kosert.flowbus.EventsReceiver
+import me.kosert.flowbus.bindLifecycle
+import me.kosert.flowbus.subscribe
+import org.bandev.buddhaquotes.activities.ListActivity
+import org.bandev.buddhaquotes.adapters.QuoteListRecycler
+import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
-import org.bandev.buddhaquotes.items.ListItem
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import org.bandev.buddhaquotes.items.List
+import org.bandev.buddhaquotes.items.QuoteList
 
 /**
- * ListsFragment is the fragment that allows users to manage their lists.
- * It is the second item in the [FragmentAdapter] on MainActivity
- * @author jack.txt
- * @since 1.7.0
- * @updated 11/12/2020
+ * Shows a list of lists to the user
  */
 
-class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
+class ListsFragment : Fragment(), QuoteListRecycler.Listener {
 
-    private var _binding: FragmentListsBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var masterListFinal: ArrayList<ListItem>
-    private lateinit var masterlist: List<String>
-
-    /**
-     * Sets the correct view of the Fragment
-     * @param inflater [LayoutInflater]
-     * @param container [ViewGroup]
-     * @param savedInstanceState [Bundle]
-     * @return [View]
-     */
+    private lateinit var binding: FragmentListsBinding
+    private lateinit var model: ViewModel
+    private val receiver = EventsReceiver()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
-        _binding = FragmentListsBinding.inflate(inflater, container, false)
+        binding = FragmentListsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    private fun setupRecycler() {
-        masterlist = ListsV2(requireContext()).getMasterList()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Attach to viewmodel
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(requireActivity().application)
+            .create(ViewModel::class.java)
 
-        masterListFinal = generateMasterList(masterlist.size, masterlist)
-
-        with(binding.listsRecycler) {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ListRecycler(masterListFinal, this@ListsFragment)
-            setHasFixedSize(false)
-        }
-    }
-
-    @Subscribe
-    fun onEventReceive(event: SendEvent) {
+        // Setup the recyclerview
         setupRecycler()
     }
 
-    @Subscribe
-    fun onNotifyReceive(event: Notify) {
-        when (event) {
-            is Notify.NotifyNewList -> {
-                ListsV2(requireContext()).newEmptyList(event.listName)
-                setupRecycler()
+    /**
+     * Get some quotes from the db and
+     * show them in the recycler
+     */
+
+    private fun setupRecycler() {
+        model.Lists().getAll {
+            with(binding.listsRecycler) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = QuoteListRecycler(it, this@ListsFragment, requireActivity().application)
+                setHasFixedSize(false)
             }
         }
     }
 
-    /**
-     * Called when view is full made
-     * @param view [View]
-     * @param savedInstanceState [Bundle]
-     */
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupRecycler()
+    override fun select(list: List) {
+        startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
-    /**
-     * Generates a list of lists with the ListItem custom data type
-     */
-
-    private fun generateMasterList(max: Int, listIn: List<String>): ArrayList<ListItem> {
-        val listNames = mutableListOf<String>()
-        val list = ArrayList<ListItem>()
-        val lists = ListsV2(requireContext())
-        var i = 0
-        while (i != max) {
-            var special = false
-            val individualList = lists.getList(listIn[i])
-            val count: Int = individualList.size - 1
-            if (listIn[i] == "Favourites") {
-                listNames.add(getString(R.string.favourites))
-                special = true
-            } else listNames.add(listIn[i])
-            val summary: String = if (count != 1) "$count items" else "$count item"
-            val item = ListItem(listNames[i], summary, special)
-            list += item
-            i++
-        }
-        return list
+    override fun onStart() {
+        super.onStart()
+        receiver.bindLifecycle(this)
+            .subscribe { _: UpdateLists ->
+                setupRecycler()
+            }
     }
 
     companion object {
-
-        /**
-         * Called on new instance request
-         * @param position [Int]
-         * @return [Lists]
-         */
-
         fun newInstance(position: Int): ListsFragment {
             val instance = ListsFragment()
             val args = Bundle()
@@ -146,44 +104,5 @@ class ListsFragment : Fragment(), QuoteRecycler.OnItemClickFinder {
             instance.arguments = args
             return instance
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.add_menu, menu)
-        menu.findItem(R.id.add).icon = requireContext().addIcon()
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onLikeClick(position: Int, text: String) {
-    }
-
-    override fun onCardClick(position: Int) {
-        val intent = Intent(context, ScrollingActivity::class.java)
-        val bundle = Bundle()
-        bundle.putString("list", masterlist[position])
-        intent.putExtras(bundle)
-        startActivity(intent)
-    }
-
-    override fun onBinClick(position: Int, text: String) {
-        binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-        ListsV2(requireContext()).removeList(text)
-        masterListFinal.removeAt(position)
-        binding.listsRecycler.adapter?.notifyItemRemoved(position)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        setupRecycler()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.AboutActivity">
+    tools:context=".activities.AboutActivity"
+    android:background="@color/background">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -17,16 +18,19 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background"
+            app:navigationIcon="@drawable/ic_arrow_back"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/about_app"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="?android:textColorPrimary" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@android:color/white"
-            app:tabTextColor="@android:color/white" />
+            android:background="@color/background"
+            app:tabIndicatorColor="?android:textColorPrimary"
+            app:tabTextColor="?android:textColorPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -37,4 +41,4 @@
         android:layout_below="@+id/app_bar_layout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

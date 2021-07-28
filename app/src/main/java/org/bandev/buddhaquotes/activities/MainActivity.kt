@@ -21,37 +21,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.os.Build
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
+import android.view.Menu
 import android.view.MenuItem
-import android.view.WindowInsets
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
-import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.googlematerial.RoundedGoogleMaterial
-import com.mikepenz.iconics.utils.paddingDp
-import com.mikepenz.iconics.utils.sizeDp
-import com.mikepenz.materialdrawer.holder.ImageHolder
-import com.mikepenz.materialdrawer.iconics.iconicsIcon
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
-import com.mikepenz.materialdrawer.model.interfaces.nameRes
-import com.mikepenz.materialdrawer.util.addStickyDrawerItems
-import com.mikepenz.materialdrawer.widget.AccountHeaderView
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
+import dev.chrisbanes.insetter.applyInsetter
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.FragmentAdapter
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-import org.bandev.buddhaquotes.fragments.FragmentAdapter
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import java.util.*
 
 /**
  * Main is the main page of Buddha Quotes
@@ -59,166 +50,167 @@ import java.util.*
  * It has a ViewPager and allows the user to scroll between its fragments.
  * It uses [FragmentAdapter] as a fragment adapter and
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
- * @since v1.0.0
- * @author jack.txt & Fennec_exe
  */
 
-class MainActivity : LocalizationActivity(), CustomInsets {
+class MainActivity : LocalizationActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var headerView: AccountHeaderView
-    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-
-    /**
-     * On activity created
-     *
-     * @param savedInstanceState [Bundle]
-     */
+    private lateinit var model: ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setNavigationBarColourMain(this)
-
+        with(window) {
+            statusBarColor = Color.TRANSPARENT
+            setNavigationBarColourMain()
+            setDarkStatusIcons()
+        }
+        setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fitSystemBars(binding.root, window, this)
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application)
+            .create(ViewModel::class.java)
+
 
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = context.hamburgerMenuIcon()
-            setBackgroundColor(toolbarColour(context))
-            setNavigationOnClickListener { onBackPressed() }
-        }
-
-        // Setup viewPager with FragmentAdapter
-        with(binding.viewPager) {
-            adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-            setCurrentItem(0, false)
-        }
-
-        binding.bottomBar.setupWithViewPager2(binding.viewPager)
-
-        actionBarDrawerToggle = ActionBarDrawerToggle(
-            this,
-            binding.root,
-            binding.toolbar,
-            com.mikepenz.materialdrawer.R.string.material_drawer_open,
-            com.mikepenz.materialdrawer.R.string.material_drawer_close
-        )
-
-        fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
-            headerView = AccountHeaderView(this, compact = compact).apply {
-                attachToSliderView(binding.slider)
-                headerBackground = ImageHolder(R.color.colorPrimary)
-
-                withSavedInstance(savedInstanceState)
-            }
-        }
-
-        buildHeader(true, savedInstanceState)
-
-        binding.slider.apply {
-            itemAdapter.add(
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.fragment_quote; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_format_quote; isSelectable = false; identifier =
-                    1
-                },
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.fragment_lists; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_list; isSelectable = false; identifier = 2
-                },
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.fragment_meditation; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_self_improvement; isSelectable =
-                    false; identifier = 3
-                })
-            addStickyDrawerItems(
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.settings; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_settings; isSelectable = false; identifier = 4
-                },
-                PrimaryDrawerItem().apply {
-                    nameRes = R.string.about; iconicsIcon =
-                    RoundedGoogleMaterial.Icon.gmr_info; isSelectable = false; identifier = 5
+        with(binding) {
+            with(toolbar) {
+                applyInsetter {
+                    type(statusBars = true) {
+                        margin(top = true)
+                    }
                 }
-            )
-            setSavedInstance(savedInstanceState)
-        }
-
-        var intent: Intent? = null
-        binding.slider.onDrawerItemClickListener = { _, drawerItem, _ ->
-            when (drawerItem.identifier) {
-                1L -> binding.bottomBar.selectTabAt(0, true)
-                2L -> binding.bottomBar.selectTabAt(1, true)
-                3L -> binding.bottomBar.selectTabAt(2, true)
-                4L -> intent = Intent(this, SettingsActivity::class.java)
-                5L -> intent = Intent(this, AboutActivity::class.java)
-                else -> binding.slider.drawerLayout?.closeDrawer(binding.slider)
+                setNavigationOnClickListener { binding.root.open() }
             }
-            if (intent != null) startActivity(intent)
-            intent = null
 
-            false
+            viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+
+            with(navigationView) {
+                setNavigationItemSelectedListener { menuItem ->
+                    menuItem.isChecked = true
+
+                    when (menuItem.itemId) {
+                        R.id.quote -> binding.bottomBar.selectTabAt(0)
+                        R.id.lists -> binding.bottomBar.selectTabAt(1)
+                        R.id.meditate -> binding.bottomBar.selectTabAt(2)
+                        R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
+                        R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
+                    }
+
+                    binding.root.close()
+                    true
+                }
+            }
+
+            with(createList) {
+                backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+                setOnClickListener {
+                    Feedback.virtualKey(it)
+                    it.isEnabled = false
+                    InputSheet().show(context) {
+                        title(R.string.createNewList)
+                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                        with(
+                            InputEditText {
+                                required()
+                                hint(R.string.insertName)
+                                resultListener { value ->
+                                    model.Lists().new(value.toString())
+                                    GlobalBus.post(UpdateLists())
+                                }
+                            }
+                        )
+                        onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                        onPositive(R.string.add) { Feedback.confirm(binding.root) }
+                        onClose { it.isEnabled = true }
+                    }
+                }
+            }
+
+            with(bottomBar) {
+                applyInsetter {
+                    type(navigationBars = true) {
+                        margin(bottom = true)
+                    }
+                }
+                setupWithViewPager2(binding.viewPager)
+                onTabSelected = {
+                    when (it) {
+                        binding.bottomBar.tabs[0] -> {
+                            with(binding) {
+                                createList.hide()
+                                navigationView.setCheckedItem(R.id.quote)
+                            }
+                        }
+                        binding.bottomBar.tabs[1] -> {
+                            with(binding) {
+                                createList.show()
+                                navigationView.setCheckedItem(R.id.lists)
+                            }
+                        }
+                        binding.bottomBar.tabs[2] -> {
+                            with(binding) {
+                                createList.hide()
+                                navigationView.setCheckedItem(R.id.meditate)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @Subscribe
-    fun onNotifyReceive(event: Notify) {
-    }
-
-    @Subscribe
-    fun onNotifyReceive(event: SendEvent.ToListFragment) {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.help_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.add -> {
-                val lists = ListsV2(this).getMasterList()
-                val closeDrawable = IconicsDrawable(
-                    this,
-                    RoundedGoogleMaterial.Icon.gmr_expand_more
-                ).apply {
-                    sizeDp = 24
-                    paddingDp = 6
-                }
-
-                InputSheet().show(this) {
-                    title(R.string.createNewList)
-                    closeIconButton(IconButton(closeDrawable))
-                    with(
-                        InputEditText {
-                            required()
-                            hint(R.string.insertName)
-                            validationListener { value ->
-                                when {
-                                    value.contains("//") -> Validation.failed(getString(R.string.validationRule1))
-                                    value.lowercase(Locale.ROOT) == getString(R.string.favourites).lowercase(
-                                        Locale.ROOT
-                                    ) -> Validation.failed(getString(R.string.validationRule2))
-                                    lists.contains(value.lowercase(Locale.ROOT)) -> Validation.failed(
-                                        getString(R.string.validationRule3) + " $value"
-                                    )
-                                    else -> Validation.success()
+            R.id.help -> {
+                when (binding.bottomBar.selectedIndex) {
+                    0 -> {
+                        InfoSheet().show(this) {
+                            title("Team Collaboration")
+                            content("In the world of software projects, it is inevitable...")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.lotus)
                                 }
-                            }
-                            resultListener { value ->
-                                EventBus.getDefault().post(Notify.NotifyNewList(value.toString()))
-                            }
+                            })
                         }
-                    )
-                    onNegative(R.string.cancel) {
-                        binding.root.performHapticFeedback(
-                            HapticFeedbackConstants.VIRTUAL_KEY
-                        )
                     }
-                    onPositive(R.string.add) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                        } else {
-                            binding.root.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                    1 -> {
+                        InfoSheet().show(this) {
+                            title("Title")
+                            content("You can do this to meditate")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.lists)
+                                }
+                            })
+                        }
+                    }
+                    2 -> {
+                        InfoSheet().show(this) {
+                            title("Title")
+                            content("Content")
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            displayButtons(false)
+                            withCoverLottieAnimation(LottieAnimation {
+                                ratio(Ratio(2, 1))
+                                setupAnimation {
+                                    setAnimation(R.raw.meditation)
+                                }
+                            })
                         }
                     }
                 }
@@ -228,52 +220,21 @@ class MainActivity : LocalizationActivity(), CustomInsets {
         }
     }
 
-    @Suppress("DEPRECATION")
-    override fun setCustomInsets(insets: WindowInsetsCompat) {
-        val bottomInsets: Int
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val ins = insets.getInsets(WindowInsets.Type.systemBars())
-            with(binding) {
-                toolbar.updatePadding(top = ins.top)
-                bottomBar.updatePadding(bottom = ins.bottom)
-                slider.updatePadding(bottom = ins.bottom)
-            }
-            bottomInsets = ins.bottom
-        } else {
-            with(binding) {
-                toolbar.updatePadding(top = insets.systemWindowInsetTop)
-                bottomBar.updatePadding(bottom = insets.systemWindowInsetBottom)
-                slider.updatePadding(bottom = insets.systemWindowInsetBottom)
-            }
-            bottomInsets = insets.systemWindowInsetBottom
-        }
-        binding.bottomBar.minimumHeight = 170 + bottomInsets
-    }
-
     override fun onResume() {
         super.onResume()
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        binding.toolbar.setBackgroundColor(toolbarColour(this))
-        with(binding.bottomBar) {
-            tabColorSelected = context.resolveColorAttr(R.attr.colorPrimary)
-            indicatorColor = context.resolveColorAttr(R.attr.colorPrimary)
+        with(binding) {
+            createList.backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+            with(bottomBar) {
+                tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
+                indicatorColor = resolveColorAttr(R.attr.colorPrimary)
+            }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 
     override fun onBackPressed() {
         when {
-            binding.root.isDrawerOpen(binding.slider) -> binding.root.closeDrawer(binding.slider)
+            binding.root.isOpen -> binding.root.close()
             binding.bottomBar.selectedIndex != 0 -> binding.bottomBar.selectTabAt(0)
             else -> super.onBackPressed()
         }

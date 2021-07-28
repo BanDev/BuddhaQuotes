@@ -25,7 +25,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.bandev.buddhaquotes.BuildConfig
+import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.adapters.AboutAdapter
+import org.bandev.buddhaquotes.core.AnimationUtils
 import org.bandev.buddhaquotes.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
@@ -42,6 +46,43 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.aboutAppVersion.text = BuildConfig.VERSION_NAME
+
+        with(binding) {
+            aboutAppVersion.text = BuildConfig.VERSION_NAME
+
+            with(contributorsPeople) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
+                setHasFixedSize(true)
+            }
+
+            with(promises) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
+                setHasFixedSize(true)
+            }
+
+            titleCard.setOnClickListener { expandTitleCard() }
+            contributorsCard.setOnClickListener { expandContributorCard() }
+            promiseCard.setOnClickListener { expandPromiseCard() }
+        }
+    }
+
+    private fun expandTitleCard() {
+        val visible = binding.titleCardExpandable.visibility != View.VISIBLE
+        if (visible) AnimationUtils.expand(binding.titleCardExpandable)
+        else AnimationUtils.collapse(binding.titleCardExpandable)
+    }
+
+    private fun expandContributorCard() {
+        val visible = binding.contributorsCardExpandable.visibility != View.VISIBLE
+        if (visible) AnimationUtils.expand(binding.contributorsCardExpandable)
+        else AnimationUtils.collapse(binding.contributorsCardExpandable)
+    }
+
+    private fun expandPromiseCard() {
+        val visible = binding.promiseCardExpandable.visibility != View.VISIBLE
+        if (visible) AnimationUtils.expand(binding.promiseCardExpandable)
+        else AnimationUtils.collapse(binding.promiseCardExpandable)
     }
 }

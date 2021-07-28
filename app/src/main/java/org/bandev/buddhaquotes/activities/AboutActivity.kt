@@ -21,6 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.os.Bundle
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -28,7 +29,9 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.setAccentColour
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
+import org.bandev.buddhaquotes.core.setNavigationBarColourMain
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 import org.bandev.buddhaquotes.fragments.AboutFragment
 import org.bandev.buddhaquotes.fragments.LibrariesFragment
@@ -44,20 +47,18 @@ class AboutActivity : LocalizationActivity() {
         super.onCreate(savedInstanceState)
 
         setAccentColour(this)
-        window.setStatusBarAsAccentColour(this)
-        window.setNavigationBarColourDefault(this)
+        with(window) {
+            setNavigationBarColourMain()
+            setDarkStatusIcons()
+            statusBarColor = getColor(context, R.color.background)
+        }
 
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            navigationIcon = context.backIcon()
-            setBackgroundColor(toolbarColour(context))
-            setNavigationOnClickListener { onBackPressed() }
-        }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        binding.tabLayout.setBackgroundColor(toolbarColour(this))
         binding.viewPager.adapter = AboutStateAdapter(this)
         TabLayoutMediator(
             binding.tabLayout,
@@ -86,9 +87,7 @@ class AboutActivity : LocalizationActivity() {
             }
         }
 
-        override fun getItemCount(): Int {
-            return Companion.TOTAL_COUNT
-        }
+        override fun getItemCount(): Int = Companion.TOTAL_COUNT
     }
 
     companion object {

@@ -6,44 +6,62 @@
     android:layout_height="match_parent"
     tools:context="fragments.TimerFragment">
 
-    <TextView
-        android:id="@+id/meditate_text"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/title_card"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/meditate_title"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="40sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="11dp">
 
-    <TextView
-        android:id="@+id/subtitle_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/meditate_text"
-        android:layout_centerHorizontal="true"
-        android:text="@string/meditate_subheading"
-        android:textColor="?android:attr/textColorSecondary"
-        android:textSize="25sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_below="@+id/subtitle_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/start"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        app:cornerRadius="11dp" />
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/meditate_title"
+                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:text="@string/meditate_subheading" />
+
+                </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="@string/start"
+                android:textColor="@android:color/white"
+                app:cornerRadius="11dp" />
+
+            </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:layout_width="359dp"
-        android:layout_height="251dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/meditate"
-        android:contentDescription="@string/two_people_meditating" />
+        android:src="@drawable/image_monk"
+        android:contentDescription="@string/monk" />
 
 </RelativeLayout>

@@ -41,6 +41,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Meditation Timer"
             val descriptionText = "Meditation Timer Stuff"
@@ -53,8 +55,6 @@ class SplashActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-
         setDefaultNightMode(
             when (sharedPrefs.getInt("appThemeInt", 2)) {
                 0 -> MODE_NIGHT_NO
@@ -62,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
                 else -> MODE_NIGHT_FOLLOW_SYSTEM
             }
         )
-        startActivity(Intent(this, MigrateActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

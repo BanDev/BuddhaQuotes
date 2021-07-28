@@ -27,7 +27,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="20dp"
-        android:contentDescription="TODO"
         android:onClick="refresh"
         app:srcCompat="@drawable/ic_refresh_black" />
 
@@ -40,8 +39,7 @@
         android:onClick="like"
         android:layout_marginBottom="20dp"
         android:layout_toEndOf="@+id/refresh"
-        app:srcCompat="@drawable/like"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_heart_outline" />
 
     <ImageView
         android:id="@+id/logo"
@@ -51,7 +49,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        app:srcCompat="@drawable/ic_buddha"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_buddha" />
 
 </RelativeLayout>

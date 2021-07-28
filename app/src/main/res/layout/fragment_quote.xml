@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipeRefresh"
+    android:id="@+id/swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -17,69 +11,106 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/number"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/textview"
-            android:textAlignment="textStart"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="@dimen/quoteNumberSize"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginHorizontal="15dp"
+            android:elevation="15dp"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quote" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/quote"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/quote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    android:textAlignment="textStart"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="@dimen/quoteNumberSize" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="20dp"
-            android:text="@string/textview"
-            android:textAlignment="textStart"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/quoteTextSize"
+            android:layout_margin="15dp"
+            android:elevation="15dp"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <uk.bandev.xplosion.XplosionView
-            android:id="@+id/likeAnimator"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="@dimen/quoteFragmentActionPadding"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/number">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
 
-            <com.mikepenz.iconics.view.IconicsImageView
-                android:id="@+id/like"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                app:iiv_icon="gmr-favorite" />
+                <uk.bandev.xplosion.XplosionView
+                    android:id="@+id/likeAnimator"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp">
 
-        </uk.bandev.xplosion.XplosionView>
+                    <ImageView
+                        android:id="@+id/like"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_heart_outline" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/more"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            app:iiv_color="?android:textColorPrimary"
-            app:iiv_icon="gmr-more-vert"
-            app:layout_constraintBottom_toBottomOf="@+id/likeAnimator"
-            app:layout_constraintStart_toEndOf="@+id/likeAnimator"
-            app:layout_constraintTop_toTopOf="@+id/likeAnimator" />
+                </uk.bandev.xplosion.XplosionView>
+
+                <ImageView
+                    android:id="@+id/next"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_share" />
+
+                <ImageView
+                    android:id="@+id/more"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_share" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/quote_fragment_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

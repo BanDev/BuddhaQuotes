@@ -1,0 +1,12 @@
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/background_rounded_padded_selected"
+        android:state_checked="true"
+        />
+
+    <item
+        android:drawable="@drawable/background_rounded_padded_pressed"
+        android:state_window_focused="true"
+        />
+</selector>
