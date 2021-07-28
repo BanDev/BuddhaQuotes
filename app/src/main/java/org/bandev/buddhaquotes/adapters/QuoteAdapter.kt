@@ -71,15 +71,19 @@ class QuoteAdapter(
         if (item.liked) holder.like.setImageResource(R.drawable.ic_heart_red)
 
         holder.like.setOnClickListener {
-            Toast.makeText(holder.root.context, "Like clicked", Toast.LENGTH_SHORT).show()
             Feedback.virtualKey(it)
             if (id == 0) {
                 notifyItemRemoved(quotes.find(item))
                 quotes.remove(item)
                 listener.onQuoteRemoved(item)
             } else {
-                if (item.liked) listener.onQuoteUnliked(item)
-                else listener.onQuoteLiked(item)
+                if (item.liked) {
+                    listener.onQuoteUnliked(item)
+                    holder.like.setImageResource(R.drawable.ic_heart_outline)
+                } else {
+                    listener.onQuoteLiked(item)
+                    holder.like.setImageResource(R.drawable.ic_heart_red)
+                }
                 item.liked = !item.liked
             }
         }
