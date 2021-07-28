@@ -3,16 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    
+    <include
+        android:id="@+id/search_box_container"
+        layout="@layout/search_header_layout" />
+
     <com.maxkeppeler.sheets.core.views.SheetsRecyclerView
         android:id="@+id/exampleRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_view"
+        android:layout_below="@+id/search_box_container"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingHorizontal="8dp"

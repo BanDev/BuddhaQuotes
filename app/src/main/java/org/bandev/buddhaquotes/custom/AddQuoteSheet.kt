@@ -25,6 +25,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.AddQuoteSheetAdapter
@@ -74,11 +75,58 @@ class AddQuoteSheet : Sheet() {
         super.onViewCreated(view, savedInstanceState)
         displayButtonsView(false)
 
+
+        binding.searchBoxContainer.also { searchBox ->
+            with(searchBox) {
+                searchEditText.doOnTextChanged { text, _, _, _ ->
+                    val query = text.toString().lowercase()
+                    filterWithQuery(query)
+                    toggleImageView(query)
+                }
+                clearSearchQuery.setOnClickListener {
+                    searchBox.searchEditText.text = null
+                }
+            }
+        }
+
         val addQuoteSheetAdapter = AddQuoteSheetAdapter(quotes, adapterListener)
 
         with(binding.exampleRecyclerView) {
             layoutManager = LinearLayoutManager(context)
             adapter = addQuoteSheetAdapter
+        }
+    }
+
+    private fun attachAdapter(newList: List<Quote>) {
+        binding.exampleRecyclerView.adapter = AddQuoteSheetAdapter(newList, adapterListener)
+    }
+
+    private fun filterWithQuery(query: String) {
+        if (query.isNotEmpty()) {
+            val filteredList: List<Quote> = onFilterChanged(query)
+            attachAdapter(filteredList)
+        } else if (query.isEmpty()) {
+            attachAdapter(quotes)
+        }
+    }
+
+    private fun onFilterChanged(filterQuery: String): List<Quote> {
+        val filteredList = ArrayList<Quote>()
+        for (i in quotes) {
+            if (getText(i.resource).toString().lowercase().contains(filterQuery)) {
+                filteredList.add(i)
+            }
+        }
+        return filteredList
+    }
+
+    private fun toggleImageView(query: String) {
+        binding.searchBoxContainer.clearSearchQuery.also {
+            if (query.isNotEmpty()) {
+                it.visibility = View.VISIBLE
+            } else if (query.isEmpty()) {
+                it.visibility = View.GONE
+            }
         }
     }
 
