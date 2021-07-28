@@ -24,6 +24,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
@@ -70,6 +71,7 @@ class QuoteAdapter(
         if (item.liked) holder.like.setImageResource(R.drawable.ic_heart_red)
 
         holder.like.setOnClickListener {
+            Toast.makeText(holder.root.context, "Like clicked", Toast.LENGTH_SHORT).show()
             Feedback.virtualKey(it)
             if (id == 0) {
                 notifyItemRemoved(quotes.find(item))

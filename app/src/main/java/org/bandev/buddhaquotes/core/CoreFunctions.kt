@@ -198,7 +198,7 @@ fun defaultIcon(): ListIcon {
 }
 
 fun MutableList<Quote>.find(quote: Quote): Int {
-    for (i in 0 until this.size) {
+    for (i in 0..this.size) {
         if (this[i] == quote) return i
     }
     return -1
