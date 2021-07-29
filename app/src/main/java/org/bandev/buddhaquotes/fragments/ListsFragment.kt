@@ -25,7 +25,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,18 +32,17 @@ import me.kosert.flowbus.EventsReceiver
 import me.kosert.flowbus.bindLifecycle
 import me.kosert.flowbus.subscribe
 import org.bandev.buddhaquotes.activities.ListActivity
-import org.bandev.buddhaquotes.adapters.QuoteListRecycler
+import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.UpdateLists
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
-import org.bandev.buddhaquotes.items.QuoteList
 
 /**
  * Shows a list of lists to the user
  */
 
-class ListsFragment : Fragment(), QuoteListRecycler.Listener {
+class ListsFragment : Fragment(), ListAdapter.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ViewModel
@@ -78,7 +76,7 @@ class ListsFragment : Fragment(), QuoteListRecycler.Listener {
         model.Lists().getAll {
             with(binding.listsRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = QuoteListRecycler(it, this@ListsFragment, requireActivity().application)
+                adapter = ListAdapter(it, this@ListsFragment)
                 setHasFixedSize(false)
             }
         }

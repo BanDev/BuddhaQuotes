@@ -41,35 +41,70 @@ import org.bandev.buddhaquotes.items.ListIcon
 class ListMapper(val application: Application) {
 
     private val context: Context = application.applicationContext
-    private val listIcons: MutableList<ListIcon> = mutableListOf()
+    val listIcons: MutableList<ListIcon> = mutableListOf()
 
     init {
         listIcons.add(
             ListIcon(
                 0,
-                R.drawable.ic_tune,
+                R.drawable.ic_list_icon_heart,
                 ContextCompat.getColor(context, R.color.colorAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 1,
-                R.drawable.ic_down_arrow,
+                R.drawable.ic_list_icon_list,
                 ContextCompat.getColor(context, R.color.blueAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 2,
-                R.drawable.ic_arrow_back,
+                R.drawable.ic_list_icon_edu,
                 ContextCompat.getColor(context, R.color.greenAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 3,
-                R.drawable.ic_menu,
+                R.drawable.ic_list_icon_history,
                 ContextCompat.getColor(context, R.color.yellowAccent)
+            )
+        )
+        listIcons.add(
+            ListIcon(
+                4,
+                R.drawable.ic_list_icon_interests,
+                ContextCompat.getColor(context, R.color.tealAccent)
+            )
+        )
+        listIcons.add(
+            ListIcon(
+                5,
+                R.drawable.ic_list_icon_quote,
+                ContextCompat.getColor(context, R.color.violetAccent)
+            )
+        )
+        listIcons.add(
+            ListIcon(
+                6,
+                R.drawable.ic_list_icon_symbols,
+                ContextCompat.getColor(context, R.color.orangeAccent)
+            )
+        )
+        listIcons.add(
+            ListIcon(
+                7,
+                R.drawable.ic_list_icon_thumb_up,
+                ContextCompat.getColor(context, R.color.lightBlueAccent)
+            )
+        )
+        listIcons.add(
+            ListIcon(
+                8,
+                R.drawable.ic_list_icon_trophy,
+                ContextCompat.getColor(context, R.color.bandev)
             )
         )
     }
@@ -90,12 +125,4 @@ class ListMapper(val application: Application) {
 
     /** Find a list's icon */
     private fun associate(id: Int): ListIcon = listIcons[id]
-
-    /** Draw a list icon to an ImageView */
-    fun draw(holder: ImageView, icon: ListIcon) {
-        with(holder) {
-            load(icon.drawable)
-            backgroundTintList = ColorStateList.valueOf(icon.colour)
-        }
-    }
 }

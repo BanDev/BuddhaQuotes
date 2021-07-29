@@ -21,42 +21,41 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.adapters
 
 import android.app.Application
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ListMapper
-import org.bandev.buddhaquotes.databinding.QuoteListRecyclerBinding
+import org.bandev.buddhaquotes.databinding.ListAdapterItemBinding
 import org.bandev.buddhaquotes.items.List
-import org.bandev.buddhaquotes.items.QuoteList
 
 /**
  * Recycler adapter for QouteList class
  */
 
-class QuoteListRecycler(
+class ListAdapter(
 
     private val list: MutableList<List>,
-    private val listener: Listener,
-    application: Application
+    private val listener: Listener
 
-) : RecyclerView.Adapter<QuoteListRecycler.ViewHolder>() {
+) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
-    private val lm = ListMapper(application)
-
-    class ViewHolder(binding: QuoteListRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
-        val title: TextView = binding.titleText
-        val listIcon: ImageView = binding.listIcon
-        val summary: TextView = binding.summaryText
+    class ViewHolder(binding: ListAdapterItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val title: TextView = binding.list
+        val iconIcon: ImageView = binding.iconIcon
+        val iconBack: ConstraintLayout = binding.iconBack
+        val summary: TextView = binding.summary
         val root: CardView = binding.root
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            QuoteListRecyclerBinding.inflate(
+            ListAdapterItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
@@ -67,7 +66,8 @@ class QuoteListRecycler(
         val item = list[position]
 
         with(holder) {
-            title.text = item.title
+            title.text =
+                if (item.id != 0) item.title else holder.root.context.getString(R.string.favourites)
             summary.text = root.context.getString(
                 if (item.count == 1) R.string.quote else R.string.quotes,
                 item.count
@@ -75,8 +75,8 @@ class QuoteListRecycler(
             root.setOnClickListener { listener.select(item) }
         }
 
-
-        lm.draw(holder.listIcon, item.icon)
+        holder.iconIcon.setImageResource(item.icon.drawable)
+        holder.iconBack.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
     }
 
     override fun getItemCount(): Int = list.size

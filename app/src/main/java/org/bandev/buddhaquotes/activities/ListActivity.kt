@@ -139,6 +139,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
             displayHandle(true)
             displayPositiveButton(false)
             displayNegativeButton(false)
+            attachVariables(vm, this@ListActivity.id)
             onClose { menu.findItem(R.id.tune).isEnabled = true }
         }
     }
@@ -150,7 +151,6 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
     override fun onQuoteLiked(quote: Quote) {
         // Like the quote in the db
         vm.Quotes().setLike(quote.id, true)
-        snackbar("Liked quote")
     }
 
     override fun onQuoteUnliked(quote: Quote) {
@@ -158,7 +158,6 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         vm.Quotes().setLike(quote.id, false)
         if (id == 0) quotes.remove(quote)
         checkLength()
-        snackbar("Unliked quote")
     }
 
     override fun onQuoteRemoved(quote: Quote) {
@@ -166,7 +165,6 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         vm.ListQuotes().removeFrom(id, quote)
         quotes.remove(quote)
         checkLength()
-        snackbar("Removed quote")
     }
 
     private fun onQuoteAdded(quote: Quote) {
@@ -176,13 +174,6 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         quotes.add(quote)
         binding.recycler.adapter?.notifyItemInserted(quotes.find(quote))
         binding.empty.visibility = View.GONE
-        snackbar("Quote added")
-    }
-
-    fun snackbar(string: String) {
-        val s = Snackbar.make(binding.root, string, LENGTH_SHORT)
-        s.anchorView = binding.add
-        s.show()
     }
 
     override fun onCreateOptionsMenu(_menu: Menu?): Boolean {

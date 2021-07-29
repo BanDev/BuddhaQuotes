@@ -28,7 +28,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Lists
 import org.bandev.buddhaquotes.core.Quotes
 
 /** The widget **/
@@ -74,7 +73,6 @@ class MainWidget : AppWidgetProvider() {
                 )
             )
             x++
-            Lists().addToList("Favourites", quoteCurrent, context)
             views.setImageViewResource(R.id.like, R.drawable.ic_heart_red)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         }
