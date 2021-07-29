@@ -24,29 +24,32 @@ import android.app.Application
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import org.bandev.buddhaquotes.architecture.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import org.bandev.buddhaquotes.adapters.ListIconRecycler
+import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
 class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
 
     private lateinit var binding: CustomiseListSheetBinding
-    //private lateinit var model: ListViewModel
-    //private lateinit var listIconManager: ListIconManager
+
+    private lateinit var model: ViewModel
+    private lateinit var listIconManager: ListMapper
     private var listId = 0
 
-//    fun attachVariables(_model: ListViewModel, _listId: Int) {
-//        model = _model
-//        listId = _listId
-//    }
+    fun attachVariables(_model: ViewModel, _listId: Int) {
+        model = _model
+        listId = _listId
+    }
 
     override fun onCreateLayoutView(): View {
         binding = CustomiseListSheetBinding.inflate(layoutInflater)
 
         with(binding.listIconRecycler) {
-           // adapter = ListIconRecycler(listIconManager.getAll(), this@CustomiseListSheet)
+            adapter = ListIconRecycler(listIconManager.listIcons, this@CustomiseListSheet)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
@@ -54,9 +57,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
     }
 
     override fun select(icon: ListIcon) {
-//        model.updateIcon(listId, icon) {
-//            Toast.makeText(context, "list icon updated", Toast.LENGTH_SHORT).show()
-//        }
+        model.Lists().updateIcon(listId, icon)
     }
 
     fun build(
@@ -66,7 +67,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
         func: CustomiseListSheet.() -> Unit
     ): CustomiseListSheet {
         this.windowContext = ctx
-        //this.listIconManager = ListIconManager(application)
+        this.listIconManager = ListMapper(application)
         this.width = width
         this.func()
         return this
@@ -79,7 +80,7 @@ class CustomiseListSheet : Sheet(), ListIconRecycler.Listener {
         func: CustomiseListSheet.() -> Unit
     ): CustomiseListSheet {
         this.windowContext = ctx
-        //this.listIconManager = ListIconManager(application)
+        this.listIconManager = ListMapper(application)
         this.width = width
         this.func()
         this.show()

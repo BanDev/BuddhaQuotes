@@ -58,7 +58,7 @@ class ListIconRecycler(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         with(holder.listIcon) {
-            load(item.drawable) { size(75) }
+            setImageResource(item.drawable)
             backgroundTintList = ColorStateList.valueOf(item.colour)
             setOnClickListener {
                 click(holder)

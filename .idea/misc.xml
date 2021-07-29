@@ -6,10 +6,28 @@
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/delete_outline_black_24dp.xml" value="0.106" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_delete.xml" value="0.1275" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_heart_outline.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_edu.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_heart.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_history.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_interests.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_list.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_quote.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_symbols.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_thumb_up.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_list_icon_trophy.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_more.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_next.xml" value="0.1275" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/ic_share.xml" value="0.1275" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/drawable/widgetback.xml" value="0.1275" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/activity_list.xml" value="0.3625" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/customise_list_sheet.xml" value="0.3625" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_about.xml" value="0.3625" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/fragment_quote.xml" value="0.3625" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/list_adapter_item.xml" value="0.33" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/preference_layout.xml" value="0.3625" />
         <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/quote_adapter_item.xml" value="0.33" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/quote_list_recycler.xml" value="0.3625" />
+        <entry key="..\:/BanDev/Buddha Quotes/buddha-quotes/app/src/main/res/layout/widget.xml" value="0.17" />
       </map>
     </option>
   </component>

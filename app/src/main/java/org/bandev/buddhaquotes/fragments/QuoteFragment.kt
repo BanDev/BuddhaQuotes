@@ -93,6 +93,7 @@ class QuoteFragment : Fragment() {
                 }
             }
             like.setOnClickListener { onLikeClicked() }
+            next.setOnClickListener { randomQuote() }
             more.setOnClickListener {
                 Feedback.virtualKey(it)
                 showOptionsSheet()
@@ -147,7 +148,7 @@ class QuoteFragment : Fragment() {
     private fun randomQuote() {
         model.Quotes().getRandom {
             quote = it
-            binding.number.text = getString(R.string.quote_number, quote.id)
+            //binding.number.text = getString(R.string.quote_number, quote.id)
             binding.quote.text = getString(quote.resource)
             binding.like.load(heart(quote.liked)) // THIS DOESNT WORK ON THE FIRST TIME FOR SOME REASON
             // CHECKED AND DB OUTPUT IS TOTALLY FINE
