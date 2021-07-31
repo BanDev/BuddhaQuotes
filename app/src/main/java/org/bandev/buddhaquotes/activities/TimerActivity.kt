@@ -62,7 +62,7 @@ class TimerActivity : LocalizationActivity() {
 
         with(window) {
             statusBarColor = Color.TRANSPARENT
-            setNavigationBarColourDefault()
+            navigationBarColor = Color.TRANSPARENT
             setDarkStatusIcons()
         }
         setDecorFitsSystemWindows(window, false)

@@ -43,6 +43,9 @@ import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
+import org.bandev.buddhaquotes.items.List
+import uk.bandev.services.bus.Bus
+import uk.bandev.services.bus.Message
 
 /**
  * Main is the main page of Buddha Quotes
@@ -72,7 +75,6 @@ class MainActivity : LocalizationActivity() {
         model = ViewModelProvider.AndroidViewModelFactory
             .getInstance(application)
             .create(ViewModel::class.java)
-
 
         setSupportActionBar(binding.toolbar)
         with(binding) {
@@ -106,7 +108,7 @@ class MainActivity : LocalizationActivity() {
 
             with(createList) {
                 backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-                setOnClickListener {
+                setOnClickListener { it ->
                     Feedback.virtualKey(it)
                     it.isEnabled = false
                     InputSheet().show(context) {
@@ -117,8 +119,9 @@ class MainActivity : LocalizationActivity() {
                                 required()
                                 hint(R.string.insertName)
                                 resultListener { value ->
-                                    model.Lists().new(value.toString())
-                                    GlobalBus.post(UpdateLists())
+                                    model.Lists().new(value.toString()) { list ->
+                                        GlobalBus.post(Message(MessageTypes.NEW_LIST, list))
+                                    }
                                 }
                             }
                         )

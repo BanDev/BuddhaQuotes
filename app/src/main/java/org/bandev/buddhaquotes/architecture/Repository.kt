@@ -98,7 +98,10 @@ class Repository(val application: Application) {
         suspend fun updateIcon(id: Int, icon: ListIcon): Unit = dao.updateIcon(id, icon.id)
 
         /** New empty list */
-        suspend fun new(title: String): Unit = dao.create(title)
+        suspend fun new(title: String): List {
+            dao.create(title)
+            return lm.convert(dao.getLast(), this@Repository.ListQuotes())
+        }
 
         /** Delete a list */
         suspend fun delete(id: Int): Unit = dao.delete(id)

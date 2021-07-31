@@ -128,9 +128,9 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         /** New empty list */
-        fun new(title: String) {
+        fun new(title: String, after: (list: List) -> Unit) {
             viewModelScope.launch {
-                lists.new(title)
+                after(lists.new(title))
             }
         }
 

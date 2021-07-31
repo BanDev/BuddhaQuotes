@@ -25,8 +25,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import kotlinx.coroutines.selects.select
+import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -34,12 +36,12 @@ import org.bandev.buddhaquotes.items.ListIcon
  * Scroll through list icons
  */
 
-class ListIconRecycler(
+class ListIconAdapter(
 
     private val list: List<ListIcon>,
     private val listener: Listener,
 
-    ) : RecyclerView.Adapter<ListIconRecycler.ViewHolder>() {
+    ) : RecyclerView.Adapter<ListIconAdapter.ViewHolder>() {
 
     class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
         val listIcon: ImageView = binding.listIcon
@@ -57,19 +59,23 @@ class ListIconRecycler(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+//        Toast.makeText(
+//            holder.listIcon.context,
+//            item.selected.toString() + item.id.toString(),
+//            Toast.LENGTH_SHORT
+//        ).show()
         with(holder.listIcon) {
+            if (item.selected) holder.selected.visibility = View.VISIBLE
             setImageResource(item.drawable)
             backgroundTintList = ColorStateList.valueOf(item.colour)
             setOnClickListener {
-                click(holder)
+                holder.selected.visibility = View.VISIBLE
                 listener.select(item)
+                for (icon in list) icon.selected = false
+                list[position].selected = true
+                notifyItemRangeChanged(0, list.lastIndex)
             }
         }
-    }
-
-    private fun click(holder: ViewHolder) {
-        holder.selected.visibility =
-            if (holder.selected.visibility == View.VISIBLE) View.INVISIBLE else View.VISIBLE
     }
 
     override fun getItemCount(): Int = list.size
