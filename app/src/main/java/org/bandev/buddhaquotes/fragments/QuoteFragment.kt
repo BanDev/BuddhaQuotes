@@ -31,19 +31,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import coil.load
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
+import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ViewModel
-import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.core.UpdateLists
-import org.bandev.buddhaquotes.core.resolveColorAttr
-import org.bandev.buddhaquotes.core.shareQuote
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
+import uk.bandev.services.bus.Bus
+import uk.bandev.services.bus.Message
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
@@ -161,9 +163,9 @@ class QuoteFragment : Fragment() {
         binding.like.load(heart(quote.liked))
         if (quote.liked) {
             binding.likeAnimator.likeAnimation()
-        }
+            GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, +1))
+        } else GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, -1))
         model.Quotes().setLike(quote.id, quote.liked)
-        GlobalBus.post(UpdateLists())
     }
 
     private fun showOptionsSheet() {
@@ -185,14 +187,30 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
-        OptionsSheet().show(requireContext()) {
-            displayMode(DisplayMode.LIST)
-            displayToolbar(false)
-            displayHandle(true)
-            with(Option(heart(false), R.string.favourites))
-            onPositive { _: Int, _: Option ->
-                Feedback.virtualKey(binding.root)
-            }
+
+        model.Lists().getAll {
+            it.removeAt(0)
+            if (it.isNotEmpty()) {
+                val options = mutableListOf<Option>()
+
+                it.forEach { list ->
+                    options.add(Option(list.icon.drawable, list.title))
+                }
+
+                OptionsSheet().show(requireContext()) {
+                    displayMode(DisplayMode.LIST)
+                    displayToolbar(false)
+                    displayHandle(true)
+                    with(options)
+                    onPositive { i: Int, _: Option ->
+                        Feedback.virtualKey(binding.root)
+                        val list = it[i]
+                        model.ListQuotes().addTo(list.id, quote)
+                        list.count++
+                        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+                    }
+                }
+            } else Snackbar.make(binding.root, getString(R.string.no_list), LENGTH_SHORT).show()
         }
     }
 

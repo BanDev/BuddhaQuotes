@@ -577,6 +577,7 @@
 
     <string name="quote">1 quote</string>
     <string name="quotes">%d quotes</string>
+    <string name="no_list">You have no lists!</string>
 
     <string-array name="contributors_people">
         <item translatable="false">"@russellbanks"</item>

@@ -141,7 +141,7 @@ abstract class Db : RoomDatabase() {
         suspend fun updateIcon(id: Int, icon: Int)
 
         /** New empty list */
-        @Query("INSERT INTO list (`title`) VALUES (:title)")
+        @Query("INSERT INTO list (`title`, `icon`) VALUES (:title, 1)")
         suspend fun create(title: String)
 
         /** Delete a list */
