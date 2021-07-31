@@ -125,5 +125,5 @@ dependencies {
 
     implementation 'uk.bandev:ueh:1.0.0'
     implementation 'uk.bandev:xplosion:1.0.6'
-    implementation 'uk.bandev:services:0.0.3'
+    implementation 'uk.bandev:services:0.0.4'
 }

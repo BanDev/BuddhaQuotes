@@ -29,6 +29,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
@@ -58,6 +59,7 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListsBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -67,10 +69,11 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
             .getInstance(requireActivity().application)
             .create(ViewModel::class.java)
 
-        bus = Bus(this)
-
         // Setup the recyclerview
         setupRecycler()
+
+        bus = Bus(this)
+
     }
 
     /**
@@ -99,6 +102,9 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
             if (message == prevMessage) return
             else message
         } else message
+        if (!this::list.isInitialized) {
+            setupRecycler()
+        }
         when (message.type) {
             MessageTypes.NEW_LIST -> {
                 val data = message.data as List
@@ -125,6 +131,10 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
     override fun onStart() {
         super.onStart()
         bus.listen()
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
     companion object {
