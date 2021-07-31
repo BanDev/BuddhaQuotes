@@ -128,6 +128,10 @@ abstract class Db : RoomDatabase() {
         @Query("SELECT * FROM list")
         suspend fun getAll(): MutableList<List1>
 
+        /** Get the latest list in the db */
+        @Query("SELECT * FROM list ORDER BY ID DESC LIMIT 1")
+        suspend fun getLast(): List1
+
         /** Rename a list */
         @Query("UPDATE list SET `title` = :name WHERE id = :id")
         suspend fun rename(id: Int, name: String)

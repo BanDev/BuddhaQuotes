@@ -30,10 +30,8 @@ import android.widget.Toast
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
-import com.google.android.material.snackbar.Snackbar
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
@@ -41,7 +39,9 @@ import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
+import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
+import uk.bandev.services.bus.Message
 
 
 /**
@@ -57,6 +57,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
     private lateinit var binding: ActivityListBinding
     private lateinit var menu: Menu
     private lateinit var vm: ViewModel
+    private lateinit var list: List
     private lateinit var quotes: MutableList<Quote>
     private var id: Int = 0
 
@@ -101,7 +102,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         id = (intent.extras ?: return).getInt("id")
 
         // Get metadata about the list from db
-        vm.Lists().get(id) { list ->
+        vm.Lists().get(id) {
+            list = it
             binding.toolbar.title = list.title
         }
 
@@ -151,12 +153,18 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
     override fun onQuoteLiked(quote: Quote) {
         // Like the quote in the db
         vm.Quotes().setLike(quote.id, true)
+        GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, 1))
     }
 
     override fun onQuoteUnliked(quote: Quote) {
+        GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, -1))
         // Unlike the quote in the db
         vm.Quotes().setLike(quote.id, false)
-        if (id == 0) quotes.remove(quote)
+        if (id == 0) {
+            quotes.remove(quote)
+            list.count--
+            GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+        }
         checkLength()
     }
 
@@ -164,6 +172,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         // Remove the quote from the db
         vm.ListQuotes().removeFrom(id, quote)
         quotes.remove(quote)
+        list.count--
+        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
         checkLength()
     }
 
@@ -172,7 +182,9 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         if (id == 0) quote.liked = true
         vm.ListQuotes().addTo(id, quote)
         quotes.add(quote)
+        list.count++
         binding.recycler.adapter?.notifyItemInserted(quotes.find(quote))
+        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
         binding.empty.visibility = View.GONE
     }
 

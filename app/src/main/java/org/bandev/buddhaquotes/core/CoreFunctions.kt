@@ -159,47 +159,9 @@ fun Context.shareQuote(quote: Quote) {
     startActivity(Intent.createChooser(sendIntent, null))
 }
 
-fun listIcons(): List<ListIcon> {
-    return listOf(
-        ListIcon(
-            0,
-            R.drawable.ic_add,
-            0xFF0067f4.toInt()
-        ),
-        ListIcon(
-            1,
-            R.drawable.ic_heart_outline,
-            0xFF349334.toInt()
-        ),
-        ListIcon(
-            2,
-            R.drawable.ic_arrow_back,
-            0xFFFF5733.toInt()
-        ),
-        ListIcon(
-            3,
-            R.drawable.ic_menu,
-            0xFFFF33DA.toInt()
-        ),
-        ListIcon(
-            4,
-            R.drawable.ic_tune,
-            0xFF0A7AA7.toInt()
-        )
-    )
-}
-
-fun defaultIcon(): ListIcon {
-    return ListIcon(
-        0,
-        R.drawable.ic_heart_outline,
-        0xFF0067f4.toInt()
-    )
-}
-
-fun MutableList<Quote>.find(quote: Quote): Int {
+fun List<Any>.find(item: Any): Int {
     for (i in 0..this.size) {
-        if (this[i] == quote) return i
+        if (this[i] == item) return i
     }
     return -1
 }

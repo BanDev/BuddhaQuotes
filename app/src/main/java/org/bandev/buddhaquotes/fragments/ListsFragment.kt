@@ -25,28 +25,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import me.kosert.flowbus.EventsReceiver
-import me.kosert.flowbus.bindLifecycle
-import me.kosert.flowbus.subscribe
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
-import org.bandev.buddhaquotes.core.UpdateLists
+import org.bandev.buddhaquotes.core.MessageTypes
+import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
+import org.bandev.buddhaquotes.items.Quote
+import uk.bandev.services.bus.Message
+import uk.bandev.services.bus.Bus
 
 /**
  * Shows a list of lists to the user
  */
 
-class ListsFragment : Fragment(), ListAdapter.Listener {
+class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ViewModel
-    private val receiver = EventsReceiver()
+    private lateinit var list: MutableList<List>
+    private lateinit var bus: Bus
+    private var prevMessage: Message<*>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,6 +67,8 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
             .getInstance(requireActivity().application)
             .create(ViewModel::class.java)
 
+        bus = Bus(this)
+
         // Setup the recyclerview
         setupRecycler()
     }
@@ -74,9 +80,11 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
     private fun setupRecycler() {
         model.Lists().getAll {
+            list = it
+
             with(binding.listsRecycler) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ListAdapter(it, this@ListsFragment)
+                adapter = ListAdapter(list, this@ListsFragment)
                 setHasFixedSize(false)
             }
         }
@@ -86,12 +94,37 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
+    override fun onMessageReceived(message: Message<*>) {
+        prevMessage = if (prevMessage != null) {
+            if (message == prevMessage) return
+            else message
+        } else message
+        when (message.type) {
+            MessageTypes.NEW_LIST -> {
+                val data = message.data as List
+                list.add(data)
+                binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
+            }
+            MessageTypes.UPDATE_LIST -> {
+                val data = message.data as List
+                var position = -1
+                list.forEachIndexed { index, (id) ->
+                    if (id == data.id) position = index
+                }
+                list[position] = data
+                binding.listsRecycler.adapter?.notifyItemChanged(position)
+            }
+            MessageTypes.LIKE_UPDATE -> {
+                val change = message.data as Int
+                list[0].count = list[0].count + change
+                binding.listsRecycler.adapter?.notifyItemChanged(0)
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
-        receiver.bindLifecycle(this)
-            .subscribe { _: UpdateLists ->
-                setupRecycler()
-            }
+        bus.listen()
     }
 
     companion object {
