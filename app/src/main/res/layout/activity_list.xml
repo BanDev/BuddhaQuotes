@@ -34,7 +34,8 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:listitem="@layout/quote_adapter_item"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        android:clipToPadding="false"/>
 
     <TextView
         android:id="@+id/empty"

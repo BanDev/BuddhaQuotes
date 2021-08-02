@@ -131,6 +131,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
             }
             checkLength()
         }
+
+        binding.recycler.applyInsets(NAVIGATION_BARS, PADDING)
     }
 
     private fun checkLength() {
