@@ -1,12 +1,12 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
         <item name="colorPrimaryFaded">@color/primary_faded</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="sheetsHandleFillColor">?attr/colorPrimary</item>
         <item name="navigationViewStyle">@style/Theme.NavigationView</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="TransparentView">

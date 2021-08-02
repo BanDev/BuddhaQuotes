@@ -58,6 +58,7 @@ class SettingsActivity : LocalizationActivity() {
 
         window.apply {
             statusBarColor = Color.TRANSPARENT
+            navigationBarColor = Color.TRANSPARENT
             setNavigationBarColourDefault()
             setDarkStatusIcons()
             setDecorFitsSystemWindows(this, false)
@@ -68,13 +69,10 @@ class SettingsActivity : LocalizationActivity() {
         setContentView(binding.root)
 
         // Setup toolbar
-        with(binding) {
-            toolbar.apply {
-                setSupportActionBar(this)
-                applyInsets(STATUS_BARS)
-                setNavigationOnClickListener { onBackPressed() }
-            }
-            settings.applyInsets(NAVIGATION_BARS)
+        binding.toolbar.apply {
+            setSupportActionBar(this)
+            applyInsets(STATUS_BARS)
+            setNavigationOnClickListener { onBackPressed() }
         }
 
         if (savedInstanceState == null) {
