@@ -76,6 +76,7 @@ class ListAdapter(
             )
             bin.visibility = if (item.id != 0) View.VISIBLE else View.INVISIBLE
             root.setOnClickListener { listener.select(item) }
+            bin.setOnClickListener { listener.delete(item) }
         }
 
     }
@@ -84,5 +85,6 @@ class ListAdapter(
 
     interface Listener {
         fun select(list: List)
+        fun delete(list: List)
     }
 }
