@@ -93,6 +93,16 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
+    override fun delete(list: List) {
+        model.Lists().delete(list.id)
+        var position = -1
+        this.list.forEachIndexed { index, (id) ->
+            if (id == list.id) position = index
+        }
+        binding.listsRecycler.adapter?.notifyItemRemoved(position)
+        this.list.remove(list)
+    }
+
     override fun onMessageReceived(message: Message<*>) {
         if (this::list.isInitialized) {
             prevMessage = if (prevMessage != null) {
