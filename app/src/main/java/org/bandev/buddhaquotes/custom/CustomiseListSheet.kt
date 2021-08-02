@@ -26,10 +26,13 @@ import android.view.View
 import org.bandev.buddhaquotes.architecture.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.adapters.ListIconAdapter
 import org.bandev.buddhaquotes.architecture.ListMapper
+import org.bandev.buddhaquotes.core.MessageTypes
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
+import uk.bandev.services.bus.Message
 
 class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
 
@@ -57,6 +60,9 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
 
     override fun select(icon: ListIcon) {
         model.Lists().updateIcon(listId, icon)
+        model.Lists().get(0) {
+            GlobalBus.post(Message(MessageTypes.UPDATE_LIST, it))
+        }
     }
 
     fun build(
