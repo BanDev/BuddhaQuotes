@@ -36,7 +36,6 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
 import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
-import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
@@ -53,12 +52,12 @@ class TimerActivity : LocalizationActivity() {
     private lateinit var gong: MediaPlayer
     private var isPaused = false
     private var isRunning = false
-    private lateinit var settings: Timer.Settings
+    private lateinit var timerSettings: Timer.Settings
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAccentColour(this)
+        setAccentColour()
 
         with(window) {
             statusBarColor = Color.TRANSPARENT
@@ -70,16 +69,11 @@ class TimerActivity : LocalizationActivity() {
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        settings = Timer().Settings(this)
+        timerSettings = Timer().Settings(this)
 
-        setSupportActionBar(binding.toolbar)
-
-        with(binding.toolbar) {
-            applyInsetter {
-                type(statusBars = true) {
-                    margin(top = true)
-                }
-            }
+        binding.toolbar.apply {
+            setSupportActionBar(this)
+            applyInsets(STATUS_BARS)
             setNavigationOnClickListener { onBackPressed() }
         }
 
@@ -95,79 +89,64 @@ class TimerActivity : LocalizationActivity() {
 
         startTimer(durationTimeInSeconds)
 
-        with(binding.pause) {
-            applyInsetter {
-                type(navigationBars = true) {
-                    margin(bottom = true)
-                }
-            }
+        binding.pause.apply {
+            applyInsets(NAVIGATION_BARS)
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
-                Feedback.confirm(binding.root)
+                Feedback.confirm(it)
                 when {
-                    isPaused -> resume()
-                    isRunning -> pause()
-                    else -> reset()
+                    isPaused -> {
+                        it.apply {
+                            text = getString(R.string.pause)
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
+                        }
+                        startTimer(progressTimeInMillis)
+                        isPaused = false
+                    }
+                    isRunning -> {
+                        it.apply {
+                            text = getString(R.string.play)
+                            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
+                        }
+
+                        countDownTimer.cancel()
+                        if (timerSettings.showNotificaton) {
+                            notifBuilder.setContentTitle(
+                                getString(R.string.meditating_for) + " $maxTime " + getString(
+                                    R.string.has_been_paused
+                                )
+                            )
+                            pushNotification(context)
+                        }
+                        isPaused = true
+                    }
+                    else -> {
+                        it.isEnabled = false
+                        TimeSheet().show(context) {
+                            title(R.string.meditation_timer)
+                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                            format(TimeFormat.MM_SS)
+                            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
+                            onPositive(R.string.okay) { durationTimeInMillis: Long ->
+                                Feedback.confirm(binding.root)
+                                it.apply {
+                                    text = getString(R.string.pause)
+                                    setCompoundDrawablesWithIntrinsicBounds(
+                                        R.drawable.ic_pause,
+                                        0,
+                                        0,
+                                        0
+                                    )
+                                }
+
+                                startTimer(durationTimeInMillis * 1000)
+                            }
+                            onClose { it.isEnabled = true }
+                        }
+                    }
                 }
             }
         }
-    }
-
-    // Timer is done so must be for reset
-    private fun reset() {
-        binding.pause.isEnabled = false
-        TimeSheet().show(this) {
-            title(R.string.meditation_timer)
-            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-            format(TimeFormat.MM_SS)
-            onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
-            onPositive(R.string.okay) { durationTimeInMillis: Long ->
-                Feedback.confirm(binding.root)
-                with(binding.pause) {
-                    text = getString(R.string.pause)
-                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
-                }
-
-                startTimer(durationTimeInMillis * 1000)
-            }
-            onClose { binding.pause.isEnabled = true }
-        }
-    }
-
-    // Resume timer
-    private fun resume() {
-        // Change button text & icon
-        with(binding.pause) {
-            text = getString(R.string.pause)
-            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0)
-        }
-
-        // Start the timer from the last recorded progress
-        startTimer(progressTimeInMillis)
-
-        isPaused = false
-    }
-
-    // Pause timer
-    private fun pause() {
-        // Change button text & icon
-        with(binding.pause) {
-            text = getString(R.string.play)
-            setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0)
-        }
-
-        countDownTimer.cancel()
-
-        if (settings.showNotificaton) {
-            notifBuilder.setContentTitle(
-                getString(R.string.meditating_for) + " $maxTime " + getString(
-                    R.string.has_been_paused
-                )
-            )
-            pushNotification(this)
-        }
-
-        isPaused = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -184,20 +163,20 @@ class TimerActivity : LocalizationActivity() {
             displayNegativeButton(false)
             with(InputCheckBox {
                 text("Play Gong at end")
-                defaultValue(settings.endSound)
-                changeListener { settings.endSound = !settings.endSound }
+                defaultValue(timerSettings.endSound)
+                changeListener { timerSettings.endSound = !timerSettings.endSound }
             })
             with(InputCheckBox {
                 text(R.string.vibrate_second)
-                defaultValue(settings.vibrateSecond)
-                changeListener { settings.vibrateSecond = !settings.vibrateSecond }
+                defaultValue(timerSettings.vibrateSecond)
+                changeListener { timerSettings.vibrateSecond = !timerSettings.vibrateSecond }
             })
             with(InputCheckBox {
                 text(R.string.show_notification)
-                defaultValue(settings.showNotificaton)
+                defaultValue(timerSettings.showNotificaton)
                 changeListener {
-                    settings.showNotificaton = !settings.showNotificaton
-                    if (!settings.showNotificaton) {
+                    timerSettings.showNotificaton = !timerSettings.showNotificaton
+                    if (!timerSettings.showNotificaton) {
                         NotificationManagerCompat.from(applicationContext).cancel(0)
                     } else {
                         buildNotification(requireContext())
@@ -216,18 +195,16 @@ class TimerActivity : LocalizationActivity() {
             override fun onFinish() {
                 isRunning = false
 
-                if (settings.showNotificaton) {
+                if (timerSettings.showNotificaton) {
                     NotificationManagerCompat.from(applicationContext).cancel(0)
                 }
 
-                with(binding.pause) {
+                binding.pause.apply {
                     text = getString(R.string.reset)
-                    setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_refresh, 0, 0, 0
-                    )
+                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_refresh, 0, 0, 0)
                 }
 
-                if (settings.endSound) gong.start()
+                if (timerSettings.endSound) gong.start()
 
                 Feedback.confirm(binding.root)
             }
@@ -235,7 +212,7 @@ class TimerActivity : LocalizationActivity() {
             override fun onTick(p0: Long) {
                 updateTextUI(p0)
 
-                if (settings.vibrateSecond) Feedback.clockTick(binding.root)
+                if (timerSettings.vibrateSecond) Feedback.clockTick(binding.root)
 
                 progressTimeInMillis = p0
             }
@@ -245,7 +222,7 @@ class TimerActivity : LocalizationActivity() {
 
         countDownTimer.start()
 
-        if (settings.showNotificaton) {
+        if (timerSettings.showNotificaton) {
             buildNotification(this)
             pushNotification(this)
         }
@@ -259,8 +236,8 @@ class TimerActivity : LocalizationActivity() {
         val seconds = "%02d".format((time / 1000) % 60)
 
         // Update the notification text and progress
-        if (settings.showNotificaton) {
-            with(notifBuilder) {
+        if (timerSettings.showNotificaton) {
+            notifBuilder.apply {
                 setContentTitle(getString(R.string.meditating_for) + " $maxTime")
                 setContentText("$minute:$seconds")
                 setProgress(
@@ -277,19 +254,18 @@ class TimerActivity : LocalizationActivity() {
     }
 
     private fun buildNotification(context: Context) {
-        notifBuilder = NotificationCompat.Builder(context, "BQ.Timer")
-            .apply {
-                setContentTitle(getString(R.string.meditating_for) + " $maxTime")
-                setContentText(getString(R.string.time_left))
-                setSmallIcon(R.drawable.nav_meditate)
-                priority = NotificationCompat.PRIORITY_LOW
-                setCategory(NotificationCompat.CATEGORY_PROGRESS)
-                setOnlyAlertOnce(true)
-                setSilent(true)
-                setOngoing(false)
-                setShowWhen(false)
-                color = context.resolveColorAttr(R.attr.colorPrimary)
-            }
+        notifBuilder = NotificationCompat.Builder(context, "BQ.Timer").apply {
+            setContentTitle(getString(R.string.meditating_for) + " $maxTime")
+            setContentText(getString(R.string.time_left))
+            setSmallIcon(R.drawable.nav_meditate)
+            priority = NotificationCompat.PRIORITY_LOW
+            setCategory(NotificationCompat.CATEGORY_PROGRESS)
+            setOnlyAlertOnce(true)
+            setSilent(true)
+            setOngoing(false)
+            setShowWhen(false)
+            color = context.resolveColorAttr(R.attr.colorPrimary)
+        }
     }
 
     private fun convertToString(minutes: Long, seconds: Long, context: Context): String {

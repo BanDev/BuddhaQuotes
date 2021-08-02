@@ -27,7 +27,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.view.WindowCompat
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -56,33 +56,27 @@ class SettingsActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with(window) {
+        window.apply {
             statusBarColor = Color.TRANSPARENT
             setNavigationBarColourDefault()
             setDarkStatusIcons()
+            setDecorFitsSystemWindows(this, false)
         }
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         // Setup view binding
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Setup toolbar
-        setSupportActionBar(binding.toolbar)
-        with(binding.toolbar) {
-            applyInsetter {
-                type(statusBars = true) {
-                    margin(top = true)
-                }
+        with(binding) {
+            toolbar.apply {
+                setSupportActionBar(this)
+                applyInsets(STATUS_BARS)
+                setNavigationOnClickListener { onBackPressed() }
             }
-            setNavigationOnClickListener { onBackPressed() }
+            settings.applyInsets(NAVIGATION_BARS)
         }
 
-        binding.settings.applyInsetter {
-            type(navigationBars = true) {
-                margin(bottom = true)
-            }
-        }
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
@@ -171,11 +165,13 @@ class SettingsActivity : LocalizationActivity() {
                             )
                             if (getLanguage(requireContext()) != currentLangauge) {
                                 startActivity(Intent(context, SettingsActivity::class.java))
-                                activity?.finish()
-                                activity?.overridePendingTransition(
-                                    android.R.anim.fade_in,
-                                    android.R.anim.fade_out
-                                )
+                                activity?.run {
+                                    finish()
+                                    overridePendingTransition(
+                                        android.R.anim.fade_in,
+                                        android.R.anim.fade_out
+                                    )
+                                }
                             }
                         }
                     }
@@ -306,11 +302,13 @@ class SettingsActivity : LocalizationActivity() {
                             if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {
                                 editor.putString("accent_color", colorOut(color)).apply()
                                 startActivity(Intent(context, SettingsActivity::class.java))
-                                activity?.finish()
-                                activity?.overridePendingTransition(
-                                    android.R.anim.fade_in,
-                                    android.R.anim.fade_out
-                                )
+                                activity?.run {
+                                    finish()
+                                    overridePendingTransition(
+                                        android.R.anim.fade_in,
+                                        android.R.anim.fade_out
+                                    )
+                                }
                             }
                         }
                     }

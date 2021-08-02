@@ -30,6 +30,7 @@ import org.bandev.buddhaquotes.BuildConfig
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.AboutAdapter
 import org.bandev.buddhaquotes.core.AnimationUtils
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
@@ -50,39 +51,48 @@ class AboutFragment : Fragment() {
         with(binding) {
             aboutAppVersion.text = BuildConfig.VERSION_NAME
 
-            with(contributorsPeople) {
+            contributorsPeople.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
                 setHasFixedSize(true)
             }
 
-            with(promises) {
+            promises.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
                 setHasFixedSize(true)
             }
 
-            titleCard.setOnClickListener { expandTitleCard() }
-            contributorsCard.setOnClickListener { expandContributorCard() }
-            promiseCard.setOnClickListener { expandPromiseCard() }
+            titleCard.setOnClickListener { expandTitleCard(it) }
+            contributorsCard.setOnClickListener { expandContributorCard(it) }
+            promiseCard.setOnClickListener { expandPromiseCard(it) }
         }
     }
 
-    private fun expandTitleCard() {
-        val visible = binding.titleCardExpandable.visibility != View.VISIBLE
-        if (visible) AnimationUtils.expand(binding.titleCardExpandable)
-        else AnimationUtils.collapse(binding.titleCardExpandable)
+    private fun expandTitleCard(view: View) {
+        Feedback.virtualKey(view)
+        binding.titleCardExpandable.also {
+            val visible = it.visibility != View.VISIBLE
+            if (visible) AnimationUtils.expand(it)
+            else AnimationUtils.collapse(it)
+        }
     }
 
-    private fun expandContributorCard() {
-        val visible = binding.contributorsCardExpandable.visibility != View.VISIBLE
-        if (visible) AnimationUtils.expand(binding.contributorsCardExpandable)
-        else AnimationUtils.collapse(binding.contributorsCardExpandable)
+    private fun expandContributorCard(view: View) {
+        Feedback.virtualKey(view)
+        binding.contributorsCardExpandable.also {
+            val visible = it.visibility != View.VISIBLE
+            if (visible) AnimationUtils.expand(it)
+            else AnimationUtils.collapse(it)
+        }
     }
 
-    private fun expandPromiseCard() {
-        val visible = binding.promiseCardExpandable.visibility != View.VISIBLE
-        if (visible) AnimationUtils.expand(binding.promiseCardExpandable)
-        else AnimationUtils.collapse(binding.promiseCardExpandable)
+    private fun expandPromiseCard(view: View) {
+        Feedback.virtualKey(view)
+        binding.promiseCardExpandable.also {
+            val visible = it.visibility != View.VISIBLE
+            if (visible) AnimationUtils.expand(it)
+            else AnimationUtils.collapse(it)
+        }
     }
 }

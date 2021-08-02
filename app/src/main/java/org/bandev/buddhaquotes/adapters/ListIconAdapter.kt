@@ -25,10 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.selects.select
-import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
 

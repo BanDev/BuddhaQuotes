@@ -25,21 +25,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.MessageTypes
-import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
-import org.bandev.buddhaquotes.items.Quote
-import uk.bandev.services.bus.Message
 import uk.bandev.services.bus.Bus
+import uk.bandev.services.bus.Message
 
 /**
  * Shows a list of lists to the user
@@ -59,7 +55,6 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -73,7 +68,6 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         setupRecycler()
 
         bus = Bus(this)
-
     }
 
     /**
@@ -84,8 +78,7 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
     private fun setupRecycler() {
         model.Lists().getAll {
             list = it
-
-            with(binding.listsRecycler) {
+            binding.listsRecycler.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = ListAdapter(list, this@ListsFragment)
                 setHasFixedSize(false)
@@ -131,10 +124,6 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
     override fun onStart() {
         super.onStart()
         bus.listen()
-    }
-
-    override fun onStop() {
-        super.onStop()
     }
 
     companion object {

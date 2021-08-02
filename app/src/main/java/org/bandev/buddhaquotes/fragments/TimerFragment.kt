@@ -54,7 +54,7 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        with(binding.button) {
+        binding.button.apply {
             setBackgroundColor(requireContext().resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
                 Feedback.virtualKey(it)

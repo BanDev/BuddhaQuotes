@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
-import android.widget.Toast
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.Quote
