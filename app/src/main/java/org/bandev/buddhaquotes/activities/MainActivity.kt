@@ -36,15 +36,12 @@ import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
-import dev.chrisbanes.insetter.applyInsetter
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-import org.bandev.buddhaquotes.items.List
-import uk.bandev.services.bus.Bus
 import uk.bandev.services.bus.Message
 
 /**
@@ -63,12 +60,12 @@ class MainActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with(window) {
+        window.apply {
             statusBarColor = Color.TRANSPARENT
-            setNavigationBarColourMain()
+            setNavigationBarColourDefault()
             setDarkStatusIcons()
+            setDecorFitsSystemWindows(this, false)
         }
-        setDecorFitsSystemWindows(window, false)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -76,20 +73,16 @@ class MainActivity : LocalizationActivity() {
             .getInstance(application)
             .create(ViewModel::class.java)
 
-        setSupportActionBar(binding.toolbar)
         with(binding) {
-            with(toolbar) {
-                applyInsetter {
-                    type(statusBars = true) {
-                        margin(top = true)
-                    }
-                }
+            toolbar.apply {
+                setSupportActionBar(this)
+                applyInsets(STATUS_BARS)
                 setNavigationOnClickListener { binding.root.open() }
             }
 
             viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
-            with(navigationView) {
+            navigationView.apply {
                 setNavigationItemSelectedListener { menuItem ->
                     menuItem.isChecked = true
 
@@ -97,7 +90,12 @@ class MainActivity : LocalizationActivity() {
                         R.id.quote -> binding.bottomBar.selectTabAt(0)
                         R.id.lists -> binding.bottomBar.selectTabAt(1)
                         R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                        R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
+                        R.id.settings -> startActivity(
+                            Intent(
+                                context,
+                                SettingsActivity::class.java
+                            )
+                        )
                         R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
                     }
 
@@ -106,9 +104,9 @@ class MainActivity : LocalizationActivity() {
                 }
             }
 
-            with(createList) {
+            createList.apply {
                 backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-                setOnClickListener { it ->
+                setOnClickListener {
                     Feedback.virtualKey(it)
                     it.isEnabled = false
                     InputSheet().show(context) {
@@ -132,12 +130,8 @@ class MainActivity : LocalizationActivity() {
                 }
             }
 
-            with(bottomBar) {
-                applyInsetter {
-                    type(navigationBars = true) {
-                        margin(bottom = true)
-                    }
-                }
+            bottomBar.apply {
+                applyInsets(NAVIGATION_BARS)
                 setupWithViewPager2(binding.viewPager)
                 onTabSelected = {
                     when (it) {
@@ -174,47 +168,41 @@ class MainActivity : LocalizationActivity() {
         return when (item.itemId) {
             R.id.help -> {
                 when (binding.bottomBar.selectedIndex) {
-                    0 -> {
-                        InfoSheet().show(this) {
-                            title("Team Collaboration")
-                            content("In the world of software projects, it is inevitable...")
-                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                            displayButtons(false)
-                            withCoverLottieAnimation(LottieAnimation {
-                                ratio(Ratio(2, 1))
-                                setupAnimation {
-                                    setAnimation(R.raw.lotus)
-                                }
-                            })
-                        }
+                    0 -> InfoSheet().show(this) {
+                        title("Team Collaboration")
+                        content("In the world of software projects, it is inevitable...")
+                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                        displayButtons(false)
+                        withCoverLottieAnimation(LottieAnimation {
+                            ratio(Ratio(2, 1))
+                            setupAnimation {
+                                setAnimation(R.raw.lotus)
+                            }
+                        })
                     }
-                    1 -> {
-                        InfoSheet().show(this) {
-                            title("Title")
-                            content("You can do this to meditate")
-                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                            displayButtons(false)
-                            withCoverLottieAnimation(LottieAnimation {
-                                ratio(Ratio(2, 1))
-                                setupAnimation {
-                                    setAnimation(R.raw.lists)
-                                }
-                            })
-                        }
+                    1 -> InfoSheet().show(this) {
+                        title("Title")
+                        content("You can do this to meditate")
+                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                        displayButtons(false)
+                        withCoverLottieAnimation(LottieAnimation {
+                            ratio(Ratio(2, 1))
+                            setupAnimation {
+                                setAnimation(R.raw.lists)
+                            }
+                        })
                     }
-                    2 -> {
-                        InfoSheet().show(this) {
-                            title("Title")
-                            content("Content")
-                            closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                            displayButtons(false)
-                            withCoverLottieAnimation(LottieAnimation {
-                                ratio(Ratio(2, 1))
-                                setupAnimation {
-                                    setAnimation(R.raw.meditation)
-                                }
-                            })
-                        }
+                    2 -> InfoSheet().show(this) {
+                        title("Title")
+                        content("Content")
+                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                        displayButtons(false)
+                        withCoverLottieAnimation(LottieAnimation {
+                            ratio(Ratio(2, 1))
+                            setupAnimation {
+                                setAnimation(R.raw.meditation)
+                            }
+                        })
                     }
                 }
                 true
@@ -225,10 +213,10 @@ class MainActivity : LocalizationActivity() {
 
     override fun onResume() {
         super.onResume()
-        setAccentColour(this)
+        setAccentColour()
         with(binding) {
             createList.backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-            with(bottomBar) {
+            bottomBar.apply {
                 tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
                 indicatorColor = resolveColorAttr(R.attr.colorPrimary)
             }

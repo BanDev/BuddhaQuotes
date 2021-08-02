@@ -35,7 +35,6 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.preference.PreferenceManager
 import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.Quote
 
 /**
@@ -104,23 +103,25 @@ fun Window.setDarkStatusIcons() {
  * @param [context] context of activity (Context)
  */
 
-fun setAccentColour(context: Context) {
-    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+fun Context.setAccentColour() {
+    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-    when (sharedPrefs.getString("accent_color", "original")) {
-        "blue" -> context.setTheme(R.style.AppTheme_Blue)
-        "green" -> context.setTheme(R.style.AppTheme_Green)
-        "orange" -> context.setTheme(R.style.AppTheme_Orange)
-        "yellow" -> context.setTheme(R.style.AppTheme_Yellow)
-        "teal" -> context.setTheme(R.style.AppTheme_Teal)
-        "violet" -> context.setTheme(R.style.AppTheme_Violet)
-        "pink" -> context.setTheme(R.style.AppTheme_Pink)
-        "lightBlue" -> context.setTheme(R.style.AppTheme_LightBlue)
-        "red" -> context.setTheme(R.style.AppTheme_Red)
-        "lime" -> context.setTheme(R.style.AppTheme_Lime)
-        "crimson" -> context.setTheme(R.style.AppTheme_Crimson)
-        else -> context.setTheme(R.style.AppTheme_Original)
-    }
+    this.setTheme(
+        when (sharedPrefs.getString("accent_color", "original")) {
+            "blue" -> R.style.AppTheme_Blue
+            "green" -> R.style.AppTheme_Green
+            "orange" -> R.style.AppTheme_Orange
+            "yellow" -> R.style.AppTheme_Yellow
+            "teal" -> R.style.AppTheme_Teal
+            "violet" -> R.style.AppTheme_Violet
+            "pink" -> R.style.AppTheme_Pink
+            "lightBlue" -> R.style.AppTheme_LightBlue
+            "red" -> R.style.AppTheme_Red
+            "lime" -> R.style.AppTheme_Lime
+            "crimson" -> R.style.AppTheme_Crimson
+            else -> R.style.AppTheme_Original
+        }
+    )
 }
 
 /**
@@ -166,17 +167,16 @@ fun List<Any>.find(item: Any): Int {
     return -1
 }
 
-const val NAVIGATIONBARS: Int = 70
-const val STATUSBARS: Int = 60
-
+const val NAVIGATION_BARS: Int = 70
+const val STATUS_BARS: Int = 60
 
 fun View.applyInsets(type: Int) {
     this.applyInsetter {
-        if (type == NAVIGATIONBARS) {
+        if (type == NAVIGATION_BARS) {
             type(navigationBars = true) {
                 margin(bottom = true)
             }
-        } else if (type == STATUSBARS) {
+        } else if (type == STATUS_BARS) {
             type(statusBars = true) {
                 margin(top = true)
             }

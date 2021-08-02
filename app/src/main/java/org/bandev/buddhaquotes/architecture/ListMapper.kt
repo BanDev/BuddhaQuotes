@@ -22,10 +22,7 @@ package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
 import android.content.Context
-import android.content.res.ColorStateList
-import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import coil.load
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon

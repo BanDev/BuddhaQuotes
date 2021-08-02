@@ -31,6 +31,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.core.AnimationUtils
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
 class LibraryAdapter(private val list: List<Library>) :
@@ -71,6 +72,7 @@ class LibraryAdapter(private val list: List<Library>) :
                     Html.FROM_HTML_MODE_COMPACT
                 ) else Html.fromHtml(license?.licenseShortDescription)
             root.setOnClickListener {
+                Feedback.virtualKey(it)
                 val visible = cardExpandable.visibility != View.VISIBLE
                 if (visible) AnimationUtils.expand(cardExpandable)
                 else AnimationUtils.collapse(cardExpandable)

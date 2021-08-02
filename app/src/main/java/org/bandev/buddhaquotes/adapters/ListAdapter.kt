@@ -20,17 +20,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.adapters
 
-import android.app.Application
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.databinding.ListAdapterItemBinding
 import org.bandev.buddhaquotes.items.List
 
@@ -50,6 +50,7 @@ class ListAdapter(
         val iconIcon: ImageView = binding.iconIcon
         val iconBack: ConstraintLayout = binding.iconBack
         val summary: TextView = binding.summary
+        val bin: ImageButton = binding.bin
         val root: CardView = binding.root
     }
 
@@ -66,17 +67,17 @@ class ListAdapter(
         val item = list[position]
 
         with(holder) {
-            title.text =
-                if (item.id != 0) item.title else holder.root.context.getString(R.string.favourites)
-            summary.text = root.context.getString(
+            title.text = if (item.id != 0) item.title else title.context.getString(R.string.favourites)
+            iconIcon.setImageResource(item.icon.drawable)
+            iconBack.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
+            summary.text = summary.context.getString(
                 if (item.count == 1) R.string.quote else R.string.quotes,
                 item.count
             )
+            bin.visibility = if (item.id != 0) View.VISIBLE else View.INVISIBLE
             root.setOnClickListener { listener.select(item) }
         }
 
-        holder.iconIcon.setImageResource(item.icon.drawable)
-        holder.iconBack.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
     }
 
     override fun getItemCount(): Int = list.size

@@ -46,7 +46,7 @@ class AboutActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAccentColour(this)
+        setAccentColour()
         with(window) {
             setNavigationBarColourMain()
             setDarkStatusIcons()
@@ -56,8 +56,10 @@ class AboutActivity : LocalizationActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.apply {
+            setSupportActionBar(this)
+            setNavigationOnClickListener { onBackPressed() }
+        }
 
         binding.viewPager.adapter = AboutStateAdapter(this)
         TabLayoutMediator(

@@ -26,7 +26,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +46,7 @@ import uk.bandev.services.bus.Message
 /**
  * The activity where the user can see all the
  * quotes they have in their lists and make some
- * list adjustements.
+ * list adjustments.
  *
  * @date 28/7/21
  */
@@ -55,7 +54,6 @@ import uk.bandev.services.bus.Message
 class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
 
     private lateinit var binding: ActivityListBinding
-    private lateinit var menu: Menu
     private lateinit var vm: ViewModel
     private lateinit var list: List
     private lateinit var quotes: MutableList<Quote>
@@ -69,7 +67,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         setContentView(binding.root)
 
         // Styling things
-        setAccentColour(this)
+        setAccentColour()
         with(window) {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
@@ -81,8 +79,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
             ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
 
         // Do insets
-        binding.toolbar.applyInsets(STATUSBARS)
-        binding.add.applyInsets(NAVIGATIONBARS)
+        binding.toolbar.applyInsets(STATUS_BARS)
+        binding.add.applyInsets(NAVIGATION_BARS)
 
         // Create or get ViewModel
         vm = ViewModelProvider.AndroidViewModelFactory
@@ -96,7 +94,23 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         // On add button pressed
-        binding.add.setOnClickListener { add() }
+        binding.add.setOnClickListener {
+            Feedback.virtualKey(it)
+            it.isEnabled = false
+            vm.Quotes().getAll { mutableList ->
+                mutableList.removeAll(quotes)
+                AddQuoteSheet().show(this) {
+                    displayToolbar(false)
+                    displayHandle(true)
+                    with(mutableList)
+                    onPositive { quote ->
+                        Feedback.confirm(binding.root)
+                        onQuoteAdded(quote)
+                    }
+                    onClose { it.isEnabled = true }
+                }
+            }
+        }
 
         // Get id from intent extras
         id = (intent.extras ?: return).getInt("id")
@@ -110,39 +124,12 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         // Get quotes from the list
         vm.ListQuotes().getFrom(id) {
             quotes = it
-            binding.recycler.adapter = QuoteAdapter(quotes, this, id)
-            binding.recycler.layoutManager = LinearLayoutManager(this)
-            binding.recycler.setHasFixedSize(false)
-            checkLength()
-        }
-    }
-
-    fun add() {
-        // Show a sheet with all avaliable quotes
-        vm.Quotes().getAll {
-            AddQuoteSheet().show(this) {
-                it.removeAll(quotes)
-                displayToolbar(false)
-                displayHandle(true)
-                with(it)
-                onPositive { quote ->
-                    Feedback.confirm(binding.root)
-                    onQuoteAdded(quote)
-                }
+            binding.recycler.apply {
+                adapter = QuoteAdapter(quotes, this@ListActivity, id)
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(false)
             }
-        }
-    }
-
-    fun settings() {
-        // Show a sheet with some settings
-        menu.findItem(R.id.tune).isEnabled = false
-        CustomiseListSheet().show(this, application) {
-            displayToolbar(false)
-            displayHandle(true)
-            displayPositiveButton(false)
-            displayNegativeButton(false)
-            attachVariables(vm, this@ListActivity.id)
-            onClose { menu.findItem(R.id.tune).isEnabled = true }
+            checkLength()
         }
     }
 
@@ -188,17 +175,24 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         binding.empty.visibility = View.GONE
     }
 
-    override fun onCreateOptionsMenu(_menu: Menu?): Boolean {
-        // Inflate custom menu
-        menuInflater.inflate(R.menu.list_activity_menu, _menu)
-        menu = _menu!!
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.list_activity_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle menu clicks
         when (item.itemId) {
-            R.id.tune -> settings()
+            R.id.tune -> {
+                item.isEnabled = false
+                CustomiseListSheet().show(this, application) {
+                    displayToolbar(false)
+                    displayHandle(true)
+                    displayPositiveButton(false)
+                    displayNegativeButton(false)
+                    attachVariables(vm, this@ListActivity.id)
+                    onClose { item.isEnabled = true }
+                }
+            }
             else -> super.onOptionsItemSelected(item)
         }
         return true

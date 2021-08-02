@@ -24,12 +24,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.find
+import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.databinding.QuoteAdapterItemBinding
 import org.bandev.buddhaquotes.items.Quote
 
@@ -51,6 +51,7 @@ class QuoteAdapter(
     class ViewHolder(binding: QuoteAdapterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val quote: TextView = binding.quote
         val like: ImageView = binding.like
+        val share: ImageView = binding.share
         val bin: ImageView = binding.bin
         val root: CardView = binding.root
     }
@@ -88,6 +89,11 @@ class QuoteAdapter(
             }
         }
 
+        holder.share.setOnClickListener {
+            Feedback.virtualKey(it)
+            it.context.shareQuote(item)
+        }
+
         holder.bin.setOnClickListener {
             Feedback.virtualKey(it)
             notifyItemRemoved(quotes.find(item))
@@ -103,6 +109,5 @@ class QuoteAdapter(
         fun onQuoteUnliked(quote: Quote)
         fun onQuoteRemoved(quote: Quote)
     }
-
 }
 

@@ -26,7 +26,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -38,13 +37,14 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ViewModel
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.MessageTypes
+import org.bandev.buddhaquotes.core.resolveColorAttr
+import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
-import uk.bandev.services.bus.Bus
 import uk.bandev.services.bus.Message
 
 /**
@@ -88,51 +88,17 @@ class QuoteFragment : Fragment() {
         randomQuote()
 
         with(binding) {
-            swipeToRefresh.also {
-                it.setOnRefreshListener {
+            swipeToRefresh.apply {
+                setOnRefreshListener {
                     randomQuote()
-                    it.isRefreshing = false
+                    isRefreshing = false
                 }
             }
             like.setOnClickListener { onLikeClicked() }
             next.setOnClickListener { randomQuote() }
-            more.setOnClickListener {
-                Feedback.virtualKey(it)
-                showOptionsSheet()
-            }
-            with(quoteFragmentImage) {
-                setImageResource(
-                    when (sharedPrefs.getInt(quoteImagePref, 0)) {
-                        1 -> R.drawable.image_monk
-                        2 -> R.drawable.image_dharma_wheel
-                        3 -> R.drawable.image_anahata
-                        4 -> R.drawable.image_mandala
-                        5 -> R.drawable.image_endless_knot
-                        6 -> R.drawable.image_elephant
-                        7 -> R.drawable.image_temple
-                        8 -> R.drawable.image_lamp
-                        9 -> R.drawable.image_shrine
-                        10 -> R.drawable.image_lotus
-                        11 -> R.drawable.image_lotus_water
-                        else -> R.drawable.image_buddha
-                    }
-                )
-                contentDescription = getString(
-                    when (sharedPrefs.getInt(quoteImagePref, 0)) {
-                        1 -> R.string.monk
-                        2 -> R.string.dharma_wheel
-                        3 -> R.string.anahata
-                        4 -> R.string.mandala
-                        5 -> R.string.endless_knot
-                        6 -> R.string.elephant
-                        7 -> R.string.temple
-                        8 -> R.string.lamp
-                        9 -> R.string.shrine
-                        10 -> R.string.lotus
-                        11 -> R.string.water_lotus
-                        else -> R.string.buddha
-                    }
-                )
+            more.setOnClickListener { showOptionsSheet(it) }
+            quoteFragmentImage.apply {
+                loadQuoteImage(sharedPrefs.getInt(quoteImagePref, 0))
                 setOnLongClickListener {
                     changeImageSheet()
                     true
@@ -168,8 +134,9 @@ class QuoteFragment : Fragment() {
         model.Quotes().setLike(quote.id, quote.liked)
     }
 
-    private fun showOptionsSheet() {
-        binding.more.isEnabled = false
+    private fun showOptionsSheet(view: View) {
+        Feedback.virtualKey(view)
+        view.isEnabled = false
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             displayToolbar(false)
@@ -182,7 +149,7 @@ class QuoteFragment : Fragment() {
                 Feedback.virtualKey(binding.root)
                 if (index == 0) context?.shareQuote(quote) else showSecondBottomSheet()
             }
-            onClose { binding.more.isEnabled = true }
+            onClose { view.isEnabled = true }
         }
     }
 
@@ -202,9 +169,9 @@ class QuoteFragment : Fragment() {
                     displayToolbar(false)
                     displayHandle(true)
                     with(options)
-                    onPositive { i: Int, _: Option ->
+                    onPositive { index: Int, _: Option ->
                         Feedback.virtualKey(binding.root)
-                        val list = it[i]
+                        val list = it[index]
                         model.ListQuotes().addTo(list.id, quote)
                         list.count++
                         GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
@@ -215,7 +182,7 @@ class QuoteFragment : Fragment() {
     }
 
     private fun ImageView.loadQuoteImage(int: Int) {
-        load(
+        setImageResource(
             when (int) {
                 1 -> R.drawable.image_monk
                 2 -> R.drawable.image_dharma_wheel
@@ -230,10 +197,7 @@ class QuoteFragment : Fragment() {
                 11 -> R.drawable.image_lotus_water
                 else -> R.drawable.image_buddha
             }
-        ) {
-            size(750)
-            crossfade(true)
-        }
+        )
         contentDescription = getString(
             when (int) {
                 1 -> R.string.monk
