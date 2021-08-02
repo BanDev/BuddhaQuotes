@@ -25,6 +25,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,7 +69,8 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         // Setup the recyclerview
         setupRecycler()
 
-        bus = Bus(this)
+        bus = Bus(this, "ListsFragment")
+        bus.listen()
     }
 
     /**
@@ -91,39 +94,38 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
     }
 
     override fun onMessageReceived(message: Message<*>) {
-        prevMessage = if (prevMessage != null) {
-            if (message == prevMessage) return
-            else message
-        } else message
-        if (!this::list.isInitialized) {
-            setupRecycler()
-        }
-        when (message.type) {
-            MessageTypes.NEW_LIST -> {
-                val data = message.data as List
-                list.add(data)
-                binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
-            }
-            MessageTypes.UPDATE_LIST -> {
-                val data = message.data as List
-                var position = -1
-                list.forEachIndexed { index, (id) ->
-                    if (id == data.id) position = index
+        if (this::list.isInitialized) {
+            prevMessage = if (prevMessage != null) {
+                if (message == prevMessage) return
+                else message
+            } else message
+            when (message.type) {
+                MessageTypes.NEW_LIST -> {
+                    val data = message.data as List
+                    list.add(data)
+                    binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
                 }
-                list[position] = data
-                binding.listsRecycler.adapter?.notifyItemChanged(position)
-            }
-            MessageTypes.LIKE_UPDATE -> {
-                val change = message.data as Int
-                list[0].count = list[0].count + change
-                binding.listsRecycler.adapter?.notifyItemChanged(0)
+                MessageTypes.UPDATE_LIST -> {
+                    val data = message.data as List
+                    var position = -1
+                    list.forEachIndexed { index, (id) ->
+                        if (id == data.id) position = index
+                    }
+                    list[position] = data
+                    binding.listsRecycler.adapter?.notifyItemChanged(position)
+                }
+                MessageTypes.LIKE_UPDATE -> {
+                    val change = message.data as Int
+                    list[0].count = list[0].count + change
+                    binding.listsRecycler.adapter?.notifyItemChanged(0)
+                }
             }
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        bus.listen()
+    override fun onDestroy() {
+        super.onDestroy()
+        bus.mute()
     }
 
     companion object {
