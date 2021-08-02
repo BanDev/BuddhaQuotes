@@ -26,6 +26,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -62,10 +63,12 @@ class MainActivity : LocalizationActivity() {
 
         window.apply {
             statusBarColor = Color.TRANSPARENT
-            setNavigationBarColourDefault()
+            navigationBarColor = ContextCompat.getColor(context, R.color.abbBackgroundColor)
             setDarkStatusIcons()
             setDecorFitsSystemWindows(this, false)
         }
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -77,6 +77,12 @@ fun Window.setNavigationBarColourMain() {
     }
 }
 
+fun Window.setNavigationColour() {
+    if (inDarkMode(context)) {
+        navigationBarColor = getColor(this.context, R.color.abbBackgroundColor)
+    }
+}
+
 fun inDarkMode(context: Context): Boolean {
     return when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
         Configuration.UI_MODE_NIGHT_YES -> true

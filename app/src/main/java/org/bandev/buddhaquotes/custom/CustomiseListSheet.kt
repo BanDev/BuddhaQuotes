@@ -60,7 +60,7 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
 
     override fun select(icon: ListIcon) {
         model.Lists().updateIcon(listId, icon)
-        model.Lists().get(0) {
+        model.Lists().get(listId) {
             GlobalBus.post(Message(MessageTypes.UPDATE_LIST, it))
         }
     }

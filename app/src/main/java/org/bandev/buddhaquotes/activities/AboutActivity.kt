@@ -48,7 +48,7 @@ class AboutActivity : LocalizationActivity() {
 
         setAccentColour()
         with(window) {
-            setNavigationBarColourMain()
+            navigationBarColor = getColor(context, R.color.background)
             setDarkStatusIcons()
             statusBarColor = getColor(context, R.color.background)
         }

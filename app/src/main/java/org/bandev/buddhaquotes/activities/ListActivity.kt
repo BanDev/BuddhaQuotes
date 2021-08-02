@@ -71,6 +71,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         with(window) {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
+            setNavigationBarColourDefault()
             setDarkStatusIcons()
         }
         Animations().toolbarShadowScroll(binding.recycler, binding.appBar)
