@@ -20,16 +20,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.custom
 
-import android.os.Handler
-import android.os.Looper
 import android.view.View
+import kotlinx.coroutines.*
 
 /**
  * DoubleClickListener extends onClickListener, allowing for the detection of double clicks.
  */
 
 abstract class DoubleClickListener : View.OnClickListener {
-    private var handler: Handler? = null
+    private var job: Job? = null
     private val delay = 400L
     private var lastClickTime: Long = 0
     override fun onClick(view: View?) {
@@ -40,13 +39,14 @@ abstract class DoubleClickListener : View.OnClickListener {
     }
 
     private fun processSingleClickEvent(view: View?) {
-        handler = Handler(Looper.getMainLooper())
-        val runnable = Runnable { onSingleClick(view) }
-        (handler ?: return).postDelayed(runnable, delay)
+        job = CoroutineScope(Dispatchers.Main).launch {
+            delay(delay)
+            onSingleClick(view)
+        }
     }
 
     private fun processDoubleClickEvent(view: View?) {
-        if (handler != null) (handler ?: return).removeCallbacksAndMessages(null)
+        job?.cancel()
         onDoubleClick(view)
     }
 
