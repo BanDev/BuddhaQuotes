@@ -33,7 +33,6 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat.getColor
 import androidx.preference.PreferenceManager
-import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.Quote
 
@@ -170,25 +169,4 @@ fun List<Any>.find(item: Any): Int {
         if (this[i] == item) return i
     }
     return -1
-}
-
-const val NAVIGATION_BARS: Int = 70
-const val STATUS_BARS: Int = 60
-const val PADDING: Int = 0
-const val MARGIN: Int = 1
-
-fun View.applyInsets(type: Int, option: Int = MARGIN) {
-    this.applyInsetter {
-        if (type == NAVIGATION_BARS) {
-            type(navigationBars = true) {
-                if (option == PADDING) padding(bottom = true)
-                else margin(bottom = true)
-            }
-        } else if (type == STATUS_BARS) {
-            type(statusBars = true) {
-                if (option == PADDING) padding(top = true)
-                else margin(top = true)
-            }
-        }
-    }
 }

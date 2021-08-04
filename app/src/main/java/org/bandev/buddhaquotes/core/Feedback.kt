@@ -36,16 +36,6 @@ object Feedback {
         )
     }
 
-    fun reject(view: View) {
-        feedback(
-            view, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                HapticFeedbackConstants.REJECT
-            } else {
-                HapticFeedbackConstants.VIRTUAL_KEY
-            }
-        )
-    }
-
     fun virtualKey(view: View) {
         feedback(view, HapticFeedbackConstants.VIRTUAL_KEY)
     }

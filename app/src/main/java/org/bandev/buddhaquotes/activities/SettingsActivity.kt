@@ -40,9 +40,10 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
-import dev.chrisbanes.insetter.applyInsetter
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
+import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 import java.util.*
 
@@ -126,8 +127,9 @@ class SettingsActivity : LocalizationActivity() {
                     }
                 )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    val currentLangauge = getLanguage(requireContext())
+                    it.isEnabled = false
                     Feedback.virtualKey(requireView())
+                    val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
@@ -171,6 +173,7 @@ class SettingsActivity : LocalizationActivity() {
                                 }
                             }
                         }
+                        onClose { it.isEnabled = true }
                     }
                     true
                 }
@@ -192,6 +195,7 @@ class SettingsActivity : LocalizationActivity() {
                 )
 
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    it.isEnabled = false
                     Feedback.virtualKey(requireView())
                     OptionsSheet().show(requireContext()) {
                         style(SheetStyle.DIALOG)
@@ -227,6 +231,7 @@ class SettingsActivity : LocalizationActivity() {
                                 editor.putInt("appThemeInt", index).apply()
                             }
                         }
+                        onClose { it.isEnabled = true }
                     }
                     true
                 }
@@ -271,6 +276,7 @@ class SettingsActivity : LocalizationActivity() {
                     }
                 )
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                    it.isEnabled = false
                     Feedback.virtualKey(requireView())
                     ColorSheet().show(requireContext()) {
                         colorsRes(
@@ -307,6 +313,7 @@ class SettingsActivity : LocalizationActivity() {
                                 }
                             }
                         }
+                        onClose { it.isEnabled = true }
                     }
                     true
                 }
