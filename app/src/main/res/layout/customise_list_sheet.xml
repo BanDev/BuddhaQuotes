@@ -4,16 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="?android:textColorPrimary"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="15dp"
-        android:text="@string/list_icon"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <com.maxkeppeler.sheets.core.views.SheetsRecyclerView
         android:id="@+id/list_icon_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

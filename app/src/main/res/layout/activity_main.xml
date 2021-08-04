@@ -1,83 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:title="@string/app_name"
+        app:titleTextAppearance="@style/toolbarText"
+        app:titleTextColor="?android:textColorPrimary"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_menu"
-            app:title="@string/app_name"
-            app:titleTextAppearance="@style/toolbarText"
-            app:titleTextColor="?android:textColorPrimary"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <nl.joery.animatedbottombar.AnimatedBottomBar
-            android:id="@+id/bottom_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/abbBackgroundColor"
-            android:elevation="4dp"
-            android:overScrollMode="never"
-            app:abb_animationDuration="200"
-            app:abb_indicatorAppearance="round"
-            app:abb_indicatorHeight="4dp"
-            app:abb_indicatorMargin="16dp"
-            app:abb_selectedIndex="1"
-            app:abb_selectedTabType="text"
-            app:abb_tabs="@menu/bottom_nav_menu"
-            app:abb_textAppearance="@style/AnimatedBottomBarText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:overScrollMode="never"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/create_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone"
-            app:tint="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_add" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
-        style="@style/Widget.Custom.NavigationView"
-        android:theme="@style/Theme.NavigationView.Green"
-        android:layout_width="wrap_content"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:background="@color/background"
-        android:clipToPadding="false"
-        app:headerLayout="@layout/main_activity_side_navigation_header"
-        app:menu="@menu/main_activity_side_navigation" />
+        android:fitsSystemWindows="false">
 
-</androidx.drawerlayout.widget.DrawerLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <nl.joery.animatedbottombar.AnimatedBottomBar
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/abbBackgroundColor"
+                android:elevation="4dp"
+                android:overScrollMode="never"
+                app:abb_animationDuration="200"
+                app:abb_indicatorAppearance="round"
+                app:abb_indicatorHeight="4dp"
+                app:abb_indicatorMargin="16dp"
+                app:abb_selectedIndex="1"
+                app:abb_selectedTabType="text"
+                app:abb_tabs="@menu/bottom_nav_menu"
+                app:abb_textAppearance="@style/AnimatedBottomBarText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/create_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:tint="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
+            style="@style/Widget.Custom.NavigationView"
+            android:theme="@style/Theme.NavigationView.Original"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/background"
+            android:clipToPadding="false"
+            app:menu="@menu/main_activity_side_navigation" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</LinearLayout>

@@ -63,9 +63,17 @@ class AboutFragment : Fragment() {
                 setHasFixedSize(true)
             }
 
+            attribution.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = AboutAdapter(resources.getStringArray(R.array.attributions))
+                setHasFixedSize(true)
+            }
+
+
             titleCard.setOnClickListener { expandTitleCard(it) }
             contributorsCard.setOnClickListener { expandContributorCard(it) }
             promiseCard.setOnClickListener { expandPromiseCard(it) }
+            attributionCard.setOnClickListener { expandAttributionCard(it) }
         }
     }
 
@@ -90,6 +98,15 @@ class AboutFragment : Fragment() {
     private fun expandPromiseCard(view: View) {
         Feedback.virtualKey(view)
         binding.promiseCardExpandable.also {
+            val visible = it.visibility != View.VISIBLE
+            if (visible) AnimationUtils.expand(it)
+            else AnimationUtils.collapse(it)
+        }
+    }
+
+    private fun expandAttributionCard(view: View) {
+        Feedback.virtualKey(view)
+        binding.attributionCardExpandable.also {
             val visible = it.visibility != View.VISIBLE
             if (visible) AnimationUtils.expand(it)
             else AnimationUtils.collapse(it)

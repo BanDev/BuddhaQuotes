@@ -26,6 +26,8 @@ import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
@@ -50,6 +52,7 @@ import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
+
 /**
  * Main is the main page of Buddha Quotes
  *
@@ -60,6 +63,7 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 class MainActivity : LocalizationActivity() {
 
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
     private lateinit var model: ViewModel
 
@@ -80,11 +84,23 @@ class MainActivity : LocalizationActivity() {
             .getInstance(application)
             .create(ViewModel::class.java)
 
+        actionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
+
+        binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         with(binding) {
             toolbar.apply {
                 setSupportActionBar(this)
                 applyInsets(STATUS_BARS)
-                setNavigationOnClickListener { binding.root.open() }
+                setNavigationOnClickListener { if (drawerLayout.isOpen) drawerLayout.close() else drawerLayout.open() }
             }
 
             viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
@@ -97,11 +113,16 @@ class MainActivity : LocalizationActivity() {
                         R.id.quote -> binding.bottomBar.selectTabAt(0)
                         R.id.lists -> binding.bottomBar.selectTabAt(1)
                         R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                        R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
+                        R.id.settings -> startActivity(
+                            Intent(
+                                context,
+                                SettingsActivity::class.java
+                            )
+                        )
                         R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
                     }
 
-                    binding.root.close()
+                    binding.drawerLayout.close()
                     true
                 }
             }
@@ -224,7 +245,7 @@ class MainActivity : LocalizationActivity() {
 
     override fun onBackPressed() {
         when {
-            binding.root.isOpen -> binding.root.close()
+            binding.drawerLayout.isOpen -> binding.drawerLayout.close()
             binding.bottomBar.selectedIndex != 0 -> binding.bottomBar.selectTabAt(0)
             else -> super.onBackPressed()
         }

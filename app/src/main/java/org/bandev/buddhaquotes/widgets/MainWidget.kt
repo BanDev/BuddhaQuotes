@@ -28,6 +28,7 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.QuoteMapper
 
 /** The widget **/
 class MainWidget : AppWidgetProvider() {
@@ -59,7 +60,7 @@ class MainWidget : AppWidgetProvider() {
                 )
             )
             x++
-            quoteCurrent = "test"
+            quoteCurrent = randomQuote(context)
             views.setTextViewText(R.id.appwidget_text, quoteCurrent)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         } else if (intent.action.equals(widgetLike, ignoreCase = true)) {
@@ -101,11 +102,16 @@ internal fun updateAppWidget(
         setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
         setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
         setImageViewResource(R.id.logo, R.drawable.ic_buddha)
-        setTextViewText(R.id.appwidget_text, "test")
+        setTextViewText(R.id.appwidget_text, randomQuote(context))
     }
 
     getPenIntent(context)
     appWidgetManager.updateAppWidget(appWidgetId, views)
+}
+
+fun randomQuote(context: Context): String {
+    val id = (1..237).random()
+    return context.getString(QuoteMapper.resource(id))
 }
 
 fun getPenIntent(context: Context): PendingIntent {

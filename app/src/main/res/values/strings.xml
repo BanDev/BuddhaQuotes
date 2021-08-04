@@ -21,7 +21,6 @@
     <string name="about_info_paragraph" id="27">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app for Android with a focus on privacy</string>
     <string name="about_contributors" id="28">Really great people</string>
     <string name="about_acknowledgements" id="29">Acknowledgements</string>
-    <string name="about_attribution" id="30">Launcher icon - Freepik via Flaticon</string>
 
     <!-- Miscellaneous Content descriptions  -->
     <string name="buddha_quotes_logo">Buddha Quotes logo</string>
@@ -580,6 +579,7 @@
     <string name="quote">1 quote</string>
     <string name="quotes">%d quotes</string>
     <string name="no_list">You have no lists!</string>
+    <string name="attribution">Attribution</string>
 
     <string-array name="contributors_people">
         <item translatable="false">"@russellbanks"</item>
@@ -595,6 +595,22 @@
         <item>Complete privacy</item>
         <item>Offline app</item>
         <item>Free and Open Source</item>
+    </string-array>
+
+    <string name="close_drawer">Close navigation drawer</string>
+    <string name="open_drawer">Open navigation drawer</string>
+
+
+    <string-array name="attributions">
+        <item>Launcher icon - Freepik via Flaticon</item>
+        <item>Flags icon pack - Freepik via Flaticon</item>
+
+        <item>Buddhism icon pack - IconGeek26 via Flaticon</item>
+
+        <item>Flower animation - Cecep Andeskor via LottieFiles</item>
+        <item>Notification animation - Cecep Andeskor via LottieFiles</item>
+        <item>Meditation animation - Maksim Turkov via LottieFiles</item>
+        <item>Material design icons - Google</item>
     </string-array>
 
 </resources>
