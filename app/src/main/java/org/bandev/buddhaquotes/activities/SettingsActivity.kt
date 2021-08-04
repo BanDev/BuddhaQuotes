@@ -86,14 +86,75 @@ class SettingsActivity : LocalizationActivity() {
 
     class SettingsFragment : PreferenceFragmentCompat() {
 
-        private lateinit var sharedPrefs: SharedPreferences
-        private lateinit var editor: SharedPreferences.Editor
-
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-            sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-            editor = sharedPrefs.edit()
+            val settings = Prefs(requireContext()).Settings()
+
+
+            fun Preference.updateTheme() {
+                val theme = settings.theme
+
+                summary = getString(
+                    when (theme) {
+                        MODE_NIGHT_NO -> R.string.light_mode
+                        MODE_NIGHT_YES -> R.string.dark_mode
+                        else -> R.string.follow_system_default
+                    }
+                )
+
+                icon = getDrawable(
+                    context, when (theme) {
+                        MODE_NIGHT_NO -> R.drawable.ic_light_mode
+                        MODE_NIGHT_YES -> R.drawable.ic_dark_mode
+                        else -> R.drawable.ic_dark_mode
+                    }
+                )
+            }
+
+            fun Preference.updateAccent() {
+                val accent = settings.accent
+
+                summary = getString(
+                    when (accent) {
+                        settings.ACCENT_PINK -> R.string.pink
+                        settings.ACCENT_VIOLET -> R.string.violet
+                        settings.ACCENT_BLUE -> R.string.blue
+                        settings.ACCENT_LIGHT_BLUE -> R.string.lightBlue
+                        settings.ACCENT_TEAL -> R.string.teal
+                        settings.ACCENT_GREEN -> R.string.green
+                        settings.LI -> R.string.lime
+                        settings.ACCENT_Ori -> R.string.yellow
+                        settings.ACCENT_PINK -> R.string.orange
+                        settings.ACCENT_PINK -> R.string.red
+                        settings.ACCENT_PINK -> R.string.crimson
+                        else -> R.string.original
+                    }
+                )
+
+                icon = getDrawable(context, R.drawable.ic_circle)?.apply {
+                    setTint(
+                        getColor(
+                            context,
+                            when (getAccentColourAsString(requireContext())) {
+                                "pink" -> R.color.pinkAccent
+                                "violet" -> R.color.violetAccent
+                                "blue" -> R.color.blueAccent
+                                "lightBlue" -> R.color.lightBlueAccent
+                                "teal" -> R.color.tealAccent
+                                "green" -> R.color.greenAccent
+                                "lime" -> R.color.limeAccent
+                                "yellow" -> R.color.yellowAccent
+                                "orange" -> R.color.orangeAccent
+                                "red" -> R.color.redAccent
+                                "crimson" -> R.color.crimsonAccent
+                                else -> R.color.colorPrimary
+                            }
+                        )
+                    )
+                }
+            }
+
 
             findPreference<Preference>("app_language")?.apply {
                 icon = getDrawable(
@@ -180,20 +241,7 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("app_theme")?.apply {
-                val appTheme = sharedPrefs.getInt("appThemeInt", 2)
-                summary = when (appTheme) {
-                    0 -> getString(R.string.light_mode)
-                    1 -> getString(R.string.dark_mode)
-                    else -> getString(R.string.follow_system_default)
-                }
-                icon = getDrawable(
-                    context, when (appTheme) {
-                        0 -> R.drawable.ic_light_mode
-                        1 -> R.drawable.ic_dark_mode
-                        else -> R.drawable.ic_dark_mode
-                    }
-                )
-
+                updateTheme()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     it.isEnabled = false
                     Feedback.virtualKey(requireView())
@@ -208,28 +256,14 @@ class SettingsActivity : LocalizationActivity() {
                         )
                         onPositive { index: Int, _: Option ->
                             Feedback.confirm(view ?: return@onPositive)
-                            setDefaultNightMode(
-                                when (index) {
-                                    0 -> MODE_NIGHT_NO
-                                    1 -> MODE_NIGHT_YES
-                                    else -> MODE_NIGHT_FOLLOW_SYSTEM
-                                }
-                            )
-                            if (index != sharedPrefs.getInt("appThemeInt", 2)) {
-                                summary = when (index) {
-                                    0 -> getString(R.string.light_mode)
-                                    1 -> getString(R.string.dark_mode)
-                                    else -> getString(R.string.follow_system_default)
-                                }
-                                icon = getDrawable(
-                                    requireContext(), when (index) {
-                                        0 -> R.drawable.ic_light_mode
-                                        1 -> R.drawable.ic_dark_mode
-                                        else -> R.drawable.ic_dark_mode
-                                    }
-                                )
-                                editor.putInt("appThemeInt", index).apply()
+
+                            settings.theme = when (index) {
+                                0 -> MODE_NIGHT_NO
+                                1 -> MODE_NIGHT_YES
+                                else -> MODE_NIGHT_FOLLOW_SYSTEM
                             }
+                            setDefaultNightMode(settings.theme)
+                            updateTheme()
                         }
                         onClose { it.isEnabled = true }
                     }
@@ -238,43 +272,7 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("accent_color")?.apply {
-                val drawable = getDrawable(context, R.drawable.ic_circle)
-                drawable?.setTint(
-                    getColor(
-                        context,
-                        when (getAccentColourAsString(requireContext())) {
-                            "pink" -> R.color.pinkAccent
-                            "violet" -> R.color.violetAccent
-                            "blue" -> R.color.blueAccent
-                            "lightBlue" -> R.color.lightBlueAccent
-                            "teal" -> R.color.tealAccent
-                            "green" -> R.color.greenAccent
-                            "lime" -> R.color.limeAccent
-                            "yellow" -> R.color.yellowAccent
-                            "orange" -> R.color.orangeAccent
-                            "red" -> R.color.redAccent
-                            "crimson" -> R.color.crimsonAccent
-                            else -> R.color.colorPrimary
-                        }
-                    )
-                )
-                icon = drawable
-                summary = getString(
-                    when (getAccentColourAsString(requireContext())) {
-                        "pink" -> R.string.pink
-                        "violet" -> R.string.violet
-                        "blue" -> R.string.blue
-                        "lightBlue" -> R.string.lightBlue
-                        "teal" -> R.string.teal
-                        "green" -> R.string.green
-                        "lime" -> R.string.lime
-                        "yellow" -> R.string.yellow
-                        "orange" -> R.string.orange
-                        "red" -> R.string.red
-                        "crimson" -> R.string.crimson
-                        else -> R.string.original
-                    }
-                )
+
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     it.isEnabled = false
                     Feedback.virtualKey(requireView())
