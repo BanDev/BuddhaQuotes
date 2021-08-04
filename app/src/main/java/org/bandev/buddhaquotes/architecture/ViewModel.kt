@@ -68,7 +68,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         /** Get a random quote */
         fun getRandom(after: (quote: Quote) -> Unit) {
             count { size ->
-                get((0..size).random()) { quote -> after(quote) }
+                get((1..size).random()) { quote -> after(quote) }
             }
         }
 

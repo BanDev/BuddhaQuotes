@@ -35,7 +35,6 @@
     <color name="crimsonAccent">#DC143C</color>
 
     <color name="blueAccentFade">#264285F4</color>
-    <color name="greenAccentFade">#263DDC84</color>
     <color name="yellowAccentFade">#26FFBD59</color> <!-- The OG Buddha Quotes Colour ;) -->
     <color name="orangeAccentFade">#26FF7522</color>
     <color name="tealAccentFade">#2600CCB8</color>
@@ -46,6 +45,5 @@
     <color name="limeAccentFade">#26C5DE00</color>
     <color name="crimsonAccentFade">#26DC143C</color>
 
-    <color name="meditateBack">#5ce1e6</color>
 
 </resources>

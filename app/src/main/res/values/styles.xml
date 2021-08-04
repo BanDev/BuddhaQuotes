@@ -33,11 +33,6 @@
         <item name="colorPrimaryFaded">@color/blueAccentFade</item>
     </style>
 
-    <style name="Theme.NavigationView.Green" parent="Theme.NavigationView">
-        <item name="colorPrimary">@color/greenAccent</item>
-        <item name="colorPrimaryFaded">@color/greenAccentFade</item>
-    </style>
-
     <style name="Theme.NavigationView.Orange" parent="Theme.NavigationView">
         <item name="colorPrimary">@color/orangeAccent</item>
         <item name="colorPrimaryFaded">@color/orangeAccentFade</item>

@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -121,18 +122,19 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         // Get metadata about the list from db
         vm.Lists().get(id) {
             list = it
-            binding.toolbar.title = list.title
-        }
+            binding.toolbar.title = if (list.id == 0) getString(R.string.favourites) else list.title
 
-        // Get quotes from the list
-        vm.ListQuotes().getFrom(id) {
-            quotes = it
-            binding.recycler.apply {
-                adapter = QuoteAdapter(quotes, this@ListActivity, id)
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(false)
+            // Get quotes from the list
+            vm.ListQuotes().getFrom(id) { quotes ->
+                this.quotes = quotes
+                binding.recycler.apply {
+                    adapter = QuoteAdapter(quotes, this@ListActivity, list.id)
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(false)
+                }
+                checkLength()
             }
-            checkLength()
+
         }
 
         binding.recycler.applyInsets(NAVIGATION_BARS, PADDING)
@@ -190,8 +192,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
             R.id.tune -> {
                 item.isEnabled = false
                 CustomiseListSheet().show(this, application) {
-                    displayToolbar(false)
-                    displayHandle(true)
+                    title(R.string.list_icon)
                     displayPositiveButton(false)
                     displayNegativeButton(false)
                     attachVariables(vm, this@ListActivity.id)

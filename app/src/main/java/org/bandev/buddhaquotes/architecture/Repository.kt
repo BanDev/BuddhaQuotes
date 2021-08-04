@@ -37,7 +37,7 @@ import org.bandev.buddhaquotes.items.Quote
 class Repository(val application: Application) {
 
     private val db = Db.getInstance(application.applicationContext)!!
-    private val qm = QuoteMapper(application)
+    private val qm = QuoteMapper
     private val lm = ListMapper(application)
 
     /**

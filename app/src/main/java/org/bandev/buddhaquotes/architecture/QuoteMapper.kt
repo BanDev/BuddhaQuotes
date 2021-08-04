@@ -20,7 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.architecture
 
-import android.app.Application
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.Quote
 
@@ -33,7 +32,7 @@ import org.bandev.buddhaquotes.items.Quote
  * @author Jack Devey
  */
 
-class QuoteMapper(val application: Application) {
+object QuoteMapper {
 
     /** Find a quote and nicefy it for the UI */
     fun convert(quote: Db.Quote): Quote {
