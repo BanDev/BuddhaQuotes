@@ -45,6 +45,9 @@ import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
+import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
+import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 /**

@@ -38,6 +38,9 @@ import com.maxkeppeler.sheets.time.TimeFormat
 import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
+import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
+import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
 class TimerActivity : LocalizationActivity() {

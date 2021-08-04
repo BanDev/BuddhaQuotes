@@ -34,13 +34,17 @@ import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
+import org.bandev.buddhaquotes.core.Insets.PADDING
+import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
+import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
-import org.bandev.buddhaquotes.bus.Message
 
 
 /**
