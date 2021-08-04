@@ -106,7 +106,6 @@ fun Window.setDarkStatusIcons() {
 
 /**
  * Sets activity's theme based off setting from preferences
- * @param [context] context of activity (Context)
  */
 
 fun Context.setAccentColour() {

@@ -40,7 +40,7 @@ import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
-import uk.bandev.services.bus.Message
+import org.bandev.buddhaquotes.bus.Message
 
 
 /**
@@ -76,39 +76,37 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         }
         Animations().toolbarShadowScroll(binding.recycler, binding.appBar)
         setDecorFitsSystemWindows(window, false)
-        binding.add.backgroundTintList =
-            ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-
-        // Do insets
-        binding.toolbar.applyInsets(STATUS_BARS)
-        binding.add.applyInsets(NAVIGATION_BARS)
 
         // Create or get ViewModel
         vm = ViewModelProvider.AndroidViewModelFactory
             .getInstance(application)
             .create(ViewModel::class.java)
 
-        // Setup toolbar
-        setSupportActionBar(binding.toolbar)
-
         // On back button pressed
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.apply {
+            setSupportActionBar(this)
+            applyInsets(STATUS_BARS)
+            setNavigationOnClickListener { onBackPressed() }
+        }
 
-        // On add button pressed
-        binding.add.setOnClickListener {
-            Feedback.virtualKey(it)
-            it.isEnabled = false
-            vm.Quotes().getAll { mutableList ->
-                mutableList.removeAll(quotes)
-                AddQuoteSheet().show(this) {
-                    displayToolbar(false)
-                    displayHandle(true)
-                    with(mutableList)
-                    onPositive { quote ->
-                        Feedback.confirm(binding.root)
-                        onQuoteAdded(quote)
+        binding.add.apply {
+            backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+            applyInsets(NAVIGATION_BARS)
+            setOnClickListener {
+                Feedback.virtualKey(it)
+                it.isEnabled = false
+                vm.Quotes().getAll { mutableList ->
+                    mutableList.removeAll(quotes)
+                    AddQuoteSheet().show(context) {
+                        displayToolbar(false)
+                        displayHandle(true)
+                        with(mutableList)
+                        onPositive { quote ->
+                            Feedback.confirm(binding.root)
+                            onQuoteAdded(quote)
+                        }
+                        onClose { it.isEnabled = true }
                     }
-                    onClose { it.isEnabled = true }
                 }
             }
         }

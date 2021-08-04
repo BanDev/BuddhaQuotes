@@ -56,7 +56,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.4.0-alpha03'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
@@ -72,9 +72,6 @@ dependencies {
 
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
-
-    // Coil - https://github.com/coil-kt/coil
-    implementation 'io.coil-kt:coil:1.3.1'
 
     // FlowBus - https://github.com/Kosert/FlowBus
     def flowbus_version = "1.1"

@@ -23,16 +23,16 @@ package org.bandev.buddhaquotes.custom
 import android.app.Application
 import android.content.Context
 import android.view.View
-import org.bandev.buddhaquotes.architecture.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.Sheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.adapters.ListIconAdapter
 import org.bandev.buddhaquotes.architecture.ListMapper
+import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.MessageTypes
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
-import uk.bandev.services.bus.Message
 
 class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
 
@@ -50,7 +50,7 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
     override fun onCreateLayoutView(): View {
         binding = CustomiseListSheetBinding.inflate(layoutInflater)
 
-        with(binding.listIconRecycler) {
+        binding.listIconRecycler.apply {
             adapter = ListIconAdapter(listIconManager.listIcons, this@CustomiseListSheet)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }

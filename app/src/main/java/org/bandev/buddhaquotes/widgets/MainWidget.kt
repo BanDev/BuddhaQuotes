@@ -28,7 +28,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.Quotes
 
 /** The widget **/
 class MainWidget : AppWidgetProvider() {
@@ -60,7 +59,7 @@ class MainWidget : AppWidgetProvider() {
                 )
             )
             x++
-            quoteCurrent = Quotes().getQuote(0, context)
+            quoteCurrent = "test"
             views.setTextViewText(R.id.appwidget_text, quoteCurrent)
             appWidgetManager.updateAppWidget(appWidgetIds, views)
         } else if (intent.action.equals(widgetLike, ignoreCase = true)) {
@@ -102,7 +101,7 @@ internal fun updateAppWidget(
         setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
         setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
         setImageViewResource(R.id.logo, R.drawable.ic_buddha)
-        setTextViewText(R.id.appwidget_text, Quotes().getQuote(0, context))
+        setTextViewText(R.id.appwidget_text, "test")
     }
 
     getPenIntent(context)

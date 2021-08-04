@@ -129,7 +129,6 @@ class SettingsActivity : LocalizationActivity() {
                     val currentLangauge = getLanguage(requireContext())
                     Feedback.virtualKey(requireView())
                     OptionsSheet().show(requireContext()) {
-                        title(R.string.settings_language)
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
                         with(
@@ -290,7 +289,6 @@ class SettingsActivity : LocalizationActivity() {
                                 R.color.colorPrimary
                             )
                         )
-                        title(R.string.settings_accent_colour)
                         style(SheetStyle.DIALOG)
                         defaultView(ColorView.TEMPLATE)
                         disableSwitchColorView()

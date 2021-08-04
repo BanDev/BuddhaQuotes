@@ -1,6 +1,6 @@
 /**
 
-BanDev Services
+Buddha Quotes
 Copyright (C) 2021  BanDev
 
 This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package uk.bandev.services.bus
+package org.bandev.buddhaquotes.bus
 
 /**
  * Message is the structure of a typical message to be

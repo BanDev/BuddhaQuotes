@@ -21,29 +21,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.content.res.ColorStateList.valueOf
+import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.core.TopStyle
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.LottieAnimationRequest.Companion.INFINITE
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-import uk.bandev.services.bus.Message
 
 /**
  * Main is the main page of Buddha Quotes
@@ -62,12 +64,11 @@ class MainActivity : LocalizationActivity() {
         super.onCreate(savedInstanceState)
 
         window.apply {
-            statusBarColor = Color.TRANSPARENT
-            navigationBarColor = ContextCompat.getColor(context, R.color.abbBackgroundColor)
+            statusBarColor = TRANSPARENT
+            navigationBarColor = getColor(context, R.color.abbBackgroundColor)
             setDarkStatusIcons()
             setDecorFitsSystemWindows(this, false)
         }
-
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -93,12 +94,7 @@ class MainActivity : LocalizationActivity() {
                         R.id.quote -> binding.bottomBar.selectTabAt(0)
                         R.id.lists -> binding.bottomBar.selectTabAt(1)
                         R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                        R.id.settings -> startActivity(
-                            Intent(
-                                context,
-                                SettingsActivity::class.java
-                            )
-                        )
+                        R.id.settings -> startActivity(Intent(context, SettingsActivity::class.java))
                         R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
                     }
 
@@ -108,17 +104,17 @@ class MainActivity : LocalizationActivity() {
             }
 
             createList.apply {
-                backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+                backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
                 setOnClickListener {
                     Feedback.virtualKey(it)
                     it.isEnabled = false
                     InputSheet().show(context) {
-                        title(R.string.createNewList)
+                        title(R.string.create_new_list)
                         closeIconButton(IconButton(R.drawable.ic_down_arrow))
                         with(
                             InputEditText {
                                 required()
-                                hint(R.string.insertName)
+                                hint(R.string.insert_name)
                                 resultListener { value ->
                                     model.Lists().new(value.toString()) { list ->
                                         GlobalBus.post(Message(MessageTypes.NEW_LIST, list))
@@ -168,57 +164,54 @@ class MainActivity : LocalizationActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.help -> {
-                when (binding.bottomBar.selectedIndex) {
-                    0 -> InfoSheet().show(this) {
-                        title("Team Collaboration")
-                        content("In the world of software projects, it is inevitable...")
-                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                        displayButtons(false)
-                        withCoverLottieAnimation(LottieAnimation {
-                            ratio(Ratio(2, 1))
-                            setupAnimation {
-                                setAnimation(R.raw.lotus)
-                            }
-                        })
-                    }
-                    1 -> InfoSheet().show(this) {
-                        title("Title")
-                        content("You can do this to meditate")
-                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                        displayButtons(false)
-                        withCoverLottieAnimation(LottieAnimation {
-                            ratio(Ratio(2, 1))
-                            setupAnimation {
-                                setAnimation(R.raw.lists)
-                            }
-                        })
-                    }
-                    2 -> InfoSheet().show(this) {
-                        title("Title")
-                        content("Content")
-                        closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                        displayButtons(false)
-                        withCoverLottieAnimation(LottieAnimation {
-                            ratio(Ratio(2, 1))
-                            setupAnimation {
-                                setAnimation(R.raw.meditation)
-                            }
-                        })
-                    }
-                }
-                true
+        item.isEnabled = false
+        var title = 0
+        var content = 0
+        var animation = 0
+        var repeatCount = 0
+        when (binding.bottomBar.selectedIndex) {
+            0 -> {
+                title = R.string.quote_sheet_title
+                content = R.string.quote_sheet_content
+                animation = R.raw.flower
+                repeatCount = 0
             }
-            else -> super.onOptionsItemSelected(item)
+            1 -> {
+                title = R.string.list_sheet_title
+                content = R.string.list_sheet_content
+                animation = R.raw.lists
+                repeatCount = 0
+            }
+            2 -> {
+                title = R.string.meditate_sheet_title
+                content = R.string.meditate_sheet_content
+                animation = R.raw.meditation
+                repeatCount = INFINITE
+            }
         }
+        InfoSheet().show(this) {
+            title(title)
+            content(content)
+            displayCloseButton(false)
+            displayButtons(false)
+            topStyle(TopStyle.BELOW_COVER)
+            withCoverLottieAnimation(LottieAnimation {
+                ratio(Ratio(5, 2))
+                setupAnimation {
+                    setAnimation(animation)
+                    setRepeatCount(repeatCount)
+                }
+            })
+            onClose { item.isEnabled = true }
+        }
+        return true
     }
 
     override fun onResume() {
         super.onResume()
         setAccentColour()
         with(binding) {
-            createList.backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
+            createList.backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
             bottomBar.apply {
                 tabColorSelected = resolveColorAttr(R.attr.colorPrimary)
                 indicatorColor = resolveColorAttr(R.attr.colorPrimary)

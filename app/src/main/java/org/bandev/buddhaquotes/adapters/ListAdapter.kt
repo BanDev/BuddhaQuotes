@@ -31,6 +31,7 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.ListAdapterItemBinding
 import org.bandev.buddhaquotes.items.List
 
@@ -76,7 +77,10 @@ class ListAdapter(
             )
             bin.visibility = if (item.id != 0) View.VISIBLE else View.INVISIBLE
             root.setOnClickListener { listener.select(item) }
-            bin.setOnClickListener { listener.delete(item) }
+            bin.setOnClickListener {
+                Feedback.virtualKey(it)
+                listener.delete(item)
+            }
         }
 
     }

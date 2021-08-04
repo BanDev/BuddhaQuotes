@@ -577,8 +577,8 @@
     <string name="minutes">minutes</string>
     <string name="and">et</string>
 
-    <string name="createNewList">Créer une nouvelle liste</string>
-    <string name="insertName">Insérer le nom</string>
+    <string name="create_new_list">Créer une nouvelle liste</string>
+    <string name="insert_name">Insérer le nom</string>
     <string name="validationRule1">Ne peut pas contenir //</string>
     <string name="validationRule2">Il existe déjà une liste nommée Favoris</string>
     <string name="validationRule3">Il existe déjà une liste nommée</string>

@@ -25,19 +25,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.bus.Bus
+import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.MessageTypes
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
-import uk.bandev.services.bus.Bus
-import uk.bandev.services.bus.Message
 
 /**
  * Shows a list of lists to the user
@@ -66,19 +64,7 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
             .getInstance(requireActivity().application)
             .create(ViewModel::class.java)
 
-        // Setup the recyclerview
-        setupRecycler()
-
-        bus = Bus(this, "ListsFragment")
-        bus.listen()
-    }
-
-    /**
-     * Get some quotes from the db and
-     * show them in the recycler
-     */
-
-    private fun setupRecycler() {
+        // Setup the RecyclerView
         model.Lists().getAll {
             list = it
             binding.listsRecycler.apply {
@@ -87,6 +73,9 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
                 setHasFixedSize(false)
             }
         }
+
+        bus = Bus(this, "ListsFragment")
+        bus.listen()
     }
 
     override fun select(list: List) {

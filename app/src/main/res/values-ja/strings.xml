@@ -577,8 +577,8 @@
     <string name="minutes">分</string>
     <string name="and">そして</string>
 
-    <string name="createNewList">新しいリストを作成する</string>
-    <string name="insertName">名前を挿入</string>
+    <string name="create_new_list">新しいリストを作成する</string>
+    <string name="insert_name">名前を挿入</string>
     <string name="validationRule1">//を含めることはできません</string>
     <string name="validationRule2">お気に入りという名前のリストがすでにあります</string>
     <string name="validationRule3">すでにという名前のリストがあります</string>

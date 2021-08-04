@@ -577,8 +577,8 @@
     <string name="minutes">分钟</string>
     <string name="and">和</string>
 
-    <string name="createNewList">建立新清单</string>
-    <string name="insertName">插入名称</string>
+    <string name="create_new_list">建立新清单</string>
+    <string name="insert_name">插入名称</string>
     <string name="validationRule1">不能包含//</string>
     <string name="validationRule2">已经有一个名为“收藏夹”的列表</string>
     <string name="validationRule3">已经有一个名为</string>

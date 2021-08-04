@@ -535,8 +535,8 @@
 	<string name="seconds"></string>
 	<string name="minutes"></string>
 	<string name="and"></string>
-	<string name="createNewList"></string>
-	<string name="insertName"></string>
+	<string name="create_new_list"></string>
+	<string name="insert_name"></string>
 	<string name="validationRule1"></string>
 	<string name="validationRule2"></string>
 	<string name="validationRule3"></string>
