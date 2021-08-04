@@ -125,6 +125,11 @@ class Repository(val application: Application) {
             return quotes
         }
 
+        /** See if a list has a quote */
+        suspend fun has(quoteId: Int, listId: Int): Boolean {
+            return dao.has(quoteId, listId) == 1
+        }
+
         /** Add a quote to a list */
         suspend fun addTo(id: Int, quote: Quote) {
             if (id == 0) return Quotes().like(quote.id)

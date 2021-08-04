@@ -26,6 +26,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
@@ -161,8 +162,7 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
-
-        model.Lists().getAll {
+        model.Lists().getAll { it ->
             it.removeAt(0)
             if (it.isNotEmpty()) {
                 val options = mutableListOf<Option>()
@@ -179,9 +179,19 @@ class QuoteFragment : Fragment() {
                     onPositive { index: Int, _: Option ->
                         Feedback.virtualKey(view ?: return@onPositive)
                         val list = it[index]
-                        model.ListQuotes().addTo(list.id, quote)
-                        list.count++
-                        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+                        model.ListQuotes().exists(quote, list) { has ->
+                            if (has) {
+                                Snackbar.make(
+                                    binding.root,
+                                    "This quote is already in that list",
+                                    LENGTH_SHORT
+                                ).show()
+                            } else {
+                                model.ListQuotes().addTo(list.id, quote)
+                                list.count++
+                                GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+                            }
+                        }
                     }
                 }
             } else Snackbar.make(binding.root, getString(R.string.no_list), LENGTH_SHORT).show()

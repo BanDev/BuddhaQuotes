@@ -167,6 +167,10 @@ abstract class Db : RoomDatabase() {
         @Query("SELECT * FROM list_quote WHERE list_id = :listId ORDER BY `order` ASC")
         suspend fun getFrom(listId: Int): MutableList<ListQuote>
 
+        /** Count the qoutes in a list */
+        @Query("SELECT COUNT(id) FROM list_quote WHERE `list_id` = :listId AND `quote_id` = :quoteId")
+        suspend fun has(quoteId: Int, listId: Int): Int
+
         /** Add a quote to a list */
         @Query("INSERT INTO list_quote (`list_id`, `quote_id`, `order`) VALUES (:listId, :quoteId, :order)")
         suspend fun addTo(listId: Int, quoteId: Int, order: Double)
