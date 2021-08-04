@@ -160,6 +160,13 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
+        /** If the quote exists */
+        fun exists(quote: Quote, list: List, after: (has: Boolean) -> Any) {
+            viewModelScope.launch {
+                after(listQuotes.has(quote.id, list.id))
+            }
+        }
+
         /** Add a quote to a list */
         fun addTo(id: Int, quote: Quote) {
             viewModelScope.launch {
