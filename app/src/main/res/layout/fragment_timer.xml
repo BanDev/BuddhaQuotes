@@ -57,11 +57,11 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/image_monk"
-        android:contentDescription="@string/monk" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/monk"
+        android:src="@drawable/image_monk" />
 
 </RelativeLayout>

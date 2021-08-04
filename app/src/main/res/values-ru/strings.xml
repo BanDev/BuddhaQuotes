@@ -577,8 +577,8 @@
     <string name="minutes">минут</string>
     <string name="and">и</string>
 
-    <string name="createNewList">Создать новый список</string>
-    <string name="insertName">Вставить имя</string>
+    <string name="create_new_list">Создать новый список</string>
+    <string name="insert_name">Вставить имя</string>
     <string name="validationRule1">Не может содержать //</string>
     <string name="validationRule2">Список под названием "Избранное" уже существует.</string>
     <string name="validationRule3">Список с именем</string>

@@ -577,8 +577,8 @@
     <string name="minutes">मिनट</string>
     <string name="and">तथा</string>
 
-    <string name="createNewList">नई सूची बनाएँ</string>
-    <string name="insertName">नाम डालें</string>
+    <string name="create_new_list">नई सूची बनाएँ</string>
+    <string name="insert_name">नाम डालें</string>
     <string name="validationRule1">इसमें शामिल नहीं किया जा सकता //</string>
     <string name="validationRule2">पसंदीदा पहले से ही एक सूची है</string>
     <string name="validationRule3">पहले से ही एक सूची है जिसका नाम है</string>

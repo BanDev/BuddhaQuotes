@@ -58,7 +58,6 @@ class TimerActivity : LocalizationActivity() {
         super.onCreate(savedInstanceState)
 
         setAccentColour()
-
         with(window) {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
@@ -155,7 +154,6 @@ class TimerActivity : LocalizationActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Feedback.virtualKey(binding.root)
         InputSheet().show(this) {
             title("Timer Settings")
             closeIconButton(IconButton(R.drawable.ic_down_arrow))

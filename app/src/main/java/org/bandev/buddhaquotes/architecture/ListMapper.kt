@@ -22,7 +22,7 @@ package org.bandev.buddhaquotes.architecture
 
 import android.app.Application
 import android.content.Context
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon
@@ -45,63 +45,63 @@ class ListMapper(val application: Application) {
             ListIcon(
                 0,
                 R.drawable.ic_list_icon_heart,
-                ContextCompat.getColor(context, R.color.colorAccent)
+                getColor(context, R.color.colorAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 1,
                 R.drawable.ic_list_icon_list,
-                ContextCompat.getColor(context, R.color.blueAccent)
+                getColor(context, R.color.blueAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 2,
                 R.drawable.ic_list_icon_edu,
-                ContextCompat.getColor(context, R.color.greenAccent)
+                getColor(context, R.color.greenAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 3,
                 R.drawable.ic_list_icon_history,
-                ContextCompat.getColor(context, R.color.yellowAccent)
+                getColor(context, R.color.yellowAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 4,
                 R.drawable.ic_list_icon_interests,
-                ContextCompat.getColor(context, R.color.tealAccent)
+                getColor(context, R.color.tealAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 5,
                 R.drawable.ic_list_icon_quote,
-                ContextCompat.getColor(context, R.color.violetAccent)
+                getColor(context, R.color.violetAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 6,
                 R.drawable.ic_list_icon_symbols,
-                ContextCompat.getColor(context, R.color.orangeAccent)
+                getColor(context, R.color.orangeAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 7,
                 R.drawable.ic_list_icon_thumb_up,
-                ContextCompat.getColor(context, R.color.lightBlueAccent)
+                getColor(context, R.color.lightBlueAccent)
             )
         )
         listIcons.add(
             ListIcon(
                 8,
                 R.drawable.ic_list_icon_trophy,
-                ContextCompat.getColor(context, R.color.bandev)
+                getColor(context, R.color.bandev)
             )
         )
     }

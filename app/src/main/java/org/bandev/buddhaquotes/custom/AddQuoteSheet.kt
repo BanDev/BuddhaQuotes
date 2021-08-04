@@ -75,25 +75,20 @@ class AddQuoteSheet : Sheet() {
         super.onViewCreated(view, savedInstanceState)
         displayButtonsView(false)
 
-
-        binding.searchBoxContainer.also { searchBox ->
-            with(searchBox) {
-                searchEditText.doOnTextChanged { text, _, _, _ ->
-                    val query = text.toString().lowercase()
-                    filterWithQuery(query)
-                    toggleImageView(query)
-                }
-                clearSearchQuery.setOnClickListener {
-                    searchBox.searchEditText.text = null
-                }
+        with(binding.searchBoxContainer) {
+            searchEditText.doOnTextChanged { text, _, _, _ ->
+                val query = text.toString().lowercase()
+                filterWithQuery(query)
+                toggleImageView(query)
+            }
+            clearSearchQuery.setOnClickListener {
+                searchEditText.text = null
             }
         }
 
-        val addQuoteSheetAdapter = AddQuoteSheetAdapter(quotes, adapterListener)
-
-        with(binding.exampleRecyclerView) {
+        binding.exampleRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = addQuoteSheetAdapter
+            adapter = AddQuoteSheetAdapter(quotes, adapterListener)
         }
     }
 

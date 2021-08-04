@@ -577,8 +577,8 @@
     <string name="minutes">Protokoll</string>
     <string name="and">und</string>
 
-    <string name="createNewList">Neue Liste erstellen</string>
-    <string name="insertName">Namen eingeben</string>
+    <string name="create_new_list">Neue Liste erstellen</string>
+    <string name="insert_name">Namen eingeben</string>
     <string name="validationRule1">Kann //nicht enthalten</string>
     <string name="validationRule2">Es gibt bereits eine Liste mit dem Namen Favoriten</string>
     <string name="validationRule3">Es gibt bereits eine Liste mit dem Namen</string>

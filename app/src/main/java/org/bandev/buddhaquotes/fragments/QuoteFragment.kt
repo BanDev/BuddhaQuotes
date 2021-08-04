@@ -29,7 +29,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
-import coil.load
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.options.DisplayMode
@@ -38,6 +37,7 @@ import com.maxkeppeler.sheets.options.OptionsSheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ViewModel
+import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.MessageTypes
 import org.bandev.buddhaquotes.core.resolveColorAttr
@@ -45,7 +45,6 @@ import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
-import uk.bandev.services.bus.Message
 
 /**
  * QuoteFragment shows quotes to the user with refresh, like & share buttons.
@@ -95,10 +94,19 @@ class QuoteFragment : Fragment() {
                 }
             }
             like.setOnClickListener { onLikeClicked() }
-            next.setOnClickListener { randomQuote() }
+            next.setOnClickListener {
+                Feedback.virtualKey(it)
+                randomQuote()
+            }
             more.setOnClickListener { showOptionsSheet(it) }
             quoteFragmentImage.apply {
-                loadQuoteImage(sharedPrefs.getInt(quoteImagePref, 0))
+                setQuoteImage(sharedPrefs.getInt(quoteImagePref, 0))
+                setOnClickListener(object : DoubleClickListener() {
+                    override fun onSingleClick(view: View?) {}
+                    override fun onDoubleClick(view: View?) {
+                        onLikeClicked()
+                    }
+                })
                 setOnLongClickListener {
                     changeImageSheet()
                     true
@@ -107,7 +115,7 @@ class QuoteFragment : Fragment() {
             content.setOnClickListener(object : DoubleClickListener() {
                 override fun onSingleClick(view: View?) {}
                 override fun onDoubleClick(view: View?) {
-                    if (!this@QuoteFragment.quote.liked) onLikeClicked()
+                    onLikeClicked()
                 }
             })
         }
@@ -118,15 +126,14 @@ class QuoteFragment : Fragment() {
             quote = it
             //binding.number.text = getString(R.string.quote_number, quote.id)
             binding.quote.text = getString(quote.resource)
-            binding.like.load(heart(quote.liked)) // THIS DOESNT WORK ON THE FIRST TIME FOR SOME REASON
-            // CHECKED AND DB OUTPUT IS TOTALLY FINE
+            binding.like.setImageResource(heart(quote.liked))
         }
     }
 
     internal fun onLikeClicked() {
         Feedback.virtualKey(binding.root)
         quote.liked = !quote.liked
-        binding.like.load(heart(quote.liked))
+        binding.like.setImageResource(heart(quote.liked))
         if (quote.liked) {
             binding.likeAnimator.likeAnimation()
             GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, +1))
@@ -170,7 +177,7 @@ class QuoteFragment : Fragment() {
                     displayHandle(true)
                     with(options)
                     onPositive { index: Int, _: Option ->
-                        Feedback.virtualKey(binding.root)
+                        Feedback.virtualKey(view ?: return@onPositive)
                         val list = it[index]
                         model.ListQuotes().addTo(list.id, quote)
                         list.count++
@@ -181,7 +188,7 @@ class QuoteFragment : Fragment() {
         }
     }
 
-    private fun ImageView.loadQuoteImage(int: Int) {
+    private fun ImageView.setQuoteImage(int: Int) {
         setImageResource(
             when (int) {
                 1 -> R.drawable.image_monk
@@ -233,9 +240,10 @@ class QuoteFragment : Fragment() {
                 Option(R.drawable.sheet_lotus, R.string.lotus),
                 Option(R.drawable.sheet_lotus_water, R.string.water_lotus)
             )
+
             onPositive { index: Int, _: Option ->
-                Feedback.confirm(binding.root)
-                binding.quoteFragmentImage.loadQuoteImage(index)
+                Feedback.confirm(view ?: return@onPositive)
+                binding.quoteFragmentImage.setQuoteImage(index)
                 editor.putInt(quoteImagePref, index).apply()
             }
         }
