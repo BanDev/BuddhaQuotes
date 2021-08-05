@@ -89,7 +89,7 @@
 <p>Looking to contribute to Buddha Quotes? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
 
 <h3 id="translations">Translations</h3>
-<p>You can help translate through Weblate <a href="https://hosted.weblate.org/engage/buddha-quotes/">here</a></p>
+<p>You can help translate through Weblate <a href="https://hosted.weblate.org/engage/buddha-quotes/">here</a>.</p>
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 <ul>
