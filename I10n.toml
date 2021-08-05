@@ -1,6 +1,6 @@
 [[paths]]
-  reference = "app/src/main/res/values/"
-  l10n = "app/src/main/res/values-{locale}/"
+  reference = "app/src/main/res/values/strings.xml"
+  l10n = "app/src/main/res/values-{locale}/strings.xml"
   locales = [
         "de",
         "fr",
