@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.bus
 
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
 import me.kosert.flowbus.EventsReceiver
 import me.kosert.flowbus.GlobalBus
 import me.kosert.flowbus.subscribe
@@ -48,25 +47,17 @@ import me.kosert.flowbus.subscribe
 class Bus(private val instance: Any, private val name: String) {
 
     /**
-     * Derive listener and lifecycleOwner from the
-     * instance provided at class initialisation.
+     * Derive listener from the instance provided
+     * at class initialisation.
      */
 
-    private val listener: Listener = instance as Listener
-    private val lifecycleOwner: LifecycleOwner = instance as LifecycleOwner
     private val receiver: EventsReceiver = EventsReceiver()
+    private lateinit var router: (type: Int) -> ((message: Message<*>) -> Any)?
     private val tag = "BanDev-BUS"
 
-    /**
-     * Bind a new EventsReceiver class.
-     */
-
-    init {
-        //this.receiver.bindLifecycle(this.lifecycleOwner)
-    }
 
     /**
-     * Post a message to all listening activities
+     * Broadcast a message to all listening activities
      * & fragments. The message must be of [Message]
      * type with the [Message.data] field being any
      * class.
@@ -80,23 +71,51 @@ class Bus(private val instance: Any, private val name: String) {
     }
 
     /**
+     * Provides the ability to use custom router function
+     * in order to route messages without needing to
+     * use the [Listener] interface.
+     *
+     * @param router The function you want to use
+     */
+
+    fun attachRouter(router: (type: Int) -> ((message: Message<*>) -> Any)?) {
+        Log.i(tag, "$name has attatched a router: $router")
+        this.router = router
+    }
+
+    /**
      * Listen to all posted messages from other
-     * activities & fragments. [mute] be called in
-     * onStop() in activity.
+     * activities & fragments. If a custom router has
+     * been provided to this class, the message
+     * will be sent there, else the message will
+     * be sent through the listener.
+     *
+     * [listen] must be called in onStart(), and [mute] must
+     * be called in onStop()
      */
 
     fun listen() {
         Log.i(tag, "$name is listening")
-        receiver.subscribe { message: Message<out Any> ->
-            Log.i(tag, "$name has recieved: $message")
-            listener.onMessageReceived(message)
+        if (this::router.isInitialized) {
+            receiver.subscribe { message: Message<out Any> ->
+                Log.i(tag, "$name has recieved: $message via custom router")
+                instance to router(message.type)?.let { it(message) }
+            }
+        } else {
+            val listener = instance as Listener
+            receiver.subscribe { message: Message<out Any> ->
+                Log.i(tag, "$name has recieved: $message via listener interface")
+                listener.onMessageReceived(message)
+            }
         }
     }
 
     /**
-     * Mute to all posted messages from other
-     * activities & fragments. [listen] must be called in
-     * onStop() in activity.
+     * Mute all broadcasted messages from other
+     * activities & fragments.
+     *
+     * [listen] must be called in onStart(), and [mute] must
+     * be called in onStop()
      */
 
     fun mute() {
