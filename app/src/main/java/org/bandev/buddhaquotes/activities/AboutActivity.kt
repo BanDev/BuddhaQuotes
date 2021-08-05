@@ -29,9 +29,8 @@ import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.setAccentColour
+import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.setDarkStatusIcons
-import org.bandev.buddhaquotes.core.setNavigationBarColourMain
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 import org.bandev.buddhaquotes.fragments.AboutFragment
 import org.bandev.buddhaquotes.fragments.LibrariesFragment

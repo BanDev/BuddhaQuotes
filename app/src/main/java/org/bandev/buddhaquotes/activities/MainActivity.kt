@@ -26,7 +26,6 @@ import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
@@ -46,10 +45,14 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
 import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
+import org.bandev.buddhaquotes.core.MessageTypes
+import org.bandev.buddhaquotes.core.resolveColorAttr
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 

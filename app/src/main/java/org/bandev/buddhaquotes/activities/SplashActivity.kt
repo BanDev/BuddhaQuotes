@@ -24,24 +24,21 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.*
-import androidx.preference.PreferenceManager
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import org.bandev.buddhaquotes.core.Prefs
 
 /**
  * The splash screen
  */
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var sharedPrefs: SharedPreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val theme = Prefs(this).Settings().theme
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Meditation Timer"
@@ -55,13 +52,7 @@ class SplashActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        setDefaultNightMode(
-            when (sharedPrefs.getInt("appThemeInt", 2)) {
-                0 -> MODE_NIGHT_NO
-                1 -> MODE_NIGHT_YES
-                else -> MODE_NIGHT_FOLLOW_SYSTEM
-            }
-        )
+        setDefaultNightMode(theme)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

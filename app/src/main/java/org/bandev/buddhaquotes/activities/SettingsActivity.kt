@@ -21,7 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate.*
@@ -30,7 +29,6 @@ import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
 import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
 import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
@@ -42,10 +40,23 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Accent.BLUE
+import org.bandev.buddhaquotes.core.Accent.CRIMSON
+import org.bandev.buddhaquotes.core.Accent.DEFAULT
+import org.bandev.buddhaquotes.core.Accent.GREEN
+import org.bandev.buddhaquotes.core.Accent.LIGHT_BLUE
+import org.bandev.buddhaquotes.core.Accent.LIME
+import org.bandev.buddhaquotes.core.Accent.ORANGE
+import org.bandev.buddhaquotes.core.Accent.PINK
+import org.bandev.buddhaquotes.core.Accent.RED
+import org.bandev.buddhaquotes.core.Accent.TEAL
+import org.bandev.buddhaquotes.core.Accent.VIOLET
+import org.bandev.buddhaquotes.core.Accent.YELLOW
 import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 import java.util.*
+import java.util.Locale.ROOT
 
 /**
  * Where the user can customise their app
@@ -91,8 +102,42 @@ class SettingsActivity : LocalizationActivity() {
 
             val settings = Prefs(requireContext()).Settings()
 
+            fun Preference.setLanguageSummary() {
+                val language = getLanguage(requireContext())
 
-            fun Preference.updateTheme() {
+                icon = getDrawable(
+                    context, when (language) {
+                        Locale("en") -> R.drawable.flag_england
+                        Locale("ar") -> R.drawable.flag_united_arab_emirates
+                        Locale("zh") -> R.drawable.flag_china
+                        Locale("fr") -> R.drawable.flag_france
+                        Locale("de") -> R.drawable.flag_germany
+                        Locale("hi") -> R.drawable.flag_india
+                        Locale("ja") -> R.drawable.flag_japan
+                        Locale("pl") -> R.drawable.flag_poland
+                        Locale("ru") -> R.drawable.flag_russia
+                        Locale("es") -> R.drawable.flag_spain
+                        else -> R.drawable.flag_england
+                    }
+                )
+                summary = getString(
+                    when (language) {
+                        Locale("en") -> R.string.en
+                        Locale("ar") -> R.string.ar
+                        Locale("zh") -> R.string.zh
+                        Locale("fr") -> R.string.fr
+                        Locale("de") -> R.string.de
+                        Locale("hi") -> R.string.hi
+                        Locale("ja") -> R.string.ja
+                        Locale("pl") -> R.string.pl
+                        Locale("ru") -> R.string.ru
+                        Locale("es") -> R.string.es
+                        else -> R.string.settings_language
+                    }
+                )
+            }
+
+            fun Preference.setThemeSummary() {
                 val theme = settings.theme
 
                 summary = getString(
@@ -112,22 +157,22 @@ class SettingsActivity : LocalizationActivity() {
                 )
             }
 
-            fun Preference.updateAccent() {
+            fun Preference.setAccentSummary() {
                 val accent = settings.accent
 
                 summary = getString(
                     when (accent) {
-                        settings.ACCENT_PINK -> R.string.pink
-                        settings.ACCENT_VIOLET -> R.string.violet
-                        settings.ACCENT_BLUE -> R.string.blue
-                        settings.ACCENT_LIGHT_BLUE -> R.string.lightBlue
-                        settings.ACCENT_TEAL -> R.string.teal
-                        settings.ACCENT_GREEN -> R.string.green
-                        settings.LI -> R.string.lime
-                        settings.ACCENT_Ori -> R.string.yellow
-                        settings.ACCENT_PINK -> R.string.orange
-                        settings.ACCENT_PINK -> R.string.red
-                        settings.ACCENT_PINK -> R.string.crimson
+                        PINK -> R.string.pink
+                        VIOLET -> R.string.violet
+                        BLUE -> R.string.blue
+                        LIGHT_BLUE -> R.string.lightBlue
+                        TEAL -> R.string.teal
+                        GREEN -> R.string.green
+                        LIME -> R.string.lime
+                        YELLOW -> R.string.yellow
+                        ORANGE -> R.string.orange
+                        RED -> R.string.red
+                        CRIMSON -> R.string.crimson
                         else -> R.string.original
                     }
                 )
@@ -136,18 +181,18 @@ class SettingsActivity : LocalizationActivity() {
                     setTint(
                         getColor(
                             context,
-                            when (getAccentColourAsString(requireContext())) {
-                                "pink" -> R.color.pinkAccent
-                                "violet" -> R.color.violetAccent
-                                "blue" -> R.color.blueAccent
-                                "lightBlue" -> R.color.lightBlueAccent
-                                "teal" -> R.color.tealAccent
-                                "green" -> R.color.greenAccent
-                                "lime" -> R.color.limeAccent
-                                "yellow" -> R.color.yellowAccent
-                                "orange" -> R.color.orangeAccent
-                                "red" -> R.color.redAccent
-                                "crimson" -> R.color.crimsonAccent
+                            when (accent) {
+                                PINK -> R.color.pinkAccent
+                                VIOLET -> R.color.violetAccent
+                                BLUE -> R.color.blueAccent
+                                LIGHT_BLUE -> R.color.lightBlueAccent
+                                TEAL -> R.color.tealAccent
+                                GREEN -> R.color.greenAccent
+                                LIME -> R.color.limeAccent
+                                YELLOW -> R.color.yellowAccent
+                                ORANGE -> R.color.orangeAccent
+                                RED -> R.color.redAccent
+                                CRIMSON -> R.color.crimsonAccent
                                 else -> R.color.colorPrimary
                             }
                         )
@@ -157,40 +202,10 @@ class SettingsActivity : LocalizationActivity() {
 
 
             findPreference<Preference>("app_language")?.apply {
-                icon = getDrawable(
-                    context, when (getLanguage(requireContext())) {
-                        Locale("en") -> R.drawable.flag_england
-                        Locale("ar") -> R.drawable.flag_united_arab_emirates
-                        Locale("zh") -> R.drawable.flag_china
-                        Locale("fr") -> R.drawable.flag_france
-                        Locale("de") -> R.drawable.flag_germany
-                        Locale("hi") -> R.drawable.flag_india
-                        Locale("ja") -> R.drawable.flag_japan
-                        Locale("pl") -> R.drawable.flag_poland
-                        Locale("ru") -> R.drawable.flag_russia
-                        Locale("es") -> R.drawable.flag_spain
-                        else -> R.drawable.flag_england
-                    }
-                )
-                summary = getString(
-                    when (getLanguage(requireContext())) {
-                        Locale("en") -> R.string.en
-                        Locale("ar") -> R.string.ar
-                        Locale("zh") -> R.string.zh
-                        Locale("fr") -> R.string.fr
-                        Locale("de") -> R.string.de
-                        Locale("hi") -> R.string.hi
-                        Locale("ja") -> R.string.ja
-                        Locale("pl") -> R.string.pl
-                        Locale("ru") -> R.string.ru
-                        Locale("es") -> R.string.es
-                        else -> R.string.settings_language
-                    }
-                )
+                setLanguageSummary()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    it.isEnabled = false
+                    isEnabled = false
                     Feedback.virtualKey(requireView())
-                    val currentLangauge = getLanguage(requireContext())
                     OptionsSheet().show(requireContext()) {
                         style(SheetStyle.DIALOG)
                         displayMode(DisplayMode.LIST)
@@ -204,7 +219,7 @@ class SettingsActivity : LocalizationActivity() {
                             Option(R.drawable.fl_sheet_japan, R.string.ja),
                             Option(R.drawable.fl_sheet_poland, R.string.pl),
                             Option(R.drawable.fl_sheet_russia, R.string.ru),
-                            Option(R.drawable.fl_sheet_spain, R.string.es)
+                            Option(R.drawable.fl_sheet_spain, R.string.es),
                         )
                         onPositive { index: Int, _: Option ->
                             Feedback.confirm(view ?: return@onPositive)
@@ -220,18 +235,16 @@ class SettingsActivity : LocalizationActivity() {
                                     7 -> Locale("pl")
                                     8 -> Locale("ru")
                                     9 -> Locale("es")
-                                    else -> Locale("en")
+                                    else -> ROOT
                                 }
                             )
-                            if (getLanguage(requireContext()) != currentLangauge) {
-                                startActivity(Intent(context, SettingsActivity::class.java))
-                                activity?.run {
-                                    finish()
-                                    overridePendingTransition(
-                                        android.R.anim.fade_in,
-                                        android.R.anim.fade_out
-                                    )
-                                }
+                            startActivity(Intent(context, SettingsActivity::class.java))
+                            activity?.run {
+                                finish()
+                                overridePendingTransition(
+                                    android.R.anim.fade_in,
+                                    android.R.anim.fade_out
+                                )
                             }
                         }
                         onClose { it.isEnabled = true }
@@ -241,7 +254,7 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("app_theme")?.apply {
-                updateTheme()
+                setThemeSummary()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
                     it.isEnabled = false
                     Feedback.virtualKey(requireView())
@@ -263,7 +276,7 @@ class SettingsActivity : LocalizationActivity() {
                                 else -> MODE_NIGHT_FOLLOW_SYSTEM
                             }
                             setDefaultNightMode(settings.theme)
-                            updateTheme()
+                            setThemeSummary()
                         }
                         onClose { it.isEnabled = true }
                     }
@@ -272,9 +285,9 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             findPreference<Preference>("accent_color")?.apply {
-
+                setAccentSummary()
                 onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                    it.isEnabled = false
+                    isEnabled = false
                     Feedback.virtualKey(requireView())
                     ColorSheet().show(requireContext()) {
                         colorsRes(
@@ -299,16 +312,14 @@ class SettingsActivity : LocalizationActivity() {
                         onNegative(R.string.cancel) { Feedback.virtualKey(requireView()) }
                         onPositive(R.string.okay) { color ->
                             Feedback.confirm(view ?: return@onPositive)
-                            if (requireContext().resolveColorAttr(R.attr.colorPrimary) != color) {
-                                editor.putString("accent_color", colorOut(color)).apply()
-                                startActivity(Intent(context, SettingsActivity::class.java))
-                                activity?.run {
-                                    finish()
-                                    overridePendingTransition(
-                                        android.R.anim.fade_in,
-                                        android.R.anim.fade_out
-                                    )
-                                }
+                            settings.accent = convert(color)
+                            startActivity(Intent(context, SettingsActivity::class.java))
+                            activity?.run {
+                                finish()
+                                overridePendingTransition(
+                                    android.R.anim.fade_in,
+                                    android.R.anim.fade_out
+                                )
                             }
                         }
                         onClose { it.isEnabled = true }
@@ -318,20 +329,20 @@ class SettingsActivity : LocalizationActivity() {
             }
         }
 
-        private fun colorOut(color: Int): String {
+        private fun convert(color: Int): Int {
             return when (color) {
-                getColor(requireContext(), R.color.pinkAccent) -> "pink"
-                getColor(requireContext(), R.color.violetAccent) -> "violet"
-                getColor(requireContext(), R.color.blueAccent) -> "blue"
-                getColor(requireContext(), R.color.lightBlueAccent) -> "lightBlue"
-                getColor(requireContext(), R.color.tealAccent) -> "teal"
-                getColor(requireContext(), R.color.greenAccent) -> "green"
-                getColor(requireContext(), R.color.limeAccent) -> "lime"
-                getColor(requireContext(), R.color.yellowAccent) -> "yellow"
-                getColor(requireContext(), R.color.orangeAccent) -> "orange"
-                getColor(requireContext(), R.color.redAccent) -> "red"
-                getColor(requireContext(), R.color.crimsonAccent) -> "crimson"
-                else -> "original"
+                getColor(requireContext(), R.color.pinkAccent) -> PINK
+                getColor(requireContext(), R.color.violetAccent) -> VIOLET
+                getColor(requireContext(), R.color.blueAccent) -> BLUE
+                getColor(requireContext(), R.color.lightBlueAccent) -> LIGHT_BLUE
+                getColor(requireContext(), R.color.tealAccent) -> TEAL
+                getColor(requireContext(), R.color.greenAccent) -> GREEN
+                getColor(requireContext(), R.color.limeAccent) -> LIME
+                getColor(requireContext(), R.color.yellowAccent) -> YELLOW
+                getColor(requireContext(), R.color.orangeAccent) -> ORANGE
+                getColor(requireContext(), R.color.redAccent) -> RED
+                getColor(requireContext(), R.color.crimsonAccent) -> CRIMSON
+                else -> DEFAULT
             }
         }
     }
