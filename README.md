@@ -23,6 +23,9 @@
       <a href="https://www.buymeacoffee.com/bandev" target="_blank">
       <img src="https://img.shields.io/badge/donate-%C2%A35-orange" >
       </a>
+      <a href="https://hosted.weblate.org/engage/buddha-quotes/" target="_blank">
+      <img src="https://img.shields.io/weblate/progress/buddha-quotes" >
+      </a>
       </div>
       <br>
 <div align="center">
@@ -86,8 +89,7 @@
 <p>Looking to contribute to Buddha Quotes? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
 
 <h3 id="translations">Translations</h3>
-<p>You can help translate the app via our open source <a href="https://computub.com/bandev/localisation">localisation website</a>. Here is the link to the <a href="https://gitlab.com/bandev/bandev-localisation-project">repository</a>.</p>
-<a href="https://computub.com/bandev/localisation"><img src="https://img.shields.io/badge/-help%20translate!-red"></a>
+<p>You can help translate through Weblate <a href="https://hosted.weblate.org/engage/buddha-quotes/">here</a></p>
 
 <h2 id="acknowledgements">Acknowledgements</h2>
 <ul>
