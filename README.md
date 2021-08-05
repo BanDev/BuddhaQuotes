@@ -10,7 +10,7 @@
     <br>
     <div align="center">
       <a href="https://gitlab.com/bandev/buddha-quotes/-/pipelines" target="_blank">
-      <img src="https://gitlab.com/bandev/buddha-quotes/badges/master/pipeline.svg"/>
+      <img src="https://github.com/bandev/buddha-quotes/actions/workflows/android.yml/badge.svg"/>
       </a>
       <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md" target="_blank">
       <img src="https://img.shields.io/badge/license-GPL--3.0%2B-informational"/>
