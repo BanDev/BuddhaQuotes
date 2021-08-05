@@ -31,12 +31,14 @@ import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.maxkeppeler.sheets.core.IconButton
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
 import org.bandev.buddhaquotes.core.Insets.PADDING
 import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
@@ -193,6 +195,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
                 item.isEnabled = false
                 CustomiseListSheet().show(this, application) {
                     title(R.string.list_icon)
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     displayPositiveButton(false)
                     displayNegativeButton(false)
                     attachVariables(vm, this@ListActivity.id)

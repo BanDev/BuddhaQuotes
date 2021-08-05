@@ -32,7 +32,6 @@ import android.view.WindowInsetsController
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat.getColor
-import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.items.Quote
 
@@ -101,42 +100,6 @@ fun Window.setDarkStatusIcons() {
             this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
-}
-
-/**
- * Sets activity's theme based off setting from preferences
- */
-
-fun Context.setAccentColour() {
-    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-
-    this.setTheme(
-        when (sharedPrefs.getString("accent_color", "original")) {
-            "blue" -> R.style.AppTheme_Blue
-            "green" -> R.style.AppTheme_Green
-            "orange" -> R.style.AppTheme_Orange
-            "yellow" -> R.style.AppTheme_Yellow
-            "teal" -> R.style.AppTheme_Teal
-            "violet" -> R.style.AppTheme_Violet
-            "pink" -> R.style.AppTheme_Pink
-            "lightBlue" -> R.style.AppTheme_LightBlue
-            "red" -> R.style.AppTheme_Red
-            "lime" -> R.style.AppTheme_Lime
-            "crimson" -> R.style.AppTheme_Crimson
-            else -> R.style.AppTheme_Original
-        }
-    )
-}
-
-/**
- * Gets the current colour and returns it as a string
- * @param [context] context of activity (Context)
- * @return The name of the colour (String)
- */
-
-fun getAccentColourAsString(context: Context): String {
-    val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-    return sharedPrefs.getString("accent_color", "original").toString()
 }
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
