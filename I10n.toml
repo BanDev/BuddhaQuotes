@@ -1,6 +1,10 @@
-basepath = "."
-
-[env]
-
 [[paths]]
-  reference = "app/src/main/res/values/strings.xml"
+  reference = "app/src/main/res/values/"
+  l10n = "app/src/main/res/values-{locale}/"
+  locales = [
+        "de",
+        "fr",
+        "ar",
+        "ja",
+        "ru"
+    ]
