@@ -9,10 +9,10 @@
     </div>
     <br>
     <div align="center">
-      <a href="https://gitlab.com/bandev/buddha-quotes/-/pipelines" target="_blank">
+      <a href="https://github.com/BanDev/Buddha-Quotes/actions/workflows/android.yml" target="_blank">
       <img src="https://github.com/bandev/buddha-quotes/actions/workflows/android.yml/badge.svg"/>
       </a>
-      <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/LICENSE.md" target="_blank">
+      <a href="https://github.com/BanDev/Buddha-Quotes/blob/main/LICENSE.md" target="_blank">
       <img src="https://img.shields.io/badge/license-GPL--3.0%2B-informational"/>
       </a>
       </div>
@@ -86,7 +86,7 @@
 </ul>
 
 <h2 id="contributing">Contributing</h2>
-<p>Looking to contribute to Buddha Quotes? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://gitlab.com/bandev/buddha-quotes/-/blob/master/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
+<p>Looking to contribute to Buddha Quotes? That&#39;s great! There are a couple of ways to help out. Translations, bug reports and pull requests are all greatly appreciated. Please refer to our <a href="https://github.com/BanDev/Buddha-Quotes/blob/main/CONTRIBUTING.md">contributing guidelines</a> to get started.</p>
 
 <h3 id="translations">Translations</h3>
 <p>You can help translate through Weblate <a href="https://hosted.weblate.org/engage/buddha-quotes/">here</a>.</p>
