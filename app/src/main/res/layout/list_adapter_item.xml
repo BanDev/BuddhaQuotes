@@ -32,16 +32,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/line2"
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:background="@color/line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -83,7 +73,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="1 quote" />
 
-                <View
+                <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/line"
                     android:layout_width="match_parent"
                     android:layout_height="1px"

@@ -27,95 +27,73 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.Db
 import org.bandev.buddhaquotes.architecture.QuoteMapper
+import org.bandev.buddhaquotes.items.Quote
 
 /** The widget **/
 class MainWidget : AppWidgetProvider() {
 
-    var widgetButton: String = "org.bandev.buddhaquotes.WIDGET_BUTTON"
-    private var widgetLike: String = "org.bandev.buddhaquotes.WIDGET_LIKE"
-    private var quoteCurrent: String = "Test"
-    private var x = 0
+    var newQuote: String = "action.NEW_QUOTE"
 
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
+        appWidgetIds.forEach { appWidgetId ->
+            getRandom(context) {
+                val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
+                    setTextViewText(R.id.widget_text, context.getString(it.resource))
+                    setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
+                    setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
+                }
+                getPenIntent(context, MainWidget().newQuote)
+                appWidgetManager.updateAppWidget(appWidgetId, views)
+            }
         }
     }
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent.action.equals(widgetButton, ignoreCase = true)) {
-            val views = RemoteViews(context.packageName, R.layout.widget)
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                ComponentName(
-                    context,
-                    MainWidget::class.java
+        if (intent.action.equals(newQuote)) {
+            getRandom(context) {
+                val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
+                    setTextViewText(R.id.widget_text, context.getString(it.resource))
+                    setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
+                }
+                val appWidgetManager = AppWidgetManager.getInstance(context)
+                val appWidgetIds = appWidgetManager.getAppWidgetIds(
+                    ComponentName(
+                        context,
+                        MainWidget::class.java
+                    )
                 )
-            )
-            x++
-            quoteCurrent = randomQuote(context)
-            views.setTextViewText(R.id.appwidget_text, quoteCurrent)
-            appWidgetManager.updateAppWidget(appWidgetIds, views)
-        } else if (intent.action.equals(widgetLike, ignoreCase = true)) {
-            val views = RemoteViews(context.packageName, R.layout.widget)
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                ComponentName(
-                    context,
-                    MainWidget::class.java
-                )
-            )
-            x++
-            views.setImageViewResource(R.id.like, R.drawable.ic_heart_red)
-            appWidgetManager.updateAppWidget(appWidgetIds, views)
+                appWidgetManager.updateAppWidget(appWidgetIds, views)
+            }
         }
     }
+}
 
-    override fun onDeleted(context: Context, appWidgetIds: IntArray) {
-        // When the user deletes the widget, delete the preference associated with it.
-    }
+fun heart(liked: Boolean): Int {
+    return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
+}
 
-    override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
+fun getRandom(context: Context, after: (quote: Quote) -> Unit) {
+    CoroutineScope(Dispatchers.IO).launch {
+        val db: Db? = Db.getInstance(context)
+        val quoteDao = db?.quote()
+        val dbQuote = quoteDao?.get((1..237).random())
+        val convertedQuote = dbQuote?.let { QuoteMapper.convert(it) }
+        convertedQuote?.let { after(it) }
     }
 }
 
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-// Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.widget)
-    with(views) {
-        setImageViewResource(R.id.refresh, R.drawable.ic_refresh_black)
-        setOnClickPendingIntent(R.id.refresh, getPenIntent(context))
-        setImageViewResource(R.id.logo, R.drawable.ic_buddha)
-        setTextViewText(R.id.appwidget_text, randomQuote(context))
-    }
-
-    getPenIntent(context)
-    appWidgetManager.updateAppWidget(appWidgetId, views)
-}
-
-fun randomQuote(context: Context): String {
-    val id = (1..237).random()
-    return context.getString(QuoteMapper.resource(id))
-}
-
-fun getPenIntent(context: Context): PendingIntent {
-    val intent = Intent(context, MainWidget::class.java)
-    intent.action = MainWidget().widgetButton
+fun getPenIntent(context: Context, action: String): PendingIntent {
+    val intent = Intent(context, MainWidget::class.java).apply { this.action = action }
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 }
