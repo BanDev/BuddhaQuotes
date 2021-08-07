@@ -108,7 +108,7 @@ class Repository(val application: Application) {
     }
 
     /**
-     * Intereact with the database's record
+     * Interact with the database's record
      * linking table to add, remove and count
      * up all of the quotes that a list has.
      */
@@ -142,7 +142,7 @@ class Repository(val application: Application) {
             dao.removeFrom(id, quote.id)
         }
 
-        /** Count the qoutes in a list */
+        /** Count the quotes in a list */
         suspend fun count(id: Int): Int {
             if (id == 0) return db.quote().countLiked()
             return dao.count(id)

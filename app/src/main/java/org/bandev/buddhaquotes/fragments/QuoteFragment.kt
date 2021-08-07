@@ -20,16 +20,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import com.maxkeppeler.sheets.options.DisplayMode
@@ -39,10 +36,7 @@ import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.core.MessageTypes
-import org.bandev.buddhaquotes.core.resolveColorAttr
-import org.bandev.buddhaquotes.core.shareQuote
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
@@ -55,10 +49,8 @@ class QuoteFragment : Fragment() {
 
     private lateinit var binding: FragmentQuoteBinding
     private lateinit var model: ViewModel
-    private lateinit var sharedPrefs: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
     private lateinit var quote: Quote
-    private val quoteImagePref: String = "QUOTE_FRAGMENT_IMAGE"
+    private lateinit var imagePreferences: Prefs.Images
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,8 +73,7 @@ class QuoteFragment : Fragment() {
             .getInstance(requireActivity().application)
             .create(ViewModel::class.java)
 
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
-        editor = sharedPrefs.edit()
+        imagePreferences = Prefs(requireContext()).Images()
 
         // Start with a quote
         randomQuote()
@@ -101,7 +92,7 @@ class QuoteFragment : Fragment() {
             }
             more.setOnClickListener { showOptionsSheet(it) }
             quoteFragmentImage.apply {
-                setQuoteImage(sharedPrefs.getInt(quoteImagePref, 0))
+                setQuoteImage(imagePreferences.quoteImage)
                 setOnClickListener(object : DoubleClickListener() {
                     override fun onSingleClick(view: View?) {}
                     override fun onDoubleClick(view: View?) {
@@ -162,7 +153,7 @@ class QuoteFragment : Fragment() {
     }
 
     private fun showSecondBottomSheet() {
-        model.Lists().getAll { it ->
+        model.Lists().getAll {
             it.removeAt(0)
             if (it.isNotEmpty()) {
                 val options = mutableListOf<Option>()
@@ -201,33 +192,33 @@ class QuoteFragment : Fragment() {
     private fun ImageView.setQuoteImage(int: Int) {
         setImageResource(
             when (int) {
-                1 -> R.drawable.image_monk
-                2 -> R.drawable.image_dharma_wheel
-                3 -> R.drawable.image_anahata
-                4 -> R.drawable.image_mandala
-                5 -> R.drawable.image_endless_knot
-                6 -> R.drawable.image_elephant
-                7 -> R.drawable.image_temple
-                8 -> R.drawable.image_lamp
-                9 -> R.drawable.image_shrine
-                10 -> R.drawable.image_lotus
-                11 -> R.drawable.image_lotus_water
+                Images.MONK -> R.drawable.image_monk
+                Images.DHARMA_WHEEL -> R.drawable.image_dharma_wheel
+                Images.ANAHATA -> R.drawable.image_anahata
+                Images.MANDALA -> R.drawable.image_mandala
+                Images.ENDLESS_KNOT -> R.drawable.image_endless_knot
+                Images.ELEPHANT -> R.drawable.image_elephant
+                Images.TEMPLE -> R.drawable.image_temple
+                Images.LAMP -> R.drawable.image_lamp
+                Images.SHRINE -> R.drawable.image_shrine
+                Images.LOTUS -> R.drawable.image_lotus
+                Images.LOTUS_WATER -> R.drawable.image_lotus_water
                 else -> R.drawable.image_buddha
             }
         )
         contentDescription = getString(
             when (int) {
-                1 -> R.string.monk
-                2 -> R.string.dharma_wheel
-                3 -> R.string.anahata
-                4 -> R.string.mandala
-                5 -> R.string.endless_knot
-                6 -> R.string.elephant
-                7 -> R.string.temple
-                8 -> R.string.lamp
-                9 -> R.string.shrine
-                10 -> R.string.lotus
-                11 -> R.string.water_lotus
+                Images.MONK -> R.string.monk
+                Images.DHARMA_WHEEL -> R.string.dharma_wheel
+                Images.ANAHATA -> R.string.anahata
+                Images.MANDALA -> R.string.mandala
+                Images.ENDLESS_KNOT -> R.string.endless_knot
+                Images.ELEPHANT -> R.string.elephant
+                Images.TEMPLE -> R.string.temple
+                Images.LAMP -> R.string.lamp
+                Images.SHRINE -> R.string.shrine
+                Images.LOTUS -> R.string.lotus
+                Images.LOTUS_WATER -> R.string.water_lotus
                 else -> R.string.buddha
             }
         )
@@ -254,7 +245,7 @@ class QuoteFragment : Fragment() {
             onPositive { index: Int, _: Option ->
                 Feedback.confirm(view ?: return@onPositive)
                 binding.quoteFragmentImage.setQuoteImage(index)
-                editor.putInt(quoteImagePref, index).apply()
+                imagePreferences.quoteImage = index
             }
         }
     }
