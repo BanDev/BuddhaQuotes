@@ -69,7 +69,6 @@ class AboutFragment : Fragment() {
                 setHasFixedSize(true)
             }
 
-
             titleCard.setOnClickListener { expandTitleCard(it) }
             contributorsCard.setOnClickListener { expandContributorCard(it) }
             promiseCard.setOnClickListener { expandPromiseCard(it) }

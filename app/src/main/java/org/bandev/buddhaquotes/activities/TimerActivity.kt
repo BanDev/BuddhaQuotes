@@ -259,7 +259,7 @@ class TimerActivity : LocalizationActivity() {
         notifBuilder = NotificationCompat.Builder(context, "BQ.Timer").apply {
             setContentTitle(getString(R.string.meditating_for) + " $maxTime")
             setContentText(getString(R.string.time_left))
-            setSmallIcon(R.drawable.nav_meditate)
+            setSmallIcon(R.drawable.ic_meditate)
             priority = NotificationCompat.PRIORITY_LOW
             setCategory(NotificationCompat.CATEGORY_PROGRESS)
             setOnlyAlertOnce(true)

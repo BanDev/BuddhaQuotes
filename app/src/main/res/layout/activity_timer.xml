@@ -121,7 +121,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="20dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/nav_meditate"
+                app:srcCompat="@drawable/ic_meditate"
                 app:tint="?android:textColorSecondary" />
 
             <LinearLayout

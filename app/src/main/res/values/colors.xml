@@ -7,6 +7,7 @@
     <color name="darkModeBar">#333333</color>
     <color name="abbBackgroundColor">@android:color/white</color>
     <color name="ic_launcher_background">#E80054</color>
+    <color name="shadowGray">#a00f0f0f</color>
 
     <color name="heart">#FF6347</color>
     <color name="bandev">#5E17EB</color>
