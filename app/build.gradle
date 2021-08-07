@@ -121,5 +121,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'uk.bandev:ueh:1.0.0'
-    implementation 'uk.bandev:xplosion:1.0.6'
+    implementation 'uk.bandev:xplosion:1.0.7'
 }

@@ -23,6 +23,7 @@ package org.bandev.buddhaquotes.architecture
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon
@@ -31,7 +32,7 @@ import org.bandev.buddhaquotes.items.Quote
 /**
  * A level of abstraction between the ui
  * and the db layers. Launches coroutines
- * to the repositiory.
+ * to the repository.
  *
  * @author Jack Devey
  * @date 27/07/21
@@ -60,7 +61,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
         /** Get all quotes */
         fun getAll(after: (quote: MutableList<Quote>) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(quotes.getAll())
             }
         }
@@ -74,14 +75,14 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
         /** Set the like state of a quote */
         fun setLike(id: Int, liked: Boolean) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 if (liked) quotes.like(id) else quotes.unlike(id)
             }
         }
 
         /** Count the number of quotes */
         private fun count(after: (size: Int) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(quotes.count())
             }
         }
@@ -101,7 +102,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
         /** Get one singular list */
         fun get(id: Int, after: (list: List) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(lists.get(id))
             }
         }
@@ -115,28 +116,28 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
         /** Rename a list */
         fun rename(id: Int, title: String) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 lists.rename(id, title)
             }
         }
 
         /** Update a list's icon */
         fun updateIcon(id: Int, icon: ListIcon) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 lists.updateIcon(id, icon)
             }
         }
 
         /** New empty list */
         fun new(title: String, after: (list: List) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(lists.new(title))
             }
         }
 
         /** Delete a list */
         fun delete(id: Int) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 lists.delete(id)
             }
         }
@@ -144,7 +145,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Intereact with the database's record
+     * Interact with the database's record
      * linking table to add, remove and count
      * up all of the quotes that a list has.
      */
@@ -155,35 +156,35 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
 
         /** Get just one list */
         fun getFrom(id: Int, after: (quotes: MutableList<Quote>) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(listQuotes.getFrom(id))
             }
         }
 
         /** If the quote exists */
         fun exists(quote: Quote, list: List, after: (has: Boolean) -> Any) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(listQuotes.has(quote.id, list.id))
             }
         }
 
         /** Add a quote to a list */
         fun addTo(id: Int, quote: Quote) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 listQuotes.addTo(id, quote)
             }
         }
 
         /** Remove a quote from a list */
         fun removeFrom(id: Int, quote: Quote) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 listQuotes.removeFrom(id, quote)
             }
         }
 
-        /** Count the qoutes in a list */
+        /** Count the quotes in a list */
         fun count(id: Int, after: (size: Int) -> Unit) {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 after(listQuotes.count(id))
             }
         }

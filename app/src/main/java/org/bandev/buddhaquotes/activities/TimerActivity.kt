@@ -56,7 +56,7 @@ class TimerActivity : LocalizationActivity() {
     private lateinit var gong: MediaPlayer
     private var isPaused = false
     private var isRunning = false
-    private lateinit var timerSettings: Timer.Settings
+    private lateinit var timerSettings: Prefs.Timer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +72,7 @@ class TimerActivity : LocalizationActivity() {
         binding = ActivityTimerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        timerSettings = Timer().Settings(this)
+        timerSettings = Prefs(this).Timer()
 
         binding.toolbar.apply {
             setSupportActionBar(this)
