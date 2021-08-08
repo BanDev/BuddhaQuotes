@@ -1,85 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    
     <string name="refresh" id="1">Aktualisierung</string>
     <string name="favourite" id="2">Favorit</string>
-    <string name="share" id="3">Aktie</string>
-
-    
-    <string name="settings" id="4">die Einstellungen</string>
+    <string name="share" id="3">Teilen</string>
+    <string name="settings" id="4">Einstellungen</string>
     <string name="appearance" id="5">Aussehen</string>
     <string name="app_theme" id="6">App-Thema</string>
     <string name="light_mode" id="7">Licht</string>
     <string name="dark_mode" id="8">Dunkel</string>
-    <string name="follow_system_default" id="9">Folgen Sie dem System</string>
+    <string name="follow_system_default" id="9">System folgen</string>
     <string name="information" id="14">Information</string>
     <string name="about" id="15">Über</string>
     <string name="view_app_details" id="16">App-Details anzeigen</string>
     <string name="intro" id="17">Hilfe</string>
-    <string name="app_introduction" id="18">App Einführung</string>
+    <string name="app_introduction" id="18">Anwendungseinführung</string>
     <string name="app_license" id="19">App-Lizenz</string>
     <string name="libraries_used" id="20">Verwendete Bibliotheken</string>
-
-    
-
-    
-    <string name="about_app_promise" id="21">App Versprechen</string>
+    <string name="about_app_promise" id="21">Anwendungsversprechen</string>
     <string name="about_no_trackers" id="22">Keine Tracker</string>
     <string name="about_complete_privacy" id="23">Vollständige Privatsphäre</string>
     <string name="about_offline_app" id="24">Offline-App</string>
     <string name="about_free_and_open_source" id="25">Kostenlos und Open Source</string>
-    <string name="about_info" id="26">App-Information</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und Open Source Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz</string>
+    <string name="about_info" id="26">Anwendungsinfos</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und quelloffene Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz</string>
     <string name="about_contributors" id="28">Mitwirkende</string>
     <string name="about_acknowledgements" id="29">Danksagung</string>
     <string name="about_attribution" id="30">Launcher-Symbol - Freepik über Flaticon</string>
     <string name="tick" id="31">Tick</string>
-
-    
-
-    
     <string name="favourited_quote" id="55">Lieblingszitat</string>
     <string name="favourite_quote_delete" id="56">Löschen</string>
-
-    
     <string name="buddha_quotes_logo" id="57">Buddha zitiert Logo</string>
     <string name="bandev_logo" id="58">BanDev-Logo</string>
     <string name="the_buddha" id="59">Der Buddha</string>
     <string name="forward_arrow" id="60">Rückkehr</string>
     <string name="icon" id="61">Symbol</string>
     <string name="title" id="62">Titel</string>
-
-    
     <string name="title_activity_settings" id="82">EinstellungenAktivität</string>
     <string name="textview" id="83">Textübersicht</string>
     <string name="MainActivity" id="84">Hauptaktivität</string>
     <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
     <string name="action_settings" id="86">die Einstellungen</string>
-
-    
     <string name="appwidget_text" id="87">BEISPIEL</string>
     <string name="configure" id="88">Konfigurieren</string>
     <string name="add_widget" id="89">Widget hinzufügen</string>
     <string name="open_source_libraries" id="90">Open Source-Bibliotheken</string>
     <string name="about_no_ads" id="91">Keine Werbung</string>
-
-    
     <string name="lists_title" id="92">Ihre Listen</string>
     <string name="lists_add_item" id="93">Zur Liste hinzufügen</string>
     <string name="lists_add_lists" id="94">Neue Liste erstellen</string>
     <string name="lists_add_lists_go" id="95">Hinzufügen</string>
     <string name="lists_add_lists_name" id="96">Name</string>
-
-    
     <string name="settings_general" id="97">Allgemeines</string>
     <string name="settings_accent_colour" id="98">Akzentfarbe</string>
     <string name="settings_shapes_mode" id="99">Formen-Modus</string>
     <string name="settings_shapes_mode_yes" id="100">Auf</string>
     <string name="settings_shapes_mode_no" id="101">aus</string>
     <string name="settings_language" id="102">Sprache</string>
-
-    
     <string name="original" id="103">Standard</string>
     <string name="blue" id="104">Blau</string>
     <string name="green" id="105">Grün</string>
@@ -92,10 +68,8 @@
     <string name="red" id="112">rot</string>
     <string name="lime" id="113">Limette</string>
     <string name="crimson" id="114">Purpur</string>
-
-    
     <string name="ab">Abchasisch</string>
-    <string name="aa">In der Ferne</string>
+    <string name="aa">Afar</string>
     <string name="af">Afrikaans</string>
     <string name="ak">Akan</string>
     <string name="sq">albanisch</string>
@@ -139,7 +113,7 @@
     <string name="en">Englisch</string>
     <string name="eo">Esperanto</string>
     <string name="et">estnisch</string>
-    <string name="ee">Mutterschaf</string>
+    <string name="ee">Ewe</string>
     <string name="fo">Färöer</string>
     <string name="fj">Fidschianisch</string>
     <string name="fi">finnisch</string>
@@ -163,7 +137,7 @@
     <string name="ho">Hiri Motu</string>
     <string name="hu">ungarisch</string>
     <string name="is">isländisch</string>
-    <string name="io">Ich mache</string>
+    <string name="io">Ido</string>
     <string name="ig">Igbo</string>
     <string name="id">Indonesisch</string>
     <string name="ia">Interlingua (International Auxiliary Language Association)</string>
@@ -278,9 +252,6 @@
     <string name="yo">Yoruba</string>
     <string name="za">Zhuang, Chuang</string>
     <string name="zu">Zulu-</string>
-
-    
-
     <string name="appintro1_description" id="299">Eine kostenlose und Open Source Buddha Quotes App</string>
     <string name="appintro2_title" id="300">Über 230 Zitate</string>
     <string name="appintro2_description" id="301">Über 230 Zitate aus dem Buddha. \nZum Aktualisieren nach unten wischen!</string>
@@ -290,12 +261,8 @@
     <string name="appintro4_description" id="305">Es gibt eine Vielzahl von Optionen für die Benutzeroberfläche, z. B. Akzentfarben und Dunkelmodus</string>
     <string name="appintro5_title" id="306">Lass uns anfangen!</string>
     <string name="appintro5_description" id="307">Wir hoffen, dass Ihnen die App gefällt - wir haben ein GitLab-Repository, in dem Sie Funktionen anfordern oder Probleme ansprechen können</string>
-
-    
-
-    <string name="cancel" id="308">Stornieren</string>
+    <string name="cancel" id="308">Abbrechen</string>
     <string name="confirm" id="309">Bestätigen</string>
-
     <string name="quote_1" id="310">Ein disziplinierter Geist bringt Glück</string>
     <string name="quote_2" id="311">Ein guter Freund, der auf Fehler und Unvollkommenheiten hinweist und das Böse zurechtweist, ist zu respektieren, als ob er ein Geheimnis verborgener Schätze preisgibt</string>
     <string name="quote_3" id="312">Eine große menschliche Revolution in nur einem Individuum wird dazu beitragen, das Schicksal einer Nation zu ändern, und kann darüber hinaus sogar eine Änderung des Schicksals der gesamten Menschheit ermöglichen</string>
@@ -533,50 +500,38 @@
     <string name="quote_235" id="544">Sie sammeln nicht die Schönheit einer Blume, indem Sie ihre Blütenblätter zupfen</string>
     <string name="quote_236" id="545">Dein eigenes Selbst ist dein Meister; wer könnte noch sein Wenn Sie gut kontrolliert sind, gewinnen Sie einen Meister, der sehr schwer zu finden ist</string>
     <string name="quote_237" id="546">Sie selbst müssen sich bemühen. Die Buddhas weisen nur den Weg</string>
-
     <string name="about_translators" id="547">Übersetzer</string>
     <string name="title_activity_main">Hauptaktivität</string>
     <string name="title_home">Zuhause</string>
     <string name="title_dashboard">Instrumententafel</string>
     <string name="title_notifications">Benachrichtigungen</string>
-
     <string name="quote_number">Zitat</string>
-
     <string name="fragment_quote">Zitat</string>
     <string name="fragment_lists">Listen</string>
     <string name="fragment_meditation">Meditieren</string>
-
     <string name="meditate_title">Meditieren</string>
     <string name="meditate_subheading">Es ist einfach</string>
-
     <string name="meditate_space">Raum</string>
     <string name="meditate_space_desc">Wählen Sie einen ruhigen Ort, an dem Sie nicht gestört werden.</string>
-
     <string name="meditate_posture">Haltung</string>
     <string name="meditate_posture_desc">Setzen Sie sich auf den Boden oder auf einen Stuhl mit gerader Rückenlehne. Der Schlüssel ist, bequem zu sein!</string>
-
     <string name="meditate_breath">Atem</string>
     <string name="meditate_breath_desc">Atme tief und langsam ein und versuche, in deinen Magen zu atmen.</string>
-
     <string name="play">Weitermachen</string>
     <string name="pause">Pause</string>
     <string name="reset">Zurücksetzen</string>
-
     <string name="time_left">Übrige Zeit</string>
     <string name="meditating_for">Meditieren für</string>
     <string name="has_been_paused">wurde angehalten</string>
     <string name="meditation_timer">Meditations-Timer</string>
-
     <string name="more">Mehr</string>
     <string name="addToList">Zur Liste hinzufügen</string>
     <string name="searchHint">Suche…</string>
     <string name="search">Suche</string>
     <string name="attribution_buddha">~ Gautama Buddha</string>
-
     <string name="seconds">Sekunden</string>
     <string name="minutes">Protokoll</string>
     <string name="and">und</string>
-
     <string name="create_new_list">Neue Liste erstellen</string>
     <string name="insert_name">Namen eingeben</string>
     <string name="validationRule1">Kann //nicht enthalten</string>
@@ -586,10 +541,19 @@
     <string name="new_str">Neu</string>
     <string name="added">Zitat hinzugefügt zu</string>
     <string name="exists">Dieses Zitat existiert bereits in</string>
-
     <string name="start">Start</string>
     <string name="show_notification">Benachrichtigung anzeigen</string>
     <string name="vibrate_second">Vibriere jede Sekunde</string>
-
     <string name="favourites">Favoriten</string>
+    <string name="okay">Okay</string>
+    <string name="water_lotus">Wasserlotus</string>
+    <string name="lotus">Lotus</string>
+    <string name="shrine">Schrein</string>
+    <string name="lamp">Lampe</string>
+    <string name="temple">Tempel</string>
+    <string name="elephant">Elefant</string>
+    <string name="endless_knot">Endloser Knoten</string>
+    <string name="dharma_wheel">Rad</string>
+    <string name="monk">Mönch</string>
+    <string name="buddha">Buddha</string>
 </resources>
