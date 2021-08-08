@@ -1,86 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    
     <string name="refresh" id="1">Rafraîchir</string>
     <string name="favourite" id="2">Favori</string>
     <string name="share" id="3">Partager</string>
-
-    
     <string name="settings" id="4">Réglages</string>
     <string name="appearance" id="5">Apparence</string>
     <string name="app_theme" id="6">Thème de l\'application</string>
-    <string name="light_mode" id="7">Lumière</string>
-    <string name="dark_mode" id="8">Foncé</string>
-    <string name="follow_system_default" id="9">Suivez le système</string>
+    <string name="light_mode" id="7">Clair</string>
+    <string name="dark_mode" id="8">Sombre</string>
+    <string name="follow_system_default" id="9">Selon le système</string>
     <string name="information" id="14">Informations</string>
-    <string name="about" id="15">À propos de</string>
+    <string name="about" id="15">À propos</string>
     <string name="view_app_details" id="16">Afficher les détails de l\'application</string>
     <string name="intro" id="17">Aider</string>
     <string name="app_introduction" id="18">Présentation de l\'application</string>
     <string name="app_license" id="19">Licence d\'application</string>
     <string name="libraries_used" id="20">Bibliothèques utilisées</string>
-
-    
-
-    
     <string name="about_app_promise" id="21">Promesse d\'application</string>
     <string name="about_no_trackers" id="22">Pas de trackers</string>
     <string name="about_complete_privacy" id="23">Confidentialité totale</string>
     <string name="about_offline_app" id="24">Application hors ligne</string>
     <string name="about_free_and_open_source" id="25">Gratuit et Open Source</string>
     <string name="about_info" id="26">Informations sur l\'application</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes est un projet collaboratif pour créer une application gratuite et open source Buddha Quotes pour Android avec un accent sur la confidentialité</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes est un projet collaboratif pour créer une application gratuite et à code source ouvert Buddha Quotes pour Android avec un accent sur la confidentialité</string>
     <string name="about_contributors" id="28">Contributeurs</string>
     <string name="about_acknowledgements" id="29">Remerciements</string>
     <string name="about_attribution" id="30">Icône du lanceur - Freepik via Flaticon</string>
     <string name="tick" id="31">Cocher</string>
-
-    
-
-    
     <string name="favourited_quote" id="55">Citation préférée</string>
     <string name="favourite_quote_delete" id="56">Effacer</string>
-
-    
     <string name="buddha_quotes_logo" id="57">Logo de citations de Bouddha</string>
     <string name="bandev_logo" id="58">Logo BanDev</string>
     <string name="the_buddha" id="59">Le Bouddha</string>
     <string name="forward_arrow" id="60">Revenir</string>
     <string name="icon" id="61">Icône</string>
     <string name="title" id="62">Titre</string>
-
-    
     <string name="title_activity_settings" id="82">ParamètresActivité</string>
     <string name="textview" id="83">Affichage</string>
     <string name="MainActivity" id="84">Activité principale</string>
     <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
     <string name="action_settings" id="86">Réglages</string>
-
-    
     <string name="appwidget_text" id="87">EXEMPLE</string>
     <string name="configure" id="88">Configurer</string>
     <string name="add_widget" id="89">Ajouter un widget</string>
     <string name="open_source_libraries" id="90">Bibliothèques Open Source</string>
     <string name="about_no_ads" id="91">Pas de pubs</string>
-
-    
     <string name="lists_title" id="92">Vos listes</string>
     <string name="lists_add_item" id="93">Ajouter à la liste</string>
     <string name="lists_add_lists" id="94">Créer une nouvelle liste</string>
     <string name="lists_add_lists_go" id="95">Ajouter</string>
     <string name="lists_add_lists_name" id="96">Nom</string>
-
-    
     <string name="settings_general" id="97">Général</string>
-    <string name="settings_accent_colour" id="98">Couleur d\'accent</string>
+    <string name="settings_accent_colour" id="98">Couleur d\'accentuation</string>
     <string name="settings_shapes_mode" id="99">Mode formes</string>
-    <string name="settings_shapes_mode_yes" id="100">Sur</string>
+    <string name="settings_shapes_mode_yes" id="100">Activé</string>
     <string name="settings_shapes_mode_no" id="101">Désactivé</string>
     <string name="settings_language" id="102">Langue</string>
-
-    
-    <string name="original" id="103">Défaut</string>
+    <string name="original" id="103">Par défaut</string>
     <string name="blue" id="104">Bleu</string>
     <string name="green" id="105">Vert</string>
     <string name="orange" id="106">Orange</string>
@@ -92,86 +68,84 @@
     <string name="red" id="112">rouge</string>
     <string name="lime" id="113">Chaux</string>
     <string name="crimson" id="114">cramoisi</string>
-
-    
     <string name="ab">Abkhaze</string>
-    <string name="aa">Au loin</string>
-    <string name="af">afrikaans</string>
+    <string name="aa">Afar</string>
+    <string name="af">Afrikaans</string>
     <string name="ak">Akan</string>
-    <string name="sq">albanais</string>
+    <string name="sq">Albanais</string>
     <string name="am">Amharique</string>
-    <string name="ar">arabe</string>
+    <string name="ar">Arabe</string>
     <string name="an">Aragonais</string>
-    <string name="hy">arménien</string>
+    <string name="hy">Arménien</string>
     <string name="as">Assamais</string>
     <string name="av">Avaric</string>
     <string name="ae">Avestan</string>
     <string name="ay">Aymara</string>
-    <string name="az">azerbaïdjanais</string>
+    <string name="az">Azerbaïdjanais</string>
     <string name="bm">Bambara</string>
     <string name="ba">Bachkir</string>
-    <string name="eu">basque</string>
+    <string name="eu">Basque</string>
     <string name="be">Biélorusse</string>
-    <string name="bn">bengali</string>
+    <string name="bn">Bengali</string>
     <string name="bh">Langues bihari</string>
     <string name="bi">Bislama</string>
-    <string name="bs">Bosniaque</string>
+    <string name="bs">Bosnien</string>
     <string name="br">Breton</string>
-    <string name="bg">bulgare</string>
-    <string name="my">birman</string>
+    <string name="bg">Bulgare</string>
+    <string name="my">Birman</string>
     <string name="ca">Catalan, valencien</string>
     <string name="km">Khmer central</string>
     <string name="ch">Chamorro</string>
     <string name="ce">Tchétchène</string>
     <string name="ny">Chichewa, Chewa, Nyanja</string>
-    <string name="zh">chinois</string>
-    <string name="cu">Église slave, ancienne bulgare, ancienne église slave</string>
-    <string name="cv">Chuvash</string>
-    <string name="kw">cornouaillais</string>
+    <string name="zh">Chinois</string>
+    <string name="cu">Slavon d\'église, vieux bulgare, vieux slavon d\'église</string>
+    <string name="cv">Tchouvache</string>
+    <string name="kw">Cornique</string>
     <string name="co">Corse</string>
     <string name="cr">Cri</string>
-    <string name="hr">croate</string>
-    <string name="cs">tchèque</string>
-    <string name="da">danois</string>
-    <string name="dv">Divehi, Dhivehi, Maldivien</string>
+    <string name="hr">Croate</string>
+    <string name="cs">Tchèque</string>
+    <string name="da">Danois</string>
+    <string name="dv">Divehi, dhivehi, maldivien</string>
     <string name="nl">Néerlandais, flamand</string>
     <string name="dz">Dzongkha</string>
     <string name="en">Anglais</string>
-    <string name="eo">espéranto</string>
-    <string name="et">estonien</string>
-    <string name="ee">Brebis</string>
+    <string name="eo">Espéranto</string>
+    <string name="et">Estonien</string>
+    <string name="ee">Éwé</string>
     <string name="fo">Féroïen</string>
     <string name="fj">Fidjien</string>
-    <string name="fi">finlandais</string>
-    <string name="fr">français</string>
-    <string name="ff">Fulah</string>
+    <string name="fi">Finnois</string>
+    <string name="fr">Français</string>
+    <string name="ff">Peul</string>
     <string name="gd">Gaélique, gaélique écossais</string>
     <string name="gl">Galicien</string>
     <string name="lg">Ganda</string>
-    <string name="ka">géorgien</string>
+    <string name="ka">Géorgien</string>
     <string name="de">Allemand</string>
     <string name="ki">Gikuyu, Kikuyu</string>
     <string name="el">Grec (moderne)</string>
-    <string name="kl">Groenlandais, Kalaallisut</string>
+    <string name="kl">Groenlandais, kalaallisut</string>
     <string name="gn">Guarani</string>
     <string name="gu">Gujarati</string>
     <string name="ht">Haïtien, créole haïtien</string>
     <string name="ha">Haoussa</string>
-    <string name="he">hébreu</string>
+    <string name="he">Hébreu</string>
     <string name="hz">Herero</string>
-    <string name="hi">hindi</string>
-    <string name="ho">Hiri Motu</string>
-    <string name="hu">hongrois</string>
-    <string name="is">islandais</string>
-    <string name="io">Je fais</string>
+    <string name="hi">Hindi</string>
+    <string name="ho">Hiri motu</string>
+    <string name="hu">Hongrois</string>
+    <string name="is">Islandais</string>
+    <string name="io">Ido</string>
     <string name="ig">Igbo</string>
-    <string name="id">indonésien</string>
+    <string name="id">Indonésien</string>
     <string name="ia">Interlingua (Association internationale des langues auxiliaires)</string>
     <string name="ie">Interlingue</string>
     <string name="iu">Inuktitut</string>
     <string name="ik">Inupiaq</string>
-    <string name="ga">irlandais</string>
-    <string name="it">italien</string>
+    <string name="ga">Irlandais</string>
+    <string name="it">Italien</string>
     <string name="ja">Japonais</string>
     <string name="jv">Javanais</string>
     <string name="kn">Kannada</string>
@@ -181,36 +155,36 @@
     <string name="rw">Kinyarwanda</string>
     <string name="kv">Komi</string>
     <string name="kg">Kongo</string>
-    <string name="ko">coréen</string>
-    <string name="kj">Kwanyama, Kuanyama</string>
-    <string name="ku">kurde</string>
+    <string name="ko">Coréen</string>
+    <string name="kj">Kwanyama, kuanyama</string>
+    <string name="ku">Kurde</string>
     <string name="ky">Kirghize</string>
     <string name="lo">Laotien</string>
     <string name="la">Latin</string>
-    <string name="lv">letton</string>
-    <string name="lb">Letzeburgesch, luxembourgeois</string>
-    <string name="li">Limbourgeois, Limburgan, Limburger</string>
+    <string name="lv">Letton</string>
+    <string name="lb">Luxembourgeois</string>
+    <string name="li">Limbourgeois</string>
     <string name="ln">Lingala</string>
     <string name="lt">lituanien</string>
     <string name="lu">Luba-Katanga</string>
     <string name="mk">Macédonien</string>
-    <string name="mg">malgache</string>
-    <string name="ms">malais</string>
+    <string name="mg">Malgache</string>
+    <string name="ms">Malais</string>
     <string name="ml">Malayalam</string>
-    <string name="mt">maltais</string>
-    <string name="gv">Manx</string>
+    <string name="mt">Maltais</string>
+    <string name="gv">Mannois</string>
     <string name="mi">Maori</string>
     <string name="mr">Marathi</string>
     <string name="mh">Marshallese</string>
     <string name="ro">Moldave, moldave, roumain</string>
-    <string name="mn">mongol</string>
+    <string name="mn">Mongol</string>
     <string name="na">Nauru</string>
     <string name="nv">Navajo, Navaho</string>
     <string name="nd">Nord Ndebele</string>
     <string name="ng">Ndonga</string>
-    <string name="ne">népalais</string>
+    <string name="ne">Népalais</string>
     <string name="se">Sami du Nord</string>
-    <string name="no">norvégien</string>
+    <string name="no">Norvégien</string>
     <string name="nb">Norvégien bokmål</string>
     <string name="nn">Norvégien nynorsk</string>
     <string name="ii">Nuosu, Sichuan Yi</string>
@@ -220,67 +194,64 @@
     <string name="om">Oromo</string>
     <string name="os">Ossète, Ossétique</string>
     <string name="pi">Pali</string>
-    <string name="pa">Panjabi, pendjabi</string>
-    <string name="ps">Pashto, Pushto</string>
-    <string name="fa">persan</string>
-    <string name="pl">polonais</string>
+    <string name="pa">Pendjabi</string>
+    <string name="ps">Pachto</string>
+    <string name="fa">Persan</string>
+    <string name="pl">Polonais</string>
     <string name="pt">Portugais</string>
     <string name="qu">Quechua</string>
     <string name="rm">Romanche</string>
     <string name="rn">Rundi</string>
-    <string name="ru">russe</string>
+    <string name="ru">Russe</string>
     <string name="sm">Samoan</string>
     <string name="sg">Sango</string>
-    <string name="sa">sanskrit</string>
+    <string name="sa">Sanskrit</string>
     <string name="sc">Sarde</string>
-    <string name="sr">serbe</string>
+    <string name="sr">Serbe</string>
     <string name="sn">Shona</string>
     <string name="sd">Sindhi</string>
-    <string name="si">Cinghalais, cingalais</string>
-    <string name="sk">slovaque</string>
-    <string name="sl">slovène</string>
-    <string name="so">somali</string>
-    <string name="st">Sotho, Sud</string>
-    <string name="nr">Sud Ndebele</string>
+    <string name="si">Singalais, cingalais</string>
+    <string name="sk">Slovaque</string>
+    <string name="sl">Slovène</string>
+    <string name="so">Somali</string>
+    <string name="st">Sotho du Sud</string>
+    <string name="nr">Ndébélé du Sud</string>
     <string name="es">Espagnol, castillan</string>
     <string name="su">Sundanais</string>
     <string name="sw">Swahili</string>
     <string name="ss">Swati</string>
-    <string name="sv">suédois</string>
+    <string name="sv">Suédois</string>
     <string name="tl">Tagalog</string>
     <string name="ty">Tahitien</string>
     <string name="tg">Tadjik</string>
     <string name="ta">Tamil</string>
-    <string name="tt">tatar</string>
-    <string name="te">Telugu</string>
-    <string name="th">thaïlandais</string>
+    <string name="tt">Tatar</string>
+    <string name="te">Télougou</string>
+    <string name="th">Thaï</string>
     <string name="bo">Tibétain</string>
-    <string name="ti">Tigrinya</string>
+    <string name="ti">Tigrigna</string>
     <string name="to">Tonga (îles Tonga)</string>
     <string name="ts">Tsonga</string>
     <string name="tn">Tswana</string>
-    <string name="tr">turc</string>
+    <string name="tr">Turc</string>
     <string name="tk">Turkmène</string>
     <string name="tw">Twi</string>
-    <string name="ug">Ouïghour, Ouïghour</string>
-    <string name="uk">ukrainien</string>
+    <string name="ug">Ouïghour, Ouïgour</string>
+    <string name="uk">Ukrainien</string>
     <string name="ur">Ourdou</string>
     <string name="uz">Ouzbek</string>
     <string name="ve">Venda</string>
-    <string name="vi">vietnamien</string>
-    <string name="vo">Volap_k</string>
+    <string name="vi">Vietnamien</string>
+    <string name="vo">Volapük</string>
     <string name="wa">Wallon</string>
-    <string name="cy">gallois</string>
+    <string name="cy">Gallois</string>
     <string name="fy">Frison occidental</string>
     <string name="wo">Wolof</string>
     <string name="xh">Xhosa</string>
-    <string name="yi">yiddish</string>
+    <string name="yi">Yiddish</string>
     <string name="yo">Yoruba</string>
     <string name="za">Zhuang, Chuang</string>
-    <string name="zu">zoulou</string>
-
-    
-
+    <string name="zu">Zoulou</string>
     <string name="appintro1_description" id="299">Une application gratuite et open source Buddha Quotes</string>
     <string name="appintro2_title" id="300">Plus de 230 citations</string>
     <string name="appintro2_description" id="301">Plus de 230 citations du Bouddha. \nBalayez vers le bas pour actualiser!</string>
@@ -290,33 +261,29 @@
     <string name="appintro4_description" id="305">Il existe une variété d\'options d\'interface utilisateur, telles que les couleurs d\'accentuation et le mode sombre</string>
     <string name="appintro5_title" id="306">Commençons!</string>
     <string name="appintro5_description" id="307">Nous espérons que vous apprécierez l\'application - nous avons un référentiel GitLab où vous pouvez demander des fonctionnalités ou soulever des problèmes</string>
-
-    
-
     <string name="cancel" id="308">Annuler</string>
     <string name="confirm" id="309">Confirmer</string>
-
     <string name="quote_1" id="310">Un esprit discipliné apporte le bonheur</string>
     <string name="quote_2" id="311">Un bon ami qui signale les erreurs et les imperfections et réprimande le mal doit être respecté comme s\'il révélait un secret de trésor caché</string>
-    <string name="quote_3" id="312">Une grande révolution humaine dans un seul individu aidera à changer le destin d\'une nation et, en outre, peut même permettre un changement dans le destin de toute l\'humanité.</string>
-    <string name="quote_4" id="313">Un homme a demandé à Gautama Bouddha: «Je veux le bonheur». Bouddha a dit: "Supprimez d\'abord" je ", c\'est Ego, puis supprimez" vouloir ", c\'est le désir.</string>
-    <string name="quote_5" id="314">Un homme n\'est pas appelé sage parce qu\'il parle et reparle; mais s\'il est paisible, aimant et intrépide, alors il est en vérité appelé sage</string>
-    <string name="quote_6" id="315">Un esprit non perturbé par les caprices de la fortune, de la douleur libérée, des souillures nettoyées, de la peur libérée - c\'est la plus grande bénédiction</string>
-    <string name="quote_7" id="316">Une personne, qui, aussi désespérée que soit la situation, donne de l\'espoir aux autres, est un vrai leader</string>
+    <string name="quote_3" id="312">Une grande révolution humaine dans un seul individu aidera à changer le destin d\'une nation et, en outre, peut même permettre un changement dans le destin de toute l\'humanité</string>
+    <string name="quote_4" id="313">Un homme a demandé à Gautama Bouddha : « Je veux le bonheur ». Bouddha a dit : Supprimez d\'abord je , c\'est Ego, puis supprimez vouloir, c\'est le désir</string>
+    <string name="quote_5" id="314">Un homme n\'est pas appelé sage parce qu\'il parle et reparle ; mais s\'il est paisible, aimant et intrépide, alors il est en vérité appelé sage</string>
+    <string name="quote_6" id="315">Un esprit non perturbé par les caprices de la fortune, de la douleur libérée, des souillures nettoyées, de la peur libérée – c\'est la plus grande bénédiction</string>
+    <string name="quote_7" id="316">Une personne, qui, aussi désespérée que soit la situation, donne de l\'espoir aux autres, est un vrai meneur</string>
     <string name="quote_8" id="317">Une attitude véritablement compatissante envers les autres ne change pas même s\'ils se comportent de manière négative ou vous font du mal</string>
     <string name="quote_9" id="318">Surtout, ne perdez pas votre envie de marcher</string>
-    <string name="quote_10" id="319">«Toutes les choses conditionnées sont impermanentes» - quand on voit cela avec sagesse, on se détourne de la souffrance</string>
+    <string name="quote_10" id="319">« Toutes les choses conditionnées sont impermanentes » – quand on voit cela avec sagesse, on se détourne de la souffrance</string>
     <string name="quote_11" id="320">Toutes les expériences sont précédées par l\'esprit, ayant l\'esprit comme leur maître, créées par l\'esprit</string>
     <string name="quote_12" id="321">Tous les phénomènes n\'existent pas intrinsèquement parce qu\'ils sont des apparitions dépendantes. Tous les phénomènes n\'existent pas intrinsèquement parce qu\'ils sont imputés de manière dépendante</string>
     <string name="quote_13" id="322">Toute souffrance est causée par l\'ignorance. Les gens infligent de la douleur aux autres dans la poursuite égoïste de leur propre bonheur ou satisfaction</string>
-    <string name="quote_14" id="323">Tous tremblent de violence; tous ont peur de la mort. Se mettre à la place d\'un autre, il ne faut pas tuer ni faire tuer un autre</string>
-    <string name="quote_15" id="324">Tout acte répréhensible vient de l\'esprit. Si l\'esprit se transforme, est-ce que le mal peut subsister?</string>
+    <string name="quote_14" id="323">Tous tremblent de violence ; tous ont peur de la mort. Se mettre à la place d\'un autre, il ne faut pas tuer ni faire tuer un autre</string>
+    <string name="quote_15" id="324">Tout acte répréhensible vient de l\'esprit. Si l\'esprit se transforme, est-ce que le mal peut subsister \?</string>
     <string name="quote_16" id="325">Un cœur ouvert est un esprit ouvert</string>
     <string name="quote_17" id="326">Analyser à travers une perspicacité particulière et réaliser le manque d\'existence inhérente constitue une compréhension</string>
     <string name="quote_18" id="327">La colère est le destructeur ultime de votre propre tranquillité d\'esprit</string>
     <string name="quote_19" id="328">La colère ou la haine est comme un hameçon de pêcheur. Il est très important pour nous de nous assurer que nous ne sommes pas pris par cela</string>
     <string name="quote_20" id="329">La colère ne disparaîtra jamais tant que les pensées de ressentiment sont chéries dans l\'esprit. La colère disparaîtra dès que les pensées de ressentiment seront oubliées</string>
-    <string name="quote_21" id="330">Fais ardemment aujourd\'hui ce qu\'il faut faire. Qui sait? Demain, la mort arrive</string>
+    <string name="quote_21" id="330">Fais ardemment aujourd\'hui ce qu\'il faut faire. Qui sait \? Demain, la mort arrivera</string>
     <string name="quote_22" id="331">Comme je suis, ceux-ci le sont aussi. Tels sont ceux-ci, moi aussi. En faisant le parallèle avec vous-même, ne tuez ni ne faites tuer les autres</string>
     <string name="quote_23" id="332">En tant que fleur qui est belle et belle, mais qui est inodore, même ainsi, stérile est la parole bien prononcée de celui qui ne la pratique pas</string>
     <string name="quote_24" id="333">De même qu\'une fleur de lotus naît dans l\'eau, grandit dans l\'eau et s\'élève hors de l\'eau pour se tenir au-dessus d\'elle non souillée, de même moi, né dans le monde, élevé dans le monde ayant vaincu le monde, je vis non souillé par le monde</string>
@@ -326,27 +293,27 @@
     <string name="quote_28" id="337">L\'attention est la forme de générosité la plus rare et la plus pure</string>
     <string name="quote_29" id="338">Soyez une lampe pour vous-même. Travaillez votre libération avec la libération</string>
     <string name="quote_30" id="339">Soyez très conscient du présent</string>
-    <string name="quote_31" id="340">Soyez gentil chaque fois que possible. C\'est toujours possible</string>
-    <string name="quote_32" id="341">Soyez vigilant; protégez votre esprit contre les pensées négatives</string>
+    <string name="quote_31" id="340">Sois gentil(le) chaque fois que c\'est possible. C\'est toujours possible</string>
+    <string name="quote_32" id="341">Soyez vigilant(e) ; protégez votre esprit contre les pensées négatives</string>
     <string name="quote_33" id="342">Soyez ce que vous êtes. C\'est la première étape pour devenir meilleur que vous</string>
     <string name="quote_34" id="343">Parce que nous partageons tous un même besoin d\'amour, il est possible de sentir que toute personne que nous rencontrons, quelles que soient les circonstances, est un frère ou une sœur</string>
     <string name="quote_35" id="344">Parce que tu es vivant, tout est possible</string>
-    <string name="quote_36" id="345">Mieux vaut vivre seul; il n\'y a pas de communion avec un imbécile. Vivez seul et ne faites aucun mal; sois insouciant comme un éléphant dans la forêt des éléphants</string>
+    <string name="quote_36" id="345">Mieux vaut vivre seul ; il n\'y a pas de communion avec un imbécile. Vivez seul et ne faites aucun mal ; sois insouciant comme un éléphant dans la forêt des éléphants</string>
     <string name="quote_37" id="346">Mieux vaut vivre un jour en voyant l\'ascension et la chute des choses que de vivre cent ans sans jamais voir l\'ascension et la chute des choses</string>
     <string name="quote_38" id="347">Mieux que mille mots inutiles est un mot utile, entendant lequel on atteint la paix.</string>
     <string name="quote_39" id="348">Mieux vaut qu\'adorer les dieux est l\'obéissance aux lois de la justice</string>
     <string name="quote_40" id="349">En vivant profondément dans le moment présent, nous pouvons mieux comprendre le passé et nous préparer pour un avenir meilleur</string>
     <string name="quote_41" id="350">Un esprit calme apporte force intérieure et confiance en soi, c\'est donc très important pour une bonne santé</string>
-    <string name="quote_42" id="351">Cesser de faire le mal, cultiver le bien, purifier le cœur: tel est l\'enseignement des bouddhas</string>
+    <string name="quote_42" id="351">Cesser de faire le mal, cultiver le bien, purifier le cœur : tel est l\'enseignement des bouddhas</string>
     <string name="quote_43" id="352">Choisissez d\'être optimiste, ça va mieux</string>
     <string name="quote_44" id="353">Vaincre la colère par la douceur, la méchanceté par la gentillesse, la cupidité par la générosité et le mensonge par la vérité</string>
     <string name="quote_45" id="354">Conquérir la colère sans colère. Vaincre la méchanceté avec la bonté. Conquérir la méchanceté avec générosité. Conquérir la malhonnêteté avec la vérité</string>
-    <string name="quote_46" id="355">Vainquez celui qui est en colère en ne vous mettant pas en colère; conquérir les méchants par la bonté; conquérir l\'avare par la générosité, et le menteur en disant la vérité</string>
+    <string name="quote_46" id="355">Vainquez celui qui est en colère en ne vous mettant pas en colère ; conquérir les méchants par la bonté ; conquérir l\'avare par la générosité, et le menteur en disant la vérité</string>
     <string name="quote_47" id="356">Le contentement est la plus grande richesse</string>
-    <string name="quote_48" id="357">Délectez-vous de l\'attention! Gardez bien vos pensées!</string>
+    <string name="quote_48" id="357">Délectez-vous de l\'attention ! Gardez bien vos pensées !</string>
     <string name="quote_49" id="358">Ravissantes sont les forêts où le public ne se réjouit pas. Là, le plaisir sans passion, Ne cherche pas le plaisir sensuel</string>
-    <string name="quote_50" id="359">Le Dharma n\'est pas soutenu en en parlant. Le Dharma est soutenu en vivant en harmonie avec lui …</string>
-    <string name="quote_51" id="360">Ne prêtez pas attention à ce que les autres font ou ne font pas; donnez-le à ce que vous faites ou ne faites pas</string>
+    <string name="quote_50" id="359">Le Dharma n\'est pas soutenu en en parlant. Le Dharma est soutenu en vivant en harmonie avec lui…</string>
+    <string name="quote_51" id="360">Ne prêtez pas attention à ce que les autres font ou ne font pas ; donnez-le à ce que vous faites ou ne faites pas</string>
     <string name="quote_52" id="361">Ne surestimez pas ce que vous avez reçu et n\'enviez pas les autres. Celui qui envie les autres n\'obtient pas la tranquillité d\'esprit</string>
     <string name="quote_53" id="362">Ne pensez pas à la taille de l\'univers, cela vous blessera simplement la tête</string>
     <string name="quote_54" id="363">Le pot d\'eau est rempli goutte à goutte. De même, le sage, le rassemblant petit à petit, se remplit de bien</string>
@@ -355,14 +322,14 @@
     <string name="quote_57" id="366">Même si un rocher solide n\'est pas ébranlé par le vent, les sages ne sont pas ébranlés par la louange ou le blâme</string>
     <string name="quote_58" id="367">Même si les choses ne se déroulent pas comme prévu, ne vous découragez pas et n\'abandonnez pas. Celui qui continue d\'avancer gagnera à la fin</string>
     <string name="quote_59" id="368">Tout est changeant, tout apparaît et disparaît il n\'y a pas de paix heureuse jusqu\'à ce que l\'on passe au-delà de l\'agonie de la vie et de la mort</string>
-    <string name="quote_60" id="369">Les sentiments vont et viennent comme des nuages ​​dans un ciel venteux. La respiration consciente est mon ancre</string>
+    <string name="quote_60" id="369">Les sentiments vont et viennent comme des nuages dans un ciel venteux. La respiration consciente est mon ancre</string>
     <string name="quote_61" id="370">Rares sont les hommes qui traversent vers le rivage le plus éloigné. Les autres ne font que monter et descendre la rive de ce côté</string>
-    <string name="quote_62" id="371">Suivre le Noble Sentier, c\'est comme entrer dans une pièce sombre avec une lumière dans la main; les ténèbres seront toutes éclaircies et la pièce sera remplie de lumière</string>
+    <string name="quote_62" id="371">Suivre le Noble Sentier, c\'est comme entrer dans une pièce sombre avec une lumière dans la main ; les ténèbres seront toutes éclaircies et la pièce sera remplie de lumière</string>
     <string name="quote_63" id="372">Pour le bien du plus grand nombre, pour le bonheur du plus grand nombre, par compassion pour le monde</string>
     <string name="quote_64" id="373">L\'amitié est le seul remède à la haine, la seule garantie de paix</string>
     <string name="quote_65" id="374">D\'un arbre desséché, une fleur fleurit</string>
     <string name="quote_66" id="375">Donnez, même si vous n\'en avez qu\'un peu</string>
-    <string name="quote_67" id="376">Plus grand dans la bataille que l\'homme qui vaincrait mille mille hommes, est celui qui n\'en vaincrait qu\'un seul - lui-même. Mieux vaut se conquérir que les autres</string>
+    <string name="quote_67" id="376">Plus grand dans la bataille que la personne qui vaincrait un millier de millier d\'hommes est celle qui n\'en vaincrait qu\'une seule – elle-même. Mieux vaut se conquérir soi plutôt que les autres</string>
     <string name="quote_68" id="377">Plus grande encore est la vérité de notre connectivité</string>
     <string name="quote_69" id="378">Le bonheur vient principalement de notre propre attitude, plutôt que de facteurs externes</string>
     <string name="quote_70" id="379">La haine n\'est jamais apaisée par la haine dans ce monde. Par la non-haine seule, la haine est apaisée. C\'est une loi éternelle</string>
@@ -372,24 +339,24 @@
     <string name="quote_74" id="383">Celui qui marche dans le noble chemin octuple avec une détermination inébranlable est sûr d\'atteindre le Nirvana</string>
     <string name="quote_75" id="384">La santé est le plus beau cadeau, le contentement la plus grande richesse, la fidélité la meilleure relation</string>
     <string name="quote_76" id="385">Comme c\'est bienheureux, pour celui qui n\'a rien. Les détenteurs de la sagesse sont des gens sans rien. Le voir souffrir, celui qui a quelque chose, une personne liée aux autres</string>
-    <string name="quote_77" id="386">Quel que soit le nombre de paroles saintes que vous lisez, quel que soit le nombre de paroles que vous en dites, à quoi vous serviront-elles si vous ne les appliquez pas?</string>
-    <string name="quote_78" id="387">Je ne conteste pas avec le monde; c\'est plutôt le monde qui se dispute avec moi</string>
+    <string name="quote_77" id="386">Quel que soit le nombre de paroles saintes que vous lisez, quel que soit le nombre de paroles que vous en dites, à quoi vous serviront-elles si vous ne les appliquez pas \?</string>
+    <string name="quote_78" id="387">Je ne conteste pas avec le monde ; c\'est plutôt le monde qui se dispute avec moi</string>
     <string name="quote_79" id="388">Je vivrai ici sous les pluies, Là en hiver, Ailleurs en été », songe le fou, Pas conscient de la proximité de la mort</string>
-    <string name="quote_80" id="389">Je ne regarderai pas le bol d’un autre dans l’intention de trouver des fautes: un entraînement à observer</string>
-    <string name="quote_81" id="390">Si un homme qui descend dans une rivière, gonflé et qui coule rapidement, est emporté par le courant, comment peut-il aider les autres à traverser?</string>
-    <string name="quote_82" id="391">Si un voyageur ne rencontre pas quelqu\'un qui est son meilleur ou son égal, qu\'il continue fermement son voyage solitaire; il n\'y a pas de compagnie avec un imbécile</string>
+    <string name="quote_80" id="389">Je ne regarderai pas le bol d’un autre dans l’intention de trouver des fautes : un entraînement à observer</string>
+    <string name="quote_81" id="390">Si un homme qui descend dans une rivière, gonflé et qui coule rapidement, est emporté par le courant, comment peut-il aider les autres à traverser \?</string>
+    <string name="quote_82" id="391">Si un voyageur ne rencontre pas quelqu\'un qui est son meilleur ou son égal, qu\'il continue fermement son voyage solitaire ; il n\'y a pas de compagnie avec un imbécile</string>
     <string name="quote_83" id="392">Si quelque chose vaut la peine, fais-le de tout ton cœur</string>
     <string name="quote_84" id="393">Si l\'altruisme des phénomènes est analysée et si cette analyse est cultivée, elle provoque l\'effet d\'atteindre le nirvana. Par aucune autre cause on ne parvient à la paix</string>
-    <string name="quote_85" id="394">Si nous ne prenons pas soin des autres lorsqu\'ils ont besoin d\'aide, qui prendra soin de nous?</string>
+    <string name="quote_85" id="394">Si nous ne prenons pas soin des autres lorsqu\'ils ont besoin d\'aide, qui prendra soin de nous \?</string>
     <string name="quote_86" id="395">Si avec un esprit pur une personne parle ou agit, le bonheur les suit comme une ombre qui ne part pas</string>
-    <string name="quote_87" id="396">Si vous pouvez cultiver la bonne attitude, vos ennemis sont vos meilleurs enseignants spirituels car leur présence vous offre l\'opportunité d\'améliorer et de développer votre tolérance, votre patience et votre compréhension.</string>
+    <string name="quote_87" id="396">Si vous pouvez cultiver la bonne attitude, vos ennemis sont vos meilleurs enseignants spirituels car leur présence vous offre l\'opportunité d\'améliorer et de développer votre tolérance, votre patience et votre compréhension</string>
     <string name="quote_88" id="397">Si vous ne trouvez personne pour vous soutenir sur le chemin spirituel, marchez seul Il n\'y a pas de compagnie avec les immatures</string>
     <string name="quote_89" id="398">Si tu savais ce que je sais du pouvoir de donner, tu ne laisserais pas passer un seul repas sans le partager d\'une manière ou d\'une autre</string>
     <string name="quote_90" id="399">Si vous aimez quelqu\'un mais que vous vous rendez rarement disponible pour lui, ce n\'est pas le véritable amour</string>
     <string name="quote_91" id="400">Si vous voulez que les autres soient heureux, pratiquez la compassion. Si vous voulez être heureux, soyez compatissant</string>
     <string name="quote_92" id="401">Dans la vie, nous ne pouvons éviter le changement, nous ne pouvons éviter la perte. La liberté et le bonheur se trouvent dans la flexibilité et la facilité avec lesquelles nous évoluons dans le changement</string>
     <string name="quote_93" id="402">Afin de mener une action positive, nous devons développer ici une vision positive</string>
-    <string name="quote_94" id="403">En qui il n\'y a pas de sympathie pour les êtres vivants: connaissez-le comme un paria</string>
+    <string name="quote_94" id="403">En qui il n\'y a pas de sympathie pour les êtres vivants : connaissez-le comme un paria</string>
     <string name="quote_95" id="404">C\'est le propre esprit d\'un homme, pas son ennemi ou ennemi, qui l\'attire dans les mauvaises voies</string>
     <string name="quote_96" id="405">Il est facile de voir les défauts des autres, mais difficile de voir ses propres défauts. On montre les défauts des autres comme de la paille vannée dans le vent, mais on cache ses propres fautes comme un joueur rusé cache ses dés</string>
     <string name="quote_97" id="406">C\'est dans la nature des choses que la joie surgit chez une personne sans remords</string>
@@ -533,50 +500,38 @@
     <string name="quote_235" id="544">Vous ne recueillez pas la beauté d\'une fleur en cueillant ses pétales</string>
     <string name="quote_236" id="545">Votre propre moi est votre maître; qui d\'autre pourrait être? Avec vous-même bien maîtrisé, vous gagnez un maître très difficile à trouver</string>
     <string name="quote_237" id="546">Vous devez vous efforcer vous-même. Les bouddhas indiquent seulement le chemin</string>
-
     <string name="about_translators" id="547">Traducteurs</string>
     <string name="title_activity_main">Activité principale</string>
     <string name="title_home">Maison</string>
     <string name="title_dashboard">Tableau de bord</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="quote_number">Citation</string>
-
     <string name="fragment_quote">Citation</string>
     <string name="fragment_lists">Listes</string>
     <string name="fragment_meditation">Méditer</string>
-
     <string name="meditate_title">Méditer</string>
     <string name="meditate_subheading">C\'est simple</string>
-
     <string name="meditate_space">Espacer</string>
     <string name="meditate_space_desc">Choisissez un endroit calme où vous ne serez pas dérangé.</string>
-
     <string name="meditate_posture">Posture</string>
     <string name="meditate_posture_desc">Asseyez-vous sur le sol ou sur une chaise à dossier droit. La clé est d\'être à l\'aise!</string>
-
     <string name="meditate_breath">Souffle</string>
     <string name="meditate_breath_desc">Prenez de profondes respirations lentes, essayez de respirer dans votre estomac.</string>
-
     <string name="play">CV</string>
     <string name="pause">Pause</string>
     <string name="reset">Réinitialiser</string>
-
     <string name="time_left">Temps restant</string>
     <string name="meditating_for">Méditer pour</string>
     <string name="has_been_paused">a été mis en pause</string>
     <string name="meditation_timer">Minuterie de méditation</string>
-
     <string name="more">Suite</string>
     <string name="addToList">Ajouter à la liste</string>
     <string name="searchHint">Chercher…</string>
     <string name="search">Chercher</string>
     <string name="attribution_buddha">~ Bouddha Gautama</string>
-
     <string name="seconds">secondes</string>
     <string name="minutes">minutes</string>
     <string name="and">et</string>
-
     <string name="create_new_list">Créer une nouvelle liste</string>
     <string name="insert_name">Insérer le nom</string>
     <string name="validationRule1">Ne peut pas contenir //</string>
@@ -586,10 +541,51 @@
     <string name="new_str">Nouveau</string>
     <string name="added">Citation ajoutée à</string>
     <string name="exists">Cette citation existe déjà en</string>
-
     <string name="start">Début</string>
     <string name="show_notification">Afficher la notification</string>
     <string name="vibrate_second">Vibrer chaque seconde</string>
-
     <string name="favourites">Favoris</string>
+    <string name="list_sheet_title">Aide pour les listes</string>
+    <string name="quote_sheet_title">Aide pour les citations</string>
+    <string name="list_sheet_content">Ce sont vos listes. Vous pouvez accéder à vos citations préférées à partir d\'ici, ainsi que créer de nouvelles listes pour classer les citations en groupes. 😄
+\n
+\n De nouvelles listes peuvent être créées en appuyant sur le bouton ajouter (➕) en bas de l\'écran et en saisissant un nom. L\'icône au début de la liste peut être personnalisée à partir de la liste elle-même.</string>
+    <string name="quote_sheet_content">Vous pouvez appuyer sur le bouton suivant ou glisser vers le bas depuis le haut pour obtenir une nouvelle citation.
+\n
+\n Vous pouvez changer l\'image en bas en maintenant le doigt dessus, ce qui fera apparaître une sélection de 12 options d\'images. 🤩</string>
+    <string name="meditate_sheet_title">Aide à la méditation</string>
+    <string name="meditate_sheet_content">Vous pouvez commencer une session de méditation en appuyant sur le bouton de démarrage ci-dessous et en saisissant le temps pendant lequel vous souhaitez méditer. 😌</string>
+    <string name="start_meditation">Commencer la méditation</string>
+    <string name="timer_text">%1$s:%2$s</string>
+    <string name="duplicate">Cette citation est déjà dans</string>
+    <string name="summary">Résumé</string>
+    <string name="two_people_meditating">Deux personnes en train de méditer</string>
+    <string name="empty_list">Cette liste est vide !</string>
+    <string name="by_bandev">Fait par BanDev</string>
+    <string name="tips">Astuces</string>
+    <string name="contributors">Contributeurs</string>
+    <string name="list_icon">Icône de la liste</string>
+    <string name="_00_00">00:00</string>
+    <string name="text">Texte</string>
+    <string name="open_drawer">Ouvrir le tiroir de navigation</string>
+    <string name="close_drawer">Fermer le tiroir de navigation</string>
+    <string name="attribution">Attribution</string>
+    <string name="no_list">Vous n\'avez aucunr liste !</string>
+    <string name="quotes">%d citations</string>
+    <string name="quote">1 citation</string>
+    <string name="okay">D\'accord</string>
+    <string name="libraries" id="90">Bibliothèques</string>
+    <string name="water_lotus">Lotus d\'eau</string>
+    <string name="lotus">Lotus</string>
+    <string name="shrine">Sanctuaire</string>
+    <string name="lamp">Lampe</string>
+    <string name="temple">Temple</string>
+    <string name="elephant">Éléphant</string>
+    <string name="endless_knot">Nœud sans fin</string>
+    <string name="mandala">Mandala</string>
+    <string name="anahata">Anahata</string>
+    <string name="dharma_wheel">Roue</string>
+    <string name="monk">Moine</string>
+    <string name="buddha">Bouddha</string>
+    <string name="about_app">À propos de Buddha Quotes</string>
 </resources>
