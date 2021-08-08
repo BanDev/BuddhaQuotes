@@ -1,2 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="it">Italiano</string>
+    <string name="an">Aragonese</string>
+    <string name="aa">Afar</string>
+    <string name="green" id="105">Verde</string>
+    <string name="blue" id="104">Blu</string>
+    <string name="original" id="103">Predefinito</string>
+    <string name="settings_language" id="102">Lingua</string>
+    <string name="settings_shapes_mode_no" id="101">Disattivato</string>
+    <string name="settings_shapes_mode_yes" id="100">Attivato</string>
+    <string name="settings_accent_colour" id="98">Colore d\'accento</string>
+    <string name="settings_general" id="97">Generale</string>
+    <string name="lists_add_lists_go" id="95">Aggiungi</string>
+    <string name="lists_add_lists" id="94">Crea una nuova lista</string>
+    <string name="lists_title" id="92">Le tue liste</string>
+    <string name="about_no_ads" id="91">Nessun annuncio</string>
+    <string name="libraries" id="90">Librerie</string>
+    <string name="appwidget_text" id="87">ESEMPIO</string>
+    <string name="dharma_wheel">Ruota</string>
+    <string name="monk">Monaco</string>
+    <string name="buddha">Buddha</string>
+    <string name="title">Titolo</string>
+    <string name="about_acknowledgements" id="29">Ringraziamenti</string>
+    <string name="about_contributors" id="28">Persone fantastiche</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes è un progetto collaborativo per creare un\'applicazione di Buddha Quotes per Android gratuita e con un codice sorgente aperto, e con una particolare attenzione alla riservatezza</string>
+    <string name="about_info" id="26">Informazioni sull\'applicazione</string>
+    <string name="about_app_promise" id="21">Promessa dell\'app</string>
+    <string name="libraries_used" id="20">Librerie utilizzate</string>
+    <string name="app_license" id="19">Licenza dell\'applicazione</string>
+    <string name="app_introduction" id="18">Presentazione dell\'app</string>
+    <string name="about_app">Informazioni su Buddha Quotes</string>
+    <string name="about" id="15">Informazioni</string>
+    <string name="follow_system_default" id="9">Secondo il sistema</string>
+    <string name="dark_mode" id="8">Scuro</string>
+    <string name="light_mode" id="7">Chiaro</string>
+    <string name="app_theme" id="6">Tema dell\'applicazione</string>
+    <string name="appearance" id="5">Aspetto</string>
+    <string name="settings" id="4">Impostazioni</string>
+    <string name="share" id="3">Condividi</string>
+</resources>
