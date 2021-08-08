@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.Db
 import org.bandev.buddhaquotes.architecture.QuoteMapper
+import org.bandev.buddhaquotes.core.Images.heart
 import org.bandev.buddhaquotes.items.Quote
 
 /** The widget **/
@@ -79,17 +80,9 @@ class MainWidget : AppWidgetProvider() {
     }
 }
 
-fun heart(liked: Boolean): Int {
-    return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
-}
-
 fun getRandom(context: Context, after: (quote: Quote) -> Unit) {
     CoroutineScope(Dispatchers.IO).launch {
-        val db: Db? = Db.getInstance(context)
-        val quoteDao = db?.quote()
-        val dbQuote = quoteDao?.get((1..237).random())
-        val convertedQuote = dbQuote?.let { QuoteMapper.convert(it) }
-        convertedQuote?.let { after(it) }
+        Db.getInstance(context)?.quote()?.let { QuoteMapper.convert(it.get((1..237).random())).run(after) }
     }
 }
 

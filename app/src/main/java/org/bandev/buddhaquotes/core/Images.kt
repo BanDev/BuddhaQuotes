@@ -1,6 +1,12 @@
 package org.bandev.buddhaquotes.core
 
+import org.bandev.buddhaquotes.R
+
 object Images {
+
+    fun heart(liked: Boolean): Int {
+        return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
+    }
 
     const val MONK: Int = 1
     const val DHARMA_WHEEL: Int = 2
