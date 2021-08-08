@@ -37,6 +37,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Images.heart
 import org.bandev.buddhaquotes.custom.DoubleClickListener
 import org.bandev.buddhaquotes.databinding.FragmentQuoteBinding
 import org.bandev.buddhaquotes.items.Quote
@@ -248,10 +249,6 @@ class QuoteFragment : Fragment() {
                 imagePreferences.quoteImage = index
             }
         }
-    }
-
-    private fun heart(liked: Boolean): Int {
-        return if (liked) R.drawable.ic_heart_red else R.drawable.ic_heart_outline
     }
 
     override fun onResume() {
