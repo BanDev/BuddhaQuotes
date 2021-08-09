@@ -1,12 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    
     <string name="refresh" id="1">刷新</string>
     <string name="favourite" id="2">最喜欢的</string>
     <string name="share" id="3">分享</string>
-
-    
     <string name="settings" id="4">设定值</string>
     <string name="appearance" id="5">外貌</string>
     <string name="app_theme" id="6">应用主题</string>
@@ -20,10 +16,6 @@
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用程式授权</string>
     <string name="libraries_used" id="20">使用的图书馆</string>
-
-    
-
-    
     <string name="about_app_promise" id="21">应用承诺</string>
     <string name="about_no_trackers" id="22">没有追踪器</string>
     <string name="about_complete_privacy" id="23">完全的隐私</string>
@@ -35,51 +27,35 @@
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
     <string name="tick" id="31">打钩</string>
-
-    
-
-    
     <string name="favourited_quote" id="55">最喜欢的报价</string>
     <string name="favourite_quote_delete" id="56">删除</string>
-
-    
     <string name="buddha_quotes_logo" id="57">佛行情徽标</string>
     <string name="bandev_logo" id="58">BanDev徽标</string>
     <string name="the_buddha" id="59">佛陀</string>
     <string name="forward_arrow" id="60">返回</string>
     <string name="icon" id="61">图标</string>
     <string name="title" id="62">标题</string>
-
-    
     <string name="title_activity_settings" id="82">设置活动</string>
     <string name="textview" id="83">文字检视</string>
     <string name="MainActivity" id="84">主要活动</string>
     <string name="title_activity_scrolling" id="85">滚动活动</string>
     <string name="action_settings" id="86">设定值</string>
-
-    
     <string name="appwidget_text" id="87">例子</string>
     <string name="configure" id="88">配置</string>
     <string name="add_widget" id="89">添加小部件</string>
     <string name="open_source_libraries" id="90">开源库</string>
     <string name="about_no_ads" id="91">无广告</string>
-
-    
     <string name="lists_title" id="92">您的清单</string>
     <string name="lists_add_item" id="93">添加到列表中</string>
     <string name="lists_add_lists" id="94">建立新清单</string>
     <string name="lists_add_lists_go" id="95">添加</string>
     <string name="lists_add_lists_name" id="96">姓名</string>
-
-    
     <string name="settings_general" id="97">一般的</string>
     <string name="settings_accent_colour" id="98">口音颜色</string>
     <string name="settings_shapes_mode" id="99">形状模式</string>
     <string name="settings_shapes_mode_yes" id="100">在</string>
     <string name="settings_shapes_mode_no" id="101">离开</string>
     <string name="settings_language" id="102">语言</string>
-
-    
     <string name="original" id="103">默认</string>
     <string name="blue" id="104">蓝色</string>
     <string name="green" id="105">绿色的</string>
@@ -92,8 +68,6 @@
     <string name="red" id="112">红色的</string>
     <string name="lime" id="113">酸橙</string>
     <string name="crimson" id="114">赤红</string>
-
-    
     <string name="ab">阿布哈兹人</string>
     <string name="aa">远方</string>
     <string name="af">南非语</string>
@@ -278,9 +252,6 @@
     <string name="yo">约鲁巴语</string>
     <string name="za">庄壮</string>
     <string name="zu">祖鲁族</string>
-
-    
-
     <string name="appintro1_description" id="299">一个免费的开源佛陀行情应用程序</string>
     <string name="appintro2_title" id="300">超过230条报价</string>
     <string name="appintro2_description" id="301">佛陀引用了230多个报价。 \n向下滑动即可刷新！</string>
@@ -290,12 +261,8 @@
     <string name="appintro4_description" id="305">有多种用户界面选项，例如重点色和深色模式</string>
     <string name="appintro5_title" id="306">让我们开始吧！</string>
     <string name="appintro5_description" id="307">我们希望您喜欢该应用程序-我们有一个GitLab存储库，您可以在其中请求功能或提出问题</string>
-
-    
-
     <string name="cancel" id="308">取消</string>
     <string name="confirm" id="309">确认</string>
-
     <string name="quote_1" id="310">训练有素的头脑带来幸福</string>
     <string name="quote_2" id="311">指出错误和缺陷并斥恶的好朋友应受到尊重，就像他揭示了隐藏的宝藏的秘密一样</string>
     <string name="quote_3" id="312">在一个人中进行一场伟大的人类革命将有助于实现一个国家命运的改变，甚至可以使全人类的命运发生改变</string>
@@ -318,7 +285,7 @@
     <string name="quote_20" id="329">只要心中怀有怨恨的念头，愤怒就永远不会消失。一旦忘记怨恨的念头，愤怒就会消失</string>
     <string name="quote_21" id="330">今天认真做必须做的事情。谁知道？明天，死亡来了</string>
     <string name="quote_22" id="331">我也是，这些也是。同样，我也是。与自己比较，既不杀人也不杀人</string>
-    <string name="quote_23" id="332">作为一朵美丽而无味的花，即使如此，无果也是不实践它的人的口语。</string>
+    <string name="quote_23" id="332">犹如鲜妙花，色美而无香，如是说善语，彼不行无果</string>
     <string name="quote_24" id="333">莲花在水中出生，在水中生长，从水中升起，站在它上面而未受污染，所以我出生在世界上，在世界上长大，克服了世界，在世界上未受污染</string>
     <string name="quote_25" id="334">因为荷叶上的水珠不像红色百合上的水那样附着，所以贤哲不附着于所见，所闻或所感知</string>
     <string name="quote_26" id="335">由于战场上的大象能抵御四处弓箭射出的箭，即使如此，我也要忍受虐待</string>
@@ -533,50 +500,38 @@
     <string name="quote_235" id="544">你不会通过拔花瓣来收集花的美丽</string>
     <string name="quote_236" id="545">你自己是你的主人。还有谁呢？拥有良好的控制权，您很难找到一个主人</string>
     <string name="quote_237" id="546">你自己必须努力。佛陀只指明道路</string>
-
     <string name="about_translators" id="547">译者</string>
     <string name="title_activity_main">主要活动</string>
     <string name="title_home">家</string>
     <string name="title_dashboard">仪表板</string>
     <string name="title_notifications">通知事项</string>
-
     <string name="quote_number">引用</string>
-
     <string name="fragment_quote">引用</string>
     <string name="fragment_lists">清单</string>
     <string name="fragment_meditation">幽思</string>
-
     <string name="meditate_title">幽思</string>
     <string name="meditate_subheading">这很简单</string>
-
     <string name="meditate_space">空间</string>
     <string name="meditate_space_desc">选择一个不会被打扰的安静地方。</string>
-
     <string name="meditate_posture">姿势</string>
     <string name="meditate_posture_desc">坐在地板上或直背椅子上。关键是要舒适！</string>
-
     <string name="meditate_breath">呼吸</string>
     <string name="meditate_breath_desc">深呼吸，尝试呼吸到您的胃。</string>
-
     <string name="play">恢复</string>
     <string name="pause">暂停</string>
     <string name="reset">重置</string>
-
     <string name="time_left">剩余时间</string>
     <string name="meditating_for">冥想</string>
     <string name="has_been_paused">已暂停</string>
     <string name="meditation_timer">冥想计时器</string>
-
     <string name="more">更多的</string>
     <string name="addToList">添加到列表中</string>
     <string name="searchHint">搜索…</string>
     <string name="search">搜索</string>
     <string name="attribution_buddha">〜释迦牟尼佛</string>
-
     <string name="seconds">秒</string>
     <string name="minutes">分钟</string>
     <string name="and">和</string>
-
     <string name="create_new_list">建立新清单</string>
     <string name="insert_name">插入名称</string>
     <string name="validationRule1">不能包含//</string>
@@ -586,11 +541,51 @@
     <string name="new_str">新的</string>
     <string name="added">添加报价到</string>
     <string name="exists">此报价已存在于</string>
-
     <string name="start">开始</string>
     <string name="show_notification">显示通知</string>
     <string name="vibrate_second">每秒振动</string>
-
     <string name="favourites">收藏夹</string>
-
+    <string name="tips">小提示</string>
+    <string name="by_bandev">作者：BanDev</string>
+    <string name="quotes">%d 句语录</string>
+    <string name="quote">1句语录</string>
+    <string name="no_list">你没有列表！</string>
+    <string name="timer_text">%1$s:%2$s</string>
+    <string name="start_meditation">开始冥想</string>
+    <string name="okay">好</string>
+    <string name="libraries" id="90">库</string>
+    <string name="anahata">心轮</string>
+    <string name="quote_sheet_title">语录帮助</string>
+    <string name="mandala">曼荼罗</string>
+    <string name="elephant">大象</string>
+    <string name="about_app">关于Buddha Quotes</string>
+    <string name="dharma_wheel">法轮</string>
+    <string name="lotus">莲</string>
+    <string name="shrine">龛</string>
+    <string name="lamp">灯</string>
+    <string name="temple">佛寺</string>
+    <string name="monk">僧</string>
+    <string name="buddha">佛</string>
+    <string name="water_lotus">水中莲花</string>
+    <string name="list_sheet_content">这些是你的列表。你可以从这里获取你最喜欢的语句，也可以创建新的列表，进行归类。😄
+\n
+\n 按屏幕底部的 \"添加\"（➕）按钮，并输入一个名称，就可以创建新的列表。列表开始处的图标可以从列表中自定义。</string>
+    <string name="quote_sheet_content">你可以按“下一个”的按钮，或从顶部向下滑动，以获取一句新的语录。
+\n
+\n 你可以通过按住底部的图片来更换图片，有12张图可选。🤩</string>
+    <string name="meditate_sheet_title">冥想帮助</string>
+    <string name="list_sheet_title">列表帮助</string>
+    <string name="meditate_sheet_content">你可以按下面的开始按钮，输入你要冥想的时长，就可以开始冥想了。😌</string>
+    <string name="endless_knot">盘长结</string>
+    <string name="open_drawer">开启导航抽屉</string>
+    <string name="close_drawer">关闭导航抽屉</string>
+    <string name="attribution">归属</string>
+    <string name="contributors">贡献者</string>
+    <string name="_00_00">00:00</string>
+    <string name="text">文本</string>
+    <string name="summary">摘要</string>
+    <string name="two_people_meditating">两个人在冥想</string>
+    <string name="empty_list">此列表为空！</string>
+    <string name="duplicate">这句话已经出现在</string>
+    <string name="list_icon">列表图标</string>
 </resources>
