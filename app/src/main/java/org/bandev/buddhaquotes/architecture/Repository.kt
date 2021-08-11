@@ -136,6 +136,12 @@ class Repository(val application: Application) {
             dao.addTo(id, quote.id, count(id).toDouble())
         }
 
+        /** Add a quote to a list from just quote id */
+        suspend fun addTo(listId: Int, quoteId: Int) {
+            if (listId == 0) return Quotes().like(quoteId)
+            dao.addTo(listId, quoteId, count(listId).toDouble())
+        }
+
         /** Remove a quote from a list */
         suspend fun removeFrom(id: Int, quote: Quote) {
             if (id == 0) return db.quote().unlike(quote.id)

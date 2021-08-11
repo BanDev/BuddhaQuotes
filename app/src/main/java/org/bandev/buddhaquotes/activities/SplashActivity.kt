@@ -29,6 +29,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import org.bandev.buddhaquotes.core.Prefs
+import org.bandev.buddhaquotes.migrations.MigrationFrom1013To1014
 
 /**
  * The splash screen
@@ -39,6 +40,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val theme = Prefs(this).Settings().theme
+
+        MigrationFrom1013To1014(this, application).migrate()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Meditation Timer"
