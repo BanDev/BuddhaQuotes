@@ -175,6 +175,13 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
+        /** Add a quote to a list from just quote id */
+        fun addTo(listId: Int, quoteId: Int) {
+            viewModelScope.launch(Dispatchers.IO) {
+                listQuotes.addTo(listId, quoteId)
+            }
+        }
+
         /** Remove a quote from a list */
         fun removeFrom(id: Int, quote: Quote) {
             viewModelScope.launch(Dispatchers.IO) {
