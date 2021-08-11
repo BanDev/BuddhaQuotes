@@ -52,7 +52,7 @@ class Bus(private val instance: Any, private val name: String) {
      */
 
     private val receiver: EventsReceiver = EventsReceiver()
-    private lateinit var router: (type: Int) -> ((message: Message<*>) -> Any)?
+    private lateinit var router: (type: MessageType) -> ((message: Message<*>) -> Any)?
     private val tag = "BanDev-BUS"
 
 
@@ -78,7 +78,7 @@ class Bus(private val instance: Any, private val name: String) {
      * @param router The function you want to use
      */
 
-    fun attachRouter(router: (type: Int) -> ((message: Message<*>) -> Any)?) {
+    fun attachRouter(router: (type: MessageType) -> ((message: Message<*>) -> Any)?) {
         Log.i(tag, "$name has attatched a router: $router")
         this.router = router
     }

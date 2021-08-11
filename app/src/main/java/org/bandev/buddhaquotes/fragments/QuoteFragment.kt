@@ -36,6 +36,7 @@ import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
+import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Images.heart
 import org.bandev.buddhaquotes.custom.DoubleClickListener
@@ -129,8 +130,8 @@ class QuoteFragment : Fragment() {
         binding.like.setImageResource(heart(quote.liked))
         if (quote.liked) {
             binding.likeAnimator.likeAnimation()
-            GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, +1))
-        } else GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, -1))
+            GlobalBus.post(Message(MessageType.LIKE_UPDATE, +1))
+        } else GlobalBus.post(Message(MessageType.LIKE_UPDATE, -1))
         model.Quotes().setLike(quote.id, quote.liked)
     }
 
@@ -181,7 +182,7 @@ class QuoteFragment : Fragment() {
                             } else {
                                 model.ListQuotes().addTo(list.id, quote)
                                 list.count++
-                                GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+                                GlobalBus.post(Message(MessageType.UPDATE_LIST, list))
                             }
                         }
                     }

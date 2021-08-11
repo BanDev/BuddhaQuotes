@@ -24,6 +24,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
+import org.bandev.buddhaquotes.R
 
 class Prefs(context: Context) {
 

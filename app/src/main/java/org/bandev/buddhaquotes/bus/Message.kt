@@ -36,6 +36,6 @@ package org.bandev.buddhaquotes.bus
  */
 
 data class Message<T>(
-    val type: Int,
+    val type: MessageType,
     val data: T
 )

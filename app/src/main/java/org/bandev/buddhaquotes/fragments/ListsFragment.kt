@@ -33,7 +33,7 @@ import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Bus
 import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.core.MessageTypes
+import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
 
@@ -99,12 +99,12 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
                 else message
             } else message
             when (message.type) {
-                MessageTypes.NEW_LIST -> {
+                MessageType.NEW_LIST -> {
                     val data = message.data as List
                     list.add(data)
                     binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
                 }
-                MessageTypes.UPDATE_LIST -> {
+                MessageType.UPDATE_LIST -> {
                     val data = message.data as List
                     var position = -1
                     list.forEachIndexed { index, (id) ->
@@ -113,7 +113,7 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
                     list[position] = data
                     binding.listsRecycler.adapter?.notifyItemChanged(position)
                 }
-                MessageTypes.LIKE_UPDATE -> {
+                MessageType.LIKE_UPDATE -> {
                     val change = message.data as Int
                     list[0].count = list[0].count + change
                     binding.listsRecycler.adapter?.notifyItemChanged(0)

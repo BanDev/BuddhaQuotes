@@ -571,8 +571,8 @@
     <string name="close_drawer">Fermer le tiroir de navigation</string>
     <string name="attribution">Attribution</string>
     <string name="no_list">Vous n\'avez aucunr liste !</string>
-    <string name="quotes">%d citations</string>
-    <string name="quote">1 citation</string>
+    <string name="quotes_count">%d citations</string>
+    <string name="quote_count">1 citation</string>
     <string name="okay">D\'accord</string>
     <string name="libraries" id="90">Bibliothèques</string>
     <string name="water_lotus">Lotus d\'eau</string>

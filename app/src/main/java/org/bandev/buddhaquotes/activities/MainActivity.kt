@@ -45,14 +45,10 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.FragmentAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
+import org.bandev.buddhaquotes.bus.MessageType
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
-import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
-import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
-import org.bandev.buddhaquotes.core.MessageTypes
-import org.bandev.buddhaquotes.core.resolveColorAttr
-import org.bandev.buddhaquotes.core.setDarkStatusIcons
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 
@@ -102,7 +98,7 @@ class MainActivity : LocalizationActivity() {
         with(binding) {
             toolbar.apply {
                 setSupportActionBar(this)
-                applyInsets(STATUS_BARS)
+                applyInsets(InsetType.STATUS_BARS)
                 setNavigationOnClickListener { if (drawerLayout.isOpen) drawerLayout.close() else drawerLayout.open() }
             }
 
@@ -144,7 +140,7 @@ class MainActivity : LocalizationActivity() {
                                 hint(R.string.insert_name)
                                 resultListener { value ->
                                     model.Lists().new(value.toString()) { list ->
-                                        GlobalBus.post(Message(MessageTypes.NEW_LIST, list))
+                                        GlobalBus.post(Message(MessageType.NEW_LIST, list))
                                     }
                                 }
                             }
@@ -157,7 +153,7 @@ class MainActivity : LocalizationActivity() {
             }
 
             bottomBar.apply {
-                applyInsets(NAVIGATION_BARS)
+                applyInsets(InsetType.NAVIGATION_BARS)
                 setupWithViewPager2(binding.viewPager)
                 onTabSelected = {
                     when (it) {

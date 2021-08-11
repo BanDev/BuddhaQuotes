@@ -40,7 +40,6 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.core.Prefs.Companion.DEFAULT
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -71,7 +70,7 @@ class SettingsActivity : LocalizationActivity() {
         // Setup toolbar
         binding.toolbar.apply {
             setSupportActionBar(this)
-            applyInsets(STATUS_BARS)
+            applyInsets(InsetType.STATUS_BARS)
             setNavigationOnClickListener { onBackPressed() }
         }
 

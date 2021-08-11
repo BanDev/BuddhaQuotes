@@ -103,9 +103,9 @@ fun Window.setDarkStatusIcons() {
 }
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
-    val typedValue = TypedValue()
-    theme.resolveAttribute(attrRes, typedValue, true)
-    return typedValue
+    return TypedValue().apply {
+        theme.resolveAttribute(attrRes, this, true)
+    }
 }
 
 @ColorInt
@@ -116,15 +116,14 @@ fun Context.resolveColorAttr(@AttrRes colorAttr: Int): Int {
 }
 
 fun Context.shareQuote(quote: Quote) {
-    val sendIntent: Intent = Intent().apply {
+    Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(
             Intent.EXTRA_TEXT,
             getString(quote.resource) + "\n\n" + getString(R.string.attribution_buddha)
         )
         type = "text/plain"
-    }
-    startActivity(Intent.createChooser(sendIntent, null))
+    }.let { startActivity(Intent.createChooser(it, null)) }
 }
 
 fun List<Any>.find(item: Any): Int {
