@@ -72,7 +72,7 @@ class ListAdapter(
             iconIcon.setImageResource(item.icon.drawable)
             iconBack.backgroundTintList = ColorStateList.valueOf(item.icon.colour)
             summary.text = summary.context.getString(
-                if (item.count == 1) R.string.quote else R.string.quotes,
+                if (item.count == 1) R.string.quote_count else R.string.quotes_count,
                 item.count
             )
             bin.visibility = if (item.id != 0) View.VISIBLE else View.INVISIBLE

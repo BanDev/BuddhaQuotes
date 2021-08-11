@@ -11,6 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".widgets.MainWidgetConfigureActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" />
 
@@ -20,6 +27,7 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
@@ -30,8 +38,8 @@
             android:theme="@style/ScrollingActivity" />
         <activity
             android:name=".activities.SplashActivity"
-            android:theme="@style/Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +55,6 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:theme="@style/Settings" />
-
     </application>
 
 </manifest>

@@ -547,8 +547,8 @@
     <string name="favourites">收藏夹</string>
     <string name="tips">小提示</string>
     <string name="by_bandev">作者：BanDev</string>
-    <string name="quotes">%d 句语录</string>
-    <string name="quote">1句语录</string>
+    <string name="quotes_count">%d 句语录</string>
+    <string name="quote_count">1句语录</string>
     <string name="no_list">你没有列表！</string>
     <string name="timer_text">%1$s:%2$s</string>
     <string name="start_meditation">开始冥想</string>

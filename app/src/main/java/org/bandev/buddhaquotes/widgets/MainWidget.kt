@@ -47,15 +47,7 @@ class MainWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         appWidgetIds.forEach { appWidgetId ->
-            getRandom(context) {
-                val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
-                    setTextViewText(R.id.widget_text, context.getString(it.resource))
-                    setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
-                    setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
-                }
-                getPenIntent(context, MainWidget().newQuote)
-                appWidgetManager.updateAppWidget(appWidgetId, views)
-            }
+            updateAppWidget(context, appWidgetManager, appWidgetId)
         }
     }
 
@@ -78,6 +70,13 @@ class MainWidget : AppWidgetProvider() {
             }
         }
     }
+
+    override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
+        super.onDeleted(context, appWidgetIds)
+        appWidgetIds?.forEach { appWidgetId ->
+            deleteTitlePref(context!!, appWidgetId)
+        }
+    }
 }
 
 fun getRandom(context: Context, after: (quote: Quote) -> Unit) {
@@ -89,4 +88,19 @@ fun getRandom(context: Context, after: (quote: Quote) -> Unit) {
 fun getPenIntent(context: Context, action: String): PendingIntent {
     val intent = Intent(context, MainWidget::class.java).apply { this.action = action }
     return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+}
+
+internal fun updateAppWidget(
+    context: Context,
+    appWidgetManager: AppWidgetManager,
+    appWidgetId: Int,
+) {
+    getRandom(context) {
+        val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
+            setTextViewText(R.id.widget_text, context.getString(it.resource))
+            setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
+            setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
+        }
+        appWidgetManager.updateAppWidget(appWidgetId, views)
+    }
 }

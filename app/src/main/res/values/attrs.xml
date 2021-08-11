@@ -12,7 +12,7 @@
     <attr name="drawableNavigationItemBackground" format="reference" />
 
     <attr name="colorStateNavigationItem" format="color" />
-    <attr name="colorNavigationItemNormal" format="color"/>
+    <attr name="colorNavigationItemNormal" format="color" />
     <attr name="colorNavigationItemBackgroundPressed" format="color" />
     <attr name="colorNavigationItemBackgroundSelected" format="color" />
 </resources>

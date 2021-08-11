@@ -30,7 +30,7 @@ import org.bandev.buddhaquotes.adapters.ListIconAdapter
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.core.MessageTypes
+import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -61,7 +61,7 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
     override fun select(icon: ListIcon) {
         model.Lists().updateIcon(listId, icon)
         model.Lists().get(listId) {
-            GlobalBus.post(Message(MessageTypes.UPDATE_LIST, it))
+            GlobalBus.post(Message(MessageType.UPDATE_LIST, it))
         }
     }
 

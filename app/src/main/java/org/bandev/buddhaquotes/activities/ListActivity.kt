@@ -36,11 +36,9 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.QuoteAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
+import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
-import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
-import org.bandev.buddhaquotes.core.Insets.PADDING
-import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
@@ -91,13 +89,13 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         // On back button pressed
         binding.toolbar.apply {
             setSupportActionBar(this)
-            applyInsets(STATUS_BARS)
+            applyInsets(InsetType.STATUS_BARS)
             setNavigationOnClickListener { onBackPressed() }
         }
 
         binding.add.apply {
             backgroundTintList = ColorStateList.valueOf(resolveColorAttr(R.attr.colorAccent))
-            applyInsets(NAVIGATION_BARS)
+            applyInsets(InsetType.NAVIGATION_BARS)
             setOnClickListener {
                 Feedback.virtualKey(it)
                 it.isEnabled = false
@@ -138,7 +136,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
 
         }
 
-        binding.recycler.applyInsets(NAVIGATION_BARS, PADDING)
+        binding.recycler.applyInsets(InsetType.NAVIGATION_BARS, InsetOption.PADDING)
     }
 
     private fun checkLength() {
@@ -148,17 +146,17 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
     override fun onQuoteLiked(quote: Quote) {
         // Like the quote in the db
         vm.Quotes().setLike(quote.id, true)
-        GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, 1))
+        GlobalBus.post(Message(MessageType.LIKE_UPDATE, 1))
     }
 
     override fun onQuoteUnliked(quote: Quote) {
-        GlobalBus.post(Message(MessageTypes.LIKE_UPDATE, -1))
+        GlobalBus.post(Message(MessageType.LIKE_UPDATE, -1))
         // Unlike the quote in the db
         vm.Quotes().setLike(quote.id, false)
         if (id == 0) {
             quotes.remove(quote)
             list.count--
-            GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+            GlobalBus.post(Message(MessageType.UPDATE_LIST, list))
         }
         checkLength()
     }
@@ -168,7 +166,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         vm.ListQuotes().removeFrom(id, quote)
         quotes.remove(quote)
         list.count--
-        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+        GlobalBus.post(Message(MessageType.UPDATE_LIST, list))
         checkLength()
     }
 
@@ -179,7 +177,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         quotes.add(quote)
         list.count++
         binding.recycler.adapter?.notifyItemInserted(quotes.find(quote))
-        GlobalBus.post(Message(MessageTypes.UPDATE_LIST, list))
+        GlobalBus.post(Message(MessageType.UPDATE_LIST, list))
         binding.empty.visibility = View.GONE
     }
 

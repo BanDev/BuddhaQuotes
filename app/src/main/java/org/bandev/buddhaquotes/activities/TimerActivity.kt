@@ -39,8 +39,6 @@ import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
-import org.bandev.buddhaquotes.core.Insets.NAVIGATION_BARS
-import org.bandev.buddhaquotes.core.Insets.STATUS_BARS
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
@@ -76,7 +74,7 @@ class TimerActivity : LocalizationActivity() {
 
         binding.toolbar.apply {
             setSupportActionBar(this)
-            applyInsets(STATUS_BARS)
+            applyInsets(InsetType.STATUS_BARS)
             setNavigationOnClickListener { onBackPressed() }
         }
 
@@ -93,7 +91,7 @@ class TimerActivity : LocalizationActivity() {
         startTimer(durationTimeInSeconds)
 
         binding.pause.apply {
-            applyInsets(NAVIGATION_BARS)
+            applyInsets(InsetType.NAVIGATION_BARS)
             setBackgroundColor(context.resolveColorAttr(R.attr.colorPrimary))
             setOnClickListener {
                 Feedback.confirm(it)
