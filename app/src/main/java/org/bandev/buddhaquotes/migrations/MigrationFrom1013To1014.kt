@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Looper
-import android.widget.Toast
+import android.util.Log
 import androidx.preference.PreferenceManager
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.items.Quote
@@ -82,8 +82,8 @@ class MigrationFrom1013To1014(private val ctx: Context, application: Application
         }
     }
 
-    fun out(string: String) {
-        Toast.makeText(ctx, string, Toast.LENGTH_SHORT).show()
+    private fun out(string: String) {
+        Log.d("Migration", string)
     }
 
 }

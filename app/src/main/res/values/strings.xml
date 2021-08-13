@@ -8,7 +8,8 @@
     <string name="app_theme" id="6">App Theme</string>
     <string name="light_mode" id="7">Light</string>
     <string name="dark_mode" id="8">Dark</string>
-    <string name="follow_system_default" id="9">Follow system</string>
+    <string name="follow_system_default">Follow system</string>
+    <string name="follow_app_default">Follow app</string>
     <string name="about" id="15">About</string>
     <string name="about_app">About Buddha Quotes</string>
     <string name="app_introduction" id="18">App introduction</string>
@@ -616,5 +617,8 @@
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+
+    <string name="transparent">Transparent</string>
+    <string name="opaque">Opaque</string>
 
 </resources>

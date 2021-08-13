@@ -26,6 +26,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.widget.RemoteViews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,18 +56,21 @@ class MainWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
         if (intent.action.equals(newQuote)) {
             getRandom(context) {
-                val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
+                RemoteViews(context.packageName, R.layout.widget_light).apply {
                     setTextViewText(R.id.widget_text, context.getString(it.resource))
                     setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
+                }.also { views ->
+                    AppWidgetManager.getInstance(context).also { appWidgetManager ->
+                        appWidgetManager.getAppWidgetIds(
+                            ComponentName(
+                                context,
+                                MainWidget::class.java
+                            )
+                        ).also { appWidgetIds ->
+                            appWidgetManager.updateAppWidget(appWidgetIds, views)
+                        }
+                    }
                 }
-                val appWidgetManager = AppWidgetManager.getInstance(context)
-                val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                    ComponentName(
-                        context,
-                        MainWidget::class.java
-                    )
-                )
-                appWidgetManager.updateAppWidget(appWidgetIds, views)
             }
         }
     }
@@ -74,7 +78,7 @@ class MainWidget : AppWidgetProvider() {
     override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
         super.onDeleted(context, appWidgetIds)
         appWidgetIds?.forEach { appWidgetId ->
-            deleteTitlePref(context!!, appWidgetId)
+            context?.deleteWidgetPref(appWidgetId)
         }
     }
 }
@@ -95,12 +99,14 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
 ) {
-    getRandom(context) {
-        val views = RemoteViews(context.packageName, R.layout.widget_light).apply {
-            setTextViewText(R.id.widget_text, context.getString(it.resource))
-            setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
-            setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
+    getRandom(context) { quote ->
+        context.loadWidgetPref(appWidgetId).also {
+            RemoteViews(context.packageName, R.layout.widget_light).apply {
+                setTextViewText(R.id.widget_text, context.getString(quote.resource))
+                setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(quote.liked))
+                setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
+                setTextColor(if (it.theme == WidgetTheme.LIGHT && it.translucency == WidgetTranslucency.OPQAUE) Color.BLACK else Color.WHITE ) // RGB Integer needs fixing
+            }.let { appWidgetManager.updateAppWidget(appWidgetId, it) }
         }
-        appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 }

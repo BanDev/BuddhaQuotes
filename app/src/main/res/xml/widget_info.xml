@@ -5,7 +5,7 @@
     android:initialLayout="@layout/widget_light"
     android:minWidth="160dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/widget_examps"
+    android:previewImage="@drawable/ic_buddha"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen" />
