@@ -75,16 +75,13 @@ fun Window.setNavigationBarColourMain() {
     }
 }
 
-fun Window.setNavigationColour() {
-    if (inDarkMode(context)) {
-        navigationBarColor = getColor(this.context, R.color.abbBackgroundColor)
-    }
-}
-
 fun inDarkMode(context: Context): Boolean {
-    return when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-        Configuration.UI_MODE_NIGHT_YES -> true
-        else -> false
+    context.resources.configuration.also {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            it.isNightModeActive
+        } else {
+            it.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        }
     }
 }
 
@@ -123,7 +120,7 @@ fun Context.shareQuote(quote: Quote) {
             getString(quote.resource) + "\n\n" + getString(R.string.attribution_buddha)
         )
         type = "text/plain"
-    }.let { startActivity(Intent.createChooser(it, null)) }
+    }.run { startActivity(Intent.createChooser(this, null)) }
 }
 
 fun List<Any>.find(item: Any): Int {

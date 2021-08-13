@@ -74,12 +74,10 @@ class SettingsActivity : LocalizationActivity() {
             setNavigationOnClickListener { onBackPressed() }
         }
 
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.settings, SettingsFragment())
-                .commit()
-        }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settings, SettingsFragment())
+            .commit()
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -225,8 +223,8 @@ class SettingsActivity : LocalizationActivity() {
                                     else -> Locale.ROOT
                                 }
                             )
-                            startActivity(Intent(context, SettingsActivity::class.java))
                             activity?.run {
+                                startActivity(intent)
                                 finish()
                                 overridePendingTransition(
                                     android.R.anim.fade_in,
@@ -300,8 +298,8 @@ class SettingsActivity : LocalizationActivity() {
                         onPositive(R.string.okay) { color ->
                             Feedback.confirm(view ?: return@onPositive)
                             settings.accent = convert(color)
-                            startActivity(Intent(context, SettingsActivity::class.java))
                             activity?.run {
+                                startActivity(intent)
                                 finish()
                                 overridePendingTransition(
                                     android.R.anim.fade_in,

@@ -25,14 +25,20 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.RoundRectShape
 import android.os.Bundle
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.lifecycle.ViewModelProvider
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.WidgetConfigureBinding
+import org.bandev.buddhaquotes.items.Quote
 
 /**
  * The configuration screen for the [MainWidget] AppWidget.
@@ -40,6 +46,10 @@ import org.bandev.buddhaquotes.databinding.WidgetConfigureBinding
 class MainWidgetConfigureActivity : LocalizationActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private lateinit var binding: WidgetConfigureBinding
+    private lateinit var model: ViewModel
+    private lateinit var quote: Quote
+    private var widgetTheme: WidgetTheme = WidgetTheme.LIGHT
+    private var widgetTranslucency = WidgetTranslucency.TRANSPARENT
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +66,10 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
         binding = WidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application)
+            .create(ViewModel::class.java)
+
         binding.toolbar.apply {
             setSupportActionBar(this)
             applyInsets(InsetType.STATUS_BARS)
@@ -68,7 +82,7 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             setOnClickListener { view ->
                 Feedback.virtualKey(view)
 
-                saveTitlePref(context, appWidgetId, 1)
+                context.savePref(appWidgetId, widgetTheme, widgetTranslucency)
 
                 AppWidgetManager.getInstance(context).also { updateAppWidget(context, it, appWidgetId) }
 
@@ -76,6 +90,14 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
                     setResult(RESULT_OK, it)
                     finish()
                 }
+            }
+        }
+
+        model.Quotes().getRandom {
+            quote = it
+            binding.widgetLayout.widgetText.apply {
+                text = getString(it.resource)
+                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, Images.heart(it.liked))
             }
         }
 
@@ -90,30 +112,115 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             finish()
             return
         }
+
+        binding.themeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radio_light -> widgetTheme = WidgetTheme.LIGHT.also { updateWidgetTheme(theme = it) }
+                R.id.radio_dark -> widgetTheme = WidgetTheme.DARK.also { updateWidgetTheme(theme = it) }
+                R.id.radio_follow_app -> widgetTheme = WidgetTheme.APP.also { updateWidgetTheme(theme = it) }
+            }
+        }
+
+        binding.transparencyRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radio_transparent -> widgetTranslucency = WidgetTranslucency.TRANSPARENT.also { updateWidgetTheme(translucency = it) }
+                R.id.radio_opaque -> widgetTranslucency = WidgetTranslucency.OPQAUE.also { updateWidgetTheme(translucency = it) }
+            }
+        }
+    }
+
+    private fun updateWidgetTheme(theme: WidgetTheme = widgetTheme, translucency: WidgetTranslucency = widgetTranslucency) {
+        val appDark = inDarkMode(this)
+        var layoutColor = Color.TRANSPARENT
+        var textColor = Color.WHITE
+        when {
+            theme == WidgetTheme.LIGHT && translucency == WidgetTranslucency.TRANSPARENT -> {
+                layoutColor = Color.TRANSPARENT
+                textColor = Color.WHITE
+            }
+            theme == WidgetTheme.LIGHT && translucency == WidgetTranslucency.OPQAUE -> {
+                layoutColor = Color.WHITE
+                textColor = Color.BLACK
+            }
+            theme == WidgetTheme.DARK && translucency == WidgetTranslucency.TRANSPARENT -> {
+                layoutColor = getColor(this, R.color.translucent_black)
+                textColor = Color.WHITE
+            }
+            theme == WidgetTheme.DARK && translucency == WidgetTranslucency.OPQAUE -> {
+                layoutColor = Color.BLACK
+                textColor = Color.WHITE
+            }
+            theme == WidgetTheme.APP && translucency == WidgetTranslucency.TRANSPARENT -> {
+                layoutColor = if (appDark) getColor(this, R.color.translucent_black) else Color.TRANSPARENT
+                textColor = Color.WHITE
+            }
+            theme == WidgetTheme.APP && translucency == WidgetTranslucency.OPQAUE -> {
+                layoutColor = if (appDark) Color.BLACK else Color.WHITE
+                textColor = if (appDark) Color.WHITE else Color.BLACK
+            }
+        }
+        val heartColor = if (quote.liked) getColor(this, R.color.heart) else textColor
+        with(binding.widgetLayout) {
+            layout.background = ShapeDrawable(
+                RoundRectShape(
+                    floatArrayOf(40f, 40f, 40f, 40f, 40f, 40f, 40f, 40f),
+                    null,
+                    null
+                )
+            ).apply { paint.color = layoutColor }
+            widgetTitle.apply {
+                setTextColor(textColor)
+                compoundDrawableTintList = ColorStateList.valueOf(textColor)
+            }
+            widgetText.apply {
+                setTextColor(textColor)
+                compoundDrawableTintList = ColorStateList.valueOf(heartColor)
+            }
+        }
     }
 }
 
 private const val PREFS_NAME = "org.bandev.buddhaquotes.MainWidgetWidget"
 private const val PREF_PREFIX_KEY = "appwidget_"
 
-fun saveTitlePref(context: Context, appWidgetId: Int, option: Int) {
-    context.getSharedPreferences(PREFS_NAME, 0).edit().run {
-        putInt(PREF_PREFIX_KEY + appWidgetId, option)
-        apply()
+fun Context.savePref(appWidgetId: Int, theme: WidgetTheme, translucency: WidgetTranslucency) {
+    this.getSharedPreferences(PREFS_NAME, 0).edit().run {
+        putInt(PREF_PREFIX_KEY + appWidgetId, convertThemesToInt(WidgetDataItem(theme, translucency))).apply()
     }
 }
 
-fun loadTitlePref(context: Context, appWidgetId: Int): String {
-    context.getSharedPreferences(PREFS_NAME, 0).run {
-        getString(PREF_PREFIX_KEY + appWidgetId, null).run {
-            return this ?: context.getString(R.string.appwidget_text)
+fun Context.loadWidgetPref(appWidgetId: Int): WidgetDataItem {
+    this.getSharedPreferences(PREFS_NAME, 0).run {
+        getInt(PREF_PREFIX_KEY + appWidgetId, 0).let {
+            return convertIntToThemes(it)
         }
     }
 }
 
-fun deleteTitlePref(context: Context, appWidgetId: Int) {
-    context.getSharedPreferences(PREFS_NAME, 0).edit().run {
-        remove(PREF_PREFIX_KEY + appWidgetId)
-        apply()
+fun Context.deleteWidgetPref(appWidgetId: Int) {
+    this.getSharedPreferences(PREFS_NAME, 0).edit().run {
+        remove(PREF_PREFIX_KEY + appWidgetId).apply()
+    }
+}
+
+fun convertThemesToInt(widgetDataItem: WidgetDataItem): Int {
+    return when {
+        widgetDataItem.theme == WidgetTheme.LIGHT && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 1
+        widgetDataItem.theme == WidgetTheme.DARK && widgetDataItem.translucency == WidgetTranslucency.TRANSPARENT -> 2
+        widgetDataItem.theme == WidgetTheme.DARK && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 3
+        widgetDataItem.theme == WidgetTheme.APP && widgetDataItem.translucency == WidgetTranslucency.TRANSPARENT -> 4
+        widgetDataItem.theme == WidgetTheme.APP && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 5
+        else -> 0
+    }
+}
+
+fun convertIntToThemes(int: Int): WidgetDataItem {
+    return when(int) {
+        1 -> WidgetDataItem(WidgetTheme.LIGHT, WidgetTranslucency.OPQAUE)
+        2 -> WidgetDataItem(WidgetTheme.DARK, WidgetTranslucency.TRANSPARENT)
+        3 -> WidgetDataItem(WidgetTheme.DARK, WidgetTranslucency.OPQAUE)
+        4 -> WidgetDataItem(WidgetTheme.APP, WidgetTranslucency.TRANSPARENT)
+        5 -> WidgetDataItem(WidgetTheme.APP, WidgetTranslucency.OPQAUE)
+        else -> WidgetDataItem(WidgetTheme.LIGHT, WidgetTranslucency.TRANSPARENT)
     }
 }
