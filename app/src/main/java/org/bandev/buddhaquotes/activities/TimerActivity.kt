@@ -201,7 +201,7 @@ class TimerActivity : LocalizationActivity() {
 
                 binding.pause.apply {
                     text = getString(R.string.reset)
-                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_refresh, 0, 0, 0)
+                    setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_refresh_white, 0, 0, 0)
                 }
 
                 if (timerSettings.endSound) gong.start()

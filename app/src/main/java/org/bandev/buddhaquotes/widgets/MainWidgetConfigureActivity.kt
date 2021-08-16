@@ -28,6 +28,8 @@ import android.graphics.Color
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RoundRectShape
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import androidx.lifecycle.ViewModelProvider
@@ -38,7 +40,6 @@ import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.WidgetConfigureBinding
-import org.bandev.buddhaquotes.items.Quote
 
 /**
  * The configuration screen for the [MainWidget] AppWidget.
@@ -47,7 +48,6 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private lateinit var binding: WidgetConfigureBinding
     private lateinit var model: ViewModel
-    private lateinit var quote: Quote
     private var widgetTheme: WidgetTheme = WidgetTheme.LIGHT
     private var widgetTranslucency = WidgetTranslucency.TRANSPARENT
 
@@ -167,6 +167,16 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             }
             widgetText.setTextColor(textColor)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.widget_configure_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        model.Quotes().getRandom { binding.widgetLayout.widgetText.text = getString(it.resource) }
+        return true
     }
 }
 
