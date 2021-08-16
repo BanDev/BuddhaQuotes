@@ -105,7 +105,7 @@ internal fun updateAppWidget(
                 setTextViewText(R.id.widget_text, context.getString(quote.resource))
                 setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(quote.liked))
                 setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
-                setTextColor(if (it.theme == WidgetTheme.LIGHT && it.translucency == WidgetTranslucency.OPQAUE) Color.BLACK else Color.WHITE ) // RGB Integer needs fixing
+                setTextColor(R.id.widget_text, if (it.theme == WidgetTheme.LIGHT && it.translucency == WidgetTranslucency.OPQAUE) Color.BLACK else Color.WHITE)
             }.let { appWidgetManager.updateAppWidget(appWidgetId, it) }
         }
     }
