@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:configure="org.bandev.buddhaquotes.widgets.MainWidgetConfigureActivity"
-    android:initialKeyguardLayout="@layout/widget_light"
-    android:initialLayout="@layout/widget_light"
+    android:initialKeyguardLayout="@layout/widget_light_transparent"
+    android:initialLayout="@layout/widget_light_transparent"
     android:minWidth="160dp"
     android:minHeight="40dp"
     android:previewImage="@drawable/ic_buddha"

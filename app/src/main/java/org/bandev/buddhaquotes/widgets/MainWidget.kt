@@ -26,7 +26,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.widget.RemoteViews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +34,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.Db
 import org.bandev.buddhaquotes.architecture.QuoteMapper
 import org.bandev.buddhaquotes.core.Images.heart
+import org.bandev.buddhaquotes.core.inDarkMode
 import org.bandev.buddhaquotes.items.Quote
 
 /** The widget **/
@@ -55,20 +55,10 @@ class MainWidget : AppWidgetProvider() {
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         if (intent.action.equals(newQuote)) {
-            getRandom(context) {
-                RemoteViews(context.packageName, R.layout.widget_light).apply {
-                    setTextViewText(R.id.widget_text, context.getString(it.resource))
-                    setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(it.liked))
-                }.also { views ->
-                    AppWidgetManager.getInstance(context).also { appWidgetManager ->
-                        appWidgetManager.getAppWidgetIds(
-                            ComponentName(
-                                context,
-                                MainWidget::class.java
-                            )
-                        ).also { appWidgetIds ->
-                            appWidgetManager.updateAppWidget(appWidgetIds, views)
-                        }
+            AppWidgetManager.getInstance(context).also {  appWidgetManager ->
+                ComponentName(context.packageName, this.javaClass.name).also { appWidget ->
+                    appWidgetManager.getAppWidgetIds(appWidget).also { appWidgetIds ->
+                        onUpdate(context, appWidgetManager, appWidgetIds)
                     }
                 }
             }
@@ -90,8 +80,9 @@ fun getRandom(context: Context, after: (quote: Quote) -> Unit) {
 }
 
 fun getPenIntent(context: Context, action: String): PendingIntent {
-    val intent = Intent(context, MainWidget::class.java).apply { this.action = action }
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    Intent(context, MainWidget::class.java).apply { this.action = action }.also {
+        return PendingIntent.getBroadcast(context, 0, it, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
 }
 
 internal fun updateAppWidget(
@@ -100,13 +91,22 @@ internal fun updateAppWidget(
     appWidgetId: Int,
 ) {
     getRandom(context) { quote ->
-        context.loadWidgetPref(appWidgetId).also {
-            RemoteViews(context.packageName, R.layout.widget_light).apply {
+        context.loadWidgetPref(appWidgetId).also { widgetData ->
+            RemoteViews(context.packageName, context.widgetLayout(widgetData)).apply {
                 setTextViewText(R.id.widget_text, context.getString(quote.resource))
-                setTextViewCompoundDrawables(R.id.widget_text, 0, 0, 0, heart(quote.liked))
-                setOnClickPendingIntent(R.id.layout, getPenIntent(context, MainWidget().newQuote))
-                setTextColor(R.id.widget_text, if (it.theme == WidgetTheme.LIGHT && it.translucency == WidgetTranslucency.OPQAUE) Color.BLACK else Color.WHITE)
+                setOnClickPendingIntent(R.id.root, getPenIntent(context, MainWidget().newQuote))
             }.let { appWidgetManager.updateAppWidget(appWidgetId, it) }
         }
+    }
+}
+
+fun Context.widgetLayout(widgetData: WidgetDataItem): Int {
+    return when {
+        widgetData.theme == WidgetTheme.LIGHT && widgetData.translucency == WidgetTranslucency.OPQAUE -> R.layout.widget_light_opaque
+        widgetData.theme == WidgetTheme.DARK && widgetData.translucency == WidgetTranslucency.TRANSPARENT -> R.layout.widget_dark_transparent
+        widgetData.theme == WidgetTheme.DARK && widgetData.translucency == WidgetTranslucency.OPQAUE -> R.layout.widget_dark_opaque
+        widgetData.theme == WidgetTheme.APP && widgetData.translucency == WidgetTranslucency.TRANSPARENT -> if (inDarkMode(this)) R.layout.widget_dark_transparent else R.layout.widget_light_transparent
+        widgetData.theme == WidgetTheme.APP && widgetData.translucency == WidgetTranslucency.OPQAUE -> if (inDarkMode(this)) R.layout.widget_dark_opaque else R.layout.widget_light_opaque
+        else -> R.layout.widget_light_transparent
     }
 }

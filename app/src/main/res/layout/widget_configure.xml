@@ -23,7 +23,7 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -47,7 +47,7 @@
 
             <include
                 android:id="@+id/widgetLayout"
-                layout="@layout/widget_light"/>
+                layout="@layout/widget_light_transparent"/>
 
         </FrameLayout>
 
