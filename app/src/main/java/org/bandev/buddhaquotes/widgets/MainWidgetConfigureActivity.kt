@@ -93,16 +93,10 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             }
         }
 
-        model.Quotes().getRandom {
-            quote = it
-            binding.widgetLayout.widgetText.apply {
-                text = getString(it.resource)
-                setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, Images.heart(it.liked))
-            }
-        }
+        model.Quotes().getRandom { binding.widgetLayout.widgetText.text = getString(it.resource) }
 
         intent.extras?.run {
-            appWidgetId = this.getInt(
+            appWidgetId = getInt(
                 AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID
             )
         }
@@ -159,9 +153,8 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
                 textColor = if (appDark) Color.WHITE else Color.BLACK
             }
         }
-        val heartColor = if (quote.liked) getColor(this, R.color.heart) else textColor
         with(binding.widgetLayout) {
-            layout.background = ShapeDrawable(
+            root.background = ShapeDrawable(
                 RoundRectShape(
                     floatArrayOf(40f, 40f, 40f, 40f, 40f, 40f, 40f, 40f),
                     null,
@@ -172,10 +165,7 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
                 setTextColor(textColor)
                 compoundDrawableTintList = ColorStateList.valueOf(textColor)
             }
-            widgetText.apply {
-                setTextColor(textColor)
-                compoundDrawableTintList = ColorStateList.valueOf(heartColor)
-            }
+            widgetText.setTextColor(textColor)
         }
     }
 }
@@ -185,14 +175,14 @@ private const val PREF_PREFIX_KEY = "appwidget_"
 
 fun Context.savePref(appWidgetId: Int, theme: WidgetTheme, translucency: WidgetTranslucency) {
     this.getSharedPreferences(PREFS_NAME, 0).edit().run {
-        putInt(PREF_PREFIX_KEY + appWidgetId, convertThemesToInt(WidgetDataItem(theme, translucency))).apply()
+        putInt(PREF_PREFIX_KEY + appWidgetId, WidgetDataItem(theme, translucency).toPrefsInt()).apply()
     }
 }
 
 fun Context.loadWidgetPref(appWidgetId: Int): WidgetDataItem {
     this.getSharedPreferences(PREFS_NAME, 0).run {
         getInt(PREF_PREFIX_KEY + appWidgetId, 0).let {
-            return convertIntToThemes(it)
+            return it.toWidgetData()
         }
     }
 }
@@ -203,19 +193,19 @@ fun Context.deleteWidgetPref(appWidgetId: Int) {
     }
 }
 
-fun convertThemesToInt(widgetDataItem: WidgetDataItem): Int {
+private fun WidgetDataItem.toPrefsInt(): Int {
     return when {
-        widgetDataItem.theme == WidgetTheme.LIGHT && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 1
-        widgetDataItem.theme == WidgetTheme.DARK && widgetDataItem.translucency == WidgetTranslucency.TRANSPARENT -> 2
-        widgetDataItem.theme == WidgetTheme.DARK && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 3
-        widgetDataItem.theme == WidgetTheme.APP && widgetDataItem.translucency == WidgetTranslucency.TRANSPARENT -> 4
-        widgetDataItem.theme == WidgetTheme.APP && widgetDataItem.translucency == WidgetTranslucency.OPQAUE -> 5
+        this.theme == WidgetTheme.LIGHT && this.translucency == WidgetTranslucency.OPQAUE -> 1
+        this.theme == WidgetTheme.DARK && this.translucency == WidgetTranslucency.TRANSPARENT -> 2
+        this.theme == WidgetTheme.DARK && this.translucency == WidgetTranslucency.OPQAUE -> 3
+        this.theme == WidgetTheme.APP && this.translucency == WidgetTranslucency.TRANSPARENT -> 4
+        this.theme == WidgetTheme.APP && this.translucency == WidgetTranslucency.OPQAUE -> 5
         else -> 0
     }
 }
 
-fun convertIntToThemes(int: Int): WidgetDataItem {
-    return when(int) {
+private fun Int.toWidgetData(): WidgetDataItem {
+    return when(this) {
         1 -> WidgetDataItem(WidgetTheme.LIGHT, WidgetTranslucency.OPQAUE)
         2 -> WidgetDataItem(WidgetTheme.DARK, WidgetTranslucency.TRANSPARENT)
         3 -> WidgetDataItem(WidgetTheme.DARK, WidgetTranslucency.OPQAUE)

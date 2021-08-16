@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -14,7 +13,7 @@
         android:layout_gravity="center"
         android:drawableStart="@drawable/ic_meditate_20dp"
         android:drawablePadding="6dp"
-        android:drawableTint="?android:textColorPrimaryInverse"
+        android:drawableTint="@android:color/white"
         android:drawableTintMode="multiply"
         android:paddingHorizontal="6dp"
         android:shadowColor="@color/shadowGray"
@@ -23,18 +22,14 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-        android:textColor="?android:textColorPrimaryInverse"
-        android:textStyle="bold"
-        tools:ignore="UseCompatTextViewDrawableXml" />
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/widget_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableBottom="@drawable/ic_heart_outline"
-        android:drawablePadding="6dp"
-        android:drawableTintMode="multiply"
         android:paddingHorizontal="6dp"
         android:shadowColor="@color/shadowGray"
         android:shadowRadius="4.5"
