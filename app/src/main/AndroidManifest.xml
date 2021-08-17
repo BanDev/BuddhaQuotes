@@ -10,6 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".widgets.MainWidgetConfigureActivity"
             android:exported="true">
@@ -17,9 +28,12 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main" />
+
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.ListActivity" />
+        <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".activities.TimerActivity" />
+        <activity android:name=".activities.SettingsActivity" />
 
         <receiver
             android:name=".widgets.MainWidget"
@@ -33,28 +47,6 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-        <activity
-            android:name=".activities.ListActivity"
-            android:theme="@style/ScrollingActivity" />
-        <activity
-            android:name=".activities.SplashActivity"
-            android:exported="true"
-            android:theme="@style/Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.AboutActivity"
-            android:theme="@style/About" />
-        <activity
-            android:name=".activities.TimerActivity"
-            android:theme="@style/Settings" />
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:theme="@style/Settings" />
     </application>
 
 </manifest>
