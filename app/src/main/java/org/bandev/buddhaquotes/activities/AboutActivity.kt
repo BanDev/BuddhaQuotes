@@ -30,6 +30,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.setDarkStatusIcons
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 import org.bandev.buddhaquotes.fragments.AboutFragment
@@ -49,6 +50,7 @@ class AboutActivity : LocalizationActivity() {
         with(window) {
             navigationBarColor = getColor(context, R.color.background)
             setDarkStatusIcons()
+            updateNavbarColour()
             statusBarColor = getColor(context, R.color.background)
         }
 

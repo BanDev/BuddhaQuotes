@@ -40,6 +40,7 @@ import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.core.Prefs.Companion.DEFAULT
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
@@ -58,7 +59,7 @@ class SettingsActivity : LocalizationActivity() {
         window.apply {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
-            setNavigationBarColourDefault()
+            updateNavbarColour()
             setDarkStatusIcons()
             setDecorFitsSystemWindows(this, false)
         }

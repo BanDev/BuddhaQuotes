@@ -39,6 +39,7 @@ import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
@@ -64,6 +65,7 @@ class TimerActivity : LocalizationActivity() {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT
             setDarkStatusIcons()
+            updateNavbarColour()
         }
         setDecorFitsSystemWindows(window, false)
 

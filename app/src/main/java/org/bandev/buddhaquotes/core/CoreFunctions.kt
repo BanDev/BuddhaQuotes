@@ -54,27 +54,6 @@ fun Window.setNavigationBarColourDefault() {
     }
 }
 
-@Suppress("DEPRECATION")
-fun Window.setNavigationBarColourMain() {
-    if (inDarkMode(this.context)) {
-        this.navigationBarColor = getColor(this.context, R.color.abbBackgroundColor)
-    } else {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            this.decorView.windowInsetsController?.setSystemBarsAppearance(
-                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
-                WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
-            )
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.navigationBarColor = Color.WHITE
-        } else {
-            this.navigationBarColor = Color.GRAY
-        }
-    }
-}
-
 fun inDarkMode(context: Context): Boolean {
     context.resources.configuration.also {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

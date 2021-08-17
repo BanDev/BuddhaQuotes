@@ -39,13 +39,13 @@ import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.custom.CustomiseListSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
-
 
 /**
  * The activity where the user can see all the
@@ -74,9 +74,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         setAccentColour()
         with(window) {
             statusBarColor = Color.TRANSPARENT
-            setNavigationBarColourDefault()
-            navigationBarColor = Color.TRANSPARENT
             setDarkStatusIcons()
+            updateNavbarColour()
         }
         Animations().toolbarShadowScroll(binding.recycler, binding.appBar)
         setDecorFitsSystemWindows(window, false)
