@@ -192,58 +192,65 @@ class QuoteFragment : Fragment() {
     }
 
     private fun ImageView.setQuoteImage(int: Int) {
-        setImageResource(
-            when (int) {
-                Images.MONK -> R.drawable.image_monk
-                Images.DHARMA_WHEEL -> R.drawable.image_dharma_wheel
-                Images.ANAHATA -> R.drawable.image_anahata
-                Images.MANDALA -> R.drawable.image_mandala
-                Images.ENDLESS_KNOT -> R.drawable.image_endless_knot
-                Images.ELEPHANT -> R.drawable.image_elephant
-                Images.TEMPLE -> R.drawable.image_temple
-                Images.LAMP -> R.drawable.image_lamp
-                Images.SHRINE -> R.drawable.image_shrine
-                Images.LOTUS -> R.drawable.image_lotus
-                Images.LOTUS_WATER -> R.drawable.image_lotus_water
-                else -> R.drawable.image_buddha
-            }
-        )
-        contentDescription = getString(
-            when (int) {
-                Images.MONK -> R.string.monk
-                Images.DHARMA_WHEEL -> R.string.dharma_wheel
-                Images.ANAHATA -> R.string.anahata
-                Images.MANDALA -> R.string.mandala
-                Images.ENDLESS_KNOT -> R.string.endless_knot
-                Images.ELEPHANT -> R.string.elephant
-                Images.TEMPLE -> R.string.temple
-                Images.LAMP -> R.string.lamp
-                Images.SHRINE -> R.string.shrine
-                Images.LOTUS -> R.string.lotus
-                Images.LOTUS_WATER -> R.string.water_lotus
-                else -> R.string.buddha
-            }
-        )
+        when (int) {
+            Images.ANAHATA -> R.drawable.image_anahata
+            Images.BELL -> R.drawable.image_bell
+            Images.ELEPHANT -> R.drawable.image_elephant
+            Images.ENDLESS_KNOT -> R.drawable.image_endless_knot
+            Images.LAMP -> R.drawable.image_lamp
+            Images.LOTUS -> R.drawable.image_lotus
+            Images.MANDALA -> R.drawable.image_mandala
+            Images.MONK -> R.drawable.image_monk
+            Images.RATTLE -> R.drawable.image_rattle
+            Images.SHRINE -> R.drawable.image_shrine
+            Images.STUPA -> R.drawable.image_stupa
+            Images.TEMPLE -> R.drawable.image_temple
+            Images.LOTUS_WATER -> R.drawable.image_lotus_water
+            Images.DHARMA_WHEEL -> R.drawable.image_dharma_wheel
+            Images.NO_IMAGE -> 0
+            else -> R.drawable.image_buddha
+        }.let { setImageResource(it) }
+        contentDescription = when (int) {
+            Images.ANAHATA -> R.string.anahata
+            Images.BELL -> R.string.bell
+            Images.ELEPHANT -> R.string.elephant
+            Images.ENDLESS_KNOT -> R.string.endless_knot
+            Images.LAMP -> R.string.lamp
+            Images.LOTUS -> R.string.lotus
+            Images.MANDALA -> R.string.mandala
+            Images.MONK -> R.string.monk
+            Images.RATTLE -> R.string.rattle
+            Images.SHRINE -> R.string.shrine
+            Images.STUPA -> R.string.stupa
+            Images.TEMPLE -> R.string.temple
+            Images.LOTUS_WATER -> R.string.water_lotus
+            Images.DHARMA_WHEEL -> R.string.dharma_wheel
+            Images.NO_IMAGE -> 0
+            else -> R.drawable.image_buddha
+        }.let { getString(it) }
     }
 
     private fun changeImageSheet() {
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.GRID_VERTICAL)
             with(
-                Option(R.drawable.sheet_buddha, R.string.buddha),
-                Option(R.drawable.sheet_monk, R.string.monk),
-                Option(R.drawable.sheet_dharma_wheel, R.string.dharma_wheel),
                 Option(R.drawable.sheet_anahata, R.string.anahata),
-                Option(R.drawable.sheet_mandala, R.string.mandala),
-                Option(R.drawable.sheet_endless_knot, R.string.endless_knot),
+                Option(R.drawable.sheet_bell, R.string.bell),
+                Option(R.drawable.sheet_buddha, R.string.buddha),
                 Option(R.drawable.sheet_elephant, R.string.elephant),
-                Option(R.drawable.sheet_temple, R.string.temple),
+                Option(R.drawable.sheet_endless_knot, R.string.endless_knot),
                 Option(R.drawable.sheet_lamp, R.string.lamp),
-                Option(R.drawable.sheet_shrine, R.string.shrine),
                 Option(R.drawable.sheet_lotus, R.string.lotus),
-                Option(R.drawable.sheet_lotus_water, R.string.water_lotus)
+                Option(R.drawable.sheet_mandala, R.string.mandala),
+                Option(R.drawable.sheet_monk, R.string.monk),
+                Option(R.drawable.sheet_rattle, R.string.rattle),
+                Option(R.drawable.sheet_shrine, R.string.shrine),
+                Option(R.drawable.sheet_stupa, R.string.stupa),
+                Option(R.drawable.sheet_temple, R.string.temple),
+                Option(R.drawable.sheet_lotus_water, R.string.water_lotus),
+                Option(R.drawable.sheet_dharma_wheel, R.string.dharma_wheel),
+                Option(R.drawable.sheet_nothing, R.string.no_image)
             )
-
             onPositive { index: Int, _: Option ->
                 Feedback.confirm(view ?: return@onPositive)
                 binding.quoteFragmentImage.setQuoteImage(index)
