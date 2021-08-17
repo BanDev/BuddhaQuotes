@@ -225,9 +225,9 @@ class QuoteFragment : Fragment() {
             Images.TEMPLE -> R.string.temple
             Images.LOTUS_WATER -> R.string.water_lotus
             Images.DHARMA_WHEEL -> R.string.dharma_wheel
-            Images.NO_IMAGE -> 0
+            Images.NO_IMAGE -> null
             else -> R.drawable.image_buddha
-        }.let { getString(it) }
+        }?.let { getString(it) }
     }
 
     private fun changeImageSheet() {
