@@ -93,6 +93,10 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             }
         }
 
+        binding.widgetLayout.root.setOnClickListener {
+            model.Quotes().getRandom { binding.widgetLayout.widgetText.text = getString(it.resource) }
+        }
+
         model.Quotes().getRandom { binding.widgetLayout.widgetText.text = getString(it.resource) }
 
         intent.extras?.run {
@@ -167,16 +171,6 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             }
             widgetText.setTextColor(textColor)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.widget_configure_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        model.Quotes().getRandom { binding.widgetLayout.widgetText.text = getString(it.resource) }
-        return true
     }
 }
 
