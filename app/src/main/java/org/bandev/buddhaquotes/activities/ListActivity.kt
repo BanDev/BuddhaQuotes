@@ -74,8 +74,8 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         setAccentColour()
         with(window) {
             statusBarColor = Color.TRANSPARENT
-            setDarkStatusIcons()
             updateNavbarColour()
+            setDarkStatusIcons()
         }
         Animations().toolbarShadowScroll(binding.recycler, binding.appBar)
         setDecorFitsSystemWindows(window, false)

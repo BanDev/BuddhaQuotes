@@ -72,8 +72,8 @@ class MainActivity : LocalizationActivity() {
 
         window.apply {
             statusBarColor = TRANSPARENT
-            setDarkStatusIcons()
             updateNavbarColour()
+            setDarkStatusIcons()
             navigationBarColor = getColor(context, R.color.abbBackgroundColor)
             setDecorFitsSystemWindows(this, false)
         }
