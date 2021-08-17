@@ -48,6 +48,7 @@ import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
@@ -71,8 +72,9 @@ class MainActivity : LocalizationActivity() {
 
         window.apply {
             statusBarColor = TRANSPARENT
-            navigationBarColor = getColor(context, R.color.abbBackgroundColor)
             setDarkStatusIcons()
+            updateNavbarColour()
+            navigationBarColor = getColor(context, R.color.abbBackgroundColor)
             setDecorFitsSystemWindows(this, false)
         }
 

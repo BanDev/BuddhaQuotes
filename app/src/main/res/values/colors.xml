@@ -9,13 +9,15 @@
     <color name="ic_launcher_background">#E80054</color>
     <color name="shadowGray">#a00f0f0f</color>
 
+    <color name="navbar">#88ffffff</color>
+
     <color name="heart">#FF6347</color>
     <color name="bandev">#5E17EB</color>
     <color name="line">#d3d3d3</color>
 
     <color name="primary_faded">#26E80054</color>
 
-    <color name="translucent_black">#88000000</color>
+    <color name="translucent_black">#88F8F8F8</color>
 
     <!-- Slightly grey-ish colour for background on newer UI -->
     <color name="background">#F5F5F5</color>
