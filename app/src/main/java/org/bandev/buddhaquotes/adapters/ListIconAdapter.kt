@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
@@ -56,20 +57,19 @@ class ListIconAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-//        Toast.makeText(
-//            holder.listIcon.context,
-//            item.selected.toString() + item.id.toString(),
-//            Toast.LENGTH_SHORT
-//        ).show()
         with(holder.listIcon) {
             if (item.selected) holder.selected.visibility = View.VISIBLE
             setImageResource(item.drawable)
             backgroundTintList = ColorStateList.valueOf(item.colour)
             setOnClickListener {
+                Toast.makeText(holder.listIcon.context, position.toString(), Toast.LENGTH_SHORT).show()
                 holder.selected.visibility = View.VISIBLE
                 listener.select(item)
-                for (icon in list) icon.selected = false
-                list[position].selected = true
+                for (icon in list) {
+                    icon.selected = false
+                    notifyItemChanged(icon.id)
+                }
+                list[list.indexOf(item)].selected = true
                 notifyItemRangeChanged(0, list.lastIndex)
             }
         }

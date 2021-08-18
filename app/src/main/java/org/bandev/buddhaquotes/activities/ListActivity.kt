@@ -42,7 +42,7 @@ import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
-import org.bandev.buddhaquotes.custom.CustomiseListSheet
+import org.bandev.buddhaquotes.custom.ListOptionsSheet
 import org.bandev.buddhaquotes.databinding.ActivityListBinding
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
@@ -189,7 +189,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         when (item.itemId) {
             R.id.tune -> {
                 item.isEnabled = false
-                CustomiseListSheet().show(this, application) {
+                ListOptionsSheet().show(this, application) {
                     title(R.string.list_icon)
                     closeIconButton(IconButton(R.drawable.ic_down_arrow))
                     displayPositiveButton(false)

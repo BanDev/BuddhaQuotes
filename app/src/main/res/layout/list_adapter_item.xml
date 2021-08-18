@@ -83,7 +83,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/bin"
+                    android:id="@+id/options"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -93,9 +93,9 @@
                     android:foreground="@drawable/sheets_ripple_bg_rounded"
                     android:padding="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/summary"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_delete" />
+                    app:srcCompat="@drawable/ic_more" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

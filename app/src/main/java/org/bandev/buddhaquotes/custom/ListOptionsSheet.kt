@@ -24,17 +24,16 @@ import android.app.Application
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Sheet
-import me.kosert.flowbus.GlobalBus
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.ListIconAdapter
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ViewModel
-import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.databinding.CustomiseListSheetBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
-class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
+class ListOptionsSheet : Sheet(), ListIconAdapter.Listener {
 
     private lateinit var binding: CustomiseListSheetBinding
 
@@ -42,35 +41,42 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
     private lateinit var listIconManager: ListMapper
     private var listId = 0
 
+    private lateinit var onListIconSelected: (icon: ListIcon) -> Any
+
     fun attachVariables(_model: ViewModel, _listId: Int) {
         model = _model
         listId = _listId
     }
 
     override fun onCreateLayoutView(): View {
+        title("List Options")
+        closeIconButton(IconButton(R.drawable.ic_down_arrow))
+        displayPositiveButton(false)
+        displayNegativeButton(false)
         binding = CustomiseListSheetBinding.inflate(layoutInflater)
 
         binding.listIconRecycler.apply {
-            adapter = ListIconAdapter(listIconManager.listIcons, this@CustomiseListSheet)
+            adapter = ListIconAdapter(listIconManager.listIcons, this@ListOptionsSheet)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         }
 
         return binding.root
     }
 
+    fun onListIconSelected(func: (icon: ListIcon) -> Any) {
+        onListIconSelected = func
+    }
+
     override fun select(icon: ListIcon) {
-        model.Lists().updateIcon(listId, icon)
-        model.Lists().get(listId) {
-            GlobalBus.post(Message(MessageType.UPDATE_LIST, it))
-        }
+        onListIconSelected(icon)
     }
 
     fun build(
         ctx: Context,
         application: Application,
         width: Int? = null,
-        func: CustomiseListSheet.() -> Unit
-    ): CustomiseListSheet {
+        func: ListOptionsSheet.() -> Unit
+    ): ListOptionsSheet {
         this.windowContext = ctx
         this.listIconManager = ListMapper(application)
         this.width = width
@@ -82,8 +88,8 @@ class CustomiseListSheet : Sheet(), ListIconAdapter.Listener {
         ctx: Context,
         application: Application,
         width: Int? = null,
-        func: CustomiseListSheet.() -> Unit
-    ): CustomiseListSheet {
+        func: ListOptionsSheet.() -> Unit
+    ): ListOptionsSheet {
         this.windowContext = ctx
         this.listIconManager = ListMapper(application)
         this.width = width
