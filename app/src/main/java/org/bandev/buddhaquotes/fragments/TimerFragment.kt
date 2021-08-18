@@ -87,11 +87,9 @@ class TimerFragment : Fragment() {
 
     companion object {
         fun newInstance(position: Int): TimerFragment {
-            val instance = TimerFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
+            return TimerFragment().apply {
+                arguments = Bundle().apply { putInt("position", position) }
+            }
         }
     }
 }

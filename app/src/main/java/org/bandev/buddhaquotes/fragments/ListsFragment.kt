@@ -134,11 +134,9 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
     companion object {
         fun newInstance(position: Int): ListsFragment {
-            val instance = ListsFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
+            return ListsFragment().apply {
+                arguments = Bundle().apply { putInt("position", position) }
+            }
         }
     }
 }
