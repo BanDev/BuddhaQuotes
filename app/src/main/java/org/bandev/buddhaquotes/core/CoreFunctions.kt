@@ -43,24 +43,21 @@ import org.bandev.buddhaquotes.items.Quote
 fun Window.setNavigationBarColourDefault() {
     if (!inDarkMode(this.context)) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+            decorView.windowInsetsController?.setSystemBarsAppearance(
                 WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS, // value
                 WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS // mask
             )
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         }
-        this.navigationBarColor = getColor(this.context, R.color.background)
+        navigationBarColor = getColor(context, R.color.background)
     }
 }
 
 fun inDarkMode(context: Context): Boolean {
-    context.resources.configuration.also {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            it.isNightModeActive
-        } else {
-            it.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-        }
+    context.resources.configuration.run {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) isNightModeActive
+        else uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 }
 
@@ -68,20 +65,18 @@ fun inDarkMode(context: Context): Boolean {
 fun Window.setDarkStatusIcons() {
     if (!inDarkMode(this.context)) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            this.decorView.windowInsetsController?.setSystemBarsAppearance(
+            decorView.windowInsetsController?.setSystemBarsAppearance(
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS, // value
                 WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS // mask
             )
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
 }
 
 private fun Context.resolveThemeAttr(@AttrRes attrRes: Int): TypedValue {
-    return TypedValue().apply {
-        theme.resolveAttribute(attrRes, this, true)
-    }
+    return TypedValue().apply { theme.resolveAttribute(attrRes, this, true) }
 }
 
 @ColorInt
@@ -110,7 +105,7 @@ fun List<Any>.find(item: Any): Int {
 }
 
 fun View.onClick(onClick: (View) -> Any) {
-    this.setOnClickListener {
+    setOnClickListener {
         Feedback.virtualKey(this)
         onClick(this)
     }

@@ -266,11 +266,9 @@ class QuoteFragment : Fragment() {
 
     companion object {
         fun newInstance(position: Int): QuoteFragment {
-            val instance = QuoteFragment()
-            val args = Bundle()
-            args.putInt("position", position)
-            instance.arguments = args
-            return instance
+            return QuoteFragment().apply {
+                arguments = Bundle().apply { putInt("position", position) }
+            }
         }
     }
 }
