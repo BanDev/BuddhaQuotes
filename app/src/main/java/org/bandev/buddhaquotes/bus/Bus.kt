@@ -53,6 +53,7 @@ class Bus(private val instance: Any, private val name: String) {
 
     private val receiver: EventsReceiver = EventsReceiver()
     private lateinit var router: (type: MessageType) -> ((message: Message<*>) -> Any)?
+    private lateinit var prevMessage: Message<*>
     private val tag = "BanDev-BUS"
 
 
@@ -66,8 +67,13 @@ class Bus(private val instance: Any, private val name: String) {
      */
 
     fun broadcast(message: Message<out Any>) {
+        if (isDuplicate(message)) {
+            Log.i(tag, "$name tried to send: $message, it was a duplicate")
+            return
+        }
         Log.i(tag, "$name has broadcast: $message")
         GlobalBus.post(message)
+        prevMessage = message
     }
 
     /**
@@ -98,20 +104,20 @@ class Bus(private val instance: Any, private val name: String) {
         Log.i(tag, "$name is listening")
         if (this::router.isInitialized) {
             receiver.subscribe { message: Message<out Any> ->
-                Log.i(tag, "$name has recieved: $message via custom router")
+                Log.i(tag, "$name has received: $message via custom router")
                 instance to router(message.type)?.let { it(message) }
             }
         } else {
             val listener = instance as Listener
             receiver.subscribe { message: Message<out Any> ->
-                Log.i(tag, "$name has recieved: $message via listener interface")
+                Log.i(tag, "$name has received: $message via listener interface")
                 listener.onMessageReceived(message)
             }
         }
     }
 
     /**
-     * Mute all broadcasted messages from other
+     * Mute all broadcast messages from other
      * activities & fragments.
      *
      * [listen] must be called in onStart(), and [mute] must
@@ -121,6 +127,20 @@ class Bus(private val instance: Any, private val name: String) {
     fun mute() {
         Log.i(tag, "$name has muted")
         receiver.unsubscribe()
+    }
+
+    /**
+     * Determine if a message is a duplicate and
+     * should be ignored.
+     *
+     * @param message The [Message] that needs to
+     *        be checked.
+     */
+
+    private fun isDuplicate(message: Message<*>): Boolean {
+        return this::prevMessage.isInitialized
+            && message.type == prevMessage.type
+            && message.data == prevMessage.data
     }
 
     /**
