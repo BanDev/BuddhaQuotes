@@ -108,3 +108,10 @@ fun List<Any>.find(item: Any): Int {
     }
     return -1
 }
+
+fun View.onClick(onClick: (View) -> Any) {
+    this.setOnClickListener {
+        Feedback.virtualKey(this)
+        onClick(this)
+    }
+}
