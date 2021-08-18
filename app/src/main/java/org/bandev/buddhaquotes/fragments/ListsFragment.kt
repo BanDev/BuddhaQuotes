@@ -28,12 +28,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maxkeppeler.sheets.core.IconButton
+import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
 import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Bus
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
+import org.bandev.buddhaquotes.custom.ListOptionsSheet
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
 
@@ -41,13 +44,12 @@ import org.bandev.buddhaquotes.items.List
  * Shows a list of lists to the user
  */
 
-class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
+class ListsFragment : Fragment(), ListAdapter.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ViewModel
     private lateinit var list: MutableList<List>
     private lateinit var bus: Bus
-    private var prevMessage: Message<*>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,6 +77,15 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         }
 
         bus = Bus(this, "ListsFragment")
+
+        bus.attachRouter {
+            when(it) {
+                MessageType.LIKE_UPDATE -> this::onLikeUpdate
+                MessageType.NEW_LIST -> this::onNewList
+                MessageType.UPDATE_LIST -> this::onUpdateList
+            }
+        }
+
         bus.listen()
     }
 
@@ -82,44 +93,38 @@ class ListsFragment : Fragment(), ListAdapter.Listener, Bus.Listener {
         startActivity(Intent(context, ListActivity::class.java).putExtra("id", list.id))
     }
 
-    override fun delete(list: List) {
-        model.Lists().delete(list.id)
-        var position = -1
-        this.list.forEachIndexed { index, (id) ->
-            if (id == list.id) position = index
-        }
-        binding.listsRecycler.adapter?.notifyItemRemoved(position)
-        this.list.remove(list)
-    }
-
-    override fun onMessageReceived(message: Message<*>) {
-        if (this::list.isInitialized) {
-            prevMessage = if (prevMessage != null) {
-                if (message == prevMessage) return
-                else message
-            } else message
-            when (message.type) {
-                MessageType.NEW_LIST -> {
-                    val data = message.data as List
-                    list.add(data)
-                    binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
-                }
-                MessageType.UPDATE_LIST -> {
-                    val data = message.data as List
-                    var position = -1
-                    list.forEachIndexed { index, (id) ->
-                        if (id == data.id) position = index
-                    }
-                    list[position] = data
-                    binding.listsRecycler.adapter?.notifyItemChanged(position)
-                }
-                MessageType.LIKE_UPDATE -> {
-                    val change = message.data as Int
-                    list[0].count = list[0].count + change
-                    binding.listsRecycler.adapter?.notifyItemChanged(0)
+    override fun options(list: List) {
+        ListOptionsSheet().show(requireContext(), requireActivity().application) {
+            attachVariables(model, list.id)
+            onListIconSelected { icon ->
+                model.Lists().updateIcon(list.id, icon)
+                model.Lists().get(list.id) {
+                    bus.broadcast(Message(MessageType.UPDATE_LIST, it))
                 }
             }
         }
+    }
+
+    private fun onLikeUpdate(message: Message<*>) {
+        val change = message.data as Int
+        list[0].count = list[0].count + change
+        binding.listsRecycler.adapter?.notifyItemChanged(0)
+    }
+
+    private fun onUpdateList(message: Message<*>) {
+        val data = message.data as List
+        var position = -1
+        list.forEachIndexed { index, (id) ->
+            if (id == data.id) position = index
+        }
+        list[position] = data
+        binding.listsRecycler.adapter?.notifyItemChanged(position)
+    }
+
+    private fun onNewList(message: Message<*>) {
+        val data = message.data as List
+        list.add(data)
+        binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
     }
 
     override fun onDestroy() {

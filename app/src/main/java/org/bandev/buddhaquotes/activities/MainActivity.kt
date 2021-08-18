@@ -20,17 +20,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.content.Intent
+import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
 import android.content.res.ColorStateList.valueOf
-import android.graphics.Color.TRANSPARENT
-import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
-import androidx.lifecycle.ViewModelProvider
-import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.core.TopStyle
@@ -38,7 +32,7 @@ import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
-import com.maxkeppeler.sheets.lottie.LottieAnimationRequest.Companion.INFINITE
+import com.maxkeppeler.sheets.lottie.LottieAnimationRequest
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
@@ -47,11 +41,8 @@ import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.core.Accent.setAccentColour
-import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
-
 
 /**
  * Main is the main page of Buddha Quotes
@@ -61,77 +52,33 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
  */
 
-class MainActivity : LocalizationActivity() {
+class MainActivity: BuddhaQuotesActivity<ActivityMainBinding>() {
 
-    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var binding: ActivityMainBinding
     private lateinit var model: ViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun create() {
 
-        window.apply {
-            statusBarColor = TRANSPARENT
-            updateNavbarColour()
-            setDarkStatusIcons()
-            navigationBarColor = getColor(context, R.color.abbBackgroundColor)
-            setDecorFitsSystemWindows(this, false)
+        assignViewModel(ViewModel::class.java)
+        assignToolbar(binding.toolbar)
+        setNavBarColour(R.color.abbBackgroundColor)
+
+        setupNavigationView(binding.drawerLayout, binding.navigationView) {
+            when (it.itemId) {
+                R.id.quote -> binding.bottomBar.selectTabAt(0)
+                R.id.lists -> binding.bottomBar.selectTabAt(1)
+                R.id.meditate -> binding.bottomBar.selectTabAt(2)
+                R.id.settings -> open(SettingsActivity::class.java)
+                R.id.about -> open(AboutActivity::class.java)
+            }
         }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        model = ViewModelProvider.AndroidViewModelFactory
-            .getInstance(application)
-            .create(ViewModel::class.java)
-
-        actionBarDrawerToggle = ActionBarDrawerToggle(
-            this,
-            binding.drawerLayout,
-            binding.toolbar,
-            R.string.open_drawer,
-            R.string.close_drawer
-        )
-
-        binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         with(binding) {
-            toolbar.apply {
-                setSupportActionBar(this)
-                applyInsets(InsetType.STATUS_BARS)
-                setNavigationOnClickListener { if (drawerLayout.isOpen) drawerLayout.close() else drawerLayout.open() }
-            }
 
             viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
-            navigationView.apply {
-                setNavigationItemSelectedListener { menuItem ->
-                    menuItem.isChecked = true
-
-                    when (menuItem.itemId) {
-                        R.id.quote -> binding.bottomBar.selectTabAt(0)
-                        R.id.lists -> binding.bottomBar.selectTabAt(1)
-                        R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                        R.id.settings -> startActivity(
-                            Intent(
-                                context,
-                                SettingsActivity::class.java
-                            )
-                        )
-                        R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
-                    }
-
-                    binding.drawerLayout.close()
-                    true
-                }
-            }
-
             createList.apply {
                 backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
-                setOnClickListener {
-                    Feedback.virtualKey(it)
+                onClick {
                     it.isEnabled = false
                     InputSheet().show(context) {
                         title(R.string.create_new_list)
@@ -188,7 +135,7 @@ class MainActivity : LocalizationActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    override fun menuItemSelected(item: MenuItem) {
         item.isEnabled = false
         var title = 0
         var content = 0
@@ -211,7 +158,7 @@ class MainActivity : LocalizationActivity() {
                 title = R.string.meditate_sheet_title
                 content = R.string.meditate_sheet_content
                 animation = R.raw.meditation
-                repeatCount = INFINITE
+                repeatCount = LottieAnimationRequest.INFINITE
             }
         }
         InfoSheet().show(this) {
@@ -229,12 +176,9 @@ class MainActivity : LocalizationActivity() {
             })
             onClose { item.isEnabled = true }
         }
-        return true
     }
 
-    override fun onResume() {
-        super.onResume()
-        setAccentColour()
+    override fun resume() {
         with(binding) {
             createList.backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
             bottomBar.apply {
@@ -251,4 +195,6 @@ class MainActivity : LocalizationActivity() {
             else -> super.onBackPressed()
         }
     }
+
+    override val bInflater: (LayoutInflater) -> ActivityMainBinding = ActivityMainBinding::inflate
 }

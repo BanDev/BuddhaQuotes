@@ -22,7 +22,6 @@ package org.bandev.buddhaquotes.adapters
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -51,7 +50,7 @@ class ListAdapter(
         val iconIcon: ImageView = binding.iconIcon
         val iconBack: ConstraintLayout = binding.iconBack
         val summary: TextView = binding.summary
-        val bin: ImageButton = binding.bin
+        val options: ImageButton = binding.options
         val root: CardView = binding.root
     }
 
@@ -75,11 +74,10 @@ class ListAdapter(
                 if (item.count == 1) R.string.quote_count else R.string.quotes_count,
                 item.count
             )
-            bin.visibility = if (item.id != 0) View.VISIBLE else View.INVISIBLE
             root.setOnClickListener { listener.select(item) }
-            bin.setOnClickListener {
+            options.setOnClickListener {
                 Feedback.virtualKey(it)
-                listener.delete(item)
+                listener.options(item)
             }
         }
 
@@ -89,6 +87,6 @@ class ListAdapter(
 
     interface Listener {
         fun select(list: List)
-        fun delete(list: List)
+        fun options(list: List)
     }
 }
