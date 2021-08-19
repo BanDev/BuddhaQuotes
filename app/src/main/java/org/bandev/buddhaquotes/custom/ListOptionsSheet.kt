@@ -49,7 +49,6 @@ class ListOptionsSheet : Sheet() {
     private lateinit var list: List
 
     private lateinit var onListIconSelected: (ListIcon) -> Any
-    private lateinit var onListRemoved: (List) -> Any
     private lateinit var onListRenamed: (String) -> Any
 
     fun attachVariables(model: ViewModel, list: List) {
@@ -58,25 +57,11 @@ class ListOptionsSheet : Sheet() {
     }
 
     override fun onCreateLayoutView(): View {
-        title("List Options")
-        closeIconButton(IconButton(R.drawable.ic_down_arrow))
-        displayPositiveButton(false)
-        displayNegativeButton(false)
         binding = ListOptionsSheetBinding.inflate(layoutInflater)
 
         binding.listIconRecycler.apply {
             adapter = ListIconAdapter(listIconManager.listIcons, onListIconSelected)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        }
-
-        binding.remove.onClick {
-            onListRemoved(list)
-            dismiss()
-        }
-
-        binding.renameButton.onClick {
-            onListRenamed(binding.rename.editableText.toString())
-            dismiss()
         }
 
         return binding.root
@@ -86,13 +71,6 @@ class ListOptionsSheet : Sheet() {
         onListIconSelected = func
     }
 
-    fun onListRemoved(func: (List) -> Unit) {
-        onListRemoved = func
-    }
-
-    fun onListRenamed(func: (String) -> Unit) {
-        onListRenamed = func
-    }
 
     fun build(
         ctx: Context,

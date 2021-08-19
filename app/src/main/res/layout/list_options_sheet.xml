@@ -10,22 +10,4 @@
         android:layout_height="wrap_content"
         android:overScrollMode="never" />
 
-    <Button
-        android:id="@+id/remove"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Remove List"/>
-
-    <EditText
-        android:id="@+id/rename"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rename list"/>
-
-    <Button
-        android:id="@+id/rename_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rename list"/>
-
 </LinearLayout>

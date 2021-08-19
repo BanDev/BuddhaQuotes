@@ -30,7 +30,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.IconButton
+import com.maxkeppeler.sheets.input.InputSheet
+import com.maxkeppeler.sheets.input.Validation
+import com.maxkeppeler.sheets.input.type.InputEditText
 import kotlinx.coroutines.runBlocking
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
@@ -38,6 +42,7 @@ import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Bus
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
+import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.custom.ListOptionsSheet
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
@@ -83,13 +88,12 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
         bus = Bus(this, "ListsFragment")
 
         bus.attachRouter {
-            if (this::lists.isInitialized) {
-                when(it) {
-                    MessageType.LIKE_UPDATE -> this::onLikeUpdate
-                    MessageType.NEW_LIST -> this::onNewList
-                    MessageType.UPDATE_LIST -> this::onUpdateList
-                }
-            } else null
+            when(it) {
+                MessageType.LIKE_UPDATE -> this::onLikeUpdate
+                MessageType.NEW_LIST -> this::onNewList
+                MessageType.UPDATE_LIST -> this::onUpdateList
+                else -> null
+            }
         }
 
         bus.listen()
@@ -101,23 +105,46 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
     override fun options(list: List) {
         ListOptionsSheet().show(requireContext(), requireActivity().application) {
-            attachVariables(model, list)
-            onListIconSelected { icon ->
-                model.Lists().updateIcon(list.id, icon) {
-                    bus.broadcast(Message(MessageType.UPDATE_LIST, it))
-                }
-            }
-            onListRemoved { list ->
+            title("List Options")
+            closeIconButton(IconButton(R.drawable.ic_down_arrow))
+            if (list.id != 0) withIconButton(IconButton(R.drawable.ic_delete)) {
+                Feedback.virtualKey(requireView())
+                dismiss()
                 model.Lists().delete(list.id)
                 val position = lists.indexOf(list)
                 lists.remove(list)
                 binding.listsRecycler.adapter?.notifyItemRemoved(position)
             }
-            onListRenamed { name ->
-                model.Lists().rename(list.id, name)
-                val position = lists.indexOf(list)
-                lists[position].title = name
-                binding.listsRecycler.adapter?.notifyItemChanged(position)
+            if (list.id != 0) withIconButton(IconButton(R.drawable.ic_edit)) {
+                Feedback.virtualKey(requireView())
+                dismiss()
+                InputSheet().show(requireContext()) {
+                    title(R.string.rename_list)
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                    with(
+                        InputEditText {
+                            required()
+                            hint(R.string.rename_list)
+                            defaultValue(list.title)
+                            resultListener { value ->
+                                model.Lists().rename(list.id, value.toString())
+                                val position = lists.indexOf(list)
+                                lists[position].title = value.toString()
+                                binding.listsRecycler.adapter?.notifyItemChanged(position)
+                            }
+                        }
+                    )
+                    onNegative(R.string.cancel) { Feedback.virtualKey(requireView()) }
+                    onPositive(R.string.add) { Feedback.confirm(requireView()) }
+                }
+            }
+            displayPositiveButton(false)
+            displayNegativeButton(false)
+            attachVariables(model, list)
+            onListIconSelected { icon ->
+                model.Lists().updateIcon(list.id, icon) {
+                    bus.broadcast(Message(MessageType.UPDATE_LIST, it))
+                }
             }
         }
     }

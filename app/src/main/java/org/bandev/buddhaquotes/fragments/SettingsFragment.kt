@@ -18,14 +18,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
  */
 
-package org.bandev.buddhaquotes.activities
+package org.bandev.buddhaquotes.fragments
 
-import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
-import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
@@ -36,50 +39,40 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.DisplayMode
 import com.maxkeppeler.sheets.options.Option
 import com.maxkeppeler.sheets.options.OptionsSheet
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.bus.Message
+import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
-import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
-import org.bandev.buddhaquotes.core.Insets.applyInsets
-import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
-import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
+import org.bandev.buddhaquotes.databinding.FragmentSettingsBinding
 import java.util.*
 
 /**
  * Where the user can customise their app
  */
-class SettingsActivity : BuddhaQuotesActivity() {
+class SettingsFragment : Fragment() {
 
-    private lateinit var binding: ActivitySettingsBinding
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        window.apply {
-            statusBarColor = Color.TRANSPARENT
-            navigationBarColor = Color.TRANSPARENT
-            updateNavbarColour()
-            setDarkStatusIcons()
-            setDecorFitsSystemWindows(this, false)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // Setup view binding
-        binding = ActivitySettingsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Setup toolbar
-        binding.toolbar.apply {
-            setSupportActionBar(this)
-            applyInsets(InsetType.STATUS_BARS)
-            setNavigationOnClickListener { onBackPressed() }
-        }
-
-        supportFragmentManager
+        childFragmentManager
             .beginTransaction()
-            .replace(R.id.settings, SettingsFragment())
+            .replace(R.id.settings, SettingsChild())
             .commit()
     }
 
-    class SettingsFragment : PreferenceFragmentCompat() {
+    class SettingsChild : PreferenceFragmentCompat() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -157,7 +150,7 @@ class SettingsActivity : BuddhaQuotesActivity() {
                         AccentColor.ORANGE -> R.string.orange
                         AccentColor.RED -> R.string.red
                         AccentColor.CRIMSON -> R.string.crimson
-                        null -> TODO()
+                        else -> R.string.original
                     }
                 )
 
@@ -177,7 +170,7 @@ class SettingsActivity : BuddhaQuotesActivity() {
                                 AccentColor.ORANGE -> R.color.orangeAccent
                                 AccentColor.RED -> R.color.redAccent
                                 AccentColor.CRIMSON -> R.color.crimsonAccent
-                                null -> TODO()
+                                else -> R.color.colorPrimary
                             }
                         )
                     )
@@ -223,7 +216,7 @@ class SettingsActivity : BuddhaQuotesActivity() {
                                 }
                             )
                             activity?.run {
-                                startActivity(intent)
+                                startActivity(intent.apply { putExtra("languageChange", true) })
                                 finish()
                                 overridePendingTransition(
                                     android.R.anim.fade_in,
@@ -297,14 +290,11 @@ class SettingsActivity : BuddhaQuotesActivity() {
                         onPositive(R.string.okay) { color ->
                             Feedback.confirm(view ?: return@onPositive)
                             AccentSetting.setAccentColorAndPref(requireContext(), color.toAccentColor())
-                            activity?.run {
-                                startActivity(intent)
-                                finish()
-                                overridePendingTransition(
-                                    android.R.anim.fade_in,
-                                    android.R.anim.fade_out
-                                )
-                            }
+                            parentFragmentManager
+                                .beginTransaction()
+                                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                                .replace(R.id.settings, SettingsChild())
+                                .commit()
                         }
                         onClose { it.isEnabled = true }
                     }
@@ -326,7 +316,7 @@ class SettingsActivity : BuddhaQuotesActivity() {
                 getColor(requireContext(), R.color.orangeAccent) -> AccentColor.ORANGE
                 getColor(requireContext(), R.color.redAccent) -> AccentColor.RED
                 getColor(requireContext(), R.color.crimsonAccent) -> AccentColor.CRIMSON
-                else -> AccentColor.RED
+                else -> AccentColor.ORIGINAL
             }
         }
     }

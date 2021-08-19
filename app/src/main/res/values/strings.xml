@@ -61,9 +61,8 @@
     <string name="about_no_ads" id="91">No ads</string>
 
     <!-- Lists -->
-    <string name="lists_title" id="92">Your Lists</string>
-    <string name="lists_add_lists" id="94">Create new List</string>
-    <string name="lists_add_lists_go" id="95">Add</string>
+    <string name="lists_title">Your Lists</string>
+    <string name="rename_list">Rename list</string>
 
     <!-- Settings -->
     <string name="settings_general" id="97">General</string>

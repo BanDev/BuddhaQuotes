@@ -179,20 +179,4 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         GlobalBus.post(Message(MessageType.UPDATE_LIST, list))
         binding.empty.visibility = View.GONE
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.list_activity_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.tune -> {
-                item.isEnabled = false
-
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-        return true
-    }
 }

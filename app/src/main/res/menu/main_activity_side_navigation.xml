@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
         android:id="@+id/fragments"
-        android:checkableBehavior="single">
+        android:checkableBehavior="all">
         <item
             android:id="@+id/quote"
             android:title="@string/fragment_quote"
@@ -11,17 +11,15 @@
         <item
             android:id="@+id/lists"
             android:title="@string/fragment_lists"
-            android:icon="@drawable/ic_list"
-            android:checked="true" />
+            android:icon="@drawable/ic_list" />
         <item
             android:id="@+id/meditate"
             android:title="@string/fragment_meditation"
-            android:icon="@drawable/ic_meditate"
-            android:checked="true" />
+            android:icon="@drawable/ic_meditate" />
     </group>
     <group
         android:id="@+id/activites"
-        android:checkableBehavior="none">
+        android:checkableBehavior="all">
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings"

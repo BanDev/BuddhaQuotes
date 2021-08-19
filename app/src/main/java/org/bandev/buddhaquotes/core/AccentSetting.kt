@@ -7,9 +7,17 @@ import org.bandev.buddhaquotes.R
 object AccentSetting {
     private const val PREFERENCE_ACCENT = "pref_accent"
     private const val KEY_CURRENT_ACCENT = "key_accent"
-    private const val KEY_DEFAULT_ACCENT = "RED"
 
-    private fun getPreference(context: Context, key: String, default: String? = "RED"): String? =
+    private val accentColorMap: Map<AccentColor, Int> = mapOf(
+        AccentColor.BLUE to R.style.AppTheme_Blue, AccentColor.CRIMSON to R.style.AppTheme_Crimson,
+        AccentColor.GREEN to R.style.AppTheme_Green, AccentColor.LIGHT_BLUE to R.style.AppTheme_LightBlue,
+        AccentColor.LIME to R.style.AppTheme_Lime, AccentColor.ORANGE to R.style.AppTheme_Orange,
+        AccentColor.PINK to R.style.AppTheme_Red, AccentColor.TEAL to R.style.AppTheme_Teal,
+        AccentColor.VIOLET to R.style.AppTheme_Violet, AccentColor.YELLOW to R.style.AppTheme_Yellow,
+        AccentColor.ORIGINAL to R.style.AppTheme_Original
+    )
+
+    private fun getPreference(context: Context, key: String, default: String? = AccentColor.ORIGINAL.toString()): String? =
         context.getSharedPreferences(PREFERENCE_ACCENT, Context.MODE_PRIVATE)
             .getString(key, default)
 
@@ -22,41 +30,13 @@ object AccentSetting {
 
     @JvmStatic
     fun setAccentColorAndPref(context: Context, accentColor: AccentColor) {
-        context.setTheme(
-            when (accentColor) {
-                AccentColor.BLUE -> R.style.AppTheme_Blue
-                AccentColor.CRIMSON -> R.style.AppTheme_Crimson
-                AccentColor.GREEN -> R.style.AppTheme_Green
-                AccentColor.LIGHT_BLUE -> R.style.AppTheme_LightBlue
-                AccentColor.LIME -> R.style.AppTheme_Lime
-                AccentColor.ORANGE -> R.style.AppTheme_Orange
-                AccentColor.PINK -> R.style.AppTheme_Pink
-                AccentColor.RED -> R.style.AppTheme_Red
-                AccentColor.TEAL -> R.style.AppTheme_Teal
-                AccentColor.VIOLET -> R.style.AppTheme_Violet
-                AccentColor.YELLOW -> R.style.AppTheme_Yellow
-            }
-        )
+        accentColorMap[accentColor]?.let { context.setTheme(it) }
         setPreference(context, KEY_CURRENT_ACCENT, accentColor.toString())
     }
 
     @JvmStatic
     fun setAccentColor(context: Context, accentColor: AccentColor) {
-        context.setTheme(
-            when (accentColor) {
-                AccentColor.BLUE -> R.style.AppTheme_Blue
-                AccentColor.CRIMSON -> R.style.AppTheme_Crimson
-                AccentColor.GREEN -> R.style.AppTheme_Green
-                AccentColor.LIGHT_BLUE -> R.style.AppTheme_LightBlue
-                AccentColor.LIME -> R.style.AppTheme_Lime
-                AccentColor.ORANGE -> R.style.AppTheme_Orange
-                AccentColor.PINK -> R.style.AppTheme_Pink
-                AccentColor.RED -> R.style.AppTheme_Red
-                AccentColor.TEAL -> R.style.AppTheme_Teal
-                AccentColor.VIOLET -> R.style.AppTheme_Violet
-                AccentColor.YELLOW -> R.style.AppTheme_Yellow
-            }
-        )
+        accentColorMap[accentColor]?.let { context.setTheme(it) }
     }
 
     fun getAccentColor(context: Context): AccentColor? {

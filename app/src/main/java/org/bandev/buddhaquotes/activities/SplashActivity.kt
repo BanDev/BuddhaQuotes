@@ -39,7 +39,9 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val theme = Prefs(this).Settings().theme
+        val prefs = Prefs(this).Settings()
+        val theme = prefs.theme
+        prefs.bottomBar = 0
 
         MigrationFrom1013To1014(this, application).migrate()
 
