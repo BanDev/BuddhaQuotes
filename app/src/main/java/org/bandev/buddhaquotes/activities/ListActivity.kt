@@ -189,14 +189,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         when (item.itemId) {
             R.id.tune -> {
                 item.isEnabled = false
-                ListOptionsSheet().show(this, application) {
-                    title(R.string.list_icon)
-                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                    displayPositiveButton(false)
-                    displayNegativeButton(false)
-                    attachVariables(vm, this@ListActivity.id)
-                    onClose { item.isEnabled = true }
-                }
+
             }
             else -> super.onOptionsItemSelected(item)
         }

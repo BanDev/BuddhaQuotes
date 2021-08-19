@@ -122,9 +122,10 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         /** Update a list's icon */
-        fun updateIcon(id: Int, icon: ListIcon) {
+        fun updateIcon(id: Int, icon: ListIcon, after: (list: List) -> Unit) {
             viewModelScope.launch(Dispatchers.IO) {
                 lists.updateIcon(id, icon)
+                after(lists.get(id))
             }
         }
 
@@ -138,7 +139,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         /** Delete a list */
         fun delete(id: Int) {
             viewModelScope.launch(Dispatchers.IO) {
-                lists.delete(id)
+                if (id != 0) lists.delete(id)
             }
         }
 

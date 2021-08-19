@@ -25,10 +25,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.IconButton
+import kotlinx.coroutines.runBlocking
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
@@ -36,9 +38,11 @@ import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Bus
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
+import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.custom.ListOptionsSheet
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
+import kotlin.concurrent.thread
 
 /**
  * Shows a list of lists to the user
@@ -48,7 +52,7 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
     private lateinit var binding: FragmentListsBinding
     private lateinit var model: ViewModel
-    private lateinit var list: MutableList<List>
+    private lateinit var lists: MutableList<List>
     private lateinit var bus: Bus
 
     override fun onCreateView(
@@ -68,10 +72,10 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
         // Setup the RecyclerView
         model.Lists().getAll {
-            list = it
+            lists = it
             binding.listsRecycler.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ListAdapter(list, this@ListsFragment)
+                adapter = ListAdapter(lists, this@ListsFragment)
                 setHasFixedSize(false)
             }
         }
@@ -79,11 +83,13 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
         bus = Bus(this, "ListsFragment")
 
         bus.attachRouter {
-            when(it) {
-                MessageType.LIKE_UPDATE -> this::onLikeUpdate
-                MessageType.NEW_LIST -> this::onNewList
-                MessageType.UPDATE_LIST -> this::onUpdateList
-            }
+            if (this::lists.isInitialized) {
+                when(it) {
+                    MessageType.LIKE_UPDATE -> this::onLikeUpdate
+                    MessageType.NEW_LIST -> this::onNewList
+                    MessageType.UPDATE_LIST -> this::onUpdateList
+                }
+            } else null
         }
 
         bus.listen()
@@ -95,36 +101,47 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
 
     override fun options(list: List) {
         ListOptionsSheet().show(requireContext(), requireActivity().application) {
-            attachVariables(model, list.id)
+            attachVariables(model, list)
             onListIconSelected { icon ->
-                model.Lists().updateIcon(list.id, icon)
-                model.Lists().get(list.id) {
+                model.Lists().updateIcon(list.id, icon) {
                     bus.broadcast(Message(MessageType.UPDATE_LIST, it))
                 }
+            }
+            onListRemoved { list ->
+                model.Lists().delete(list.id)
+                val position = lists.indexOf(list)
+                lists.remove(list)
+                binding.listsRecycler.adapter?.notifyItemRemoved(position)
+            }
+            onListRenamed { name ->
+                model.Lists().rename(list.id, name)
+                val position = lists.indexOf(list)
+                lists[position].title = name
+                binding.listsRecycler.adapter?.notifyItemChanged(position)
             }
         }
     }
 
     private fun onLikeUpdate(message: Message<*>) {
         val change = message.data as Int
-        list[0].count = list[0].count + change
+        lists[0].count = lists[0].count + change
         binding.listsRecycler.adapter?.notifyItemChanged(0)
     }
 
     private fun onUpdateList(message: Message<*>) {
         val data = message.data as List
         var position = -1
-        list.forEachIndexed { index, (id) ->
+        lists.forEachIndexed { index, (id) ->
             if (id == data.id) position = index
         }
-        list[position] = data
+        lists[position] = data
         binding.listsRecycler.adapter?.notifyItemChanged(position)
     }
 
     private fun onNewList(message: Message<*>) {
         val data = message.data as List
-        list.add(data)
-        binding.listsRecycler.adapter?.notifyItemInserted(list.indexOf(data))
+        lists.add(data)
+        binding.listsRecycler.adapter?.notifyItemInserted(lists.indexOf(data))
     }
 
     override fun onDestroy() {

@@ -20,7 +20,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.bus
 
+import android.content.Context
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import me.kosert.flowbus.EventsReceiver
 import me.kosert.flowbus.GlobalBus
 import me.kosert.flowbus.subscribe
@@ -44,7 +47,10 @@ import me.kosert.flowbus.subscribe
  *        in an activity this would be 'this'.
  */
 
-class Bus(private val instance: Any, private val name: String) {
+class Bus(
+    private val instance: Any,
+    private val name: String,
+) {
 
     /**
      * Derive listener from the instance provided
@@ -68,10 +74,10 @@ class Bus(private val instance: Any, private val name: String) {
 
     fun broadcast(message: Message<out Any>) {
         if (isDuplicate(message)) {
-            Log.i(tag, "$name tried to send: $message, it was a duplicate")
+            output("$name tried to send: $message, it was a duplicate")
             return
         }
-        Log.i(tag, "$name has broadcast: $message")
+        output("$name has broadcast: $message")
         GlobalBus.post(message)
         prevMessage = message
     }
@@ -85,7 +91,7 @@ class Bus(private val instance: Any, private val name: String) {
      */
 
     fun attachRouter(router: (type: MessageType) -> ((message: Message<*>) -> Any)?) {
-        Log.i(tag, "$name has attatched a router: $router")
+        output("$name has attatched a router: $router")
         this.router = router
     }
 
@@ -104,13 +110,13 @@ class Bus(private val instance: Any, private val name: String) {
         Log.i(tag, "$name is listening")
         if (this::router.isInitialized) {
             receiver.subscribe { message: Message<out Any> ->
-                Log.i(tag, "$name has received: $message via custom router")
+                output("$name has received: $message via custom router")
                 instance to router(message.type)?.let { it(message) }
             }
         } else {
             val listener = instance as Listener
             receiver.subscribe { message: Message<out Any> ->
-                Log.i(tag, "$name has received: $message via listener interface")
+                output("$name has received: $message via listener interface")
                 listener.onMessageReceived(message)
             }
         }
@@ -125,7 +131,7 @@ class Bus(private val instance: Any, private val name: String) {
      */
 
     fun mute() {
-        Log.i(tag, "$name has muted")
+        output("$name has muted")
         receiver.unsubscribe()
     }
 
@@ -138,9 +144,21 @@ class Bus(private val instance: Any, private val name: String) {
      */
 
     private fun isDuplicate(message: Message<*>): Boolean {
+        if(message.type == MessageType.LIKE_UPDATE) return false
         return this::prevMessage.isInitialized
             && message.type == prevMessage.type
             && message.data == prevMessage.data
+    }
+
+    /**
+     * Decide where to output some info based on
+     * if this instance was setup in debug mode.
+     *
+     * @param string The [String] to output
+     */
+
+    private fun output(string: String) {
+        Log.i(tag, string)
     }
 
     /**

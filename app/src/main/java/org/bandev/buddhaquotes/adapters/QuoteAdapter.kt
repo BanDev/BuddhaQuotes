@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.core.find
+import org.bandev.buddhaquotes.core.onClick
 import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.databinding.QuoteAdapterItemBinding
 import org.bandev.buddhaquotes.items.Quote
@@ -89,13 +90,11 @@ class QuoteAdapter(
             }
         }
 
-        holder.share.setOnClickListener {
-            Feedback.virtualKey(it)
+        holder.share.onClick {
             it.context.shareQuote(item)
         }
 
-        holder.bin.setOnClickListener {
-            Feedback.virtualKey(it)
+        holder.bin.onClick {
             notifyItemRemoved(quotes.find(item))
             quotes.remove(item)
             listener.onQuoteRemoved(item)
