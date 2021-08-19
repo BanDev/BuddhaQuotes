@@ -7,11 +7,11 @@ import org.bandev.buddhaquotes.R
 object AccentSetting {
     private const val PREFERENCE_ACCENT = "pref_accent"
     private const val KEY_CURRENT_ACCENT = "key_accent"
-    private const val KEY_DEFAULT_ACCENT = "key_default_accent"
+    private const val KEY_DEFAULT_ACCENT = "RED"
 
     private fun getPreference(context: Context, key: String, default: String? = "RED"): String? =
         context.getSharedPreferences(PREFERENCE_ACCENT, Context.MODE_PRIVATE)
-            .getString(default, key)
+            .getString(key, default)
 
     private fun setPreference(context: Context, key: String, value: String) {
         context.getSharedPreferences(PREFERENCE_ACCENT, Context.MODE_PRIVATE)
@@ -60,7 +60,7 @@ object AccentSetting {
     }
 
     fun getAccentColor(context: Context): AccentColor? {
-        return getPreference(context, PREFERENCE_ACCENT, KEY_CURRENT_ACCENT)?.let { enumValueOf<AccentColor>("BLUE") }
+        return getPreference(context, KEY_CURRENT_ACCENT)?.let { enumValueOf<AccentColor>(it) }
     }
 
 }
