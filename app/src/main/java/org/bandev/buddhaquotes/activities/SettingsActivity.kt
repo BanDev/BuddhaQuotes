@@ -20,7 +20,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate.*
@@ -31,7 +30,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
 import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
-import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.color.ColorView
 import com.maxkeppeler.sheets.core.SheetStyle
@@ -42,14 +40,14 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
-import org.bandev.buddhaquotes.core.Prefs.Companion.DEFAULT
+import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
 import org.bandev.buddhaquotes.databinding.ActivitySettingsBinding
 import java.util.*
 
 /**
  * Where the user can customise their app
  */
-class SettingsActivity : LocalizationActivity() {
+class SettingsActivity : BuddhaQuotesActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
 
@@ -144,22 +142,22 @@ class SettingsActivity : LocalizationActivity() {
             }
 
             fun Preference.setAccentSummary() {
-                val accent = settings.accent
+                val accent = AccentSetting.getAccentColor(requireContext())
 
                 summary = getString(
                     when (accent) {
-                        Accent.PINK -> R.string.pink
-                        Accent.VIOLET -> R.string.violet
-                        Accent.BLUE -> R.string.blue
-                        Accent.LIGHT_BLUE -> R.string.lightBlue
-                        Accent.TEAL -> R.string.teal
-                        Accent.GREEN -> R.string.green
-                        Accent.LIME -> R.string.lime
-                        Accent.YELLOW -> R.string.yellow
-                        Accent.ORANGE -> R.string.orange
-                        Accent.RED -> R.string.red
-                        Accent.CRIMSON -> R.string.crimson
-                        else -> R.string.original
+                        AccentColor.PINK -> R.string.pink
+                        AccentColor.VIOLET -> R.string.violet
+                        AccentColor.BLUE -> R.string.blue
+                        AccentColor.LIGHT_BLUE -> R.string.lightBlue
+                        AccentColor.TEAL -> R.string.teal
+                        AccentColor.GREEN -> R.string.green
+                        AccentColor.LIME -> R.string.lime
+                        AccentColor.YELLOW -> R.string.yellow
+                        AccentColor.ORANGE -> R.string.orange
+                        AccentColor.RED -> R.string.red
+                        AccentColor.CRIMSON -> R.string.crimson
+                        null -> TODO()
                     }
                 )
 
@@ -168,18 +166,18 @@ class SettingsActivity : LocalizationActivity() {
                         getColor(
                             context,
                             when (accent) {
-                                Accent.PINK -> R.color.pinkAccent
-                                Accent.VIOLET -> R.color.violetAccent
-                                Accent.BLUE -> R.color.blueAccent
-                                Accent.LIGHT_BLUE -> R.color.lightBlueAccent
-                                Accent.TEAL -> R.color.tealAccent
-                                Accent.GREEN -> R.color.greenAccent
-                                Accent.LIME -> R.color.limeAccent
-                                Accent.YELLOW -> R.color.yellowAccent
-                                Accent.ORANGE -> R.color.orangeAccent
-                                Accent.RED -> R.color.redAccent
-                                Accent.CRIMSON -> R.color.crimsonAccent
-                                else -> R.color.colorPrimary
+                                AccentColor.PINK -> R.color.pinkAccent
+                                AccentColor.VIOLET -> R.color.violetAccent
+                                AccentColor.BLUE -> R.color.blueAccent
+                                AccentColor.LIGHT_BLUE -> R.color.lightBlueAccent
+                                AccentColor.TEAL -> R.color.tealAccent
+                                AccentColor.GREEN -> R.color.greenAccent
+                                AccentColor.LIME -> R.color.limeAccent
+                                AccentColor.YELLOW -> R.color.yellowAccent
+                                AccentColor.ORANGE -> R.color.orangeAccent
+                                AccentColor.RED -> R.color.redAccent
+                                AccentColor.CRIMSON -> R.color.crimsonAccent
+                                null -> TODO()
                             }
                         )
                     )
@@ -298,7 +296,7 @@ class SettingsActivity : LocalizationActivity() {
                         onNegative(R.string.cancel) { Feedback.virtualKey(requireView()) }
                         onPositive(R.string.okay) { color ->
                             Feedback.confirm(view ?: return@onPositive)
-                            settings.accent = convert(color)
+                            AccentSetting.setAccentColorAndPref(requireContext(), color.toAccentColor())
                             activity?.run {
                                 startActivity(intent)
                                 finish()
@@ -315,20 +313,20 @@ class SettingsActivity : LocalizationActivity() {
             }
         }
 
-        private fun convert(color: Int): Int {
-            return when (color) {
-                getColor(requireContext(), R.color.pinkAccent) -> Accent.PINK
-                getColor(requireContext(), R.color.violetAccent) -> Accent.VIOLET
-                getColor(requireContext(), R.color.blueAccent) -> Accent.BLUE
-                getColor(requireContext(), R.color.lightBlueAccent) -> Accent.LIGHT_BLUE
-                getColor(requireContext(), R.color.tealAccent) -> Accent.TEAL
-                getColor(requireContext(), R.color.greenAccent) -> Accent.GREEN
-                getColor(requireContext(), R.color.limeAccent) -> Accent.LIME
-                getColor(requireContext(), R.color.yellowAccent) -> Accent.YELLOW
-                getColor(requireContext(), R.color.orangeAccent) -> Accent.ORANGE
-                getColor(requireContext(), R.color.redAccent) -> Accent.RED
-                getColor(requireContext(), R.color.crimsonAccent) -> Accent.CRIMSON
-                else -> DEFAULT
+        private fun Int.toAccentColor(): AccentColor {
+            return when (this) {
+                getColor(requireContext(), R.color.pinkAccent) -> AccentColor.PINK
+                getColor(requireContext(), R.color.violetAccent) -> AccentColor.VIOLET
+                getColor(requireContext(), R.color.blueAccent) -> AccentColor.BLUE
+                getColor(requireContext(), R.color.lightBlueAccent) -> AccentColor.LIGHT_BLUE
+                getColor(requireContext(), R.color.tealAccent) -> AccentColor.TEAL
+                getColor(requireContext(), R.color.greenAccent) -> AccentColor.GREEN
+                getColor(requireContext(), R.color.limeAccent) -> AccentColor.LIME
+                getColor(requireContext(), R.color.yellowAccent) -> AccentColor.YELLOW
+                getColor(requireContext(), R.color.orangeAccent) -> AccentColor.ORANGE
+                getColor(requireContext(), R.color.redAccent) -> AccentColor.RED
+                getColor(requireContext(), R.color.crimsonAccent) -> AccentColor.CRIMSON
+                else -> AccentColor.RED
             }
         }
     }
