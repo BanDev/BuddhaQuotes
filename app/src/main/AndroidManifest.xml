@@ -31,9 +31,7 @@
 
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.ListActivity" />
-        <activity android:name=".activities.AboutActivity" />
         <activity android:name=".activities.TimerActivity" />
-        <activity android:name=".activities.SettingsActivity" />
 
         <receiver
             android:name=".widgets.MainWidget"

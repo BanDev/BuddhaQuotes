@@ -56,6 +56,7 @@ class Prefs(context: Context) {
     inner class Settings {
         private val themeKey = "THEME_KEY"
         private val accentKey = "ACCENT_KEY"
+        private val barKey = "BOTTOM_BAR_KEY"
 
         // The theme for the app
         var theme: Int
@@ -66,6 +67,10 @@ class Prefs(context: Context) {
         var accent: AccentColor
             get() = convertToAccentColor(sharedPrefs.getInt(accentKey, DEFAULT))
             set(value) = editor.putInt(accentKey, convertAccentColorToInt(value)).apply()
+
+        var bottomBar: Int
+            get() = sharedPrefs.getInt(barKey, 0)
+            set(value) = editor.putInt(barKey, value).apply()
     }
 
     inner class Images {

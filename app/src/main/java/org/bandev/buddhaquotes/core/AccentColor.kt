@@ -13,5 +13,6 @@ enum class AccentColor {
     TEAL,
     VIOLET,
     YELLOW,
+    ORIGINAL
 
 }

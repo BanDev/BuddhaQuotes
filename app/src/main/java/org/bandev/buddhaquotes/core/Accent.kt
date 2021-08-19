@@ -39,6 +39,7 @@ object Accent {
                 AccentColor.TEAL -> R.style.AppTheme_Teal
                 AccentColor.VIOLET -> R.style.AppTheme_Violet
                 AccentColor.YELLOW -> R.style.AppTheme_Yellow
+                else -> R.style.AppTheme_Original
             }
         )
     }
@@ -56,7 +57,7 @@ object Accent {
             TEAL -> AccentColor.TEAL
             VIOLET -> AccentColor.VIOLET
             YELLOW -> AccentColor.YELLOW
-            else -> AccentColor.RED
+            else -> AccentColor.ORIGINAL
         }
     }
 
@@ -73,6 +74,7 @@ object Accent {
             AccentColor.TEAL -> TEAL
             AccentColor.VIOLET -> VIOLET
             AccentColor.YELLOW -> YELLOW
+            else -> ORIGINAL
         }
     }
 
@@ -87,4 +89,5 @@ object Accent {
     const val TEAL: Int = 9
     const val VIOLET: Int = 10
     const val YELLOW: Int = 11
+    const val ORIGINAL: Int = 12
 }

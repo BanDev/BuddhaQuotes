@@ -27,53 +27,14 @@
         android:background="@color/background"
         android:fitsSystemWindows="false">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <nl.joery.animatedbottombar.AnimatedBottomBar
-                android:id="@+id/bottom_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/abbBackgroundColor"
-                android:elevation="4dp"
-                android:overScrollMode="never"
-                app:abb_animationDuration="200"
-                app:abb_indicatorAppearance="round"
-                app:abb_indicatorHeight="4dp"
-                app:abb_indicatorMargin="16dp"
-                app:abb_selectedIndex="1"
-                app:abb_selectedTabType="text"
-                app:abb_tabs="@menu/bottom_nav_menu"
-                app:abb_textAppearance="@style/AnimatedBottomBarText"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:overScrollMode="never"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/create_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:visibility="gone"
-                app:tint="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_add" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/home" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"

@@ -24,6 +24,8 @@ enum class MessageType {
 
     NEW_LIST,
     UPDATE_LIST,
-    LIKE_UPDATE
+    LIKE_UPDATE,
+    NOTIFY_BOTTOMBAR,
+    NOTIFY_TAB_INDEX
 
 }

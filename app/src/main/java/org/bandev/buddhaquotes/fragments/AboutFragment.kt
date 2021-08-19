@@ -24,16 +24,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import org.bandev.buddhaquotes.BuildConfig
+import androidx.fragment.app.FragmentActivity
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
+import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.maxkeppeler.sheets.color.ColorSheet
+import com.maxkeppeler.sheets.color.ColorView
+import com.maxkeppeler.sheets.core.SheetStyle
+import com.maxkeppeler.sheets.options.DisplayMode
+import com.maxkeppeler.sheets.options.Option
+import com.maxkeppeler.sheets.options.OptionsSheet
+import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.adapters.AboutAdapter
-import org.bandev.buddhaquotes.core.AnimationUtils
-import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.bus.Message
+import org.bandev.buddhaquotes.bus.MessageType
+import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentAboutBinding
+import org.bandev.buddhaquotes.databinding.FragmentSettingsBinding
+import java.util.*
 
+/**
+ * Where the user can customise their app
+ */
 class AboutFragment : Fragment() {
+
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
 
@@ -46,69 +68,40 @@ class AboutFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        with(binding) {
-            aboutAppVersion.text = BuildConfig.VERSION_NAME
-
-            contributorsPeople.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
-                setHasFixedSize(true)
+        binding.viewPager.adapter = AboutStateAdapter(requireActivity())
+        TabLayoutMediator(
+            binding.tabLayout,
+            binding.viewPager
+        ) { tab: TabLayout.Tab, position: Int ->
+            when (position) {
+                POS_ABOUT -> tab.setText(R.string.about)
+                POS_LICENSE -> tab.setText(R.string.libraries)
+                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
             }
+        }.attach()
+    }
 
-            promises.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
-                setHasFixedSize(true)
+    /**
+     * A [FragmentStateAdapter] that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+
+    class AboutStateAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                Companion.POS_ABOUT -> AboutFragmentChild()
+                Companion.POS_LICENSE -> LibrariesFragment()
+                else -> throw IllegalArgumentException("Unknown position for ViewPager2")
             }
-
-            attribution.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.attributions))
-                setHasFixedSize(true)
-            }
-
-            titleCard.setOnClickListener { expandTitleCard(it) }
-            contributorsCard.setOnClickListener { expandContributorCard(it) }
-            promiseCard.setOnClickListener { expandPromiseCard(it) }
-            attributionCard.setOnClickListener { expandAttributionCard(it) }
         }
+
+        override fun getItemCount(): Int = Companion.TOTAL_COUNT
     }
 
-    private fun expandTitleCard(view: View) {
-        Feedback.virtualKey(view)
-        binding.titleCardExpandable.also {
-            val visible = it.visibility != View.VISIBLE
-            if (visible) AnimationUtils.expand(it)
-            else AnimationUtils.collapse(it)
-        }
-    }
-
-    private fun expandContributorCard(view: View) {
-        Feedback.virtualKey(view)
-        binding.contributorsCardExpandable.also {
-            val visible = it.visibility != View.VISIBLE
-            if (visible) AnimationUtils.expand(it)
-            else AnimationUtils.collapse(it)
-        }
-    }
-
-    private fun expandPromiseCard(view: View) {
-        Feedback.virtualKey(view)
-        binding.promiseCardExpandable.also {
-            val visible = it.visibility != View.VISIBLE
-            if (visible) AnimationUtils.expand(it)
-            else AnimationUtils.collapse(it)
-        }
-    }
-
-    private fun expandAttributionCard(view: View) {
-        Feedback.virtualKey(view)
-        binding.attributionCardExpandable.also {
-            val visible = it.visibility != View.VISIBLE
-            if (visible) AnimationUtils.expand(it)
-            else AnimationUtils.collapse(it)
-        }
+    companion object {
+        private const val POS_ABOUT = 0
+        private const val POS_LICENSE = 1
+        private const val TOTAL_COUNT = 2
     }
 }
