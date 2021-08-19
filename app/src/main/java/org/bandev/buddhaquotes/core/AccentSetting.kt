@@ -60,7 +60,7 @@ object AccentSetting {
     }
 
     fun getAccentColor(context: Context): AccentColor? {
-        return getPreference(context, PREFERENCE_ACCENT, KEY_CURRENT_ACCENT)?.let { enumValueOf<AccentColor>(it) }
+        return getPreference(context, PREFERENCE_ACCENT, KEY_CURRENT_ACCENT)?.let { enumValueOf<AccentColor>("BLUE") }
     }
 
 }

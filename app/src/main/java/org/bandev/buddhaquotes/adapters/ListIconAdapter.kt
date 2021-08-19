@@ -27,6 +27,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import org.bandev.buddhaquotes.core.onClick
 import org.bandev.buddhaquotes.databinding.ListIconBinding
 import org.bandev.buddhaquotes.items.ListIcon
 
@@ -37,9 +38,9 @@ import org.bandev.buddhaquotes.items.ListIcon
 class ListIconAdapter(
 
     private val list: List<ListIcon>,
-    private val listener: Listener,
+    private val selected: (ListIcon) -> Any
 
-    ) : RecyclerView.Adapter<ListIconAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ListIconAdapter.ViewHolder>() {
 
     class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
         val listIcon: ImageView = binding.listIcon
@@ -61,24 +62,10 @@ class ListIconAdapter(
             if (item.selected) holder.selected.visibility = View.VISIBLE
             setImageResource(item.drawable)
             backgroundTintList = ColorStateList.valueOf(item.colour)
-            setOnClickListener {
-                Toast.makeText(holder.listIcon.context, position.toString(), Toast.LENGTH_SHORT).show()
-                holder.selected.visibility = View.VISIBLE
-                listener.select(item)
-                for (icon in list) {
-                    icon.selected = false
-                    notifyItemChanged(icon.id)
-                }
-                list[list.indexOf(item)].selected = true
-                notifyItemRangeChanged(0, list.lastIndex)
-            }
+            onClick { selected(item) }
         }
     }
 
     override fun getItemCount(): Int = list.size
-
-    interface Listener {
-        fun select(icon: ListIcon)
-    }
 }
 
