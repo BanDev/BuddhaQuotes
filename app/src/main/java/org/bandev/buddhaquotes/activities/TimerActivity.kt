@@ -60,7 +60,7 @@ class TimerActivity : LocalizationActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAccentColour()
+        setAccentColour(Prefs(this).Settings().accent)
         with(window) {
             statusBarColor = Color.TRANSPARENT
             navigationBarColor = Color.TRANSPARENT

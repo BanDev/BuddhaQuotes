@@ -24,7 +24,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
-import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.core.Accent.convertAccentColorToInt
+import org.bandev.buddhaquotes.core.Accent.convertToAccentColor
 
 class Prefs(context: Context) {
 
@@ -62,9 +63,9 @@ class Prefs(context: Context) {
             set(value) = editor.putInt(themeKey, value).apply()
 
         // The accent colour
-        var accent: Int
-            get() = sharedPrefs.getInt(accentKey, DEFAULT)
-            set(value) = editor.putInt(accentKey, value).apply()
+        var accent: AccentColor
+            get() = convertToAccentColor(sharedPrefs.getInt(accentKey, DEFAULT))
+            set(value) = editor.putInt(accentKey, convertAccentColorToInt(value)).apply()
     }
 
     inner class Images {

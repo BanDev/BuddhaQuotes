@@ -71,7 +71,7 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
         setContentView(binding.root)
 
         // Styling things
-        setAccentColour()
+        setAccentColour(Prefs(this).Settings().accent)
         with(window) {
             statusBarColor = Color.TRANSPARENT
             updateNavbarColour()

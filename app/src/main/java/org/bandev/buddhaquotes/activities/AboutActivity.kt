@@ -31,7 +31,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
+import org.bandev.buddhaquotes.core.Prefs
 import org.bandev.buddhaquotes.core.setDarkStatusIcons
+import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
 import org.bandev.buddhaquotes.databinding.ActivityAboutBinding
 import org.bandev.buddhaquotes.fragments.AboutFragment
 import org.bandev.buddhaquotes.fragments.LibrariesFragment
@@ -39,14 +41,14 @@ import org.bandev.buddhaquotes.fragments.LibrariesFragment
 /**
  * The about page
  */
-class AboutActivity : LocalizationActivity() {
+class AboutActivity : BuddhaQuotesActivity() {
 
     private lateinit var binding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setAccentColour()
+        setAccentColour(Prefs(this).Settings().accent)
         with(window) {
             navigationBarColor = getColor(context, R.color.background)
             updateNavbarColour()

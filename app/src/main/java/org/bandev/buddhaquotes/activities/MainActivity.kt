@@ -20,11 +20,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
+import android.content.Intent
 import android.content.res.ColorStateList.valueOf
-import android.view.LayoutInflater
+import android.graphics.Color.TRANSPARENT
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.lifecycle.ViewModelProvider
 import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Ratio
 import com.maxkeppeler.sheets.core.TopStyle
@@ -41,7 +46,10 @@ import org.bandev.buddhaquotes.architecture.ViewModel
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.*
+import org.bandev.buddhaquotes.core.Accent.setAccentColour
+import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
+import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
 
 /**
@@ -52,29 +60,72 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
  */
 
-class MainActivity: BuddhaQuotesActivity<ActivityMainBinding>() {
+class MainActivity: BuddhaQuotesActivity() {
 
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var binding: ActivityMainBinding
     private lateinit var model: ViewModel
 
-    override fun create() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        assignViewModel(ViewModel::class.java)
-        assignToolbar(binding.toolbar)
-        setNavBarColour(R.color.abbBackgroundColor)
-
-        setupNavigationView(binding.drawerLayout, binding.navigationView) {
-            when (it.itemId) {
-                R.id.quote -> binding.bottomBar.selectTabAt(0)
-                R.id.lists -> binding.bottomBar.selectTabAt(1)
-                R.id.meditate -> binding.bottomBar.selectTabAt(2)
-                R.id.settings -> open(SettingsActivity::class.java)
-                R.id.about -> open(AboutActivity::class.java)
-            }
+        window.apply {
+            statusBarColor = TRANSPARENT
+            updateNavbarColour()
+            setDarkStatusIcons()
+            navigationBarColor = getColor(context, R.color.abbBackgroundColor)
+            setDecorFitsSystemWindows(this, false)
         }
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        model = ViewModelProvider.AndroidViewModelFactory
+            .getInstance(application)
+            .create(ViewModel::class.java)
+
+        actionBarDrawerToggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.toolbar,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
+
+        binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         with(binding) {
+            toolbar.apply {
+                setSupportActionBar(this)
+                applyInsets(InsetType.STATUS_BARS)
+                setNavigationOnClickListener { if (drawerLayout.isOpen) drawerLayout.close() else drawerLayout.open() }
+            }
 
             viewPager.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+
+            navigationView.apply {
+                setNavigationItemSelectedListener { menuItem ->
+                    menuItem.isChecked = true
+
+                    when (menuItem.itemId) {
+                        R.id.quote -> binding.bottomBar.selectTabAt(0)
+                        R.id.lists -> binding.bottomBar.selectTabAt(1)
+                        R.id.meditate -> binding.bottomBar.selectTabAt(2)
+                        R.id.settings -> startActivity(
+                            Intent(
+                                context,
+                                SettingsActivity::class.java
+                            )
+                        )
+                        R.id.about -> startActivity(Intent(context, AboutActivity::class.java))
+                    }
+
+                    binding.drawerLayout.close()
+                    true
+                }
+            }
 
             createList.apply {
                 backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
@@ -135,7 +186,7 @@ class MainActivity: BuddhaQuotesActivity<ActivityMainBinding>() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun menuItemSelected(item: MenuItem) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         item.isEnabled = false
         var title = 0
         var content = 0
@@ -176,9 +227,11 @@ class MainActivity: BuddhaQuotesActivity<ActivityMainBinding>() {
             })
             onClose { item.isEnabled = true }
         }
+        return true
     }
 
-    override fun resume() {
+    override fun onResume() {
+        super.onResume()
         with(binding) {
             createList.backgroundTintList = valueOf(resolveColorAttr(R.attr.colorAccent))
             bottomBar.apply {
@@ -195,6 +248,4 @@ class MainActivity: BuddhaQuotesActivity<ActivityMainBinding>() {
             else -> super.onBackPressed()
         }
     }
-
-    override val bInflater: (LayoutInflater) -> ActivityMainBinding = ActivityMainBinding::inflate
 }

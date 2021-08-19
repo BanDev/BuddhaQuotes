@@ -61,7 +61,7 @@ class MainWidgetConfigureActivity : LocalizationActivity() {
             setDarkStatusIcons()
             setDecorFitsSystemWindows(this, false)
         }
-        setAccentColour()
+        setAccentColour(Prefs(this).Settings().accent)
 
         binding = WidgetConfigureBinding.inflate(layoutInflater)
         setContentView(binding.root)
