@@ -77,16 +77,16 @@ class HomeFragment : Fragment(), Bus.Listener {
             setupWithViewPager2(binding.viewPager)
             onTabSelected = {
                 when (it) {
-                    binding.bottomBar.tabs[0] -> {
-                        GlobalBus.post(Message(MessageType.NOTIFY_TAB_INDEX, 0))
+                    binding.bottomBar.tabs[Fragments.QUOTES.ordinal] -> {
+                        bus.broadcast(Message(MessageType.NOTIFY_TAB_INDEX, Fragments.QUOTES))
                         binding.createList.hide()
                     }
-                    binding.bottomBar.tabs[1] -> {
-                        GlobalBus.post(Message(MessageType.NOTIFY_TAB_INDEX, 1))
+                    binding.bottomBar.tabs[Fragments.LISTS.ordinal] -> {
+                        bus.broadcast(Message(MessageType.NOTIFY_TAB_INDEX, Fragments.LISTS))
                         binding.createList.show()
                     }
-                    binding.bottomBar.tabs[2] -> {
-                        GlobalBus.post(Message(MessageType.NOTIFY_TAB_INDEX, 2))
+                    binding.bottomBar.tabs[Fragments.MEDITATE.ordinal] -> {
+                        bus.broadcast(Message(MessageType.NOTIFY_TAB_INDEX, Fragments.MEDITATE))
                         binding.createList.hide()
                     }
                 }
@@ -112,6 +112,6 @@ class HomeFragment : Fragment(), Bus.Listener {
     }
 
     override fun onMessageReceived(message: Message<*>) {
-        if (message.type == MessageType.NOTIFY_BOTTOMBAR) binding.bottomBar.selectTabAt(message.data as Int)
+        if (message.type == MessageType.NOTIFY_BOTTOMBAR) binding.bottomBar.selectTabAt((message.data as Fragments).ordinal)
     }
 }

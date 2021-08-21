@@ -24,8 +24,10 @@ import android.content.Context
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import me.kosert.flowbus.EventsReceiver
 import me.kosert.flowbus.GlobalBus
+import me.kosert.flowbus.bindLifecycle
 import me.kosert.flowbus.subscribe
 
 /**
@@ -57,6 +59,7 @@ class Bus(
      * at class initialisation.
      */
 
+    private val lifeCycleOwner = instance as LifecycleOwner
     private val receiver: EventsReceiver = EventsReceiver()
     private lateinit var router: (type: MessageType) -> ((message: Message<*>) -> Any)?
     private lateinit var prevMessage: Message<*>
@@ -108,6 +111,7 @@ class Bus(
 
     fun listen() {
         Log.i(tag, "$name is listening")
+        receiver.bindLifecycle(lifeCycleOwner)
         if (this::router.isInitialized) {
             receiver.subscribe { message: Message<out Any> ->
                 output("$name has received: $message via custom router")

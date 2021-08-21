@@ -20,44 +20,18 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package org.bandev.buddhaquotes.activities
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
-import org.bandev.buddhaquotes.core.Prefs
-import org.bandev.buddhaquotes.migrations.MigrationFrom1013To1014
 
 /**
  * The splash screen
  */
+
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val prefs = Prefs(this).Settings()
-        val theme = prefs.theme
-        prefs.bottomBar = 0
-
-        MigrationFrom1013To1014(this, application).migrate()
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Meditation Timer"
-            val descriptionText = "Meditation Timer Stuff"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("BQ.Timer", name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        setDefaultNightMode(theme)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

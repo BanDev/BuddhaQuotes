@@ -29,6 +29,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
@@ -52,6 +53,7 @@ import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
 import org.bandev.buddhaquotes.core.Insets.applyInsets
 import org.bandev.buddhaquotes.custom.BuddhaQuotesActivity
 import org.bandev.buddhaquotes.databinding.ActivityMainBinding
+import org.bandev.buddhaquotes.fragments.Fragments
 
 /**
  * Main is the main page of Buddha Quotes
@@ -61,14 +63,14 @@ import org.bandev.buddhaquotes.databinding.ActivityMainBinding
  * https://github.com/Droppers/AnimatedBottomBar for its nice bottom bar.
  */
 
-class MainActivity: BuddhaQuotesActivity(), Bus.Listener {
+class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
     private lateinit var model: ViewModel
     private lateinit var navController: NavController
     private var menu: Menu? = null
-    private var bus: Bus? = null
+    private lateinit var bus: Bus
     private var tabSelected: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,8 +105,6 @@ class MainActivity: BuddhaQuotesActivity(), Bus.Listener {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        if (intent.extras?.getBoolean("languageChange") == true) navController.navigate(R.id.navigation_settings)
-
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -114,16 +114,17 @@ class MainActivity: BuddhaQuotesActivity(), Bus.Listener {
             setNavigationOnClickListener { if (binding.drawerLayout.isOpen) binding.drawerLayout.close() else binding.drawerLayout.open() }
         }
 
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.toolbar.setTitle(
-                when(destination.id) {
+                when (destination.id) {
                     R.id.navigation_home -> R.string.app_name
                     R.id.navigation_settings -> R.string.settings
                     R.id.navigation_about -> R.string.about_app
                     else -> R.string.app_name
                 }
             )
-            if (menu != null) menu!!.findItem(R.id.help).isVisible = destination.id == R.id.navigation_home
+            if (menu != null) menu!!.findItem(R.id.help).isVisible =
+                destination.id == R.id.navigation_home
         }
 
         binding.navigationView.apply {
@@ -131,26 +132,32 @@ class MainActivity: BuddhaQuotesActivity(), Bus.Listener {
             setNavigationItemSelectedListener { menuItem ->
                 menuItem.isChecked = true
 
+                val id = navController.currentDestination!!.id
+
                 when (menuItem.itemId) {
                     R.id.quote -> {
-                        if (navController.currentDestination!!.id != R.id.navigation_home) navController.popBackStack()
-                        GlobalBus.post(Message(MessageType.NOTIFY_BOTTOMBAR, 0))
+                        if (id != R.id.navigation_home) navController.popBackStack()
+                        bus.broadcast(Message(MessageType.NOTIFY_BOTTOMBAR, Fragments.QUOTES))
                     }
                     R.id.lists -> {
-                        if (navController.currentDestination!!.id != R.id.navigation_home) navController.popBackStack()
-                        GlobalBus.post(Message(MessageType.NOTIFY_BOTTOMBAR, 1))
+                        if (id != R.id.navigation_home) navController.popBackStack()
+                        bus.broadcast(Message(MessageType.NOTIFY_BOTTOMBAR, Fragments.LISTS))
                     }
                     R.id.meditate -> {
-                        if (navController.currentDestination!!.id != R.id.navigation_home) navController.popBackStack()
-                        GlobalBus.post(Message(MessageType.NOTIFY_BOTTOMBAR, 2))
+                        if (id != R.id.navigation_home) navController.popBackStack()
+                        bus.broadcast(Message(MessageType.NOTIFY_BOTTOMBAR, Fragments.MEDITATE))
                     }
                     R.id.settings -> {
-                        if (navController.currentDestination!!.id == R.id.navigation_about) navController.popBackStack()
-                        if (navController.currentDestination!!.id != R.id.navigation_settings) navController.navigate(R.id.navigation_settings)
+                        if (id == R.id.navigation_about) navController.popBackStack()
+                        if (id != R.id.navigation_settings) navController.navigate(
+                            R.id.navigation_settings
+                        )
                     }
                     R.id.about -> {
-                        if (navController.currentDestination!!.id == R.id.navigation_settings) navController.popBackStack()
-                        if (navController.currentDestination!!.id != R.id.navigation_about) navController.navigate(R.id.navigation_about)
+                        if (id == R.id.navigation_settings) navController.popBackStack()
+                        if (id != R.id.navigation_about) navController.navigate(
+                            R.id.navigation_about
+                        )
                     }
                 }
 
@@ -219,24 +226,31 @@ class MainActivity: BuddhaQuotesActivity(), Bus.Listener {
     override fun onBackPressed() {
         when {
             binding.drawerLayout.isOpen -> binding.drawerLayout.close()
-            navController.currentDestination!!.id == R.id.navigation_home -> if (tabSelected != 0) GlobalBus.post(Message(MessageType.NOTIFY_BOTTOMBAR, 0)) else super.onBackPressed()
+            navController.currentDestination!!.id == R.id.navigation_home -> if (tabSelected != 0) bus.broadcast(
+                Message(MessageType.NOTIFY_BOTTOMBAR, Fragments.QUOTES)
+            ) else super.onBackPressed()
             else -> super.onBackPressed()
         }
     }
 
     override fun onMessageReceived(message: Message<*>) {
-        when(message.type) {
+        when (message.type) {
             MessageType.NOTIFY_TAB_INDEX -> {
-                tabSelected = message.data as Int
-                when(message.data) {
-                    0 -> R.id.quote
-                    1 -> R.id.lists
-                    2 -> R.id.meditate
+                tabSelected = (message.data as Fragments).ordinal
+                when (tabSelected) {
+                    Fragments.QUOTES.ordinal -> R.id.quote
+                    Fragments.LISTS.ordinal -> R.id.lists
+                    Fragments.MEDITATE.ordinal -> R.id.meditate
                     else -> null
                 }?.let { binding.navigationView.setCheckedItem(it) }
             }
             else -> null
         }
+    }
+
+    override fun onAfterLocaleChanged() {
+        super.onAfterLocaleChanged()
+        navController.navigate(R.id.navigation_settings)
     }
 
 }
