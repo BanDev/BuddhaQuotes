@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginVertical="8dp"
+    android:layout_marginTop="8dp"
     app:cardCornerRadius="12dp"
     app:layout_constraintTop_toTopOf="parent">
 
@@ -44,14 +44,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:hint="@string/searchHint"
             android:inputType="text"
-            android:paddingTop="8dp"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            app:layout_constraintBottom_toBottomOf="@id/search_image_view"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/clear_search_query"
-            app:layout_constraintStart_toEndOf="@id/search_image_view" />
+            app:layout_constraintStart_toEndOf="@id/search_image_view"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
