@@ -30,9 +30,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxkeppeler.sheets.core.IconButton
+import com.maxkeppeler.sheets.core.Ratio
+import com.maxkeppeler.sheets.core.SheetStyle
+import com.maxkeppeler.sheets.core.TopStyle
+import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
+import com.maxkeppeler.sheets.lottie.LottieAnimation
+import com.maxkeppeler.sheets.lottie.LottieAnimationRequest
+import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
 import kotlinx.coroutines.runBlocking
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
@@ -110,10 +117,27 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
             if (list.id != 0) withIconButton(IconButton(R.drawable.ic_delete)) {
                 Feedback.virtualKey(requireView())
                 dismiss()
-                model.Lists().delete(list.id)
-                val position = lists.indexOf(list)
-                lists.remove(list)
-                binding.listsRecycler.adapter?.notifyItemRemoved(position)
+                InfoSheet().show(requireContext()) {
+                    title("Are you sure?")
+                    closeIconButton(IconButton(R.drawable.ic_down_arrow))
+                    style(SheetStyle.DIALOG)
+                    topStyle(TopStyle.BELOW_COVER)
+                    withCoverLottieAnimation(LottieAnimation {
+                        ratio(Ratio(5, 2))
+                        setupAnimation {
+                            setAnimation(R.raw.recycle_bin)
+                            setRepeatCount(LottieAnimationRequest.INFINITE)
+                        }
+                    })
+                    content("This will permanently delete this list and all quotes inside it.")
+                    onNegative(R.string.cancel)
+                    onPositive(R.string.okay) {
+                        model.Lists().delete(list.id)
+                        val position = lists.indexOf(list)
+                        lists.remove(list)
+                        binding.listsRecycler.adapter?.notifyItemRemoved(position)
+                    }
+                }
             }
             if (list.id != 0) withIconButton(IconButton(R.drawable.ic_edit)) {
                 Feedback.virtualKey(requireView())

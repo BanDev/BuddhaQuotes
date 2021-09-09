@@ -233,6 +233,7 @@ class QuoteFragment : Fragment() {
     private fun changeImageSheet() {
         OptionsSheet().show(requireContext()) {
             displayMode(DisplayMode.GRID_VERTICAL)
+            preventIconTint(true)
             with(
                 Option(R.drawable.sheet_anahata, R.string.anahata),
                 Option(R.drawable.sheet_bell, R.string.bell),

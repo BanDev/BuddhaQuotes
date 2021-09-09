@@ -188,7 +188,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                             }
                         )
                         activity?.run {
-                            startActivity(intent)
+                            startActivity(intent.apply { putExtra("languageChange", true) })
                             finish()
                             overridePendingTransition(
                                 android.R.anim.fade_in,

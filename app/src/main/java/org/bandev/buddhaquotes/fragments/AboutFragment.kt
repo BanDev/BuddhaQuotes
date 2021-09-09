@@ -24,32 +24,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate.*
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.akexorcist.localizationactivity.core.LanguageSetting.getLanguage
-import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.maxkeppeler.sheets.color.ColorSheet
-import com.maxkeppeler.sheets.color.ColorView
-import com.maxkeppeler.sheets.core.SheetStyle
-import com.maxkeppeler.sheets.options.DisplayMode
-import com.maxkeppeler.sheets.options.Option
-import com.maxkeppeler.sheets.options.OptionsSheet
-import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.bus.Message
-import org.bandev.buddhaquotes.bus.MessageType
-import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.databinding.FragmentAboutBinding
-import org.bandev.buddhaquotes.databinding.FragmentSettingsBinding
-import java.util.*
 
 /**
  * Where the user can customise their app

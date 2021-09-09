@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/home" />
+            app:navGraph="@navigation/navigation" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
