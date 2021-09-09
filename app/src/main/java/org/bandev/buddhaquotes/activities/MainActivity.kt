@@ -66,7 +66,7 @@ import org.bandev.buddhaquotes.fragments.Fragments
 class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var binding: ActivityMainBinding
+    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var model: ViewModel
     private lateinit var navController: NavController
     private var menu: Menu? = null
@@ -84,7 +84,6 @@ class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
             setDecorFitsSystemWindows(this, false)
         }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         model = ViewModelProvider.AndroidViewModelFactory
@@ -103,7 +102,22 @@ class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
+        navController = navHostFragment.navController.apply {
+            addOnDestinationChangedListener { _, destination, _ ->
+                binding.toolbar.setTitle(
+                    when (destination.id) {
+                        R.id.navigation_home -> R.string.app_name
+                        R.id.navigation_settings -> R.string.settings
+                        R.id.navigation_about -> R.string.about_app
+                        else -> R.string.app_name
+                    }
+                )
+                if (menu != null) menu!!.findItem(R.id.help).isVisible =
+                    destination.id == R.id.navigation_home
+            }
+        }
+
+        if (intent.extras?.getBoolean("languageChange") == true) navController.navigate(R.id.navigation_settings)
 
         binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
@@ -112,19 +126,6 @@ class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
             setSupportActionBar(this)
             applyInsets(InsetType.STATUS_BARS)
             setNavigationOnClickListener { if (binding.drawerLayout.isOpen) binding.drawerLayout.close() else binding.drawerLayout.open() }
-        }
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.toolbar.setTitle(
-                when (destination.id) {
-                    R.id.navigation_home -> R.string.app_name
-                    R.id.navigation_settings -> R.string.settings
-                    R.id.navigation_about -> R.string.about_app
-                    else -> R.string.app_name
-                }
-            )
-            if (menu != null) menu!!.findItem(R.id.help).isVisible =
-                destination.id == R.id.navigation_home
         }
 
         binding.navigationView.apply {
@@ -247,10 +248,4 @@ class MainActivity : BuddhaQuotesActivity(), Bus.Listener {
             else -> null
         }
     }
-
-    override fun onAfterLocaleChanged() {
-        super.onAfterLocaleChanged()
-        navController.navigate(R.id.navigation_settings)
-    }
-
 }

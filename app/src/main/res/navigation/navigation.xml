@@ -13,8 +13,7 @@
     <fragment
         android:id="@+id/navigation_settings"
         android:name="org.bandev.buddhaquotes.fragments.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/settings" />
 
     <fragment
         android:id="@+id/navigation_about"
