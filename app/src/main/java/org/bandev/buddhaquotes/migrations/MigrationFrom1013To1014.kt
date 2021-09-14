@@ -35,11 +35,6 @@ class MigrationFrom1013To1014(private val ctx: Context, application: Application
             discoveredLists = l.getMasterList(ctx)
 
             if(discoveredLists[discoveredLists.lastIndex] == "Favourites") {
-                out("No lists discovered, filling with artificial lists")
-                l.newList("Test list 1", ctx)
-                l.addToList("I will not look at another’s bowl intent on finding fault: a training to be observed", "Test list 1", ctx)
-                l.addToList("If anything is worth doing, do it with all your heart", "Test list 1", ctx)
-                l.addToList("I will not look at another’s bowl intent on finding fault: a training to be observed", "Favourites", ctx)
                 discoveredLists = l.getMasterList(ctx)
             }
 
@@ -83,7 +78,7 @@ class MigrationFrom1013To1014(private val ctx: Context, application: Application
     }
 
     private fun out(string: String) {
-        Log.d("Migration", string)
+        Log.i("Migration", string)
     }
 
 }
