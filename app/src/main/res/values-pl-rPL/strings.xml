@@ -1,260 +1,516 @@
-<?xml version='1.0' encoding='utf-8'?>
-
-<!-- Translated to pl at 06:26:41am on 2020-11-15-->
-
-<resources>
-
-    <string name='refresh'>Odśwież</string> <!-- Translated by Anonymous -->
-    <string name='favourite'>Ulubione</string> <!-- Translated by Anonymous -->
-    <string name='share'>Udostępnij</string> <!-- Translated by Anonymous -->
-    <string name='settings'>Ustawienia</string> <!-- Translated by Anonymous -->
-    <string name='appearance'>Wygląd</string> <!-- Translated by Anonymous -->
-    <string name='app_theme'>Motyw aplikacji</string> <!-- Translated by Anonymous -->
-    <string name='light_mode'>Jasny</string> <!-- Translated by Anonymous -->
-    <string name='dark_mode'>Ciemny</string> <!-- Translated by Anonymous -->
-    <string name='follow_system_default'>Domyślne systemu</string> <!-- Translated by Anonymous -->
-    <string name='information'>Informacje</string> <!-- Translated by Anonymous -->
-    <string name='about'>O…</string> <!-- Translated by Anonymous -->
-    <string name='view_app_details'>Zobacz informacje o aplikacji</string> <!-- Translated by Anonymous -->
-    <string name="intro">Pomoc</string> <!-- Translated by Anonymous -->
-    <string name='app_introduction'>Wprowadzenie do aplikacji</string> <!-- Translated by Anonymous -->
-    <string name='app_license'>Licencja</string> <!-- Translated by Anonymous -->
-    <string name='libraries_used'>Użyte biblioteki</string> <!-- Translated by Anonymous -->
-    <string name='about_app_promise'>Obietnice aplikacji</string> <!-- Translated by Anonymous -->
-    <string name='about_no_trackers'>Bez śledzenia</string> <!-- Translated by Anonymous -->
-    <string name='about_complete_privacy'>Pełna prywatność</string> <!-- Translated by Anonymous -->
-    <string name='about_offline_app'>Offline</string> <!-- Translated by Anonymous -->
-    <string name='about_free_and_open_source'>Darmowa i otwartoźródłowa</string> <!-- Translated by Anonymous -->
-    <string name='about_info'>Informacje</string> <!-- Translated by Anonymous -->
-    <string name='about_info_paragraph'>Buddha Quotes to wspólny projekt mający na celu stworzenie bezpłatnej i otwartej aplikacji cytatów Buddy na Androida, z naciskiem na prywatność</string> <!-- Translated by Anonymous -->
-    <string name='about_contributors'>Współautorzy</string> <!-- Translated by Anonymous -->
-    <string name='about_acknowledgements'>Podziękowania</string> <!-- Translated by Anonymous -->
-    <string name='about_attribution'>Ikona - Freepik przez Flaticon</string> <!-- Translated by Anonymous -->
-    <string name='tick'>Zaznaczenie</string> <!-- Translated by Anonymous -->
-    <string name='favourited_quote'>Ulubione cytaty</string> <!-- Translated by Anonymous -->
-    <string name='favourite_quote_delete'>Usuń</string> <!-- Translated by Anonymous -->
-    <string name='buddha_quotes_logo'>Logo Buddha Quotes</string> <!-- Translated by Anonymous -->
-    <string name='bandev_logo'>Logo BanDev</string> <!-- Translated by Anonymous -->
-    <string name='the_buddha'>Budda</string> <!-- Translated by Anonymous -->
-    <string name='forward_arrow'>Wróć</string> <!-- Translated by Anonymous -->
-    <string name='icon'>Ikona</string> <!-- Translated by Anonymous -->
-    <string name='title'>Tytuł</string> <!-- Translated by Anonymous -->
-    <string name='title_activity_settings'>PanelUstawień</string> <!-- Translated by Anonymous -->
-    <string name='textview'>WidokTekstu</string> <!-- Translated by Anonymous -->
-    <string name='MainActivity'>Panel główny</string> <!-- Translated by Anonymous -->
-    <string name='title_activity_scrolling'>PanelPrzewijania</string> <!-- Translated by Anonymous -->
-    <string name='action_settings'>Ustawienia</string> <!-- Translated by Anonymous -->
-    <string name='appwidget_text'>PRZYKŁAD</string> <!-- Translated by Anonymous -->
-    <string name='configure'>Konfiguruj</string> <!-- Translated by Anonymous -->
-    <string name='add_widget'>Dodaj widżet</string> <!-- Translated by Anonymous -->
-    <string name='open_source_libraries'>Biblioteki open source</string> <!-- Translated by Anonymous -->
-    <string name='about_no_ads'>Bez reklam</string> <!-- Translated by Anonymous -->
-    <string name='lists_title'>Twoje listy</string> <!-- Translated by Anonymous -->
-    <string name='lists_add_item'>Dodaj do listy</string> <!-- Translated by Anonymous -->
-    <string name='lists_add_lists'>Stwórz nową listę</string> <!-- Translated by Anonymous -->
-    <string name='lists_add_lists_go'>Idź</string> <!-- Translated by Anonymous -->
-    <string name='lists_add_lists_name'>Nazwa</string> <!-- Translated by Anonymous -->
-    <string name='settings_general'>Ogólne</string> <!-- Translated by Anonymous -->
-    <string name='settings_accent_colour'>Kolor przewodni</string> <!-- Translated by Anonymous -->
-    <string name='settings_shapes_mode'>Tryb fajny</string> <!-- Translated by Anonymous -->
-    <string name='settings_shapes_mode_yes'>Włączony</string> <!-- Translated by Anonymous -->
-    <string name='settings_shapes_mode_no'>Wyłączony</string> <!-- Translated by Anonymous -->
-    <string name='settings_language'>Język</string> <!-- Translated by Anonymous -->
-    <string name='original'>Oryginalny</string> <!-- Translated by Anonymous -->
-    <string name='blue'>Niebieski</string> <!-- Translated by Anonymous -->
-    <string name='green'>Zielony</string> <!-- Translated by Anonymous -->
-    <string name='orange'>Pomarańczowy</string> <!-- Translated by Anonymous -->
-    <string name='yellow'>Żółty</string> <!-- Translated by Anonymous -->
-    <string name='teal'>Morski</string> <!-- Translated by Anonymous -->
-    <string name='violet'>Fioletowy</string> <!-- Translated by Anonymous -->
-    <string name='pink'>Różowy</string> <!-- Translated by Anonymous -->
-    <string name='lightBlue'>Błękitny</string> <!-- Translated by Anonymous -->
-    <string name='red'>Czerwony</string> <!-- Translated by Anonymous -->
-    <string name='lime'>Limonkowy</string> <!-- Translated by Anonymous -->
-    <string name='crimson'>Karmazynowy</string> <!-- Translated by Anonymous -->
-    <string name='ab'>Abchazja</string> <!-- Translated by Anonymous -->
-    <string name='aa'>Afar</string> <!-- Translated by Anonymous -->
-    <string name='af'>Afrikaans</string> <!-- Translated by Anonymous -->
-    <string name='ak'>Akan</string> <!-- Translated by Anonymous -->
-    <string name='sq'>Albański</string> <!-- Translated by Anonymous -->
-    <string name='am'>Amharski</string> <!-- Translated by Anonymous -->
-    <string name='ar'>Arabski</string> <!-- Translated by Anonymous -->
-    <string name='an'>Aragoński</string> <!-- Translated by Anonymous -->
-    <string name='hy'>Armeński</string> <!-- Translated by Anonymous -->
-    <string name='as'>Asamski</string> <!-- Translated by Anonymous -->
-    <string name='av'>Awarski</string> <!-- Translated by Anonymous -->
-    <string name='ae'>Awestyjski</string> <!-- Translated by Anonymous -->
-    <string name='ay'>Ajmara</string> <!-- Translated by Anonymous -->
-    <string name='az'>Azerbejdżański</string> <!-- Translated by Anonymous -->
-    <string name='bm'>Bambara</string> <!-- Translated by Anonymous -->
-    <string name='ba'>Baszkir</string> <!-- Translated by Anonymous -->
-    <string name='eu'>Baskijski</string> <!-- Translated by Anonymous -->
-    <string name='be'>Białoruski</string> <!-- Translated by Anonymous -->
-    <string name='bn'>Bengalski</string> <!-- Translated by Anonymous -->
-    <string name='bh'>Języki Bihari</string> <!-- Translated by Anonymous -->
-    <string name='bi'>Bislama</string> <!-- Translated by Anonymous -->
-    <string name='bs'>Bośniacki</string> <!-- Translated by Anonymous -->
-    <string name='br'>Bretoński</string> <!-- Translated by Anonymous -->
-    <string name='bg'>Bułgarski</string> <!-- Translated by Anonymous -->
-    <string name='my'>Birmański</string> <!-- Translated by Anonymous -->
-    <string name='ca'>Kataloński</string> <!-- Translated by Anonymous -->
-    <string name='km'>Khmerski</string> <!-- Translated by Anonymous -->
-    <string name='ch'>Czamorro</string> <!-- Translated by Anonymous -->
-    <string name='ce'>Czeczeński</string> <!-- Translated by Anonymous -->
-    <string name='ny'>Czewa</string> <!-- Translated by Anonymous -->
-    <string name='zh'>Chiński</string> <!-- Translated by Anonymous -->
-    <string name='cu'>Staro-cerkiewno-słowiański</string> <!-- Translated by Anonymous -->
-    <string name='cv'>Czuwaski</string> <!-- Translated by Anonymous -->
-    <string name='kw'>Kornijski</string> <!-- Translated by Anonymous -->
-    <string name='co'>Korsycki</string> <!-- Translated by Anonymous -->
-    <string name='cr'>Kri</string> <!-- Translated by Anonymous -->
-    <string name='hr'>Chorwacki</string> <!-- Translated by Anonymous -->
-    <string name='cs'>Czeski</string> <!-- Translated by Anonymous -->
-    <string name='da'>Duński</string> <!-- Translated by Anonymous -->
-    <string name='dv'>Malediwski</string> <!-- Translated by Anonymous -->
-    <string name='nl'>Niderlandzki</string> <!-- Translated by Anonymous -->
-    <string name='dz'>Dzongkha</string> <!-- Translated by Anonymous -->
-    <string name='en'>Angielski</string> <!-- Translated by Anonymous -->
-    <string name='eo'>Esperanto</string> <!-- Translated by Anonymous -->
-    <string name='et'>Estoński</string> <!-- Translated by Anonymous -->
-    <string name='ee'>Ewe</string> <!-- Translated by Anonymous -->
-    <string name='fo'>Farerski</string> <!-- Translated by Anonymous -->
-    <string name='fj'>Fidżyjski</string> <!-- Translated by Anonymous -->
-    <string name='fi'>Fiński</string> <!-- Translated by Anonymous -->
-    <string name='fr'>Francuski</string> <!-- Translated by Anonymous -->
-    <string name='ff'>Fula</string> <!-- Translated by Anonymous -->
-    <string name='gd'>Gaelicki Szkocki</string> <!-- Translated by Anonymous -->
-    <string name='gl'>Galicyjski</string> <!-- Translated by Anonymous -->
-    <string name='lg'>Luganda</string> <!-- Translated by Anonymous -->
-    <string name='ka'>Gruziński</string> <!-- Translated by Anonymous -->
-    <string name='de'>Niemiecki</string> <!-- Translated by Anonymous -->
-    <string name='ki'>Kikuju</string> <!-- Translated by Anonymous -->
-    <string name='el'>Grecki</string> <!-- Translated by Anonymous -->
-    <string name='kl'>Grenlandzki</string> <!-- Translated by Anonymous -->
-    <string name='gn'>Guarani</string> <!-- Translated by Anonymous -->
-    <string name='gu'>Gudźarati</string> <!-- Translated by Anonymous -->
-    <string name='ht'>Haitański</string> <!-- Translated by Anonymous -->
-    <string name='ha'>Hausa</string> <!-- Translated by Anonymous -->
-    <string name='he'>Hebrajski</string> <!-- Translated by Anonymous -->
-    <string name='hz'>Herero</string> <!-- Translated by Anonymous -->
-    <string name='hi'>Hindi</string> <!-- Translated by Anonymous -->
-    <string name='ho'>Hiri Motu</string> <!-- Translated by Anonymous -->
-    <string name='hu'>Węgierski</string> <!-- Translated by Anonymous -->
-    <string name='is'>Islandzki</string> <!-- Translated by Anonymous -->
-    <string name='io'>Ido</string> <!-- Translated by Anonymous -->
-    <string name='ig'>Igbo</string> <!-- Translated by Anonymous -->
-    <string name='id'>Indonezyjski</string> <!-- Translated by Anonymous -->
-    <string name='ia'>Interlingua</string> <!-- Translated by Anonymous -->
-    <string name='ie'>Interlingue</string> <!-- Translated by Anonymous -->
-    <string name='iu'>Inukitut</string> <!-- Translated by Anonymous -->
-    <string name='ik'>Inupiak</string> <!-- Translated by Anonymous -->
-    <string name='ga'>Irlandzki</string> <!-- Translated by Anonymous -->
-    <string name='it'>Włoski</string> <!-- Translated by Anonymous -->
-    <string name='ja'>Japoński</string> <!-- Translated by Anonymous -->
-    <string name='jv'>Jawajski</string> <!-- Translated by Anonymous -->
-    <string name='kn'>Kannada</string> <!-- Translated by Anonymous -->
-    <string name='kr'>Kanuri</string> <!-- Translated by Anonymous -->
-    <string name='ks'>Kaszmirski</string> <!-- Translated by Anonymous -->
-    <string name='kk'>Kazachski</string> <!-- Translated by Anonymous -->
-    <string name='rw'>Ruanda-rundi</string> <!-- Translated by Anonymous -->
-    <string name='kv'>Komi</string> <!-- Translated by Anonymous -->
-    <string name='kg'>Kongo</string> <!-- Translated by Anonymous -->
-    <string name='ko'>Koreański</string> <!-- Translated by Anonymous -->
-    <string name='kj'>Kwanyama</string> <!-- Translated by Anonymous -->
-    <string name='ku'>Kurdyjski</string> <!-- Translated by Anonymous -->
-    <string name='ky'>Kirgiski</string> <!-- Translated by Anonymous -->
-    <string name='lo'>Laotański</string> <!-- Translated by Anonymous -->
-    <string name='la'>Łaciński</string> <!-- Translated by Anonymous -->
-    <string name='lv'>Litewski</string> <!-- Translated by Anonymous -->
-    <string name='lb'>Luksemburski</string> <!-- Translated by Anonymous -->
-    <string name='li'>Limburski</string> <!-- Translated by Anonymous -->
-    <string name='ln'>Lingala</string> <!-- Translated by Anonymous -->
-    <string name='lt'>Łotewski</string> <!-- Translated by Anonymous -->
-    <string name='lu'>Luba</string> <!-- Translated by Anonymous -->
-    <string name='mk'>Macedoński</string> <!-- Translated by Anonymous -->
-    <string name='mg'>Malgaski</string> <!-- Translated by Anonymous -->
-    <string name='ms'>Malezyjski</string> <!-- Translated by Anonymous -->
-    <string name='ml'>Malajalam</string> <!-- Translated by Anonymous -->
-    <string name='mt'>Maltański</string> <!-- Translated by Anonymous -->
-    <string name='gv'>Mański</string> <!-- Translated by Anonymous -->
-    <string name='mi'>Maoryjski</string> <!-- Translated by Anonymous -->
-    <string name='mr'>Marathi</string> <!-- Translated by Anonymous -->
-    <string name='mh'>Marszalski</string> <!-- Translated by Anonymous -->
-    <string name='ro'>Rumuński</string> <!-- Translated by Anonymous -->
-    <string name='mn'>Mongolski</string> <!-- Translated by Anonymous -->
-    <string name='na'>Nauru</string> <!-- Translated by Anonymous -->
-    <string name='nv'>Nawaho</string> <!-- Translated by Anonymous -->
-    <string name='nd'>Ndebele</string> <!-- Translated by Anonymous -->
-    <string name='ng'>Ndonga</string> <!-- Translated by Anonymous -->
-    <string name='ne'>Nepalski</string> <!-- Translated by Anonymous -->
-    <string name='se'>Saamski</string> <!-- Translated by Anonymous -->
-    <string name='no'>Norweski</string> <!-- Translated by Anonymous -->
-    <string name='nb'>Bokmål</string> <!-- Translated by Anonymous -->
-    <string name='nn'>Nynorsk</string> <!-- Translated by Anonymous -->
-    <string name='ii'>Nuosu</string> <!-- Translated by Anonymous -->
-    <string name='oc'>Oksytański</string> <!-- Translated by Anonymous -->
-    <string name='oj'>Odżibwe</string> <!-- Translated by Anonymous -->
-    <string name='or'>Orija</string> <!-- Translated by Anonymous -->
-    <string name='om'>Oromo</string> <!-- Translated by Anonymous -->
-    <string name='os'>Osetyjski</string> <!-- Translated by Anonymous -->
-    <string name='pi'>Pali</string> <!-- Translated by Anonymous -->
-    <string name='pa'>Pundżabski</string> <!-- Translated by Anonymous -->
-    <string name='ps'>Paszto</string> <!-- Translated by Anonymous -->
-    <string name='fa'>Perski</string> <!-- Translated by Anonymous -->
-    <string name='pl'>Polski</string> <!-- Translated by Anonymous -->
-    <string name='pt'>Portugalski</string> <!-- Translated by Anonymous -->
-    <string name='qu'>Keczua</string> <!-- Translated by Anonymous -->
-    <string name='rm'>Retoromański</string> <!-- Translated by Anonymous -->
-    <string name='rn'>Rundi</string> <!-- Translated by Anonymous -->
-    <string name='ru'>Rosyjski</string> <!-- Translated by Anonymous -->
-    <string name='sm'>Samoański</string> <!-- Translated by Anonymous -->
-    <string name='sg'>Sango</string> <!-- Translated by Anonymous -->
-    <string name='sa'>Sanskryt</string> <!-- Translated by Anonymous -->
-    <string name='sc'>Sardyński</string> <!-- Translated by Anonymous -->
-    <string name='sr'>Serbski</string> <!-- Translated by Anonymous -->
-    <string name='sn'>Shona</string> <!-- Translated by Anonymous -->
-    <string name='sd'>Sindhi</string> <!-- Translated by Anonymous -->
-    <string name='si'>Syngaleski</string> <!-- Translated by Anonymous -->
-    <string name='sk'>Słowacki</string> <!-- Translated by Anonymous -->
-    <string name='sl'>Słoweński</string> <!-- Translated by Anonymous -->
-    <string name='so'>Somalijski</string> <!-- Translated by Anonymous -->
-    <string name='st'>Sotho</string> <!-- Translated by Anonymous -->
-    <string name='nr'>Ndebele</string> <!-- Translated by Anonymous -->
-    <string name='es'>Hiszpański</string> <!-- Translated by Anonymous -->
-    <string name='su'>Sundajski</string> <!-- Translated by Anonymous -->
-    <string name='sw'>Suahili</string> <!-- Translated by Anonymous -->
-    <string name='ss'>Swazi</string> <!-- Translated by Anonymous -->
-    <string name='sv'>Szwecki</string> <!-- Translated by Anonymous -->
-    <string name='tl'>Tagalski</string> <!-- Translated by Anonymous -->
-    <string name='ty'>Tahitański</string> <!-- Translated by Anonymous -->
-    <string name='tg'>Tadżycki</string> <!-- Translated by Anonymous -->
-    <string name='ta'>Tamilski</string> <!-- Translated by Anonymous -->
-    <string name='tt'>Tatarski</string> <!-- Translated by Anonymous -->
-    <string name='te'>Telugu</string> <!-- Translated by Anonymous -->
-    <string name='th'>Tajski</string> <!-- Translated by Anonymous -->
-    <string name='bo'>Tybetański</string> <!-- Translated by Anonymous -->
-    <string name='ti'>Tigrinuia</string> <!-- Translated by Anonymous -->
-    <string name='to'>Tonga</string> <!-- Translated by Anonymous -->
-    <string name='ts'>Tsonga</string> <!-- Translated by Anonymous -->
-    <string name='tn'>Tswana</string> <!-- Translated by Anonymous -->
-    <string name='tr'>Turecki</string> <!-- Translated by Anonymous -->
-    <string name='tk'>Turkmeński</string> <!-- Translated by Anonymous -->
-    <string name='tw'>Twi</string> <!-- Translated by Anonymous -->
-    <string name='ug'>Ujgurski</string> <!-- Translated by Anonymous -->
-    <string name='uk'>Ukraiński</string> <!-- Translated by Anonymous -->
-    <string name='ur'>Urdu</string> <!-- Translated by Anonymous -->
-    <string name='uz'>Uzbecki</string> <!-- Translated by Anonymous -->
-    <string name='ve'>Venda</string> <!-- Translated by Anonymous -->
-    <string name='vi'>Wietnamski</string> <!-- Translated by Anonymous -->
-    <string name='vo'>Volapik</string> <!-- Translated by Anonymous -->
-    <string name='wa'>Waloński</string> <!-- Translated by Anonymous -->
-    <string name='cy'>Walijski</string> <!-- Translated by Anonymous -->
-    <string name='fy'>Zachodniofryzyjski</string> <!-- Translated by Anonymous -->
-    <string name='wo'>Wolof</string> <!-- Translated by Anonymous -->
-    <string name='xh'>Xhosa</string> <!-- Translated by Anonymous -->
-    <string name='yi'>Jidysz</string> <!-- Translated by Anonymous -->
-    <string name='yo'>Joruba</string> <!-- Translated by Anonymous -->
-    <string name='za'>Zhuang</string> <!-- Translated by Anonymous -->
-    <string name='zu'>Zulu</string> <!-- Translated by Anonymous -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Translated to pl at 06:26:41am on 2020-11-15--><resources>
+    <string name="refresh">Odśwież</string>
+    <!-- Translated by Anonymous -->
+    <string name="favourite">Ulubione</string>
+    <!-- Translated by Anonymous -->
+    <string name="share">Udostępnij</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings">Ustawienia</string>
+    <!-- Translated by Anonymous -->
+    <string name="appearance">Wygląd</string>
+    <!-- Translated by Anonymous -->
+    <string name="app_theme">Motyw aplikacji</string>
+    <!-- Translated by Anonymous -->
+    <string name="light_mode">Jasny</string>
+    <!-- Translated by Anonymous -->
+    <string name="dark_mode">Ciemny</string>
+    <!-- Translated by Anonymous -->
+    <string name="follow_system_default">Domyślne systemu</string>
+    <!-- Translated by Anonymous -->
+    <string name="information">Informacje</string>
+    <!-- Translated by Anonymous -->
+    <string name="about">O…</string>
+    <!-- Translated by Anonymous -->
+    <string name="view_app_details">Zobacz informacje o aplikacji</string>
+    <!-- Translated by Anonymous -->
+    <string name="intro">Pomoc</string>
+    <!-- Translated by Anonymous -->
+    <string name="app_introduction">Wprowadzenie do aplikacji</string>
+    <!-- Translated by Anonymous -->
+    <string name="app_license">Licencja</string>
+    <!-- Translated by Anonymous -->
+    <string name="libraries_used">Użyte biblioteki</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_app_promise">Obietnice aplikacji</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_no_trackers">Bez śledzenia</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_complete_privacy">Pełna prywatność</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_offline_app">Offline</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_free_and_open_source">Darmowa i otwartoźródłowa</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_info">Informacje</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_info_paragraph">Buddha Quotes to wspólny projekt mający na celu stworzenie bezpłatnej i otwartej aplikacji cytatów Buddy na Androida, z naciskiem na prywatność</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_contributors">Współautorzy</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_acknowledgements">Podziękowania</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_attribution">Ikona - Freepik przez Flaticon</string>
+    <!-- Translated by Anonymous -->
+    <string name="tick">Zaznaczenie</string>
+    <!-- Translated by Anonymous -->
+    <string name="favourited_quote">Ulubione cytaty</string>
+    <!-- Translated by Anonymous -->
+    <string name="favourite_quote_delete">Usuń</string>
+    <!-- Translated by Anonymous -->
+    <string name="buddha_quotes_logo">Logo Buddha Quotes</string>
+    <!-- Translated by Anonymous -->
+    <string name="bandev_logo">Logo BanDev</string>
+    <!-- Translated by Anonymous -->
+    <string name="the_buddha">Budda</string>
+    <!-- Translated by Anonymous -->
+    <string name="forward_arrow">Wróć</string>
+    <!-- Translated by Anonymous -->
+    <string name="icon">Ikona</string>
+    <!-- Translated by Anonymous -->
+    <string name="title">Tytuł</string>
+    <!-- Translated by Anonymous -->
+    <string name="title_activity_settings">PanelUstawień</string>
+    <!-- Translated by Anonymous -->
+    <string name="textview">WidokTekstu</string>
+    <!-- Translated by Anonymous -->
+    <string name="MainActivity">Panel główny</string>
+    <!-- Translated by Anonymous -->
+    <string name="title_activity_scrolling">PanelPrzewijania</string>
+    <!-- Translated by Anonymous -->
+    <string name="action_settings">Ustawienia</string>
+    <!-- Translated by Anonymous -->
+    <string name="appwidget_text">PRZYKŁAD</string>
+    <!-- Translated by Anonymous -->
+    <string name="configure">Konfiguruj</string>
+    <!-- Translated by Anonymous -->
+    <string name="add_widget">Dodaj widżet</string>
+    <!-- Translated by Anonymous -->
+    <string name="open_source_libraries">Biblioteki open source</string>
+    <!-- Translated by Anonymous -->
+    <string name="about_no_ads">Bez reklam</string>
+    <!-- Translated by Anonymous -->
+    <string name="lists_title">Twoje listy</string>
+    <!-- Translated by Anonymous -->
+    <string name="lists_add_item">Dodaj do listy</string>
+    <!-- Translated by Anonymous -->
+    <string name="lists_add_lists">Stwórz nową listę</string>
+    <!-- Translated by Anonymous -->
+    <string name="lists_add_lists_go">Idź</string>
+    <!-- Translated by Anonymous -->
+    <string name="lists_add_lists_name">Nazwa</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_general">Ogólne</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_accent_colour">Kolor przewodni</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_shapes_mode">Tryb fajny</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_shapes_mode_yes">Włączony</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_shapes_mode_no">Wyłączony</string>
+    <!-- Translated by Anonymous -->
+    <string name="settings_language">Język</string>
+    <!-- Translated by Anonymous -->
+    <string name="original">Oryginalny</string>
+    <!-- Translated by Anonymous -->
+    <string name="blue">Niebieski</string>
+    <!-- Translated by Anonymous -->
+    <string name="green">Zielony</string>
+    <!-- Translated by Anonymous -->
+    <string name="orange">Pomarańczowy</string>
+    <!-- Translated by Anonymous -->
+    <string name="yellow">Żółty</string>
+    <!-- Translated by Anonymous -->
+    <string name="teal">Morski</string>
+    <!-- Translated by Anonymous -->
+    <string name="violet">Fioletowy</string>
+    <!-- Translated by Anonymous -->
+    <string name="pink">Różowy</string>
+    <!-- Translated by Anonymous -->
+    <string name="lightBlue">Błękitny</string>
+    <!-- Translated by Anonymous -->
+    <string name="red">Czerwony</string>
+    <!-- Translated by Anonymous -->
+    <string name="lime">Limonkowy</string>
+    <!-- Translated by Anonymous -->
+    <string name="crimson">Karmazynowy</string>
+    <!-- Translated by Anonymous -->
+    <string name="ab">Abchazja</string>
+    <!-- Translated by Anonymous -->
+    <string name="aa">Afar</string>
+    <!-- Translated by Anonymous -->
+    <string name="af">Afrikaans</string>
+    <!-- Translated by Anonymous -->
+    <string name="ak">Akan</string>
+    <!-- Translated by Anonymous -->
+    <string name="sq">Albański</string>
+    <!-- Translated by Anonymous -->
+    <string name="am">Amharski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ar">Arabski</string>
+    <!-- Translated by Anonymous -->
+    <string name="an">Aragoński</string>
+    <!-- Translated by Anonymous -->
+    <string name="hy">Armeński</string>
+    <!-- Translated by Anonymous -->
+    <string name="as">Asamski</string>
+    <!-- Translated by Anonymous -->
+    <string name="av">Awarski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ae">Awestyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ay">Ajmara</string>
+    <!-- Translated by Anonymous -->
+    <string name="az">Azerbejdżański</string>
+    <!-- Translated by Anonymous -->
+    <string name="bm">Bambara</string>
+    <!-- Translated by Anonymous -->
+    <string name="ba">Baszkir</string>
+    <!-- Translated by Anonymous -->
+    <string name="eu">Baskijski</string>
+    <!-- Translated by Anonymous -->
+    <string name="be">Białoruski</string>
+    <!-- Translated by Anonymous -->
+    <string name="bn">Bengalski</string>
+    <!-- Translated by Anonymous -->
+    <string name="bh">Języki Bihari</string>
+    <!-- Translated by Anonymous -->
+    <string name="bi">Bislama</string>
+    <!-- Translated by Anonymous -->
+    <string name="bs">Bośniacki</string>
+    <!-- Translated by Anonymous -->
+    <string name="br">Bretoński</string>
+    <!-- Translated by Anonymous -->
+    <string name="bg">Bułgarski</string>
+    <!-- Translated by Anonymous -->
+    <string name="my">Birmański</string>
+    <!-- Translated by Anonymous -->
+    <string name="ca">Kataloński</string>
+    <!-- Translated by Anonymous -->
+    <string name="km">Khmerski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ch">Czamorro</string>
+    <!-- Translated by Anonymous -->
+    <string name="ce">Czeczeński</string>
+    <!-- Translated by Anonymous -->
+    <string name="ny">Czewa</string>
+    <!-- Translated by Anonymous -->
+    <string name="zh">Chiński</string>
+    <!-- Translated by Anonymous -->
+    <string name="cu">Staro-cerkiewno-słowiański</string>
+    <!-- Translated by Anonymous -->
+    <string name="cv">Czuwaski</string>
+    <!-- Translated by Anonymous -->
+    <string name="kw">Kornijski</string>
+    <!-- Translated by Anonymous -->
+    <string name="co">Korsycki</string>
+    <!-- Translated by Anonymous -->
+    <string name="cr">Kri</string>
+    <!-- Translated by Anonymous -->
+    <string name="hr">Chorwacki</string>
+    <!-- Translated by Anonymous -->
+    <string name="cs">Czeski</string>
+    <!-- Translated by Anonymous -->
+    <string name="da">Duński</string>
+    <!-- Translated by Anonymous -->
+    <string name="dv">Malediwski</string>
+    <!-- Translated by Anonymous -->
+    <string name="nl">Niderlandzki</string>
+    <!-- Translated by Anonymous -->
+    <string name="dz">Dzongkha</string>
+    <!-- Translated by Anonymous -->
+    <string name="en">Angielski</string>
+    <!-- Translated by Anonymous -->
+    <string name="eo">Esperanto</string>
+    <!-- Translated by Anonymous -->
+    <string name="et">Estoński</string>
+    <!-- Translated by Anonymous -->
+    <string name="ee">Ewe</string>
+    <!-- Translated by Anonymous -->
+    <string name="fo">Farerski</string>
+    <!-- Translated by Anonymous -->
+    <string name="fj">Fidżyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="fi">Fiński</string>
+    <!-- Translated by Anonymous -->
+    <string name="fr">Francuski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ff">Fula</string>
+    <!-- Translated by Anonymous -->
+    <string name="gd">Gaelicki Szkocki</string>
+    <!-- Translated by Anonymous -->
+    <string name="gl">Galicyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="lg">Luganda</string>
+    <!-- Translated by Anonymous -->
+    <string name="ka">Gruziński</string>
+    <!-- Translated by Anonymous -->
+    <string name="de">Niemiecki</string>
+    <!-- Translated by Anonymous -->
+    <string name="ki">Kikuju</string>
+    <!-- Translated by Anonymous -->
+    <string name="el">Grecki</string>
+    <!-- Translated by Anonymous -->
+    <string name="kl">Grenlandzki</string>
+    <!-- Translated by Anonymous -->
+    <string name="gn">Guarani</string>
+    <!-- Translated by Anonymous -->
+    <string name="gu">Gudźarati</string>
+    <!-- Translated by Anonymous -->
+    <string name="ht">Haitański</string>
+    <!-- Translated by Anonymous -->
+    <string name="ha">Hausa</string>
+    <!-- Translated by Anonymous -->
+    <string name="he">Hebrajski</string>
+    <!-- Translated by Anonymous -->
+    <string name="hz">Herero</string>
+    <!-- Translated by Anonymous -->
+    <string name="hi">Hindi</string>
+    <!-- Translated by Anonymous -->
+    <string name="ho">Hiri Motu</string>
+    <!-- Translated by Anonymous -->
+    <string name="hu">Węgierski</string>
+    <!-- Translated by Anonymous -->
+    <string name="is">Islandzki</string>
+    <!-- Translated by Anonymous -->
+    <string name="io">Ido</string>
+    <!-- Translated by Anonymous -->
+    <string name="ig">Igbo</string>
+    <!-- Translated by Anonymous -->
+    <string name="id">Indonezyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ia">Interlingua</string>
+    <!-- Translated by Anonymous -->
+    <string name="ie">Interlingue</string>
+    <!-- Translated by Anonymous -->
+    <string name="iu">Inukitut</string>
+    <!-- Translated by Anonymous -->
+    <string name="ik">Inupiak</string>
+    <!-- Translated by Anonymous -->
+    <string name="ga">Irlandzki</string>
+    <!-- Translated by Anonymous -->
+    <string name="it">Włoski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ja">Japoński</string>
+    <!-- Translated by Anonymous -->
+    <string name="jv">Jawajski</string>
+    <!-- Translated by Anonymous -->
+    <string name="kn">Kannada</string>
+    <!-- Translated by Anonymous -->
+    <string name="kr">Kanuri</string>
+    <!-- Translated by Anonymous -->
+    <string name="ks">Kaszmirski</string>
+    <!-- Translated by Anonymous -->
+    <string name="kk">Kazachski</string>
+    <!-- Translated by Anonymous -->
+    <string name="rw">Ruanda-rundi</string>
+    <!-- Translated by Anonymous -->
+    <string name="kv">Komi</string>
+    <!-- Translated by Anonymous -->
+    <string name="kg">Kongo</string>
+    <!-- Translated by Anonymous -->
+    <string name="ko">Koreański</string>
+    <!-- Translated by Anonymous -->
+    <string name="kj">Kwanyama</string>
+    <!-- Translated by Anonymous -->
+    <string name="ku">Kurdyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ky">Kirgiski</string>
+    <!-- Translated by Anonymous -->
+    <string name="lo">Laotański</string>
+    <!-- Translated by Anonymous -->
+    <string name="la">Łaciński</string>
+    <!-- Translated by Anonymous -->
+    <string name="lv">Litewski</string>
+    <!-- Translated by Anonymous -->
+    <string name="lb">Luksemburski</string>
+    <!-- Translated by Anonymous -->
+    <string name="li">Limburski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ln">Lingala</string>
+    <!-- Translated by Anonymous -->
+    <string name="lt">Łotewski</string>
+    <!-- Translated by Anonymous -->
+    <string name="lu">Luba</string>
+    <!-- Translated by Anonymous -->
+    <string name="mk">Macedoński</string>
+    <!-- Translated by Anonymous -->
+    <string name="mg">Malgaski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ms">Malezyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ml">Malajalam</string>
+    <!-- Translated by Anonymous -->
+    <string name="mt">Maltański</string>
+    <!-- Translated by Anonymous -->
+    <string name="gv">Mański</string>
+    <!-- Translated by Anonymous -->
+    <string name="mi">Maoryjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="mr">Marathi</string>
+    <!-- Translated by Anonymous -->
+    <string name="mh">Marszalski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ro">Rumuński</string>
+    <!-- Translated by Anonymous -->
+    <string name="mn">Mongolski</string>
+    <!-- Translated by Anonymous -->
+    <string name="na">Nauru</string>
+    <!-- Translated by Anonymous -->
+    <string name="nv">Nawaho</string>
+    <!-- Translated by Anonymous -->
+    <string name="nd">Ndebele</string>
+    <!-- Translated by Anonymous -->
+    <string name="ng">Ndonga</string>
+    <!-- Translated by Anonymous -->
+    <string name="ne">Nepalski</string>
+    <!-- Translated by Anonymous -->
+    <string name="se">Saamski</string>
+    <!-- Translated by Anonymous -->
+    <string name="no">Norweski</string>
+    <!-- Translated by Anonymous -->
+    <string name="nb">Bokmål</string>
+    <!-- Translated by Anonymous -->
+    <string name="nn">Nynorsk</string>
+    <!-- Translated by Anonymous -->
+    <string name="ii">Nuosu</string>
+    <!-- Translated by Anonymous -->
+    <string name="oc">Oksytański</string>
+    <!-- Translated by Anonymous -->
+    <string name="oj">Odżibwe</string>
+    <!-- Translated by Anonymous -->
+    <string name="or">Orija</string>
+    <!-- Translated by Anonymous -->
+    <string name="om">Oromo</string>
+    <!-- Translated by Anonymous -->
+    <string name="os">Osetyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="pi">Pali</string>
+    <!-- Translated by Anonymous -->
+    <string name="pa">Pundżabski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ps">Paszto</string>
+    <!-- Translated by Anonymous -->
+    <string name="fa">Perski</string>
+    <!-- Translated by Anonymous -->
+    <string name="pl">Polski</string>
+    <!-- Translated by Anonymous -->
+    <string name="pt">Portugalski</string>
+    <!-- Translated by Anonymous -->
+    <string name="qu">Keczua</string>
+    <!-- Translated by Anonymous -->
+    <string name="rm">Retoromański</string>
+    <!-- Translated by Anonymous -->
+    <string name="rn">Rundi</string>
+    <!-- Translated by Anonymous -->
+    <string name="ru">Rosyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="sm">Samoański</string>
+    <!-- Translated by Anonymous -->
+    <string name="sg">Sango</string>
+    <!-- Translated by Anonymous -->
+    <string name="sa">Sanskryt</string>
+    <!-- Translated by Anonymous -->
+    <string name="sc">Sardyński</string>
+    <!-- Translated by Anonymous -->
+    <string name="sr">Serbski</string>
+    <!-- Translated by Anonymous -->
+    <string name="sn">Shona</string>
+    <!-- Translated by Anonymous -->
+    <string name="sd">Sindhi</string>
+    <!-- Translated by Anonymous -->
+    <string name="si">Syngaleski</string>
+    <!-- Translated by Anonymous -->
+    <string name="sk">Słowacki</string>
+    <!-- Translated by Anonymous -->
+    <string name="sl">Słoweński</string>
+    <!-- Translated by Anonymous -->
+    <string name="so">Somalijski</string>
+    <!-- Translated by Anonymous -->
+    <string name="st">Sotho</string>
+    <!-- Translated by Anonymous -->
+    <string name="nr">Ndebele</string>
+    <!-- Translated by Anonymous -->
+    <string name="es">Hiszpański</string>
+    <!-- Translated by Anonymous -->
+    <string name="su">Sundajski</string>
+    <!-- Translated by Anonymous -->
+    <string name="sw">Suahili</string>
+    <!-- Translated by Anonymous -->
+    <string name="ss">Swazi</string>
+    <!-- Translated by Anonymous -->
+    <string name="sv">Szwecki</string>
+    <!-- Translated by Anonymous -->
+    <string name="tl">Tagalski</string>
+    <!-- Translated by Anonymous -->
+    <string name="ty">Tahitański</string>
+    <!-- Translated by Anonymous -->
+    <string name="tg">Tadżycki</string>
+    <!-- Translated by Anonymous -->
+    <string name="ta">Tamilski</string>
+    <!-- Translated by Anonymous -->
+    <string name="tt">Tatarski</string>
+    <!-- Translated by Anonymous -->
+    <string name="te">Telugu</string>
+    <!-- Translated by Anonymous -->
+    <string name="th">Tajski</string>
+    <!-- Translated by Anonymous -->
+    <string name="bo">Tybetański</string>
+    <!-- Translated by Anonymous -->
+    <string name="ti">Tigrinuia</string>
+    <!-- Translated by Anonymous -->
+    <string name="to">Tonga</string>
+    <!-- Translated by Anonymous -->
+    <string name="ts">Tsonga</string>
+    <!-- Translated by Anonymous -->
+    <string name="tn">Tswana</string>
+    <!-- Translated by Anonymous -->
+    <string name="tr">Turecki</string>
+    <!-- Translated by Anonymous -->
+    <string name="tk">Turkmeński</string>
+    <!-- Translated by Anonymous -->
+    <string name="tw">Twi</string>
+    <!-- Translated by Anonymous -->
+    <string name="ug">Ujgurski</string>
+    <!-- Translated by Anonymous -->
+    <string name="uk">Ukraiński</string>
+    <!-- Translated by Anonymous -->
+    <string name="ur">Urdu</string>
+    <!-- Translated by Anonymous -->
+    <string name="uz">Uzbecki</string>
+    <!-- Translated by Anonymous -->
+    <string name="ve">Venda</string>
+    <!-- Translated by Anonymous -->
+    <string name="vi">Wietnamski</string>
+    <!-- Translated by Anonymous -->
+    <string name="vo">Volapik</string>
+    <!-- Translated by Anonymous -->
+    <string name="wa">Waloński</string>
+    <!-- Translated by Anonymous -->
+    <string name="cy">Walijski</string>
+    <!-- Translated by Anonymous -->
+    <string name="fy">Zachodniofryzyjski</string>
+    <!-- Translated by Anonymous -->
+    <string name="wo">Wolof</string>
+    <!-- Translated by Anonymous -->
+    <string name="xh">Xhosa</string>
+    <!-- Translated by Anonymous -->
+    <string name="yi">Jidysz</string>
+    <!-- Translated by Anonymous -->
+    <string name="yo">Joruba</string>
+    <!-- Translated by Anonymous -->
+    <string name="za">Zhuang</string>
+    <!-- Translated by Anonymous -->
+    <string name="zu">Zulu</string>
+    <!-- Translated by Anonymous -->
+    <string name="no_image">Brak zdjęcia</string>
+    <string name="dharma_wheel">Koło</string>
+    <string name="shrine">Świątynia</string>
+    <string name="lotus">Lotos</string>
+    <string name="lamp">Lampa</string>
+    <string name="endless_knot">Nieskończony węzeł</string>
+    <string name="elephant">Słoń</string>
+    <string name="buddha">Buddha</string>
+    <string name="about_app">O Buddha Quotes</string>
 </resources>
