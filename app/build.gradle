@@ -81,7 +81,7 @@ dependencies {
     implementation "com.github.Kosert.FlowBus:FlowBus-android:$flowbus_version"
 
     // Insetter - https://github.com/chrisbanes/insetter
-    implementation 'dev.chrisbanes.insetter:insetter:0.6.0'
+    implementation 'dev.chrisbanes.insetter:insetter:0.6.1'
 
     // Kotlin coroutines - https://github.com/Kotlin/kotlinx.coroutines
     def coroutines_version = "1.5.2"
