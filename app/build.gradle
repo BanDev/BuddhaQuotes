@@ -97,7 +97,7 @@ dependencies {
     implementation 'com.akexorcist:localization:1.2.10'
 
     // Navigation components - https://developer.android.com/jetpack/androidx/releases/navigation
-    def nav_version = "2.3.5"
+    def nav_version = "2.4.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
