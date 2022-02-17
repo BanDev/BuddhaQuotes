@@ -63,7 +63,7 @@ class AddQuoteSheetAdapter(
             oldItem: Quote,
             newItem: Quote
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(
