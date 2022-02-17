@@ -44,9 +44,11 @@ class LibrariesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val libraryAdapter = LibraryAdapter()
         binding.librariesRecycler.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = LibraryAdapter(Libs(context).libraries)
+            adapter = libraryAdapter
         }
+        libraryAdapter.submitList(Libs(requireContext()).libraries)
     }
 }

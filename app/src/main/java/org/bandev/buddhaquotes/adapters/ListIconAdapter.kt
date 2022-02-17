@@ -25,7 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.core.onClick
 import org.bandev.buddhaquotes.databinding.ListIconBinding
@@ -36,11 +36,9 @@ import org.bandev.buddhaquotes.items.ListIcon
  */
 
 class ListIconAdapter(
-
-    private val list: List<ListIcon>,
     private val selected: (ListIcon) -> Any
 
-) : RecyclerView.Adapter<ListIconAdapter.ViewHolder>() {
+) : ListAdapter<ListIcon,ListIconAdapter.ViewHolder>(DiffUtil()) {
 
     class ViewHolder(binding: ListIconBinding) : RecyclerView.ViewHolder(binding.root) {
         val listIcon: ImageView = binding.listIcon
@@ -57,7 +55,7 @@ class ListIconAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = list[position]
+        val item = getItem(position)
         with(holder.listIcon) {
             if (item.selected) holder.selected.visibility = View.VISIBLE
             setImageResource(item.drawable)
@@ -66,6 +64,20 @@ class ListIconAdapter(
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<ListIcon>() {
+        override fun areItemsTheSame(
+            oldItem: ListIcon,
+            newItem: ListIcon
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(
+            oldItem: ListIcon,
+            newItem: ListIcon
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
 }
 

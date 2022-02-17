@@ -28,14 +28,15 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mikepenz.aboutlibraries.entity.Library
 import org.bandev.buddhaquotes.core.AnimationUtils
 import org.bandev.buddhaquotes.core.Feedback
 import org.bandev.buddhaquotes.databinding.LayoutItemLibraryBinding
 
-class LibraryAdapter(private val list: List<Library>) :
-    RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
+class LibraryAdapter() :
+   ListAdapter<Library,LibraryAdapter.ViewHolder>(DiffUtil()) {
 
     class ViewHolder(binding: LayoutItemLibraryBinding) : RecyclerView.ViewHolder(binding.root) {
         val nameTextView: TextView = binding.nameTextView
@@ -59,7 +60,7 @@ class LibraryAdapter(private val list: List<Library>) :
 
     @Suppress("DEPRECATION")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val library = list[position]
+        val library = getItem(position)
         with(viewHolder) {
             nameTextView.text = library.libraryName
             versionTextView.text = library.libraryVersion
@@ -80,6 +81,20 @@ class LibraryAdapter(private val list: List<Library>) :
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Library>() {
+        override fun areItemsTheSame(
+            oldItem: Library,
+            newItem: Library
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Library,
+            newItem: Library
+        ): Boolean {
+            return oldItem.author == newItem.author
+        }
+    }
 
 }

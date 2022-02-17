@@ -86,14 +86,18 @@ class AddQuoteSheet : Sheet() {
             }
         }
 
+        val addQuoteSheetAdapter = AddQuoteSheetAdapter(adapterListener)
         binding.exampleRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = AddQuoteSheetAdapter(quotes, adapterListener)
+            adapter = addQuoteSheetAdapter
         }
+        addQuoteSheetAdapter.submitList(quotes)
     }
 
     private fun attachAdapter(newList: List<Quote>) {
-        binding.exampleRecyclerView.adapter = AddQuoteSheetAdapter(newList, adapterListener)
+        val addQuoteSheetAdapter = AddQuoteSheetAdapter(adapterListener)
+        binding.exampleRecyclerView.adapter = addQuoteSheetAdapter
+        addQuoteSheetAdapter.submitList(quotes)
     }
 
     private fun filterWithQuery(query: String) {

@@ -25,7 +25,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,13 +34,10 @@ import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.core.TopStyle
 import com.maxkeppeler.sheets.info.InfoSheet
 import com.maxkeppeler.sheets.input.InputSheet
-import com.maxkeppeler.sheets.input.Validation
 import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.lottie.LottieAnimation
 import com.maxkeppeler.sheets.lottie.LottieAnimationRequest
 import com.maxkeppeler.sheets.lottie.withCoverLottieAnimation
-import kotlinx.coroutines.runBlocking
-import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.ListActivity
 import org.bandev.buddhaquotes.adapters.ListAdapter
@@ -50,11 +46,9 @@ import org.bandev.buddhaquotes.bus.Bus
 import org.bandev.buddhaquotes.bus.Message
 import org.bandev.buddhaquotes.bus.MessageType
 import org.bandev.buddhaquotes.core.Feedback
-import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.custom.ListOptionsSheet
 import org.bandev.buddhaquotes.databinding.FragmentListsBinding
 import org.bandev.buddhaquotes.items.List
-import kotlin.concurrent.thread
 
 /**
  * Shows a list of lists to the user
@@ -85,9 +79,11 @@ class ListsFragment : Fragment(), ListAdapter.Listener {
         // Setup the RecyclerView
         model.Lists().getAll {
             lists = it
+            val listAdapter = ListAdapter( this@ListsFragment)
             binding.listsRecycler.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ListAdapter(lists, this@ListsFragment)
+                adapter = listAdapter
+                listAdapter.submitList(lists)
                 setHasFixedSize(false)
             }
         }

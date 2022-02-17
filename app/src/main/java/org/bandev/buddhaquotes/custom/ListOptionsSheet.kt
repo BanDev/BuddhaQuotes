@@ -22,20 +22,12 @@ package org.bandev.buddhaquotes.custom
 
 import android.app.Application
 import android.content.Context
-import android.content.res.ColorStateList
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.Sheet
-import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.adapters.ListIconAdapter
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ViewModel
-import org.bandev.buddhaquotes.core.onClick
 import org.bandev.buddhaquotes.databinding.ListOptionsSheetBinding
 import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.ListIcon
@@ -58,10 +50,11 @@ class ListOptionsSheet : Sheet() {
 
     override fun onCreateLayoutView(): View {
         binding = ListOptionsSheetBinding.inflate(layoutInflater)
-
+        val listIconAdapter = ListIconAdapter(onListIconSelected)
         binding.listIconRecycler.apply {
-            adapter = ListIconAdapter(listIconManager.listIcons, onListIconSelected)
+            adapter = listIconAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            listIconAdapter.submitList(listIconManager.listIcons)
         }
 
         return binding.root

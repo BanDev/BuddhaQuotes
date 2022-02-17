@@ -52,20 +52,26 @@ class AboutFragmentChild : Fragment() {
             aboutAppVersion.text = BuildConfig.VERSION_NAME
 
             contributorsPeople.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.contributors_people))
+                binding.contributorsPeople.layoutManager = LinearLayoutManager(context)
+                val aboutAdapter  = AboutAdapter()
+                binding.contributorsPeople.adapter = aboutAdapter
+                aboutAdapter.submitList(resources.getStringArray(R.array.contributors_people).toList())
                 setHasFixedSize(true)
             }
 
             promises.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.app_promises))
+                binding.promises.layoutManager = LinearLayoutManager(context)
+                val aboutAdapter  = AboutAdapter()
+                binding.promises.adapter = aboutAdapter
+                aboutAdapter.submitList(resources.getStringArray(R.array.app_promises).toList())
                 setHasFixedSize(true)
             }
 
             attribution.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = AboutAdapter(resources.getStringArray(R.array.attributions))
+                binding.attribution.layoutManager = LinearLayoutManager(context)
+                val aboutAdapter  = AboutAdapter()
+                binding.attribution.adapter = aboutAdapter
+                aboutAdapter.submitList(resources.getStringArray(R.array.attributions).toList())
                 setHasFixedSize(true)
             }
 
@@ -75,6 +81,7 @@ class AboutFragmentChild : Fragment() {
             attributionCard.setOnClickListener { expandAttributionCard(it) }
         }
     }
+
 
     private fun expandTitleCard(view: View) {
         Feedback.virtualKey(view)

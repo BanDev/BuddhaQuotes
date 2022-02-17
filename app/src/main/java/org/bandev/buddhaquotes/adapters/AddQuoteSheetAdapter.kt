@@ -24,16 +24,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.custom.AddQuoteSheet
 import org.bandev.buddhaquotes.databinding.AddQuoteSheetItemBinding
 import org.bandev.buddhaquotes.items.Quote
 
 class AddQuoteSheetAdapter(
-    private val list: List<Quote>,
     private val listener: AddQuoteSheet.Listener,
 ) :
-    RecyclerView.Adapter<AddQuoteSheetAdapter.ViewHolder>() {
+    ListAdapter<Quote,AddQuoteSheetAdapter.ViewHolder>(DiffUtil()) {
 
     class ViewHolder(binding: AddQuoteSheetItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val textView: TextView = binding.textView
@@ -51,13 +51,27 @@ class AddQuoteSheetAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val quote = list[position]
+        val quote = getItem(position)
         with(viewHolder) {
             textView.text = textView.context.getText(quote.resource)
             root.setOnClickListener { listener.select(quote) }
         }
     }
 
-    override fun getItemCount(): Int = list.size
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Quote>() {
+        override fun areItemsTheSame(
+            oldItem: Quote,
+            newItem: Quote
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Quote,
+            newItem: Quote
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
 
 }

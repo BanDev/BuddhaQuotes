@@ -23,16 +23,22 @@ package org.bandev.buddhaquotes.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.databinding.AboutRecyclerBinding
 
 class AboutAdapter(
-    private val list: Array<String>
 ) :
-    RecyclerView.Adapter<AboutAdapter.ViewHolder>() {
+    ListAdapter<String, AboutAdapter.ViewHolder>(DiffUtil()) {
 
     class ViewHolder(binding: AboutRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
         val root: TextView = binding.root
+
+        fun bind(
+            data : String
+        ) {
+            root.text = data
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,9 +52,25 @@ class AboutAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.root.text = list[position]
+        viewHolder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = list.size
+
+
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(
+            oldItem: String,
+            newItem: String
+        ): Boolean {
+            return oldItem==newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: String,
+            newItem: String
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
 
 }

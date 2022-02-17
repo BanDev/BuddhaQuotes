@@ -125,9 +125,11 @@ class ListActivity : LocalizationActivity(), QuoteAdapter.Listener {
             // Get quotes from the list
             vm.ListQuotes().getFrom(id) { quotes ->
                 this.quotes = quotes
+                val quoteAdapter = QuoteAdapter(this@ListActivity, list.id)
                 binding.recycler.apply {
-                    adapter = QuoteAdapter(quotes, this@ListActivity, list.id)
+                    adapter = quoteAdapter
                     layoutManager = LinearLayoutManager(context)
+                    quoteAdapter.submitList(quotes)
                     setHasFixedSize(false)
                 }
                 checkLength()

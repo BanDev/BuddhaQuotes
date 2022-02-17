@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.Feedback
@@ -32,6 +33,7 @@ import org.bandev.buddhaquotes.core.find
 import org.bandev.buddhaquotes.core.onClick
 import org.bandev.buddhaquotes.core.shareQuote
 import org.bandev.buddhaquotes.databinding.QuoteAdapterItemBinding
+import org.bandev.buddhaquotes.items.List
 import org.bandev.buddhaquotes.items.Quote
 
 /**
@@ -42,12 +44,10 @@ import org.bandev.buddhaquotes.items.Quote
  */
 
 class QuoteAdapter(
-
-    private val quotes: MutableList<Quote>,
     private val listener: Listener,
     private val id: Int
 
-) : RecyclerView.Adapter<QuoteAdapter.ViewHolder>() {
+) : ListAdapter<Quote,QuoteAdapter.ViewHolder>(DiffUtil()) {
 
     class ViewHolder(binding: QuoteAdapterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val quote: TextView = binding.quote
@@ -66,7 +66,7 @@ class QuoteAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = quotes[position]
+        val item = getItem(position)
 
         holder.quote.text = holder.quote.context.getString(item.resource)
 
@@ -75,8 +75,6 @@ class QuoteAdapter(
         holder.like.setOnClickListener {
             Feedback.virtualKey(it)
             if (id == 0) {
-                notifyItemRemoved(quotes.find(item))
-                quotes.remove(item)
                 listener.onQuoteRemoved(item)
             } else {
                 if (item.liked) {
@@ -95,13 +93,26 @@ class QuoteAdapter(
         }
 
         holder.bin.onClick {
-            notifyItemRemoved(quotes.find(item))
-            quotes.remove(item)
             listener.onQuoteRemoved(item)
         }
     }
 
-    override fun getItemCount(): Int = quotes.size
+
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Quote>() {
+        override fun areItemsTheSame(
+            oldItem: Quote,
+            newItem: Quote
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Quote,
+            newItem: Quote
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
+    }
 
     interface Listener {
         fun onQuoteLiked(quote: Quote)
