@@ -69,7 +69,7 @@ class ListIconAdapter(
             oldItem: ListIcon,
             newItem: ListIcon
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(
