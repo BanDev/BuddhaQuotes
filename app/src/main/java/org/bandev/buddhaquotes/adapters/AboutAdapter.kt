@@ -62,7 +62,7 @@ class AboutAdapter(
             oldItem: String,
             newItem: String
         ): Boolean {
-            return oldItem==newItem
+            return oldItem ==newItem
         }
 
         override fun areContentsTheSame(

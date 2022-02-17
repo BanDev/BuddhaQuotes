@@ -105,7 +105,7 @@ class ListAdapter(
             oldItem: List,
             newItem: List
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(
