@@ -6,30 +6,30 @@
     <string name="settings" id="4">设定值</string>
     <string name="appearance" id="5">外貌</string>
     <string name="app_theme" id="6">应用主题</string>
-    <string name="light_mode" id="7">光</string>
-    <string name="dark_mode" id="8">黑暗的</string>
-    <string name="follow_system_default" id="9">追踪系统</string>
+    <string name="light_mode" id="7">浅色</string>
+    <string name="dark_mode" id="8">深色</string>
+    <string name="follow_system_default" id="9">跟随系统</string>
     <string name="information" id="14">信息</string>
     <string name="about" id="15">关于</string>
     <string name="view_app_details" id="16">查看应用程序详细信息</string>
     <string name="intro" id="17">帮助</string>
     <string name="app_introduction" id="18">应用介绍</string>
     <string name="app_license" id="19">应用程式授权</string>
-    <string name="libraries_used" id="20">使用的图书馆</string>
+    <string name="libraries_used" id="20">使用的库</string>
     <string name="about_app_promise" id="21">应用承诺</string>
     <string name="about_no_trackers" id="22">没有追踪器</string>
     <string name="about_complete_privacy" id="23">完全的隐私</string>
     <string name="about_offline_app" id="24">离线应用</string>
     <string name="about_free_and_open_source" id="25">免费和开源</string>
     <string name="about_info" id="26">应用程式资讯</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes是一个协作项目，旨在为Android创建免费和开源的Buddha Quotes应用程序。</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes是一个协作项目，旨在为Android创建自由和开源的Buddha Quotes应用程序。</string>
     <string name="about_contributors" id="28">贡献者</string>
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
     <string name="tick" id="31">打钩</string>
     <string name="favourited_quote" id="55">最喜欢的报价</string>
     <string name="favourite_quote_delete" id="56">删除</string>
-    <string name="buddha_quotes_logo" id="57">佛行情徽标</string>
+    <string name="buddha_quotes_logo" id="57">Buddha Quotes 徽标</string>
     <string name="bandev_logo" id="58">BanDev徽标</string>
     <string name="the_buddha" id="59">佛陀</string>
     <string name="forward_arrow" id="60">返回</string>
@@ -51,7 +51,7 @@
     <string name="lists_add_lists_go" id="95">添加</string>
     <string name="lists_add_lists_name" id="96">姓名</string>
     <string name="settings_general" id="97">一般的</string>
-    <string name="settings_accent_colour" id="98">口音颜色</string>
+    <string name="settings_accent_colour" id="98">强调色</string>
     <string name="settings_shapes_mode" id="99">形状模式</string>
     <string name="settings_shapes_mode_yes" id="100">在</string>
     <string name="settings_shapes_mode_no" id="101">离开</string>
@@ -98,7 +98,7 @@
     <string name="ch">查莫罗</string>
     <string name="ce">车臣</string>
     <string name="ny">Chichewa，Chewa，Nyanja</string>
-    <string name="zh">中国人</string>
+    <string name="zh">中文</string>
     <string name="cu">教会斯拉夫语，老保加利亚语，老教会斯拉夫语</string>
     <string name="cv">楚瓦什</string>
     <string name="kw">康沃尔语</string>
@@ -146,7 +146,7 @@
     <string name="ik">因纽皮克</string>
     <string name="ga">爱尔兰人</string>
     <string name="it">义大利文</string>
-    <string name="ja">日本人</string>
+    <string name="ja">日文</string>
     <string name="jv">爪哇</string>
     <string name="kn">卡纳达语</string>
     <string name="kr">卡努里</string>
@@ -197,7 +197,7 @@
     <string name="pa">旁遮普邦Panjabi</string>
     <string name="ps">普什图语，普希图语</string>
     <string name="fa">波斯语</string>
-    <string name="pl">抛光</string>
+    <string name="pl">波兰语</string>
     <string name="pt">葡萄牙语</string>
     <string name="qu">盖丘亚族</string>
     <string name="rm">罗曼什</string>
@@ -299,7 +299,7 @@
     <string name="quote_34" id="343">因为我们都对爱有着相同的需求，所以有可能觉得我们遇到的任何人在任何情况下都是兄弟姐妹</string>
     <string name="quote_35" id="344">因为你还活着，所以一切皆有可能</string>
     <string name="quote_36" id="345">更好的是一个人住。没有傻瓜的团契。独自生活，不作恶；像大象的大象一样无忧无虑</string>
-    <string name="quote_37" id="346">最好是有一天看到事物的兴衰，而不是生活一百年却没有看到事物的兴衰。</string>
+    <string name="quote_37" id="346">活一天看到事物的兴衰，胜过活一百年不见事物的兴衰</string>
     <string name="quote_38" id="347">一个有用的词胜过一千个无用的词，听到它就能获得和平。</string>
     <string name="quote_39" id="348">遵守公义的律法比敬拜神更好</string>
     <string name="quote_40" id="349">通过深深地活在当下，我们可以更好地了解过去，并为更美好的未来做准备</string>
@@ -308,7 +308,7 @@
     <string name="quote_43" id="352">选择保持乐观，感觉会更好</string>
     <string name="quote_44" id="353">通过温柔来征服愤怒，通过仁慈来征服他人，通过慷慨而贪婪，并通过真理来弥补虚假</string>
     <string name="quote_45" id="354">用非愤怒征服愤怒。用善胜恶。慷慨地征服卑鄙。用真理征服不诚实</string>
-    <string name="quote_46" id="355">通过不生气来征服愤怒的人；用善胜恶人慷慨地克服st气，讲真话来骗人。</string>
+    <string name="quote_46" id="355">以不生气来征服生气的人；以善治恶；用慷慨征服吝啬的人，用说真话征服说谎的人</string>
     <string name="quote_47" id="356">知足是最大的财富</string>
     <string name="quote_48" id="357">充满喜乐！保卫您的想法！</string>
     <string name="quote_49" id="358">令人不愉快的是公众不喜悦的森林。那里没有激情，没有寻求感官享受</string>
@@ -316,7 +316,7 @@
     <string name="quote_51" id="360">不要把注意力放在别人做或不做的事情上；把它交给你做或不做的事</string>
     <string name="quote_52" id="361">不要高估收到的内容，也不要嫉妒他人。羡慕别人的人没有安心</string>
     <string name="quote_53" id="362">不要想宇宙有多大，只会伤到你的头</string>
-    <string name="quote_54" id="363">一滴一滴地把水罐装满了。同样，聪明的人一点一点地收集起来，就使自己充满了美好。</string>
+    <string name="quote_54" id="363">一滴一滴地把水罐装满了。同样，聪明的人，一点一点地收集它，以善充盈自己</string>
     <string name="quote_55" id="364">欲望产生了情感，因此产生了幻觉</string>
     <string name="quote_56" id="365">耐力是最困难的学科之一，但对于那些坚持不懈的人来说，最后的胜利是</string>
     <string name="quote_57" id="366">即使坚硬的岩石被风吹动，明智的人也因赞美或责备而动摇</string>
@@ -325,7 +325,7 @@
     <string name="quote_60" id="369">感觉像刮风的天空中的云彩一样来来去去。有意识的呼吸是我的锚</string>
     <string name="quote_61" id="370">穿越更深的海岸的人很少。其他人只是在这边跑来跑去</string>
     <string name="quote_62" id="371">遵循崇高道路就像进入一个黑暗的房间，手里拿着光。黑暗将被清除，房间将充满光明</string>
-    <string name="quote_63" id="372">为了世界的同情，为了世界的同情，为了世界的同情</string>
+    <string name="quote_63" id="372">为了大多数人的利益，为了大多数人的幸福，出于对世界的悲悯</string>
     <string name="quote_64" id="373">友谊是消除仇恨，和平的唯一保证</string>
     <string name="quote_65" id="374">一棵枯树从一棵枯树上绽放</string>
     <string name="quote_66" id="375">付出，即使你只有一点点</string>
@@ -341,7 +341,7 @@
     <string name="quote_76" id="385">对于一个一无所有的人来说，这是多么幸福。智慧获得者就是一无所有的人。看到他的痛苦，一个有某些东西的人，一个与人融为一体的人</string>
     <string name="quote_77" id="386">无论您读了多少圣洁的话，无论您说了多少话，如果您不对他们采取行动，他们会对您有什么好处？</string>
     <string name="quote_78" id="387">我与世界无异；而是这个世界与我发生争执</string>
-    <string name="quote_79" id="388">我将在雨中住在这里，冬天在那里，夏天在其他地方。</string>
+    <string name="quote_79" id="388">我将在雨中生活，冬天在此处，夏天在别处，愚人若有所思，全不知死亡临近</string>
     <string name="quote_80" id="389">我不会看别人的碗里寻找错误的意图：要观察的训练</string>
     <string name="quote_81" id="390">如果一个人涌入河里，肿胀而迅速地流淌，被水流带走了—他如何帮助别人渡过？</string>
     <string name="quote_82" id="391">如果旅行者没有遇到比自己更好或更平等的人，请让他坚定地保持孤独的旅程。没有傻瓜的陪伴</string>
@@ -394,7 +394,7 @@
     <string name="quote_129" id="438">思考，Ānanda，请不要耽搁，否则以后您会后悔的。这是我们对您的指示</string>
     <string name="quote_130" id="439">冥想带来智慧；缺乏冥想会导致无知。清楚地知道什么会导致你前进，什么会阻碍你前进，并选择通往智慧的道路</string>
     <string name="quote_131" id="440">僧侣们，即使土匪用一把双柄锯子残酷地割断了你，即使如此，你们当中谁生病了也不会坚持我的教导</string>
-    <string name="quote_132" id="441">比那些恨你的人多于所有敌人，无纪律的思想所带来的伤害更大。</string>
+    <string name="quote_132" id="441">乱心害你的，比恨你的人，和你一切的仇敌更甚</string>
     <string name="quote_133" id="442">如果您给他们足够的时间和空间，大多数问题最终都会使自己疲惫不堪</string>
     <string name="quote_134" id="443">火与风，生与死都不能抹杀我们的善行</string>
     <string name="quote_135" id="444">没有人可以拯救我们，只有我们自己。没有人可以也没有人可以。我们自己必须走这条路</string>
@@ -421,7 +421,7 @@
     <string name="quote_156" id="465">感性的渴望引起悲伤；感性的渴望引起恐惧。对于从肉欲的渴望中解脱出来的人来说，没有悲伤。从何而来的恐惧呢？</string>
     <string name="quote_157" id="466">让您全心全意做好事。一遍又一遍地做，你会充满喜悦</string>
     <string name="quote_158" id="467">一个人应该做的很好，让他一次又一次地做。让他在其中找到快乐，因为幸福是积累的美好</string>
-    <string name="quote_159" id="468">如果寻求者没有找到一个更好或更平等的伴侣，就让他们坚决地追求一个孤独的道路。</string>
+    <string name="quote_159" id="468">如果探索者找不到一个更好或与之同等的伙伴，就让他们坚定地独自前行吧</string>
     <string name="quote_160" id="469">如果您找到一个明智的批评家指出您的缺点，请跟随他，就像您将自己作为隐藏宝藏的指南一样</string>
     <string name="quote_161" id="470">沉默有时是最好的答案</string>
     <string name="quote_162" id="471">用爱使愤怒的人沉默。使善恶的人沉默。用慷慨大方的沉默沉默。用真理沉默骗子</string>
@@ -449,12 +449,12 @@
     <string name="quote_184" id="493">改变别人想法的方法是充满感情，而不是愤怒</string>
     <string name="quote_185" id="494">智者使自己成为孤岛，洪水无法淹没</string>
     <string name="quote_186" id="495">世界受死亡和腐朽之苦。但是，明智的人在意识到世界的本质后不会感到悲伤</string>
-    <string name="quote_187" id="496">没有像仇恨这样的束缚……依靠兄弟的过错使自己倍增。您距离旅程的终点​​还很远</string>
+    <string name="quote_187" id="496">没有比仇恨更可怕的枷锁了……沉溺于你兄弟的过错会让你自己的过错更加严重。你的旅程还远未结束</string>
     <string name="quote_188" id="497">对于一个头脑里没有欲望的人没有恐惧</string>
     <string name="quote_189" id="498">没有激情如火，没有仇恨的鲨鱼，没有愚蠢的网罗，没有贪婪的洪流</string>
-    <string name="quote_190" id="499">没有什么比没有纪律的人更容易听话，也没有什么比纪律严明的人更听话。</string>
-    <string name="quote_191" id="500">他们责怪那些​​保持沉默的人，他们责怪那些​​说话的人，他们责备那些谦虚的人。世界上没有人不应该受到指责</string>
-    <string name="quote_192" id="501">不要轻易地想着邪恶，说：“它不会来找我。”一滴一滴地注满了水的罐子。同样，傻瓜一点一点地收集起来，就充满了邪恶。</string>
+    <string name="quote_190" id="499">没有什么比不守纪律的头脑更不听话了，也没有什么比守纪律的头脑更听话</string>
+    <string name="quote_191" id="500">他们责备那些沉默的人，他们责备那些多嘴的人，他们责备那些说话节制的人。世界上就没有不受责备的人</string>
+    <string name="quote_192" id="501">不要轻忽恶事，说‘它必不临到我’。水罐一滴一滴灌满。愚妄人也这样，一点一点地积蓄，使自己充满邪恶</string>
     <string name="quote_193" id="502">那些由于原因而产生的事件不会产生。它们没有生产的内在本质。那些依赖原因的东西被说成是空的。那些知道空虚的人知道</string>
     <string name="quote_194" id="503">那些独立产生的没有固有的存在</string>
     <string name="quote_195" id="504">那些没有怨恨想法的人肯定会找到和平</string>
@@ -477,7 +477,7 @@
     <string name="quote_212" id="521">胜利滋生仇恨。被击败的人痛苦地生活着。愉快的和平生活，放弃胜利与失败</string>
     <string name="quote_213" id="522">善良的人总是放手。他们不喜欢享乐和欲望。先知被幸福感动，然后被痛苦感动，贤者没有任何被兴高采烈或沮丧的迹象</string>
     <string name="quote_214" id="523">我们在这里从分离的幻想中醒来</string>
-    <string name="quote_215" id="524">我们将发展爱，我们将实践它，我们将使它成为一种方式和基础。</string>
+    <string name="quote_215" id="524">我们要培养爱，我们要实践爱，我们要使爱成为一种途径和基础……</string>
     <string name="quote_216" id="525">我们将通过爱来发展和培养思想的解放，使之成为我们的工具，成为我们的基础，稳定它，在其中锻炼自己，并充分完善它</string>
     <string name="quote_217" id="526">无论修士不断追求思想和思考，这都会成为他的意识的倾向</string>
     <string name="quote_218" id="527">敌人可能对敌人造成什么影响，或者敌人受到敌人的伤害，思维混乱的头脑都会对您造成更大的伤害</string>
@@ -492,7 +492,7 @@
     <string name="quote_227" id="536">当您练习感恩时，就会有一种对他人的尊重感</string>
     <string name="quote_228" id="537">谁抛弃了一切人类的束缚，抛弃了天堂的束缚，脱离了世界各地的束缚：他就是我所说的婆罗门</string>
     <string name="quote_229" id="538">谁不怒视谁生气的人就赢得了一场艰难的胜利</string>
-    <string name="quote_230" id="539">看到我的人看到教义，看到我的人看到教义</string>
+    <string name="quote_230" id="539">看到我的人看到教义，看到教义的人看到我</string>
     <string name="quote_231" id="540">对于傻瓜，没有伴侣。与其与自私，自负，争吵和固执的男人住在一起，不如让男人独自行走</string>
     <string name="quote_232" id="541">通过实现自己的潜力和自信，人们可以建立一个更美好的世界</string>
     <string name="quote_233" id="542">没有健康，生命就不是生命；没有生命就没有生命。它只是语言和痛苦的状态-死亡的图像</string>
@@ -505,7 +505,7 @@
     <string name="title_home">家</string>
     <string name="title_dashboard">仪表板</string>
     <string name="title_notifications">通知事项</string>
-    <string name="quote_number">引用</string>
+    <string name="quote_number">引用 #%d</string>
     <string name="fragment_quote">引用</string>
     <string name="fragment_lists">清单</string>
     <string name="fragment_meditation">幽思</string>
@@ -572,7 +572,7 @@
 \n 按屏幕底部的 \"添加\"（➕）按钮，并输入一个名称，就可以创建新的列表。列表开始处的图标可以从列表中自定义。</string>
     <string name="quote_sheet_content">你可以按“下一个”的按钮，或从顶部向下滑动，以获取一句新的语录。
 \n
-\n 你可以通过按住底部的图片来更换图片，有12张图可选。🤩</string>
+\n 你可以通过按住底部的图片来更换图片，有16张图可选。🤩</string>
     <string name="meditate_sheet_title">冥想帮助</string>
     <string name="list_sheet_title">列表帮助</string>
     <string name="meditate_sheet_content">你可以按下面的开始按钮，输入你要冥想的时长，就可以开始冥想了。😌</string>
