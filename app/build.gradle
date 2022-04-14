@@ -94,7 +94,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Localization - https://github.com/akexorcist/Localization
-    implementation 'com.akexorcist:localization:1.2.10'
+    implementation 'com.akexorcist:localization:1.2.11'
 
     // Navigation components - https://developer.android.com/jetpack/androidx/releases/navigation
     def nav_version = "2.4.2"
