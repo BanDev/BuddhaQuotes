@@ -6,7 +6,7 @@
     <string name="settings" id="4">Einstellungen</string>
     <string name="appearance" id="5">Aussehen</string>
     <string name="app_theme" id="6">App-Thema</string>
-    <string name="light_mode" id="7">Licht</string>
+    <string name="light_mode" id="7">Hell</string>
     <string name="dark_mode" id="8">Dunkel</string>
     <string name="follow_system_default" id="9">System folgen</string>
     <string name="information" id="14">Information</string>
@@ -29,7 +29,7 @@
     <string name="tick" id="31">Tick</string>
     <string name="favourited_quote" id="55">Lieblingszitat</string>
     <string name="favourite_quote_delete" id="56">Löschen</string>
-    <string name="buddha_quotes_logo" id="57">Buddha zitiert Logo</string>
+    <string name="buddha_quotes_logo" id="57">Buddha Quotes Logo</string>
     <string name="bandev_logo" id="58">BanDev-Logo</string>
     <string name="the_buddha" id="59">Der Buddha</string>
     <string name="forward_arrow" id="60">Rückkehr</string>
@@ -45,7 +45,7 @@
     <string name="add_widget" id="89">Widget hinzufügen</string>
     <string name="open_source_libraries" id="90">Open Source-Bibliotheken</string>
     <string name="about_no_ads" id="91">Keine Werbung</string>
-    <string name="lists_title" id="92">Ihre Listen</string>
+    <string name="lists_title" id="92">Deine Listen</string>
     <string name="lists_add_item" id="93">Zur Liste hinzufügen</string>
     <string name="lists_add_lists" id="94">Neue Liste erstellen</string>
     <string name="lists_add_lists_go" id="95">Hinzufügen</string>
@@ -53,19 +53,19 @@
     <string name="settings_general" id="97">Allgemeines</string>
     <string name="settings_accent_colour" id="98">Akzentfarbe</string>
     <string name="settings_shapes_mode" id="99">Formen-Modus</string>
-    <string name="settings_shapes_mode_yes" id="100">Auf</string>
-    <string name="settings_shapes_mode_no" id="101">aus</string>
+    <string name="settings_shapes_mode_yes" id="100">An</string>
+    <string name="settings_shapes_mode_no" id="101">Aus</string>
     <string name="settings_language" id="102">Sprache</string>
     <string name="original" id="103">Standard</string>
     <string name="blue" id="104">Blau</string>
     <string name="green" id="105">Grün</string>
     <string name="orange" id="106">Orange</string>
     <string name="yellow" id="107">Original</string>
-    <string name="teal" id="108">Blaugrün</string>
+    <string name="teal" id="108">Aquamarin</string>
     <string name="violet" id="109">Violett</string>
-    <string name="pink" id="110">Rosa</string>
+    <string name="pink" id="110">Pink</string>
     <string name="lightBlue" id="111">Hellblau</string>
-    <string name="red" id="112">rot</string>
+    <string name="red" id="112">Rot</string>
     <string name="lime" id="113">Limette</string>
     <string name="crimson" id="114">Purpur</string>
     <string name="ab">Abchasisch</string>
@@ -123,7 +123,7 @@
     <string name="gl">galizisch</string>
     <string name="lg">Ganda</string>
     <string name="ka">georgisch</string>
-    <string name="de">Deutsche</string>
+    <string name="de">Deutsch</string>
     <string name="ki">Gikuyu, Kikuyu</string>
     <string name="el">Griechisch (modern)</string>
     <string name="kl">Grönländisch, Kalaallisut</string>
@@ -146,7 +146,7 @@
     <string name="ik">Inupiaq</string>
     <string name="ga">irisch</string>
     <string name="it">Italienisch</string>
-    <string name="ja">japanisch</string>
+    <string name="ja">Japanisch</string>
     <string name="jv">Javanisch</string>
     <string name="kn">Kannada</string>
     <string name="kr">Kanuri</string>
@@ -197,7 +197,7 @@
     <string name="pa">Panjabi, Punjabi</string>
     <string name="ps">Pashto, Pushto</string>
     <string name="fa">persisch</string>
-    <string name="pl">Polieren</string>
+    <string name="pl">Polnisch</string>
     <string name="pt">Portugiesisch</string>
     <string name="qu">Quechua</string>
     <string name="rm">Rätoromanisch</string>
@@ -502,19 +502,19 @@
     <string name="quote_237" id="546">Sie selbst müssen sich bemühen. Die Buddhas weisen nur den Weg</string>
     <string name="about_translators" id="547">Übersetzer</string>
     <string name="title_activity_main">Hauptaktivität</string>
-    <string name="title_home">Zuhause</string>
-    <string name="title_dashboard">Instrumententafel</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Benachrichtigungen</string>
-    <string name="quote_number">Zitat</string>
+    <string name="quote_number">Zitat #%d</string>
     <string name="fragment_quote">Zitat</string>
     <string name="fragment_lists">Listen</string>
     <string name="fragment_meditation">Meditieren</string>
     <string name="meditate_title">Meditieren</string>
     <string name="meditate_subheading">Es ist einfach</string>
     <string name="meditate_space">Raum</string>
-    <string name="meditate_space_desc">Wählen Sie einen ruhigen Ort, an dem Sie nicht gestört werden.</string>
+    <string name="meditate_space_desc">Wähle einen ruhigen Ort, an dem du nicht gestört wirst.</string>
     <string name="meditate_posture">Haltung</string>
-    <string name="meditate_posture_desc">Setzen Sie sich auf den Boden oder auf einen Stuhl mit gerader Rückenlehne. Der Schlüssel ist, bequem zu sein!</string>
+    <string name="meditate_posture_desc">Setz dich auf den Boden oder auf einen Stuhl mit gerader Rückenlehne. Der Schlüssel ist, dass es bequem ist!</string>
     <string name="meditate_breath">Atem</string>
     <string name="meditate_breath_desc">Atme tief und langsam ein und versuche, in deinen Magen zu atmen.</string>
     <string name="play">Weitermachen</string>
@@ -556,4 +556,29 @@
     <string name="dharma_wheel">Rad</string>
     <string name="monk">Mönch</string>
     <string name="buddha">Buddha</string>
+    <string name="follow_app_default">App folgen</string>
+    <string name="about_app">Über Buddha Quotes</string>
+    <string name="rename_list">Liste umbenennen</string>
+    <string name="duplicate">Dieses Zitat ist schon drin</string>
+    <string name="start_meditation">Meditation starten</string>
+    <string name="app_widget_description">Das ist eine Widget Beschreibung</string>
+    <string name="transparent">Transparent</string>
+    <string name="opaque">Opak</string>
+    <string name="open_drawer">Navigation öffnen</string>
+    <string name="close_drawer">Navigation schliessen</string>
+    <string name="no_list">Du hast keine Listen!</string>
+    <string name="quote_count">1 Zitat</string>
+    <string name="quotes_count">%d Zitate</string>
+    <string name="contributors">Mitwirkende</string>
+    <string name="empty_list">Diese Liste ist leer!</string>
+    <string name="two_people_meditating">Zwei Leute meditierend</string>
+    <string name="summary">Zusammenfassung</string>
+    <string name="text">Text</string>
+    <string name="no_image">Kein Bild</string>
+    <string name="bell">Klingel</string>
+    <string name="meditate_sheet_content">Du kannst eine Meditation starten, wenn du die Zeit zum Meditieren eingibst und den Startknopf unten drückst.😌</string>
+    <string name="libraries" id="90">Bibliotheken</string>
+    <string name="quote_sheet_title">Zitathilfe</string>
+    <string name="list_sheet_title">Listenhilfe</string>
+    <string name="meditate_sheet_title">Meditationshilfe</string>
 </resources>
