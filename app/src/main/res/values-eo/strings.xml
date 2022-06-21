@@ -211,4 +211,47 @@
     <string name="quote_66" id="375">Donu, eĉ se vi havas nur malmulte</string>
     <string name="quote_72" id="381">Li ne estas la sama, nek li estas alia</string>
     <string name="quote_212" id="521">Venko naskas malamon. La venkitoj vivas en doloro. Feliĉe la pacaj vivas, rezignante venkon kaj malvenkon</string>
+    <string name="quote_18" id="327">Kolero estas la finfina detruanto de via propra trankvilo</string>
+    <string name="quote_2" id="311">Bonan amikon, kiu montras erarojn kaj neperfektaĵojn kaj riproĉas malbonon, respektu kvazaŭ li malkaŝus sekreton pri kaŝita trezoro</string>
+    <string name="quote_65" id="374">Velkinta arbo floras</string>
+    <string name="quote_24" id="333">Kiel lotusfloro naskiĝas en akvo, kreskas en akvo kaj leviĝas el akvo por stari super ĝi senmakule, tiel mi, naskite en la mondo, kreskinte en la mondo, venkinte la mondon, vivas nemakulita de la mondo</string>
+    <string name="quote_sheet_title">Helpo pri citaĵo</string>
+    <string name="settings" id="4">Agordoj</string>
+    <string name="about_info" id="26">Informoj pri programo</string>
+    <string name="about_acknowledgements" id="29">Dankoj</string>
+    <string name="libraries_used" id="20">Uzataj bibliotekoj</string>
+    <string name="about_app_promise" id="21">Promeso pri ĉi tiu programo</string>
+    <string name="app_introduction" id="18">Enkonduko al programo</string>
+    <string name="app_license" id="19">Permesilo pri programo</string>
+    <string name="list_sheet_title">Helpo pri listo</string>
+    <string name="meditate_sheet_title">Helpo pri meditado</string>
+    <string name="quote_3" id="312">Granda homa revolucio en nur unu individuo helpos atingi ŝanĝon en la sorto de nacio kaj eĉ la tuta homaro</string>
+    <string name="quote_1" id="310">Disciplina menso alportas feliĉon</string>
+    <string name="quote_4" id="313">Viro demandis Gotamon Budho: «Mi volas feliĉon.» Budho respondis: «Unue forigu la ‹mi›, la egoon; poste forigu la ‹volas›, la deziron. Jen al vi restas nur feliĉo.»</string>
+    <string name="quote_5" id="314">Homon oni ne nomas saĝulo, ĉar li parolas kaj reparolas; sed se li estas paca, ama kaj sentima, do oni vere nomas lin saĝulo</string>
+    <string name="quote_35" id="344">Ĉar vi vivas, ĉio eblas</string>
+    <string name="quote_30" id="339">Konsciegu la nunon</string>
+    <string name="quote_27" id="336">Alligiteco kondukas al sufero</string>
+    <string name="quote_43" id="352">Elektu esti optimisma; tio sentigas vin pli bone</string>
+    <string name="quote_48" id="357">Ĝoju pri atentemo! Gardu bone viajn pensojn!</string>
+    <string name="quote_54" id="363">Guton post guto plenîgas la akvopoto. Same, la saĝulo, iom post iom, plenigas sin per bono</string>
+    <string name="quote_100" id="409">Eblas vivi 24 horojn en amstato</string>
+    <string name="quote_113" id="422">Forlasado donas al ni liberecon, kaj libereco estas la sola kondiĉo por feliĉo. Se, en nia koro, ni ankoraŭ alkroĉiĝas al io ajn – kolero, angoro aŭ posedaĵoj – ni ne povas esti liberaj</string>
+    <string name="quote_127" id="436">Ke ĉiuj estaĵoj havu feliĉajn mensojn</string>
+    <string name="quote_118" id="427">Iom post iom homo fariĝas malbona, kiel akvopoto estas plenigata de akvogutoj; Iom post iom homo fariĝas bona, kiel akvopoto estas plenigata de akvogutoj</string>
+    <string name="quote_121" id="430">Longa estas la nokto por la vekiĝinto; longa estas la mejlo por la laculo; longa estas la vivo por la malsaĝulo, kiu ne scias la veran leĝon</string>
+    <string name="quote_124" id="433">Amo estas la foresto de juĝo</string>
+    <string name="quote_122" id="431">Situacion rigardu de ĉiuj anguloj, kaj vi plimalfermitiĝos</string>
+    <string name="quote_137" id="446">Nenio estas eterna krom ŝanĝo</string>
+    <string name="quote_143" id="452">Pacienco estas la plej alta asketismo</string>
+    <string name="quote_154" id="463">Decide trejnu vin por atingi pacon</string>
+    <string name="quote_161" id="470">Silento kelkfoje estas la plej bona respondo</string>
+    <string name="quote_168" id="477">La plej malhela nokto estas nescio</string>
+    <string name="quote_172" id="481">Ju malpli vi havas, des malpli vi devas prizorgi</string>
+    <string name="quote_179" id="488">La radiko de sufero estas alligiteco</string>
+    <string name="start_meditation">Ekmediti</string>
+    <string name="meditate_subheading">Ĝi estas simpla kaj facila</string>
+    <string name="meditate_breath">Spirado</string>
+    <string name="opaque">Opaka</string>
+    <string name="empty_list">Jen malplena listo!</string>
 </resources>
