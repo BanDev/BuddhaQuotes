@@ -254,4 +254,34 @@
     <string name="meditate_breath">Spirado</string>
     <string name="opaque">Opaka</string>
     <string name="empty_list">Jen malplena listo!</string>
+    <string name="quote_79" id="388">«Mi loĝos ĉi tie dum la pluvoj, tie vintre, aliloke somere», pensas la malsaĝulo, ne konsciante pri la proksimeco de la morto</string>
+    <string name="quote_228" id="537">Kiu postlasis la homajn ligojn kaj forĵetis la ĉielajn ligojn, dekroĉite de ĉiaj ĉieaj ligoj: tiun mi nomas brahmoo</string>
+    <string name="settings_shapes_mode" id="99">Reĝimo de formoj</string>
+    <string name="settings_shapes_mode_yes" id="100">Ŝaltita</string>
+    <string name="settings_shapes_mode_no" id="101">Malŝaltita</string>
+    <string name="li">Limburga</string>
+    <string name="or">Orisa</string>
+    <string name="qu">Keĉua</string>
+    <string name="rn">Burunda</string>
+    <string name="quote_23" id="332">Kiel floro ĉarma kaj bela sed senodora, tiel senfrukta estas la bonparolata vorto de tiu, kiu ĝin ne praktikas</string>
+    <string name="quote_21" id="330">Arde faru hodiaŭ la farendaĵojn. Kiu scias\? Morgaŭ venos morto</string>
+    <string name="quote_26" id="335">Kiel elefanto sur la batalkampo eltenas sagojn pafitaj de pafarkoj ĉirkaŭe, tiel mi elportos fitraktadon</string>
+    <string name="quote_28" id="337">Atento estas la plej malofta kaj pura formo de malavareco</string>
+    <string name="quote_31" id="340">Estu afabla kiam eblas; ĉiam eblas</string>
+    <string name="quote_55" id="364">Emocio estiĝas de deziro; ĝi estas tial iluzio</string>
+    <string name="quote_53" id="362">Ne pripensu la grandecon de la universo; tio nur dolorigos vian kapon</string>
+    <string name="quote_78" id="387">Mi ne disputas kun la mondo; estas la mondo, kiu disputas kun mi</string>
+    <string name="quote_205" id="514">Insisti pri spirita praktiko servinta vin en la pasinteco estas porti la floson sur via dorso transirinte la riveron</string>
+    <string name="quote_203" id="512">Esti bela signifas esti vi mem. Vi ne bezonas esti akceptita de aliuloj. Vi devas akcepti vin mem</string>
+    <string name="quote_209" id="518">Subteni patrinon kaj patron, ŝati edzinon kaj infanojn, kaj okupiĝi pri paca okupo – jen la plej granda beno</string>
+    <string name="quote_211" id="520">Kompreno estas la koro de bonparolitaj vortoj</string>
+    <string name="title_home">Hejmo</string>
+    <string name="title_notifications">Sciigoj</string>
+    <string name="quote_235" id="544">Oni ne kolektas la belecon de floro plukante ĝiajn petalojn</string>
+    <string name="quote_236" id="545">Via memo estas via mastro; kiu alia povus esti\? Bone regante vian memon, vi akiras mastron tre malfacile troveblan</string>
+    <string name="quote_237" id="546">Vi mem devas strebi. La Budhoj nur montras la vojon</string>
+    <string name="quote_233" id="542">Sen sano la vivo ne estas vivo, sed nur stato langvora kaj sufera – bildo de morto</string>
+    <string name="quote_234" id="543">Vi estas la komunumo nun. Estu lampo por vi mem. Estu via propra rifuĝo. Serĉu neniun alian. Ĉio forpasos. Strebu plu diligente. Ne rezignu</string>
+    <string name="fragment_meditation">Mediti</string>
+    <string name="meditate_title">Mediti</string>
 </resources>
