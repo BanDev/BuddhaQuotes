@@ -3,8 +3,8 @@
     <string name="refresh" id="1">刷新</string>
     <string name="favourite" id="2">最喜欢的</string>
     <string name="share" id="3">分享</string>
-    <string name="settings" id="4">设定值</string>
-    <string name="appearance" id="5">外貌</string>
+    <string name="settings" id="4">设定</string>
+    <string name="appearance" id="5">外观</string>
     <string name="app_theme" id="6">应用主题</string>
     <string name="light_mode" id="7">浅色</string>
     <string name="dark_mode" id="8">深色</string>
@@ -14,15 +14,15 @@
     <string name="view_app_details" id="16">查看应用程序详细信息</string>
     <string name="intro" id="17">帮助</string>
     <string name="app_introduction" id="18">应用介绍</string>
-    <string name="app_license" id="19">应用程式授权</string>
+    <string name="app_license" id="19">应用许可证</string>
     <string name="libraries_used" id="20">使用的库</string>
     <string name="about_app_promise" id="21">应用承诺</string>
     <string name="about_no_trackers" id="22">没有追踪器</string>
     <string name="about_complete_privacy" id="23">完全的隐私</string>
     <string name="about_offline_app" id="24">离线应用</string>
     <string name="about_free_and_open_source" id="25">免费和开源</string>
-    <string name="about_info" id="26">应用程式资讯</string>
-    <string name="about_info_paragraph" id="27">Buddha Quotes是一个协作项目，旨在为Android创建自由和开源的Buddha Quotes应用程序。</string>
+    <string name="about_info" id="26">应用资讯</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes 是一个协作项目，旨在创建一款自由开源的 Android 系统 Buddha Quotes 应用，重点关注隐私</string>
     <string name="about_contributors" id="28">贡献者</string>
     <string name="about_acknowledgements" id="29">致谢</string>
     <string name="about_attribution" id="30">启动器图标-通过Flaticon的Freepik</string>
@@ -45,213 +45,213 @@
     <string name="add_widget" id="89">添加小部件</string>
     <string name="open_source_libraries" id="90">开源库</string>
     <string name="about_no_ads" id="91">无广告</string>
-    <string name="lists_title" id="92">您的清单</string>
+    <string name="lists_title" id="92">您的列表</string>
     <string name="lists_add_item" id="93">添加到列表中</string>
     <string name="lists_add_lists" id="94">建立新清单</string>
     <string name="lists_add_lists_go" id="95">添加</string>
     <string name="lists_add_lists_name" id="96">姓名</string>
-    <string name="settings_general" id="97">一般的</string>
+    <string name="settings_general" id="97">常规</string>
     <string name="settings_accent_colour" id="98">强调色</string>
     <string name="settings_shapes_mode" id="99">形状模式</string>
-    <string name="settings_shapes_mode_yes" id="100">在</string>
-    <string name="settings_shapes_mode_no" id="101">离开</string>
+    <string name="settings_shapes_mode_yes" id="100">开</string>
+    <string name="settings_shapes_mode_no" id="101">关</string>
     <string name="settings_language" id="102">语言</string>
     <string name="original" id="103">默认</string>
     <string name="blue" id="104">蓝色</string>
-    <string name="green" id="105">绿色的</string>
-    <string name="orange" id="106">橘子</string>
-    <string name="yellow" id="107">原版的</string>
+    <string name="green" id="105">绿色</string>
+    <string name="orange" id="106">橙色</string>
+    <string name="yellow" id="107">黄色</string>
     <string name="teal" id="108">蓝绿色</string>
     <string name="violet" id="109">紫色</string>
-    <string name="pink" id="110">粉色的</string>
+    <string name="pink" id="110">粉色</string>
     <string name="lightBlue" id="111">浅蓝</string>
-    <string name="red" id="112">红色的</string>
+    <string name="red" id="112">红色</string>
     <string name="lime" id="113">酸橙</string>
     <string name="crimson" id="114">赤红</string>
-    <string name="ab">阿布哈兹人</string>
-    <string name="aa">远方</string>
-    <string name="af">南非语</string>
-    <string name="ak">阿寒</string>
+    <string name="ab">阿布哈兹语</string>
+    <string name="aa">阿法尔语</string>
+    <string name="af">南非公用荷兰语</string>
+    <string name="ak">阿肯语</string>
     <string name="sq">阿尔巴尼亚语</string>
     <string name="am">阿姆哈拉语</string>
-    <string name="ar">阿拉伯</string>
-    <string name="an">阿拉贡人</string>
-    <string name="hy">亚美尼亚人</string>
+    <string name="ar">阿拉伯语</string>
+    <string name="an">阿拉贡语</string>
+    <string name="hy">亚美尼亚语</string>
     <string name="as">阿萨姆语</string>
-    <string name="av">阿瓦里奇</string>
-    <string name="ae">Avestan</string>
-    <string name="ay">艾马拉</string>
-    <string name="az">阿塞拜疆</string>
-    <string name="bm">班巴拉</string>
-    <string name="ba">巴什基尔</string>
-    <string name="eu">巴斯克</string>
+    <string name="av">阿瓦尔语</string>
+    <string name="ae">阿维斯陀语</string>
+    <string name="ay">艾马拉语</string>
+    <string name="az">阿塞拜疆语</string>
+    <string name="bm">班巴拉语</string>
+    <string name="ba">巴什基尔语</string>
+    <string name="eu">巴斯克语</string>
     <string name="be">白俄罗斯语</string>
-    <string name="bn">孟加拉</string>
-    <string name="bh">比哈里语</string>
-    <string name="bi">比斯拉马</string>
-    <string name="bs">波斯尼亚人</string>
-    <string name="br">布列塔尼</string>
+    <string name="bn">孟加拉语</string>
+    <string name="bh">比哈尔语</string>
+    <string name="bi">比斯拉马语</string>
+    <string name="bs">波斯尼亚语</string>
+    <string name="br">布列塔尼语</string>
     <string name="bg">保加利亚语</string>
-    <string name="my">缅甸人</string>
-    <string name="ca">巴伦西亚加泰罗尼亚语</string>
-    <string name="km">高棉中央</string>
-    <string name="ch">查莫罗</string>
-    <string name="ce">车臣</string>
-    <string name="ny">Chichewa，Chewa，Nyanja</string>
+    <string name="my">缅甸语</string>
+    <string name="ca">加泰罗尼亚语</string>
+    <string name="km">中部高棉语</string>
+    <string name="ch">查莫罗语</string>
+    <string name="ce">车臣语</string>
+    <string name="ny">齐切瓦语</string>
     <string name="zh">中文</string>
     <string name="cu">教会斯拉夫语，老保加利亚语，老教会斯拉夫语</string>
-    <string name="cv">楚瓦什</string>
+    <string name="cv">楚瓦什语</string>
     <string name="kw">康沃尔语</string>
-    <string name="co">科西嘉人</string>
-    <string name="cr">克里</string>
+    <string name="co">科西嘉语</string>
+    <string name="cr">克里语</string>
     <string name="hr">克罗地亚语</string>
-    <string name="cs">捷克文</string>
-    <string name="da">丹麦文</string>
-    <string name="dv">Divehi，Dhivehi，马尔代夫</string>
+    <string name="cs">捷克语</string>
+    <string name="da">丹麦语</string>
+    <string name="dv">迪维西语</string>
     <string name="nl">荷兰语，佛兰芒语</string>
-    <string name="dz">宗卡</string>
+    <string name="dz">宗喀语</string>
     <string name="en">英语</string>
     <string name="eo">世界语</string>
     <string name="et">爱沙尼亚语</string>
-    <string name="ee">母羊</string>
+    <string name="ee">埃维语</string>
     <string name="fo">法罗语</string>
-    <string name="fj">斐济人</string>
-    <string name="fi">芬兰</string>
+    <string name="fj">斐济语</string>
+    <string name="fi">芬兰语</string>
     <string name="fr">法语</string>
-    <string name="ff">富拉</string>
+    <string name="ff">富拉语</string>
     <string name="gd">盖尔语，苏格兰盖尔语</string>
-    <string name="gl">加利西亚人</string>
-    <string name="lg">甘达</string>
-    <string name="ka">格鲁吉亚人</string>
+    <string name="gl">加利西亚语</string>
+    <string name="lg">卢干达语</string>
+    <string name="ka">格鲁吉亚语</string>
     <string name="de">德语</string>
-    <string name="ki">菊雨菊雨</string>
+    <string name="ki">基库尤语</string>
     <string name="el">希腊文（现代）</string>
-    <string name="kl">格陵兰岛（Kalaallisut）</string>
-    <string name="gn">瓜拉尼</string>
+    <string name="kl">格陵兰语（Kalaallisut）</string>
+    <string name="gn">瓜拉尼语</string>
     <string name="gu">古吉拉特语</string>
-    <string name="ht">海地，海地克里奥尔语</string>
-    <string name="ha">豪萨</string>
+    <string name="ht">海地语，海地克里奥尔语</string>
+    <string name="ha">豪萨语</string>
     <string name="he">希伯来语</string>
-    <string name="hz">赫雷罗</string>
+    <string name="hz">赫雷罗语</string>
     <string name="hi">印地语</string>
-    <string name="ho">希里·莫图（Hiri Motu）</string>
-    <string name="hu">匈牙利</string>
-    <string name="is">冰岛的</string>
-    <string name="io">我愿意</string>
-    <string name="ig">伊博</string>
-    <string name="id">印度尼西亚</string>
+    <string name="ho">希里木托语</string>
+    <string name="hu">匈牙利语</string>
+    <string name="is">冰岛语</string>
+    <string name="io">伊多语</string>
+    <string name="ig">伊博语</string>
+    <string name="id">印尼语</string>
     <string name="ia">Interlingua（国际辅助语言协会）</string>
-    <string name="ie">中介语</string>
-    <string name="iu">因纽特人</string>
-    <string name="ik">因纽皮克</string>
-    <string name="ga">爱尔兰人</string>
-    <string name="it">义大利文</string>
-    <string name="ja">日文</string>
-    <string name="jv">爪哇</string>
+    <string name="ie">西方国际语</string>
+    <string name="iu">因纽特语</string>
+    <string name="ik">依努庇克语</string>
+    <string name="ga">爱尔兰语</string>
+    <string name="it">意大利语</string>
+    <string name="ja">日语</string>
+    <string name="jv">爪哇语</string>
     <string name="kn">卡纳达语</string>
-    <string name="kr">卡努里</string>
-    <string name="ks">克什米尔人</string>
+    <string name="kr">卡努里语</string>
+    <string name="ks">克什米尔语</string>
     <string name="kk">哈萨克语</string>
-    <string name="rw">Kinyarwanda</string>
-    <string name="kv">科美</string>
-    <string name="kg">金刚</string>
-    <string name="ko">韩国人</string>
-    <string name="kj">关山关山</string>
-    <string name="ku">库尔德</string>
-    <string name="ky">吉尔吉斯</string>
-    <string name="lo">老挝</string>
-    <string name="la">拉丁</string>
+    <string name="rw">卢旺达语</string>
+    <string name="kv">科米语</string>
+    <string name="kg">刚果语</string>
+    <string name="ko">韩语</string>
+    <string name="kj">宽亚玛语</string>
+    <string name="ku">库尔德语</string>
+    <string name="ky">吉尔吉斯语</string>
+    <string name="lo">老挝语</string>
+    <string name="la">拉丁语</string>
     <string name="lv">拉脱维亚语</string>
     <string name="lb">莱岑堡，卢森堡语</string>
     <string name="li">林堡语，林堡语，林堡格</string>
-    <string name="ln">林加拉</string>
+    <string name="ln">林加拉语</string>
     <string name="lt">立陶宛语</string>
-    <string name="lu">卢巴·加丹加（Luba-Katanga）</string>
+    <string name="lu">卢巴卡丹加语</string>
     <string name="mk">马其顿语</string>
-    <string name="mg">马尔加什</string>
+    <string name="mg">马拉加斯语</string>
     <string name="ms">马来语</string>
     <string name="ml">马拉雅拉姆语</string>
     <string name="mt">马耳他语</string>
-    <string name="gv">曼克斯</string>
-    <string name="mi">毛利人</string>
+    <string name="gv">曼克斯语</string>
+    <string name="mi">毛利语</string>
     <string name="mr">马拉地语</string>
-    <string name="mh">马歇尔人</string>
+    <string name="mh">马绍尔语</string>
     <string name="ro">摩尔多瓦语，摩尔达维亚语，罗马尼亚语</string>
-    <string name="mn">蒙</string>
-    <string name="na">瑙鲁</string>
-    <string name="nv">纳瓦霍纳瓦霍人</string>
-    <string name="nd">北恩德贝勒</string>
-    <string name="ng">恩东加</string>
-    <string name="ne">尼泊尔文</string>
-    <string name="se">北萨米</string>
-    <string name="no">挪威</string>
-    <string name="nb">挪威语Bokmål</string>
-    <string name="nn">挪威尼诺斯克</string>
-    <string name="ii">四川彝族诺苏</string>
-    <string name="oc">奥克西唐（1500后）</string>
-    <string name="oj">奥吉布瓦</string>
-    <string name="or">奥里亚</string>
-    <string name="om">奥罗莫</string>
-    <string name="os">奥塞梯，奥塞梯</string>
-    <string name="pi">帕里</string>
-    <string name="pa">旁遮普邦Panjabi</string>
-    <string name="ps">普什图语，普希图语</string>
+    <string name="mn">蒙语</string>
+    <string name="na">瑙鲁语</string>
+    <string name="nv">纳瓦霍语</string>
+    <string name="nd">北恩德贝莱语</string>
+    <string name="ng">恩敦加语</string>
+    <string name="ne">尼泊尔语</string>
+    <string name="se">北萨米语</string>
+    <string name="no">挪威语</string>
+    <string name="nb">书面挪威语</string>
+    <string name="nn">新挪威语</string>
+    <string name="ii">彝语北部方言</string>
+    <string name="oc">奥克语（1500后）</string>
+    <string name="oj">奥吉布瓦语</string>
+    <string name="or">奥里亚语</string>
+    <string name="om">奥罗莫语</string>
+    <string name="os">奥塞梯语</string>
+    <string name="pi">巴利语</string>
+    <string name="pa">旁遮普语</string>
+    <string name="ps">普什图语</string>
     <string name="fa">波斯语</string>
     <string name="pl">波兰语</string>
     <string name="pt">葡萄牙语</string>
-    <string name="qu">盖丘亚族</string>
-    <string name="rm">罗曼什</string>
-    <string name="rn">润迪</string>
+    <string name="qu">克丘亚语</string>
+    <string name="rm">罗曼什语</string>
+    <string name="rn">基隆迪语</string>
     <string name="ru">俄语</string>
-    <string name="sm">萨摩亚人</string>
-    <string name="sg">三乡</string>
+    <string name="sm">萨摩亚语</string>
+    <string name="sg">桑戈语</string>
     <string name="sa">梵文</string>
-    <string name="sc">撒丁岛</string>
-    <string name="sr">塞尔维亚</string>
-    <string name="sn">庄名</string>
-    <string name="sd">信地</string>
-    <string name="si">僧伽罗语僧伽罗语</string>
-    <string name="sk">斯洛伐克文</string>
-    <string name="sl">斯洛文尼亚文</string>
-    <string name="so">索马里</string>
-    <string name="st">南索托</string>
-    <string name="nr">南恩德贝勒</string>
+    <string name="sc">撒丁语</string>
+    <string name="sr">塞尔维亚语</string>
+    <string name="sn">绍纳语</string>
+    <string name="sd">信德语</string>
+    <string name="si">僧伽罗语</string>
+    <string name="sk">斯洛伐克语</string>
+    <string name="sl">斯洛文尼亚语</string>
+    <string name="so">索马里语</string>
+    <string name="st">南索托语</string>
+    <string name="nr">南恩德贝勒语</string>
     <string name="es">西班牙语，卡斯蒂利亚语</string>
-    <string name="su">dan语</string>
+    <string name="su">巽他语</string>
     <string name="sw">斯瓦希里语</string>
-    <string name="ss">斯瓦蒂</string>
-    <string name="sv">瑞典</string>
+    <string name="ss">斯瓦蒂语</string>
+    <string name="sv">瑞典语</string>
     <string name="tl">他加禄语</string>
-    <string name="ty">大溪地</string>
-    <string name="tg">塔吉克</string>
+    <string name="ty">大溪地语</string>
+    <string name="tg">塔吉克语</string>
     <string name="ta">泰米尔语</string>
-    <string name="tt">塔塔尔族</string>
+    <string name="tt">鞑靼语</string>
     <string name="te">泰卢固语</string>
-    <string name="th">泰国</string>
-    <string name="bo">藏</string>
-    <string name="ti">提格里尼亚</string>
-    <string name="to">汤加（汤加群岛）</string>
-    <string name="ts">特松加</string>
-    <string name="tn">茨瓦纳</string>
-    <string name="tr">土耳其</string>
-    <string name="tk">土库曼人</string>
-    <string name="tw">特威</string>
-    <string name="ug">维吾尔族维吾尔族</string>
-    <string name="uk">乌克兰</string>
+    <string name="th">泰语</string>
+    <string name="bo">藏语</string>
+    <string name="ti">提格雷尼亚语</string>
+    <string name="to">汤加语（汤加群岛）</string>
+    <string name="ts">聪加语</string>
+    <string name="tn">茨瓦纳语</string>
+    <string name="tr">土耳其语</string>
+    <string name="tk">土库曼语</string>
+    <string name="tw">契维语</string>
+    <string name="ug">维吾尔语</string>
+    <string name="uk">乌克兰语</string>
     <string name="ur">乌尔都语</string>
     <string name="uz">乌兹别克语</string>
-    <string name="ve">文达</string>
-    <string name="vi">越南文</string>
-    <string name="vo">Volap_k</string>
-    <string name="wa">瓦隆</string>
+    <string name="ve">文达语</string>
+    <string name="vi">越南语</string>
+    <string name="vo">沃拉普克语</string>
+    <string name="wa">瓦隆语</string>
     <string name="cy">威尔士语</string>
     <string name="fy">西弗里斯兰语</string>
-    <string name="wo">沃洛夫</string>
-    <string name="xh">科萨</string>
+    <string name="wo">沃洛夫语</string>
+    <string name="xh">科萨语</string>
     <string name="yi">意第绪语</string>
     <string name="yo">约鲁巴语</string>
-    <string name="za">庄壮</string>
-    <string name="zu">祖鲁族</string>
+    <string name="za">壮语</string>
+    <string name="zu">祖鲁语</string>
     <string name="appintro1_description" id="299">一个免费的开源佛陀行情应用程序</string>
     <string name="appintro2_title" id="300">超过230条报价</string>
     <string name="appintro2_description" id="301">佛陀引用了230多个报价。 \n向下滑动即可刷新！</string>
@@ -264,150 +264,150 @@
     <string name="cancel" id="308">取消</string>
     <string name="confirm" id="309">确认</string>
     <string name="quote_1" id="310">训练有素的头脑带来幸福</string>
-    <string name="quote_2" id="311">指出错误和缺陷并斥恶的好朋友应受到尊重，就像他揭示了隐藏的宝藏的秘密一样</string>
-    <string name="quote_3" id="312">在一个人中进行一场伟大的人类革命将有助于实现一个国家命运的改变，甚至可以使全人类的命运发生改变</string>
-    <string name="quote_4" id="313">一个男人问释迦牟尼佛，“我要幸福。”佛陀说：“先删除“我”，即自我，然后删除“想要”，即欲望。现在你只剩下“幸福”</string>
-    <string name="quote_5" id="314">一个人不被称为明智的，因为他会说话又说话。但是如果他和平，充满爱心，无所畏惧，那么他实际上就是明智的人</string>
-    <string name="quote_6" id="315">心灵因命运多变而心动</string>
-    <string name="quote_7" id="316">一个人，无论形势多么绝望，都会给别人带来希望，是一个真正的领导者</string>
-    <string name="quote_8" id="317">对他人的真正富有同情心的态度不会改变，即使他们的举止负面或伤害您</string>
+    <string name="quote_2" id="311">指出错误和不完美，谴责邪恶的好朋友应该受到尊重，就像他揭示了隐藏宝藏的秘密那样</string>
+    <string name="quote_3" id="312">一场发生在一个人身上的伟大的人类革命，将有助改变一个国家的命运，甚至能够改变全人类的命运</string>
+    <string name="quote_4" id="313">一个人问乔达摩：我要幸福。佛陀说：先去掉“我”，那是“自我”，然后去掉“想要”，那是“欲望”。瞧，现在只剩下“幸福”了</string>
+    <string name="quote_5" id="314">一个人不是因为他说个不停，才被称为智者；但若他和平，充满爱心，无所畏惧，那么他实际上就是明智的人</string>
+    <string name="quote_6" id="315">一颗不受命运无常干扰的心，从悲伤中解脱，从烦恼中解脱，从恐惧中解脱——这是最大的福气</string>
+    <string name="quote_7" id="316">一个无论在多么绝望的情况下，都能给别人带来希望的人，才是真正的领导者</string>
+    <string name="quote_8" id="317">真正对他人悲悯的态度不会因他人行为消极或伤害了你而改变</string>
     <string name="quote_9" id="318">最重要的是，不要失去行走的欲望</string>
-    <string name="quote_10" id="319">\'所有有条件的事物都是无常的\'-当人们以智慧看到这一点时，就摆脱了苦难</string>
-    <string name="quote_11" id="320">所有经验都先于思想，以思想为主人，由思想创造</string>
-    <string name="quote_12" id="321">由于存在依赖关系，并非所有现象都固有地不存在。由于被依赖推导，所有现象都不固有地存在</string>
-    <string name="quote_13" id="322">所有的苦难都是无知造成的。人们自私地追求自己的幸福或满足感时，会给他人带来痛苦</string>
-    <string name="quote_14" id="323">所有人都因暴力而战栗；所有人都害怕死亡。把自己放在另一个地方，一个人不应该杀死也不应该使另一个人杀死</string>
-    <string name="quote_15" id="324">所有的错误行为都是由于心智而产生的。如果思想转变了，会继续犯错误吗？</string>
-    <string name="quote_16" id="325">开放的心是开放的思想</string>
-    <string name="quote_17" id="326">通过特殊的洞察力进行分析并意识到内在存在的缺失构成了对无价值者的理解</string>
-    <string name="quote_18" id="327">愤怒是您内心平静的最终破坏者</string>
-    <string name="quote_19" id="328">愤怒或仇恨就像渔民的钩子。对我们来说，确保我们不会被它抓住是非常重要的</string>
-    <string name="quote_20" id="329">只要心中怀有怨恨的念头，愤怒就永远不会消失。一旦忘记怨恨的念头，愤怒就会消失</string>
+    <string name="quote_10" id="319">“一切有条件的事物都是无常的”—— 用智慧看到这一点时，一个人就远离了苦难</string>
+    <string name="quote_11" id="320">所有体验都是由心引导的，心是它们的主人，它们由心创造</string>
+    <string name="quote_12" id="321">所有现象不因互为依存而固有存在。所有现象不因独立地归因而固有存在</string>
+    <string name="quote_13" id="322">一切苦难都是无知造成的。人们自私地追求自己的幸福或满足而给他人带来痛苦</string>
+    <string name="quote_14" id="323">暴力令人颤栗，死亡令人恐惧。设身处地为他人着想，一个人不应该杀人，也不应该让他人杀人</string>
+    <string name="quote_15" id="324">一切恶因心而起。心若转了，恶还能存在吗？</string>
+    <string name="quote_16" id="325">开放的心就是开放的思想</string>
+    <string name="quote_17" id="326">通过特殊的洞察力分析并认识到内在存在的缺失构成了对无符号的理解</string>
+    <string name="quote_18" id="327">愤怒是内心平静的终极破坏者</string>
+    <string name="quote_19" id="328">愤怒或仇恨就像渔夫的鱼钩。对我们来说，确保不被它抓住是非常重要的</string>
+    <string name="quote_20" id="329">只要心中存有怨念，愤怒就永远不会消失。当怨恨的想法被遗忘时，愤怒就会消失</string>
     <string name="quote_21" id="330">今天认真做必须做的事情。谁知道？明天，死亡来了</string>
-    <string name="quote_22" id="331">我也是，这些也是。同样，我也是。与自己比较，既不杀人也不杀人</string>
+    <string name="quote_22" id="331">我是人，别人也是人。推己及人，别杀人也别让其他人杀人</string>
     <string name="quote_23" id="332">犹如鲜妙花，色美而无香，如是说善语，彼不行无果</string>
-    <string name="quote_24" id="333">莲花在水中出生，在水中生长，从水中升起，站在它上面而未受污染，所以我出生在世界上，在世界上长大，克服了世界，在世界上未受污染</string>
-    <string name="quote_25" id="334">因为荷叶上的水珠不像红色百合上的水那样附着，所以贤哲不附着于所见，所闻或所感知</string>
-    <string name="quote_26" id="335">由于战场上的大象能抵御四处弓箭射出的箭，即使如此，我也要忍受虐待</string>
+    <string name="quote_24" id="333">莲花生于水中，长于水中，从水中升起，不受玷污地立于水上；我生在世上，长在世上，征服了世界，不被这个世界玷污地活着</string>
+    <string name="quote_25" id="334">如水珠不依附荷叶，水不依附红百合，圣人也不执着于所见所闻所感</string>
+    <string name="quote_26" id="335">就像战场上的大象经得起四面八方的箭矢，我也应经得起凌辱</string>
     <string name="quote_27" id="336">依恋导致痛苦</string>
-    <string name="quote_28" id="337">注意是慷慨的最稀有和最纯净的形式</string>
-    <string name="quote_29" id="338">给自己当灯。用解放运动锻炼自己</string>
-    <string name="quote_30" id="339">高度了解当下</string>
-    <string name="quote_31" id="340">尽可能保持友善。永远有可能</string>
-    <string name="quote_32" id="341">保持警惕;提防负面思想</string>
-    <string name="quote_33" id="342">做你自己。这是迈向超越自我的第一步</string>
-    <string name="quote_34" id="343">因为我们都对爱有着相同的需求，所以有可能觉得我们遇到的任何人在任何情况下都是兄弟姐妹</string>
+    <string name="quote_28" id="337">关注是最稀有、最纯粹的慷慨</string>
+    <string name="quote_29" id="338">做自己的一盏灯。用解脱来实现你的解脱</string>
+    <string name="quote_30" id="339">活在当下</string>
+    <string name="quote_31" id="340">尽可能善待他人。总是有可能的</string>
+    <string name="quote_32" id="341">保持警惕；提防消极想法</string>
+    <string name="quote_33" id="342">做你自己。这是成为更好的自己的第一步</string>
+    <string name="quote_34" id="343">因为我们都对爱有着相同的需求，我们可能会觉得在任何情况下遇到的任何人都是我们的兄弟姐妹</string>
     <string name="quote_35" id="344">因为你还活着，所以一切皆有可能</string>
-    <string name="quote_36" id="345">更好的是一个人住。没有傻瓜的团契。独自生活，不作恶；像大象的大象一样无忧无虑</string>
+    <string name="quote_36" id="345">独自生活更好；不会结交傻瓜。独居，不作恶；像大象森林里的大象一样无忧无虑</string>
     <string name="quote_37" id="346">活一天看到事物的兴衰，胜过活一百年不见事物的兴衰</string>
-    <string name="quote_38" id="347">一个有用的词胜过一千个无用的词，听到它就能获得和平。</string>
-    <string name="quote_39" id="348">遵守公义的律法比敬拜神更好</string>
-    <string name="quote_40" id="349">通过深深地活在当下，我们可以更好地了解过去，并为更美好的未来做准备</string>
-    <string name="quote_41" id="350">冷静的头脑会带来内在的力量和自信，因此这对于保持健康非常重要</string>
-    <string name="quote_42" id="351">停止作恶，培养善良，净化心灵：这是佛陀的教导</string>
-    <string name="quote_43" id="352">选择保持乐观，感觉会更好</string>
-    <string name="quote_44" id="353">通过温柔来征服愤怒，通过仁慈来征服他人，通过慷慨而贪婪，并通过真理来弥补虚假</string>
-    <string name="quote_45" id="354">用非愤怒征服愤怒。用善胜恶。慷慨地征服卑鄙。用真理征服不诚实</string>
+    <string name="quote_38" id="347">一句有用的话，听了能获得平静，胜过千言万语。</string>
+    <string name="quote_39" id="348">顺服公义的律法胜过敬拜神</string>
+    <string name="quote_40" id="349">深刻地活在当下，我们可以更好地理解过去，我们可以为更好的未来做准备</string>
+    <string name="quote_41" id="350">平静的心态带来内心的力量和自信，这对健康非常重要</string>
+    <string name="quote_42" id="351">戒恶、修善、净心，这是佛陀的教导</string>
+    <string name="quote_43" id="352">选择乐观，感觉会更好</string>
+    <string name="quote_44" id="353">以温和征服愤怒，以仁慈征服无情，以慷慨征服贪婪，以真理征服虚伪</string>
+    <string name="quote_45" id="354">用不生气来征服愤怒。以善治恶。用慷慨战胜吝啬。用真理战胜不诚实</string>
     <string name="quote_46" id="355">以不生气来征服生气的人；以善治恶；用慷慨征服吝啬的人，用说真话征服说谎的人</string>
     <string name="quote_47" id="356">知足是最大的财富</string>
-    <string name="quote_48" id="357">充满喜乐！保卫您的想法！</string>
+    <string name="quote_48" id="357">不要无节制地欢愉！守护好你的想法！</string>
     <string name="quote_49" id="358">令人不愉快的是公众不喜悦的森林。那里没有激情，没有寻求感官享受</string>
-    <string name="quote_50" id="359">谈论佛法不是坚持的。通过与佛法和谐相处来维护佛法……</string>
-    <string name="quote_51" id="360">不要把注意力放在别人做或不做的事情上；把它交给你做或不做的事</string>
-    <string name="quote_52" id="361">不要高估收到的内容，也不要嫉妒他人。羡慕别人的人没有安心</string>
+    <string name="quote_50" id="359">佛法不是靠讲来维护的。与佛法和谐相处，才能维护它……</string>
+    <string name="quote_51" id="360">不要把注意力放在别人做了或没做成什么上；把注意力放在你做了或没做成什么上</string>
+    <string name="quote_52" id="361">不要高估你所得到的，也不要羡慕别人。嫉妒别人的人得不到心灵的平静</string>
     <string name="quote_53" id="362">不要想宇宙有多大，只会伤到你的头</string>
     <string name="quote_54" id="363">一滴一滴地把水罐装满了。同样，聪明的人，一点一点地收集它，以善充盈自己</string>
-    <string name="quote_55" id="364">欲望产生了情感，因此产生了幻觉</string>
-    <string name="quote_56" id="365">耐力是最困难的学科之一，但对于那些坚持不懈的人来说，最后的胜利是</string>
-    <string name="quote_57" id="366">即使坚硬的岩石被风吹动，明智的人也因赞美或责备而动摇</string>
-    <string name="quote_58" id="367">即使事情没有达到您的预期，也不要灰心或放弃。继续前进的人将最终获胜</string>
+    <string name="quote_55" id="364">情感源于欲望，因此产生幻想</string>
+    <string name="quote_56" id="365">忍耐是最困难的训练之一，但最终的胜利属于坚韧不拔的人</string>
+    <string name="quote_57" id="366">就像坚固的岩石不为风所动摇，智慧的人也不为赞扬或责备所动摇</string>
+    <string name="quote_58" id="367">即使事情没像你预期的那样发展，也不要灰心或放弃。不断进取的人最终会取得胜利</string>
     <string name="quote_59" id="368">一切都是多变的，一切都会出现和消失，除非一个人超越了生与死的痛苦，否则没有幸福的和平</string>
-    <string name="quote_60" id="369">感觉像刮风的天空中的云彩一样来来去去。有意识的呼吸是我的锚</string>
-    <string name="quote_61" id="370">穿越更深的海岸的人很少。其他人只是在这边跑来跑去</string>
-    <string name="quote_62" id="371">遵循崇高道路就像进入一个黑暗的房间，手里拿着光。黑暗将被清除，房间将充满光明</string>
+    <string name="quote_60" id="369">情绪像刮风的天空中的云彩一样来来去去。有意识的呼吸是我的锚</string>
+    <string name="quote_61" id="370">很少有人横渡到更远的海岸。多数人只是在这一边的河岸上跑来跑去</string>
+    <string name="quote_62" id="371">走圣道，就像手拿一盏灯，走进一间黑屋子；黑暗将被清除，房间将充满光明</string>
     <string name="quote_63" id="372">为了大多数人的利益，为了大多数人的幸福，出于对世界的悲悯</string>
-    <string name="quote_64" id="373">友谊是消除仇恨，和平的唯一保证</string>
-    <string name="quote_65" id="374">一棵枯树从一棵枯树上绽放</string>
-    <string name="quote_66" id="375">付出，即使你只有一点点</string>
-    <string name="quote_67" id="376">在战斗中，比只征服一万个男人的人还强。比别人更好地征服自己</string>
-    <string name="quote_68" id="377">我们联系的真相更重要</string>
-    <string name="quote_69" id="378">幸福主要来自我们自己的态度，而不是来自外部因素</string>
-    <string name="quote_70" id="379">在这个世界上，仇恨永远不会被仇恨所掩盖。仅仅通过非仇恨就可以实现仇恨。这是法律的永恒</string>
-    <string name="quote_71" id="380">他不需要那些知道未造的人，会中断重生，会毁掉任何有好有坏的机会，并抛弃所有欲望的信仰。他确实是终极男人</string>
-    <string name="quote_72" id="381">他不一样，他也不是另一个</string>
-    <string name="quote_73" id="382">能够立即解决愤怒的人，因为及时的解毒剂将检查蛇毒，并迅速蔓延开来-这样的和尚放弃了这里和其他地方，就像蛇掉了破旧的皮肤</string>
-    <string name="quote_74" id="383">坚定不移地走在八重高贵道路上的他一定会到达涅rv</string>
+    <string name="quote_64" id="373">谊是医治仇恨的唯一良药，是和平的唯一保证</string>
+    <string name="quote_65" id="374">一朵花从一棵枯树绽放</string>
+    <string name="quote_66" id="375">给予，即使你所有的并不多</string>
+    <string name="quote_67" id="376">在战斗中，比征服一千万人的人更伟大的，是征服一个人的人——他自己。战胜别人，不如战胜自己</string>
+    <string name="quote_68" id="377">更强的定力是我们联系的真相</string>
+    <string name="quote_69" id="378">幸福主要来自我们自己的态度，而不是外部因素</string>
+    <string name="quote_70" id="379">在这个世界上，仇恨永远不会被仇恨所平息。只有不仇恨才能平息仇恨。这是永恒的法则</string>
+    <string name="quote_71" id="380">知道未受造的人，断绝了重生的人，毁灭了一切行善作恶的机会，抛弃了一切欲望的人，不需要信仰。他确实是一个终极的人</string>
+    <string name="quote_72" id="381">他不是原来的那个人，也不是另一个人</string>
+    <string name="quote_73" id="382">能在怒火升起时及时克制它的人，如及时解毒剂能阻止迅速蔓延的蛇毒——这样的僧侣放弃了这里和彼岸，就像蛇蜕去了破皮</string>
+    <string name="quote_74" id="383">坚持不懈地走八正道，就一定能到达涅槃</string>
     <string name="quote_75" id="384">健康是最大的礼物，知足是最大的财富，忠诚是最好的关系</string>
-    <string name="quote_76" id="385">对于一个一无所有的人来说，这是多么幸福。智慧获得者就是一无所有的人。看到他的痛苦，一个有某些东西的人，一个与人融为一体的人</string>
-    <string name="quote_77" id="386">无论您读了多少圣洁的话，无论您说了多少话，如果您不对他们采取行动，他们会对您有什么好处？</string>
-    <string name="quote_78" id="387">我与世界无异；而是这个世界与我发生争执</string>
+    <string name="quote_76" id="385">一无所有的人多么幸福。获得智慧的人是一无所有的人。看他受苦，一个有某些东西的人，一个与人心灵相连的人</string>
+    <string name="quote_77" id="386">不管你读了多少圣言，说了多少圣言，如果你不付诸行动，它们对你有什么好处\?</string>
+    <string name="quote_78" id="387">我不与世界争辩；是世界与我争辩</string>
     <string name="quote_79" id="388">我将在雨中生活，冬天在此处，夏天在别处，愚人若有所思，全不知死亡临近</string>
-    <string name="quote_80" id="389">我不会看别人的碗里寻找错误的意图：要观察的训练</string>
-    <string name="quote_81" id="390">如果一个人涌入河里，肿胀而迅速地流淌，被水流带走了—他如何帮助别人渡过？</string>
-    <string name="quote_82" id="391">如果旅行者没有遇到比自己更好或更平等的人，请让他坚定地保持孤独的旅程。没有傻瓜的陪伴</string>
+    <string name="quote_80" id="389">我不会盯着别人的碗找毛病：一种需要遵循的训练</string>
+    <string name="quote_81" id="390">如果一个人掉进河里，河水涨得很快，被激流卷走了，他怎么能帮助别人过河呢\?</string>
+    <string name="quote_82" id="391">如果一个旅行者没有遇到比他更好的人，或与他相当的人，就让他坚定地走他的孤独之旅；不与傻瓜为伴</string>
     <string name="quote_83" id="392">如果有什么值得做的，全心全意去做</string>
-    <string name="quote_84" id="393">如果对现象的无私进行了分析，并且进行了这种分析，则会导致获得必杀技的效果。没有其他原因可以使和平</string>
+    <string name="quote_84" id="393">如果对现象的无我进行分析，并且如果培养这种分析，将造成获得涅槃的效果。没有其他能使人获得内心平静</string>
     <string name="quote_85" id="394">如果我们在别人需要帮助时未能照顾他们，谁会照顾我们？</string>
-    <string name="quote_86" id="395">如果一个人以纯洁的心态说话或行动，幸福就如同永不消逝的影子跟随着他们</string>
-    <string name="quote_87" id="396">如果您能树立正确的态度，那么敌人就是您最好的精神老师，因为他们的存在为您提供了增强和发展您的宽容，耐心和理解的机会</string>
-    <string name="quote_88" id="397">如果您找不到在精神道路上支持您的人，请独自行走没有成熟的人没有伴侣</string>
-    <string name="quote_89" id="398">如果您知道我对捐赠的了解，那么您就不会在不以某种方式分享的情况下让一顿饭过去</string>
-    <string name="quote_90" id="399">如果您爱一个人，却很少让自己与他人相处，那不是真正的爱</string>
-    <string name="quote_91" id="400">如果您想让别人快乐，请练习同情心。如果你想快乐，请实践同情心</string>
-    <string name="quote_92" id="401">在生活中，我们无法避免改变，我们无法避免损失。自由和幸福来自我们通过变革而获得的灵活性和轻松性</string>
-    <string name="quote_93" id="402">为了采取积极行动，我们必须在这里发展积极的愿景</string>
-    <string name="quote_94" id="403">没有同情谁的人：把他当作流浪者</string>
-    <string name="quote_95" id="404">诱使他以邪恶的方式而不是敌人或敌人的是他自己的思想</string>
-    <string name="quote_96" id="405">很容易看到别人的缺点，但是很难看到自己的缺点。一个显示风吹拂的谷壳中的另一个的错误，但是一个狡猾的赌徒隐藏自己的骰子，一个人隐藏了自己的错误</string>
-    <string name="quote_97" id="406">在没有悔恨的人中，快乐是从事物的本质中产生的</string>
-    <string name="quote_98" id="407">在我们的日常生活中，有必要将学习产生的知识与真诚的实践相结合。这两个必须在一起</string>
-    <string name="quote_99" id="408">富有同情心是不够的，我们必须采取行动</string>
-    <string name="quote_100" id="409">有可能在充满爱的状态下生活24小时</string>
-    <string name="quote_101" id="410">尽可能产生良好的态度，良好的心态非常重要。由此，您自己和他人的短期和长期幸福都会来临</string>
-    <string name="quote_102" id="411">这是你的路，还有你自己的路，其他人可能会和你一起走，但没人能为你走。无论您选择哪种方式，都可以真正走下去</string>
-    <string name="quote_103" id="412">喜悦不是通过拥有或所有权，而是通过睿智而充满爱心</string>
-    <string name="quote_104" id="413">就像坚硬的岩石不会被暴风雨撼动一样，明智的人也不会受到赞美或责备的影响</string>
-    <string name="quote_105" id="414">就像大海洋只有一种味道，盐的味道一样，这门教学和学科也只有一种味道，解放的味道</string>
-    <string name="quote_106" id="415">从裂缝和缝隙中的河流中知道：小河道中的水流嘈杂，大河中的水无声。任何未满的东西都会发出声音。装满的东西都是安静的</string>
-    <string name="quote_107" id="416">清楚地知道什么导致您前进，什么阻碍您前进，并选择通往智慧的道路</string>
-    <string name="quote_108" id="417">从水中学习：大声飞溅小溪，但海洋深处平静</string>
-    <string name="quote_109" id="418">抛开对玫瑰色未来的消极梦想。幸福的能量存在于如今扎根于现实土壤中的生活中</string>
-    <string name="quote_110" id="419">让万物包容一切的想法归您所有</string>
-    <string name="quote_111" id="420">让他不要欺骗别人，也不要鄙视任何人。生气或生病会让他不想再生病</string>
-    <string name="quote_112" id="421">不要让别人发现缺点。不要让任何人看到别人的遗漏和委托。但是让一个人看到自己的行为，既完成又完成</string>
-    <string name="quote_113" id="422">放手给我们自由，而自由是幸福的唯一条件。如果我们内心仍然坚持任何事情-愤怒，焦虑或财产-我们将无法自由</string>
-    <string name="quote_114" id="423">生命是一条永远流淌的河流。不要紧紧抓住东西。努力工作</string>
-    <string name="quote_115" id="424">生活只有当下</string>
-    <string name="quote_116" id="425">那些没有实践所教知识的人的话就像一朵充满色彩但缺乏香味的可爱花朵</string>
-    <string name="quote_117" id="426">就像有人指着宝藏一样，聪明的人会看到你的缺点并指出它们。与这样的圣人相关</string>
-    <string name="quote_118" id="427">一个人一点一点地变得邪恶，因为水壶里滴满了水滴。一个人渐渐变得好起来，因为水壶里滴满了水滴</string>
+    <string name="quote_86" id="395">如果一个人以纯洁的心态说话或行动，幸福就会如同永不消逝的影子跟随他们</string>
+    <string name="quote_87" id="396">如果你能树立正确的态度，你的敌人就是你最好的精神导师，因为他们的存在为你提供了提升和发展宽容、耐心和理解的机会</string>
+    <string name="quote_88" id="397">如果你找不到在精神道路上支持你的人，那就独自走吧。不与不成熟的人为伴</string>
+    <string name="quote_89" id="398">如果你认识到我所了解的给予的力量，你不会不以某种方式分享一顿饭就让它过去</string>
+    <string name="quote_90" id="399">如果你爱一个人，却很少陪伴在身边，那不是真爱</string>
+    <string name="quote_91" id="400">如果你想让别人快乐，学会怜悯。如果你想自己快乐，学会怜悯</string>
+    <string name="quote_92" id="401">在生活中我们不能避免改变，我们不能避免损失。自由和幸福存在于我们应对变化的灵活和轻松之中</string>
+    <string name="quote_93" id="402">要采取积极的行动，我们必须树立积极的眼光</string>
+    <string name="quote_94" id="403">对众生无怜悯之人是被抛弃的人</string>
+    <string name="quote_95" id="404">诱使一个人走上邪恶道路的是他自己的心，而不是敌人</string>
+    <string name="quote_96" id="405">看到别人的缺点容易，看到自己的缺点难。暴露别人的缺点，就像风吹掉谷壳一样；但隐藏自己的缺点，就像狡猾赌徒隐藏骰子一样</string>
+    <string name="quote_97" id="406">快乐出现在没有悔恨的人身上，这是事物的本质</string>
+    <string name="quote_98" id="407">有必要把学习中获得的知识与日常生活中的实践结合起来。这两者必须相辅相成</string>
+    <string name="quote_99" id="408">光有同情心是不够的，我们必须行动起来</string>
+    <string name="quote_100" id="409">24 小时生活在爱的状态中是有可能的</string>
+    <string name="quote_101" id="410">尽可能养成良好的态度、善良的心是非常重要的。由此，自身和他人的短期和长远的幸福将会到来</string>
+    <string name="quote_102" id="411">这是你自己的路，是你一个人的路，别人可能会和你一起走，但没有人能替你走。无论你选择哪条路，都要真正地走下去</string>
+    <string name="quote_103" id="412">快乐不是来自占有或拥有，而是来自一颗智慧和有爱的心</string>
+    <string name="quote_104" id="413">正如坚固的岩石不会被风暴动摇，智者也不会被赞扬或指责影响</string>
+    <string name="quote_105" id="414">大海有一种味道，是盐的味道，这种教导和戒律也有一种味道，是解脱的味道</string>
+    <string name="quote_106" id="415">从裂缝和缝隙中的河流可知：小沟渠里的水流喧闹，大沟渠里的水流无声。不满的东西发出声音。满的安静无声</string>
+    <string name="quote_107" id="416">清楚地知道什么引导你前进，什么阻碍你前进，然后选择通向智慧的道路</string>
+    <string name="quote_108" id="417">由水可知：声音在小溪中飞溅，但海洋深处风平浪静</string>
+    <string name="quote_109" id="418">抛开对美好未来的消极幻想。幸福的能量存在于当下生活中，扎根于现实的土壤中</string>
+    <string name="quote_110" id="419">让包容众生的思想成为你的</string>
+    <string name="quote_111" id="420">不要欺瞒别人，也不要藐视任何地方的人。在愤怒或恶意时，不会希望别人恶意。</string>
+    <string name="quote_112" id="421">不要挑别人的毛病；不要看到别人的疏忽和过失。要看看自己的行为，已做的和未做的</string>
+    <string name="quote_113" id="422">放手给我们自由，而自由是幸福的唯一条件。如果我们内心仍然执着于任何东西——愤怒、焦虑或财产——我们就无法获得自由</string>
+    <string name="quote_114" id="423">生活是一条永远流淌的河流。不要抓住东西不放。努力工作</string>
+    <string name="quote_115" id="424">生活只存在于此刻</string>
+    <string name="quote_116" id="425">那些不实践他们所教导内容的人说的话，就像一朵可爱的花，色彩鲜艳，但缺乏香味</string>
+    <string name="quote_117" id="426">看到你的缺点并指出来的智者，就像指出宝藏一样的人一样。与这样一位圣人交往</string>
+    <string name="quote_118" id="427">一个人一点一点地变坏，就像水罐被水滴灌满一样；同样，一个人一点一点地变好，就像水罐被水滴灌满一样</string>
     <string name="quote_119" id="428">充分实践每一幕，好像这是你的最后一幕</string>
-    <string name="quote_120" id="429">没有“我的”的感觉，没有形成对体验的依恋</string>
-    <string name="quote_121" id="430">醒着的人夜晚漫漫；对疲倦的人而言，路途遥远；不懂真实律法的愚昧人的寿命长</string>
-    <string name="quote_122" id="431">从各个角度看待情况，您将变得更加开放</string>
-    <string name="quote_123" id="432">爱和同情心是必需品，而不是奢侈品。没有他们，人类将无法生存</string>
-    <string name="quote_124" id="433">爱是没有判断力</string>
+    <string name="quote_120" id="429"></string>
+    <string name="quote_121" id="430">对醒着的人，长夜漫漫；对疲倦的人，一英里很远；对不晓真法的愚人，一生冗长</string>
+    <string name="quote_122" id="431">从各个角度看问题，你会变得更加开放</string>
+    <string name="quote_123" id="432">爱和同情心是必需品，不是奢侈品。没有它们，人类无法生存</string>
+    <string name="quote_124" id="433">爱是缺乏判断</string>
     <string name="quote_125" id="434">爱自己，看着-今天，明天和永远</string>
-    <string name="quote_126" id="435">许多人没有意识到我们在这里必须死。对于那些意识到这一点的人，争吵结束了</string>
-    <string name="quote_127" id="436">愿众生心境快乐</string>
-    <string name="quote_128" id="437">冥想…不要拖延，以免您以后后悔</string>
-    <string name="quote_129" id="438">思考，Ānanda，请不要耽搁，否则以后您会后悔的。这是我们对您的指示</string>
-    <string name="quote_130" id="439">冥想带来智慧；缺乏冥想会导致无知。清楚地知道什么会导致你前进，什么会阻碍你前进，并选择通往智慧的道路</string>
-    <string name="quote_131" id="440">僧侣们，即使土匪用一把双柄锯子残酷地割断了你，即使如此，你们当中谁生病了也不会坚持我的教导</string>
+    <string name="quote_126" id="435">许多人没有意识到我们必定死在这里。意识到这一点的人，争吵就会结束</string>
+    <string name="quote_127" id="436">愿众生都有快乐的心</string>
+    <string name="quote_128" id="437">冥想吧……，不要拖延，以免后悔</string>
+    <string name="quote_129" id="438">冥想吧，Ānanda，不要拖延，否则你会后悔的。这是我们对你的指示</string>
+    <string name="quote_130" id="439">冥想带来智慧；缺乏冥想导致无知。清楚地知道什么引导你前进，什么阻碍你前进，然后选择通向智慧的道路</string>
+    <string name="quote_131" id="440">僧侣们，即使土匪用双柄锯残忍地把你们一截一截地砍断，即使那样，你们当中心怀恶意的人也不会拥护我的教导</string>
     <string name="quote_132" id="441">乱心害你的，比恨你的人，和你一切的仇敌更甚</string>
-    <string name="quote_133" id="442">如果您给他们足够的时间和空间，大多数问题最终都会使自己疲惫不堪</string>
-    <string name="quote_134" id="443">火与风，生与死都不能抹杀我们的善行</string>
-    <string name="quote_135" id="444">没有人可以拯救我们，只有我们自己。没有人可以也没有人可以。我们自己必须走这条路</string>
-    <string name="quote_136" id="445">没有什么比没有防备的想法对您的伤害更大</string>
-    <string name="quote_137" id="446">除了改变，没有什么是永远的</string>
-    <string name="quote_138" id="447">危害人类的不被称为贵族。不伤害众生被称为贵族</string>
-    <string name="quote_139" id="448">弟兄们，见解是疾病。意见是肿瘤；意见很痛。弟兄们，那些克服了一切见解的人被称为圣人，他知道</string>
-    <string name="quote_140" id="449">我们自己的生活必须成为我们的信息</string>
-    <string name="quote_141" id="450">我们这一生的主要目的是帮助他人。如果您无法帮助他们，至少不会伤害他们</string>
-    <string name="quote_142" id="451">那里有树的根。那边的空屋。练习禅修，和尚。不要无所事事</string>
-    <string name="quote_143" id="452">忍耐是最高的禁欲主义者</string>
-    <string name="quote_144" id="453">和平并不意味着没有冲突。差异将永远存在。和平意味着通过和平手段解决这些分歧。通过对话，教育，知识；并通过人道的方式</string>
-    <string name="quote_145" id="454">人们很难摆脱苦难。出于对未知的恐惧，他们喜欢熟悉的痛苦</string>
+    <string name="quote_133" id="442">大多数问题，如果给足够的时间和空间，最终会自行解决</string>
+    <string name="quote_134" id="443">火也好，风也好，生也罢，死也罢，都不能抹灭我们的善行</string>
+    <string name="quote_135" id="444">没有人能救我们，除了我们自己。没有人可以，也没有人会这样做。我们必须自己走这条路</string>
+    <string name="quote_136" id="445">没有什么比你思想大意更能伤害你了</string>
+    <string name="quote_137" id="446">除了变化，没有什么是永恒的</string>
+    <string name="quote_138" id="447">伤害众生的人不是高尚的人。不伤害众生的人是高尚的人</string>
+    <string name="quote_139" id="448">弟子们，己见是病；己见是肿瘤；己见是痛苦。呵，弟子们，谁能战胜一切己见，谁就被称为圣人</string>
+    <string name="quote_140" id="449">我们自己的生活必须是我们的信息</string>
+    <string name="quote_141" id="450">我们这一生的主要目的是帮助别人。如果你帮不了他们，至少别伤害他们</string>
+    <string name="quote_142" id="451">那边是树根；那边是空荡荡的房子。僧侣们，练习禅修。不要无所事事</string>
+    <string name="quote_143" id="452">忍耐是最高的禁欲主义</string>
+    <string name="quote_144" id="453">和平并不意味着没有冲突；分歧总是存在的。和平意味着通过和平手段解决这些分歧；通过对话、教育、知识；通过人道的方式</string>
+    <string name="quote_145" id="454">人们很难放下自己的痛苦。出于对未知的恐惧，他们宁愿受熟悉事物的折磨</string>
     <string name="quote_146" id="455">人们走不同的道路寻求满足和幸福。仅仅因为他们不在您的路上并不意味着他们迷路了</string>
     <string name="quote_147" id="456">有意见的人四处打扰</string>
     <string name="quote_148" id="457">我们害怕死亡的最深层原因可能是因为我们不知道自己是谁</string>
@@ -507,7 +507,7 @@
     <string name="title_notifications">通知事项</string>
     <string name="quote_number">引用 #%d</string>
     <string name="fragment_quote">引用</string>
-    <string name="fragment_lists">清单</string>
+    <string name="fragment_lists">列表</string>
     <string name="fragment_meditation">幽思</string>
     <string name="meditate_title">幽思</string>
     <string name="meditate_subheading">这很简单</string>
@@ -532,7 +532,7 @@
     <string name="seconds">秒</string>
     <string name="minutes">分钟</string>
     <string name="and">和</string>
-    <string name="create_new_list">建立新清单</string>
+    <string name="create_new_list">建立新列表</string>
     <string name="insert_name">插入名称</string>
     <string name="validationRule1">不能包含//</string>
     <string name="validationRule2">已经有一个名为“收藏夹”的列表</string>
@@ -558,7 +558,7 @@
     <string name="quote_sheet_title">语录帮助</string>
     <string name="mandala">曼荼罗</string>
     <string name="elephant">大象</string>
-    <string name="about_app">关于Buddha Quotes</string>
+    <string name="about_app">关于 Buddha Quotes</string>
     <string name="dharma_wheel">法轮</string>
     <string name="lotus">莲</string>
     <string name="shrine">龛</string>
@@ -588,4 +588,11 @@
     <string name="empty_list">此列表为空！</string>
     <string name="duplicate">这句话已经出现在</string>
     <string name="list_icon">列表图标</string>
+    <string name="rename_list">重命名列表</string>
+    <string name="follow_app_default">关注应用</string>
+    <string name="app_widget_description">这是应用小部件描述</string>
+    <string name="transparent">透明</string>
+    <string name="opaque">不透明</string>
+    <string name="stupa">舍利塔</string>
+    <string name="no_image">无图片</string>
 </resources>
