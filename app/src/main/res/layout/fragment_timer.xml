@@ -61,6 +61,7 @@
         android:layout_height="250dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-3dp"
         android:contentDescription="@string/monk"
         android:src="@drawable/image_monk" />
 
