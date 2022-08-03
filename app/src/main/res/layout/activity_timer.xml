@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -23,8 +23,8 @@
         android:id="@+id/timer_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="1dp"
         android:layout_marginBottom="15dp"
         app:cardCornerRadius="11dp">
 
@@ -44,191 +44,205 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tips"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textStyle="bold"
-        android:layout_margin="15dp"/>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="15dp"
-        app:cardCornerRadius="11dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_volume_off"
-                app:tint="?android:textColorSecondary" />
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/meditate_space"
-                    android:textAppearance="@android:style/TextAppearance.Medium"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Small"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:text="@string/meditate_space_desc" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="15dp"
-        app:cardCornerRadius="11dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_meditate"
-                app:tint="?android:textColorSecondary" />
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/meditate_posture"
-                    android:textAppearance="@android:style/TextAppearance.Medium"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Small"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:text="@string/meditate_posture_desc" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="15dp"
-        app:cardCornerRadius="11dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/ic_heart_outline"
-                app:tint="?android:textColorSecondary" />
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/meditate_breath"
-                    android:textAppearance="@android:style/TextAppearance.Medium"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Small"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:text="@string/meditate_breath_desc" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <View android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1" />
-
-    <LinearLayout android:id="@+id/pauseHolder"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/pause"
-            style="?android:attr/buttonBarButtonStyle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="@string/pause"
-            android:textAlignment="viewStart"
-            android:textColor="@android:color/white"
-            app:cornerRadius="11dp"
-            app:icon="@drawable/ic_pause"
-            app:iconTint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/settings"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="@string/tips"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textStyle="bold" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="11dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_volume_off"
+                        app:tint="?android:textColorSecondary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/meditate_space"
+                            android:textAppearance="@android:style/TextAppearance.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/meditate_space_desc"
+                            android:textAppearance="@android:style/TextAppearance.Small"
+                            android:textColor="?android:attr/textColorSecondary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="11dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_meditate"
+                        app:tint="?android:textColorSecondary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/meditate_posture"
+                            android:textAppearance="@android:style/TextAppearance.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/meditate_posture_desc"
+                            android:textAppearance="@android:style/TextAppearance.Small"
+                            android:textColor="?android:attr/textColorSecondary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="11dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_heart_outline"
+                        app:tint="?android:textColorSecondary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/meditate_breath"
+                            android:textAppearance="@android:style/TextAppearance.Medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/meditate_breath_desc"
+                            android:textAppearance="@android:style/TextAppearance.Small"
+                            android:textColor="?android:attr/textColorSecondary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:id="@+id/pauseHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/pause"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/pause"
+                    android:textAlignment="viewStart"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="11dp"
+                    app:icon="@drawable/ic_pause"
+                    app:iconTint="@android:color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+
+
