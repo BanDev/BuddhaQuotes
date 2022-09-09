@@ -1,12 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    
     <string name="refresh" id="1">Actualizar</string>
     <string name="favourite" id="2">Favorito</string>
     <string name="share" id="3">Cuota</string>
-
-    
     <string name="settings" id="4">Ajustes</string>
     <string name="appearance" id="5">Apariencia</string>
     <string name="app_theme" id="6">Tema de la aplicación</string>
@@ -20,10 +16,6 @@
     <string name="app_introduction" id="18">Introducción a la aplicación</string>
     <string name="app_license" id="19">Licencia de la aplicación</string>
     <string name="libraries_used" id="20">Bibliotecas utilizadas</string>
-
-    
-
-    
     <string name="about_app_promise" id="21">Promesa de la aplicación</string>
     <string name="about_no_trackers" id="22">Sin rastreadores</string>
     <string name="about_complete_privacy" id="23">Privacidad total</string>
@@ -35,51 +27,35 @@
     <string name="about_acknowledgements" id="29">Agradecimientos</string>
     <string name="about_attribution" id="30">Icono de lanzador - Freepik a través de Flaticon</string>
     <string name="tick" id="31">Garrapata</string>
-
-    
-
-    
     <string name="favourited_quote" id="55">Cita favorita</string>
     <string name="favourite_quote_delete" id="56">Borrar</string>
-
-    
     <string name="buddha_quotes_logo" id="57">Logotipo de Buda Quotes</string>
     <string name="bandev_logo" id="58">Logotipo de BanDev</string>
     <string name="the_buddha" id="59">El Buda</string>
     <string name="forward_arrow" id="60">Regreso</string>
     <string name="icon" id="61">Icono</string>
     <string name="title" id="62">Título</string>
-
-    
     <string name="title_activity_settings" id="82">Configuración Actividad</string>
     <string name="textview" id="83">Vista de texto</string>
     <string name="MainActivity" id="84">Actividad principal</string>
     <string name="title_activity_scrolling" id="85">DesplazamientoActividad</string>
     <string name="action_settings" id="86">Ajustes</string>
-
-    
     <string name="appwidget_text" id="87">EJEMPLO</string>
     <string name="configure" id="88">Configurar</string>
     <string name="add_widget" id="89">Agregar widget</string>
     <string name="open_source_libraries" id="90">Bibliotecas de código abierto</string>
     <string name="about_no_ads" id="91">Sin anuncios</string>
-
-    
     <string name="lists_title" id="92">Tus listas</string>
     <string name="lists_add_item" id="93">Agregar a la lista</string>
     <string name="lists_add_lists" id="94">Crear nueva lista</string>
     <string name="lists_add_lists_go" id="95">Agregar</string>
     <string name="lists_add_lists_name" id="96">Nombre</string>
-
-    
     <string name="settings_general" id="97">General</string>
     <string name="settings_accent_colour" id="98">Color de acento</string>
     <string name="settings_shapes_mode" id="99">Modo de formas</string>
     <string name="settings_shapes_mode_yes" id="100">En</string>
     <string name="settings_shapes_mode_no" id="101">Apagado</string>
     <string name="settings_language" id="102">Idioma</string>
-
-    
     <string name="original" id="103">Defecto</string>
     <string name="blue" id="104">Azul</string>
     <string name="green" id="105">Verde</string>
@@ -92,8 +68,6 @@
     <string name="red" id="112">rojo</string>
     <string name="lime" id="113">Lima</string>
     <string name="crimson" id="114">carmesí</string>
-
-    
     <string name="ab">Abjasio</string>
     <string name="aa">Lejos</string>
     <string name="af">africaans</string>
@@ -278,9 +252,6 @@
     <string name="yo">Yoruba</string>
     <string name="za">Zhuang, Chuang</string>
     <string name="zu">zulú</string>
-
-    
-
     <string name="appintro1_description" id="299">Una aplicación de cotizaciones de Buda gratuita y de código abierto</string>
     <string name="appintro2_title" id="300">Más de 230 citas</string>
     <string name="appintro2_description" id="301">Más de 230 citas de Buda. \n¡Desliza el dedo hacia abajo para actualizar!</string>
@@ -290,12 +261,8 @@
     <string name="appintro4_description" id="305">Hay una variedad de opciones de interfaz de usuario, como colores de acento y modo oscuro</string>
     <string name="appintro5_title" id="306">¡Empecemos!</string>
     <string name="appintro5_description" id="307">Esperamos que disfrute de la aplicación; tenemos un repositorio de GitLab donde puede solicitar funciones o plantear problemas</string>
-
-    
-
     <string name="cancel" id="308">Cancelar</string>
     <string name="confirm" id="309">Confirmar</string>
-
     <string name="quote_1" id="310">Una mente disciplinada trae felicidad</string>
     <string name="quote_2" id="311">Un buen amigo que señala errores e imperfecciones y reprende el mal debe ser respetado como si revelara un secreto de un tesoro escondido.</string>
     <string name="quote_3" id="312">Una gran revolución humana en un solo individuo ayudará a lograr un cambio en el destino de una nación y, además, puede incluso permitir un cambio en el destino de toda la humanidad.</string>
@@ -533,50 +500,38 @@
     <string name="quote_235" id="544">No recoges la belleza de una flor arrancando sus pétalos</string>
     <string name="quote_236" id="545">Tu propio yo es tu maestro; quien mas podria ser? Con usted bien controlado, gana un maestro muy difícil de encontrar.</string>
     <string name="quote_237" id="546">Tú mismo debes esforzarte. Los Budas solo señalan el camino</string>
-
     <string name="about_translators" id="547">Traductores</string>
     <string name="title_activity_main">Actividad principal</string>
     <string name="title_home">Hogar</string>
     <string name="title_dashboard">Tablero</string>
     <string name="title_notifications">Notificaciones</string>
-
     <string name="quote_number">Cita</string>
-
     <string name="fragment_quote">Cita</string>
     <string name="fragment_lists">Liza</string>
     <string name="fragment_meditation">Meditar</string>
-
     <string name="meditate_title">Meditar</string>
     <string name="meditate_subheading">Es simple</string>
-
     <string name="meditate_space">Espacio</string>
     <string name="meditate_space_desc">Elija un lugar tranquilo donde no le molesten.</string>
-
     <string name="meditate_posture">Postura</string>
     <string name="meditate_posture_desc">Siéntese en el suelo o en una silla de respaldo recto. ¡La clave es estar cómodo!</string>
-
     <string name="meditate_breath">Aliento</string>
     <string name="meditate_breath_desc">Respire profunda y lentamente, intente respirar hacia el estómago.</string>
-
     <string name="play">Reanudar</string>
     <string name="pause">Pausa</string>
     <string name="reset">Reiniciar</string>
-
     <string name="time_left">Tiempo restante</string>
     <string name="meditating_for">Meditando para</string>
     <string name="has_been_paused">ha sido pausado</string>
     <string name="meditation_timer">Temporizador de meditación</string>
-
     <string name="more">Más</string>
     <string name="addToList">Agregar a la lista</string>
     <string name="searchHint">Buscar…</string>
     <string name="search">Buscar</string>
     <string name="attribution_buddha">~ Buda Gautama</string>
-
     <string name="seconds">segundos</string>
     <string name="minutes">minutos</string>
     <string name="and">y</string>
-
     <string name="create_new_list">Crear nueva lista</string>
     <string name="insert_name">Insertar nombre</string>
     <string name="validationRule1">No puede contener //</string>
@@ -586,10 +541,60 @@
     <string name="new_str">Nuevo</string>
     <string name="added">Cotización agregada a</string>
     <string name="exists">Esta cita ya existe en</string>
-
     <string name="start">Comienzo</string>
     <string name="show_notification">Mostrar notifcación</string>
     <string name="vibrate_second">Vibra cada segundo</string>
-
     <string name="favourites">Favoritos</string>
+    <string name="about_app">Acerca de Buddha Quotes</string>
+    <string name="anahata">Anahata</string>
+    <string name="elephant">Elefante</string>
+    <string name="endless_knot">Nudo sin fin</string>
+    <string name="lamp">Lámpara</string>
+    <string name="lotus">Loto</string>
+    <string name="mandala">Mandala</string>
+    <string name="shrine">Santuario</string>
+    <string name="temple">Templo</string>
+    <string name="water_lotus">Loto de agua</string>
+    <string name="dharma_wheel">Rueda</string>
+    <string name="follow_app_default">Seguir aplicación</string>
+    <string name="quote_sheet_title">Ayuda para cita</string>
+    <string name="list_sheet_title">Ayuda para lista</string>
+    <string name="meditate_sheet_title">Ayuda para Meditar</string>
+    <string name="list_sheet_content">Estas son tus listas. Desde aquí puedes acceder a tus citas favoritas, así como crear nuevas listas para clasificar citas en grupos. 😄
+\n
+\nNuevas listas pueden ser creadas pulsando el botón añadir (➕) en la parte inferior de la pantalla e insertando un nombre. El icono que figura al principio de la lista puede ser personalizado desde la propia lista.</string>
+    <string name="meditate_sheet_content">Puedes iniciar una sesión de meditación pulsando el botón de inicio que aparece a continuación e introduciendo el tiempo que deseas meditar. 😌</string>
+    <string name="rename_list">Renombrar lista</string>
+    <string name="okay">De acuerdo</string>
+    <string name="start_meditation">Iniciar la meditación</string>
+    <string name="timer_text">%1$s:%2$s</string>
+    <string name="by_bandev">Por BanDev</string>
+    <string name="quote_count">1 cita</string>
+    <string name="no_list">¡No tienes listas!</string>
+    <string name="quotes_count">%d citas</string>
+    <string name="attribution">Atribución</string>
+    <string name="close_drawer">Cerrar el cajón de navegación</string>
+    <string name="open_drawer">Abrir el cajón de navegación</string>
+    <string name="app_widget_description">Esta es una descripción del widget de la aplicación</string>
+    <string name="transparent">Transparente</string>
+    <string name="opaque">Opaco</string>
+    <string name="duplicate">Esta cita ya está en</string>
+    <string name="empty_list">¡Esta lista está vacía!</string>
+    <string name="list_icon">Ícono de lista</string>
+    <string name="contributors">Colaboradores</string>
+    <string name="two_people_meditating">Dos personas meditando</string>
+    <string name="tips">Consejos</string>
+    <string name="summary">Resumen</string>
+    <string name="text">Texto</string>
+    <string name="_00_00">00:00</string>
+    <string name="quote_sheet_content">Puedes pulsar el siguiente botón o deslizar hacia abajo desde la parte superior para obtener una nueva cita.
+\n
+\n Puedes cambiar la imagen en la parte inferior manteniéndola pulsada, lo que hará que aparezca una selección de 16 opciones de imagen. 🤩</string>
+    <string name="bell">Campana</string>
+    <string name="buddha">Buddha</string>
+    <string name="monk">Monje</string>
+    <string name="rattle">Cascabel</string>
+    <string name="stupa">Estupa</string>
+    <string name="no_image">No hay imagen</string>
+    <string name="libraries" id="90">Bibliotecas</string>
 </resources>
