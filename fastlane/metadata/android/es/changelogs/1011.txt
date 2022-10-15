@@ -1,0 +1,16 @@
+2.0.0 - (2021-01-11)
+
+La mayor parte de la aplicación ha sido reescrita en esta actualización
+
+Se ha añadido
+
+- Barra inferior animada
+- Temporizador de meditación
+- Hojas inferiores
+- Diálogos
+- Muchos más idiomas
+
+Cambiado
+
+- Las listas se han trasladado a la página principal
+- Muchas optimizaciones y correcciones

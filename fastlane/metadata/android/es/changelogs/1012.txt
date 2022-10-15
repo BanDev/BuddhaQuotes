@@ -1,0 +1,11 @@
+2.1.0 - (2021-02-28)
+
+Añadido
+
+- Ajustes para el temporizador
+
+Cambiado
+
+- Mejorada la búsqueda al añadir una cita a una lista cuando está dentro de una lista
+- Mejora del rendimiento de ciertas partes de la aplicación
+- Corrección de errores

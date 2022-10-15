@@ -1,0 +1,5 @@
+2.1.1
+
+Cambiado
+
+- Se ha corregido el fallo al abrir la aplicación

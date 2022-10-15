@@ -1,0 +1,18 @@
+1.4 - (2020-10-21)
+
+Añadido
+
+- Soporte para dispositivos con Android 7
+- Modo de diversión con una interfaz de usuario colorida
+
+Cambiado
+
+- Nuevo logotipo
+- Nuevo esquema de colores
+- Interfaz de configuración rediseñada
+- Animación de transición entre el modo claro y el oscuro
+- La página de licencia completa ahora es compatible con el modo oscuro
+- La fuente personalizada se utiliza ahora en toda la aplicación
+- Velocidad de deslizamiento entre páginas 1,5 veces más rápida
+- El tamaño del texto es, en general, más pequeño ("Mediano" es ahora el tamaño del anterior "Pequeño", etc.)
+- Corrección de errores y optimizaciones
