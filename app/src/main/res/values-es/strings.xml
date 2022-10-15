@@ -546,12 +546,12 @@
     <string name="vibrate_second">Vibra cada segundo</string>
     <string name="favourites">Favoritos</string>
     <string name="about_app">Acerca de Buddha Quotes</string>
-    <string name="anahata">Anahata</string>
+    <string name="anahata">Chakra</string>
     <string name="elephant">Elefante</string>
     <string name="endless_knot">Nudo sin fin</string>
     <string name="lamp">Lámpara</string>
     <string name="lotus">Loto</string>
-    <string name="mandala">Mandala</string>
+    <string name="mandala">Círculo</string>
     <string name="shrine">Santuario</string>
     <string name="temple">Templo</string>
     <string name="water_lotus">Loto de agua</string>
@@ -591,7 +591,7 @@
 \n
 \n Puedes cambiar la imagen en la parte inferior manteniéndola pulsada, lo que hará que aparezca una selección de 16 opciones de imagen. 🤩</string>
     <string name="bell">Campana</string>
-    <string name="buddha">Buddha</string>
+    <string name="buddha">Buda</string>
     <string name="monk">Monje</string>
     <string name="rattle">Cascabel</string>
     <string name="stupa">Estupa</string>
