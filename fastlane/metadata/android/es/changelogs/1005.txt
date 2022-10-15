@@ -1,0 +1,13 @@
+1.3.1 - (2020-10-06)
+
+Añadido
+
+- 30 citas más
+
+Cambiado
+
+- El banner de la página "Acerca de" y "Licencia" se extiende hasta la parte superior de la pantalla
+- Corregido el error de la animación de actualización
+- Otras correcciones de errores menores
+
+Esta actualización corrige un error importante en los dispositivos con barra de navegación

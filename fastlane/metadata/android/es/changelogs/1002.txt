@@ -1,0 +1,10 @@
+1.2 - (2020-08-10)
+
+Añadido:
+    - Favoritos
+    - ~110 citas más
+
+Cambiado:
+    - Reescribir todo el código en Kotlin
+    - Se han corregido errores tipográficos en las citas
+    - Convertido todos los PNGs a WebP

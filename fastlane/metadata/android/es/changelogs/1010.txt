@@ -1,0 +1,15 @@
+1.6.0 - (2020-12-03)
+
+Añadido
+
+- Traducción al polaco
+
+Cambiado
+
+- Se ha rehecho la página de las bibliotecas de código abierto
+- La creación de una nueva lista se hace ahora a través de una hoja de fondo
+- Diálogo de material personalizado para el color de acento que muestra los colores
+- El modo de formas es ahora un interruptor en lugar de una ventana emergente
+- Se ha mejorado la traducción al francés.
+- Se ha corregido un fallo al completar la introducción de la aplicación por primera vez
+- Otras correcciones de errores
