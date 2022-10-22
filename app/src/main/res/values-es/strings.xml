@@ -176,10 +176,10 @@
     <string name="mi">maorí</string>
     <string name="mr">Marathi</string>
     <string name="mh">Marshalés</string>
-    <string name="ro">Moldavo, Moldavo, Rumano</string>
+    <string name="ro">Moldavo, Rumano</string>
     <string name="mn">mongol</string>
     <string name="na">Nauru</string>
-    <string name="nv">Navajo, Navajo</string>
+    <string name="nv">Navajo, Navaho</string>
     <string name="nd">Ndebele del norte</string>
     <string name="ng">Ndonga</string>
     <string name="ne">Nepalí</string>
@@ -242,7 +242,7 @@
     <string name="uz">Uzbeko</string>
     <string name="ve">Venda</string>
     <string name="vi">vietnamita</string>
-    <string name="vo">Volap_k</string>
+    <string name="vo">Lengua artificial Volapuk</string>
     <string name="wa">Valonia</string>
     <string name="cy">galés</string>
     <string name="fy">Frisón occidental</string>
@@ -329,7 +329,7 @@
     <string name="quote_64" id="373">La amistad es la única cura para el odio, la única garantía de paz</string>
     <string name="quote_65" id="374">De un árbol marchito, florece una flor</string>
     <string name="quote_66" id="375">Da, incluso si solo tienes un poco</string>
-    <string name="quote_67" id="376">Más grande en la batalla que el hombre que conquistaría mil mil hombres, es el que conquistaría a uno solo: él mismo. Mejor conquistarte a ti mismo que a los demás</string>
+    <string name="quote_67" id="376">Más grande en la batalla que el hombre que conquistaría mil hombres, es el que conquistaría sólo uno: él mismo. Mejor conquistarse a uno mismo que a los demás</string>
     <string name="quote_68" id="377">Mayor aún es la verdad de nuestra conexión</string>
     <string name="quote_69" id="378">La felicidad proviene principalmente de nuestra propia actitud, más que de factores externos.</string>
     <string name="quote_70" id="379">El odio nunca se aplaca con el odio en este mundo. Sólo mediante el no odio se aplaca el odio. Esta es una ley eterna</string>
@@ -438,7 +438,7 @@
     <string name="quote_173" id="482">En el momento en que veas lo importante que es amarte a ti mismo, dejarás de hacer sufrir a los demás.</string>
     <string name="quote_174" id="483">Cuanto más te motive el amor, más intrépida y libre será tu acción.</string>
     <string name="quote_175" id="484">El no hacer ningún mal, la ejecución de lo hábil, la limpieza de la propia mente: esta es la enseñanza del Despertado.</string>
-    <string name="quote_176" id="485">Aquel en quien ya no existe el anhelo y la sed que perpetúan el devenir; ¿Cómo podrías rastrear a ese Despertado, sin pistas y de rango ilimitado?</string>
+    <string name="quote_176" id="485">Aquel en el que ya no existen el ansia y la sed que perpetúan el devenir; cómo podrías rastrear a ese Despierto, sin huellas y de alcance ilimitado</string>
     <string name="quote_177" id="486">El que se ha conquistado a sí mismo es un héroe mucho más grande que el que ha derrotado mil veces a mil hombres.</string>
     <string name="quote_178" id="487">La lluvia podría volverse dorada y aún así tu sed no se apagará. El deseo es insaciable o termina en lágrimas, incluso en el cielo</string>
     <string name="quote_179" id="488">La raíz del sufrimiento es el apego</string>
@@ -492,7 +492,7 @@
     <string name="quote_227" id="536">Cuando practicas el agradecimiento, hay una sensación de respeto hacia los demás.</string>
     <string name="quote_228" id="537">Quien deja atrás todas las ataduras humanas y ha desprendido las ataduras del cielo, desprendido de todas las ataduras en todas partes: él es el que yo llamo brahmán</string>
     <string name="quote_229" id="538">Quien no se enoja con alguien que está enojado gana una batalla difícil de ganar</string>
-    <string name="quote_230" id="539">Quien me ve, ve la enseñanza, y quien ve la enseñanza, me ve a mí.</string>
+    <string name="quote_230" id="539">Quien me ve a mí ve la enseñanza, y quien ve la enseñanza me ve a mí</string>
     <string name="quote_231" id="540">Con los tontos no hay compañía. En lugar de vivir con hombres egoístas, vanidosos, pendencieros y obstinados, que un hombre camine solo.</string>
     <string name="quote_232" id="541">Con la realización del propio potencial y la confianza en uno mismo, se puede construir un mundo mejor.</string>
     <string name="quote_233" id="542">Sin salud, la vida no es vida; es solo un estado de languidez y sufrimiento, una imagen de la muerte</string>
@@ -505,7 +505,7 @@
     <string name="title_home">Hogar</string>
     <string name="title_dashboard">Tablero</string>
     <string name="title_notifications">Notificaciones</string>
-    <string name="quote_number">Cita</string>
+    <string name="quote_number">Cita #%d</string>
     <string name="fragment_quote">Cita</string>
     <string name="fragment_lists">Liza</string>
     <string name="fragment_meditation">Meditar</string>
