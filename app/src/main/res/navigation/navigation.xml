@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="org.bandev.buddhaquotes.fragments.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="org.bandev.buddhaquotes.fragments.SettingsFragment"
+        android:label="@string/settings" />
+
+    <fragment
+        android:id="@+id/navigation_about"
+        android:name="org.bandev.buddhaquotes.fragments.AboutFragment"
+        android:label="@string/about_app"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>

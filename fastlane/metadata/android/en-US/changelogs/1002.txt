@@ -1,0 +1,10 @@
+1.2 - (2020-08-10)
+
+Added:
+    - Favourites
+    - ~110 more quotes
+
+Changed:
+    - Rewrote all code in Kotlin
+    - Corrected quotes typos
+    - Converted all PNGs to WebP

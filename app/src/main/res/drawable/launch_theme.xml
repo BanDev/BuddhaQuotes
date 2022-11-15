@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The android:opacity=”opaque” line — this is critical in preventing a flash of black as the theme transitions -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
+
+    <!-- The background -->
+    <item android:drawable="@color/ic_launcher_background"/>
+
+    <!-- The app icon -->
+    <item>
+        <bitmap
+            android:src="@mipmap/buddha_no_background"
+            android:gravity="center" />
+    </item>
+
+</layer-list>

@@ -1,0 +1,7 @@
+1.5.1 - (2020-11-15)
+
+Cambiado
+
+- Sustitución de Slides por AppIntro
+- Se han corregido y mejorado los colores
+- Otras correcciones menores

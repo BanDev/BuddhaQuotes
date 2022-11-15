@@ -1,0 +1,127 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
+    id 'com.mikepenz.aboutlibraries.plugin'
+}
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        applicationId "org.bandev.buddhaquotes"
+        minSdkVersion 21
+        targetSdkVersion 32
+        versionCode 1013
+        versionName "v2.1.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    packagingOptions {
+        exclude "DebugProbesKt.bin"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.google.android.material:material:1.7.0'
+
+    // AboutLibraries - https://github.com/mikepenz/AboutLibraries
+    implementation 'com.mikepenz:aboutlibraries-core:8.9.4'
+
+    // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
+    implementation 'nl.joery.animatedbottombar:library:1.1.0'
+
+    // FlowBus - https://github.com/Kosert/FlowBus
+    def flowbus_version = "1.1"
+    implementation "com.github.Kosert.FlowBus:FlowBus:$flowbus_version"
+    implementation "com.github.Kosert.FlowBus:FlowBus-android:$flowbus_version"
+
+    // Insetter - https://github.com/chrisbanes/insetter
+    implementation 'dev.chrisbanes.insetter:insetter:0.6.1'
+
+    // Kotlin coroutines - https://github.com/Kotlin/kotlinx.coroutines
+    def coroutines_version = "1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Lifecycle components - https://developer.android.com/jetpack/androidx/releases/lifecycle
+    def lifecycle_version = "2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // Localization - https://github.com/akexorcist/Localization
+    implementation 'com.akexorcist:localization:1.2.11'
+
+    // Navigation components - https://developer.android.com/jetpack/androidx/releases/navigation
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Room - https://developer.android.com/training/data-storage/room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Sheets - https://github.com/maxkeppeler/sheets
+    def sheets_version = "2.2.9"
+    implementation "com.maxkeppeler.sheets:core:$sheets_version"
+    implementation "com.maxkeppeler.sheets:info:$sheets_version"
+    implementation "com.maxkeppeler.sheets:options:$sheets_version"
+    implementation "com.maxkeppeler.sheets:time:$sheets_version"
+    implementation "com.maxkeppeler.sheets:input:$sheets_version"
+    implementation "com.maxkeppeler.sheets:color:$sheets_version"
+    implementation "com.maxkeppeler.sheets:lottie:$sheets_version"
+
+    // [Testing] Basic
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    implementation 'uk.bandev:ueh:1.0.0'
+    implementation 'uk.bandev:xplosion:1.0.7'
+}

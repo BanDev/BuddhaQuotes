@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Serĉi</string>
+    <string name="attribution_buddha">~Gotamo Budho</string>
+    <string name="minutes">minutoj</string>
+    <string name="and">kaj</string>
+    <string name="lamp">Lampo</string>
+    <string name="the_buddha">La Budho</string>
+    <string name="appearance" id="5">Aspekto</string>
+    <string name="settings_accent_colour" id="98">Akcentkoloro</string>
+    <string name="settings_language" id="102">Lingvo</string>
+    <string name="violet" id="109">Viola</string>
+    <string name="pink" id="110">Roza</string>
+    <string name="lightBlue" id="111">Helblua</string>
+    <string name="an">Aragona</string>
+    <string name="as">Asama</string>
+    <string name="am">Amharo</string>
+    <string name="az">Azerbajĝana</string>
+    <string name="bn">Bengala</string>
+    <string name="br">Bretona</string>
+    <string name="bg">Bulgara</string>
+    <string name="bs">Bosna</string>
+    <string name="ae">Avesta</string>
+    <string name="bh">Bihara</string>
+    <string name="cu">Slavono</string>
+    <string name="kw">Kornvala</string>
+    <string name="co">Korsika</string>
+    <string name="cs">Ĉeĥa</string>
+    <string name="da">Dana</string>
+    <string name="en">Angla</string>
+    <string name="eo">Esperanto</string>
+    <string name="dv">Maldiva</string>
+    <string name="et">Estona</string>
+    <string name="fo">Feroa</string>
+    <string name="fj">Fiĝia</string>
+    <string name="fi">Finna</string>
+    <string name="fr">Franca</string>
+    <string name="gd">Skotgaela</string>
+    <string name="gl">Galega</string>
+    <string name="ka">Kartvela</string>
+    <string name="de">Germana</string>
+    <string name="el">Greka</string>
+    <string name="kl">Gronlanda</string>
+    <string name="gu">Guĝarata</string>
+    <string name="ht">Haitia</string>
+    <string name="he">Hebrea</string>
+    <string name="hi">Hindia</string>
+    <string name="hu">Hungara</string>
+    <string name="is">Islanda</string>
+    <string name="io">Ido</string>
+    <string name="id">Indonezia</string>
+    <string name="ga">Irlanda</string>
+    <string name="it">Itala</string>
+    <string name="ja">Japana</string>
+    <string name="jv">Java</string>
+    <string name="kn">Kannada</string>
+    <string name="ie">Okcidentalo</string>
+    <string name="ia">Interlingvao</string>
+    <string name="ks">Kaŝmira</string>
+    <string name="kk">Kazaĥa</string>
+    <string name="ku">Kurda</string>
+    <string name="lo">Laosa</string>
+    <string name="kg">Konga</string>
+    <string name="kv">Komia</string>
+    <string name="lt">Litova</string>
+    <string name="mk">Makedona</string>
+    <string name="ms">Malaja</string>
+    <string name="mg">Malagasa</string>
+    <string name="ml">Malajala</string>
+    <string name="mh">Marŝala</string>
+    <string name="ro">Rumana</string>
+    <string name="ne">Nepala</string>
+    <string name="no">Norvega</string>
+    <string name="nb">Dannorvega</string>
+    <string name="se">Samea</string>
+    <string name="oc">Okcitana</string>
+    <string name="fa">Persa</string>
+    <string name="pt">Portugala</string>
+    <string name="os">Oseta</string>
+    <string name="ps">Patana</string>
+    <string name="sk">Slovaka</string>
+    <string name="sl">Slovena</string>
+    <string name="sw">Svahila</string>
+    <string name="su">Sunda</string>
+    <string name="sv">Sveda</string>
+    <string name="tl">Filipina</string>
+    <string name="ty">Tahitia</string>
+    <string name="tg">Taĝika</string>
+    <string name="ta">Tamula</string>
+    <string name="tt">Tatara</string>
+    <string name="ur">Urduo</string>
+    <string name="uk">Ukraina</string>
+    <string name="th">Taja</string>
+    <string name="bo">Tibeta</string>
+    <string name="to">Tonga</string>
+    <string name="tn">Bocvana</string>
+    <string name="tr">Turka</string>
+    <string name="ug">Ujgura</string>
+    <string name="vo">Volapuko</string>
+    <string name="wa">Valona</string>
+    <string name="te">Telugua</string>
+    <string name="cancel">Nuligi</string>
+    <string name="zu">Zulua</string>
+    <string name="quote_9" id="318">Antaŭ ĉio, ne perdu vian deziron promeni</string>
+    <string name="quote_22" id="331">Tia mi estas, kiaj tiuj estas. Tiaj tiuj estas, kia mi estas. Paralele al vi mem, ne mortigu nek igu aliulojn mortigi</string>
+    <string name="quote_210" id="519">Vera ŝanĝo estas interna; lasu la eksteron tia, kia ĝi estas</string>
+    <string name="quote_number">Citaĵo n-ro %d</string>
+    <string name="about_translators" id="547">Tradukintoj</string>
+    <string name="quote_223" id="532">Kiam la Agregaĵoj ekestas, kadukiĝas kaj mortas, ho bikŝuo, ĉiumomente vi naskiĝas, kadukiĝas kaj mortas</string>
+    <string name="fragment_quote">Citaĵo</string>
+    <string name="fragment_lists">Listoj</string>
+    <string name="meditate_space">Spaco</string>
+    <string name="searchHint">Serĉi…</string>
+    <string name="more">Pli</string>
+    <string name="create_new_list">Krei novan liston</string>
+    <string name="insert_name">Tajpu nomon</string>
+    <string name="start">Ek</string>
+    <string name="temple">Templo</string>
+    <string name="libraries" id="90">Bibliotekoj</string>
+    <string name="about_no_ads" id="91">Sen reklamoj</string>
+    <string name="hy">Armena</string>
+    <string name="fy">Okcidentfrisa</string>
+    <string name="summary">Resumo</string>
+    <string name="text">Teksto</string>
+    <string name="_00_00">00:00</string>
+    <string name="configure">Agordi</string>
+    <string name="quote_count">1 citaĵo</string>
+    <string name="quotes_count">%d citaĵoj</string>
+    <string name="tips">Konsiletoj</string>
+    <string name="by_bandev">Far BanDev</string>
+    <string name="bell">Sonorilo</string>
+    <string name="okay">Bone</string>
+    <string name="app_theme" id="6">Etoso</string>
+    <string name="dark_mode" id="8">Malhela</string>
+    <string name="light_mode" id="7">Hela</string>
+    <string name="follow_system_default">Laŭ sistemo</string>
+    <string name="about" id="15">Pri</string>
+    <string name="title">Titolo</string>
+    <string name="buddha">Budho</string>
+    <string name="stupa">Stupao</string>
+    <string name="water_lotus">Akvolotuso</string>
+    <string name="dharma_wheel">Rado</string>
+    <string name="appwidget_text" id="87">EKZEMPLO</string>
+    <string name="elephant">Elefanto</string>
+    <string name="endless_knot">Senfina nodo</string>
+    <string name="original" id="103">Implicita</string>
+    <string name="blue" id="104">Blua</string>
+    <string name="green" id="105">Verda</string>
+    <string name="af">Afrikanso</string>
+    <string name="sq">Albana</string>
+    <string name="eu">Eŭska</string>
+    <string name="cy">Kimra</string>
+    <string name="lotus">Lotuso</string>
+    <string name="monk">Monaĥo</string>
+    <string name="no_image">Sen bildo</string>
+    <string name="lists_title">Viaj listoj</string>
+    <string name="rename_list">Ŝanĝi nomon de listo</string>
+    <string name="orange" id="106">Oranĝa</string>
+    <string name="yellow" id="107">Originala</string>
+    <string name="red" id="112">Ruĝa</string>
+    <string name="settings_general" id="97">Ĝenerala</string>
+    <string name="ar">Araba</string>
+    <string name="ba">Baŝkira</string>
+    <string name="be">Belorusa</string>
+    <string name="yi">Jido</string>
+    <string name="uz">Uzbeka</string>
+    <string name="confirm">Konfirmi</string>
+    <string name="my">Birma</string>
+    <string name="ca">Kataluna</string>
+    <string name="nl">Nederlanda</string>
+    <string name="km">Centra ĥmera</string>
+    <string name="ko">Korea</string>
+    <string name="ce">Ĉeĉena</string>
+    <string name="zh">Ĉina</string>
+    <string name="hr">Kroata</string>
+    <string name="pi">Palia</string>
+    <string name="rw">Ruanda</string>
+    <string name="mt">Malta</string>
+    <string name="nn">Novnorvega</string>
+    <string name="pl">Pola</string>
+    <string name="tk">Turkmena</string>
+    <string name="vi">Vjetnama</string>
+    <string name="la">Latino</string>
+    <string name="ky">Kirgiza</string>
+    <string name="lb">Leceburga</string>
+    <string name="gv">Manksa</string>
+    <string name="mi">Maoria</string>
+    <string name="mn">Mongola</string>
+    <string name="na">Naura</string>
+    <string name="pa">Panĝaba</string>
+    <string name="lv">Latva</string>
+    <string name="rm">Romanĉo</string>
+    <string name="timer_text">%1$s:%2$s</string>
+    <string name="seconds">sekundoj</string>
+    <string name="quote_201" id="510">Tri aferoj ne povas esti longe kaŝitaj: la suno, la luno kaj la vero</string>
+    <string name="quote_214" id="523">Ni ĉeestas por vekiĝi el nia iluzio de aparteco</string>
+    <string name="quote_204" id="513">Fariĝi vegetarano estas paŝi en tiu riveron, kiu kondukas al nirvano</string>
+    <string name="quote_16" id="325">Malfermita koro estas malfermita menso</string>
+    <string name="sd">Sinda</string>
+    <string name="ru">Rusa</string>
+    <string name="sm">Samoa</string>
+    <string name="sr">Serba</string>
+    <string name="sa">Sanskrito</string>
+    <string name="sc">Sarda</string>
+    <string name="si">Sinhalo</string>
+    <string name="so">Somalia</string>
+    <string name="quote_83" id="392">Se io valoras fari, faru tion tutkore</string>
+    <string name="st">Lesota</string>
+    <string name="quote_219" id="528">Kio ajn havas la naturon ekesti, tio havas la naturon ĉesi</string>
+    <string name="es">Hispana</string>
+    <string name="quote_66" id="375">Donu, eĉ se vi havas nur malmulte</string>
+    <string name="quote_72" id="381">Li ne estas la sama, nek li estas alia</string>
+    <string name="quote_212" id="521">Venko naskas malamon. La venkitoj vivas en doloro. Feliĉe la pacaj vivas, rezignante venkon kaj malvenkon</string>
+    <string name="quote_18" id="327">Kolero estas la finfina detruanto de via propra trankvilo</string>
+    <string name="quote_2" id="311">Bonan amikon, kiu montras erarojn kaj neperfektaĵojn kaj riproĉas malbonon, respektu kvazaŭ li malkaŝus sekreton pri kaŝita trezoro</string>
+    <string name="quote_65" id="374">Velkinta arbo floras</string>
+    <string name="quote_24" id="333">Kiel lotusfloro naskiĝas en akvo, kreskas en akvo kaj leviĝas el akvo por stari super ĝi senmakule, tiel mi, naskite en la mondo, kreskinte en la mondo, venkinte la mondon, vivas nemakulita de la mondo</string>
+    <string name="quote_sheet_title">Helpo pri citaĵo</string>
+    <string name="settings" id="4">Agordoj</string>
+    <string name="about_info" id="26">Informoj pri programo</string>
+    <string name="about_acknowledgements" id="29">Dankoj</string>
+    <string name="libraries_used" id="20">Uzataj bibliotekoj</string>
+    <string name="about_app_promise" id="21">Promeso pri ĉi tiu programo</string>
+    <string name="app_introduction" id="18">Enkonduko al programo</string>
+    <string name="app_license" id="19">Permesilo pri programo</string>
+    <string name="list_sheet_title">Helpo pri listo</string>
+    <string name="meditate_sheet_title">Helpo pri meditado</string>
+    <string name="quote_3" id="312">Granda homa revolucio en nur unu individuo helpos atingi ŝanĝon en la sorto de nacio kaj eĉ la tuta homaro</string>
+    <string name="quote_1" id="310">Disciplina menso alportas feliĉon</string>
+    <string name="quote_4" id="313">Viro demandis Gotamon Budho: «Mi volas feliĉon.» Budho respondis: «Unue forigu la ‹mi›, la egoon; poste forigu la ‹volas›, la deziron. Jen al vi restas nur feliĉo.»</string>
+    <string name="quote_5" id="314">Homon oni ne nomas saĝulo, ĉar li parolas kaj reparolas; sed se li estas paca, ama kaj sentima, do oni vere nomas lin saĝulo</string>
+    <string name="quote_35" id="344">Ĉar vi vivas, ĉio eblas</string>
+    <string name="quote_30" id="339">Konsciegu la nunon</string>
+    <string name="quote_27" id="336">Alligiteco kondukas al sufero</string>
+    <string name="quote_43" id="352">Elektu esti optimisma; tio sentigas vin pli bone</string>
+    <string name="quote_48" id="357">Ĝoju pri atentemo! Gardu bone viajn pensojn!</string>
+    <string name="quote_54" id="363">Guton post guto plenîgas la akvopoto. Same, la saĝulo, iom post iom, plenigas sin per bono</string>
+    <string name="quote_100" id="409">Eblas vivi 24 horojn en amstato</string>
+    <string name="quote_113" id="422">Forlasado donas al ni liberecon, kaj libereco estas la sola kondiĉo por feliĉo. Se, en nia koro, ni ankoraŭ alkroĉiĝas al io ajn – kolero, angoro aŭ posedaĵoj – ni ne povas esti liberaj</string>
+    <string name="quote_127" id="436">Ke ĉiuj estaĵoj havu feliĉajn mensojn</string>
+    <string name="quote_118" id="427">Iom post iom homo fariĝas malbona, kiel akvopoto estas plenigata de akvogutoj; Iom post iom homo fariĝas bona, kiel akvopoto estas plenigata de akvogutoj</string>
+    <string name="quote_121" id="430">Longa estas la nokto por la vekiĝinto; longa estas la mejlo por la laculo; longa estas la vivo por la malsaĝulo, kiu ne scias la veran leĝon</string>
+    <string name="quote_124" id="433">Amo estas la foresto de juĝo</string>
+    <string name="quote_122" id="431">Situacion rigardu de ĉiuj anguloj, kaj vi plimalfermitiĝos</string>
+    <string name="quote_137" id="446">Nenio estas eterna krom ŝanĝo</string>
+    <string name="quote_143" id="452">Pacienco estas la plej alta asketismo</string>
+    <string name="quote_154" id="463">Decide trejnu vin por atingi pacon</string>
+    <string name="quote_161" id="470">Silento kelkfoje estas la plej bona respondo</string>
+    <string name="quote_168" id="477">La plej malhela nokto estas nescio</string>
+    <string name="quote_172" id="481">Ju malpli vi havas, des malpli vi devas prizorgi</string>
+    <string name="quote_179" id="488">La radiko de sufero estas alligiteco</string>
+    <string name="start_meditation">Ekmediti</string>
+    <string name="meditate_subheading">Ĝi estas simpla kaj facila</string>
+    <string name="meditate_breath">Spirado</string>
+    <string name="opaque">Opaka</string>
+    <string name="empty_list">Jen malplena listo!</string>
+    <string name="quote_79" id="388">«Mi loĝos ĉi tie dum la pluvoj, tie vintre, aliloke somere», pensas la malsaĝulo, ne konsciante pri la proksimeco de la morto</string>
+    <string name="quote_228" id="537">Kiu postlasis la homajn ligojn kaj forĵetis la ĉielajn ligojn, dekroĉite de ĉiaj ĉieaj ligoj: tiun mi nomas brahmoo</string>
+    <string name="settings_shapes_mode" id="99">Reĝimo de formoj</string>
+    <string name="settings_shapes_mode_yes" id="100">Ŝaltita</string>
+    <string name="settings_shapes_mode_no" id="101">Malŝaltita</string>
+    <string name="li">Limburga</string>
+    <string name="or">Orisa</string>
+    <string name="qu">Keĉua</string>
+    <string name="rn">Burunda</string>
+    <string name="quote_23" id="332">Kiel floro ĉarma kaj bela sed senodora, tiel senfrukta estas la bonparolata vorto de tiu, kiu ĝin ne praktikas</string>
+    <string name="quote_21" id="330">Arde faru hodiaŭ la farendaĵojn. Kiu scias\? Morgaŭ venos morto</string>
+    <string name="quote_26" id="335">Kiel elefanto sur la batalkampo eltenas sagojn pafitaj de pafarkoj ĉirkaŭe, tiel mi elportos fitraktadon</string>
+    <string name="quote_28" id="337">Atento estas la plej malofta kaj pura formo de malavareco</string>
+    <string name="quote_31" id="340">Estu afabla kiam eblas; ĉiam eblas</string>
+    <string name="quote_55" id="364">Emocio estiĝas de deziro; ĝi estas tial iluzio</string>
+    <string name="quote_53" id="362">Ne pripensu la grandecon de la universo; tio nur dolorigos vian kapon</string>
+    <string name="quote_78" id="387">Mi ne disputas kun la mondo; estas la mondo, kiu disputas kun mi</string>
+    <string name="quote_205" id="514">Insisti pri spirita praktiko servinta vin en la pasinteco estas porti la floson sur via dorso transirinte la riveron</string>
+    <string name="quote_203" id="512">Esti bela signifas esti vi mem. Vi ne bezonas esti akceptita de aliuloj. Vi devas akcepti vin mem</string>
+    <string name="quote_209" id="518">Subteni patrinon kaj patron, ŝati edzinon kaj infanojn, kaj okupiĝi pri paca okupo – jen la plej granda beno</string>
+    <string name="quote_211" id="520">Kompreno estas la koro de bonparolitaj vortoj</string>
+    <string name="title_home">Hejmo</string>
+    <string name="title_notifications">Sciigoj</string>
+    <string name="quote_235" id="544">Oni ne kolektas la belecon de floro plukante ĝiajn petalojn</string>
+    <string name="quote_236" id="545">Via memo estas via mastro; kiu alia povus esti\? Bone regante vian memon, vi akiras mastron tre malfacile troveblan</string>
+    <string name="quote_237" id="546">Vi mem devas strebi. La Budhoj nur montras la vojon</string>
+    <string name="quote_233" id="542">Sen sano la vivo ne estas vivo, sed nur stato langvora kaj sufera – bildo de morto</string>
+    <string name="quote_234" id="543">Vi estas la komunumo nun. Estu lampo por vi mem. Estu via propra rifuĝo. Serĉu neniun alian. Ĉio forpasos. Strebu plu diligente. Ne rezignu</string>
+    <string name="fragment_meditation">Mediti</string>
+    <string name="meditate_title">Mediti</string>
+</resources>

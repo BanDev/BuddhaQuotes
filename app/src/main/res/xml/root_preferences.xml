@@ -1,0 +1,38 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:overScrollMode="never">
+
+    <PreferenceCategory
+        app:title="@string/settings_general"
+        android:layout="@layout/preference_category_layout">
+
+        <Preference
+            app:key="app_language"
+            app:title="@string/settings_language"
+            app:summary="@string/settings_language"
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/appearance"
+        android:layout="@layout/preference_category_layout">
+
+        <Preference
+            app:key="app_theme"
+            app:title="@string/app_theme"
+            android:summary="@string/app_theme"
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
+
+        <Preference
+            app:key="accent_color"
+            app:title="@string/settings_accent_colour"
+            android:summary="@string/settings_accent_colour"
+            app:useSimpleSummaryProvider="true"
+            android:layout="@layout/preference_layout"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

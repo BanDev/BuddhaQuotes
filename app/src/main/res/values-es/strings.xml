@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refresh" id="1">Actualizar</string>
+    <string name="favourite" id="2">Favorito</string>
+    <string name="share" id="3">Cuota</string>
+    <string name="settings" id="4">Ajustes</string>
+    <string name="appearance" id="5">Apariencia</string>
+    <string name="app_theme" id="6">Tema de la aplicación</string>
+    <string name="light_mode" id="7">Ligero</string>
+    <string name="dark_mode" id="8">Oscuro</string>
+    <string name="follow_system_default" id="9">Seguir el sistema</string>
+    <string name="information" id="14">Información</string>
+    <string name="about" id="15">Sobre</string>
+    <string name="view_app_details" id="16">Ver detalles de la aplicación</string>
+    <string name="intro" id="17">Ayuda</string>
+    <string name="app_introduction" id="18">Introducción a la aplicación</string>
+    <string name="app_license" id="19">Licencia de la aplicación</string>
+    <string name="libraries_used" id="20">Bibliotecas utilizadas</string>
+    <string name="about_app_promise" id="21">Promesa de la aplicación</string>
+    <string name="about_no_trackers" id="22">Sin rastreadores</string>
+    <string name="about_complete_privacy" id="23">Privacidad total</string>
+    <string name="about_offline_app" id="24">Aplicación sin conexión</string>
+    <string name="about_free_and_open_source" id="25">Gratis y de código abierto</string>
+    <string name="about_info" id="26">Informacion de la applicacion</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes es un proyecto colaborativo para crear una aplicación gratuita y de código abierto de Buddha Quotes para Android con un enfoque en la privacidad.</string>
+    <string name="about_contributors" id="28">Colaboradores</string>
+    <string name="about_acknowledgements" id="29">Agradecimientos</string>
+    <string name="about_attribution" id="30">Icono de lanzador - Freepik a través de Flaticon</string>
+    <string name="tick" id="31">Garrapata</string>
+    <string name="favourited_quote" id="55">Cita favorita</string>
+    <string name="favourite_quote_delete" id="56">Borrar</string>
+    <string name="buddha_quotes_logo" id="57">Logotipo de Buda Quotes</string>
+    <string name="bandev_logo" id="58">Logotipo de BanDev</string>
+    <string name="the_buddha" id="59">El Buda</string>
+    <string name="forward_arrow" id="60">Regreso</string>
+    <string name="icon" id="61">Icono</string>
+    <string name="title" id="62">Título</string>
+    <string name="title_activity_settings" id="82">Configuración Actividad</string>
+    <string name="textview" id="83">Vista de texto</string>
+    <string name="MainActivity" id="84">Actividad principal</string>
+    <string name="title_activity_scrolling" id="85">DesplazamientoActividad</string>
+    <string name="action_settings" id="86">Ajustes</string>
+    <string name="appwidget_text" id="87">EJEMPLO</string>
+    <string name="configure" id="88">Configurar</string>
+    <string name="add_widget" id="89">Agregar widget</string>
+    <string name="open_source_libraries" id="90">Bibliotecas de código abierto</string>
+    <string name="about_no_ads" id="91">Sin anuncios</string>
+    <string name="lists_title" id="92">Tus listas</string>
+    <string name="lists_add_item" id="93">Agregar a la lista</string>
+    <string name="lists_add_lists" id="94">Crear nueva lista</string>
+    <string name="lists_add_lists_go" id="95">Agregar</string>
+    <string name="lists_add_lists_name" id="96">Nombre</string>
+    <string name="settings_general" id="97">General</string>
+    <string name="settings_accent_colour" id="98">Color de acento</string>
+    <string name="settings_shapes_mode" id="99">Modo de formas</string>
+    <string name="settings_shapes_mode_yes" id="100">En</string>
+    <string name="settings_shapes_mode_no" id="101">Apagado</string>
+    <string name="settings_language" id="102">Idioma</string>
+    <string name="original" id="103">Defecto</string>
+    <string name="blue" id="104">Azul</string>
+    <string name="green" id="105">Verde</string>
+    <string name="orange" id="106">naranja</string>
+    <string name="yellow" id="107">Original</string>
+    <string name="teal" id="108">Verde azulado</string>
+    <string name="violet" id="109">Violeta</string>
+    <string name="pink" id="110">Rosa</string>
+    <string name="lightBlue" id="111">Azul claro</string>
+    <string name="red" id="112">rojo</string>
+    <string name="lime" id="113">Lima</string>
+    <string name="crimson" id="114">carmesí</string>
+    <string name="ab">Abjasio</string>
+    <string name="aa">Lejos</string>
+    <string name="af">africaans</string>
+    <string name="ak">Akan</string>
+    <string name="sq">albanés</string>
+    <string name="am">Amárico</string>
+    <string name="ar">Arábica</string>
+    <string name="an">aragonés</string>
+    <string name="hy">armenio</string>
+    <string name="as">Asamés</string>
+    <string name="av">Avarico</string>
+    <string name="ae">Avestan</string>
+    <string name="ay">aimara</string>
+    <string name="az">Azerbaiyano</string>
+    <string name="bm">Bambara</string>
+    <string name="ba">Bashkir</string>
+    <string name="eu">vasco</string>
+    <string name="be">Bielorruso</string>
+    <string name="bn">bengalí</string>
+    <string name="bh">Idiomas bihari</string>
+    <string name="bi">Bislama</string>
+    <string name="bs">bosnio</string>
+    <string name="br">Bretón</string>
+    <string name="bg">búlgaro</string>
+    <string name="my">birmano</string>
+    <string name="ca">Catalán, valenciano</string>
+    <string name="km">Khmer central</string>
+    <string name="ch">Chamorro</string>
+    <string name="ce">Checheno</string>
+    <string name="ny">Chichewa, Chewa, Nyanja</string>
+    <string name="zh">chino</string>
+    <string name="cu">Eslavo eclesiástico, búlgaro antiguo, eslavo eclesiástico antiguo</string>
+    <string name="cv">Chuvash</string>
+    <string name="kw">de Cornualles</string>
+    <string name="co">corso</string>
+    <string name="cr">Cree</string>
+    <string name="hr">croata</string>
+    <string name="cs">checo</string>
+    <string name="da">danés</string>
+    <string name="dv">Divehi, Dhivehi, Maldivas</string>
+    <string name="nl">Holandés, flamenco</string>
+    <string name="dz">Dzongkha</string>
+    <string name="en">inglés</string>
+    <string name="eo">esperanto</string>
+    <string name="et">Estonio</string>
+    <string name="ee">Oveja</string>
+    <string name="fo">Feroés</string>
+    <string name="fj">Fiyiano</string>
+    <string name="fi">finlandés</string>
+    <string name="fr">francés</string>
+    <string name="ff">Fulah</string>
+    <string name="gd">Gaélico, gaélico escocés</string>
+    <string name="gl">gallego</string>
+    <string name="lg">Ganda</string>
+    <string name="ka">georgiano</string>
+    <string name="de">alemán</string>
+    <string name="ki">Gikuyu, Kikuyu</string>
+    <string name="el">Griego (moderno)</string>
+    <string name="kl">Groenlandés, Kalaallisut</string>
+    <string name="gn">Guaraní</string>
+    <string name="gu">Gujarati</string>
+    <string name="ht">Haitiano, criollo haitiano</string>
+    <string name="ha">Hausa</string>
+    <string name="he">hebreo</string>
+    <string name="hz">Herero</string>
+    <string name="hi">hindi</string>
+    <string name="ho">Hiri Motu</string>
+    <string name="hu">húngaro</string>
+    <string name="is">islandés</string>
+    <string name="io">Hago</string>
+    <string name="ig">Igbo</string>
+    <string name="id">indonesio</string>
+    <string name="ia">Interlingua (Asociación Internacional de Idiomas Auxiliares)</string>
+    <string name="ie">Interlingual</string>
+    <string name="iu">Inuktitut</string>
+    <string name="ik">Inupiaq</string>
+    <string name="ga">irlandesa</string>
+    <string name="it">italiano</string>
+    <string name="ja">japonés</string>
+    <string name="jv">javanés</string>
+    <string name="kn">Canarés</string>
+    <string name="kr">Kanuri</string>
+    <string name="ks">Cachemira</string>
+    <string name="kk">Kazajo</string>
+    <string name="rw">Kinyarwanda</string>
+    <string name="kv">Komi</string>
+    <string name="kg">Kongo</string>
+    <string name="ko">coreano</string>
+    <string name="kj">Kwanyama, Kuanyama</string>
+    <string name="ku">kurdo</string>
+    <string name="ky">Kirguís</string>
+    <string name="lo">Lao</string>
+    <string name="la">latín</string>
+    <string name="lv">letón</string>
+    <string name="lb">Letzeburgesch, luxemburgués</string>
+    <string name="li">Limburgués, Limburgan, Limburger</string>
+    <string name="ln">Lingala</string>
+    <string name="lt">lituano</string>
+    <string name="lu">Luba-Katanga</string>
+    <string name="mk">macedónio</string>
+    <string name="mg">madagascarí</string>
+    <string name="ms">malayo</string>
+    <string name="ml">Malayalam</string>
+    <string name="mt">maltés</string>
+    <string name="gv">de la isla de Man</string>
+    <string name="mi">maorí</string>
+    <string name="mr">Marathi</string>
+    <string name="mh">Marshalés</string>
+    <string name="ro">Moldavo, Rumano</string>
+    <string name="mn">mongol</string>
+    <string name="na">Nauru</string>
+    <string name="nv">Navajo, Navaho</string>
+    <string name="nd">Ndebele del norte</string>
+    <string name="ng">Ndonga</string>
+    <string name="ne">Nepalí</string>
+    <string name="se">Sami del Norte</string>
+    <string name="no">noruego</string>
+    <string name="nb">Noruego bokmål</string>
+    <string name="nn">Noruego Nynorsk</string>
+    <string name="ii">Nuosu, Sichuan Yi</string>
+    <string name="oc">Occitano (después de 1500)</string>
+    <string name="oj">Ojibwa</string>
+    <string name="or">Oriya</string>
+    <string name="om">Oromo</string>
+    <string name="os">Osetio, osetico</string>
+    <string name="pi">Pali</string>
+    <string name="pa">Panjabi, Punjabi</string>
+    <string name="ps">Pashto, pushto</string>
+    <string name="fa">persa</string>
+    <string name="pl">polaco</string>
+    <string name="pt">portugués</string>
+    <string name="qu">quechua</string>
+    <string name="rm">Romanche</string>
+    <string name="rn">Rundi</string>
+    <string name="ru">ruso</string>
+    <string name="sm">Samoano</string>
+    <string name="sg">Sango</string>
+    <string name="sa">sánscrito</string>
+    <string name="sc">sardo</string>
+    <string name="sr">serbio</string>
+    <string name="sn">Shona</string>
+    <string name="sd">Sindhi</string>
+    <string name="si">Sinhala, Sinhalese</string>
+    <string name="sk">eslovaco</string>
+    <string name="sl">esloveno</string>
+    <string name="so">somalí</string>
+    <string name="st">Sotho, Sur</string>
+    <string name="nr">Ndebele del sur</string>
+    <string name="es">Español, castellano</string>
+    <string name="su">Sundanés</string>
+    <string name="sw">swahili</string>
+    <string name="ss">Swati</string>
+    <string name="sv">sueco</string>
+    <string name="tl">Tagalo</string>
+    <string name="ty">Tahitiano</string>
+    <string name="tg">Tayiko</string>
+    <string name="ta">Tamil</string>
+    <string name="tt">Tártaro</string>
+    <string name="te">Telugu</string>
+    <string name="th">tailandés</string>
+    <string name="bo">Tibetano</string>
+    <string name="ti">Tigrinya</string>
+    <string name="to">Tonga (Islas Tonga)</string>
+    <string name="ts">Tsonga</string>
+    <string name="tn">Tswana</string>
+    <string name="tr">turco</string>
+    <string name="tk">Turcomano</string>
+    <string name="tw">Twi</string>
+    <string name="ug">Uigur, uigur</string>
+    <string name="uk">ucranio</string>
+    <string name="ur">Urdu</string>
+    <string name="uz">Uzbeko</string>
+    <string name="ve">Venda</string>
+    <string name="vi">vietnamita</string>
+    <string name="vo">Lengua artificial Volapuk</string>
+    <string name="wa">Valonia</string>
+    <string name="cy">galés</string>
+    <string name="fy">Frisón occidental</string>
+    <string name="wo">Wolof</string>
+    <string name="xh">Xhosa</string>
+    <string name="yi">yídish</string>
+    <string name="yo">Yoruba</string>
+    <string name="za">Zhuang, Chuang</string>
+    <string name="zu">zulú</string>
+    <string name="appintro1_description" id="299">Una aplicación de cotizaciones de Buda gratuita y de código abierto</string>
+    <string name="appintro2_title" id="300">Más de 230 citas</string>
+    <string name="appintro2_description" id="301">Más de 230 citas de Buda. \n¡Desliza el dedo hacia abajo para actualizar!</string>
+    <string name="appintro3_title" id="302">Favoritos</string>
+    <string name="appintro3_description" id="303">Puede marcar citas como favoritos presionando el botón de favoritos o tocando dos veces en la pantalla</string>
+    <string name="appintro4_title" id="304">Personalizable</string>
+    <string name="appintro4_description" id="305">Hay una variedad de opciones de interfaz de usuario, como colores de acento y modo oscuro</string>
+    <string name="appintro5_title" id="306">¡Empecemos!</string>
+    <string name="appintro5_description" id="307">Esperamos que disfrute de la aplicación; tenemos un repositorio de GitLab donde puede solicitar funciones o plantear problemas</string>
+    <string name="cancel" id="308">Cancelar</string>
+    <string name="confirm" id="309">Confirmar</string>
+    <string name="quote_1" id="310">Una mente disciplinada trae felicidad</string>
+    <string name="quote_2" id="311">Un buen amigo que señala errores e imperfecciones y reprende el mal debe ser respetado como si revelara un secreto de un tesoro escondido.</string>
+    <string name="quote_3" id="312">Una gran revolución humana en un solo individuo ayudará a lograr un cambio en el destino de una nación y, además, puede incluso permitir un cambio en el destino de toda la humanidad.</string>
+    <string name="quote_4" id="313">Un hombre le preguntó a Gautama Buddha: "Quiero la felicidad". Buda dijo: "Primero quita" yo ", eso es Ego, luego quita" querer ", eso es Deseo. Mira, ahora te quedas solo con" Felicidad ".</string>
+    <string name="quote_5" id="314">A un hombre no se le llama sabio porque hable y vuelva a hablar; pero si es pacífico, amoroso y valiente, en verdad se le llama sabio</string>
+    <string name="quote_6" id="315">Una mente imperturbable por los caprichos de la fortuna, liberada del dolor, limpiada de las impurezas, liberada del miedo: esta es la mayor bendición.</string>
+    <string name="quote_7" id="316">Una persona que, por muy desesperada que sea la situación, da esperanza a los demás, es un verdadero líder.</string>
+    <string name="quote_8" id="317">Una actitud verdaderamente compasiva hacia los demás no cambia incluso si se comportan negativamente o te lastiman</string>
+    <string name="quote_9" id="318">Sobre todo no pierdas las ganas de caminar</string>
+    <string name="quote_10" id="319">\'Todas las cosas condicionadas son impermanentes \' - cuando uno ve esto con sabiduría, se aleja del sufrimiento</string>
+    <string name="quote_11" id="320">Todas las experiencias están precedidas por la mente, teniendo a la mente como maestra, creada por la mente.</string>
+    <string name="quote_12" id="321">No todos los fenómenos existen inherentemente debido a que son surgimientos dependientes. Todos los fenómenos no existen de forma inherente porque se imputan de forma dependiente</string>
+    <string name="quote_13" id="322">Todo sufrimiento es causado por la ignorancia. Las personas infligen dolor a los demás en la búsqueda egoísta de su propia felicidad o satisfacción.</string>
+    <string name="quote_14" id="323">Todos tiemblan de violencia; todos temen a la muerte. Poniéndose en el lugar del otro, no se debe matar ni hacer que otro mate</string>
+    <string name="quote_15" id="324">Todas las malas acciones surgen debido a la mente. Si la mente se transforma, ¿pueden permanecer las malas acciones?</string>
+    <string name="quote_16" id="325">Un corazón abierto es una mente abierta</string>
+    <string name="quote_17" id="326">Analizar a través de una percepción especial y darse cuenta de la falta de existencia inherente constituye la comprensión de lo sin signo.</string>
+    <string name="quote_18" id="327">La ira es el máximo destructor de tu propia paz mental</string>
+    <string name="quote_19" id="328">La ira o el odio es como el anzuelo de un pescador. Es muy importante para nosotros asegurarnos de que no nos atrape.</string>
+    <string name="quote_20" id="329">La ira nunca desaparecerá mientras se alberguen en la mente pensamientos de resentimiento. La ira desaparecerá tan pronto como se olviden los pensamientos de resentimiento.</string>
+    <string name="quote_21" id="330">Haz hoy ardientemente lo que hay que hacer. ¿Quién sabe? Mañana llega la muerte</string>
+    <string name="quote_22" id="331">Como soy, también son estos. Como estos, yo también. Dibujando el paralelo contigo mismo, no mates ni consigas que otros maten</string>
+    <string name="quote_23" id="332">Como flor hermosa y hermosa, pero sin olor, aun así, infructuosa es la palabra bien hablada de quien no la practica.</string>
+    <string name="quote_24" id="333">Como una flor de loto nace en el agua, crece en el agua y se eleva fuera del agua para estar sobre ella sin ensuciar, así yo, nacido en el mundo, criado en el mundo habiendo vencido al mundo, vivo sin ensuciar el mundo</string>
+    <string name="quote_25" id="334">Como una gota de agua en una hoja de loto, como el agua en un lirio rojo, no se adhiere, así la salvia no se adhiere a lo visto, lo oído o lo sentido.</string>
+    <string name="quote_26" id="335">Como un elefante en el campo de batalla soporta flechas disparadas con arcos por todas partes, aun así soportaré el abuso</string>
+    <string name="quote_27" id="336">El apego conduce al sufrimiento</string>
+    <string name="quote_28" id="337">La atención es la forma más rara y pura de generosidad</string>
+    <string name="quote_29" id="338">Sé una lámpara para ti mismo. Trabaja tu liberación con liberación</string>
+    <string name="quote_30" id="339">Sea muy consciente del presente</string>
+    <string name="quote_31" id="340">Sea amable siempre que sea posible. Siempre es posible</string>
+    <string name="quote_32" id="341">Estar atentos; guarda tu mente contra los pensamientos negativos</string>
+    <string name="quote_33" id="342">Se lo que eres. Este es el primer paso para ser mejor de lo que eres</string>
+    <string name="quote_34" id="343">Debido a que todos compartimos una necesidad idéntica de amor, es posible sentir que cualquiera que encontremos, en cualquier circunstancia, es un hermano o una hermana.</string>
+    <string name="quote_35" id="344">Porque estas vivo todo es posible</string>
+    <string name="quote_36" id="345">Mejor es vivir solo; no hay compañerismo con un necio. Vive solo y no hagas mal; se despreocupado como un elefante en el bosque de elefantes</string>
+    <string name="quote_37" id="346">Mejor es vivir un día viendo el ascenso y la caída de las cosas que vivir cien años sin ver el ascenso y la caída de las cosas.</string>
+    <string name="quote_38" id="347">Mejor que mil palabras inútiles es una palabra útil, escuchar cuál alcanza la paz.</string>
+    <string name="quote_39" id="348">Mejor que adorar a los dioses es la obediencia a las leyes de la justicia.</string>
+    <string name="quote_40" id="349">Al vivir profundamente en el momento presente, podemos comprender mejor el pasado y podemos prepararnos para un futuro mejor.</string>
+    <string name="quote_41" id="350">La mente tranquila aporta fuerza interior y confianza en sí mismo, por lo que es muy importante para la buena salud.</string>
+    <string name="quote_42" id="351">Dejar de hacer el mal, cultivar el bien, purificar el corazón: esta es la enseñanza de los Budas.</string>
+    <string name="quote_43" id="352">Elige ser optimista, se siente mejor</string>
+    <string name="quote_44" id="353">Conquista la ira mediante la gentileza, la crueldad mediante la bondad, la codicia mediante la generosidad y la falsedad mediante la verdad.</string>
+    <string name="quote_45" id="354">Conquista la ira con la no ira. Conquista la maldad con la bondad. Conquista la mezquindad con generosidad. Conquista la deshonestidad con la verdad</string>
+    <string name="quote_46" id="355">Conquista al enojado no enojándote; conquistar a los impíos con el bien; conquistar al tacaño con generosidad, y al mentiroso diciendo la verdad</string>
+    <string name="quote_47" id="356">El contentamiento es la mayor riqueza</string>
+    <string name="quote_48" id="357">¡Deléitate con la atención! ¡Guarda bien tus pensamientos!</string>
+    <string name="quote_49" id="358">Hermosos son los bosques donde el público no deleita. Allí el deleite sin pasión, sin buscar el placer sensual</string>
+    <string name="quote_50" id="359">El Dharma no se sostiene hablando de él. El Dharma se mantiene viviendo en armonía con él …</string>
+    <string name="quote_51" id="360">No preste atención a lo que otros hacen o dejan de hacer; dáselo a lo que haces o dejas de hacer</string>
+    <string name="quote_52" id="361">No sobrevalore lo que ha recibido, ni envidie a los demás. El que envidia a los demás no obtiene tranquilidad</string>
+    <string name="quote_53" id="362">No pienses en lo grande que es el universo, simplemente te lastimará la cabeza.</string>
+    <string name="quote_54" id="363">Gota a gota se llena la olla de agua. Asimismo, el sabio, recogiéndolo poco a poco, se llena de buenos</string>
+    <string name="quote_55" id="364">La emoción surge del deseo, de ahí una ilusión</string>
+    <string name="quote_56" id="365">La resistencia es una de las disciplinas más difíciles, pero es a quien aguanta a quien le llega la victoria final.</string>
+    <string name="quote_57" id="366">Así como una roca sólida no es sacudida por el viento, así el sabio no se inmuta por la alabanza o la culpa.</string>
+    <string name="quote_58" id="367">Incluso si las cosas no se desarrollan como esperabas, no te desanimes ni te rindas. El que sigue avanzando ganará al final</string>
+    <string name="quote_59" id="368">Todo es cambiante, todo aparece y desaparece no hay paz dichosa hasta que uno pasa más allá de la agonía de la vida y la muerte</string>
+    <string name="quote_60" id="369">Los sentimientos van y vienen como nubes en un cielo ventoso. La respiración consciente es mi ancla</string>
+    <string name="quote_61" id="370">Pocos entre los hombres son los que cruzan a la otra orilla. Los otros simplemente corren arriba y abajo de la orilla de este lado</string>
+    <string name="quote_62" id="371">Seguir el Sendero Noble es como entrar en una habitación oscura con una luz en la mano; toda la oscuridad se despejará y la habitación se llenará de luz</string>
+    <string name="quote_63" id="372">Por el bien de muchos, por la felicidad de muchos, por compasión por el mundo</string>
+    <string name="quote_64" id="373">La amistad es la única cura para el odio, la única garantía de paz</string>
+    <string name="quote_65" id="374">De un árbol marchito, florece una flor</string>
+    <string name="quote_66" id="375">Da, incluso si solo tienes un poco</string>
+    <string name="quote_67" id="376">Más grande en la batalla que el hombre que conquistaría mil hombres, es el que conquistaría sólo uno: él mismo. Mejor conquistarse a uno mismo que a los demás</string>
+    <string name="quote_68" id="377">Mayor aún es la verdad de nuestra conexión</string>
+    <string name="quote_69" id="378">La felicidad proviene principalmente de nuestra propia actitud, más que de factores externos.</string>
+    <string name="quote_70" id="379">El odio nunca se aplaca con el odio en este mundo. Sólo mediante el no odio se aplaca el odio. Esta es una ley eterna</string>
+    <string name="quote_71" id="380">No necesita fe quien conoce a lo increado, quien ha cortado el renacimiento, quien ha destruido cualquier oportunidad para el bien o el mal, y desecha todo deseo. De hecho, es el hombre supremo</string>
+    <string name="quote_72" id="381">No es el mismo, ni es otro</string>
+    <string name="quote_73" id="382">Aquel que pueda contener su ira tan pronto como surja, como un antídoto oportuno, controlará el veneno de la serpiente que se propaga tan rápidamente; un monje así abandona el aquí y el más allá, como una serpiente muda su piel gastada.</string>
+    <string name="quote_74" id="383">Aquel que camina por el noble sendero óctuple con determinación inquebrantable seguramente alcanzará el Nirvana.</string>
+    <string name="quote_75" id="384">La salud es el mayor regalo, la alegría es la mayor riqueza, la fidelidad es la mejor relación.</string>
+    <string name="quote_76" id="385">Cuán dichoso es para alguien que no tiene nada. Los conquistadores de sabiduría son personas sin nada. Míralo sufrir, alguien que tiene algo, una persona ligada a la gente</string>
+    <string name="quote_77" id="386">Por muchas palabras santas que lea, por muchas que pronuncie, ¿de qué le servirán si no las pone en práctica?</string>
+    <string name="quote_78" id="387">No disputo con el mundo; más bien es el mundo el que disputa conmigo</string>
+    <string name="quote_79" id="388">Viviré aquí en las lluvias, allí en invierno, en otro lugar en verano ", reflexiona el tonto, sin darse cuenta de la proximidad de la muerte</string>
+    <string name="quote_80" id="389">No miraré el tazón de otro que intenta encontrar fallas: un entrenamiento para ser observado</string>
+    <string name="quote_81" id="390">Si un hombre que baja a un río, hinchado y fluyendo rápidamente, se deja llevar por la corriente, ¿cómo puede ayudar a otros a cruzar?</string>
+    <string name="quote_82" id="391">Si un viajero no se encuentra con alguien que sea mejor o igual a él, que se mantenga firme en su viaje solitario; no hay compañerismo con un tonto</string>
+    <string name="quote_83" id="392">Si vale la pena hacer algo, hazlo con todo tu corazón</string>
+    <string name="quote_84" id="393">Si se analiza el desinterés de los fenómenos y si se cultiva este análisis, se produce el efecto de alcanzar el nirvana. Por ninguna otra causa se llega a la paz</string>
+    <string name="quote_85" id="394">Si no cuidamos de los demás cuando necesitan ayuda, ¿quién cuidará de nosotros?</string>
+    <string name="quote_86" id="395">Si con la mente pura una persona habla o actúa, la felicidad los sigue como una sombra que nunca se va.</string>
+    <string name="quote_87" id="396">Si puedes cultivar la actitud correcta, tus enemigos son tus mejores maestros espirituales porque su presencia te brinda la oportunidad de mejorar y desarrollar tu tolerancia, paciencia y comprensión.</string>
+    <string name="quote_88" id="397">Si no encuentra a nadie que lo apoye en el camino espiritual, camine solo.No hay compañía con los inmaduros.</string>
+    <string name="quote_89" id="398">Si supieras lo que sé sobre el poder de dar, no dejarías pasar una sola comida sin compartirla de alguna manera.</string>
+    <string name="quote_90" id="399">Si amas a alguien pero rara vez estás disponible para ellos, eso no es amor verdadero.</string>
+    <string name="quote_91" id="400">Si quieres que otros sean felices, practica la compasión. Si quieres ser feliz, practica la compasión</string>
+    <string name="quote_92" id="401">En la vida no podemos evitar el cambio, no podemos evitar la pérdida. La libertad y la felicidad se encuentran en la flexibilidad y la facilidad con la que nos movemos a través del cambio.</string>
+    <string name="quote_93" id="402">Para llevar a cabo una acción positiva, debemos desarrollar aquí una visión positiva.</string>
+    <string name="quote_94" id="403">En quien no hay simpatía por los seres vivos: conócelo como un paria</string>
+    <string name="quote_95" id="404">Es la propia mente de un hombre, no su enemigo o enemigo, lo que lo atrae a los malos caminos.</string>
+    <string name="quote_96" id="405">Es fácil ver las fallas de los demás, pero es difícil ver las propias fallas. Uno muestra las faltas de otro como paja aventada en el viento, pero uno oculta las propias faltas como un jugador astuto oculta sus dados.</string>
+    <string name="quote_97" id="406">Está en la naturaleza de las cosas que la alegría surge en una persona libre de remordimientos.</string>
+    <string name="quote_98" id="407">Es necesario combinar los conocimientos que nacen del estudio con la práctica sincera en nuestra vida diaria. Estos dos deben ir juntos</string>
+    <string name="quote_99" id="408">No basta con ser compasivo, debemos actuar</string>
+    <string name="quote_100" id="409">Es posible vivir las 24 horas en un estado de amor</string>
+    <string name="quote_101" id="410">Es muy importante generar una buena actitud, un buen corazón, tanto como sea posible. De esto vendrá la felicidad tanto a corto como a largo plazo tanto para ti como para los demás.</string>
+    <string name="quote_102" id="411">Es tu camino … y solo tuyo … Otros pueden caminar contigo, pero nadie puede hacerlo por ti. No importa el camino que elijas, síguelo.</string>
+    <string name="quote_103" id="412">La alegría no proviene de la posesión o propiedad, sino de un corazón sabio y amoroso.</string>
+    <string name="quote_104" id="413">Así como una roca sólida no es sacudida por la tormenta, así los sabios no se ven afectados por la alabanza o la culpa.</string>
+    <string name="quote_105" id="414">Así como el gran océano tiene un sabor, el sabor de la sal, así también esta enseñanza y disciplina tiene un sabor, el sabor de la liberación.</string>
+    <string name="quote_106" id="415">Sepa de los ríos en las hendiduras y en las hendiduras: los de los canales pequeños fluyen ruidosamente, el gran fluye silencioso. Todo lo que no está lleno hace ruido. Todo lo que está lleno está en silencio</string>
+    <string name="quote_107" id="416">Sepa bien lo que lo lleva hacia adelante y lo que lo detiene, y elija el camino que lo lleva a la sabiduría.</string>
+    <string name="quote_108" id="417">Aprenda esto del agua: fuerte salpica el arroyo pero la profundidad de los océanos está en calma</string>
+    <string name="quote_109" id="418">Deja atrás el sueño pasivo de un futuro teñido de rosa. La energía de la felicidad existe en vivir hoy con raíces firmemente hundidas en el suelo de la realidad.</string>
+    <string name="quote_110" id="419">Deja que los pensamientos que lo abarquen todo para todos los seres sean tuyos</string>
+    <string name="quote_111" id="420">Que no engañe a otro ni desprecie a nadie en ninguna parte. En ira o mal, no le dejes desear otro mal.</string>
+    <string name="quote_112" id="421">Que nadie critique a los demás; que nadie vea las omisiones y comisiones de otros. Pero deja que uno vea sus propios actos, hechos y deshechos</string>
+    <string name="quote_113" id="422">Dejar ir nos da libertad, y la libertad es la única condición para la felicidad. Si, en nuestro corazón, todavía nos aferramos a algo (ira, ansiedad o posesiones) no podemos ser libres</string>
+    <string name="quote_114" id="423">La vida es un río que siempre fluye. No te aferres a las cosas. Trabaja duro</string>
+    <string name="quote_115" id="424">La vida está disponible solo en el momento presente</string>
+    <string name="quote_116" id="425">Como una hermosa flor llena de color pero sin fragancia, son las palabras de quienes no practican lo que enseñan.</string>
+    <string name="quote_117" id="426">Como alguien que señala un tesoro, es la persona sabia que ve tus faltas y las señala. Asociarse con tal sabio</string>
+    <string name="quote_118" id="427">Poco a poco una persona se vuelve malvada, como un cántaro se llena con gotas de agua; Poco a poco una persona se vuelve buena, como una olla de agua se llena con gotas de agua</string>
+    <string name="quote_119" id="428">Vive cada acto a plenitud, como si fuera el último</string>
+    <string name="quote_120" id="429">Vivir sin sentido de "mío", sin formar apego a las experiencias</string>
+    <string name="quote_121" id="430">Larga es la noche para el que está despierto; larga es una milla para el cansado; larga es la vida para los necios que no conocen la verdadera ley</string>
+    <string name="quote_122" id="431">Mire las situaciones desde todos los ángulos y se volverá más abierto</string>
+    <string name="quote_123" id="432">El amor y la compasión son necesidades, no lujos. La humanidad no puede sobrevivir sin ello</string>
+    <string name="quote_124" id="433">El amor es la ausencia de juicio</string>
+    <string name="quote_125" id="434">Ámate a ti mismo y mira, hoy, mañana y siempre</string>
+    <string name="quote_126" id="435">Muchos no se dan cuenta de que aquí debemos morir. Para aquellos que se dan cuenta de esto, las peleas terminan</string>
+    <string name="quote_127" id="436">Que todos los seres tengan mentes felices</string>
+    <string name="quote_128" id="437">Medita… no te demores, no sea que luego te arrepientas</string>
+    <string name="quote_129" id="438">Medita, Ananda, no te demores, o te arrepentirás más tarde. Esta es nuestra instrucción para ti</string>
+    <string name="quote_130" id="439">La meditación trae sabiduría; la falta de meditación deja la ignorancia. Conoce bien lo que te lleva hacia adelante y lo que te detiene, y elige el camino que te lleva a la sabiduría.</string>
+    <string name="quote_131" id="440">Monjes, incluso si los bandidos los cortaran salvajemente, miembro por miembro, con una sierra de doble mango, incluso entonces, cualquiera de ustedes que tenga mala voluntad en el corazón no estaría apoyando mi enseñanza.</string>
+    <string name="quote_132" id="441">Más que los que te odian, más que todos tus enemigos, una mente indisciplinada hace más daño</string>
+    <string name="quote_133" id="442">La mayoría de los problemas, si les da suficiente tiempo y espacio, acabarán por agotarse</string>
+    <string name="quote_134" id="443">Ni el fuego ni el viento, ni el nacimiento ni la muerte pueden borrar nuestras buenas obras.</string>
+    <string name="quote_135" id="444">Nadie nos salva sino nosotros mismos. Nadie puede y nadie debe. Nosotros mismos debemos andar el camino</string>
+    <string name="quote_136" id="445">Nada puede dañarte tanto como tus propios pensamientos desprotegidos</string>
+    <string name="quote_137" id="446">Nada es para siempre excepto el cambio</string>
+    <string name="quote_138" id="447">No se llama noble a quien daña a los seres vivos. Al no dañar a los seres vivos se le llama noble</string>
+    <string name="quote_139" id="448">La opinión, discípulos, es una enfermedad; la opinión es un tumor; La opinión es un dolor. Aquel que ha superado toda opinión, oh discípulos, es llamado santo, aquel que sabe</string>
+    <string name="quote_140" id="449">Nuestra propia vida tiene que ser nuestro mensaje</string>
+    <string name="quote_141" id="450">Nuestro principal propósito en esta vida es ayudar a los demás. Y si no puedes ayudarlos, al menos no los lastimes</string>
+    <string name="quote_142" id="451">Allí están las raíces de los árboles; allá, viviendas vacías. Practiquen jhana, monjes. No seas descuidado</string>
+    <string name="quote_143" id="452">La paciencia es el ascetismo más alto</string>
+    <string name="quote_144" id="453">Paz no significa ausencia de conflictos; las diferencias siempre estarán ahí. La paz significa resolver estas diferencias por medios pacíficos; a través del diálogo, la educación, el conocimiento; y de formas humanas</string>
+    <string name="quote_145" id="454">La gente tiene dificultades para dejar ir su sufrimiento. Por miedo a lo desconocido, prefieren el sufrimiento familiar</string>
+    <string name="quote_146" id="455">La gente toma diferentes caminos en busca de plenitud y felicidad. El hecho de que no estén en tu camino no significa que se hayan perdido</string>
+    <string name="quote_147" id="456">Las personas con opiniones simplemente se molestan unas a otras</string>
+    <string name="quote_148" id="457">Quizás la razón más profunda por la que le tememos a la muerte es porque no sabemos quiénes somos</string>
+    <string name="quote_149" id="458">Alabanza y culpa, ganancia y pérdida, placer y dolor van y vienen como el viento. Para ser feliz, descansa como un árbol gigante en medio de todos</string>
+    <string name="quote_150" id="459">De miembros puros, con dosel blanco, una rueda, el carro sigue adelante. Míralo que viene: impecable, cortador de corrientes, sin ataduras él</string>
+    <string name="quote_151" id="460">La pureza y la impureza dependen de uno mismo; nadie puede purificar a otro</string>
+    <string name="quote_152" id="461">Irradia amor ilimitado hacia el mundo entero, arriba, abajo y al otro lado, sin obstáculos, sin mala voluntad, sin enemistad.</string>
+    <string name="quote_153" id="462">La verdadera generosidad es hacer algo bueno por alguien que nunca se enterará.</string>
+    <string name="quote_154" id="463">Entrénate decididamente para alcanzar la paz</string>
+    <string name="quote_155" id="464">Míralos, tambaleándose en su sentido de la mente, como peces en los charcos de un arroyo seco, y, al ver esto, vivir sin el mío, sin formar apego por los estados de devenir.</string>
+    <string name="quote_156" id="465">El deseo sensual da lugar al dolor; El deseo sensual da lugar al miedo. Para alguien liberado del anhelo sensual No hay dolor; ¿Y de dónde vendría el miedo?</string>
+    <string name="quote_157" id="466">Pon tu corazón en hacer el bien. Hazlo una y otra vez y estarás lleno de alegría.</string>
+    <string name="quote_158" id="467">Si una persona hace el bien, déjelo hacerlo una y otra vez. Que encuentre placer en ello, porque dichosa es la acumulación de bienes</string>
+    <string name="quote_159" id="468">Si un buscador no encuentra un compañero mejor o igual, déjelo seguir resueltamente un camino solitario</string>
+    <string name="quote_160" id="469">Si encuentra un crítico sabio que le señale sus faltas, sígalo como lo haría con un guía hacia un tesoro escondido.</string>
+    <string name="quote_161" id="470">El silencio es a veces la mejor respuesta</string>
+    <string name="quote_162" id="471">Silencia al hombre enojado con amor. Silencie al malvado con bondad. Silencia al avaro con generosidad. Silencia al mentiroso con la verdad</string>
+    <string name="quote_163" id="472">Algunos no entienden que debemos morir, pero aquellos que se dan cuenta de esto, resuelven sus disputas.</string>
+    <string name="quote_164" id="473">A veces, tu alegría es la fuente de tu sonrisa, pero a veces tu sonrisa puede ser la fuente de tu alegría.</string>
+    <string name="quote_165" id="474">Habla solo un discurso entrañable, un discurso que sea bienvenido. El habla, cuando no trae mal a los demás, es algo agradable.</string>
+    <string name="quote_166" id="475">Di la verdad, no te enojes y da cuando se te pida, aunque sea un poco. Por estas tres condiciones, uno va a la presencia de los dioses.</string>
+    <string name="quote_167" id="476">Los calmados dicen que lo que se habla bien es lo mejor; segundo, que uno debe decir lo que es correcto, no injusto; tercero, lo que es agradable, no desagradable; cuarto, lo que es verdadero, no falso</string>
+    <string name="quote_168" id="477">La noche mas oscura es la ignorancia</string>
+    <string name="quote_169" id="478">El don de la verdad supera a todos los demás dones</string>
+    <string name="quote_170" id="479">El crecimiento de la sabiduría puede medirse exactamente por la disminución del mal genio.</string>
+    <string name="quote_171" id="480">El ignorante es un buey. Crece en tamaño, no en sabiduría</string>
+    <string name="quote_172" id="481">Cuanto menos tengas, menos tendrás de qué preocuparte</string>
+    <string name="quote_173" id="482">En el momento en que veas lo importante que es amarte a ti mismo, dejarás de hacer sufrir a los demás.</string>
+    <string name="quote_174" id="483">Cuanto más te motive el amor, más intrépida y libre será tu acción.</string>
+    <string name="quote_175" id="484">El no hacer ningún mal, la ejecución de lo hábil, la limpieza de la propia mente: esta es la enseñanza del Despertado.</string>
+    <string name="quote_176" id="485">Aquel en el que ya no existen el ansia y la sed que perpetúan el devenir; cómo podrías rastrear a ese Despierto, sin huellas y de alcance ilimitado</string>
+    <string name="quote_177" id="486">El que se ha conquistado a sí mismo es un héroe mucho más grande que el que ha derrotado mil veces a mil hombres.</string>
+    <string name="quote_178" id="487">La lluvia podría volverse dorada y aún así tu sed no se apagará. El deseo es insaciable o termina en lágrimas, incluso en el cielo</string>
+    <string name="quote_179" id="488">La raíz del sufrimiento es el apego</string>
+    <string name="quote_180" id="489">Las raíces de toda bondad se encuentran en la tierra del aprecio por la bondad.</string>
+    <string name="quote_181" id="490">La fuente del amor está en lo profundo de nosotros y podemos ayudar a otros a alcanzar mucha felicidad. Una palabra, una acción, un pensamiento pueden reducir el sufrimiento de otra persona y traer alegría a esa persona.</string>
+    <string name="quote_182" id="491">El universo en sí mismo es cambio y la vida misma es lo que tú consideras</string>
+    <string name="quote_183" id="492">El hombre virtuoso se deleita en este mundo y se deleita en el próximo.</string>
+    <string name="quote_184" id="493">La forma de cambiar la mente de los demás es con afecto y no con ira.</string>
+    <string name="quote_185" id="494">El sabio se convierte en una isla que ninguna inundación puede abrumar</string>
+    <string name="quote_186" id="495">El mundo está afligido por la muerte y la decadencia. Pero los sabios no se afligen, habiendo comprendido la naturaleza del mundo.</string>
+    <string name="quote_187" id="496">No hay cadenas como el odio … Vivir en las faltas de tu hermano multiplica las tuyas. Estás lejos del final de tu viaje</string>
+    <string name="quote_188" id="497">No hay miedo para alguien cuya mente no está llena de deseos.</string>
+    <string name="quote_189" id="498">No hay fuego como la pasión, no hay tiburón como el odio, no hay trampa como la locura, no hay torrente como la codicia.</string>
+    <string name="quote_190" id="499">No hay nada tan desobediente como una mente indisciplinada, y no hay nada tan obediente como una mente disciplinada.</string>
+    <string name="quote_191" id="500">Culpan a los que callan, culpan a quienes hablan mucho, culpan a quienes hablan con moderación. No hay nadie en el mundo a quien no se culpe</string>
+    <string name="quote_192" id="501">No pienses a la ligera en el mal, diciendo "No vendrá a mí". Gota a gota se llena la olla de agua. Asimismo el necio, recogiéndolo poco a poco, se llena de maldad</string>
+    <string name="quote_193" id="502">Los que se producen por causas no se producen. No tienen una naturaleza inherente de producción. Se dice que los que dependen de causas están vacíos; los que conocen la vacuidad son conscientes</string>
+    <string name="quote_194" id="503">Aquellos que surgen de manera dependiente están libres de existencia inherente</string>
+    <string name="quote_195" id="504">Aquellos que están libres de pensamientos resentidos seguramente encontrarán la paz.</string>
+    <string name="quote_196" id="505">Aquellos que se aferran a las percepciones y puntos de vista deambulan por el mundo ofendiendo a las personas</string>
+    <string name="quote_197" id="506">Aquellos que no han trabajado en pos de la verdad, han perdido el propósito de vivir.</string>
+    <string name="quote_198" id="507">Aquellos que realmente buscan el camino hacia la Iluminación dictan términos a su mente. Luego proceden con fuerte determinación</string>
+    <string name="quote_199" id="508">Aunque uno debería vivir cien años sin sabiduría y control, aún mejor, de hecho, es la vida de un solo día de alguien que es sabio y meditativo.</string>
+    <string name="quote_200" id="509">Se pueden encender miles de velas con una sola vela y la vida útil de la vela no se acortará. La felicidad nunca disminuye al compartirla</string>
+    <string name="quote_201" id="510">Tres cosas no se pueden ocultar por mucho tiempo: el sol, la luna y la verdad.</string>
+    <string name="quote_202" id="511">Los tiempos de lujo no duran mucho, pero pasan muy rápido, nada en este mundo se puede disfrutar durante mucho tiempo.</string>
+    <string name="quote_203" id="512">Ser bello significa ser uno mismo. No necesitas ser aceptado por otros. Necesitas aceptarte a ti mismo</string>
+    <string name="quote_204" id="513">Convertirse en vegetariano es adentrarse en la corriente que conduce al nirvana.</string>
+    <string name="quote_205" id="514">Insistir en una práctica espiritual que te sirvió en el pasado es cargar la balsa en tu espalda después de haber cruzado el río.</string>
+    <string name="quote_206" id="515">Mantener el cuerpo en buen estado de salud es un deber … de lo contrario, no podremos mantener nuestra mente fuerte y clara.</string>
+    <string name="quote_207" id="516">Vivir en la conciencia de la inevitabilidad del sufrimiento, del debilitamiento, de la vejez y de la muerte, es imposible: debemos liberarnos de la vida, de toda vida posible.</string>
+    <string name="quote_208" id="517">Abstenerse del mal y de las bebidas alcohólicas y ser siempre firmes en la virtud; esta es la buena suerte</string>
+    <string name="quote_209" id="518">Apoyar a la madre y al padre, apreciar a la esposa y los hijos y participar en una ocupación pacífica: esta es la mayor bendición.</string>
+    <string name="quote_210" id="519">El verdadero cambio está dentro, deja el exterior como está</string>
+    <string name="quote_211" id="520">La comprensión es el corazón de las palabras bien habladas</string>
+    <string name="quote_212" id="521">La victoria engendra odio. Los derrotados viven con dolor. Felizmente los pacíficos viven, renunciando a la victoria y la derrota</string>
+    <string name="quote_213" id="522">La gente virtuosa siempre deja ir. No parlotean sobre placeres y deseos. Tocado por la felicidad y luego por el sufrimiento, el sabio no muestra signos de estar eufórico o deprimido.</string>
+    <string name="quote_214" id="523">Estamos aquí para despertar de nuestra ilusión de separación.</string>
+    <string name="quote_215" id="524">Desarrollaremos el amor, lo practicaremos, lo haremos a la vez un camino y una base …</string>
+    <string name="quote_216" id="525">Desarrollaremos y cultivaremos la liberación de la mente mediante la bondad, la convertiremos en nuestro vehículo, la convertiremos en nuestra base, la estabilizaremos, nos ejercitaremos en ella y la perfeccionaremos por completo.</string>
+    <string name="quote_217" id="526">Cualquier cosa que un monje siga persiguiendo con su pensamiento y ponderación, se convierte en la inclinación de su conciencia.</string>
+    <string name="quote_218" id="527">Lo que sea que un enemigo pueda hacerle a un enemigo, o un enemigo a un enemigo, la mente mal dirigida puede hacerte aún peor.</string>
+    <string name="quote_219" id="528">Todo lo que tiene la naturaleza de surgir tiene la naturaleza de cesar</string>
+    <string name="quote_220" id="529">Todo lo que no es tuyo: déjalo ir. Dejarlo ir será para tu felicidad a largo plazo.</string>
+    <string name="quote_221" id="530">Cualquiera que sea la joya preciosa que haya en los mundos celestiales, no hay nada comparable a uno que está despierto</string>
+    <string name="quote_222" id="531">Cuando uno siente disgusto por el mal, cuando se siente tranquilo, se complace en escuchar las buenas enseñanzas; cuando uno tiene estos sentimientos y los aprecia, uno está libre de miedo</string>
+    <string name="quote_223" id="532">Cuando los agregados surgen, decaen y mueren, oh bhikkhu, en cada momento naces, decaes y mueres</string>
+    <string name="quote_224" id="533">Cuando te cuidas a ti mismo, cuidas a los demás. Cuando cuidas a los demás, te cuidas a ti mismo</string>
+    <string name="quote_225" id="534">Cuando sentimos amor y bondad hacia los demás, no solo hace que los demás se sientan amados y cuidados, sino que también nos ayuda a desarrollar la felicidad y la paz interior.</string>
+    <string name="quote_226" id="535">Cuando encuentre un camino que traiga beneficios y felicidad a todos, siga este curso mientras la luna viaja a través de las estrellas.</string>
+    <string name="quote_227" id="536">Cuando practicas el agradecimiento, hay una sensación de respeto hacia los demás.</string>
+    <string name="quote_228" id="537">Quien deja atrás todas las ataduras humanas y ha desprendido las ataduras del cielo, desprendido de todas las ataduras en todas partes: él es el que yo llamo brahmán</string>
+    <string name="quote_229" id="538">Quien no se enoja con alguien que está enojado gana una batalla difícil de ganar</string>
+    <string name="quote_230" id="539">Quien me ve a mí ve la enseñanza, y quien ve la enseñanza me ve a mí</string>
+    <string name="quote_231" id="540">Con los tontos no hay compañía. En lugar de vivir con hombres egoístas, vanidosos, pendencieros y obstinados, que un hombre camine solo.</string>
+    <string name="quote_232" id="541">Con la realización del propio potencial y la confianza en uno mismo, se puede construir un mundo mejor.</string>
+    <string name="quote_233" id="542">Sin salud, la vida no es vida; es solo un estado de languidez y sufrimiento, una imagen de la muerte</string>
+    <string name="quote_234" id="543">Ahora eres la comunidad. Sed una lámpara para vosotros. Sea su propio refugio. No busques otro. Todas las cosas deben pasar. Esfuérzate diligentemente. No te rindas</string>
+    <string name="quote_235" id="544">No recoges la belleza de una flor arrancando sus pétalos</string>
+    <string name="quote_236" id="545">Tu propio yo es tu maestro; quien mas podria ser? Con usted bien controlado, gana un maestro muy difícil de encontrar.</string>
+    <string name="quote_237" id="546">Tú mismo debes esforzarte. Los Budas solo señalan el camino</string>
+    <string name="about_translators" id="547">Traductores</string>
+    <string name="title_activity_main">Actividad principal</string>
+    <string name="title_home">Hogar</string>
+    <string name="title_dashboard">Tablero</string>
+    <string name="title_notifications">Notificaciones</string>
+    <string name="quote_number">Cita #%d</string>
+    <string name="fragment_quote">Cita</string>
+    <string name="fragment_lists">Liza</string>
+    <string name="fragment_meditation">Meditar</string>
+    <string name="meditate_title">Meditar</string>
+    <string name="meditate_subheading">Es simple</string>
+    <string name="meditate_space">Espacio</string>
+    <string name="meditate_space_desc">Elija un lugar tranquilo donde no le molesten.</string>
+    <string name="meditate_posture">Postura</string>
+    <string name="meditate_posture_desc">Siéntese en el suelo o en una silla de respaldo recto. ¡La clave es estar cómodo!</string>
+    <string name="meditate_breath">Aliento</string>
+    <string name="meditate_breath_desc">Respire profunda y lentamente, intente respirar hacia el estómago.</string>
+    <string name="play">Reanudar</string>
+    <string name="pause">Pausa</string>
+    <string name="reset">Reiniciar</string>
+    <string name="time_left">Tiempo restante</string>
+    <string name="meditating_for">Meditando para</string>
+    <string name="has_been_paused">ha sido pausado</string>
+    <string name="meditation_timer">Temporizador de meditación</string>
+    <string name="more">Más</string>
+    <string name="addToList">Agregar a la lista</string>
+    <string name="searchHint">Buscar…</string>
+    <string name="search">Buscar</string>
+    <string name="attribution_buddha">~ Buda Gautama</string>
+    <string name="seconds">segundos</string>
+    <string name="minutes">minutos</string>
+    <string name="and">y</string>
+    <string name="create_new_list">Crear nueva lista</string>
+    <string name="insert_name">Insertar nombre</string>
+    <string name="validationRule1">No puede contener //</string>
+    <string name="validationRule2">Ya existe una lista llamada Favoritos</string>
+    <string name="validationRule3">Ya existe una lista llamada</string>
+    <string name="add">Agregar</string>
+    <string name="new_str">Nuevo</string>
+    <string name="added">Cotización agregada a</string>
+    <string name="exists">Esta cita ya existe en</string>
+    <string name="start">Comienzo</string>
+    <string name="show_notification">Mostrar notifcación</string>
+    <string name="vibrate_second">Vibra cada segundo</string>
+    <string name="favourites">Favoritos</string>
+    <string name="about_app">Acerca de Buddha Quotes</string>
+    <string name="anahata">Chakra</string>
+    <string name="elephant">Elefante</string>
+    <string name="endless_knot">Nudo sin fin</string>
+    <string name="lamp">Lámpara</string>
+    <string name="lotus">Loto</string>
+    <string name="mandala">Círculo</string>
+    <string name="shrine">Santuario</string>
+    <string name="temple">Templo</string>
+    <string name="water_lotus">Loto de agua</string>
+    <string name="dharma_wheel">Rueda</string>
+    <string name="follow_app_default">Seguir aplicación</string>
+    <string name="quote_sheet_title">Ayuda para cita</string>
+    <string name="list_sheet_title">Ayuda para lista</string>
+    <string name="meditate_sheet_title">Ayuda para Meditar</string>
+    <string name="list_sheet_content">Estas son tus listas. Desde aquí puedes acceder a tus citas favoritas, así como crear nuevas listas para clasificar citas en grupos. 😄
+\n
+\nNuevas listas pueden ser creadas pulsando el botón añadir (➕) en la parte inferior de la pantalla e insertando un nombre. El icono que figura al principio de la lista puede ser personalizado desde la propia lista.</string>
+    <string name="meditate_sheet_content">Puedes iniciar una sesión de meditación pulsando el botón de inicio que aparece a continuación e introduciendo el tiempo que deseas meditar. 😌</string>
+    <string name="rename_list">Renombrar lista</string>
+    <string name="okay">De acuerdo</string>
+    <string name="start_meditation">Iniciar la meditación</string>
+    <string name="timer_text">%1$s:%2$s</string>
+    <string name="by_bandev">Por BanDev</string>
+    <string name="quote_count">1 cita</string>
+    <string name="no_list">¡No tienes listas!</string>
+    <string name="quotes_count">%d citas</string>
+    <string name="attribution">Atribución</string>
+    <string name="close_drawer">Cerrar el cajón de navegación</string>
+    <string name="open_drawer">Abrir el cajón de navegación</string>
+    <string name="app_widget_description">Esta es una descripción del widget de la aplicación</string>
+    <string name="transparent">Transparente</string>
+    <string name="opaque">Opaco</string>
+    <string name="duplicate">Esta cita ya está en</string>
+    <string name="empty_list">¡Esta lista está vacía!</string>
+    <string name="list_icon">Ícono de lista</string>
+    <string name="contributors">Colaboradores</string>
+    <string name="two_people_meditating">Dos personas meditando</string>
+    <string name="tips">Consejos</string>
+    <string name="summary">Resumen</string>
+    <string name="text">Texto</string>
+    <string name="_00_00">00:00</string>
+    <string name="quote_sheet_content">Puedes pulsar el siguiente botón o deslizar hacia abajo desde la parte superior para obtener una nueva cita.
+\n
+\n Puedes cambiar la imagen en la parte inferior manteniéndola pulsada, lo que hará que aparezca una selección de 16 opciones de imagen. 🤩</string>
+    <string name="bell">Campana</string>
+    <string name="buddha">Buda</string>
+    <string name="monk">Monje</string>
+    <string name="rattle">Cascabel</string>
+    <string name="stupa">Estupa</string>
+    <string name="no_image">No hay imagen</string>
+    <string name="libraries" id="90">Bibliotecas</string>
+</resources>

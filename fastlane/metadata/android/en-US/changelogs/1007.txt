@@ -1,0 +1,18 @@
+1.4 - (2020-10-21)
+
+Added
+
+- Support for devices running Android 7
+- 'Fun mode' with colourful UI
+
+Changed
+
+- New logo
+- New colour scheme
+- Redesigned settings UI
+- Transitional animation between light and dark mode
+- Full License page now supports dark mode
+- Custom font is now used throughout the app
+- Sliding speed between pages 1.5x faster
+- Text size is generally smaller ('Medium' is now the size of the previous 'Small', etc)
+- Bug fixes and optimisations

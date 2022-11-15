@@ -1,0 +1,19 @@
+1.5 - (2020-11-12)
+
+Añadido
+
+- Color de acento personalizado
+- Traducción al ruso
+- Traducción al francés
+- Widgets
+- Soporte para Android 5 y 6
+- Listas para almacenar citas
+
+Cambiado
+
+- Rediseño del diseño para adaptarlo a las directrices de Material Design
+- Los favoritos se han trasladado a las listas
+- Iconos redondeados utilizados en toda la aplicación
+- Corrección de la barra de navegación para Android 8 y 9
+- Corrección de citas
+- Corrección de errores y optimizaciones

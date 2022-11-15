@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#E80054</color>
+    <color name="colorAccent">#E80054</color>
+    <color name="splashEndColor">#FFB332</color>
+    <color name="darkModeBar">#333333</color>
+    <color name="abbBackgroundColor">@android:color/white</color>
+    <color name="ic_launcher_background">#E80054</color>
+    <color name="shadowGray">#a00f0f0f</color>
+
+    <color name="navbar">#88ffffff</color>
+
+    <color name="heart">#FF6347</color>
+    <color name="bandev">#5E17EB</color>
+    <color name="line">#d3d3d3</color>
+
+    <color name="primary_faded">#26E80054</color>
+
+    <color name="translucent_black">#88F8F8F8</color>
+
+    <!-- Slightly grey-ish colour for background on newer UI -->
+    <color name="background">#F5F5F5</color>
+    <color name="lighter_background">#F8F8F8</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+
+    <color name="blueAccent">#4285F4</color>
+    <color name="greenAccent">#3DDC84</color>
+    <color name="yellowAccent">#FFBD59</color> <!-- The OG Buddha Quotes Colour ;) -->
+    <color name="orangeAccent">#FF7522</color>
+    <color name="tealAccent">#00CCB8</color>
+    <color name="violetAccent">#BB69C9</color>
+    <color name="pinkAccent">#FF66CC</color>
+    <color name="lightBlueAccent">#29B6F6</color>
+    <color name="redAccent">#FF5252</color>
+    <color name="limeAccent">#C5DE00</color>
+    <color name="crimsonAccent">#DC143C</color>
+
+    <color name="blueAccentFade">#264285F4</color>
+    <color name="yellowAccentFade">#26FFBD59</color> <!-- The OG Buddha Quotes Colour ;) -->
+    <color name="orangeAccentFade">#26FF7522</color>
+    <color name="tealAccentFade">#2600CCB8</color>
+    <color name="violetAccentFade">#26BB69C9</color>
+    <color name="pinkAccentFade">#26FF66CC</color>
+    <color name="lightBlueAccentFade">#2629B6F6</color>
+    <color name="redAccentFade">#26FF5252</color>
+    <color name="limeAccentFade">#26C5DE00</color>
+    <color name="crimsonAccentFade">#26DC143C</color>
+
+
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+    <declare-styleable name="AppWidgetAttrs">
+        <attr name="appWidgetBackgroundColor" format="color" />
+        <attr name="appWidgetTextColor" format="color" />
+    </declare-styleable>
+
+    <attr name="colorPrimaryFaded" format="color" />
+
+    <attr name="colorNavigationItem" format="color" />
+    <attr name="colorNavigationItemSelected" format="color" />
+
+    <attr name="drawableNavigationItemBackground" format="reference" />
+
+    <attr name="colorStateNavigationItem" format="color" />
+    <attr name="colorNavigationItemNormal" format="color" />
+    <attr name="colorNavigationItemBackgroundPressed" format="color" />
+    <attr name="colorNavigationItemBackgroundSelected" format="color" />
+</resources>

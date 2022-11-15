@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refresh" id="1">Aktualisierung</string>
+    <string name="favourite" id="2">Favorit</string>
+    <string name="share" id="3">Teilen</string>
+    <string name="settings" id="4">Einstellungen</string>
+    <string name="appearance" id="5">Aussehen</string>
+    <string name="app_theme" id="6">App-Thema</string>
+    <string name="light_mode" id="7">Hell</string>
+    <string name="dark_mode" id="8">Dunkel</string>
+    <string name="follow_system_default" id="9">System folgen</string>
+    <string name="information" id="14">Information</string>
+    <string name="about" id="15">Über</string>
+    <string name="view_app_details" id="16">App-Details anzeigen</string>
+    <string name="intro" id="17">Hilfe</string>
+    <string name="app_introduction" id="18">Anwendungseinführung</string>
+    <string name="app_license" id="19">App-Lizenz</string>
+    <string name="libraries_used" id="20">Verwendete Bibliotheken</string>
+    <string name="about_app_promise" id="21">Anwendungsversprechen</string>
+    <string name="about_no_trackers" id="22">Keine Tracker</string>
+    <string name="about_complete_privacy" id="23">Vollständige Privatsphäre</string>
+    <string name="about_offline_app" id="24">Offline-App</string>
+    <string name="about_free_and_open_source" id="25">Kostenlos und Open Source</string>
+    <string name="about_info" id="26">Anwendungsinfos</string>
+    <string name="about_info_paragraph" id="27">Buddha Quotes ist ein Gemeinschaftsprojekt zur Erstellung einer kostenlosen und quelloffene Buddha Quotes-App für Android mit Schwerpunkt auf Datenschutz</string>
+    <string name="about_contributors" id="28">Mitwirkende</string>
+    <string name="about_acknowledgements" id="29">Danksagung</string>
+    <string name="about_attribution" id="30">Launcher-Symbol - Freepik über Flaticon</string>
+    <string name="tick" id="31">Tick</string>
+    <string name="favourited_quote" id="55">Lieblingszitat</string>
+    <string name="favourite_quote_delete" id="56">Löschen</string>
+    <string name="buddha_quotes_logo" id="57">Buddha Quotes Logo</string>
+    <string name="bandev_logo" id="58">BanDev-Logo</string>
+    <string name="the_buddha" id="59">Der Buddha</string>
+    <string name="forward_arrow" id="60">Rückkehr</string>
+    <string name="icon" id="61">Symbol</string>
+    <string name="title" id="62">Titel</string>
+    <string name="title_activity_settings" id="82">EinstellungenAktivität</string>
+    <string name="textview" id="83">Textübersicht</string>
+    <string name="MainActivity" id="84">Hauptaktivität</string>
+    <string name="title_activity_scrolling" id="85">ScrollingActivity</string>
+    <string name="action_settings" id="86">die Einstellungen</string>
+    <string name="appwidget_text" id="87">BEISPIEL</string>
+    <string name="configure" id="88">Konfigurieren</string>
+    <string name="add_widget" id="89">Widget hinzufügen</string>
+    <string name="open_source_libraries" id="90">Open Source-Bibliotheken</string>
+    <string name="about_no_ads" id="91">Keine Werbung</string>
+    <string name="lists_title" id="92">Deine Listen</string>
+    <string name="lists_add_item" id="93">Zur Liste hinzufügen</string>
+    <string name="lists_add_lists" id="94">Neue Liste erstellen</string>
+    <string name="lists_add_lists_go" id="95">Hinzufügen</string>
+    <string name="lists_add_lists_name" id="96">Name</string>
+    <string name="settings_general" id="97">Allgemeines</string>
+    <string name="settings_accent_colour" id="98">Akzentfarbe</string>
+    <string name="settings_shapes_mode" id="99">Formen-Modus</string>
+    <string name="settings_shapes_mode_yes" id="100">An</string>
+    <string name="settings_shapes_mode_no" id="101">Aus</string>
+    <string name="settings_language" id="102">Sprache</string>
+    <string name="original" id="103">Standard</string>
+    <string name="blue" id="104">Blau</string>
+    <string name="green" id="105">Grün</string>
+    <string name="orange" id="106">Orange</string>
+    <string name="yellow" id="107">Original</string>
+    <string name="teal" id="108">Aquamarin</string>
+    <string name="violet" id="109">Violett</string>
+    <string name="pink" id="110">Pink</string>
+    <string name="lightBlue" id="111">Hellblau</string>
+    <string name="red" id="112">Rot</string>
+    <string name="lime" id="113">Limette</string>
+    <string name="crimson" id="114">Purpur</string>
+    <string name="ab">Abchasisch</string>
+    <string name="aa">Afar</string>
+    <string name="af">Afrikaans</string>
+    <string name="ak">Akan</string>
+    <string name="sq">albanisch</string>
+    <string name="am">Amharisch</string>
+    <string name="ar">Arabisch</string>
+    <string name="an">Aragonesisch</string>
+    <string name="hy">Armenisch</string>
+    <string name="as">Assamesisch</string>
+    <string name="av">Avaric</string>
+    <string name="ae">Avestan</string>
+    <string name="ay">Aymara</string>
+    <string name="az">Aserbaidschanisch</string>
+    <string name="bm">Bambara</string>
+    <string name="ba">Baschkirisch</string>
+    <string name="eu">baskisch</string>
+    <string name="be">Belarussisch</string>
+    <string name="bn">Bengali</string>
+    <string name="bh">Bihari-Sprachen</string>
+    <string name="bi">Bislama</string>
+    <string name="bs">bosnisch</string>
+    <string name="br">Bretonisch</string>
+    <string name="bg">bulgarisch</string>
+    <string name="my">birmanisch</string>
+    <string name="ca">Katalanisch, Valencianisch</string>
+    <string name="km">Zentrale Khmer</string>
+    <string name="ch">Chamorro</string>
+    <string name="ce">Tschetschenisch</string>
+    <string name="ny">Chichewa, Chewa, Nyanja</string>
+    <string name="zh">Chinesisch</string>
+    <string name="cu">Kirchenslawisch, Altbulgarisch, Altkirchenslawisch</string>
+    <string name="cv">Tschuwaschisch</string>
+    <string name="kw">kornisch</string>
+    <string name="co">Korsisch</string>
+    <string name="cr">Cree</string>
+    <string name="hr">kroatisch</string>
+    <string name="cs">Tschechisch</string>
+    <string name="da">dänisch</string>
+    <string name="dv">Divehi, Dhivehi, Malediven</string>
+    <string name="nl">Niederländisch, Flämisch</string>
+    <string name="dz">Dzongkha</string>
+    <string name="en">Englisch</string>
+    <string name="eo">Esperanto</string>
+    <string name="et">estnisch</string>
+    <string name="ee">Ewe</string>
+    <string name="fo">Färöer</string>
+    <string name="fj">Fidschianisch</string>
+    <string name="fi">finnisch</string>
+    <string name="fr">Französisch</string>
+    <string name="ff">Fulah</string>
+    <string name="gd">Gälisch, Schottisch-Gälisch</string>
+    <string name="gl">galizisch</string>
+    <string name="lg">Ganda</string>
+    <string name="ka">georgisch</string>
+    <string name="de">Deutsch</string>
+    <string name="ki">Gikuyu, Kikuyu</string>
+    <string name="el">Griechisch (modern)</string>
+    <string name="kl">Grönländisch, Kalaallisut</string>
+    <string name="gn">Guarani</string>
+    <string name="gu">Gujarati</string>
+    <string name="ht">Haitianisch, Haitianisch Kreolisch</string>
+    <string name="ha">Hausa</string>
+    <string name="he">hebräisch</string>
+    <string name="hz">Herero</string>
+    <string name="hi">Hindi</string>
+    <string name="ho">Hiri Motu</string>
+    <string name="hu">ungarisch</string>
+    <string name="is">isländisch</string>
+    <string name="io">Ido</string>
+    <string name="ig">Igbo</string>
+    <string name="id">Indonesisch</string>
+    <string name="ia">Interlingua (International Auxiliary Language Association)</string>
+    <string name="ie">Interlingue</string>
+    <string name="iu">Inuktitut</string>
+    <string name="ik">Inupiaq</string>
+    <string name="ga">irisch</string>
+    <string name="it">Italienisch</string>
+    <string name="ja">Japanisch</string>
+    <string name="jv">Javanisch</string>
+    <string name="kn">Kannada</string>
+    <string name="kr">Kanuri</string>
+    <string name="ks">Kashmiri</string>
+    <string name="kk">Kasachisch</string>
+    <string name="rw">Kinyarwanda</string>
+    <string name="kv">Komi</string>
+    <string name="kg">Kongo</string>
+    <string name="ko">Koreanisch</string>
+    <string name="kj">Kwanyama, Kuanyama</string>
+    <string name="ku">kurdisch</string>
+    <string name="ky">Kirgisisch</string>
+    <string name="lo">Lao</string>
+    <string name="la">Latein</string>
+    <string name="lv">lettisch</string>
+    <string name="lb">Letzeburgesch, Luxemburgisch</string>
+    <string name="li">Limburgisch, Limburgan, Limburger</string>
+    <string name="ln">Lingala</string>
+    <string name="lt">litauisch</string>
+    <string name="lu">Luba-Katanga</string>
+    <string name="mk">mazedonisch</string>
+    <string name="mg">Madagassisch</string>
+    <string name="ms">malaiisch</string>
+    <string name="ml">Malayalam</string>
+    <string name="mt">maltesisch</string>
+    <string name="gv">Manx</string>
+    <string name="mi">Maori</string>
+    <string name="mr">Marathi</string>
+    <string name="mh">Marshallese</string>
+    <string name="ro">Moldauisch, Moldauisch, Rumänisch</string>
+    <string name="mn">mongolisch</string>
+    <string name="na">Nauru</string>
+    <string name="nv">Navajo, Navaho</string>
+    <string name="nd">Nördliches Ndebele</string>
+    <string name="ng">Ndonga</string>
+    <string name="ne">Nepali</string>
+    <string name="se">Nordsami</string>
+    <string name="no">norwegisch</string>
+    <string name="nb">Norwegischer Bokmål</string>
+    <string name="nn">Norwegischer Nynorsk</string>
+    <string name="ii">Nuosu, Sichuan Yi</string>
+    <string name="oc">Okzitanisch (nach 1500)</string>
+    <string name="oj">Ojibwa</string>
+    <string name="or">Oriya</string>
+    <string name="om">Oromo</string>
+    <string name="os">Ossetian, Ossetic</string>
+    <string name="pi">Pali</string>
+    <string name="pa">Panjabi, Punjabi</string>
+    <string name="ps">Pashto, Pushto</string>
+    <string name="fa">persisch</string>
+    <string name="pl">Polnisch</string>
+    <string name="pt">Portugiesisch</string>
+    <string name="qu">Quechua</string>
+    <string name="rm">Rätoromanisch</string>
+    <string name="rn">Rundi</string>
+    <string name="ru">Russisch</string>
+    <string name="sm">Samoaner</string>
+    <string name="sg">Sango</string>
+    <string name="sa">Sanskrit</string>
+    <string name="sc">Sardinisch</string>
+    <string name="sr">serbisch</string>
+    <string name="sn">Shona</string>
+    <string name="sd">Sindhi</string>
+    <string name="si">Singhalesisch, Singhalesisch</string>
+    <string name="sk">slowakisch</string>
+    <string name="sl">Slowenisch</string>
+    <string name="so">somali</string>
+    <string name="st">Sotho, Südstaaten</string>
+    <string name="nr">Süd-Ndebele</string>
+    <string name="es">Spanisch, Kastilisch</string>
+    <string name="su">Sundanesisch</string>
+    <string name="sw">Swahili</string>
+    <string name="ss">Swati</string>
+    <string name="sv">Schwedisch</string>
+    <string name="tl">Tagalog</string>
+    <string name="ty">Tahitianer</string>
+    <string name="tg">Tadschikisch</string>
+    <string name="ta">Tamil</string>
+    <string name="tt">Tatar</string>
+    <string name="te">Telugu</string>
+    <string name="th">Thai</string>
+    <string name="bo">Tibetisch</string>
+    <string name="ti">Tigrinya</string>
+    <string name="to">Tonga (Tonga-Inseln)</string>
+    <string name="ts">Tsonga</string>
+    <string name="tn">Tswana</string>
+    <string name="tr">Türkisch</string>
+    <string name="tk">Turkmenen</string>
+    <string name="tw">Twi</string>
+    <string name="ug">Uigur, Uigur</string>
+    <string name="uk">ukrainisch</string>
+    <string name="ur">Urdu</string>
+    <string name="uz">Usbekisch</string>
+    <string name="ve">Venda</string>
+    <string name="vi">Vietnamesisch</string>
+    <string name="vo">Volap_k</string>
+    <string name="wa">wallonisch</string>
+    <string name="cy">Walisisch</string>
+    <string name="fy">Westfriesisch</string>
+    <string name="wo">Wolof</string>
+    <string name="xh">Xhosa</string>
+    <string name="yi">Jiddisch</string>
+    <string name="yo">Yoruba</string>
+    <string name="za">Zhuang, Chuang</string>
+    <string name="zu">Zulu-</string>
+    <string name="appintro1_description" id="299">Eine kostenlose und Open Source Buddha Quotes App</string>
+    <string name="appintro2_title" id="300">Über 230 Zitate</string>
+    <string name="appintro2_description" id="301">Über 230 Zitate aus dem Buddha. \nZum Aktualisieren nach unten wischen!</string>
+    <string name="appintro3_title" id="302">Favoriten</string>
+    <string name="appintro3_description" id="303">Sie können Zitate favorisieren, indem Sie die Favoritentaste drücken oder zweimal auf den Bildschirm tippen</string>
+    <string name="appintro4_title" id="304">Anpassbar</string>
+    <string name="appintro4_description" id="305">Es gibt eine Vielzahl von Optionen für die Benutzeroberfläche, z. B. Akzentfarben und Dunkelmodus</string>
+    <string name="appintro5_title" id="306">Lass uns anfangen!</string>
+    <string name="appintro5_description" id="307">Wir hoffen, dass Ihnen die App gefällt - wir haben ein GitLab-Repository, in dem Sie Funktionen anfordern oder Probleme ansprechen können</string>
+    <string name="cancel" id="308">Abbrechen</string>
+    <string name="confirm" id="309">Bestätigen</string>
+    <string name="quote_1" id="310">Ein disziplinierter Geist bringt Glück</string>
+    <string name="quote_2" id="311">Ein guter Freund, der auf Fehler und Unvollkommenheiten hinweist und das Böse zurechtweist, ist zu respektieren, als ob er ein Geheimnis verborgener Schätze preisgibt</string>
+    <string name="quote_3" id="312">Eine große menschliche Revolution in nur einem Individuum wird dazu beitragen, das Schicksal einer Nation zu ändern, und kann darüber hinaus sogar eine Änderung des Schicksals der gesamten Menschheit ermöglichen</string>
+    <string name="quote_4" id="313">Ein Mann fragte Gautama Buddha: "Ich will Glück." Buddha sagte: "Entferne zuerst" Ich ", das ist Ego, dann entferne" Will ", das ist Wunsch. Sieh, jetzt hast du nur noch" Glück ".</string>
+    <string name="quote_5" id="314">Ein Mann wird nicht weise genannt, weil er immer wieder spricht; aber wenn er friedlich, liebevoll und furchtlos ist, dann wird er in Wahrheit weise genannt</string>
+    <string name="quote_6" id="315">Ein Geist, der nicht von den Unwägbarkeiten des Glücks, von der befreiten Trauer, von den befleckten Befleckungen, von der befreiten Angst befreit ist - dies ist der größte Segen</string>
+    <string name="quote_7" id="316">Eine Person, die, egal wie verzweifelt die Situation ist, anderen Hoffnung gibt, ist ein wahrer Führer</string>
+    <string name="quote_8" id="317">Eine wirklich mitfühlende Haltung gegenüber anderen ändert sich auch dann nicht, wenn sie sich negativ verhalten oder Sie verletzen</string>
+    <string name="quote_9" id="318">Verlieren Sie vor allem nicht Ihren Wunsch zu gehen</string>
+    <string name="quote_10" id="319">"Alle konditionierten Dinge sind unbeständig" - wenn man dies mit Weisheit sieht, wendet man sich vom Leiden ab</string>
+    <string name="quote_11" id="320">Allen Erfahrungen geht der Verstand voraus, der den Verstand als seinen Meister hat, der vom Verstand geschaffen wurde</string>
+    <string name="quote_12" id="321">Alle Phänomene existieren nicht von Natur aus, weil sie abhängig sind. Alle Phänomene existieren nicht von Natur aus, weil sie abhängig unterstellt werden</string>
+    <string name="quote_13" id="322">Alles Leiden wird durch Unwissenheit verursacht. Menschen fügen anderen Schmerzen zu, wenn sie selbstsüchtig nach ihrem eigenen Glück oder ihrer eigenen Befriedigung streben</string>
+    <string name="quote_14" id="323">Alle zittern vor Gewalt; Alle fürchten den Tod. Wenn man sich an die Stelle eines anderen setzt, sollte man weder töten noch einen anderen töten lassen</string>
+    <string name="quote_15" id="324">Alles Fehlverhalten entsteht aufgrund des Verstandes. Wenn der Geist transformiert ist, kann dann ein Fehlverhalten bestehen bleiben?</string>
+    <string name="quote_16" id="325">Ein offenes Herz ist ein offener Geist</string>
+    <string name="quote_17" id="326">Das Analysieren durch besondere Einsichten und das Erkennen des Mangels an inhärenter Existenz bilden das Verständnis des Zeichenlosen</string>
+    <string name="quote_18" id="327">Wut ist der ultimative Zerstörer Ihres eigenen Seelenfriedens</string>
+    <string name="quote_19" id="328">Wut oder Hass sind wie ein Fischerhaken. Es ist sehr wichtig, dass wir nicht davon erfasst werden</string>
+    <string name="quote_20" id="329">Wut wird niemals verschwinden, solange Gedanken an Ressentiments im Kopf bleiben. Die Wut wird verschwinden, sobald die Gedanken an Ressentiments vergessen sind</string>
+    <string name="quote_21" id="330">Tun Sie heute leidenschaftlich, was getan werden muss. Wer weiß? Morgen kommt der Tod</string>
+    <string name="quote_22" id="331">So wie ich bin, sind es auch diese. So wie diese, bin ich es auch. Wenn Sie die Parallele zu sich selbst ziehen, töten Sie nicht und bringen Sie andere nicht dazu, zu töten</string>
+    <string name="quote_23" id="332">Als eine Blume, die schön und schön ist, aber trotzdem geruchlos, ist fruchtlos das gut gesprochene Wort eines Menschen, der es nicht praktiziert</string>
+    <string name="quote_24" id="333">Wie eine Lotusblume im Wasser geboren wird, im Wasser wächst und aus dem Wasser steigt, um unbeschmutzt darüber zu stehen, so lebe ich, geboren in der Welt, aufgewachsen in der Welt, die die Welt überwunden hat, unbeschmutzt von der Welt</string>
+    <string name="quote_25" id="334">Wie eine Wasserperle auf einem Lotusblatt, wie Wasser auf einer roten Lilie, nicht haftet, so haftet der Weise nicht am Gesehenen, Gehörten oder Empfundenen</string>
+    <string name="quote_26" id="335">Wenn ein Elefant auf dem Schlachtfeld Pfeilen standhält, die von Bögen ringsum geschossen werden, werde ich auch Missbrauch ertragen</string>
+    <string name="quote_27" id="336">Anhaftung führt zu Leiden</string>
+    <string name="quote_28" id="337">Aufmerksamkeit ist die seltenste und reinste Form von Großzügigkeit</string>
+    <string name="quote_29" id="338">Sei eine Lampe für dich. Arbeiten Sie Ihre Befreiung mit Befreiung aus</string>
+    <string name="quote_30" id="339">Sei dir der Gegenwart sehr bewusst</string>
+    <string name="quote_31" id="340">Sei freundlich, wann immer es möglich ist. Es ist immer möglich</string>
+    <string name="quote_32" id="341">Wachsam sein; Schützen Sie Ihren Geist vor negativen Gedanken</string>
+    <string name="quote_33" id="342">Sei wie du bist. Dies ist der erste Schritt, um besser zu werden als Sie</string>
+    <string name="quote_34" id="343">Da wir alle ein identisches Bedürfnis nach Liebe teilen, ist es möglich zu fühlen, dass jeder, dem wir begegnen, unter welchen Umständen auch immer, ein Bruder oder eine Schwester ist</string>
+    <string name="quote_35" id="344">Weil du lebst, ist alles möglich</string>
+    <string name="quote_36" id="345">Besser ist es, alleine zu leben; Es gibt keine Gemeinschaft mit einem Narren. Lebe allein und tue nichts Böses. Sei sorglos wie ein Elefant in den Elefantenforen</string>
+    <string name="quote_37" id="346">Es ist besser, eines Tages zu leben und den Aufstieg und Fall der Dinge zu sehen, als hundert Jahre zu leben, ohne jemals den Aufstieg und Fall der Dinge zu sehen</string>
+    <string name="quote_38" id="347">Besser als tausend nutzlose Wörter ist ein nützliches Wort, das man hört, um Frieden zu erlangen.</string>
+    <string name="quote_39" id="348">Besser als Götter anzubeten ist der Gehorsam gegenüber den Gesetzen der Gerechtigkeit</string>
+    <string name="quote_40" id="349">Wenn wir tief im gegenwärtigen Moment leben, können wir die Vergangenheit besser verstehen und uns auf eine bessere Zukunft vorbereiten</string>
+    <string name="quote_41" id="350">Ruhiger Geist bringt innere Stärke und Selbstvertrauen, so dass dies für eine gute Gesundheit sehr wichtig ist</string>
+    <string name="quote_42" id="351">Aufhören, Böses zu tun, das Gute kultivieren, das Herz reinigen: Dies ist die Lehre der Buddhas</string>
+    <string name="quote_43" id="352">Wählen Sie optimistisch, es fühlt sich besser an</string>
+    <string name="quote_44" id="353">Besiege Wut durch Sanftmut, Unfreundlichkeit durch Freundlichkeit, Gier durch Großzügigkeit und Falschheit durch Wahrheit</string>
+    <string name="quote_45" id="354">Besiege Wut mit Nicht-Wut. Besiege das Böse mit dem Guten. Erobere Gemeinheit mit Großzügigkeit. Besiege Unehrlichkeit mit Wahrheit</string>
+    <string name="quote_46" id="355">Erobere den Wütenden, indem du nicht wütend wirst. besiege die Gottlosen durch Güte; Erobere den Geizigen durch Großzügigkeit und den Lügner, indem du die Wahrheit sagst</string>
+    <string name="quote_47" id="356">Zufriedenheit ist der größte Reichtum</string>
+    <string name="quote_48" id="357">Freude an Achtsamkeit! Hüte deine Gedanken gut!</string>
+    <string name="quote_49" id="358">Herrlich sind Wälder, an denen sich die Öffentlichkeit nicht erfreut. Dort die leidenschaftsfreie Freude, nicht sinnliches Vergnügen zu suchen</string>
+    <string name="quote_50" id="359">Dharma wird nicht dadurch aufrechterhalten, dass man darüber spricht. Dharma wird aufrechterhalten, indem man in Harmonie mit ihm lebt…</string>
+    <string name="quote_51" id="360">Achten Sie nicht darauf, was andere tun oder nicht tun. Gib es dem, was du tust oder nicht tust</string>
+    <string name="quote_52" id="361">Überschätzen Sie nicht, was Sie erhalten haben, und beneiden Sie andere nicht. Wer andere beneidet, erhält keinen Seelenfrieden</string>
+    <string name="quote_53" id="362">Denken Sie nicht daran, wie groß das Universum ist, es wird nur Ihren Kopf verletzen</string>
+    <string name="quote_54" id="363">Tropfen für Tropfen wird der Wassertopf gefüllt. Ebenso füllt sich der Weise, der es Stück für Stück sammelt, mit Gutem</string>
+    <string name="quote_55" id="364">Emotionen entstehen aus dem Verlangen, daher eine Illusion</string>
+    <string name="quote_56" id="365">Ausdauer ist eine der schwierigsten Disziplinen, aber es ist diejenige, die es aushält, dass der endgültige Sieg kommt</string>
+    <string name="quote_57" id="366">So wie ein fester Stein vom Wind nicht erschüttert wird, so sind auch die Weisen vom Lob oder der Schuld nicht erschüttert</string>
+    <string name="quote_58" id="367">Auch wenn sich die Dinge nicht so entwickeln, wie Sie es erwartet haben, lassen Sie sich nicht entmutigen oder aufgeben. Wer weiter voranschreitet, gewinnt am Ende</string>
+    <string name="quote_59" id="368">Alles ist veränderlich, alles erscheint und verschwindet, es gibt keinen glückseligen Frieden, bis man über die Qual von Leben und Tod hinausgeht</string>
+    <string name="quote_60" id="369">Gefühle kommen und gehen wie Wolken an einem windigen Himmel. Bewusstes Atmen ist mein Anker</string>
+    <string name="quote_61" id="370">Nur wenige Männer sind diejenigen, die zum weiteren Ufer gehen. Die anderen rennen auf dieser Seite nur die Bank rauf und runter</string>
+    <string name="quote_62" id="371">Dem Edlen Pfad zu folgen ist wie einen dunklen Raum mit einem Licht in der Hand zu betreten; Die Dunkelheit wird alle beseitigt und der Raum wird mit Licht gefüllt</string>
+    <string name="quote_63" id="372">Zum Wohl der Vielen, zum Glück der Vielen, aus Mitgefühl für die Welt</string>
+    <string name="quote_64" id="373">Freundschaft ist das einzige Heilmittel gegen Hass, die einzige Garantie für Frieden</string>
+    <string name="quote_65" id="374">Von einem verwelkten Baum blüht eine Blume</string>
+    <string name="quote_66" id="375">Geben Sie, auch wenn Sie nur wenig haben</string>
+    <string name="quote_67" id="376">Größer im Kampf als der Mann, der tausendtausend Männer erobern würde, ist derjenige, der nur einen erobern würde - sich selbst. Besser dich selbst zu erobern als andere</string>
+    <string name="quote_68" id="377">Noch größer ist die Wahrheit unserer Verbundenheit</string>
+    <string name="quote_69" id="378">Glück kommt hauptsächlich von unserer eigenen Einstellung und nicht von äußeren Faktoren</string>
+    <string name="quote_70" id="379">Hass wird in dieser Welt niemals durch Hass besänftigt. Allein durch Nichthass wird der Hass besänftigt. Dies ist ein ewiges Gesetz</string>
+    <string name="quote_71" id="380">Er braucht keinen Glauben, der das Ungeschaffene kennt, der die Wiedergeburt abgeschnitten hat, der jede Gelegenheit zum Guten oder Bösen zerstört und alle Begierden verworfen hat. Er ist in der Tat der ultimative Mann</string>
+    <string name="quote_72" id="381">Er ist nicht derselbe, noch ist er ein anderer</string>
+    <string name="quote_73" id="382">Wer seinen Zorn zügeln kann, sobald er auftaucht, wird als rechtzeitiges Gegenmittel das Gift der Schlange überprüfen, das sich so schnell ausbreitet - ein solcher Mönch gibt das Hier und Jenseits auf, so wie eine Schlange ihre abgenutzte Haut abwirft</string>
+    <string name="quote_74" id="383">Wer mit unerschütterlicher Entschlossenheit auf dem achtfachen edlen Weg geht, wird mit Sicherheit das Nirvana erreichen</string>
+    <string name="quote_75" id="384">Gesundheit ist das größte Geschenk, Zufriedenheit der größte Reichtum, Treue die beste Beziehung</string>
+    <string name="quote_76" id="385">Wie selig es ist, für jemanden, der nichts hat. Weisheitsgewinner sind Menschen mit nichts. Sehen Sie ihn leiden, einen, der etwas hat, eine Person, die an Menschen gebunden ist</string>
+    <string name="quote_77" id="386">Wie viele heilige Worte du liest, wie viele du sprichst, was nützen sie dir, wenn du nicht auf sie einwirkst?</string>
+    <string name="quote_78" id="387">Ich streite nicht mit der Welt; Vielmehr ist es die Welt, die sich mit mir auseinandersetzt</string>
+    <string name="quote_79" id="388">Ich werde hier im Regen leben, dort im Winter, anderswo im Sommer ", sinniert der Narr, der sich der Nähe des Todes nicht bewusst ist</string>
+    <string name="quote_80" id="389">Ich werde nicht auf die Schüssel eines anderen schauen, die darauf bedacht ist, einen Fehler zu finden: ein Training, das beobachtet werden muss</string>
+    <string name="quote_81" id="390">Wenn ein Mann, der geschwollen und schnell fließend in einen Fluss hinuntergeht, von der Strömung mitgerissen wird - wie kann er anderen helfen?</string>
+    <string name="quote_82" id="391">Wenn sich ein Reisender nicht mit jemandem trifft, der ihm besser oder gleichwertig ist, lass ihn fest an seiner einsamen Reise festhalten; Es gibt keine Kameradschaft mit einem Narren</string>
+    <string name="quote_83" id="392">Wenn es sich lohnt, etwas zu tun, tun Sie es von ganzem Herzen</string>
+    <string name="quote_84" id="393">Wenn die Selbstlosigkeit von Phänomenen analysiert wird und wenn diese Analyse kultiviert wird, bewirkt dies den Effekt, Nirvana zu erreichen. Durch keine andere Ursache kommt man zum Frieden</string>
+    <string name="quote_85" id="394">Wenn wir uns nicht um andere kümmern, wenn sie Hilfe brauchen, wer kümmert sich dann um uns?</string>
+    <string name="quote_86" id="395">Wenn eine Person mit einem reinen Verstand spricht oder handelt, folgt ihnen das Glück wie ein niemals verschwindender Schatten</string>
+    <string name="quote_87" id="396">Wenn Sie die richtige Einstellung pflegen können, sind Ihre Feinde Ihre besten spirituellen Lehrer, weil ihre Anwesenheit Ihnen die Möglichkeit bietet, Ihre Toleranz, Geduld und Ihr Verständnis zu verbessern und zu entwickeln</string>
+    <string name="quote_88" id="397">Wenn Sie niemanden finden, der Sie auf dem spirituellen Weg unterstützt, gehen Sie alleine. Es gibt keine Kameradschaft mit den Unreifen</string>
+    <string name="quote_89" id="398">Wenn Sie wüssten, was ich über die Kraft des Gebens weiß, würden Sie keine einzige Mahlzeit vergehen lassen, ohne sie auf irgendeine Weise zu teilen</string>
+    <string name="quote_90" id="399">Wenn Sie jemanden lieben, sich ihm aber selten zur Verfügung stellen, ist das keine wahre Liebe</string>
+    <string name="quote_91" id="400">Wenn Sie möchten, dass andere glücklich sind, üben Sie Mitgefühl. Wenn du glücklich sein willst, übe Mitgefühl</string>
+    <string name="quote_92" id="401">Im Leben können wir Veränderungen nicht vermeiden, wir können Verluste nicht vermeiden. Freiheit und Glück liegen in der Flexibilität und Leichtigkeit, mit der wir uns durch Veränderungen bewegen</string>
+    <string name="quote_93" id="402">Um positiv handeln zu können, müssen wir hier eine positive Vision entwickeln</string>
+    <string name="quote_94" id="403">In wem es kein Mitgefühl für Lebewesen gibt: Erkenne ihn als Ausgestoßenen</string>
+    <string name="quote_95" id="404">Es ist der eigene Verstand eines Mannes, nicht sein Feind oder Feind, der ihn auf böse Wege lockt</string>
+    <string name="quote_96" id="405">Es ist leicht, die Fehler anderer zu erkennen, aber es ist schwierig, die eigenen Fehler zu erkennen. Man zeigt die Fehler anderer wie im Wind gewundene Spreu, aber man verbirgt die eigenen Fehler, während ein schlauer Spieler seine Würfel verbirgt</string>
+    <string name="quote_97" id="406">Es liegt in der Natur der Dinge, dass Freude in einem Menschen entsteht, der frei von Reue ist</string>
+    <string name="quote_98" id="407">Es ist notwendig, Wissen aus dem Studium mit aufrichtiger Praxis in unserem täglichen Leben zu verbinden. Diese beiden müssen zusammen gehören</string>
+    <string name="quote_99" id="408">Es reicht nicht aus, mitfühlend zu sein, wir müssen handeln</string>
+    <string name="quote_100" id="409">Es ist möglich, 24 Stunden in einem Zustand der Liebe zu leben</string>
+    <string name="quote_101" id="410">Es ist sehr wichtig, so viel wie möglich eine gute Einstellung, ein gutes Herz zu erzeugen. Daraus wird sowohl kurzfristig als auch langfristig Glück für Sie und andere entstehen</string>
+    <string name="quote_102" id="411">Es ist deine Straße … und deine allein … Andere mögen sie mit dir gehen, aber niemand kann sie für dich gehen. Egal welchen Weg Sie wählen, gehen Sie ihn wirklich</string>
+    <string name="quote_103" id="412">Freude kommt nicht durch Besitz oder Besitz, sondern durch ein weises und liebevolles Herz</string>
+    <string name="quote_104" id="413">So wie ein fester Stein nicht vom Sturm erschüttert wird, so sind die Weisen nicht von Lob oder Schuld betroffen</string>
+    <string name="quote_105" id="414">So wie der große Ozean einen Geschmack hat, den Geschmack von Salz, so hat auch diese Lehre und Disziplin einen Geschmack, den Geschmack der Befreiung</string>
+    <string name="quote_106" id="415">Wissen Sie aus den Flüssen in Spalten und Spalten: Die in kleinen Kanälen fließen geräuschvoll, die großen fließen leise. Was nicht voll ist, macht Lärm. Was voll ist, ist ruhig</string>
+    <string name="quote_107" id="416">Wisse gut, was dich vorwärts führt und was dich zurückhält, und wähle den Weg, der zur Weisheit führt</string>
+    <string name="quote_108" id="417">Lernen Sie dies aus dem Wasser: Lautes Spritzen am Bach, aber die Tiefe der Ozeane ist ruhig</string>
+    <string name="quote_109" id="418">Lassen Sie den passiven Traum einer rosaroten Zukunft hinter sich. Die Energie des Glücks besteht darin, heute mit Wurzeln zu leben, die fest im Boden der Realität versenkt sind</string>
+    <string name="quote_110" id="419">Lass allumfassende Gedanken für alle Wesen deine sein</string>
+    <string name="quote_111" id="420">Lass ihn keinen anderen täuschen oder irgendwo jemanden verachten. In Wut oder Krankheit wird er sich keine weitere Krankheit wünschen</string>
+    <string name="quote_112" id="421">Lass niemanden an anderen etwas auszusetzen haben; Lassen Sie niemanden die Auslassungen und Provisionen anderer sehen. Aber lassen Sie sich die eigenen Handlungen ansehen, die getan und rückgängig gemacht wurden</string>
+    <string name="quote_113" id="422">Loslassen gibt uns Freiheit, und Freiheit ist die einzige Voraussetzung für Glück. Wenn wir in unserem Herzen immer noch an irgendetwas festhalten - Wut, Angst oder Besitz - können wir nicht frei sein</string>
+    <string name="quote_114" id="423">Das Leben ist ein Fluss, der immer fließt. Halte dich nicht an Dingen fest. Hart arbeiten</string>
+    <string name="quote_115" id="424">Das Leben ist nur im gegenwärtigen Moment verfügbar</string>
+    <string name="quote_116" id="425">Wie eine schöne Blume voller Farbe, aber ohne Duft, sind die Worte derer, die nicht praktizieren, was sie lehren</string>
+    <string name="quote_117" id="426">Wie jemand, der auf einen Schatz zeigt, ist der Weise, der Ihre Fehler sieht und sie aufzeigt. Verbinde dich mit einem solchen Weisen</string>
+    <string name="quote_118" id="427">Nach und nach wird ein Mensch böse, wenn ein Wassertopf mit Wassertropfen gefüllt wird; Nach und nach wird ein Mensch gut, wenn ein Wassertopf mit Wassertropfen gefüllt wird</string>
+    <string name="quote_119" id="428">Lebe jede Handlung vollständig, als wäre es deine letzte</string>
+    <string name="quote_120" id="429">Lebe ohne Sinn für „mein“ und ohne Bindung an Erfahrungen</string>
+    <string name="quote_121" id="430">Lang ist die Nacht für den, der wach ist; lang ist eine Meile für den, der müde ist; lang ist das Leben für die Dummköpfe, die das wahre Gesetz nicht kennen</string>
+    <string name="quote_122" id="431">Betrachten Sie Situationen aus allen Blickwinkeln, und Sie werden offener</string>
+    <string name="quote_123" id="432">Liebe und Mitgefühl sind Notwendigkeiten, kein Luxus. Ohne sie kann die Menschheit nicht überleben</string>
+    <string name="quote_124" id="433">Liebe ist das Fehlen eines Urteils</string>
+    <string name="quote_125" id="434">Liebe dich selbst und schau zu - heute, morgen und immer</string>
+    <string name="quote_126" id="435">Viele wissen nicht, dass wir hier sterben müssen. Für diejenigen, die dies erkennen, enden die Streitigkeiten</string>
+    <string name="quote_127" id="436">Mögen alle Wesen glückliche Gedanken haben</string>
+    <string name="quote_128" id="437">Meditiere… zögere nicht, damit du es später nicht bereust</string>
+    <string name="quote_129" id="438">Meditiere, andananda, zögere nicht, sonst wirst du es später bereuen. Dies ist unsere Anweisung an Sie</string>
+    <string name="quote_130" id="439">Meditation bringt Weisheit; Mangel an Meditation hinterlässt Unwissenheit. Wisse genau, was dich vorwärts führt und was dich zurückhält, und wähle den Weg, der zur Weisheit führt</string>
+    <string name="quote_131" id="440">Mönche, selbst wenn Banditen Sie mit einer Doppelgriff-Säge Glied für Glied brutal durchtrennen würden, würde selbst dann, wer von Ihnen im Herzen einen schlechten Willen hegt, meine Lehre nicht aufrechterhalten</string>
+    <string name="quote_132" id="441">Mehr als diejenigen, die dich hassen, mehr als alle deine Feinde, fügt ein undisziplinierter Geist größeren Schaden zu</string>
+    <string name="quote_133" id="442">Die meisten Probleme werden sich irgendwann abnutzen, wenn Sie ihnen genügend Zeit und Raum geben</string>
+    <string name="quote_134" id="443">Weder Feuer noch Wind, Geburt oder Tod können unsere guten Taten auslöschen</string>
+    <string name="quote_135" id="444">Niemand rettet uns außer uns. Niemand kann und niemand darf. Wir selbst müssen den Weg gehen</string>
+    <string name="quote_136" id="445">Nichts kann dir so viel schaden wie deine eigenen Gedanken, die unbewacht sind</string>
+    <string name="quote_137" id="446">Nichts ist für immer außer Veränderung</string>
+    <string name="quote_138" id="447">Man wird nicht edel genannt, der Lebewesen schadet. Wenn man Lebewesen nicht schadet, wird man als edel bezeichnet</string>
+    <string name="quote_139" id="448">Die Meinung, oh Jünger, ist eine Krankheit; Meinung ist ein Tumor; Meinung ist wund. Wer alle Meinungen überwunden hat, oh Jünger, wird ein Heiliger genannt, der es weiß</string>
+    <string name="quote_140" id="449">Unser eigenes Leben muss unsere Botschaft sein</string>
+    <string name="quote_141" id="450">Unser Hauptzweck in diesem Leben ist es, anderen zu helfen. Und wenn Sie ihnen nicht helfen können, verletzen Sie sie zumindest nicht</string>
+    <string name="quote_142" id="451">Dort drüben sind die Wurzeln von Bäumen; dort drüben leere Wohnungen. Übe Jhana, Mönche. Sei nicht achtlos</string>
+    <string name="quote_143" id="452">Geduld ist die höchste Askese</string>
+    <string name="quote_144" id="453">Frieden bedeutet nicht das Fehlen von Konflikten; Unterschiede werden immer da sein. Frieden bedeutet, diese Unterschiede mit friedlichen Mitteln zu lösen. durch Dialog, Bildung, Wissen; und auf humane Weise</string>
+    <string name="quote_145" id="454">Es fällt den Menschen schwer, ihr Leiden loszulassen. Aus Angst vor dem Unbekannten bevorzugen sie vertrautes Leiden</string>
+    <string name="quote_146" id="455">Menschen gehen verschiedene Wege, um Erfüllung und Glück zu suchen. Nur weil sie nicht auf Ihrer Straße sind, heißt das nicht, dass sie sich verlaufen haben</string>
+    <string name="quote_147" id="456">Leute mit Meinungen gehen einfach herum und belästigen sich gegenseitig</string>
+    <string name="quote_148" id="457">Der vielleicht tiefste Grund, warum wir Angst vor dem Tod haben, ist, dass wir nicht wissen, wer wir sind</string>
+    <string name="quote_149" id="458">Lob und Schuld, Gewinn und Verlust, Vergnügen und Trauer kommen und gehen wie der Wind. Um glücklich zu sein, ruhen Sie sich wie ein riesiger Baum inmitten von allen aus</string>
+    <string name="quote_150" id="459">Reinkantig, weiß überdacht, einrädrig, der Wagen rollt weiter. Sehen Sie den, der kommt: makellos, Stromschneider, gebundener er</string>
+    <string name="quote_151" id="460">Reinheit und Unreinheit hängen von sich selbst ab; niemand kann einen anderen reinigen</string>
+    <string name="quote_152" id="461">Strahlen Sie grenzenlose Liebe zur ganzen Welt aus - oben, unten und quer - ungehindert, ohne bösen Willen, ohne Feindschaft</string>
+    <string name="quote_153" id="462">Echte Großzügigkeit bedeutet, etwas Nettes für jemanden zu tun, der es nie herausfinden wird</string>
+    <string name="quote_154" id="463">Trainiere dich entschlossen, um Frieden zu erlangen</string>
+    <string name="quote_155" id="464">Sehen Sie sie, die in ihrem Sinn zappeln, wie Fische in den Pfützen eines ausgetrockneten Baches - und wenn Sie dies sehen, leben Sie ohne meine und bilden keine Bindung an Zustände des Werdens</string>
+    <string name="quote_156" id="465">Sinnliches Verlangen macht traurig; Sinnliches Verlangen lässt Angst aufkommen. Für jemanden, der von sinnlichem Verlangen befreit ist Es gibt keine Trauer; Und woher würde Angst kommen?</string>
+    <string name="quote_157" id="466">Setze dein Herz darauf, Gutes zu tun. Tun Sie es immer und immer wieder, und Sie werden voller Freude sein</string>
+    <string name="quote_158" id="467">Sollte eine Person Gutes tun, lassen Sie sie es immer wieder tun. Lass ihn darin Vergnügen finden, denn glückselig ist die Anhäufung von Gutem</string>
+    <string name="quote_159" id="468">Sollte ein Suchender keinen besseren oder gleichberechtigten Begleiter finden, lassen Sie ihn entschlossen einen einsamen Kurs verfolgen</string>
+    <string name="quote_160" id="469">Sollten Sie einen weisen Kritiker finden, der auf Ihre Fehler hinweist, folgen Sie ihm wie ein Leitfaden für verborgene Schätze</string>
+    <string name="quote_161" id="470">Schweigen ist manchmal die beste Antwort</string>
+    <string name="quote_162" id="471">Bringe den wütenden Mann mit Liebe zum Schweigen. Bringe den bösen Mann mit Freundlichkeit zum Schweigen. Bringe den Geizhals mit Großzügigkeit zum Schweigen. Bringe den Lügner mit der Wahrheit zum Schweigen</string>
+    <string name="quote_163" id="472">Einige verstehen nicht, dass wir sterben müssen, aber diejenigen, die dies erkennen, lösen ihre Streitigkeiten</string>
+    <string name="quote_164" id="473">Manchmal ist deine Freude die Quelle deines Lächelns, aber manchmal kann dein Lächeln die Quelle deiner Freude sein</string>
+    <string name="quote_165" id="474">Sprechen Sie nur liebenswerte Rede, Rede, die begrüßt wird. Sprache ist eine angenehme Sache, wenn sie anderen nichts Böses bringt</string>
+    <string name="quote_166" id="475">Sprechen Sie die Wahrheit, ärgern Sie sich nicht und geben Sie, wenn Sie gefragt werden, sei es ein wenig. Durch diese drei Bedingungen geht man zur Gegenwart der Götter</string>
+    <string name="quote_167" id="476">Die Beruhigten sagen, dass das, was gut gesprochen wird, das Beste ist; zweitens, dass man sagen sollte, was richtig ist, nicht ungerecht; drittens, was erfreulich und nicht unangenehm ist; viertens, was wahr ist, nicht falsch</string>
+    <string name="quote_168" id="477">Die dunkelste Nacht ist Unwissenheit</string>
+    <string name="quote_169" id="478">Das Geschenk der Wahrheit übertrifft alle anderen Gaben</string>
+    <string name="quote_170" id="479">Das Wachstum der Weisheit kann genau an der Abnahme der schlechten Laune gemessen werden</string>
+    <string name="quote_171" id="480">Der Unwissende ist ein Ochse. Er wächst an Größe, nicht an Weisheit</string>
+    <string name="quote_172" id="481">Je weniger Sie haben, desto weniger müssen Sie sich Sorgen machen</string>
+    <string name="quote_173" id="482">Sobald Sie sehen, wie wichtig es ist, sich selbst zu lieben, werden Sie aufhören, andere leiden zu lassen</string>
+    <string name="quote_174" id="483">Je mehr Sie von der Liebe motiviert sind, desto furchtloser und freier wird Ihre Handlung sein</string>
+    <string name="quote_175" id="484">Das Nicht-Tun eines Übels, die Ausführung dessen, was geschickt ist, die Reinigung des eigenen Geistes: Dies ist die Lehre des Erwachten</string>
+    <string name="quote_176" id="485">Derjenige, in dem das Verlangen und der Durst, die das Werden verewigen, nicht mehr existieren; Wie kannst du diesen Erwachten verfolgen, spurlos und von grenzenloser Reichweite?</string>
+    <string name="quote_177" id="486">Derjenige, der sich selbst erobert hat, ist ein weitaus größerer Held als der, der tausendmal tausend Männer besiegt hat</string>
+    <string name="quote_178" id="487">Der Regen könnte sich in Gold verwandeln und trotzdem würde Ihr Durst nicht gestillt werden. Das Verlangen ist unstillbar oder es endet in Tränen, sogar im Himmel</string>
+    <string name="quote_179" id="488">Die Wurzel des Leidens ist Anhaftung</string>
+    <string name="quote_180" id="489">Die Wurzeln aller Güte liegen im Boden der Wertschätzung für das Gute</string>
+    <string name="quote_181" id="490">Die Quelle der Liebe ist tief in uns und wir können anderen helfen, viel Glück zu verwirklichen. Ein Wort, eine Handlung, ein Gedanke kann das Leiden einer anderen Person verringern und dieser Person Freude bringen</string>
+    <string name="quote_182" id="491">Das Universum selbst ist Veränderung und das Leben selbst ist nur das, was Sie für richtig halten</string>
+    <string name="quote_183" id="492">Der tugendhafte Mann erfreut sich an dieser Welt und er erfreut sich an der nächsten</string>
+    <string name="quote_184" id="493">Der Weg, die Meinung anderer zu ändern, ist mit Zuneigung und nicht mit Wut</string>
+    <string name="quote_185" id="494">Der Weise macht aus sich eine Insel, die keine Flut überwältigen kann</string>
+    <string name="quote_186" id="495">Die Welt ist von Tod und Verfall betroffen. Aber die Weisen trauern nicht, nachdem sie die Natur der Welt erkannt haben</string>
+    <string name="quote_187" id="496">Es gibt keine Ketten wie Hass … Das Verweilen in den Fehlern deines Bruders vervielfacht deine eigenen. Sie sind weit vom Ende Ihrer Reise entfernt</string>
+    <string name="quote_188" id="497">Es gibt keine Angst für jemanden, dessen Geist nicht mit Wünschen erfüllt ist</string>
+    <string name="quote_189" id="498">Es gibt kein Feuer wie Leidenschaft, es gibt keinen Hai wie Hass, es gibt keine Schlinge wie Torheit, es gibt keinen Strom wie Gier</string>
+    <string name="quote_190" id="499">Nichts ist so ungehorsam wie ein undisziplinierter Geist, und nichts ist so gehorsam wie ein disziplinierter Geist</string>
+    <string name="quote_191" id="500">Sie beschuldigen diejenigen, die schweigen, sie beschuldigen diejenigen, die viel sprechen, sie beschuldigen diejenigen, die in Maßen sprechen. Es gibt niemanden auf der Welt, der nicht beschuldigt wird</string>
+    <string name="quote_192" id="501">Denken Sie nicht leichtfertig an das Böse und sagen Sie: "Es wird nicht zu mir kommen." Tropfen für Tropfen ist der Wassertopf gefüllt. Ebenso füllt sich der Dummkopf, der es Stück für Stück sammelt, mit dem Bösen</string>
+    <string name="quote_193" id="502">Diejenigen, die aus Ursachen erzeugt werden, werden nicht produziert. Sie haben keine inhärente Natur der Produktion. Diejenigen, die von den Ursachen abhängen, sollen leer sein; diejenigen, die die Leere kennen, sind sich bewusst</string>
+    <string name="quote_194" id="503">Diejenigen, die abhängig entstehen, sind frei von inhärenter Existenz</string>
+    <string name="quote_195" id="504">Diejenigen, die frei von ärgerlichen Gedanken sind, finden mit Sicherheit Frieden</string>
+    <string name="quote_196" id="505">Diejenigen, die an Wahrnehmungen und Ansichten festhalten, wandern durch die Welt, um Menschen zu beleidigen</string>
+    <string name="quote_197" id="506">Diejenigen, die es versäumt haben, auf die Wahrheit hinzuarbeiten, haben den Sinn des Lebens verfehlt</string>
+    <string name="quote_198" id="507">Diejenigen, die wirklich den Weg zur Erleuchtung suchen, diktieren Begriffe in ihrem Geist. Dann gehen sie mit starker Entschlossenheit vor</string>
+    <string name="quote_199" id="508">Obwohl man hundert Jahre ohne Weisheit und Kontrolle leben sollte, ist es in der Tat besser, einen Tag lang von jemandem zu leben, der weise und meditativ ist</string>
+    <string name="quote_200" id="509">Tausende von Kerzen können von einer einzelnen Kerze angezündet werden, und die Lebensdauer der Kerze wird nicht verkürzt. Freude wird nicht weniger, wenn man sie teilt</string>
+    <string name="quote_201" id="510">Drei Dinge können nicht lange verborgen bleiben: die Sonne, der Mond und die Wahrheit</string>
+    <string name="quote_202" id="511">Luxuszeiten dauern nicht lange, vergehen aber sehr schnell. Nichts auf dieser Welt kann lange genossen werden</string>
+    <string name="quote_203" id="512">Schön zu sein bedeutet, du selbst zu sein. Sie müssen nicht von anderen akzeptiert werden. Du musst dich selbst akzeptieren</string>
+    <string name="quote_204" id="513">Vegetarier zu werden bedeutet, in den Strom zu treten, der zum Nirvana führt</string>
+    <string name="quote_205" id="514">Auf einer spirituellen Praxis zu bestehen, die Ihnen in der Vergangenheit gedient hat, bedeutet, das Floß auf dem Rücken zu tragen, nachdem Sie den Fluss überquert haben</string>
+    <string name="quote_206" id="515">Den Körper gesund zu halten ist eine Pflicht… sonst können wir unseren Geist nicht stark und klar halten</string>
+    <string name="quote_207" id="516">Es ist unmöglich, im Bewusstsein der Unvermeidlichkeit des Leidens, der Schwächung, des Alters und des Todes zu leben - wir müssen uns vom Leben befreien, von allem möglichen Leben</string>
+    <string name="quote_208" id="517">Vom Bösen und vom starken Getränk Abstand zu nehmen und immer standhaft in der Tugend zu sein; Das ist das Glück</string>
+    <string name="quote_209" id="518">Mutter und Vater zu unterstützen, Frau und Kinder zu schätzen und friedlich zu arbeiten - das ist der größte Segen</string>
+    <string name="quote_210" id="519">Wahre Veränderung ist innen, lass das Äußere so wie es ist</string>
+    <string name="quote_211" id="520">Verstehen ist das Kernstück gut gesprochener Worte</string>
+    <string name="quote_212" id="521">Der Sieg erzeugt Hass. Die Besiegten leben unter Schmerzen. Glücklicherweise leben die friedlichen Menschen und geben Sieg und Niederlage auf</string>
+    <string name="quote_213" id="522">Tugendhafte Menschen lassen immer los. Sie schwatzen nicht über Freuden und Wünsche. Berührt vom Glück und dann vom Leiden zeigt der Weise keine Anzeichen von Hochstimmung oder Depression</string>
+    <string name="quote_214" id="523">Wir sind hier, um aus unserer Illusion der Getrenntheit zu erwachen</string>
+    <string name="quote_215" id="524">Wir werden Liebe entwickeln, wir werden sie praktizieren, wir werden sie sowohl als Weg als auch als Grundlage machen …</string>
+    <string name="quote_216" id="525">Wir werden die Befreiung des Geistes durch Liebenswürdigkeit entwickeln und kultivieren, sie zu unserem Vehikel machen, sie zu unserer Basis machen, sie stabilisieren, uns darin üben und sie vollständig vervollkommnen</string>
+    <string name="quote_217" id="526">Was auch immer ein Mönch mit seinem Denken und Nachdenken verfolgt, das wird zur Neigung seines Bewusstseins</string>
+    <string name="quote_218" id="527">Was auch immer ein Feind einem Feind oder ein Feind einem Feind antun mag, der schlecht gelenkte Verstand kann Ihnen noch Schlimmeres antun</string>
+    <string name="quote_219" id="528">Was auch immer die Natur des Entstehens hat, hat die Natur des Aufhörens</string>
+    <string name="quote_220" id="529">Was auch immer nicht dein ist: lass es los. Ihr Loslassen wird für Ihr langfristiges Glück sein</string>
+    <string name="quote_221" id="530">Was auch immer kostbares Juwel in den himmlischen Welten ist, es gibt nichts Vergleichbares zu jemandem, der erwacht ist</string>
+    <string name="quote_222" id="531">Wenn man das Gefühl hat, das Böse nicht zu mögen, wenn man sich ruhig fühlt, findet man Freude daran, guten Lehren zuzuhören; Wenn man diese Gefühle hat und sie schätzt, ist man frei von Angst</string>
+    <string name="quote_223" id="532">Wenn die Aggregate auftauchen, verfallen und sterben, oh Bhikkhu, in jedem Moment, in dem du geboren wirst, verfallen und sterben</string>
+    <string name="quote_224" id="533">Wenn Sie nach sich selbst schauen, schauen Sie nach anderen. Wenn Sie nach anderen schauen, schauen Sie nach sich selbst</string>
+    <string name="quote_225" id="534">Wenn wir Liebe und Freundlichkeit gegenüber anderen empfinden, fühlen sich andere nicht nur geliebt und umsorgt, sondern es hilft uns auch, inneres Glück und Frieden zu entwickeln</string>
+    <string name="quote_226" id="535">Wenn Sie auf einen Weg stoßen, der allen Nutzen und Glück bringt, folgen Sie diesem Kurs, während der Mond durch die Sterne wandert</string>
+    <string name="quote_227" id="536">Wenn Sie Dankbarkeit üben, gibt es ein Gefühl des Respekts gegenüber anderen</string>
+    <string name="quote_228" id="537">Wer alle menschlichen Bindungen hinterlässt und die Bande des Himmels abgelegt hat, von allen Bindungen überall losgelöst: Er ist derjenige, den ich Brahmane nenne</string>
+    <string name="quote_229" id="538">Wer nicht auf jemanden losgeht, der wütend ist, gewinnt einen Kampf, der schwer zu gewinnen ist</string>
+    <string name="quote_230" id="539">Wer mich sieht, sieht die Lehre, und wer die Lehre sieht, sieht mich</string>
+    <string name="quote_231" id="540">Mit Narren gibt es keine Kameradschaft. Anstatt mit Männern zu leben, die egoistisch, eitel, streitsüchtig und hartnäckig sind, lassen Sie einen Mann allein gehen</string>
+    <string name="quote_232" id="541">Mit der Erkenntnis des eigenen Potenzials und Selbstbewusstseins kann man eine bessere Welt aufbauen</string>
+    <string name="quote_233" id="542">Ohne Gesundheit ist Leben kein Leben; es ist nur ein Zustand der Langour und des Leidens - ein Bild des Todes</string>
+    <string name="quote_234" id="543">Du bist jetzt die Community. Seid eine Lampe für euch. Sei deine eigene Zuflucht. Suche keinen anderen. Alle Dinge müssen vergehen. Bemühe dich fleißig weiter. Gib nicht auf</string>
+    <string name="quote_235" id="544">Sie sammeln nicht die Schönheit einer Blume, indem Sie ihre Blütenblätter zupfen</string>
+    <string name="quote_236" id="545">Dein eigenes Selbst ist dein Meister; wer könnte noch sein Wenn Sie gut kontrolliert sind, gewinnen Sie einen Meister, der sehr schwer zu finden ist</string>
+    <string name="quote_237" id="546">Sie selbst müssen sich bemühen. Die Buddhas weisen nur den Weg</string>
+    <string name="about_translators" id="547">Übersetzer</string>
+    <string name="title_activity_main">Hauptaktivität</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Benachrichtigungen</string>
+    <string name="quote_number">Zitat #%d</string>
+    <string name="fragment_quote">Zitat</string>
+    <string name="fragment_lists">Listen</string>
+    <string name="fragment_meditation">Meditieren</string>
+    <string name="meditate_title">Meditieren</string>
+    <string name="meditate_subheading">Es ist einfach</string>
+    <string name="meditate_space">Raum</string>
+    <string name="meditate_space_desc">Wähle einen ruhigen Ort, an dem du nicht gestört wirst.</string>
+    <string name="meditate_posture">Haltung</string>
+    <string name="meditate_posture_desc">Setz dich auf den Boden oder auf einen Stuhl mit gerader Rückenlehne. Der Schlüssel ist, dass es bequem ist!</string>
+    <string name="meditate_breath">Atem</string>
+    <string name="meditate_breath_desc">Atme tief und langsam ein und versuche, in deinen Magen zu atmen.</string>
+    <string name="play">Weitermachen</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="time_left">Übrige Zeit</string>
+    <string name="meditating_for">Meditieren für</string>
+    <string name="has_been_paused">wurde angehalten</string>
+    <string name="meditation_timer">Meditations-Timer</string>
+    <string name="more">Mehr</string>
+    <string name="addToList">Zur Liste hinzufügen</string>
+    <string name="searchHint">Suche…</string>
+    <string name="search">Suche</string>
+    <string name="attribution_buddha">~ Gautama Buddha</string>
+    <string name="seconds">Sekunden</string>
+    <string name="minutes">Protokoll</string>
+    <string name="and">und</string>
+    <string name="create_new_list">Neue Liste erstellen</string>
+    <string name="insert_name">Namen eingeben</string>
+    <string name="validationRule1">Kann //nicht enthalten</string>
+    <string name="validationRule2">Es gibt bereits eine Liste mit dem Namen Favoriten</string>
+    <string name="validationRule3">Es gibt bereits eine Liste mit dem Namen</string>
+    <string name="add">Hinzufügen</string>
+    <string name="new_str">Neu</string>
+    <string name="added">Zitat hinzugefügt zu</string>
+    <string name="exists">Dieses Zitat existiert bereits in</string>
+    <string name="start">Start</string>
+    <string name="show_notification">Benachrichtigung anzeigen</string>
+    <string name="vibrate_second">Vibriere jede Sekunde</string>
+    <string name="favourites">Favoriten</string>
+    <string name="okay">Okay</string>
+    <string name="water_lotus">Wasserlotus</string>
+    <string name="lotus">Lotus</string>
+    <string name="shrine">Schrein</string>
+    <string name="lamp">Lampe</string>
+    <string name="temple">Tempel</string>
+    <string name="elephant">Elefant</string>
+    <string name="endless_knot">Endloser Knoten</string>
+    <string name="dharma_wheel">Rad</string>
+    <string name="monk">Mönch</string>
+    <string name="buddha">Buddha</string>
+    <string name="follow_app_default">App folgen</string>
+    <string name="about_app">Über Buddha Quotes</string>
+    <string name="rename_list">Liste umbenennen</string>
+    <string name="duplicate">Dieses Zitat ist schon drin</string>
+    <string name="start_meditation">Meditation starten</string>
+    <string name="app_widget_description">Das ist eine Widget Beschreibung</string>
+    <string name="transparent">Transparent</string>
+    <string name="opaque">Opak</string>
+    <string name="open_drawer">Navigation öffnen</string>
+    <string name="close_drawer">Navigation schliessen</string>
+    <string name="no_list">Du hast keine Listen!</string>
+    <string name="quote_count">1 Zitat</string>
+    <string name="quotes_count">%d Zitate</string>
+    <string name="contributors">Mitwirkende</string>
+    <string name="empty_list">Diese Liste ist leer!</string>
+    <string name="two_people_meditating">Zwei Leute meditierend</string>
+    <string name="summary">Zusammenfassung</string>
+    <string name="text">Text</string>
+    <string name="no_image">Kein Bild</string>
+    <string name="bell">Klingel</string>
+    <string name="meditate_sheet_content">Du kannst eine Meditation starten, wenn du die Zeit zum Meditieren eingibst und den Startknopf unten drückst.😌</string>
+    <string name="libraries" id="90">Bibliotheken</string>
+    <string name="quote_sheet_title">Zitathilfe</string>
+    <string name="list_sheet_title">Listenhilfe</string>
+    <string name="meditate_sheet_title">Meditationshilfe</string>
+</resources>
