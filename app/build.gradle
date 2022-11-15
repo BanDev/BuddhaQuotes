@@ -108,7 +108,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     // Sheets - https://github.com/maxkeppeler/sheets
-    def sheets_version = "2.2.9"
+    def sheets_version = "2.3.0"
     implementation "com.maxkeppeler.sheets:core:$sheets_version"
     implementation "com.maxkeppeler.sheets:info:$sheets_version"
     implementation "com.maxkeppeler.sheets:options:$sheets_version"
