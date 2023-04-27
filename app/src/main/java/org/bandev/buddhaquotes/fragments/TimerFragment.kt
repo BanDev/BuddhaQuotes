@@ -27,8 +27,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.maxkeppeler.sheets.core.IconButton
-import com.maxkeppeler.sheets.time.TimeFormat
-import com.maxkeppeler.sheets.time.TimeSheet
+import com.maxkeppeler.sheets.duration.DurationSheet
+import com.maxkeppeler.sheets.duration.DurationTimeFormat
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.activities.TimerActivity
 import org.bandev.buddhaquotes.core.Feedback
@@ -36,7 +36,7 @@ import org.bandev.buddhaquotes.core.resolveColorAttr
 import org.bandev.buddhaquotes.databinding.FragmentTimerBinding
 
 /**
- * The timer where the meditiation timer button is shown
+ * The timer where the meditation timer button is shown
  */
 class TimerFragment : Fragment() {
 
@@ -59,10 +59,10 @@ class TimerFragment : Fragment() {
             setOnClickListener {
                 Feedback.virtualKey(it)
                 it.isEnabled = false
-                TimeSheet().show(requireContext()) {
+                DurationSheet().show(requireContext()) {
                     title(R.string.meditation_timer)
                     closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                    format(TimeFormat.MM_SS)
+                    format(DurationTimeFormat.MM_SS)
                     minTime(1)
                     onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
                     onPositive(R.string.okay) { durationTimeInMillis: Long ->

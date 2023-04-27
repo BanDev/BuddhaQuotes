@@ -31,9 +31,9 @@ import com.akexorcist.localizationactivity.core.LanguageSetting.setLanguage
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.color.ColorView
 import com.maxkeppeler.sheets.core.SheetStyle
-import com.maxkeppeler.sheets.options.DisplayMode
-import com.maxkeppeler.sheets.options.Option
-import com.maxkeppeler.sheets.options.OptionsSheet
+import com.maxkeppeler.sheets.option.DisplayMode
+import com.maxkeppeler.sheets.option.Option
+import com.maxkeppeler.sheets.option.OptionSheet
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.core.AccentColor
 import org.bandev.buddhaquotes.core.AccentSetting
@@ -155,7 +155,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 isEnabled = false
                 Feedback.virtualKey(requireView())
-                OptionsSheet().show(requireContext()) {
+                OptionSheet().show(requireContext()) {
                     style(SheetStyle.DIALOG)
                     displayMode(DisplayMode.LIST)
                     with(
@@ -207,7 +207,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 it.isEnabled = false
                 Feedback.virtualKey(requireView())
-                OptionsSheet().show(requireContext()) {
+                OptionSheet().show(requireContext()) {
                     style(SheetStyle.DIALOG)
                     displayToolbar(false)
                     displayMode(DisplayMode.LIST)
