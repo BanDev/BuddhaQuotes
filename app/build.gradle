@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "org.bandev.buddhaquotes"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1013
         versionName "v2.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
