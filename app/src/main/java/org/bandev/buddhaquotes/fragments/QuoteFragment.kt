@@ -29,9 +29,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
-import com.maxkeppeler.sheets.options.DisplayMode
-import com.maxkeppeler.sheets.options.Option
-import com.maxkeppeler.sheets.options.OptionsSheet
+import com.maxkeppeler.sheets.option.DisplayMode
+import com.maxkeppeler.sheets.option.Option
+import com.maxkeppeler.sheets.option.OptionSheet
 import me.kosert.flowbus.GlobalBus
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.ViewModel
@@ -138,7 +138,7 @@ class QuoteFragment : Fragment() {
     private fun showOptionsSheet(view: View) {
         Feedback.virtualKey(view)
         view.isEnabled = false
-        OptionsSheet().show(requireContext()) {
+        OptionSheet().show(requireContext()) {
             displayMode(DisplayMode.LIST)
             displayToolbar(false)
             displayHandle(true)
@@ -164,7 +164,7 @@ class QuoteFragment : Fragment() {
                     options.add(Option(list.icon.drawable, list.title))
                 }
 
-                OptionsSheet().show(requireContext()) {
+                OptionSheet().show(requireContext()) {
                     displayMode(DisplayMode.LIST)
                     displayToolbar(false)
                     displayHandle(true)
@@ -231,7 +231,7 @@ class QuoteFragment : Fragment() {
     }
 
     private fun changeImageSheet() {
-        OptionsSheet().show(requireContext()) {
+        OptionSheet().show(requireContext()) {
             displayMode(DisplayMode.GRID_VERTICAL)
             preventIconTint(true)
             with(

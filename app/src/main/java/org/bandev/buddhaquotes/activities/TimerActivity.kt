@@ -32,15 +32,19 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.WindowCompat.setDecorFitsSystemWindows
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.maxkeppeler.sheets.core.IconButton
+import com.maxkeppeler.sheets.duration.DurationSheet
+import com.maxkeppeler.sheets.duration.DurationTimeFormat
 import com.maxkeppeler.sheets.input.InputSheet
 import com.maxkeppeler.sheets.input.type.InputCheckBox
-import com.maxkeppeler.sheets.time.TimeFormat
-import com.maxkeppeler.sheets.time.TimeSheet
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.core.*
 import org.bandev.buddhaquotes.core.Accent.setAccentColour
 import org.bandev.buddhaquotes.core.Bars.updateNavbarColour
+import org.bandev.buddhaquotes.core.Feedback
+import org.bandev.buddhaquotes.core.InsetType
 import org.bandev.buddhaquotes.core.Insets.applyInsets
+import org.bandev.buddhaquotes.core.Prefs
+import org.bandev.buddhaquotes.core.resolveColorAttr
+import org.bandev.buddhaquotes.core.setDarkStatusIcons
 import org.bandev.buddhaquotes.databinding.ActivityTimerBinding
 
 class TimerActivity : LocalizationActivity() {
@@ -125,10 +129,10 @@ class TimerActivity : LocalizationActivity() {
                     }
                     else -> {
                         it.isEnabled = false
-                        TimeSheet().show(context) {
+                        DurationSheet().show(context) {
                             title(R.string.meditation_timer)
                             closeIconButton(IconButton(R.drawable.ic_down_arrow))
-                            format(TimeFormat.MM_SS)
+                            format(DurationTimeFormat.MM_SS)
                             onNegative(R.string.cancel) { Feedback.virtualKey(binding.root) }
                             onPositive(R.string.okay) { durationTimeInMillis: Long ->
                                 Feedback.confirm(binding.root)
