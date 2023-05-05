@@ -85,7 +85,7 @@ dependencies {
     implementation 'dev.chrisbanes.insetter:insetter:0.6.1'
 
     // Kotlin coroutines - https://github.com/Kotlin/kotlinx.coroutines
-    def coroutines_version = "1.6.4"
+    def coroutines_version = "1.7.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
