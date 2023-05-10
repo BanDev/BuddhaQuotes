@@ -1,0 +1,81 @@
+[versions]
+aboutLibraries = "10.6.3"
+accompanist = "0.31.1-alpha"
+activity = "1.7.1"
+application = "8.1.0-beta02"
+browser = "1.5.0"
+compose = "1.4.3"
+coreKtx = "1.10.0"
+lottie = "6.0.0"
+splashscreen = "1.0.1"
+coroutines = "1.7.0"
+datastore = "1.0.0"
+kotlin = "1.8.21"
+ksp = "1.8.21-1.0.11"
+lifecycle = "2.6.1"
+material3 = "1.1.0-rc01"
+navigation = "2.5.3"
+protobuf = "3.23.0"
+protobufPlugin = "0.9.3"
+settings = "0.27.0"
+sheets = "1.1.1"
+room = "2.5.1"
+
+[libraries]
+aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
+aboutlibraries-compose = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "aboutLibraries" }
+
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+
+animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+
+browser = { module = "androidx.browser:browser", version.ref = "browser" }
+
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
+
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+
+lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+
+protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobuf" }
+protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+
+runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "compose" }
+
+settings-ui = { module = "com.github.alorma:compose-settings-ui-m3", version.ref = "settings" }
+
+sheets-core = { module = "com.maxkeppeler.sheets-compose-dialogs:core", version.ref = "sheets" }
+sheets-duration = { module = "com.maxkeppeler.sheets-compose-dialogs:duration", version.ref = "sheets" }
+sheets-info = { module = "com.maxkeppeler.sheets-compose-dialogs:info", version.ref = "sheets" }
+sheets-input = { module = "com.maxkeppeler.sheets-compose-dialogs:input", version.ref = "sheets" }
+sheets-option = { module = "com.maxkeppeler.sheets-compose-dialogs:option", version.ref = "sheets" }
+
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "application" }
+aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
