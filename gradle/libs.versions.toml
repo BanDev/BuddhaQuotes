@@ -1,6 +1,6 @@
 [versions]
 aboutLibraries = "10.6.3"
-accompanist = "0.31.1-alpha"
+accompanist = "0.31.2-alpha"
 activity = "1.7.1"
 application = "8.1.0-beta02"
 browser = "1.5.0"
