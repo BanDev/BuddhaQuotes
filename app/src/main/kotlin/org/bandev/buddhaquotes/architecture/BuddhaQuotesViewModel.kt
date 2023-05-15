@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import java.util.Calendar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,6 +15,7 @@ import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
 import org.bandev.buddhaquotes.items.ListData
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.QuoteItem
+import java.util.Calendar
 
 /**
  * A level of abstraction between the ui

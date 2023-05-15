@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -25,15 +24,18 @@ import com.maxkeppeler.sheets.info.InfoView
 import com.maxkeppeler.sheets.info.models.InfoBody
 import com.maxkeppeler.sheets.info.models.InfoSelection
 import kotlinx.coroutines.launch
-import org.bandev.buddhaquotes.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MeditateHelpSheet(
+fun HelpSheet(
     sheetState: SheetState,
-    onClose: () -> Unit
+    onClose: () -> Unit,
+    animationResId: Int,
+    helpTitle: String,
+    helpText: String,
+    animationIterations: Int = 1
 ) {
-    val meditateAnimation by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.meditation))
+    val helpAnimation by rememberLottieComposition(LottieCompositionSpec.RawRes(animationResId))
     val scope = rememberCoroutineScope()
     ModalBottomSheet(
         onDismissRequest = onClose,
@@ -54,12 +56,12 @@ fun MeditateHelpSheet(
             ),
             header = Header.Custom {
                 LottieAnimation(
-                    composition = meditateAnimation,
+                    composition = helpAnimation,
                     modifier = Modifier.height(150.dp),
-                    iterations = LottieConstants.IterateForever
+                    iterations = animationIterations
                 )
                 Text(
-                    text = "Meditate help",
+                    text = helpTitle,
                     modifier = Modifier.padding(16.dp),
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.SemiBold,
@@ -68,7 +70,7 @@ fun MeditateHelpSheet(
                 Divider()
             },
             body = InfoBody.Default(
-                bodyText = "You can start a meditation session by pressing the start button below and inputting the time you want to meditate for."
+                bodyText = helpText
             )
         )
     }

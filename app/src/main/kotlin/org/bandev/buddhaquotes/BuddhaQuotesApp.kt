@@ -41,6 +41,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
 import org.bandev.buddhaquotes.scenes.AboutScene
@@ -52,9 +53,7 @@ import org.bandev.buddhaquotes.scenes.MeditateScene
 import org.bandev.buddhaquotes.scenes.SettingsScene
 import org.bandev.buddhaquotes.settings.SettingsViewModel
 import org.bandev.buddhaquotes.settings.toBoolean
-import org.bandev.buddhaquotes.sheets.ListHelpSheet
-import org.bandev.buddhaquotes.sheets.MeditateHelpSheet
-import org.bandev.buddhaquotes.sheets.QuoteHelpSheet
+import org.bandev.buddhaquotes.sheets.HelpSheet
 import org.bandev.buddhaquotes.ui.theme.BuddhaQuotesTheme
 import org.bandev.buddhaquotes.ui.theme.EdgeToEdgeContent
 
@@ -179,17 +178,35 @@ fun BuddhaQuotesApp(viewModel: BuddhaQuotesViewModel = viewModel()) {
                         }
                         if (openBottomSheet && navController.currentDestination?.route == Scene.Home.route) {
                             when (pagerState.currentPage) {
-                                0 -> QuoteHelpSheet(
+                                0 -> HelpSheet(
                                     sheetState = bottomSheetState,
-                                    onClose = { openBottomSheet = false }
+                                    onClose = { openBottomSheet = false },
+                                    animationResId = R.raw.flower,
+                                    helpTitle = "Quote help",
+                                    helpText = """
+                                        You can press the next button or swipe down from the top to get a new quote.
+                                        
+                                        You can also change the image at the bottom by holding down on it which will bring up a selection of 16 image options.
+                                    """.trimIndent()
                                 )
-                                1 -> ListHelpSheet(
+                                1 -> HelpSheet(
                                     sheetState = bottomSheetState,
-                                    onClose = { openBottomSheet = false }
+                                    onClose = { openBottomSheet = false },
+                                    animationResId = R.raw.lists,
+                                    helpTitle = "List help",
+                                    helpText = """
+                                        These are your lists. You can access your favourite quotes from here as well as create new lists to categorise quotes into groups.
+                                        
+                                        New lists can be created by pressing the add (➕) button at the bottom of the screen and typing in a name.
+                                    """.trimIndent()
                                 )
-                                2 -> MeditateHelpSheet(
+                                2 -> HelpSheet(
                                     sheetState = bottomSheetState,
-                                    onClose = { openBottomSheet = false }
+                                    onClose = { openBottomSheet = false },
+                                    animationResId = R.raw.meditation,
+                                    helpTitle = "Meditate help",
+                                    helpText = "You can start a meditation session by pressing the start button below and inputting the time you want to meditate for.",
+                                    animationIterations = LottieConstants.IterateForever
                                 )
                             }
                         }

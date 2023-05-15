@@ -2,9 +2,9 @@ package org.bandev.buddhaquotes.settings
 
 import android.util.Log
 import androidx.datastore.core.DataStore
-import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import java.io.IOException
 
 class SettingsRepository(private val store: DataStore<Settings>) {
 
