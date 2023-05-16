@@ -2,7 +2,7 @@
 aboutLibraries = "10.6.3"
 accompanist = "0.31.2-alpha"
 activity = "1.7.1"
-application = "8.1.0-beta02"
+application = "8.1.0-beta03"
 browser = "1.5.0"
 compose = "1.4.3"
 coreKtx = "1.10.1"
