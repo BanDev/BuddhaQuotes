@@ -35,7 +35,7 @@ abstract class BuddhaQuotesDatabase : RoomDatabase() {
                     object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
-                            repeat(QuoteStore.quotes.size) {
+                            repeat(QuoteStore.quotesWithSources.size) {
                                 db.execSQL("INSERT INTO quote DEFAULT VALUES")
                             }
                             db.execSQL("INSERT INTO list (title) VALUES ('Favourites')")

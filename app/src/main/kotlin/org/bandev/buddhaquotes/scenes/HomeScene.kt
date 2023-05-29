@@ -2,6 +2,7 @@ package org.bandev.buddhaquotes.scenes
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -11,10 +12,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
@@ -28,15 +31,18 @@ import androidx.compose.material.icons.rounded.AddCircleOutline
 import androidx.compose.material.icons.rounded.ChevronLeft
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -48,21 +54,24 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.maxkeppeker.sheets.core.models.base.IconSource
+import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
-import com.maxkeppeler.sheets.option.OptionView
-import com.maxkeppeler.sheets.option.models.DisplayMode
-import com.maxkeppeler.sheets.option.models.Option
-import com.maxkeppeler.sheets.option.models.OptionConfig
-import com.maxkeppeler.sheets.option.models.OptionSelection
+import com.maxkeppeler.sheets.info.InfoView
+import com.maxkeppeler.sheets.info.models.InfoBody
+import com.maxkeppeler.sheets.info.models.InfoSelection
+import kotlin.math.max
 import kotlin.random.Random
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
@@ -72,6 +81,7 @@ import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
 import org.bandev.buddhaquotes.items.AnimatedHeart
 import org.bandev.buddhaquotes.items.Heart
 import org.bandev.buddhaquotes.items.QuoteItem
+import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -84,6 +94,9 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
 
     var imageSheetVisible by rememberSaveable { mutableStateOf(false) }
     val imageSheetState = rememberModalBottomSheetState()
+
+    var quoteSourceSheetVisible by rememberSaveable { mutableStateOf(false) }
+    val quoteSourceSheetState = rememberModalBottomSheetState()
 
     Scaffold(
         bottomBar = {
@@ -107,7 +120,7 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
             }
         }
     ) { paddingValues ->
-        var centerImage by remember { mutableStateOf(R.drawable.image_anahata) }
+        val centerImage = remember { mutableStateOf(R.drawable.image_anahata) }
         HorizontalPager(
             pageCount = 3,
             beyondBoundsPageCount = 2,
@@ -147,25 +160,50 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                         }
                     }
                     Column(Modifier.padding(start = 15.dp, top = 1.dp, end = 15.dp)) {
-                        ElevatedCard(Modifier.fillMaxWidth()) {
-                            Column(Modifier.padding(20.dp)) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_left_quote),
-                                    contentDescription = null
-                                )
-                                AnimatedContent(targetState = quote.resource) {
-                                    Text(text = stringResource(it))
+                        ElevatedCard(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .pointerInput(Unit) {
+                                    detectTapGestures(
+                                        onLongPress = {
+                                            quoteSourceSheetVisible = true
+                                        }
+                                    )
                                 }
-                                Box(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    contentAlignment = Alignment.CenterEnd
-                                ) {
+                        ) {
+                            Box {
+                                Column(
+                                    Modifier
+                                        .padding(20.dp)
+                                        .fillMaxWidth()) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_left_quote),
+                                        contentDescription = null
+                                    )
+                                    AnimatedContent(
+                                        targetState = quote.resource,
+                                        label = "Animated quote transition"
+                                    ) {
+                                        Text(
+                                            text = stringResource(it),
+                                            modifier = Modifier.padding(vertical = 10.dp)
+                                        )
+                                    }
                                     Image(
                                         painter = painterResource(id = R.drawable.ic_right_quote),
                                         contentDescription = null,
+                                        modifier = Modifier.align(Alignment.End)
                                     )
+                                    Text(text = stringResource(R.string.attribution_buddha))
                                 }
-                                Text(text = stringResource(R.string.attribution_buddha))
+                                TextButton(
+                                    onClick = { quoteSourceSheetVisible = true },
+                                    modifier = Modifier
+                                        .align(Alignment.TopEnd)
+                                        .padding(10.dp)
+                                ) {
+                                    Text(text = "Source")
+                                }
                             }
                         }
                         Column(
@@ -174,7 +212,7 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                             verticalArrangement = Arrangement.Bottom
                         ) {
                             Image(
-                                painter = painterResource(id = centerImage),
+                                painter = painterResource(id = centerImage.value),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(250.dp)
@@ -193,10 +231,10 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                                 ) {
                                     IconButton(
                                         onClick = {
-                                            val id = if (quote.id - 1 > QuoteStore.quotes.size) {
+                                            val id = if (quote.id - 1 > QuoteStore.quotesWithSources.size) {
                                                 1
                                             } else if (quote.id - 1 < 1) {
-                                                QuoteStore.quotes.size
+                                                QuoteStore.quotesWithSources.size
                                             } else {
                                                 quote.id - 1
                                             }
@@ -235,10 +273,10 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                                     }
                                     IconButton(
                                         onClick = {
-                                            val id = if (quote.id + 1 > QuoteStore.quotes.size) {
+                                            val id = if (quote.id + 1 > QuoteStore.quotesWithSources.size) {
                                                 1
                                             } else if (quote.id + 1 < 1) {
-                                                QuoteStore.quotes.size
+                                                QuoteStore.quotesWithSources.size
                                             } else {
                                                 quote.id + 1
                                             }
@@ -262,82 +300,91 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
             }
         }
         if (imageSheetVisible) {
+            ImageSelectionSheet(
+                sheetState = imageSheetState,
+                onClose = { imageSheetVisible = false },
+                centerImage = centerImage
+            )
+        }
+        val quoteSource = QuoteStore.quotesWithSources[quote.resource]
+        if (quoteSourceSheetVisible && quoteSource != null) {
             ModalBottomSheet(
-                onDismissRequest = { imageSheetVisible = false },
+                onDismissRequest = { quoteSourceSheetVisible = false },
                 sheetState = imageSheetState
             ) {
-                OptionView(
+                InfoView(
                     useCaseState = rememberUseCaseState(),
-                    selection = OptionSelection.Single(
-                        options = listOf(
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_anahata),
-                                titleText = "Anahata",
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_bell),
-                                titleText = "Bell"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_dharma_wheel),
-                                titleText = "Dharma Wheel"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_elephant),
-                                titleText = "Elephant"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_endless_knot),
-                                titleText = "Endless Knot"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_lamp),
-                                titleText = "Lamp"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_lotus),
-                                titleText = "Lotus"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_lotus_water),
-                                titleText = "Water Lotus"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_mandala),
-                                titleText = "Mandala"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_monk),
-                                titleText = "Monk"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_rattle),
-                                titleText = "Rattle"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_shrine),
-                                titleText = "Shrine"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_stupa),
-                                titleText = "Stupa"
-                            ),
-                            Option(
-                                icon = IconSource(drawableRes = R.drawable.image_temple),
-                                titleText = "Temple"
-                            )
-                        ),
-                        withButtonView = false,
-                        onSelectOption = { _, option ->
-                            scope.launch { imageSheetState.hide() }.invokeOnCompletion {
-                                if (!imageSheetState.isVisible) {
-                                    imageSheetVisible = false
+                    selection = InfoSelection(
+                        negativeButton = null,
+                        onPositiveClick = {
+                            scope.launch { quoteSourceSheetState.hide() }.invokeOnCompletion {
+                                if (!quoteSourceSheetState.isVisible) {
+                                    quoteSourceSheetVisible = false
                                 }
                             }
-                            option.icon?.drawableRes?.let { centerImage = it }
                         }
                     ),
-                    config = OptionConfig(mode = DisplayMode.GRID_VERTICAL)
+                    header = Header.Custom {
+                        Text(
+                            text = "Quote Source",
+                            modifier = Modifier.padding(16.dp),
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.SemiBold,
+                            style = MaterialTheme.typography.titleLarge,
+                        )
+                        Divider()
+                    },
+                    body = InfoBody.Default(
+                        bodyText = if (quoteSource.verse != null) {
+                            stringResource(id = quoteSource.bodyRes, quoteSource.verse)
+                        } else {
+                            stringResource(id = quoteSource.bodyRes)
+                        },
+                        postBody = {
+                            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                                quoteSource.fullQuoteRes?.let {
+                                    Layout(
+                                        content = {
+                                            Divider(modifier = Modifier
+                                                .width(1.dp)
+                                                .layoutId("line"))
+                                            Text(
+                                                text = stringResource(id = it),
+                                                modifier = Modifier
+                                                    .padding(10.dp)
+                                                    .layoutId("text"),
+                                                color = Color.Gray,
+                                                style = MaterialTheme.typography.bodyMedium
+                                            )
+                                        }
+                                    ) { measurables, constraints ->
+                                        val textPlaceable = measurables.first { it.layoutId == "text" }.measure(constraints)
+                                        val linePlaceable = measurables.first { it.layoutId == "line" }
+                                            .measure(constraints.copy(minHeight = textPlaceable.height, maxHeight = textPlaceable.height))
+                                        layout(max(textPlaceable.width, linePlaceable.width), max(textPlaceable.height, linePlaceable.height)) {
+                                            linePlaceable.placeRelative(0, 0)
+                                            textPlaceable.placeRelative(linePlaceable.width, 0)
+                                        }
+                                    }
+                                }
+                                quoteSource.url?.let {
+                                    Spacer(Modifier.fillMaxWidth())
+                                    TextButton(
+                                        onClick = {
+                                            context.startActivity(
+                                                Intent(Intent.ACTION_VIEW).apply {
+                                                    data = Uri.parse(it)
+                                                }
+                                            )
+                                        },
+                                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                                    ) {
+                                        Text(text = "Open source URL")
+                                    }
+                                }
+                            }
+                        }
+                    )
                 )
             }
         }

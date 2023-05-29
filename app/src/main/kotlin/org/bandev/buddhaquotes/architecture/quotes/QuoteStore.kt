@@ -3,66 +3,319 @@ package org.bandev.buddhaquotes.architecture.quotes
 import org.bandev.buddhaquotes.R
 
 object QuoteStore {
-    /** Hash map of all quotes in the app */
-    val quotes: List<Int> = listOf(
-        R.string.quote_1, R.string.quote_2, R.string.quote_3, R.string.quote_4, R.string.quote_5,
-        R.string.quote_6, R.string.quote_7, R.string.quote_8, R.string.quote_9, R.string.quote_10,
-        R.string.quote_11, R.string.quote_12, R.string.quote_13, R.string.quote_14,
-        R.string.quote_15, R.string.quote_16, R.string.quote_17, R.string.quote_18,
-        R.string.quote_19, R.string.quote_20, R.string.quote_21, R.string.quote_22,
-        R.string.quote_23, R.string.quote_24, R.string.quote_25, R.string.quote_26,
-        R.string.quote_27, R.string.quote_28, R.string.quote_29, R.string.quote_30,
-        R.string.quote_31, R.string.quote_32, R.string.quote_33, R.string.quote_34,
-        R.string.quote_35, R.string.quote_36, R.string.quote_37, R.string.quote_38,
-        R.string.quote_39, R.string.quote_40, R.string.quote_41, R.string.quote_42,
-        R.string.quote_43, R.string.quote_44, R.string.quote_45, R.string.quote_46,
-        R.string.quote_47, R.string.quote_48, R.string.quote_49, R.string.quote_50,
-        R.string.quote_51, R.string.quote_52, R.string.quote_53, R.string.quote_54,
-        R.string.quote_55, R.string.quote_56, R.string.quote_57, R.string.quote_58,
-        R.string.quote_59, R.string.quote_60, R.string.quote_61, R.string.quote_62,
-        R.string.quote_63, R.string.quote_64, R.string.quote_65, R.string.quote_66,
-        R.string.quote_67, R.string.quote_68, R.string.quote_69, R.string.quote_70,
-        R.string.quote_71, R.string.quote_72, R.string.quote_73, R.string.quote_74,
-        R.string.quote_75, R.string.quote_76, R.string.quote_77, R.string.quote_78,
-        R.string.quote_79, R.string.quote_80, R.string.quote_81, R.string.quote_82,
-        R.string.quote_83, R.string.quote_84, R.string.quote_85, R.string.quote_86,
-        R.string.quote_87, R.string.quote_88, R.string.quote_89, R.string.quote_90,
-        R.string.quote_91, R.string.quote_92, R.string.quote_93, R.string.quote_94,
-        R.string.quote_95, R.string.quote_96, R.string.quote_97, R.string.quote_98,
-        R.string.quote_99, R.string.quote_100, R.string.quote_101, R.string.quote_102,
-        R.string.quote_103, R.string.quote_104, R.string.quote_105, R.string.quote_106,
-        R.string.quote_107, R.string.quote_108, R.string.quote_109, R.string.quote_110,
-        R.string.quote_111, R.string.quote_112, R.string.quote_113, R.string.quote_114,
-        R.string.quote_115, R.string.quote_116, R.string.quote_117, R.string.quote_118,
-        R.string.quote_119, R.string.quote_120, R.string.quote_121, R.string.quote_122,
-        R.string.quote_123, R.string.quote_124, R.string.quote_125, R.string.quote_126,
-        R.string.quote_127, R.string.quote_128, R.string.quote_129, R.string.quote_130,
-        R.string.quote_131, R.string.quote_132, R.string.quote_133, R.string.quote_134,
-        R.string.quote_135, R.string.quote_136, R.string.quote_137, R.string.quote_138,
-        R.string.quote_139, R.string.quote_140, R.string.quote_141, R.string.quote_142,
-        R.string.quote_143, R.string.quote_144, R.string.quote_145, R.string.quote_146,
-        R.string.quote_147, R.string.quote_148, R.string.quote_149, R.string.quote_150,
-        R.string.quote_151, R.string.quote_152, R.string.quote_153, R.string.quote_154,
-        R.string.quote_155, R.string.quote_156, R.string.quote_157, R.string.quote_158,
-        R.string.quote_159, R.string.quote_160, R.string.quote_161, R.string.quote_162,
-        R.string.quote_163, R.string.quote_164, R.string.quote_165, R.string.quote_166,
-        R.string.quote_167, R.string.quote_168, R.string.quote_169, R.string.quote_170,
-        R.string.quote_171, R.string.quote_172, R.string.quote_173, R.string.quote_174,
-        R.string.quote_175, R.string.quote_176, R.string.quote_177, R.string.quote_178,
-        R.string.quote_179, R.string.quote_180, R.string.quote_181, R.string.quote_182,
-        R.string.quote_183, R.string.quote_184, R.string.quote_185, R.string.quote_186,
-        R.string.quote_187, R.string.quote_188, R.string.quote_189, R.string.quote_190,
-        R.string.quote_191, R.string.quote_192, R.string.quote_193, R.string.quote_194,
-        R.string.quote_195, R.string.quote_196, R.string.quote_197, R.string.quote_198,
-        R.string.quote_199, R.string.quote_200, R.string.quote_201, R.string.quote_202,
-        R.string.quote_203, R.string.quote_204, R.string.quote_205, R.string.quote_206,
-        R.string.quote_207, R.string.quote_208, R.string.quote_209, R.string.quote_210,
-        R.string.quote_211, R.string.quote_212, R.string.quote_213, R.string.quote_214,
-        R.string.quote_215, R.string.quote_216, R.string.quote_217, R.string.quote_218,
-        R.string.quote_219, R.string.quote_220, R.string.quote_221, R.string.quote_222,
-        R.string.quote_223, R.string.quote_224, R.string.quote_225, R.string.quote_226,
-        R.string.quote_227, R.string.quote_228, R.string.quote_229, R.string.quote_230,
-        R.string.quote_231, R.string.quote_232, R.string.quote_233, R.string.quote_234,
-        R.string.quote_235, R.string.quote_236, R.string.quote_237
+    val quotesWithSources = mapOf(
+        R.string.as_i_am_so_are_they_quote to QuoteSource(R.string.from_sutta_nipata),
+        R.string.a_disciplined_mind_brings_happiness_quote to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 35,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.03.budd.html"
+        ),
+        R.string.a_noble_one_produces_quote to QuoteSource(
+            bodyRes = R.string.itivuttika_source,
+            fullQuoteRes = R.string.quote_3_full_quote,
+            url = "https://suttacentral.net/iti27/ireland"
+        ),
+        R.string.a_wise_person_should_quote to QuoteSource(
+            bodyRes = R.string.itivuttika_source,
+            url = "https://suttacentral.net/iti27/ireland"
+        ),
+        R.string.all_experiences_are_preceded_quote to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.01.budd.html#dhp-1"
+        ),
+        R.string.quote_6 to QuoteSource(R.string.from_bhaddekaratta_sutta),
+        R.string.quote_7 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 223,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.17.budd.html#dhp-223"
+        ),
+        R.string.delight_in_heedfulness_quote to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.23.budd.html#dhp-327"
+        ),
+        R.string.quote_9 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 224,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.17.budd.html#dhp-224"
+        ),
+        R.string.quote_10 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya,
+            url = "https://suttacentral.net/en/sn22.94"
+        ),
+        R.string.quote_11 to QuoteSource(R.string.dhammapada_source),
+        R.string.quote_12 to QuoteSource(R.string.from_sutta_nipata),
+        R.string.quote_13 to QuoteSource(
+            bodyRes = R.string.from_cetana_sutta_of_anguttara_nikaya,
+            url = "https://www.accesstoinsight.org/tipitaka/an/an11/an11.002.than.html"
+        ),
+        R.string.quote_14 to QuoteSource(
+            bodyRes = R.string.from_sallekha_sutta,
+            url = "https://www.accesstoinsight.org/tipitaka/mn/mn.008.nypo.html"
+        ),
+        R.string.quote_15 to QuoteSource(
+            bodyRes = R.string.from_sallekha_sutta,
+            url = "http://www.accesstoinsight.org/tipitaka/mn/mn.008.nypo.html"
+        ),
+        R.string.quote_16 to QuoteSource(
+            bodyRes = R.string.itivuttika_source,
+            url = "https://suttacentral.net/iti22/ireland"
+        ),
+        R.string.quote_17 to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            fullQuoteRes = R.string.quote_17_full_quote,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.intro.than.html#fn-165"
+        ),
+        R.string.quote_18 to QuoteSource(
+            bodyRes = R.string.from_karaniya_metta_sutta,
+            fullQuoteRes = R.string.quote_61,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.1.08.piya.html"
+        ),
+        R.string.quote_19 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.4.02.than.html"
+        ),
+        R.string.quote_20 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 61,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.05.budd.html#dhp-61"
+        ),
+        R.string.quote_21 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 76,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.06.budd.html#dhp-76"
+        ),
+        R.string.quote_22 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.03.than.html"
+        ),
+        R.string.quote_23 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 180,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.14.budd.html#dhp-180"
+        ),
+        R.string.quote_24 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 39,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.03.budd.html"
+        ),
+        R.string.quote_25 to QuoteSource(R.string.from_mangala_sutta),
+        R.string.quote_26 to QuoteSource(R.string.from_kimsika_sutta),
+        R.string.quote_27 to QuoteSource(R.string.quote_27_source),
+        R.string.quote_28 to QuoteSource(
+            bodyRes = R.string.from_na_sumhaka_sutta_of_samyutta_nikaya,
+            url = "https://www.accesstoinsight.org/tipitaka/sn/sn35/sn35.101.than.html"
+        ),
+        R.string.quote_29 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.2.01.piya.html"
+        ),
+        R.string.quote_30 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 100,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.08.budd.html"
+        ),
+        R.string.quote_31 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 331,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.23.budd.html"
+        ),
+        R.string.quote_32 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 50,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.04.budd.html"
+        ),
+        R.string.quote_33 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 118,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.09.budd.html"
+        ),
+        R.string.quote_34 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya_verse,
+            verse = 44.1
+        ),
+        R.string.quote_35 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya_verse,
+            verse = 55.7
+        ),
+        R.string.quote_36 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 277,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.20.budd.html"
+        ),
+        R.string.quote_37 to QuoteSource(
+            bodyRes = R.string.from_nalaka_sutta_of_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.11.than.html"
+        ),
+        R.string.quote_38 to QuoteSource(R.string.from_mangala_sutta),
+        R.string.quote_39 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 129,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.10.budd.html"
+        ),
+        R.string.quote_40 to QuoteSource(
+            bodyRes = R.string.from_jara_sutta_of_sutta_nipata,
+            fullQuoteRes = R.string.quote_40_full_quote,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.4.06.than.html"
+        ),
+        R.string.quote_41 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 320,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.23.budd.html"
+        ),
+        R.string.quote_42 to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.08.budd.html#dhp-113"
+        ),
+        R.string.quote_43 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/sn/sn22/sn22.086.than.html"
+        ),
+        R.string.quote_44 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 183,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.14.budd.html#dhp-183"
+        ),
+        R.string.quote_45 to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.09.budd.html#dhp-122"
+        ),
+        R.string.quote_46 to QuoteSource(
+            bodyRes = R.string.dhammapada_source,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.01.budd.html#dhp-5"
+        ),
+        R.string.quote_47 to QuoteSource(
+            bodyRes = R.string.from_nalaka_sutta_of_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.11.than.html"
+        ),
+        R.string.quote_48 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.1.01.nypo.html"
+        ),
+        R.string.quote_49 to QuoteSource(
+            bodyRes = R.string.from_vinaya,
+            url = "https://www.accesstoinsight.org/lib/authors/thanissaro/bmc1/bmc1.ch10.html#Sk35"
+        ),
+        R.string.quote_50 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.2.08.irel.html"
+        ),
+        R.string.quote_51 to QuoteSource(
+            bodyRes = R.string.from_mahaparinibbana_sutta,
+            url = "https://www.accesstoinsight.org/tipitaka/dn/dn.16.1-6.vaji.html#ref4"
+        ),
+        R.string.quote_52 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 80,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.06.budd.html"
+        ),
+        R.string.quote_53 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 81,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.06.budd.html#dhp-81"
+        ),
+        R.string.quote_54 to QuoteSource(
+            bodyRes = R.string.from_udana,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/ud/ud.5.05.irel.html"
+        ),
+        R.string.quote_55 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.11.than.html"
+        ),
+        R.string.quote_56 to QuoteSource(
+            bodyRes = R.string.from_metta_sutta,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.1.08.budd.html"
+        ),
+        R.string.quote_57 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 50,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.04.budd.html#dhp-50"
+        ),
+        R.string.quote_58 to QuoteSource(
+            bodyRes = R.string.from_karaniya_metta_sutta,
+            fullQuoteRes = R.string.quote_58_full_quote
+        ),
+        R.string.quote_59 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 270,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.19.budd.html"
+        ),
+        R.string.quote_60 to QuoteSource(
+            bodyRes = R.string.from_kamma_sutta,
+            fullQuoteRes = R.string.quote_60_full_quote,
+            url = "https://www.accesstoinsight.org/tipitaka/sn/sn35/sn35.145.than.html"
+        ),
+        R.string.quote_61 to QuoteSource(
+            bodyRes = R.string.from_metta_sutta,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.1.08.piya.html"
+        ),
+        R.string.quote_62 to QuoteSource(
+            bodyRes = R.string.from_utthana_sutta_of_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.2.10.irel.html"
+        ),
+        R.string.quote_63 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 118,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.09.budd.html#dhp-118"
+        ),
+        R.string.quote_64 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 6,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.01.budd.html"
+        ),
+        R.string.quote_65 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.03.than.html"
+        ),
+        R.string.quote_66 to QuoteSource(
+            bodyRes = R.string.quote_66_source,
+            url = "https://www.accesstoinsight.org/tipitaka/mn/mn.105.than.html"
+        ),
+        R.string.quote_67 to QuoteSource(
+            bodyRes = R.string.from_sutta_nipata,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.3.08.irel.html"
+        ),
+        R.string.quote_68 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 227,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.17.budd.html"
+        ),
+        R.string.quote_69 to QuoteSource(R.string.from_magandiya_suta_of_sutta_nipata),
+        R.string.quote_70 to QuoteSource(
+            bodyRes = R.string.from_mangala_sutta,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/snp/snp.2.04.nara.html"
+        ),
+        R.string.quote_71 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya,
+            fullQuoteRes = R.string.quote_71_full_quote
+        ),
+        R.string.quote_72 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya,
+            url = "https://www.accesstoinsight.org/tipitaka/sn/sn47/sn47.019.than.html"
+        ),
+        R.string.quote_73 to QuoteSource(
+            bodyRes = R.string.from_samyutta_nikaya,
+            url = "https://www.accesstoinsight.org/tipitaka/sn/sn07/sn07.002.than.html"
+        ),
+        R.string.quote_74 to QuoteSource(
+            bodyRes = R.string.dhammapada_verse,
+            verse = 276,
+            fullQuoteRes = R.string.quote_74_full_quote,
+            url = "https://www.accesstoinsight.org/tipitaka/kn/dhp/dhp.20.budd.html#dhp-276"
+        ),
+        R.string.quote_75 to QuoteSource(
+            bodyRes = R.string.good_friends_companions_source,
+            fullQuoteRes = R.string.good_friends_companions_full_quote,
+            url = "https://suttacentral.net/sn45.2/en/bodhi"
+        ),
+        R.string.quote_76 to null,
+        R.string.quote_77 to null,
+        R.string.quote_78 to null,
+        R.string.quote_79 to null,
+        R.string.quote_80 to null,
+        R.string.quote_81 to null,
+        R.string.quote_82 to null,
+        R.string.quote_83 to null,
+        R.string.quote_84 to null,
+        R.string.quote_85 to null,
     )
 }
