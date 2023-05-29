@@ -17,8 +17,8 @@ android {
         applicationId = "org.bandev.buddhaquotes"
         minSdk = 21
         targetSdk = 33
-        versionCode = 1014
-        versionName = "v2.2.0"
+        versionCode = 1015
+        versionName = "3.0.0"
     }
 
     buildTypes {
