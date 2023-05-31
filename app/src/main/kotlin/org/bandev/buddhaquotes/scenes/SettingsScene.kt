@@ -33,7 +33,7 @@ fun SettingsScene(viewModel: SettingsViewModel = SettingsViewModel(LocalContext.
             icon = { Icon(imageVector = theme.toIcon(), contentDescription = null) },
             title = { Text(text = stringResource(R.string.theme)) },
             subtitle = { Text(text = theme.toString()) },
-            onClick = { useCaseState.show() },
+            onClick = useCaseState::show,
         )
     }
 
