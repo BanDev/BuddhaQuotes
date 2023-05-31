@@ -26,5 +26,5 @@ data class Quote(
     // This is pulled from elsewhere in the
     // app to allow for translations to occur.
 ) {
-    fun toUIQuote() = QuoteItem(id, QuoteStore.quotes[id - 1], like)
+    fun toUIQuote() = QuoteItem(id, QuoteStore.quotesWithSources.keys.toList()[id - 1], like)
 }

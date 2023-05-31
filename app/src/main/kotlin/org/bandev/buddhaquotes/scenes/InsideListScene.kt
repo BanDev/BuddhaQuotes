@@ -58,7 +58,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
@@ -81,6 +80,8 @@ fun InsideListScene(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel())
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
+    val secondaryColour = MaterialTheme.colorScheme.secondary
+    val onSecondaryColour = MaterialTheme.colorScheme.onSecondary
     LaunchedEffect(Unit) {
         quotes += viewModel.ListQuotes().getFrom(listId)
         allQuotes += viewModel.Quotes().getAll()
@@ -188,7 +189,7 @@ fun InsideListScene(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel())
                                                         drawContent()
                                                         drawRect(
                                                             brush = Brush.verticalGradient(
-                                                                listOf(Color.Cyan, Color.Blue)
+                                                                listOf(secondaryColour, onSecondaryColour)
                                                             ),
                                                             blendMode = BlendMode.SrcAtop
                                                         )
