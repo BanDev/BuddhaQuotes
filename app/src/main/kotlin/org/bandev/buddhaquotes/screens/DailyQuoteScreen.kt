@@ -35,7 +35,7 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
 
 @Composable
-fun DailyQuoteScene(
+fun DailyQuoteScreen(
     viewModel: BuddhaQuotesViewModel = viewModel(),
 ) {
     val quote by viewModel.dailyQuote.collectAsState()

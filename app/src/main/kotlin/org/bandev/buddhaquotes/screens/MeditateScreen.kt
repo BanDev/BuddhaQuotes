@@ -36,7 +36,7 @@ import org.bandev.buddhaquotes.ui.theme.SpringDefaultDampingRatio
 import org.bandev.buddhaquotes.ui.theme.SpringDefaultStiffness
 
 @Composable
-fun MeditateScene() {
+fun MeditateScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         var timerDurationInMillis by rememberSaveable { mutableStateOf(0) }
         var timerState by remember { mutableStateOf(TimerState.Stopped) }

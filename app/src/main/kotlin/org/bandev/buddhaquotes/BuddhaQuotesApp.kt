@@ -44,12 +44,12 @@ import androidx.navigation.navArgument
 import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
-import org.bandev.buddhaquotes.screens.DailyQuoteScene
-import org.bandev.buddhaquotes.screens.HomeScene
-import org.bandev.buddhaquotes.screens.InsideListScene
-import org.bandev.buddhaquotes.screens.ListsScene
-import org.bandev.buddhaquotes.screens.MeditateScene
-import org.bandev.buddhaquotes.screens.SettingsScene
+import org.bandev.buddhaquotes.screens.DailyQuoteScreen
+import org.bandev.buddhaquotes.screens.HomeScreen
+import org.bandev.buddhaquotes.screens.InsideListScreen
+import org.bandev.buddhaquotes.screens.ListsScreen
+import org.bandev.buddhaquotes.screens.MeditateScreen
+import org.bandev.buddhaquotes.screens.SettingsScreen
 import org.bandev.buddhaquotes.screens.about.AboutScene
 import org.bandev.buddhaquotes.settings.SettingsViewModel
 import org.bandev.buddhaquotes.settings.toBoolean
@@ -138,11 +138,11 @@ fun BuddhaQuotesApp(viewModel: BuddhaQuotesViewModel = viewModel()) {
                         ) {
                             composable(Scene.Home.route) {
                                 toolbarTitle = stringResource(R.string.app_name)
-                                HomeScene(navController = navController, pagerState = pagerState)
+                                HomeScreen(navController = navController, pagerState = pagerState)
                             }
                             composable(Scene.Lists.route) {
                                 toolbarTitle = stringResource(R.string.your_lists)
-                                ListsScene(navController = navController)
+                                ListsScreen(navController = navController)
                             }
                             composable(
                                 route = "${Scene.InsideList.route}/{listId}",
@@ -157,19 +157,19 @@ fun BuddhaQuotesApp(viewModel: BuddhaQuotesViewModel = viewModel()) {
                                         viewModel.Lists().get(listId).title
                                     }
                                 }
-                                InsideListScene(listId)
+                                InsideListScreen(listId)
                             }
                             composable(Scene.DailyQuote.route) {
                                 toolbarTitle = stringResource(R.string.daily_quote)
-                                DailyQuoteScene()
+                                DailyQuoteScreen()
                             }
                             composable(Scene.Meditate.route) {
                                 toolbarTitle = stringResource(R.string.meditate)
-                                MeditateScene()
+                                MeditateScreen()
                             }
                             composable(Scene.Settings.route) {
                                 toolbarTitle = stringResource(R.string.settings)
-                                SettingsScene()
+                                SettingsScreen()
                             }
                             composable(Scene.About.route) {
                                 toolbarTitle = stringResource(R.string.about)

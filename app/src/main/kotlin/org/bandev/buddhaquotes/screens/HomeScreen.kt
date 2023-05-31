@@ -85,7 +85,7 @@ import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: BuddhaQuotesViewModel = viewModel()) {
+fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: BuddhaQuotesViewModel = viewModel()) {
     val quote by viewModel.selectedQuote.collectAsStateWithLifecycle(QuoteItem())
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -138,9 +138,6 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                                         if (!quote.isLiked) {
                                             scope.launch {
                                                 viewModel.toggleLikedOnSelectedQuote()
-                                                viewModel
-                                                    .Quotes()
-                                                    .setLike(quote.id, !quote.isLiked)
                                             }
                                         }
                                         hearts += Heart(
@@ -261,7 +258,6 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                                         onClick = {
                                             scope.launch {
                                                 viewModel.toggleLikedOnSelectedQuote()
-                                                viewModel.Quotes().setLike(quote.id, !quote.isLiked)
                                             }
                                         }
                                     )
@@ -295,8 +291,8 @@ fun HomeScene(navController: NavController, pagerState: PagerState, viewModel: B
                         }
                     }
                 }
-                1 -> ListsScene(navController = navController)
-                else -> MeditateScene()
+                1 -> ListsScreen(navController = navController)
+                else -> MeditateScreen()
             }
         }
         if (imageSheetVisible) {

@@ -72,7 +72,7 @@ import org.bandev.buddhaquotes.items.ListData
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun ListsScene(
+fun ListsScreen(
     viewModel: BuddhaQuotesViewModel = viewModel(),
     navController: NavController
 ) {

@@ -46,10 +46,11 @@ class BuddhaQuotesViewModel(application: Application) : AndroidViewModel(applica
         _selectedQuote.value = quote
     }
 
-    fun toggleLikedOnSelectedQuote() {
-        _selectedQuote.update { quote ->
-            quote.copy(isLiked = !quote.isLiked)
-        }
+    private val _lists = mutableStateListOf<ListData>()
+    val lists: List<ListData> = _lists
+
+    suspend fun toggleLikedOnSelectedQuote() {
+        Quotes().setLike(selectedQuote.value.id, !selectedQuote.value.isLiked)
     }
 
     private val _quotes = MutableStateFlow<List<QuoteItem>>(emptyList())
@@ -62,6 +63,7 @@ class BuddhaQuotesViewModel(application: Application) : AndroidViewModel(applica
                 _dailyQuote.value = getDaily()
                 _quotes.value = getAll()
             }
+            _lists += Lists().getAll()
         }
     }
 
@@ -90,15 +92,10 @@ class BuddhaQuotesViewModel(application: Application) : AndroidViewModel(applica
         /** Set the like state of a quote */
         suspend fun setLike(id: Int, liked: Boolean) = withContext(Dispatchers.IO) {
             if (liked) quotes.like(id) else quotes.unlike(id)
-        }
-    }
-
-    private val _lists = mutableStateListOf<ListData>()
-    val lists: List<ListData> = _lists
-
-    init {
-        viewModelScope.launch {
-            _lists += Lists().getAll()
+            _selectedQuote.update { quote ->
+                quote.copy(isLiked = !quote.isLiked)
+            }
+            _lists.first().count++
         }
     }
 
@@ -161,6 +158,7 @@ class BuddhaQuotesViewModel(application: Application) : AndroidViewModel(applica
         fun addTo(id: Int, quote: QuoteItem) {
             viewModelScope.launch(Dispatchers.IO) {
                 listQuotes.addTo(id, quote)
+                _lists.first { it.id == id }.count++
             }
         }
 

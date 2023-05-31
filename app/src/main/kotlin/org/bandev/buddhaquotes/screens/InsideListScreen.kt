@@ -73,7 +73,7 @@ import org.bandev.buddhaquotes.items.QuoteItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InsideListScene(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()) {
+fun InsideListScreen(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()) {
     val quotes = remember { mutableStateListOf<QuoteItem>() }
     val allQuotes = remember { mutableStateListOf<QuoteItem>() }
     val selectedItems = remember { mutableStateListOf<QuoteItem>() }

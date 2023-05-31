@@ -25,7 +25,7 @@ import org.bandev.buddhaquotes.settings.toString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScene(viewModel: SettingsViewModel = SettingsViewModel(LocalContext.current)) {
+fun SettingsScreen(viewModel: SettingsViewModel = SettingsViewModel(LocalContext.current)) {
     val useCaseState = rememberUseCaseState(embedded = false)
     val theme = viewModel.getThemeLive()
     Column {
