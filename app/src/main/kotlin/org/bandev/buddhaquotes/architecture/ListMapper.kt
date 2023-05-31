@@ -10,8 +10,6 @@ import androidx.compose.material.icons.rounded.HistoryEdu
 import androidx.compose.material.icons.rounded.Interests
 import androidx.compose.material.icons.rounded.Subject
 import androidx.compose.material.icons.rounded.ThumbUp
-import org.bandev.buddhaquotes.architecture.lists.ListOfQuotes
-import org.bandev.buddhaquotes.items.ListData
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.ui.theme.bandev
 import org.bandev.buddhaquotes.ui.theme.blueAccent
@@ -24,7 +22,6 @@ import org.bandev.buddhaquotes.ui.theme.violetAccent
 import org.bandev.buddhaquotes.ui.theme.yellowAccent
 
 object ListMapper {
-
     val listIcons: List<ListIcon> = listOf(
         ListIcon(0, Icons.Rounded.FavoriteBorder, favourite),
         ListIcon(1, Icons.Rounded.Subject, blueAccent),
@@ -36,7 +33,4 @@ object ListMapper {
         ListIcon(7, Icons.Rounded.ThumbUp, lightBlueAccent),
         ListIcon(8, Icons.Rounded.EmojiEvents, bandev)
     )
-
-    suspend fun convert(list: ListOfQuotes, repo: Repository.ListQuotes): ListData =
-        ListData(list.id, list.title, repo.count(list.id), listIcons[list.icon])
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -46,6 +47,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -63,8 +65,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.maxkeppeker.sheets.core.models.base.Header
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -76,8 +77,9 @@ import kotlin.random.Random
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
+import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
+import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.items.AnimatedHeart
 import org.bandev.buddhaquotes.items.Heart
 import org.bandev.buddhaquotes.items.QuoteItem
@@ -85,8 +87,13 @@ import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: BuddhaQuotesViewModel = viewModel()) {
-    val quote by viewModel.selectedQuote.collectAsStateWithLifecycle(QuoteItem())
+fun HomeScreen(
+    navController: NavController,
+    pagerState: PagerState,
+    quoteViewModel: QuoteViewModel = hiltViewModel(),
+    listViewModel: ListViewModel = hiltViewModel()
+) {
+    val quote by quoteViewModel.selectedQuote.observeAsState(QuoteItem())
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -120,7 +127,7 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
             }
         }
     ) { paddingValues ->
-        val centerImage = remember { mutableStateOf(R.drawable.image_anahata) }
+        var centerImage by remember { mutableStateOf<Int?>(R.drawable.image_anahata) }
         HorizontalPager(
             pageCount = 3,
             beyondBoundsPageCount = 2,
@@ -137,7 +144,8 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
                                     onDoubleTap = { offset ->
                                         if (!quote.isLiked) {
                                             scope.launch {
-                                                viewModel.toggleLikedOnSelectedQuote()
+                                                listViewModel.setLiked(quote.id, !quote.isLiked)
+                                                quoteViewModel.setLiked(!quote.isLiked)
                                             }
                                         }
                                         hearts += Heart(
@@ -208,19 +216,22 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Bottom
                         ) {
-                            Image(
-                                painter = painterResource(id = centerImage.value),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(250.dp)
-                                    .pointerInput(Unit) {
-                                        detectTapGestures(
-                                            onLongPress = {
-                                                imageSheetVisible = true
-                                            }
-                                        )
-                                    }
-                            )
+                            Crossfade(targetState = centerImage, label = "Fade between images") {
+                                Image(
+                                    painter = painterResource(it ?: R.drawable.image_cancel),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(250.dp)
+                                        .pointerInput(Unit) {
+                                            detectTapGestures(
+                                                onLongPress = {
+                                                    imageSheetVisible = true
+                                                }
+                                            )
+                                        },
+                                    alpha = if (it == null) 0f else 1f
+                                )
+                            }
                             ElevatedCard(Modifier.padding(20.dp)) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
@@ -236,7 +247,7 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
                                                 quote.id - 1
                                             }
                                             scope.launch {
-                                                viewModel.setNewQuote(viewModel.Quotes().get(id))
+                                                quoteViewModel.setNewQuote(quoteViewModel.get(id))
                                             }
                                         }
                                     ) {
@@ -257,7 +268,8 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
                                         checked = quote.isLiked,
                                         onClick = {
                                             scope.launch {
-                                                viewModel.toggleLikedOnSelectedQuote()
+                                                listViewModel.setLiked(quote.id, !quote.isLiked)
+                                                quoteViewModel.setLiked(!quote.isLiked)
                                             }
                                         }
                                     )
@@ -277,7 +289,7 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
                                                 quote.id + 1
                                             }
                                             scope.launch {
-                                                viewModel.setNewQuote(viewModel.Quotes().get(id))
+                                                quoteViewModel.setNewQuote(quoteViewModel.get(id))
                                             }
                                         }
                                     ) {
@@ -299,7 +311,7 @@ fun HomeScreen(navController: NavController, pagerState: PagerState, viewModel: 
             ImageSelectionSheet(
                 sheetState = imageSheetState,
                 onClose = { imageSheetVisible = false },
-                centerImage = centerImage
+                onImageSelection = { centerImage = it }
             )
         }
         val quoteSource = QuoteStore.quotesWithSources[quote.resource]

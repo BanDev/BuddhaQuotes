@@ -9,6 +9,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.alorma.compose.settings.ui.SettingsMenuLink
@@ -20,19 +22,19 @@ import com.maxkeppeler.sheets.option.models.OptionSelection
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.settings.Settings
 import org.bandev.buddhaquotes.settings.SettingsViewModel
+import org.bandev.buddhaquotes.settings.toFormattedString
 import org.bandev.buddhaquotes.settings.toIcon
-import org.bandev.buddhaquotes.settings.toString
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel = SettingsViewModel(LocalContext.current)) {
     val useCaseState = rememberUseCaseState(embedded = false)
-    val theme = viewModel.getThemeLive()
+    val themeLive: Settings by viewModel.settings.observeAsState(Settings.getDefaultInstance())
     Column {
         SettingsMenuLink(
-            icon = { Icon(imageVector = theme.toIcon(), contentDescription = null) },
+            icon = { Icon(imageVector = themeLive.theme.toIcon(), contentDescription = null) },
             title = { Text(text = stringResource(R.string.theme)) },
-            subtitle = { Text(text = theme.toString()) },
+            subtitle = { Text(text = themeLive.theme.toFormattedString()) },
             onClick = useCaseState::show,
         )
     }

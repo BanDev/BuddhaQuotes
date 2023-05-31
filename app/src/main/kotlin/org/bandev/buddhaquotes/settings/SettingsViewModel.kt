@@ -1,8 +1,6 @@
 package org.bandev.buddhaquotes.settings
 
 import android.content.Context
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -19,8 +17,4 @@ class SettingsViewModel(context: Context) : ViewModel() {
             repository.setTheme(theme)
         }
     }
-
-    @Composable
-    fun getThemeLive() = settings.observeAsState().value?.theme
-
 }

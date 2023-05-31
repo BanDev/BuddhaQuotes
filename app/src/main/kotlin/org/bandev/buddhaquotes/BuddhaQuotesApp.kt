@@ -26,6 +26,7 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -34,7 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -43,7 +44,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.launch
-import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
+import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.screens.DailyQuoteScreen
 import org.bandev.buddhaquotes.screens.HomeScreen
 import org.bandev.buddhaquotes.screens.InsideListScreen
@@ -51,6 +52,7 @@ import org.bandev.buddhaquotes.screens.ListsScreen
 import org.bandev.buddhaquotes.screens.MeditateScreen
 import org.bandev.buddhaquotes.screens.SettingsScreen
 import org.bandev.buddhaquotes.screens.about.AboutScene
+import org.bandev.buddhaquotes.settings.Settings
 import org.bandev.buddhaquotes.settings.SettingsViewModel
 import org.bandev.buddhaquotes.settings.toBoolean
 import org.bandev.buddhaquotes.sheets.HelpSheet
@@ -59,12 +61,12 @@ import org.bandev.buddhaquotes.ui.theme.EdgeToEdgeContent
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun BuddhaQuotesApp(viewModel: BuddhaQuotesViewModel = viewModel()) {
-    val settings = SettingsViewModel(LocalContext.current)
-    val darkTheme = settings.getThemeLive().toBoolean()
+fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
+    val settingsViewModel = SettingsViewModel(LocalContext.current)
+    val darkTheme by settingsViewModel.settings.observeAsState(Settings.getDefaultInstance())
 
-    BuddhaQuotesTheme(darkTheme = darkTheme) {
-        EdgeToEdgeContent(darkTheme = darkTheme) {
+    BuddhaQuotesTheme(darkTheme = darkTheme.theme.toBoolean()) {
+        EdgeToEdgeContent(darkTheme = darkTheme.theme.toBoolean()) {
             var toolbarTitle by remember { mutableStateOf("") }
             val navController = rememberNavController()
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -154,7 +156,7 @@ fun BuddhaQuotesApp(viewModel: BuddhaQuotesViewModel = viewModel()) {
                                     toolbarTitle = if (listId == 0) {
                                         favourites
                                     } else {
-                                        viewModel.Lists().get(listId).title
+                                        listViewModel.get(listId).title
                                     }
                                 }
                                 InsideListScreen(listId)

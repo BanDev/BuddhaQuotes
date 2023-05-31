@@ -22,7 +22,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Edit
-import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
@@ -38,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -50,7 +50,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -62,18 +62,18 @@ import com.maxkeppeler.sheets.option.models.DisplayMode
 import com.maxkeppeler.sheets.option.models.Option
 import com.maxkeppeler.sheets.option.models.OptionConfig
 import com.maxkeppeler.sheets.option.models.OptionSelection
-import java.util.UUID
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.Scene
-import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
 import org.bandev.buddhaquotes.architecture.ListMapper
+import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.items.ListData
+import java.util.UUID
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun ListsScreen(
-    viewModel: BuddhaQuotesViewModel = viewModel(),
+    listsViewModel: ListViewModel = hiltViewModel(),
     navController: NavController
 ) {
     val scope = rememberCoroutineScope()
@@ -81,6 +81,7 @@ fun ListsScreen(
     var newListBottomSheetVisible by rememberSaveable { mutableStateOf(false) }
     var listOptionsBottomSheetVisible by rememberSaveable { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState()
+    val lists = listsViewModel.getAll().observeAsState(emptyList())
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = { newListBottomSheetVisible = true }) {
@@ -101,7 +102,7 @@ fun ListsScreen(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(items = viewModel.lists, key = ListData::id) { list ->
+            items(items = lists.value, key = ListData::id) { list ->
                 ElevatedCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -178,7 +179,7 @@ fun ListsScreen(
                         onPositiveClick = {
                             scope.launch {
                                 bottomSheetState.hide()
-                                viewModel.Lists().new(UUID.randomUUID().toString())
+                                listsViewModel.new(UUID.randomUUID().toString())
                             }.invokeOnCompletion {
                                 if (!bottomSheetState.isVisible) {
                                     newListBottomSheetVisible = false
@@ -200,20 +201,6 @@ fun ListsScreen(
                         .padding(horizontal = 10.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    IconButton(
-                        onClick = {
-                            scope.launch { bottomSheetState.hide() }.invokeOnCompletion {
-                                if (!bottomSheetState.isVisible) {
-                                    listOptionsBottomSheetVisible = false
-                                }
-                            }
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Rounded.KeyboardArrowDown,
-                            contentDescription = null
-                        )
-                    }
                     Text(
                         text = if (isRename) "Rename list" else "List options",
                         color = MaterialTheme.colorScheme.primary,
@@ -231,7 +218,7 @@ fun ListsScreen(
                         IconButton(
                             onClick = {
                                 scope.launch {
-                                    viewModel.Lists().delete(listId)
+                                    listsViewModel.delete(listId)
                                     bottomSheetState.hide()
                                 }.invokeOnCompletion {
                                     if (!bottomSheetState.isVisible) {
@@ -270,11 +257,10 @@ fun ListsScreen(
                                     }
                                 }
                             }
-                        ) { index, option ->
+                        ) { index, _ ->
                             scope.launch {
                                 bottomSheetState.hide()
-                                viewModel.lists.find { it.id == listId }
-                                viewModel.Lists().updateIcon(listId, ListMapper.listIcons[index])
+                                listsViewModel.updateIcon(listId, ListMapper.listIcons[index])
                             }.invokeOnCompletion {
                                 if (!bottomSheetState.isVisible) {
                                     listOptionsBottomSheetVisible = false

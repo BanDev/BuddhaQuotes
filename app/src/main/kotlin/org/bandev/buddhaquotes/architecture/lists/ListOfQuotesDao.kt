@@ -1,7 +1,11 @@
 package org.bandev.buddhaquotes.architecture.lists
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
+import androidx.room.Transaction
+import kotlinx.coroutines.flow.Flow
+import org.bandev.buddhaquotes.architecture.ListWithQuotes
 
 /**
      * Interact with the list table of the
@@ -18,7 +22,7 @@ import androidx.room.Query
 
         /** Get every single list */
         @Query("SELECT * FROM list")
-        suspend fun getAll(): List<ListOfQuotes>
+        fun getAll(): Flow<List<ListOfQuotes>>
 
         /** Get the latest list in the db */
         @Query("SELECT * FROM list ORDER BY ID DESC LIMIT 1")
@@ -43,4 +47,8 @@ import androidx.room.Query
         /** Count lists */
         @Query("SELECT COUNT(id) FROM list")
         suspend fun count(): Int
+
+        @Transaction
+        @Query("SELECT * FROM list WHERE id = :id")
+        fun getListWithQuotes(id: Int): LiveData<ListWithQuotes>
     }

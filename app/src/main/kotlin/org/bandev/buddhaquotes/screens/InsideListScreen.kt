@@ -44,8 +44,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -65,27 +65,28 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
+import org.bandev.buddhaquotes.architecture.lists.ListViewModel
+import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.items.QuoteItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InsideListScreen(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()) {
-    val quotes = remember { mutableStateListOf<QuoteItem>() }
-    val allQuotes = remember { mutableStateListOf<QuoteItem>() }
+fun InsideListScreen(
+    listId: Int,
+    quoteViewModel: QuoteViewModel = hiltViewModel(),
+    listViewModel: ListViewModel = hiltViewModel()
+) {
+    val quotes by listViewModel.getFrom(listId).observeAsState(emptyList())
     val selectedItems = remember { mutableStateListOf<QuoteItem>() }
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
     val secondaryColour = MaterialTheme.colorScheme.secondary
     val onSecondaryColour = MaterialTheme.colorScheme.onSecondary
-    LaunchedEffect(Unit) {
-        quotes += viewModel.ListQuotes().getFrom(listId)
-        allQuotes += viewModel.Quotes().getAll()
-    }
+    val allQuotes by quoteViewModel.allQuotes.observeAsState(emptyList())
     BackHandler(enabled = selectedItems.isNotEmpty()) {
         selectedItems.clear()
     }
@@ -189,7 +190,10 @@ fun InsideListScreen(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()
                                                         drawContent()
                                                         drawRect(
                                                             brush = Brush.verticalGradient(
-                                                                listOf(secondaryColour, onSecondaryColour)
+                                                                listOf(
+                                                                    secondaryColour,
+                                                                    onSecondaryColour
+                                                                )
                                                             ),
                                                             blendMode = BlendMode.SrcAtop
                                                         )
@@ -250,6 +254,7 @@ fun InsideListScreen(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()
                         }
                     }
                 )
+
                 val filteredQuotes = allQuotes.filter {
                     it !in quotes && stringResource(id = it.resource).contains(text, ignoreCase = true)
                 }
@@ -264,10 +269,7 @@ fun InsideListScreen(listId: Int, viewModel: BuddhaQuotesViewModel = viewModel()
                                     scope
                                         .launch {
                                             bottomSheetState.hide()
-                                            quotes += it
-                                            viewModel
-                                                .ListQuotes()
-                                                .addTo(listId, it)
+                                            listViewModel.addTo(listId, it.id)
                                         }
                                         .invokeOnCompletion {
                                             if (!bottomSheetState.isVisible) {

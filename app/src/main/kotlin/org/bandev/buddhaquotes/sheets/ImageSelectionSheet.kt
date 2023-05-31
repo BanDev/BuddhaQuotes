@@ -4,7 +4,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -21,7 +20,7 @@ import org.bandev.buddhaquotes.R
 fun ImageSelectionSheet(
     sheetState: SheetState,
     onClose: () -> Unit,
-    centerImage: MutableState<Int>
+    onImageSelection: (Int?) -> Unit
 ) {
     val scope = rememberCoroutineScope()
     ModalBottomSheet(
@@ -39,6 +38,10 @@ fun ImageSelectionSheet(
                     Option(
                         icon = IconSource(drawableRes = R.drawable.image_bell),
                         titleText = "Bell"
+                    ),
+                    Option(
+                        icon = IconSource(drawableRes = R.drawable.image_buddha),
+                        titleText = "Buddha"
                     ),
                     Option(
                         icon = IconSource(drawableRes = R.drawable.image_dharma_wheel),
@@ -87,6 +90,10 @@ fun ImageSelectionSheet(
                     Option(
                         icon = IconSource(drawableRes = R.drawable.image_temple),
                         titleText = "Temple"
+                    ),
+                    Option(
+                        icon = IconSource(drawableRes = R.drawable.image_cancel),
+                        titleText = "No image"
                     )
                 ),
                 withButtonView = false,
@@ -96,10 +103,15 @@ fun ImageSelectionSheet(
                             onClose()
                         }
                     }
-                    option.icon?.drawableRes?.let { centerImage.value = it }
+                    option.icon?.drawableRes?.let {
+                        onImageSelection(if (it == R.drawable.image_cancel) null else it)
+                    }
                 }
             ),
-            config = OptionConfig(mode = DisplayMode.GRID_VERTICAL)
+            config = OptionConfig(
+                mode = DisplayMode.GRID_VERTICAL,
+                gridColumns = 4
+            )
         )
     }
 }

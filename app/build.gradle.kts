@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.aboutlibraries)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.protobuf)
 }
@@ -71,9 +73,14 @@ dependencies {
     // Compose Settings - https://github.com/alorma/Compose-Settings
     implementation(libs.settings.ui)
 
-    // Datastore
+    // Datastore - https://developer.android.com/topic/libraries/architecture/datastore
     implementation(libs.datastore)
     implementation(libs.protobuf.javalite)
+
+    // Hilt - https://developer.android.com/training/dependency-injection/hilt-android
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
 
     // Kotlin Coroutines - https://github.com/Kotlin/kotlinx.coroutines
     implementation(libs.coroutines.android)
