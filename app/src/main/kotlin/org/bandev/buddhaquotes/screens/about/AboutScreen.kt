@@ -1,14 +1,12 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens.about
 
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -23,10 +21,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.maxkeppeker.sheets.core.models.base.SelectionButton
@@ -39,7 +35,6 @@ import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.ui.compose.util.author
 import kotlinx.coroutines.launch
-import org.bandev.buddhaquotes.BuildConfig
 import org.bandev.buddhaquotes.R
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
@@ -75,21 +70,7 @@ fun AboutScene() {
 
         HorizontalPager(pageCount = pages.size, state = pagerState) { page ->
             if (page == 0) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(20.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_buddha),
-                        contentDescription = null,
-                        modifier = Modifier.size(100.dp)
-                    )
-                    Spacer(modifier = Modifier.size(10.dp))
-                    Text(text = stringResource(id = R.string.app_name))
-                    Text(text = BuildConfig.VERSION_NAME)
-                }
+                AboutPage()
             } else if (page == 1) {
                 LibrariesContainer(
                     modifier = Modifier.fillMaxSize(),

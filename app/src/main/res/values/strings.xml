@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Buddha Quotes</string>
+    <string name="app_description">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app, making use of modern Android practices and architecture, with a focus on privacy.</string>
     <string name="blank">\n</string>
     <string name="attribution_buddha">~ Gautama Buddha</string>
+    <string name="acknowledgements">Acknowledgements</string>
     <string name="your_lists">Your lists</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>

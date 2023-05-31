@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens
 
 import android.content.Context
 import android.content.Intent

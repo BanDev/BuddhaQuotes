@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons

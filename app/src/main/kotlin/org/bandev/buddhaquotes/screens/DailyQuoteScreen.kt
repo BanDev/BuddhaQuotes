@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -27,12 +27,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import java.text.DateFormat
+import java.util.Calendar
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
-import java.text.DateFormat
-import java.util.Calendar
 
 @Composable
 fun DailyQuoteScene(

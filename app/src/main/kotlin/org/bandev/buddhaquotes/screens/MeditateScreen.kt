@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing

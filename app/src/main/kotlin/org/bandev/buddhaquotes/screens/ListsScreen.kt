@@ -1,4 +1,4 @@
-package org.bandev.buddhaquotes.scenes
+package org.bandev.buddhaquotes.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -62,13 +62,13 @@ import com.maxkeppeler.sheets.option.models.DisplayMode
 import com.maxkeppeler.sheets.option.models.Option
 import com.maxkeppeler.sheets.option.models.OptionConfig
 import com.maxkeppeler.sheets.option.models.OptionSelection
+import java.util.UUID
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.Scene
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.items.ListData
-import java.util.UUID
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
