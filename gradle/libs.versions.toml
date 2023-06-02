@@ -6,19 +6,21 @@ application = "8.1.0-beta04"
 browser = "1.5.0"
 compose = "1.4.3"
 coreKtx = "1.10.1"
-lottie = "6.0.0"
-splashscreen = "1.0.1"
 coroutines = "1.7.1"
 datastore = "1.0.0"
+hilt = "2.46.1"
+hiltNavigationCompose = "1.0.0"
 kotlin = "1.8.21"
 ksp = "1.8.21-1.0.11"
 lifecycle = "2.6.1"
+lottie = "6.0.0"
 material3 = "1.1.0"
 navigation = "2.5.3"
 protobuf = "3.23.2"
 protobufPlugin = "0.9.3"
 settings = "0.27.0"
 sheets = "1.1.1"
+splashscreen = "1.0.1"
 room = "2.5.1"
 
 [libraries]
@@ -44,6 +46,10 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 
 datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
 lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
@@ -76,6 +82,8 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "application" }
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }

@@ -43,7 +43,7 @@ fun Settings.Theme?.toBoolean() = when(this) {
  */
 
 @Composable
-fun Settings.Theme?.toString() = stringResource(when(this) {
+fun Settings.Theme.toFormattedString() = stringResource(when(this) {
     Settings.Theme.LIGHT -> R.string.light
     Settings.Theme.DARK -> R.string.dark
     else -> R.string.system

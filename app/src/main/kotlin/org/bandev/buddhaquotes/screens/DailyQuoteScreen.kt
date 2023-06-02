@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AddCircleOutline
@@ -17,8 +18,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,19 +27,22 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import java.text.DateFormat
-import java.util.Calendar
+import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.BuddhaQuotesViewModel
+import org.bandev.buddhaquotes.architecture.lists.ListViewModel
+import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
+import org.bandev.buddhaquotes.items.QuoteItem
+import java.text.DateFormat
+import java.util.Calendar
 
 @Composable
 fun DailyQuoteScreen(
-    viewModel: BuddhaQuotesViewModel = viewModel(),
+    quoteViewModel: QuoteViewModel = hiltViewModel(),
+    listViewModel: ListViewModel = hiltViewModel()
 ) {
-    val quote by viewModel.dailyQuote.collectAsState()
+    val quote by quoteViewModel.dailyQuote.observeAsState(QuoteItem())
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
@@ -76,10 +80,16 @@ fun DailyQuoteScreen(
                 Text(text = stringResource(R.string.attribution_buddha))
             }
         }
-        Box(
+        Column(
             Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomCenter
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
         ) {
+            Image(
+                painter = painterResource(R.drawable.image_daily_specials),
+                contentDescription = null,
+                modifier = Modifier.size(250.dp)
+            )
             ElevatedCard(
                 modifier = Modifier.padding(20.dp),
                 shape = RoundedCornerShape(20.dp)
@@ -102,9 +112,8 @@ fun DailyQuoteScreen(
                     FavoriteButton(
                         checked = quote.isLiked,
                         onClick = {
-                            quote.isLiked = !quote.isLiked
                             scope.launch {
-                                viewModel.Quotes().setLike(quote.id, quote.isLiked)
+                                listViewModel.setLiked(quote.id, quote.isLiked)
                             }
                         },
                         modifier = Modifier.padding(5.dp)
