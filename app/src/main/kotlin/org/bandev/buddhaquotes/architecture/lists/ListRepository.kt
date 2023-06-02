@@ -7,48 +7,48 @@ import kotlinx.coroutines.flow.map
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.ListWithQuotes
 import org.bandev.buddhaquotes.architecture.listquotes.ListQuote
-import org.bandev.buddhaquotes.architecture.listquotes.ListQuoteDao
+import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
 import org.bandev.buddhaquotes.architecture.quotes.Quote
 import org.bandev.buddhaquotes.items.ListData
 import org.bandev.buddhaquotes.items.ListIcon
 import javax.inject.Inject
 
 class ListRepository @Inject constructor(
-    private val listOfQuotesDao: ListOfQuotesDao,
-    private val listQuotesDao: ListQuoteDao
+    private val listDao: ListDao,
+    private val listQuotesDao: QuotesInListDao
 ) {
     /** Get just one list */
-    suspend fun get(id: Int): ListData = listOfQuotesDao.get(id).let {
+    suspend fun get(id: Int): ListData = listDao.get(id).let {
         ListData(it.id, it.title, count(it.id), ListMapper.listIcons[it.icon])
     }
 
     /** Get every single list */
-    fun getAll(): Flow<List<ListData>> = listOfQuotesDao.getAll().map { listOfQuotes ->
+    fun getAll(): Flow<List<ListData>> = listDao.getAll().map { listOfQuotes ->
         listOfQuotes.map {
             ListData(it.id, it.title, count(it.id), ListMapper.listIcons[it.icon])
         }
     }
 
     /** Rename a list */
-    suspend fun rename(id: Int, title: String): Unit = listOfQuotesDao.rename(id, title)
+    suspend fun rename(id: Int, title: String): Unit = listDao.rename(id, title)
 
     /** Update a list's icon */
-    suspend fun updateIcon(id: Int, icon: ListIcon): Unit = listOfQuotesDao.updateIcon(id, icon.id)
+    suspend fun updateIcon(id: Int, icon: ListIcon): Unit = listDao.updateIcon(id, icon.id)
 
     /** New empty list */
     suspend fun new(title: String): ListData {
-        listOfQuotesDao.create(title)
-        return listOfQuotesDao.getLast().let {
+        listDao.create(title)
+        return listDao.getLast().let {
             ListData(it.id, it.title, count(it.id), ListMapper.listIcons[it.icon])
         }
     }
 
     /** Delete a list */
-    suspend fun delete(id: Int): Unit = listOfQuotesDao.delete(id)
+    suspend fun delete(id: Int): Unit = listDao.delete(id)
 
     /** Get just one list */
     fun getFrom(id: Int): LiveData<List<Quote>> {
-        return listOfQuotesDao.getListWithQuotes(id).map(ListWithQuotes::quotes)
+        return listDao.getListWithQuotes(id).map(ListWithQuotes::quotes)
     }
 
     /** See if a list has a quote */

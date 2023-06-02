@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
-interface ListQuoteDao {
+interface QuotesInListDao {
 
     /** Get every single quote from a list */
     @Query("SELECT * FROM list_quote WHERE list_id = :listId")
