@@ -15,7 +15,7 @@ import org.bandev.buddhaquotes.architecture.ListWithQuotes
      */
 
     @Dao
-    interface ListOfQuotesDao {
+    interface ListDao {
         /** Get just one list */
         @Query("SELECT * FROM list WHERE id = :id")
         suspend fun get(id: Int): ListOfQuotes

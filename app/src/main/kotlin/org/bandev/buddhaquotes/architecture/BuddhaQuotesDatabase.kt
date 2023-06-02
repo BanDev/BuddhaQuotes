@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.bandev.buddhaquotes.architecture.listquotes.ListQuote
-import org.bandev.buddhaquotes.architecture.listquotes.ListQuoteDao
+import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
 import org.bandev.buddhaquotes.architecture.lists.ListOfQuotes
-import org.bandev.buddhaquotes.architecture.lists.ListOfQuotesDao
+import org.bandev.buddhaquotes.architecture.lists.ListDao
 import org.bandev.buddhaquotes.architecture.quotes.Quote
 import org.bandev.buddhaquotes.architecture.quotes.QuoteDao
 import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
@@ -23,11 +23,11 @@ abstract class BuddhaQuotesDatabase : RoomDatabase() {
     /** Provide access to the [QuoteDao] */
     abstract val quote: QuoteDao
 
-    /** Provide access to the [ListOfQuotesDao] */
-    abstract val list: ListOfQuotesDao
+    /** Provide access to the [ListDao] */
+    abstract val list: ListDao
 
-    /** Provide access to the [ListQuoteDao] */
-    abstract val listQuote: ListQuoteDao
+    /** Provide access to the [QuotesInListDao] */
+    abstract val listQuote: QuotesInListDao
 
     companion object {
         @Volatile
