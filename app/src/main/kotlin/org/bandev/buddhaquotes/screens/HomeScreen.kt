@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.maxkeppeker.sheets.core.models.base.Header
+import com.maxkeppeker.sheets.core.models.base.SelectionButton
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.info.InfoView
 import com.maxkeppeler.sheets.info.models.InfoBody
@@ -323,6 +324,16 @@ fun HomeScreen(
                 InfoView(
                     useCaseState = rememberUseCaseState(),
                     selection = InfoSelection(
+                        extraButton = quoteSource.url?.let {
+                            SelectionButton(text = "Open source URL")
+                        },
+                        onExtraButtonClick = {
+                            context.startActivity(
+                                Intent(Intent.ACTION_VIEW).apply {
+                                    data = Uri.parse(quoteSource.url as String)
+                                }
+                            )
+                        },
                         negativeButton = null,
                         onPositiveClick = {
                             scope.launch { quoteSourceSheetState.hide() }.invokeOnCompletion {
@@ -373,21 +384,6 @@ fun HomeScreen(
                                             linePlaceable.placeRelative(0, 0)
                                             textPlaceable.placeRelative(linePlaceable.width, 0)
                                         }
-                                    }
-                                }
-                                quoteSource.url?.let {
-                                    Spacer(Modifier.fillMaxWidth())
-                                    TextButton(
-                                        onClick = {
-                                            context.startActivity(
-                                                Intent(Intent.ACTION_VIEW).apply {
-                                                    data = Uri.parse(it)
-                                                }
-                                            )
-                                        },
-                                        modifier = Modifier.align(Alignment.CenterHorizontally)
-                                    ) {
-                                        Text(text = "Open source URL")
                                     }
                                 }
                             }
