@@ -56,7 +56,7 @@ import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.input.InputView
 import com.maxkeppeler.sheets.input.models.InputSelection
-import com.maxkeppeler.sheets.input.models.InputText
+import com.maxkeppeler.sheets.input.models.InputTextField
 import com.maxkeppeler.sheets.option.OptionView
 import com.maxkeppeler.sheets.option.models.DisplayMode
 import com.maxkeppeler.sheets.option.models.Option
@@ -68,7 +68,6 @@ import org.bandev.buddhaquotes.Scene
 import org.bandev.buddhaquotes.architecture.ListMapper
 import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.items.ListData
-import java.util.UUID
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -165,10 +164,17 @@ fun ListsScreen(
                 onDismissRequest = { newListBottomSheetVisible = false },
                 sheetState = bottomSheetState
             ) {
+                val inputKey = "LIST_NAME_KEY"
                 InputView(
                     useCaseState = rememberUseCaseState(),
                     selection = InputSelection(
-                        input = listOf(InputText(text = "Insert name")),
+                        input = listOf(
+                            InputTextField(
+                                text = "List name",
+                                key = inputKey,
+                                required = true
+                            )
+                        ),
                         onNegativeClick = {
                             scope.launch { bottomSheetState.hide() }.invokeOnCompletion {
                                 if (!bottomSheetState.isVisible) {
@@ -179,7 +185,7 @@ fun ListsScreen(
                         onPositiveClick = {
                             scope.launch {
                                 bottomSheetState.hide()
-                                listsViewModel.new(UUID.randomUUID().toString())
+                                listsViewModel.new(it.getString(inputKey) as String)
                             }.invokeOnCompletion {
                                 if (!bottomSheetState.isVisible) {
                                     newListBottomSheetVisible = false
