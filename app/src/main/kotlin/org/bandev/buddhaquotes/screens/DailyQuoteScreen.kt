@@ -55,7 +55,7 @@ fun DailyQuoteScreen(
                         .padding(bottom = 10.dp)) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_left_quote),
-                        contentDescription = null,
+                        contentDescription = null
                     )
                     Column(
                         modifier = Modifier.fillMaxWidth(),
