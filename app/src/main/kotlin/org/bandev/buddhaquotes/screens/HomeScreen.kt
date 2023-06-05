@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -81,6 +80,8 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
 import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
+import org.bandev.buddhaquotes.datastore.imagePref.ImagePrefViewModel
+import org.bandev.buddhaquotes.imagepref.ImagePref
 import org.bandev.buddhaquotes.items.AnimatedHeart
 import org.bandev.buddhaquotes.items.Heart
 import org.bandev.buddhaquotes.items.QuoteItem
@@ -92,7 +93,8 @@ fun HomeScreen(
     navController: NavController,
     pagerState: PagerState,
     quoteViewModel: QuoteViewModel = hiltViewModel(),
-    listViewModel: ListViewModel = hiltViewModel()
+    listViewModel: ListViewModel = hiltViewModel(),
+    imagePrefViewModel: ImagePrefViewModel = ImagePrefViewModel(LocalContext.current)
 ) {
     val quote by quoteViewModel.selectedQuote.observeAsState(QuoteItem())
     val context = LocalContext.current
@@ -128,7 +130,7 @@ fun HomeScreen(
             }
         }
     ) { paddingValues ->
-        var centerImage by remember { mutableStateOf<Int?>(R.drawable.image_anahata) }
+        val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
         HorizontalPager(
             pageCount = 3,
             beyondBoundsPageCount = 2,
@@ -219,7 +221,15 @@ fun HomeScreen(
                         ) {
                             Crossfade(targetState = centerImage, label = "Fade between images") {
                                 Image(
-                                    painter = painterResource(it ?: R.drawable.image_cancel),
+                                    painter = painterResource(
+                                        if (it.image == 1) {
+                                            R.drawable.image_anahata
+                                        } else if (it.image != 0) {
+                                            it.image
+                                        } else {
+                                            R.drawable.image_cancel
+                                        }
+                                    ),
                                     contentDescription = null,
                                     modifier = Modifier
                                         .size(250.dp)
@@ -230,7 +240,11 @@ fun HomeScreen(
                                                 }
                                             )
                                         },
-                                    alpha = if (it == null) 0f else 1f
+                                    alpha = if (it.image == R.drawable.image_cancel || it.image == 0) {
+                                        0f
+                                    } else {
+                                        1f
+                                    }
                                 )
                             }
                             ElevatedCard(Modifier.padding(20.dp)) {
@@ -312,7 +326,7 @@ fun HomeScreen(
             ImageSelectionSheet(
                 sheetState = imageSheetState,
                 onClose = { imageSheetVisible = false },
-                onImageSelection = { centerImage = it }
+                onImageSelection = imagePrefViewModel::setImage
             )
         }
         val quoteSource = QuoteStore.quotesWithSources[quote.resource]

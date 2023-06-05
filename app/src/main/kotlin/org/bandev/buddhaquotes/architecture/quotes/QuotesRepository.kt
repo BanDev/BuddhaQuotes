@@ -1,8 +1,8 @@
 package org.bandev.buddhaquotes.architecture.quotes
 
+import javax.inject.Inject
 import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
 import org.bandev.buddhaquotes.items.QuoteItem
-import javax.inject.Inject
 
 class QuotesRepository @Inject constructor(
     private val quoteDao: QuoteDao,

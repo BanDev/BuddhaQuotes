@@ -7,8 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.bandev.buddhaquotes.architecture.listquotes.ListQuote
 import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
-import org.bandev.buddhaquotes.architecture.lists.ListOfQuotes
 import org.bandev.buddhaquotes.architecture.lists.ListDao
+import org.bandev.buddhaquotes.architecture.lists.ListOfQuotes
 import org.bandev.buddhaquotes.architecture.quotes.Quote
 import org.bandev.buddhaquotes.architecture.quotes.QuoteDao
 import org.bandev.buddhaquotes.architecture.quotes.QuoteStore

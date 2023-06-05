@@ -45,6 +45,8 @@ import androidx.navigation.navArgument
 import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.architecture.lists.ListViewModel
+import org.bandev.buddhaquotes.datastore.settings.SettingsViewModel
+import org.bandev.buddhaquotes.datastore.settings.toBoolean
 import org.bandev.buddhaquotes.screens.DailyQuoteScreen
 import org.bandev.buddhaquotes.screens.HomeScreen
 import org.bandev.buddhaquotes.screens.InsideListScreen
@@ -53,8 +55,6 @@ import org.bandev.buddhaquotes.screens.MeditateScreen
 import org.bandev.buddhaquotes.screens.SettingsScreen
 import org.bandev.buddhaquotes.screens.about.AboutScene
 import org.bandev.buddhaquotes.settings.Settings
-import org.bandev.buddhaquotes.settings.SettingsViewModel
-import org.bandev.buddhaquotes.settings.toBoolean
 import org.bandev.buddhaquotes.sheets.HelpSheet
 import org.bandev.buddhaquotes.ui.theme.BuddhaQuotesTheme
 import org.bandev.buddhaquotes.ui.theme.EdgeToEdgeContent

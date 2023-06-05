@@ -2,6 +2,7 @@ package org.bandev.buddhaquotes.architecture.lists
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.bandev.buddhaquotes.architecture.ListMapper
@@ -11,7 +12,6 @@ import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
 import org.bandev.buddhaquotes.architecture.quotes.Quote
 import org.bandev.buddhaquotes.items.ListData
 import org.bandev.buddhaquotes.items.ListIcon
-import javax.inject.Inject
 
 class ListRepository @Inject constructor(
     private val listDao: ListDao,
