@@ -28,14 +28,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import java.text.DateFormat
+import java.util.Calendar
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.items.QuoteItem
-import java.text.DateFormat
-import java.util.Calendar
 
 @Composable
 fun DailyQuoteScreen(

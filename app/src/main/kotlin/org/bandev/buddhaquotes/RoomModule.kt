@@ -7,8 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.bandev.buddhaquotes.architecture.BuddhaQuotesDatabase
-import org.bandev.buddhaquotes.architecture.listquotes.ListQuoteDao
-import org.bandev.buddhaquotes.architecture.lists.ListOfQuotesDao
+import org.bandev.buddhaquotes.architecture.listquotes.QuotesInListDao
+import org.bandev.buddhaquotes.architecture.lists.ListDao
 import org.bandev.buddhaquotes.architecture.quotes.QuoteDao
 
 @Module
@@ -25,12 +25,12 @@ object RoomModule {
     }
 
     @Provides
-    fun providesListDao(buddhaQuotesDatabase: BuddhaQuotesDatabase): ListOfQuotesDao {
+    fun providesListDao(buddhaQuotesDatabase: BuddhaQuotesDatabase): ListDao {
         return buddhaQuotesDatabase.list
     }
 
     @Provides
-    fun providesQuotesInListDao(buddhaQuotesDatabase: BuddhaQuotesDatabase): ListQuoteDao {
+    fun providesQuotesInListDao(buddhaQuotesDatabase: BuddhaQuotesDatabase): QuotesInListDao {
         return buddhaQuotesDatabase.listQuote
     }
 }

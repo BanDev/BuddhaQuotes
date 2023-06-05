@@ -1,6 +1,5 @@
-package org.bandev.buddhaquotes.settings
+package org.bandev.buddhaquotes.datastore.settings
 
-import android.content.Context
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Brightness6
@@ -8,20 +7,8 @@ import androidx.compose.material.icons.rounded.DarkMode
 import androidx.compose.material.icons.rounded.LightMode
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
 import org.bandev.buddhaquotes.R
-
-/**
- * Create a settings store instance
- * using the [SettingsSerializer]
- * object.
- */
-
-val Context.SettingsStoreCreator: DataStore<Settings> by dataStore(
-    fileName = "Settings.pb",
-    serializer = SettingsSerializer,
-)
+import org.bandev.buddhaquotes.settings.Settings
 
 /**
  * Convert a [Settings.Theme] instance

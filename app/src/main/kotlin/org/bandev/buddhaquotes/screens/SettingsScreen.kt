@@ -20,10 +20,10 @@ import com.maxkeppeler.sheets.option.OptionDialog
 import com.maxkeppeler.sheets.option.models.Option
 import com.maxkeppeler.sheets.option.models.OptionSelection
 import org.bandev.buddhaquotes.R
+import org.bandev.buddhaquotes.datastore.settings.SettingsViewModel
+import org.bandev.buddhaquotes.datastore.settings.toFormattedString
+import org.bandev.buddhaquotes.datastore.settings.toIcon
 import org.bandev.buddhaquotes.settings.Settings
-import org.bandev.buddhaquotes.settings.SettingsViewModel
-import org.bandev.buddhaquotes.settings.toFormattedString
-import org.bandev.buddhaquotes.settings.toIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

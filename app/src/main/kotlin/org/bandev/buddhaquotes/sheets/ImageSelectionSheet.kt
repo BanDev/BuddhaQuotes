@@ -20,7 +20,7 @@ import org.bandev.buddhaquotes.R
 fun ImageSelectionSheet(
     sheetState: SheetState,
     onClose: () -> Unit,
-    onImageSelection: (Int?) -> Unit
+    onImageSelection: (Int) -> Unit
 ) {
     val scope = rememberCoroutineScope()
     ModalBottomSheet(
@@ -104,7 +104,7 @@ fun ImageSelectionSheet(
                         }
                     }
                     option.icon?.drawableRes?.let {
-                        onImageSelection(if (it == R.drawable.image_cancel) null else it)
+                        onImageSelection(it)
                     }
                 }
             ),

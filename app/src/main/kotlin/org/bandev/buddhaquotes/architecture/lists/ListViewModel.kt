@@ -6,13 +6,13 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.architecture.quotes.Quote
 import org.bandev.buddhaquotes.items.ListData
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.items.QuoteItem
-import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
