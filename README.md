@@ -11,7 +11,7 @@ Buddha Quotes is a collaborative project to create a Free and Open Source Buddha
 ## Features
 
 * Material3 UI
-* Over 230 quotes!
+* Over 80 sourced quotes!
 * Add quotes to lists and favourites
 * Free, libre and open source
 * No ads
