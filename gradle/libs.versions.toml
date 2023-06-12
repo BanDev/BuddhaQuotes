@@ -19,7 +19,7 @@ navigation = "2.6.0"
 protobuf = "3.23.2"
 protobufPlugin = "0.9.3"
 settings = "0.27.0"
-sheets = "1.1.1"
+sheets = "1.2.0"
 splashscreen = "1.0.1"
 room = "2.5.1"
 
