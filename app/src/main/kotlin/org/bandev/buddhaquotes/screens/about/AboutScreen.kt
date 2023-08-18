@@ -41,14 +41,13 @@ import org.bandev.buddhaquotes.R
 @Composable
 fun AboutScene() {
     val pages = remember { listOf(R.string.about, R.string.libraries) }
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState(pageCount = pages::size)
     val scope = rememberCoroutineScope()
     val useCaseState = rememberUseCaseState(embedded = false)
     var library by remember { mutableStateOf<Library?>(null) }
     val context = LocalContext.current
 
     Column(Modifier.fillMaxSize()) {
-
         TabRow(selectedTabIndex = pagerState.currentPage) {
             pages.forEachIndexed { index, titleRes ->
                 Tab(
@@ -68,7 +67,7 @@ fun AboutScene() {
             }
         }
 
-        HorizontalPager(pageCount = pages.size, state = pagerState) { page ->
+        HorizontalPager(state = pagerState) { page ->
             if (page == 0) {
                 AboutPage()
             } else if (page == 1) {
