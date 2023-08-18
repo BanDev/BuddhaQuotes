@@ -132,7 +132,6 @@ fun HomeScreen(
     ) { paddingValues ->
         val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
         HorizontalPager(
-            pageCount = 3,
             beyondBoundsPageCount = 2,
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
             state = pagerState
@@ -161,159 +160,159 @@ fun HomeScreen(
                                 )
                             }
                     ) {
+                        Column(Modifier.padding(start = 15.dp, top = 1.dp, end = 15.dp)) {
+                            ElevatedCard(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .pointerInput(Unit) {
+                                        detectTapGestures(
+                                            onLongPress = {
+                                                quoteSourceSheetVisible = true
+                                            }
+                                        )
+                                    }
+                            ) {
+                                Box {
+                                    Column(
+                                        Modifier
+                                            .padding(20.dp)
+                                            .fillMaxWidth()) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.ic_left_quote),
+                                            contentDescription = null
+                                        )
+                                        AnimatedContent(
+                                            targetState = quote.resource,
+                                            label = "Animated quote transition"
+                                        ) {
+                                            Text(
+                                                text = stringResource(it),
+                                                modifier = Modifier.padding(vertical = 10.dp)
+                                            )
+                                        }
+                                        Image(
+                                            painter = painterResource(id = R.drawable.ic_right_quote),
+                                            contentDescription = null,
+                                            modifier = Modifier.align(Alignment.End)
+                                        )
+                                        Text(text = stringResource(R.string.attribution_buddha))
+                                    }
+                                    TextButton(
+                                        onClick = { quoteSourceSheetVisible = true },
+                                        modifier = Modifier
+                                            .align(Alignment.TopEnd)
+                                            .padding(10.dp)
+                                    ) {
+                                        Text(text = "Source")
+                                    }
+                                }
+                            }
+                            Column(
+                                Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Bottom
+                            ) {
+                                Crossfade(targetState = centerImage, label = "Fade between images") {
+                                    Image(
+                                        painter = painterResource(
+                                            if (it.image == 1) {
+                                                R.drawable.image_anahata
+                                            } else if (it.image != 0) {
+                                                it.image
+                                            } else {
+                                                R.drawable.image_cancel
+                                            }
+                                        ),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(250.dp)
+                                            .pointerInput(Unit) {
+                                                detectTapGestures(
+                                                    onLongPress = {
+                                                        imageSheetVisible = true
+                                                    }
+                                                )
+                                            },
+                                        alpha = if (it.image == R.drawable.image_cancel || it.image == 0) {
+                                            0f
+                                        } else {
+                                            1f
+                                        }
+                                    )
+                                }
+                                ElevatedCard(Modifier.padding(20.dp)) {
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally)
+                                    ) {
+                                        IconButton(
+                                            onClick = {
+                                                val id = if (quote.id - 1 > QuoteStore.quotesWithSources.size) {
+                                                    1
+                                                } else if (quote.id - 1 < 1) {
+                                                    QuoteStore.quotesWithSources.size
+                                                } else {
+                                                    quote.id - 1
+                                                }
+                                                scope.launch {
+                                                    quoteViewModel.setNewQuote(quoteViewModel.get(id))
+                                                }
+                                            }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Rounded.ChevronLeft,
+                                                contentDescription = null
+                                            )
+                                        }
+                                        IconButton(
+                                            onClick = { context.shareQuote(quote = quote) }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Rounded.Share,
+                                                contentDescription = null
+                                            )
+                                        }
+                                        FavoriteButton(
+                                            checked = quote.isLiked,
+                                            onClick = {
+                                                scope.launch {
+                                                    listViewModel.setLiked(quote.id, !quote.isLiked)
+                                                    quoteViewModel.setLiked(!quote.isLiked)
+                                                }
+                                            }
+                                        )
+                                        IconButton(onClick = {}) {
+                                            Icon(
+                                                imageVector = Icons.Rounded.AddCircleOutline,
+                                                contentDescription = null
+                                            )
+                                        }
+                                        IconButton(
+                                            onClick = {
+                                                val id = if (quote.id + 1 > QuoteStore.quotesWithSources.size) {
+                                                    1
+                                                } else if (quote.id + 1 < 1) {
+                                                    QuoteStore.quotesWithSources.size
+                                                } else {
+                                                    quote.id + 1
+                                                }
+                                                scope.launch {
+                                                    quoteViewModel.setNewQuote(quoteViewModel.get(id))
+                                                }
+                                            }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Rounded.ChevronRight,
+                                                contentDescription = null
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         hearts.forEachIndexed { index, heart ->
                             AnimatedHeart(heart) {
                                 hearts.removeAt(index)
-                            }
-                        }
-                    }
-                    Column(Modifier.padding(start = 15.dp, top = 1.dp, end = 15.dp)) {
-                        ElevatedCard(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .pointerInput(Unit) {
-                                    detectTapGestures(
-                                        onLongPress = {
-                                            quoteSourceSheetVisible = true
-                                        }
-                                    )
-                                }
-                        ) {
-                            Box {
-                                Column(
-                                    Modifier
-                                        .padding(20.dp)
-                                        .fillMaxWidth()) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.ic_left_quote),
-                                        contentDescription = null
-                                    )
-                                    AnimatedContent(
-                                        targetState = quote.resource,
-                                        label = "Animated quote transition"
-                                    ) {
-                                        Text(
-                                            text = stringResource(it),
-                                            modifier = Modifier.padding(vertical = 10.dp)
-                                        )
-                                    }
-                                    Image(
-                                        painter = painterResource(id = R.drawable.ic_right_quote),
-                                        contentDescription = null,
-                                        modifier = Modifier.align(Alignment.End)
-                                    )
-                                    Text(text = stringResource(R.string.attribution_buddha))
-                                }
-                                TextButton(
-                                    onClick = { quoteSourceSheetVisible = true },
-                                    modifier = Modifier
-                                        .align(Alignment.TopEnd)
-                                        .padding(10.dp)
-                                ) {
-                                    Text(text = "Source")
-                                }
-                            }
-                        }
-                        Column(
-                            Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Bottom
-                        ) {
-                            Crossfade(targetState = centerImage, label = "Fade between images") {
-                                Image(
-                                    painter = painterResource(
-                                        if (it.image == 1) {
-                                            R.drawable.image_anahata
-                                        } else if (it.image != 0) {
-                                            it.image
-                                        } else {
-                                            R.drawable.image_cancel
-                                        }
-                                    ),
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .size(250.dp)
-                                        .pointerInput(Unit) {
-                                            detectTapGestures(
-                                                onLongPress = {
-                                                    imageSheetVisible = true
-                                                }
-                                            )
-                                        },
-                                    alpha = if (it.image == R.drawable.image_cancel || it.image == 0) {
-                                        0f
-                                    } else {
-                                        1f
-                                    }
-                                )
-                            }
-                            ElevatedCard(Modifier.padding(20.dp)) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.CenterHorizontally)
-                                ) {
-                                    IconButton(
-                                        onClick = {
-                                            val id = if (quote.id - 1 > QuoteStore.quotesWithSources.size) {
-                                                1
-                                            } else if (quote.id - 1 < 1) {
-                                                QuoteStore.quotesWithSources.size
-                                            } else {
-                                                quote.id - 1
-                                            }
-                                            scope.launch {
-                                                quoteViewModel.setNewQuote(quoteViewModel.get(id))
-                                            }
-                                        }
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Rounded.ChevronLeft,
-                                            contentDescription = null
-                                        )
-                                    }
-                                    IconButton(
-                                        onClick = { context.shareQuote(quote = quote) }
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Rounded.Share,
-                                            contentDescription = null
-                                        )
-                                    }
-                                    FavoriteButton(
-                                        checked = quote.isLiked,
-                                        onClick = {
-                                            scope.launch {
-                                                listViewModel.setLiked(quote.id, !quote.isLiked)
-                                                quoteViewModel.setLiked(!quote.isLiked)
-                                            }
-                                        }
-                                    )
-                                    IconButton(onClick = {}) {
-                                        Icon(
-                                            imageVector = Icons.Rounded.AddCircleOutline,
-                                            contentDescription = null
-                                        )
-                                    }
-                                    IconButton(
-                                        onClick = {
-                                            val id = if (quote.id + 1 > QuoteStore.quotesWithSources.size) {
-                                                1
-                                            } else if (quote.id + 1 < 1) {
-                                                QuoteStore.quotesWithSources.size
-                                            } else {
-                                                quote.id + 1
-                                            }
-                                            scope.launch {
-                                                quoteViewModel.setNewQuote(quoteViewModel.get(id))
-                                            }
-                                        }
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Rounded.ChevronRight,
-                                            contentDescription = null
-                                        )
-                                    }
-                                }
                             }
                         }
                     }

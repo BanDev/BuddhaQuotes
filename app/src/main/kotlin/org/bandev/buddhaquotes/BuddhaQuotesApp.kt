@@ -132,7 +132,7 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                             )
                         }
                     ) { paddingValues ->
-                        val pagerState = rememberPagerState()
+                        val pagerState = rememberPagerState(pageCount = { 3 })
                         NavHost(
                             navController = navController,
                             startDestination = Scene.Home.route,
