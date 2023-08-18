@@ -13,12 +13,12 @@ plugins {
 android {
     namespace = "org.bandev.buddhaquotes"
 
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "org.bandev.buddhaquotes"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1015
         versionName = "3.0.0"
     }
