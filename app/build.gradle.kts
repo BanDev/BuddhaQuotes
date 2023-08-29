@@ -67,9 +67,6 @@ dependencies {
     implementation(libs.aboutlibraries.core)
     implementation(libs.aboutlibraries.compose)
 
-    // Accompanist - https://github.com/google/accompanist
-    implementation(libs.accompanist.systemuicontroller)
-
     // Compose Settings - https://github.com/alorma/Compose-Settings
     implementation(libs.settings.ui)
 
