@@ -22,9 +22,5 @@ fun BuddhaQuotesTheme(
         dynamicLightColorScheme(LocalContext.current)
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme
-    ) {
-        content()
-    }
+    MaterialTheme(colorScheme = colorScheme, content = content)
 }

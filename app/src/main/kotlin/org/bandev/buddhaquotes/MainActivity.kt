@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
-            BuddhaQuotesTheme {
+            BuddhaQuotesTheme(darkTheme) {
                 BuddhaQuotesApp()
             }
         }
