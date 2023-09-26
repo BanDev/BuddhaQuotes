@@ -20,7 +20,6 @@ import org.bandev.buddhaquotes.ui.theme.BuddhaQuotesTheme
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
