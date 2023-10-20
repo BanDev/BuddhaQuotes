@@ -20,7 +20,7 @@ protobufPlugin = "0.9.4"
 settings = "1.0.2"
 sheets = "1.2.0"
 splashscreen = "1.0.1"
-room = "2.5.2"
+room = "2.6.0"
 
 [libraries]
 aboutlibraries-core = { module = "com.mikepenz:aboutlibraries-core", version.ref = "aboutLibraries" }
