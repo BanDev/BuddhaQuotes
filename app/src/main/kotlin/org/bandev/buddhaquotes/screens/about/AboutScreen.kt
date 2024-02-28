@@ -80,7 +80,7 @@ fun AboutScene() {
                         badgeContentColor = MaterialTheme.colorScheme.onPrimary
                     ),
                     onLibraryClick = { stableLibrary ->
-                        library = stableLibrary.library
+                        library = stableLibrary
                         useCaseState.show()
                     }
                 )
