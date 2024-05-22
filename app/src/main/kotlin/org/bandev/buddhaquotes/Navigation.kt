@@ -3,13 +3,13 @@ package org.bandev.buddhaquotes
 enum class SceneName { HOME, LISTS, INSIDELIST, DAILYQUOTE, MEDITATE, SETTINGS, ABOUT  }
 
 sealed class Scene(val id: SceneName, val route: String) {
-    object Home : Scene(SceneName.HOME, "home")
-    object Lists : Scene(SceneName.LISTS, "lists")
-    object InsideList : Scene(SceneName.INSIDELIST, "insidelist")
-    object DailyQuote : Scene(SceneName.DAILYQUOTE, "dailyquote")
-    object Meditate: Scene(SceneName.MEDITATE, "meditate")
-    object Settings : Scene(SceneName.SETTINGS, "settings")
-    object About: Scene(SceneName.ABOUT, "about")
+    data object Home : Scene(SceneName.HOME, "home")
+    data object Lists : Scene(SceneName.LISTS, "lists")
+    data object InsideList : Scene(SceneName.INSIDELIST, "insidelist")
+    data object DailyQuote : Scene(SceneName.DAILYQUOTE, "dailyquote")
+    data object Meditate: Scene(SceneName.MEDITATE, "meditate")
+    data object Settings : Scene(SceneName.SETTINGS, "settings")
+    data object About: Scene(SceneName.ABOUT, "about")
 }
 
 val scenes = listOf(

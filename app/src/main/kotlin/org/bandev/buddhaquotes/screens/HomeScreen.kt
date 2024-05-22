@@ -21,19 +21,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FormatListBulleted
+import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
+import androidx.compose.material.icons.automirrored.outlined.FormatListBulleted
 import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material.icons.filled.SelfImprovement
-import androidx.compose.material.icons.outlined.FormatListBulleted
 import androidx.compose.material.icons.outlined.FormatQuote
 import androidx.compose.material.icons.outlined.SelfImprovement
 import androidx.compose.material.icons.rounded.AddCircleOutline
 import androidx.compose.material.icons.rounded.ChevronLeft
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -72,8 +72,6 @@ import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.info.InfoView
 import com.maxkeppeler.sheets.info.models.InfoBody
 import com.maxkeppeler.sheets.info.models.InfoSelection
-import kotlin.math.max
-import kotlin.random.Random
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
@@ -86,6 +84,8 @@ import org.bandev.buddhaquotes.items.AnimatedHeart
 import org.bandev.buddhaquotes.items.Heart
 import org.bandev.buddhaquotes.items.QuoteItem
 import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
+import kotlin.math.max
+import kotlin.random.Random
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -113,7 +113,9 @@ fun HomeScreen(
             NavigationBar {
                 listOf(
                     Triple("Quotes", Icons.Filled.FormatQuote, Icons.Outlined.FormatQuote),
-                    Triple("Lists", Icons.Filled.FormatListBulleted, Icons.Outlined.FormatListBulleted),
+                    Triple("Lists", Icons.AutoMirrored.Filled.FormatListBulleted,
+                        Icons.AutoMirrored.Outlined.FormatListBulleted
+                    ),
                     Triple("Meditation", Icons.Filled.SelfImprovement, Icons.Outlined.SelfImprovement)
                 ).forEachIndexed { index, (label, iconFilled, iconOutlined) ->
                     NavigationBarItem(
@@ -364,7 +366,7 @@ fun HomeScreen(
                             fontWeight = FontWeight.SemiBold,
                             style = MaterialTheme.typography.titleLarge,
                         )
-                        Divider()
+                        HorizontalDivider()
                     },
                     body = InfoBody.Default(
                         bodyText = if (quoteSource.verse != null) {
@@ -377,9 +379,11 @@ fun HomeScreen(
                                 quoteSource.fullQuoteRes?.let {
                                     Layout(
                                         content = {
-                                            Divider(modifier = Modifier
-                                                .width(1.dp)
-                                                .layoutId("line"))
+                                            HorizontalDivider(
+                                                modifier = Modifier
+                                                    .width(1.dp)
+                                                    .layoutId("line")
+                                            )
                                             Text(
                                                 text = stringResource(id = it),
                                                 modifier = Modifier

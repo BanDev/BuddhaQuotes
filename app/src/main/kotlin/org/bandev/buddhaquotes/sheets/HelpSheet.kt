@@ -2,8 +2,8 @@ package org.bandev.buddhaquotes.sheets
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
@@ -67,7 +67,7 @@ fun HelpSheet(
                     fontWeight = FontWeight.SemiBold,
                     style = MaterialTheme.typography.titleLarge,
                 )
-                Divider()
+                HorizontalDivider()
             },
             body = InfoBody.Default(
                 bodyText = helpText

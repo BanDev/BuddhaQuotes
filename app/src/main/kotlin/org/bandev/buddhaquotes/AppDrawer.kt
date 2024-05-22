@@ -7,13 +7,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.FormatListBulleted
 import androidx.compose.material.icons.rounded.CalendarToday
-import androidx.compose.material.icons.rounded.FormatListBulleted
 import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.SelfImprovement
 import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.NavigationDrawerItem
@@ -37,7 +37,7 @@ fun AppDrawer(
             route = scenes[0].route
         ),
         DrawerButton(
-            icon = Icons.Rounded.FormatListBulleted,
+            icon = Icons.AutoMirrored.Rounded.FormatListBulleted,
             label = "Lists",
             selected = currentScreen == Scene.Lists.route,
             route = scenes[1].route
@@ -89,7 +89,7 @@ fun AppDrawer(
             }
         }
         Spacer(Modifier.weight(1f))
-        Divider()
+        HorizontalDivider()
         LazyColumn(
             modifier = Modifier.fillMaxWidth().padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)

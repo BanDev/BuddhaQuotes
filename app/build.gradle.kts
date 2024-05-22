@@ -2,9 +2,10 @@ import com.google.protobuf.gradle.id
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin)
     alias(libs.plugins.aboutlibraries)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.protobuf)
 }

@@ -58,7 +58,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = SettingsViewModel(LocalContext
             ),
             withButtonView = false,
             onSelectOption = { index, _ ->
-                viewModel.setTheme(Settings.Theme.values().first { it.ordinal == index + 1})
+                viewModel.setTheme(Settings.Theme.entries.first { it.ordinal == index + 1})
             }
         )
     )

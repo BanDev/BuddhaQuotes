@@ -39,8 +39,8 @@ fun FavoriteButton(
                 if (false isTransitioningTo true) {
                     keyframes {
                         durationMillis = 250
-                        24.dp at 0 with LinearOutSlowInEasing // for 0-15 ms
-                        28.dp at 15 with FastOutLinearInEasing // for 15-75 ms
+                        24.dp at 0 using LinearOutSlowInEasing // for 0-15 ms
+                        28.dp at 15 using FastOutLinearInEasing // for 15-75 ms
                         32.dp at 75 // ms
                         28.dp at 150 // ms
                     }

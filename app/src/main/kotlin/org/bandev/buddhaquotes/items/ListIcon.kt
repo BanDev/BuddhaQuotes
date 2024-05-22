@@ -21,13 +21,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package org.bandev.buddhaquotes.items
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Subject
+import androidx.compose.material.icons.automirrored.rounded.Subject
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import org.bandev.buddhaquotes.ui.theme.blueAccent
 
 data class ListIcon(
     val id: Int = 1,
-    val imageVector: ImageVector = Icons.Rounded.Subject,
+    val imageVector: ImageVector = Icons.AutoMirrored.Rounded.Subject,
     val colour: Color = blueAccent
 )

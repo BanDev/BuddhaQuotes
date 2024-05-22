@@ -1,6 +1,7 @@
 package org.bandev.buddhaquotes.architecture
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Subject
 import androidx.compose.material.icons.rounded.EmojiEvents
 import androidx.compose.material.icons.rounded.EmojiSymbols
 import androidx.compose.material.icons.rounded.FavoriteBorder
@@ -8,7 +9,6 @@ import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.HistoryEdu
 import androidx.compose.material.icons.rounded.Interests
-import androidx.compose.material.icons.rounded.Subject
 import androidx.compose.material.icons.rounded.ThumbUp
 import org.bandev.buddhaquotes.items.ListIcon
 import org.bandev.buddhaquotes.ui.theme.bandev
@@ -24,7 +24,7 @@ import org.bandev.buddhaquotes.ui.theme.yellowAccent
 object ListMapper {
     val listIcons: List<ListIcon> = listOf(
         ListIcon(0, Icons.Rounded.FavoriteBorder, favourite),
-        ListIcon(1, Icons.Rounded.Subject, blueAccent),
+        ListIcon(1, Icons.AutoMirrored.Rounded.Subject, blueAccent),
         ListIcon(2, Icons.Rounded.HistoryEdu, greenAccent),
         ListIcon(3, Icons.Rounded.History, yellowAccent),
         ListIcon(4, Icons.Rounded.Interests, tealAccent),

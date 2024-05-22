@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.HelpOutline
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -111,7 +111,7 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                                 IconButton(
                                     onClick = { openBottomSheet = !openBottomSheet }
                                 ) {
-                                    Icon(Icons.Rounded.HelpOutline, contentDescription = null)
+                                    Icon(Icons.AutoMirrored.Rounded.HelpOutline, contentDescription = null)
                                 }
                             }
                         },

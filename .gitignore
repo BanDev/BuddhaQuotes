@@ -33,15 +33,9 @@ proguard/
 # Android Studio captures folder
 captures/
 
-
 # IntelliJ
 *.iml
 .idea/
-
-# Keystore files
-# Uncomment the following lines if you do not want to check your keystore files in.
-#*.jks
-#*.keystore
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -60,3 +54,5 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+.kotlin

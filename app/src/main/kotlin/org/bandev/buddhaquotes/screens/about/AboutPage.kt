@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,9 +46,9 @@ fun AboutPage() {
                 )
             }
         }
-        Divider(Modifier.fillMaxWidth())
+        HorizontalDivider(Modifier.fillMaxWidth())
         Text(text = stringResource(id = R.string.app_description))
-        Divider(Modifier.fillMaxWidth())
+        HorizontalDivider(Modifier.fillMaxWidth())
         Text(
             text = stringResource(id = R.string.acknowledgements),
             fontWeight = FontWeight.SemiBold,
