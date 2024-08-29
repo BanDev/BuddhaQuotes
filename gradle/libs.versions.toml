@@ -1,7 +1,7 @@
 [versions]
 aboutLibraries = "11.2.3"
 activity = "1.9.1"
-application = "8.5.2"
+application = "8.6.0"
 browser = "1.8.0"
 compose = "1.6.8"
 coreKtx = "1.13.1"
