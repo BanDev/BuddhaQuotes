@@ -1,6 +1,6 @@
 [versions]
 aboutLibraries = "11.2.3"
-activity = "1.9.1"
+activity = "1.9.2"
 application = "8.6.0"
 browser = "1.8.0"
 compose = "1.6.8"
