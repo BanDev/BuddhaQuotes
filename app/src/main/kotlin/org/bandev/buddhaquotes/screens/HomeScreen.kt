@@ -134,7 +134,7 @@ fun HomeScreen(
     ) { paddingValues ->
         val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
         HorizontalPager(
-            beyondBoundsPageCount = 2,
+            beyondViewportPageCount = 2,
             modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
             state = pagerState
         ) { page ->
