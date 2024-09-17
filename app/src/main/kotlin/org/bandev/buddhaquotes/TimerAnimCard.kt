@@ -140,7 +140,7 @@ private fun StartCancelTimerButton(isTimerStarted: Boolean, enabled: Boolean, on
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
         enabled = enabled,
-        border = if (isTimerStarted) ButtonDefaults.outlinedButtonBorder else null,
+        border = ButtonDefaults.outlinedButtonBorder(isTimerStarted),
         colors = if (!isTimerStarted) ButtonDefaults.buttonColors() else ButtonDefaults.outlinedButtonColors(),
         elevation = if (isTimerStarted) null else ButtonDefaults.buttonElevation()
     ) {

@@ -106,7 +106,7 @@ fun ListsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { navController.navigate("${Scene.InsideList.route}/${list.id}") }
-                        .animateItemPlacement()
+                        .animateItem()
                 ) {
                     Row(Modifier.height(IntrinsicSize.Max)) {
                         Box(
