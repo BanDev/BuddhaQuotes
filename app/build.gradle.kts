@@ -62,7 +62,7 @@ dependencies {
 
     // AboutLibraries - https://github.com/mikepenz/AboutLibraries
     implementation(libs.aboutlibraries.core)
-    implementation(libs.aboutlibraries.compose)
+    implementation(libs.aboutlibraries.compose.m3)
 
     // Compose Settings - https://github.com/alorma/Compose-Settings
     implementation(libs.settings.ui)
