@@ -65,7 +65,7 @@
     <string name="dhammapada_source">From the Dhammapada.</string>
     <string name="from_bhaddekaratta_sutta">From the Bhaddekaratta Sutta.</string>
     <string name="from_samyutta_nikaya">From the Saṃyutta Nikāya.</string>
-    <string name="from_samyutta_nikaya_verse">From the Saṃyutta Nikāya %f.</string>
+    <string name="from_samyutta_nikaya_verse">From the Saṃyutta Nikāya %.1f.</string>
     <string name="from_cetana_sutta_of_anguttara_nikaya">From the Cetana Sutta, of the Anguttara Nikaya.</string>
     <string name="from_sallekha_sutta">From the Sallekha Sutta.</string>
     <string name="from_karaniya_metta_sutta">From the Karaniya Metta Sutta.</string>

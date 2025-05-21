@@ -11,8 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.alorma.compose.settings.ui.SettingsMenuLink
 import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
@@ -27,7 +27,7 @@ import org.bandev.buddhaquotes.settings.Settings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel = SettingsViewModel(LocalContext.current)) {
+fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     val useCaseState = rememberUseCaseState(embedded = false)
     val themeLive: Settings by viewModel.settings.observeAsState(Settings.getDefaultInstance())
     Column {

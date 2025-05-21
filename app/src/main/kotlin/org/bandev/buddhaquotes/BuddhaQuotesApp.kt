@@ -33,7 +33,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -54,7 +55,7 @@ import org.bandev.buddhaquotes.sheets.HelpSheet
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
+fun BuddhaQuotesApp() {
     var toolbarTitle by remember { mutableStateOf("") }
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -76,8 +77,13 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                 AppDrawer(
                     navigateTo = { route ->
                         navController.navigate(route) {
-                            popUpTo(navController.graph.startDestinationId)
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                // Saves the state so that the view models aren't reset on navigation
+                                // https://developer.android.com/develop/ui/compose/navigation#bottom-nav
+                                saveState = true
+                            }
                             launchSingleTop = true
+                            restoreState = true
                         }
                     },
                     currentScreen = currentRoute,
@@ -111,7 +117,10 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                                 IconButton(
                                     onClick = { openBottomSheet = !openBottomSheet }
                                 ) {
-                                    Icon(Icons.AutoMirrored.Rounded.HelpOutline, contentDescription = null)
+                                    Icon(
+                                        Icons.AutoMirrored.Rounded.HelpOutline,
+                                        contentDescription = null
+                                    )
                                 }
                             }
                         },
@@ -120,6 +129,7 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                     )
                 }
             ) { paddingValues ->
+                val listViewModel = viewModel<ListViewModel>()
                 val pagerState = rememberPagerState(pageCount = { 3 })
                 NavHost(
                     navController = navController,
@@ -128,7 +138,11 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                 ) {
                     composable(Scene.Home.route) {
                         toolbarTitle = stringResource(R.string.app_name)
-                        HomeScreen(navController = navController, pagerState = pagerState)
+                        HomeScreen(
+                            navController = navController,
+                            pagerState = pagerState,
+                            listViewModel = listViewModel
+                        )
                     }
                     composable(Scene.Lists.route) {
                         toolbarTitle = stringResource(R.string.your_lists)
@@ -179,6 +193,7 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                                         You can also change the image at the bottom by holding down on it which will bring up a selection of 16 image options.
                                     """.trimIndent()
                         )
+
                         1 -> HelpSheet(
                             sheetState = bottomSheetState,
                             onClose = { openBottomSheet = false },
@@ -190,6 +205,7 @@ fun BuddhaQuotesApp(listViewModel: ListViewModel = hiltViewModel()) {
                                         New lists can be created by pressing the add (➕) button at the bottom of the screen and typing in a name.
                                     """.trimIndent()
                         )
+
                         2 -> HelpSheet(
                             sheetState = bottomSheetState,
                             onClose = { openBottomSheet = false },

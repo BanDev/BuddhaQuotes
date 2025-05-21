@@ -11,24 +11,19 @@ import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.settings.Settings
 
 /**
- * Convert a [Settings.Theme] instance
- * into a boolean equivalent to the
- * isSystemInDarkTheme() function.
+ * Convert a [Settings.Theme] instance into a boolean equivalent to the isSystemInDarkTheme()
+ * function.
  */
-
 @Composable
-fun Settings.Theme?.toBoolean() = when(this) {
+fun Settings.Theme?.isDark() = when(this) {
     Settings.Theme.LIGHT -> false
     Settings.Theme.DARK -> true
     else -> isSystemInDarkTheme()
 }
 
 /**
- * Convert a [Settings.Theme] instance
- * into a human readable string for
- * outputting to the user.
+ * Convert a [Settings.Theme] instance into a human readable string.
  */
-
 @Composable
 fun Settings.Theme.toFormattedString() = stringResource(when(this) {
     Settings.Theme.LIGHT -> R.string.light
@@ -37,10 +32,8 @@ fun Settings.Theme.toFormattedString() = stringResource(when(this) {
 })
 
 /**
- * Convert a [Settings.Theme] instance
- * into a icon for display.
+ * Convert a [Settings.Theme] instance into a icon for display.
  */
-
 @Composable
 fun Settings.Theme?.toIcon() = when(this) {
     Settings.Theme.LIGHT -> Icons.Rounded.LightMode

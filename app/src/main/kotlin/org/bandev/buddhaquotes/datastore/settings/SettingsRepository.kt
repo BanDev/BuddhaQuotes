@@ -6,22 +6,22 @@ import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import org.bandev.buddhaquotes.settings.Settings
+import javax.inject.Inject
 
-class SettingsRepository(private val store: DataStore<Settings>) {
-
+class SettingsRepository @Inject constructor(private val store: DataStore<Settings>) {
     val settings: Flow<Settings> = store.data
-        .catch { e ->
-            if (e is IOException) {
-                Log.e("TAG", "Error reading sort order preferences: $e")
+        .catch { exception ->
+            if (exception is IOException) {
+                Log.e("SETTINGS", "Error reading sort order preferences: $exception")
                 emit(Settings.getDefaultInstance())
             } else {
-                throw e
+                throw exception
             }
         }
 
     suspend fun setTheme(theme: Settings.Theme) {
-        store.updateData { current ->
-            current.toBuilder().setTheme(theme).build()
+        store.updateData { currentSettings ->
+            currentSettings.toBuilder().setTheme(theme).build()
         }
     }
 }

@@ -91,7 +91,7 @@ fun AboutScene() {
         InfoDialog(
             state = infoDialogState,
             selection = InfoSelection(
-                extraButton = library.website?.run { SelectionButton(text = "Open website") },
+                extraButton = library.website?.let { SelectionButton(text = "Open website") },
                 onExtraButtonClick = library.website?.let { website ->
                     {
                         context.startActivity(
