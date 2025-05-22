@@ -40,7 +40,7 @@ fun HomeScreen(
     listViewModel: ListViewModel = hiltViewModel(),
     imagePrefViewModel: ImagePrefViewModel = hiltViewModel()
 ) {
-    val scope = rememberCoroutineScope()
+    val pagerScope = rememberCoroutineScope()
 
     Scaffold(
         bottomBar = {
@@ -67,7 +67,7 @@ fun HomeScreen(
                         label = { Text(label) },
                         selected = pagerState.currentPage == index,
                         onClick = {
-                            scope.launch {
+                            pagerScope.launch {
                                 pagerState.animateScrollToPage(index)
                             }
                         }
@@ -83,7 +83,7 @@ fun HomeScreen(
         ) { page ->
             when (page) {
                 0 -> QuoteScreen(quoteViewModel, listViewModel, imagePrefViewModel)
-                1 -> ListsScreen(navController = navController)
+                1 -> ListsScreen(listViewModel, navController)
                 else -> MeditateScreen()
             }
         }

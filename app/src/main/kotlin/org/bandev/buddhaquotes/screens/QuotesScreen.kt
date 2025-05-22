@@ -75,13 +75,12 @@ import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 fun QuoteScreen(
     quoteViewModel: QuoteViewModel = hiltViewModel(),
     listViewModel: ListViewModel = hiltViewModel(),
-    imagePrefViewModel: ImagePrefViewModel = hiltViewModel()
-    ,
+    imagePrefViewModel: ImagePrefViewModel = hiltViewModel(),
 ) {
     val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
 
     val quote by quoteViewModel.selectedQuote.observeAsState(QuoteItem())
-    val hearts = remember { mutableStateListOf<Heart>() }
+    val doubleTapHearts = remember { mutableStateListOf<Heart>() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
@@ -104,7 +103,7 @@ fun QuoteScreen(
                                 quoteViewModel.setLiked(!quote.isLiked)
                             }
                         }
-                        hearts += Heart(
+                        doubleTapHearts += Heart(
                             position = offset,
                             rotation = Random.nextFloat() * 40 - 20,
                             size = Animatable(0f),
@@ -273,9 +272,9 @@ fun QuoteScreen(
                 }
             }
         }
-        hearts.forEachIndexed { index, heart ->
+        doubleTapHearts.forEachIndexed { index, heart ->
             AnimatedHeart(heart) {
-                hearts.removeAt(index)
+                doubleTapHearts.removeAt(index)
             }
         }
     }

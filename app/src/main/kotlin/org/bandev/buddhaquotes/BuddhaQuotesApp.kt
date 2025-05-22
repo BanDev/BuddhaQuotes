@@ -3,12 +3,9 @@ package org.bandev.buddhaquotes
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
@@ -19,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
@@ -71,150 +69,145 @@ fun BuddhaQuotesApp() {
         }
     }
 
-    Column {
-        ModalNavigationDrawer(
-            drawerContent = {
-                AppDrawer(
-                    navigateTo = { route ->
-                        navController.navigate(route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                // Saves the state so that the view models aren't reset on navigation
-                                // https://developer.android.com/develop/ui/compose/navigation#bottom-nav
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
+    ModalNavigationDrawer(
+        drawerContent = {
+            AppDrawer(
+                navigateTo = { route ->
+                    navController.navigate(route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            // Saves the state so that the view models aren't reset on navigation
+                            // https://developer.android.com/develop/ui/compose/navigation#bottom-nav
+                            saveState = true
                         }
-                    },
-                    currentScreen = currentRoute,
-                    closeDrawer = { scope.launch { drawerState.close() } }
-                )
-            },
-            drawerState = drawerState
-        ) {
-            Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = { Text(toolbarTitle) },
-                        navigationIcon = {
-                            IconButton(
-                                onClick = {
-                                    scope.launch {
-                                        drawerState.apply {
-                                            if (isClosed) open() else close()
-                                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
+                currentScreen = currentRoute,
+                closeDrawer = { scope.launch { drawerState.close() } }
+            )
+        },
+        drawerState = drawerState
+    ) {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(toolbarTitle) },
+                    navigationIcon = {
+                        IconButton(
+                            onClick = {
+                                scope.launch {
+                                    drawerState.apply {
+                                        if (isClosed) open() else close()
                                     }
                                 }
-                            ) {
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Menu,
+                                contentDescription = null
+                            )
+                        }
+                    },
+                    actions = {
+                        AnimatedVisibility(visible = navController.currentDestination?.route == Scene.Home.route) {
+                            IconButton(onClick = { openBottomSheet = !openBottomSheet }) {
                                 Icon(
-                                    imageVector = Icons.Rounded.Menu,
+                                    Icons.AutoMirrored.Rounded.HelpOutline,
                                     contentDescription = null
                                 )
                             }
-                        },
-                        actions = {
-                            AnimatedVisibility(visible = navController.currentDestination?.route == Scene.Home.route) {
-                                IconButton(
-                                    onClick = { openBottomSheet = !openBottomSheet }
-                                ) {
-                                    Icon(
-                                        Icons.AutoMirrored.Rounded.HelpOutline,
-                                        contentDescription = null
-                                    )
-                                }
-                            }
-                        },
-                        windowInsets = WindowInsets.statusBars
-                            .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                        }
+                    },
+                )
+            },
+            contentWindowInsets = ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+        ) { paddingValues ->
+            val listViewModel = viewModel<ListViewModel>()
+            val pagerState = rememberPagerState(pageCount = { 3 })
+            NavHost(
+                navController = navController,
+                startDestination = Scene.Home.route,
+                modifier = Modifier.padding(paddingValues = paddingValues)
+            ) {
+                composable(Scene.Home.route) {
+                    toolbarTitle = stringResource(R.string.app_name)
+                    HomeScreen(
+                        navController = navController,
+                        pagerState = pagerState,
+                        listViewModel = listViewModel
                     )
                 }
-            ) { paddingValues ->
-                val listViewModel = viewModel<ListViewModel>()
-                val pagerState = rememberPagerState(pageCount = { 3 })
-                NavHost(
-                    navController = navController,
-                    startDestination = Scene.Home.route,
-                    modifier = Modifier.padding(paddingValues = paddingValues)
-                ) {
-                    composable(Scene.Home.route) {
-                        toolbarTitle = stringResource(R.string.app_name)
-                        HomeScreen(
-                            navController = navController,
-                            pagerState = pagerState,
-                            listViewModel = listViewModel
-                        )
-                    }
-                    composable(Scene.Lists.route) {
-                        toolbarTitle = stringResource(R.string.your_lists)
-                        ListsScreen(navController = navController)
-                    }
-                    composable(
-                        route = "${Scene.InsideList.route}/{listId}",
-                        arguments = listOf(navArgument("listId") { type = NavType.IntType })
-                    ) { backStackEntry ->
-                        val listId = backStackEntry.arguments?.getInt("listId") ?: 0
-                        val favourites = stringResource(id = R.string.favourites)
-                        LaunchedEffect(Unit) {
-                            toolbarTitle = if (listId == 0) {
-                                favourites
-                            } else {
-                                listViewModel.get(listId).title
-                            }
-                        }
-                        InsideListScreen(listId)
-                    }
-                    composable(Scene.DailyQuote.route) {
-                        toolbarTitle = stringResource(R.string.daily_quote)
-                        DailyQuoteScreen()
-                    }
-                    composable(Scene.Meditate.route) {
-                        toolbarTitle = stringResource(R.string.meditate)
-                        MeditateScreen()
-                    }
-                    composable(Scene.Settings.route) {
-                        toolbarTitle = stringResource(R.string.settings)
-                        SettingsScreen()
-                    }
-                    composable(Scene.About.route) {
-                        toolbarTitle = stringResource(R.string.about)
-                        AboutScene()
-                    }
+                composable(Scene.Lists.route) {
+                    toolbarTitle = stringResource(R.string.your_lists)
+                    ListsScreen(navController = navController)
                 }
-                if (openBottomSheet && navController.currentDestination?.route == Scene.Home.route) {
-                    when (pagerState.currentPage) {
-                        0 -> HelpSheet(
-                            sheetState = bottomSheetState,
-                            onClose = { openBottomSheet = false },
-                            animationResId = R.raw.flower,
-                            helpTitle = "Quote help",
-                            helpText = """
-                                        You can press the next button or swipe down from the top to get a new quote.
-                                        
-                                        You can also change the image at the bottom by holding down on it which will bring up a selection of 16 image options.
-                                    """.trimIndent()
-                        )
-
-                        1 -> HelpSheet(
-                            sheetState = bottomSheetState,
-                            onClose = { openBottomSheet = false },
-                            animationResId = R.raw.lists,
-                            helpTitle = "List help",
-                            helpText = """
-                                        These are your lists. You can access your favourite quotes from here as well as create new lists to categorise quotes into groups.
-                                        
-                                        New lists can be created by pressing the add (➕) button at the bottom of the screen and typing in a name.
-                                    """.trimIndent()
-                        )
-
-                        2 -> HelpSheet(
-                            sheetState = bottomSheetState,
-                            onClose = { openBottomSheet = false },
-                            animationResId = R.raw.meditation,
-                            helpTitle = "Meditate help",
-                            helpText = "You can start a meditation session by pressing the start button below and inputting the time you want to meditate for.",
-                            animationIterations = LottieConstants.IterateForever
-                        )
+                composable(
+                    route = "${Scene.InsideList.route}/{listId}",
+                    arguments = listOf(navArgument("listId") { type = NavType.IntType })
+                ) { backStackEntry ->
+                    val listId = backStackEntry.arguments?.getInt("listId") ?: 0
+                    val favourites = stringResource(id = R.string.favourites)
+                    LaunchedEffect(Unit) {
+                        toolbarTitle = if (listId == 0) {
+                            favourites
+                        } else {
+                            listViewModel.get(listId).title
+                        }
                     }
+                    InsideListScreen(listId)
+                }
+                composable(Scene.DailyQuote.route) {
+                    toolbarTitle = stringResource(R.string.daily_quote)
+                    DailyQuoteScreen()
+                }
+                composable(Scene.Meditate.route) {
+                    toolbarTitle = stringResource(R.string.meditate)
+                    MeditateScreen()
+                }
+                composable(Scene.Settings.route) {
+                    toolbarTitle = stringResource(R.string.settings)
+                    SettingsScreen()
+                }
+                composable(Scene.About.route) {
+                    toolbarTitle = stringResource(R.string.about)
+                    AboutScene()
+                }
+            }
+            if (openBottomSheet && navController.currentDestination?.route == Scene.Home.route) {
+                when (pagerState.currentPage) {
+                    0 -> HelpSheet(
+                        sheetState = bottomSheetState,
+                        onClose = { openBottomSheet = false },
+                        animationResId = R.raw.flower,
+                        helpTitle = "Quote help",
+                        helpText = """
+                            You can press the next button or swipe down from the top to get a new quote.
+                            
+                            You can also change the image at the bottom by holding down on it which will bring up a selection of 16 image options.
+                        """.trimIndent()
+                    )
+
+                    1 -> HelpSheet(
+                        sheetState = bottomSheetState,
+                        onClose = { openBottomSheet = false },
+                        animationResId = R.raw.lists,
+                        helpTitle = "List help",
+                        helpText = """
+                            These are your lists. You can access your favourite quotes from here as well as create new lists to categorise quotes into groups.
+                            
+                            New lists can be created by pressing the add (➕) button at the bottom of the screen and typing in a name.
+                        """.trimIndent()
+                    )
+
+                    2 -> HelpSheet(
+                        sheetState = bottomSheetState,
+                        onClose = { openBottomSheet = false },
+                        animationResId = R.raw.meditation,
+                        helpTitle = "Meditate help",
+                        helpText = "You can start a meditation session by pressing the start button below and inputting the time you want to meditate for.",
+                        animationIterations = LottieConstants.IterateForever
+                    )
                 }
             }
         }

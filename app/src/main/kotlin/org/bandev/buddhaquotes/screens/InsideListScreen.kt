@@ -15,11 +15,16 @@ import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -98,7 +103,7 @@ fun InsideListScreen(
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { paddingValues ->
-        Crossfade(targetState = quotes.isEmpty(), label = "") {
+        Crossfade(targetState = quotes.isEmpty()) {
             if (it) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -154,9 +159,7 @@ fun InsideListScreen(
                                             scope.launch {
                                                 interactionSource.emit(press)
                                                 interactionSource.emit(
-                                                    PressInteraction.Release(
-                                                        press
-                                                    )
+                                                    PressInteraction.Release(press)
                                                 )
                                             }
                                             if (quoteItem in selectedItems) {
@@ -166,7 +169,8 @@ fun InsideListScreen(
                                             }
                                         }
                                     )
-                                },
+                                }
+                                .animateItem(),
                             leadingContent = {
                                 val rotationY by animateFloatAsState(
                                     targetValue = if (isSelected) 180f else 0f,
@@ -225,14 +229,19 @@ fun InsideListScreen(
         if (openBottomSheet) {
             ModalBottomSheet(
                 onDismissRequest = { openBottomSheet = false },
-                modifier = Modifier.fillMaxHeight(),
-                sheetState = bottomSheetState
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .statusBarsPadding(),
+                sheetState = bottomSheetState,
+                contentWindowInsets = { WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal) }
             ) {
                 var text by rememberSaveable { mutableStateOf("") }
                 OutlinedTextField(
                     value = text,
                     onValueChange = { text = it },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Rounded.Search,
@@ -256,20 +265,28 @@ fun InsideListScreen(
                 )
 
                 val filteredQuotes = allQuotes.filter {
-                    it !in quotes && stringResource(id = it.resource).contains(text, ignoreCase = true)
+                    it !in quotes && stringResource(id = it.resource).contains(
+                        text,
+                        ignoreCase = true
+                    )
                 }
-                LazyColumn {
-                    items(items = filteredQuotes, key = QuoteItem::id) {
-                        HorizontalDivider()
+                val firstQuote = filteredQuotes.firstOrNull()
+                LazyColumn(
+                    contentPadding = PaddingValues(bottom = paddingValues.calculateBottomPadding()),
+                ) {
+                    items(items = filteredQuotes, key = QuoteItem::id) { quote ->
+                        if (quote != firstQuote) {
+                            HorizontalDivider()
+                        }
                         Text(
-                            text = stringResource(id = it.resource),
+                            text = stringResource(id = quote.resource),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
                                     scope
                                         .launch {
                                             bottomSheetState.hide()
-                                            listViewModel.addTo(listId, it.id)
+                                            listViewModel.addTo(listId, quote.id)
                                         }
                                         .invokeOnCompletion {
                                             if (!bottomSheetState.isVisible) {

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,14 +29,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import java.text.DateFormat
-import java.util.Calendar
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
 import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.items.QuoteItem
+import java.text.DateFormat
+import java.util.Calendar
 
 @Composable
 fun DailyQuoteScreen(
@@ -52,7 +53,8 @@ fun DailyQuoteScreen(
                 Row(
                     Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 10.dp)) {
+                        .padding(bottom = 10.dp)
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_left_quote),
                         contentDescription = null
@@ -62,7 +64,10 @@ fun DailyQuoteScreen(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.End
                     ) {
-                        Text(text = DateFormat.getDateInstance(DateFormat.FULL).format(Calendar.getInstance().time))
+                        Text(
+                            text = DateFormat.getDateInstance(DateFormat.FULL)
+                                .format(Calendar.getInstance().time)
+                        )
                     }
                 }
                 Text(text = stringResource(quote.resource))
@@ -91,7 +96,9 @@ fun DailyQuoteScreen(
                 modifier = Modifier.size(250.dp)
             )
             ElevatedCard(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier
+                    .padding(20.dp)
+                    .navigationBarsPadding(),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(

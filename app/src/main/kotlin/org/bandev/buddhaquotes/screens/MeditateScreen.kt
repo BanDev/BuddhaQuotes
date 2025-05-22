@@ -76,6 +76,7 @@ fun MeditateScreen() {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
+                .navigationBarsPadding()
                 .padding(start = 16.dp, end = 16.dp, bottom = 24.dp),
             isVisible = timerState != TimerState.Stopped,
             isTimerPaused = timerState == TimerState.Paused,

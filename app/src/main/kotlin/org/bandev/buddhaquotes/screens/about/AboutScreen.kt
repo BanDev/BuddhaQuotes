@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -82,6 +83,11 @@ fun AboutScene() {
                     onLibraryClick = { library ->
                         libraryState = library
                         infoDialogState.show()
+                    },
+                    footer = {
+                        item {
+                            Spacer(Modifier.navigationBarsPadding())
+                        }
                     }
                 )
             }

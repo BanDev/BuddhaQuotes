@@ -6,17 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Calendar
-import javax.inject.Inject
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.items.QuoteItem
+import java.util.Calendar
+import javax.inject.Inject
 
 @SuppressLint("NullSafeMutableLiveData")
 @HiltViewModel
 class QuoteViewModel @Inject constructor(
     private val quotesRepository: QuotesRepository
 ) : ViewModel() {
-    private var _selectedQuote: MutableLiveData<QuoteItem> = MutableLiveData(QuoteItem())
+    private var _selectedQuote: MutableLiveData<QuoteItem> = MutableLiveData()
     var selectedQuote: LiveData<QuoteItem> = _selectedQuote
 
     private var _allQuotes: MutableLiveData<List<QuoteItem>> = MutableLiveData(emptyList())
@@ -44,11 +44,14 @@ class QuoteViewModel @Inject constructor(
     private suspend fun getAll(): List<QuoteItem> = quotesRepository.getAll()
 
     /** Get a random quote */
-    private suspend fun getRandom(): QuoteItem = get((0 until QuoteStore.quotesWithSources.size).random())
+    private suspend fun getRandom(): QuoteItem =
+        get((0 until QuoteStore.quotesWithSources.size).random())
 
     /** Get the quote of the day */
     private suspend fun getDaily(): QuoteItem {
-        return get(Calendar.getInstance().get(Calendar.DAY_OF_YEAR) % QuoteStore.quotesWithSources.size)
+        return get(
+            Calendar.getInstance().get(Calendar.DAY_OF_YEAR) % QuoteStore.quotesWithSources.size
+        )
     }
 
     fun setLiked(isLiked: Boolean) {

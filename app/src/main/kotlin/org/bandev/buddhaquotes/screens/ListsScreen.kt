@@ -55,8 +55,10 @@ import androidx.navigation.NavController
 import com.maxkeppeker.sheets.core.models.base.IconSource
 import com.maxkeppeker.sheets.core.models.base.rememberUseCaseState
 import com.maxkeppeler.sheets.input.InputView
+import com.maxkeppeler.sheets.input.models.InputHeader
 import com.maxkeppeler.sheets.input.models.InputSelection
 import com.maxkeppeler.sheets.input.models.InputTextField
+import com.maxkeppeler.sheets.input.models.ValidationResult
 import com.maxkeppeler.sheets.option.OptionView
 import com.maxkeppeler.sheets.option.models.DisplayMode
 import com.maxkeppeler.sheets.option.models.Option
@@ -134,8 +136,14 @@ fun ListsScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = stringResource(id = if (list.count == 1) R.string.quote_count else R.string.quotes_count, list.count),
-                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
+                                    text = stringResource(
+                                        id = if (list.count == 1) R.string.quote_count else R.string.quotes_count,
+                                        list.count
+                                    ),
+                                    modifier = Modifier.padding(
+                                        horizontal = 16.dp,
+                                        vertical = 10.dp
+                                    ),
                                     color = Color.Gray,
                                     style = MaterialTheme.typography.labelLarge
                                 )
@@ -162,7 +170,7 @@ fun ListsScreen(
         if (newListBottomSheetVisible) {
             ModalBottomSheet(
                 onDismissRequest = { newListBottomSheetVisible = false },
-                sheetState = bottomSheetState
+                sheetState = bottomSheetState,
             ) {
                 val inputKey = "LIST_NAME_KEY"
                 InputView(
@@ -170,8 +178,15 @@ fun ListsScreen(
                     selection = InputSelection(
                         input = listOf(
                             InputTextField(
-                                text = "List name",
+                                header = InputHeader(title = "List name"),
                                 key = inputKey,
+                                validationListener = { value ->
+                                    if (value != null && value.isNotBlank()) {
+                                        ValidationResult.Valid
+                                    } else {
+                                        ValidationResult.Invalid("Name cannot be blank")
+                                    }
+                                },
                                 required = true
                             )
                         ),
@@ -185,7 +200,7 @@ fun ListsScreen(
                         onPositiveClick = {
                             scope.launch {
                                 bottomSheetState.hide()
-                                listsViewModel.new(it.getString(inputKey) as String)
+                                listsViewModel.new(it.getString(inputKey)!!)
                             }.invokeOnCompletion {
                                 if (!bottomSheetState.isVisible) {
                                     newListBottomSheetVisible = false
