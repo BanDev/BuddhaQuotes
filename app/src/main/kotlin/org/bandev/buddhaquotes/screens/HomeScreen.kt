@@ -7,12 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
-import androidx.compose.material.icons.automirrored.outlined.FormatListBulleted
 import androidx.compose.material.icons.filled.FormatQuote
 import androidx.compose.material.icons.filled.SelfImprovement
 import androidx.compose.material.icons.outlined.FormatQuote
 import androidx.compose.material.icons.outlined.SelfImprovement
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -22,22 +22,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.lists.ListViewModel
-import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.datastore.imagePref.ImagePrefViewModel
-import org.bandev.buddhaquotes.items.QuoteItem
+import org.bandev.buddhaquotes.db.QuoteViewModel
+import org.bandev.buddhaquotes.model.Quote
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    navController: NavController,
     pagerState: PagerState,
     quoteViewModel: QuoteViewModel = hiltViewModel(),
-    listViewModel: ListViewModel = hiltViewModel(),
     imagePrefViewModel: ImagePrefViewModel = hiltViewModel()
 ) {
     val pagerScope = rememberCoroutineScope()
@@ -48,8 +45,8 @@ fun HomeScreen(
                 listOf(
                     Triple("Quotes", Icons.Filled.FormatQuote, Icons.Outlined.FormatQuote),
                     Triple(
-                        "Lists", Icons.AutoMirrored.Filled.FormatListBulleted,
-                        Icons.AutoMirrored.Outlined.FormatListBulleted
+                        stringResource(R.string.favourites), Icons.Rounded.Favorite,
+                        Icons.Rounded.FavoriteBorder
                     ),
                     Triple(
                         "Meditation",
@@ -82,20 +79,20 @@ fun HomeScreen(
             state = pagerState
         ) { page ->
             when (page) {
-                0 -> QuoteScreen(quoteViewModel, listViewModel, imagePrefViewModel)
-                1 -> ListsScreen(listViewModel, navController)
+                0 -> QuoteScreen(quoteViewModel, imagePrefViewModel)
+                1 -> FavouritesScreen(quoteViewModel)
                 else -> MeditateScreen()
             }
         }
     }
 }
 
-fun Context.shareQuote(quote: QuoteItem) = Intent().apply {
+fun Context.shareQuote(quote: Quote) = Intent().apply {
     action = Intent.ACTION_SEND
     putExtra(
         Intent.EXTRA_TEXT,
         """
-            ${getString(quote.resource)}
+            ${quote.text}
             
             ${getString(R.string.attribution_buddha)}
         """.trimIndent()

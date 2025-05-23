@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.FormatListBulleted
 import androidx.compose.material.icons.rounded.CalendarToday
+import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FormatQuote
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.SelfImprovement
@@ -37,22 +37,22 @@ fun AppDrawer(
             route = scenes[0].route
         ),
         DrawerButton(
-            icon = Icons.AutoMirrored.Rounded.FormatListBulleted,
-            label = "Lists",
-            selected = currentScreen == Scene.Lists.route,
+            icon = Icons.Rounded.Favorite,
+            label = "Favourites",
+            selected = currentScreen == Scene.Favourites.route,
             route = scenes[1].route
         ),
         DrawerButton(
             icon = Icons.Rounded.CalendarToday,
             label = "Daily Quote",
             selected = currentScreen == Scene.DailyQuote.route,
-            route = scenes[3].route
+            route = scenes[2].route
         ),
         DrawerButton(
             icon = Icons.Rounded.SelfImprovement,
             label = "Meditate",
             selected = currentScreen == Scene.Meditate.route,
-            route = scenes[4].route
+            route = scenes[3].route
         )
     )
 
@@ -61,19 +61,21 @@ fun AppDrawer(
             icon = Icons.Rounded.Settings,
             label = "Settings",
             selected = currentScreen == Scene.Settings.route,
-            route = scenes[5].route
+            route = scenes[4].route
         ),
         DrawerButton(
             icon = Icons.Rounded.Info,
             label = "About",
             selected = currentScreen == Scene.About.route,
-            route = scenes[6].route
+            route = scenes[5].route
         )
     )
 
     ModalDrawerSheet {
         LazyColumn(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(topDrawerButtons) { drawerButton ->
@@ -91,7 +93,9 @@ fun AppDrawer(
         Spacer(Modifier.weight(1f))
         HorizontalDivider()
         LazyColumn(
-            modifier = Modifier.fillMaxWidth().padding(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(bottomDrawerButtons) { drawerButton ->

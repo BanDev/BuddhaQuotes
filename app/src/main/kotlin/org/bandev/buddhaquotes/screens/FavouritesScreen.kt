@@ -49,8 +49,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -73,25 +73,22 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.lists.ListViewModel
-import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
-import org.bandev.buddhaquotes.items.QuoteItem
+import org.bandev.buddhaquotes.db.QuoteViewModel
+import org.bandev.buddhaquotes.model.Quote
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InsideListScreen(
-    listId: Int,
-    quoteViewModel: QuoteViewModel = hiltViewModel(),
-    listViewModel: ListViewModel = hiltViewModel()
+fun FavouritesScreen(
+    viewModel: QuoteViewModel = hiltViewModel(),
 ) {
-    val quotes by listViewModel.getFrom(listId).observeAsState(emptyList())
-    val selectedItems = remember { mutableStateListOf<QuoteItem>() }
+    val quotes by viewModel.favourites.collectAsState(emptyList())
+    val selectedItems = remember { mutableStateListOf<Quote>() }
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
     val secondaryColour = MaterialTheme.colorScheme.secondary
     val onSecondaryColour = MaterialTheme.colorScheme.onSecondary
-    val allQuotes by quoteViewModel.allQuotes.observeAsState(emptyList())
+    val allQuotes by viewModel.quotes.collectAsState(emptyList())
     BackHandler(enabled = selectedItems.isNotEmpty()) {
         selectedItems.clear()
     }
@@ -118,7 +115,7 @@ fun InsideListScreen(
                             .align(Alignment.CenterHorizontally)
                     )
                     Text(
-                        text = "No items yet",
+                        text = stringResource(R.string.no_favourites),
                         modifier = Modifier.align(Alignment.CenterHorizontally),
                         style = MaterialTheme.typography.bodyLarge
                     )
@@ -134,13 +131,13 @@ fun InsideListScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    items(items = quotes, key = QuoteItem::id) { quoteItem ->
+                    items(items = quotes, key = Quote::id) { quoteItem ->
                         val interactionSource = remember(::MutableInteractionSource)
                         val isSelected = quoteItem in selectedItems
                         ListItem(
                             headlineContent = {
                                 Text(
-                                    text = stringResource(id = quoteItem.resource),
+                                    text = quoteItem.text,
                                     modifier = Modifier.padding(10.dp),
                                     style = MaterialTheme.typography.bodyLarge
                                 )
@@ -265,7 +262,7 @@ fun InsideListScreen(
                 )
 
                 val filteredQuotes = allQuotes.filter {
-                    it !in quotes && stringResource(id = it.resource).contains(
+                    it !in quotes && it.text.contains(
                         text,
                         ignoreCase = true
                     )
@@ -274,19 +271,19 @@ fun InsideListScreen(
                 LazyColumn(
                     contentPadding = PaddingValues(bottom = paddingValues.calculateBottomPadding()),
                 ) {
-                    items(items = filteredQuotes, key = QuoteItem::id) { quote ->
+                    items(items = filteredQuotes, key = Quote::id) { quote ->
                         if (quote != firstQuote) {
                             HorizontalDivider()
                         }
                         Text(
-                            text = stringResource(id = quote.resource),
+                            text = quote.text,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
                                     scope
                                         .launch {
                                             bottomSheetState.hide()
-                                            listViewModel.addTo(listId, quote.id)
+                                            viewModel.setFavourite(quote)
                                         }
                                         .invokeOnCompletion {
                                             if (!bottomSheetState.isVisible) {

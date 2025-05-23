@@ -48,6 +48,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.ui.theme.SpringDefaultDampingRatio
 import org.bandev.buddhaquotes.ui.theme.SpringDefaultStiffness
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,10 +84,12 @@ internal fun Timer(
                 modifier = Modifier.animateContentHeight(),
                 label = ""
             ) { isTimerStartedCurrentValue ->
+                val durationState = rememberUseCaseState(embedded = false)
                 if (!isTimerStartedCurrentValue) {
                     DurationView(
-                        useCaseState = rememberUseCaseState(),
+                        useCaseState = durationState,
                         selection = DurationSelection(
+                            onNegativeClick = { durationState.invokeReset() },
                             onPositiveClick = { milliseconds ->
                                 onTimerDurationInMillisChange((milliseconds * 1000).toInt())
                                 onTimerIsStartedChange(!isTimerStarted)
@@ -122,7 +125,7 @@ private fun TimerCountdown(timerProgress: Float, timerDurationInMillis: Int) {
     }
     val text = remember(timerProgress, timerDurationInMillis) {
         val seconds = (timerProgress * (timerDurationInMillis / 1000)).roundToInt()
-        String.format("%02d : %02d", seconds / 60, seconds % 60)
+        "%02d : %02d".format(Locale.ROOT, seconds / 60, seconds % 60)
     }
 
     Text(

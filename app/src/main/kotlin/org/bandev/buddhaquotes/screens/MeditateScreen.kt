@@ -20,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -38,7 +39,7 @@ import org.bandev.buddhaquotes.ui.theme.SpringDefaultStiffness
 @Composable
 fun MeditateScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
-        var timerDurationInMillis by rememberSaveable { mutableStateOf(0) }
+        var timerDurationInMillis by rememberSaveable { mutableIntStateOf(0) }
         var timerState by remember { mutableStateOf(TimerState.Stopped) }
 
         val timerProgress by timerProgressAsState(

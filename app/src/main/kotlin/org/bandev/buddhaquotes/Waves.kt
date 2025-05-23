@@ -40,8 +40,8 @@ import kotlinx.coroutines.withContext
 @Composable
 fun WavesLoadingIndicator(modifier: Modifier, color: Color, progress: Float) {
     BoxWithConstraints(modifier = modifier.offset(y = 16.dp), contentAlignment = Alignment.Center) {
-        val constraintsWidth = maxWidth
-        val constraintsHeight = maxHeight
+        val constraintsWidth = this.maxWidth
+        val constraintsHeight = this.maxHeight
         val density = LocalDensity.current
 
         val wavesShader by produceState<Shader?>(

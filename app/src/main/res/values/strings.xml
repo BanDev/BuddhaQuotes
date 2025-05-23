@@ -1,176 +1,17 @@
 <resources>
     <string name="app_name">Buddha Quotes</string>
-    <string name="app_description">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app, making use of modern Android practices and architecture, with a focus on privacy.</string>
-    <string name="blank">\n</string>
+    <string name="app_description">Buddha Quotes is a collaborative project to create a Free and Open Source Buddha Quotes app, making use of modern Android practices and architecture.</string>
     <string name="attribution_buddha">~ Gautama Buddha</string>
     <string name="acknowledgements">Acknowledgements</string>
-    <string name="your_lists">Your lists</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="meditate">Meditate</string>
     <string name="libraries">Libraries</string>
     <string name="favourites">Favourites</string>
-    <string name="quote_count">%d quote</string>
-    <string name="quotes_count">%d quotes</string>
-
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="system">System</string>
-
     <string name="daily_quote">Daily Quote</string>
     <string name="theme">Theme</string>
-
-    <string name="from_sutta_nipata">From the Sutta Nipata.</string>
-    <string name="dhammapada_verse">From the Dhammapada, verse %d.</string>
-    <string name="quote_3_full_quote">
-        If with an uncorrupted mind\n
-        He pervades just one being\n
-        With loving kindly thoughts,\n
-        He makes some merit thereby.\n
-        \n
-        But a noble one produces\n
-        An abundance of merit\n
-        By having a compassionate mind\n
-        Towards all living beings.
-    </string>
-    <string name="quote_17_full_quote">By oneself is evil done; by oneself is one defiled. By oneself is evil left undone; by oneself is one made pure. Purity and impurity depend on oneself; no one can purify another..</string>
-    <string name="quote_40_full_quote">
-        As a water bead on a lotus leaf,\n
-        as water on a red lily,\n
-        does not adhere,\n
-        \n
-        so the sage\n
-        does not adhere\n
-        to the seen, the heard, or the sensed.
-    </string>
-    <string name="quote_51_full_quote">Without approval and without scorn, but carefully studying the sentences word by word, one should trace them in the Discourses and verify them by the Discipline. If they are neither traceable in the Discourses nor verifiable by the Discipline, one must conclude thus: ‘Certainly, this is not the Blessed One’s utterance; this has been misunderstood by that bhikkhu — or by that community, or by those elders, or by that elder.’ In that way, bhikkhus, you should reject it.</string>
-    <string name="quote_58_full_quote">Whatever living beings there may be — feeble or strong, long, stout, or of medium size, short, small, large, those seen or those unseen, those dwelling far or near, those who are born as well as those yet to be born — may all beings have happy minds.</string>
-    <string name="quote_60_full_quote">Over there are the roots of trees; over there, empty dwellings. Practice jhana [meditation], monks. Don’t be heedless. Don’t later fall into regret. This is our message to you.</string>
-    <string name="quote_71_full_quote">Therefore, bhikkhus, you should train yourselves thus: ‘We will develop and cultivate the liberation of mind by lovingkindness, make it our vehicle, make it our basis, stabilize it, exercise ourselves in it, and fully perfect it.’ Thus should you train yourselves</string>
-    <string name="quote_74_full_quote">
-        You yourself must strive.\n
-        The Buddhas only point the way.\n
-        Those meditative ones who tread the path\n
-        are released from the bonds of Mara.
-    </string>
-    <string name="good_friends_companions_full_quote">
-        On one occasion the Blessed One was dwelling among the Sakyans where there was a town of the Sakyans [the Buddha’s tribe] named Nagaraka [“Little Town”]. Then the Venerable Ānanda approached the Blessed One. Having approached, he paid homage to the Blessed One, sat down to one side, and said to him:\n
-        \n
-        “Venerable sir, this is half of the holy life, that is, good friendship, good companionship, good comradeship.\n
-        \n
-        “Not so, Ānanda! Not so, Ānanda! This is the entire holy life, Ānanda, that is, good friendship, good companionship, good comradeship. When a bhikkhu [monk] has a good friend, a good companion, a good comrade, it is to be expected that he will develop and cultivate the Noble Eightfold Path.
-    </string>
-    <string name="good_friends_companions_source">This is from a passage in the Upaḍḍhasutta (SN 45.2) where the Buddha’s cousin and attendant, Ānanda, comes to him to express his realization of how important friendship (kalyāṇa mittatā) is in the spiritual life:</string>
-    <string name="itivuttika_source">From John Ireland’s translation of the Itivuttika.</string>
-    <string name="dhammapada_source">From the Dhammapada.</string>
-    <string name="from_bhaddekaratta_sutta">From the Bhaddekaratta Sutta.</string>
-    <string name="from_samyutta_nikaya">From the Saṃyutta Nikāya.</string>
-    <string name="from_samyutta_nikaya_verse">From the Saṃyutta Nikāya %.1f.</string>
-    <string name="from_cetana_sutta_of_anguttara_nikaya">From the Cetana Sutta, of the Anguttara Nikaya.</string>
-    <string name="from_sallekha_sutta">From the Sallekha Sutta.</string>
-    <string name="from_karaniya_metta_sutta">From the Karaniya Metta Sutta.</string>
-    <string name="from_metta_sutta">From the Metta Sutta.</string>
-    <string name="from_mangala_sutta">From the Mangala Sutta.</string>
-    <string name="from_kimsika_sutta">From the Kimsila Sutta.</string>
-    <string name="from_na_sumhaka_sutta_of_samyutta_nikaya">From the Na Tumhaka Sutta of the Samyutta Nikaya.</string>
-    <string name="from_nalaka_sutta_of_sutta_nipata">From the Nalaka Sutta of the Sutta Nipata</string>
-    <string name="from_jara_sutta_of_sutta_nipata">From the Jara (old age) Sutta of the Sutta Nipata</string>
-    <string name="from_vinaya">From the Vinaya, the Buddha\'s code of discipline for monks and nuns</string>
-    <string name="from_mahaparinibbana_sutta">From the Mahaparinibbana Sutta</string>
-    <string name="from_udana">From the Udana.</string>
-    <string name="from_kamma_sutta">From the Kamma Sutt.</string>
-    <string name="from_utthana_sutta_of_sutta_nipata">From the Utthana Sutta of the Sutta Nipata.</string>
-    <string name="from_magandiya_suta_of_sutta_nipata">From the Magandiya Suta of the Sutta Nipata.</string>
-    <string name="quote_27_source">From the Kimsuka Sutta, where, in the course of a parable, he puts these words in the mouth of an unnamed monk.</string>
-    <string name="quote_66_source">
-        This is a saying from the Pali canon, upadhi dukkhassa mūlanti, which means “Attachment is the root of suffering.” So this is a genuine canonical quote.\n
-        \n
-        You’ll find it in the sutta, but translated by Thanissaro as “Acquisition is the root of stress.”
-    </string>
-    
-    <string name="as_i_am_so_are_they_quote">As I am, so are they; as they are, so am I.’ Comparing others with oneself, do not kill nor cause others to kill.</string>
-    <string name="a_disciplined_mind_brings_happiness_quote">A disciplined mind brings happiness.</string>
-    <string name="a_noble_one_produces_quote">A noble one produces an abundance of merit by having a compassionate mind towards all living beings.</string>
-    <string name="a_wise_person_should_quote">A wise person should be urgently moved on occasions that make for urgency.</string>
-    <string name="all_experiences_are_preceded_quote">All experiences are preceded by mind, having mind as their master, created by mind.</string>
-    <string name="quote_6">Ardently do today what must be done. Who knows? Tomorrow, death comes.</string>
-    <string name="quote_7">Conquer anger with non-anger. Conquer badness with goodness. Conquer meanness with generosity. Conquer dishonesty with truth.</string>
-    <string name="delight_in_heedfulness_quote">Delight in heedfulness! Guard well your thoughts!</string>
-    <string name="quote_9">Give, even if you only have a little.</string>
-    <string name="quote_10">I do not dispute with the world; rather it is the world that disputes with me.</string>
-    <string name="quote_11">If with a pure mind a person speaks or acts, happiness follows them like a never-departing shadow.</string>
-    <string name="quote_12">In whom there is no sympathy for living beings: know him as an outcast.</string>
-    <string name="quote_13">It is in the nature of things that joy arises in a person free from remorse.</string>
-    <string name="quote_14">Just as a mother would protect her only child with her life, even so let one cultivate a boundless love towards all beings.</string>
-    <string name="quote_15">Meditate … do not delay, lest you later regret it.</string>
-    <string name="quote_16">One should train in deeds of merit—generosity, a balanced life, developing a loving mind—that yield long-lasting happiness.</string>
-    <string name="quote_17">Purity and impurity depend on oneself; no one can purify another.</string>
-    <string name="quote_18">Radiate boundless love towards the entire world…</string>
-    <string name="quote_19">See them, floundering in their sense of mine, like fish in the puddles of a dried-up stream — and, seeing this, live with no mine, not forming attachment for states of becoming.</string>
-    <string name="quote_20">Should a seeker not find a companion who is better or equal, let them resolutely pursue a solitary course.</string>
-    <string name="quote_21">Should you find a wise critic to point out your faults, follow him as you would a guide to hidden treasure.</string>
-    <string name="quote_22">Speak only endearing speech, speech that is welcomed. Speech, when it brings no evil to others, is a pleasant thing.</string>
-    <string name="quote_23">The one in whom no longer exist the craving and thirst that perpetuate becoming; how could you track that Awakened one, trackless, and of limitless range.</string>
-    <string name="quote_24">There is no fear for one whose mind is not filled with desires.</string>
-    <string name="quote_25">To support mother and father, to cherish partner and children, and to be engaged in peaceful occupation — this is the greatest blessing.</string>
-    <string name="quote_26">Understanding is the heartwood of well-spoken words.</string>
-    <string name="quote_27">Whatever has the nature of arising has the nature of ceasing.</string>
-    <string name="quote_28">Whatever is not yours: let go of it. Your letting go of it will be for your long-term happiness and benefit.</string>
-    <string name="quote_29">Whatever precious jewel there is in the heavenly worlds, there is nothing comparable to one who is Awakened.</string>
-    <string name="quote_30">Better than a thousand useless words is one useful word, upon hearing which one attains peace.</string>
-    <string name="quote_31">It’s a good thing to be satisfied with what one has.</string>
-    <string name="quote_32">Let none find fault with others; let none see the omissions and commissions of others. But let one see one’s own acts, done and undone.</string>
-    <string name="quote_33">Should someone do good, let them do it again and again. They should develop this habit, for the accumulation of goodness brings joy.</string>
-    <string name="quote_34">The Enlightened One is deep, boundless, hard to fathom, like the ocean.</string>
-    <string name="quote_35">The thing that is disliked by me is also disliked by others. Since I dislike this thing, how can I inflict it on someone else?</string>
-    <string name="quote_36">All conditioned things are impermanent’ — when one sees this with wisdom, one turns away from suffering.</string>
-    <string name="quote_37">As I am, so are these. As are these, so am I.’ Drawing the parallel to yourself, neither kill nor get others to kill.</string>
-    <string name="quote_38">A mind unruffled by the vagaries of fortune, from sorrow freed, from defilements cleansed, from fear liberated — this is the greatest blessing.</string>
-    <string name="quote_39">All tremble at violence; all fear death. Putting oneself in the place of another, one should not kill nor cause another to kill.</string>
-    <string name="quote_40">As a water bead on a lotus leaf, as water on a red lily, does not adhere, so the sage does not adhere to the seen, the heard, or the sensed.</string>
-    <string name="quote_41">As an elephant in the battlefield withstands arrows shot from bows all around, even so shall I endure abuse.</string>
-    <string name="quote_42">Better it is to live one day seeing the rise and fall of things than to live a hundred years without ever seeing the rise and fall of things.</string>
-    <string name="quote_43">Both formerly and now, it is only suffering that I describe, and the cessation of suffering.</string>
-    <string name="quote_44">Ceasing to do evil, Cultivating the good, Purifying the heart: This is the teaching of the Buddhas.</string>
-    <string name="quote_45">Drop by drop is the water pot filled. Likewise, the wise man, gathering it little by little, fills himself with good.</string>
-    <string name="quote_46">Hatred is never appeased by hatred in this world. By non-hatred alone is hatred appeased. This is a law eternal.</string>
-    <string name="quote_47">Having gone on his almsround, the sage should then go to the forest, standing or taking a seat at the foot of a tree. The enlightened one, intent on jhana, should find delight in the forest, should practice jhana at the foot of a tree, attaining his own satisfaction.</string>
-    <string name="quote_48">He who can curb his wrath as soon as it arises, as a timely antidote will check snake’s venom that so quickly spreads, — such a monk gives up the here and the beyond, just as a serpent sheds its worn-out skin.</string>
-    <string name="quote_49">I will not look at another’s bowl intent on finding fault: a training to be observed.</string>
-    <string name="quote_50">If a man going down into a river, swollen and swiftly flowing, is carried away by the current — how can he help others across?</string>
-    <string name="quote_51">If they are neither traceable in the Discourses nor verifiable by the Discipline, one must conclude thus: ‘Certainly, this is not the Blessed One’s utterance’.</string>
-    <string name="quote_52">Irrigators channel waters; fletchers straighten arrows; carpenters bend wood; the wise master themselves.</string>
-    <string name="quote_53">Just as a solid rock is not shaken by the storm, even so the wise are not affected by praise or blame.</string>
-    <string name="quote_54">Just as the great ocean has one taste, the taste of salt, so also this teaching and discipline has one taste, the taste of liberation.</string>
-    <string name="quote_55">Know from the rivers in clefts and in crevices: those in small channels flow noisily, the great flow silent. Whatever’s not full makes noise. Whatever is full is quiet.</string>
-    <string name="quote_56">Let all-embracing thoughts for all beings be yours.</string>
-    <string name="quote_57">Let none find fault with others; let none see the omissions and commissions of others. But let one see one’s own acts, done and undone.</string>
-    <string name="quote_58">May all beings have happy minds.</string>
-    <string name="quote_59">One is not called noble who harms living beings. By not harming living beings one is called noble.</string>
-    <string name="quote_60">Over there are the roots of trees; over there, empty dwellings. Practice meditation, monks. Don’t be heedless.</string>
-    <string name="quote_61">Radiate boundless love towards the entire world — above, below, and across — unhindered, without ill will, without enmity.</string>
-    <string name="quote_62">Resolutely train yourself to attain peace.</string>
-    <string name="quote_63">Should a person do good, let him do it again and again. Let him find pleasure therein, for blissful is the accumulation of good.</string>
-    <string name="quote_64">Some do not understand that we must die, But those who do realize this settle their quarrels.</string>
-    <string name="quote_65">The calmed say that what is well-spoken is best; second, that one should say what is right, not unrighteous; third, what’s pleasing, not displeasing; fourth, what is true, not false.</string>
-    <string name="quote_66">The root of suffering is attachment.</string>
-    <string name="quote_67">The world is afflicted by death and decay. But the wise do not grieve, having realized the nature of the world.</string>
-    <string name="quote_68">They blame those who remain silent, they blame those who speak much, they blame those who speak in moderation. There is none in the world who is not blamed.</string>
-    <string name="quote_69">Those who cling to perceptions and views wander the world offending people.</string>
-    <string name="quote_70">To support mother and father, to cherish wife and children, and to be engaged in peaceful occupation — this is the greatest blessing.</string>
-    <string name="quote_71">We will develop and cultivate the liberation of mind by lovingkindness, make it our vehicle, make it our basis, stabilize it, exercise ourselves in it, and fully perfect it.</string>
-    <string name="quote_72">When watching after yourself, you watch after others. When watching after others, you watch after yourself.</string>
-    <string name="quote_73">Whoever doesn’t flare up at someone who’s angry wins a battle hard to win.</string>
-    <string name="quote_74">You yourself must strive. The Buddhas only point the way.</string>
-    <string name="quote_75">Good friends, companions, and associates are the whole of the spiritual life.</string>
-    <string name="quote_76">By relying upon me as a good friend … beings are freed from sorrow, lamentation, pain, displeasure, and despair.</string>
-    <string name="quote_77">A true friend is one who stands by you in need.</string>
-    <string name="quote_78">A friend gives what is hard to give, and does what’s hard to do. They put up with your harsh words, and with things hard to endure.</string>
-    <string name="quote_79">Recognize these four good-hearted friends: the helper, the friend in good times and bad, the counselor, and the one who’s compassionate.</string>
-    <string name="quote_80">Emulating consummate conviction … consummate virtue … consummate generosity … and consummate discernment. This is called admirable friendship.</string>
-    <string name="quote_81">One who has spiritual friends abandons what is unwholesome and develops what is wholesome.</string>
-    <string name="quote_82">You should train like this:  ‘I will have good friends, companions, and associates.</string>
-    <string name="quote_83">As the dawn is the forerunner of the sunrise, so spiritual friendship is the forerunner of the arising of the factors of enlightenment.</string>
-    <string name="quote_84">Regard one who sees your faults as a guide to a hidden treasure. Stay close to one so wise and astute who corrects you when you need it.</string>
-    <string name="quote_85">A spiritual practitioner with good friends, companions, and associates can expect to be wise.</string>
+    <string name="no_favourites">No favourites yet</string>
 </resources>

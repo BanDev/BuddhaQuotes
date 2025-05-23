@@ -22,7 +22,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,21 +30,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.airbnb.lottie.compose.LottieConstants
 import kotlinx.coroutines.launch
-import org.bandev.buddhaquotes.architecture.lists.ListViewModel
 import org.bandev.buddhaquotes.screens.DailyQuoteScreen
+import org.bandev.buddhaquotes.screens.FavouritesScreen
 import org.bandev.buddhaquotes.screens.HomeScreen
-import org.bandev.buddhaquotes.screens.InsideListScreen
-import org.bandev.buddhaquotes.screens.ListsScreen
 import org.bandev.buddhaquotes.screens.MeditateScreen
 import org.bandev.buddhaquotes.screens.SettingsScreen
 import org.bandev.buddhaquotes.screens.about.AboutScene
@@ -123,7 +117,6 @@ fun BuddhaQuotesApp() {
             },
             contentWindowInsets = ScaffoldDefaults.contentWindowInsets.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
         ) { paddingValues ->
-            val listViewModel = viewModel<ListViewModel>()
             val pagerState = rememberPagerState(pageCount = { 3 })
             NavHost(
                 navController = navController,
@@ -133,29 +126,12 @@ fun BuddhaQuotesApp() {
                 composable(Scene.Home.route) {
                     toolbarTitle = stringResource(R.string.app_name)
                     HomeScreen(
-                        navController = navController,
                         pagerState = pagerState,
-                        listViewModel = listViewModel
                     )
                 }
-                composable(Scene.Lists.route) {
-                    toolbarTitle = stringResource(R.string.your_lists)
-                    ListsScreen(navController = navController)
-                }
-                composable(
-                    route = "${Scene.InsideList.route}/{listId}",
-                    arguments = listOf(navArgument("listId") { type = NavType.IntType })
-                ) { backStackEntry ->
-                    val listId = backStackEntry.arguments?.getInt("listId") ?: 0
-                    val favourites = stringResource(id = R.string.favourites)
-                    LaunchedEffect(Unit) {
-                        toolbarTitle = if (listId == 0) {
-                            favourites
-                        } else {
-                            listViewModel.get(listId).title
-                        }
-                    }
-                    InsideListScreen(listId)
+                composable(Scene.Favourites.route) { backStackEntry ->
+                    toolbarTitle = stringResource(id = R.string.favourites)
+                    FavouritesScreen()
                 }
                 composable(Scene.DailyQuote.route) {
                     toolbarTitle = stringResource(R.string.daily_quote)

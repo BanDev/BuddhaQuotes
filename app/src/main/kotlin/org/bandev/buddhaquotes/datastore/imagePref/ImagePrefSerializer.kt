@@ -8,7 +8,8 @@ import java.io.InputStream
 import java.io.OutputStream
 
 object ImagePrefSerializer : Serializer<ImagePref> {
-    override val defaultValue: ImagePref = ImagePref.getDefaultInstance()
+    override val defaultValue: ImagePref =
+        ImagePref.getDefaultInstance().toBuilder().setImage(1).build()
 
     override suspend fun readFrom(input: InputStream): ImagePref {
         try {

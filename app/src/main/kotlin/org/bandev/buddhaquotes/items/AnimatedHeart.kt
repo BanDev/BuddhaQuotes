@@ -1,5 +1,7 @@
 package org.bandev.buddhaquotes.items
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -11,10 +13,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
 import org.bandev.buddhaquotes.ui.theme.heartTint
+
+data class Heart(
+    val position: Offset,
+    val rotation: Float,
+    val size: Animatable<Float, AnimationVector1D>,
+    val alpha: Animatable<Float, AnimationVector1D>
+)
 
 @Composable
 fun AnimatedHeart(heart: Heart, onHeartAnimationEnd: () -> Unit = {}) {

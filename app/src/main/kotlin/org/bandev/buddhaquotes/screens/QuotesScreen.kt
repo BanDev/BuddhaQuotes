@@ -1,7 +1,6 @@
 package org.bandev.buddhaquotes.screens
 
 import android.content.Intent
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.Image
@@ -11,11 +10,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AddCircleOutline
+import androidx.compose.material.icons.rounded.Attribution
 import androidx.compose.material.icons.rounded.ChevronLeft
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.Share
@@ -27,9 +25,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
@@ -45,7 +43,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -60,30 +57,28 @@ import kotlin.random.Random
 import kotlinx.coroutines.launch
 import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.architecture.lists.ListViewModel
-import org.bandev.buddhaquotes.architecture.quotes.QuoteStore
-import org.bandev.buddhaquotes.architecture.quotes.QuoteViewModel
 import org.bandev.buddhaquotes.datastore.imagePref.ImagePrefViewModel
+import org.bandev.buddhaquotes.db.QuoteViewModel
 import org.bandev.buddhaquotes.imagepref.ImagePref
 import org.bandev.buddhaquotes.items.AnimatedHeart
 import org.bandev.buddhaquotes.items.Heart
-import org.bandev.buddhaquotes.items.QuoteItem
+import org.bandev.buddhaquotes.items.QuoteCard
+import org.bandev.buddhaquotes.model.Quote
+import org.bandev.buddhaquotes.model.Source
 import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuoteScreen(
-    quoteViewModel: QuoteViewModel = hiltViewModel(),
-    listViewModel: ListViewModel = hiltViewModel(),
+    viewModel: QuoteViewModel = hiltViewModel(),
     imagePrefViewModel: ImagePrefViewModel = hiltViewModel(),
 ) {
     val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
 
-    val quote by quoteViewModel.selectedQuote.observeAsState(QuoteItem())
+    val quote by viewModel.currentQuote.collectAsState()
     val doubleTapHearts = remember { mutableStateListOf<Heart>() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-
 
     var imageSheetVisible by rememberSaveable { mutableStateOf(false) }
     val imageSheetState = rememberModalBottomSheetState()
@@ -97,12 +92,7 @@ fun QuoteScreen(
             .pointerInput(Unit) {
                 detectTapGestures(
                     onDoubleTap = { offset ->
-                        if (!quote.isLiked) {
-                            scope.launch {
-                                listViewModel.setLiked(quote.id, !quote.isLiked)
-                                quoteViewModel.setLiked(!quote.isLiked)
-                            }
-                        }
+                        quote?.let { viewModel.setFavourite(it) }
                         doubleTapHearts += Heart(
                             position = offset,
                             rotation = Random.nextFloat() * 40 - 20,
@@ -114,53 +104,10 @@ fun QuoteScreen(
             }
     ) {
         Column(Modifier.padding(start = 15.dp, top = 1.dp, end = 15.dp)) {
-            ElevatedCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .pointerInput(Unit) {
-                        detectTapGestures(
-                            onLongPress = {
-                                quoteSourceSheetVisible = true
-                            }
-                        )
-                    }
-            ) {
-                Box {
-                    Column(
-                        Modifier
-                            .padding(20.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_left_quote),
-                            contentDescription = null
-                        )
-                        AnimatedContent(
-                            targetState = quote.resource,
-                            label = "Animated quote transition"
-                        ) {
-                            Text(
-                                text = stringResource(it),
-                                modifier = Modifier.padding(vertical = 10.dp)
-                            )
-                        }
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_right_quote),
-                            contentDescription = null,
-                            modifier = Modifier.align(Alignment.End)
-                        )
-                        Text(text = stringResource(R.string.attribution_buddha))
-                    }
-                    TextButton(
-                        onClick = { quoteSourceSheetVisible = true },
-                        modifier = Modifier
-                            .align(Alignment.TopEnd)
-                            .padding(10.dp)
-                    ) {
-                        Text(text = "Source")
-                    }
-                }
-            }
+            QuoteCard(
+                quote = quote ?: Quote(id = 0, text = "", source = Source("", url = "")),
+                onSourceClick = { quoteSourceSheetVisible = true }
+            )
             Column(
                 Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -205,28 +152,14 @@ fun QuoteScreen(
                             Alignment.CenterHorizontally
                         )
                     ) {
-                        IconButton(
-                            onClick = {
-                                val id =
-                                    if (quote.id - 1 > QuoteStore.quotesWithSources.size) {
-                                        1
-                                    } else if (quote.id - 1 < 1) {
-                                        QuoteStore.quotesWithSources.size
-                                    } else {
-                                        quote.id - 1
-                                    }
-                                scope.launch {
-                                    quoteViewModel.setNewQuote(quoteViewModel.get(id))
-                                }
-                            }
-                        ) {
+                        IconButton(onClick = { viewModel.previousQuote() }) {
                             Icon(
                                 imageVector = Icons.Rounded.ChevronLeft,
                                 contentDescription = null
                             )
                         }
                         IconButton(
-                            onClick = { context.shareQuote(quote = quote) }
+                            onClick = { quote?.let { context.shareQuote(quote = it) } }
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.Share,
@@ -234,34 +167,19 @@ fun QuoteScreen(
                             )
                         }
                         FavoriteButton(
-                            checked = quote.isLiked,
+                            checked = quote?.isLiked == true,
                             onClick = {
-                                scope.launch {
-                                    listViewModel.setLiked(quote.id, !quote.isLiked)
-                                    quoteViewModel.setLiked(!quote.isLiked)
-                                }
+                                quote?.let { viewModel.toggleFavourite(it) }
                             }
                         )
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = { quoteSourceSheetVisible = true }) {
                             Icon(
-                                imageVector = Icons.Rounded.AddCircleOutline,
+                                imageVector = Icons.Rounded.Attribution,
                                 contentDescription = null
                             )
                         }
                         IconButton(
-                            onClick = {
-                                val id =
-                                    if (quote.id + 1 > QuoteStore.quotesWithSources.size) {
-                                        1
-                                    } else if (quote.id + 1 < 1) {
-                                        QuoteStore.quotesWithSources.size
-                                    } else {
-                                        quote.id + 1
-                                    }
-                                scope.launch {
-                                    quoteViewModel.setNewQuote(quoteViewModel.get(id))
-                                }
-                            }
+                            onClick = { viewModel.nextQuote() }
                         ) {
                             Icon(
                                 imageVector = Icons.Rounded.ChevronRight,
@@ -287,7 +205,7 @@ fun QuoteScreen(
         )
     }
 
-    val quoteSource = QuoteStore.quotesWithSources[quote.resource]
+    val quoteSource = quote?.source
     if (quoteSourceSheetVisible && quoteSource != null) {
         ModalBottomSheet(
             onDismissRequest = { quoteSourceSheetVisible = false },
@@ -296,17 +214,13 @@ fun QuoteScreen(
             InfoView(
                 useCaseState = rememberUseCaseState(),
                 selection = InfoSelection(
-                    extraButton = quoteSource.url?.let {
-                        SelectionButton(text = "Open source URL")
-                    },
-                    onExtraButtonClick = quoteSource.url?.let { url ->
-                        {
-                            context.startActivity(
-                                Intent(Intent.ACTION_VIEW).apply {
-                                    data = url.toUri()
-                                }
-                            )
-                        }
+                    extraButton = SelectionButton(text = "Open source URL"),
+                    onExtraButtonClick = {
+                        context.startActivity(
+                            Intent(Intent.ACTION_VIEW).apply {
+                                data = quoteSource.url.toUri()
+                            }
+                        )
                     },
                     negativeButton = null,
                     onPositiveClick = {
@@ -328,15 +242,11 @@ fun QuoteScreen(
                     HorizontalDivider()
                 },
                 body = InfoBody.Default(
-                    bodyText = if (quoteSource.verse != null) {
-                        stringResource(id = quoteSource.bodyRes, quoteSource.verse)
-                    } else {
-                        stringResource(id = quoteSource.bodyRes)
-                    },
+                    bodyText = quoteSource.body,
                     postBody = {
-                        quoteSource.fullQuoteRes?.let { fullQuoteRes ->
+                        quoteSource.fullQuote?.let { fullQuote ->
                             Text(
-                                text = stringResource(id = fullQuoteRes),
+                                text = fullQuote,
                                 modifier = Modifier
                                     .padding(10.dp)
                                     .layoutId("text"),
