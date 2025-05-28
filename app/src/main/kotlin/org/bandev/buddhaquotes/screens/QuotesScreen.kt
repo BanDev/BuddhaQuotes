@@ -1,27 +1,17 @@
 package org.bandev.buddhaquotes.screens
 
+import android.content.Context
 import android.content.Intent
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.Animatable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Attribution
-import androidx.compose.material.icons.rounded.ChevronLeft
-import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
@@ -40,9 +30,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -55,161 +45,94 @@ import com.maxkeppeler.sheets.info.models.InfoBody
 import com.maxkeppeler.sheets.info.models.InfoSelection
 import kotlin.random.Random
 import kotlinx.coroutines.launch
-import org.bandev.buddhaquotes.FavoriteButton
 import org.bandev.buddhaquotes.R
-import org.bandev.buddhaquotes.datastore.imagePref.ImagePrefViewModel
+import org.bandev.buddhaquotes.components.AnimatedHeart
+import org.bandev.buddhaquotes.components.Heart
+import org.bandev.buddhaquotes.components.QuoteCard
+import org.bandev.buddhaquotes.components.QuoteToolbar
+import org.bandev.buddhaquotes.datastore.settings.SettingsViewModel
+import org.bandev.buddhaquotes.datastore.settings.toImage
 import org.bandev.buddhaquotes.db.QuoteViewModel
-import org.bandev.buddhaquotes.imagepref.ImagePref
-import org.bandev.buddhaquotes.items.AnimatedHeart
-import org.bandev.buddhaquotes.items.Heart
-import org.bandev.buddhaquotes.items.QuoteCard
 import org.bandev.buddhaquotes.model.Quote
-import org.bandev.buddhaquotes.model.Source
-import org.bandev.buddhaquotes.sheets.ImageSelectionSheet
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun QuoteScreen(
     viewModel: QuoteViewModel = hiltViewModel(),
-    imagePrefViewModel: ImagePrefViewModel = hiltViewModel(),
+    settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
-    val centerImage by imagePrefViewModel.imagePref.observeAsState(ImagePref.getDefaultInstance())
-
     val quote by viewModel.currentQuote.collectAsState()
+    val settings by settingsViewModel.settings.observeAsState()
     val doubleTapHearts = remember { mutableStateListOf<Heart>() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
-    var imageSheetVisible by rememberSaveable { mutableStateOf(false) }
-    val imageSheetState = rememberModalBottomSheetState()
-
     var quoteSourceSheetVisible by rememberSaveable { mutableStateOf(false) }
     val quoteSourceSheetState = rememberModalBottomSheetState()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onDoubleTap = { offset ->
-                        quote?.let { viewModel.setFavourite(it) }
-                        doubleTapHearts += Heart(
-                            position = offset,
-                            rotation = Random.nextFloat() * 40 - 20,
-                            size = Animatable(0f),
-                            alpha = Animatable(1f)
-                        )
-                    }
-                )
-            }
-    ) {
-        Column(Modifier.padding(start = 15.dp, top = 1.dp, end = 15.dp)) {
-            QuoteCard(
-                quote = quote ?: Quote(id = 0, text = "", source = Source("", url = "")),
-                onSourceClick = { quoteSourceSheetVisible = true }
-            )
-            Column(
-                Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                Crossfade(
-                    targetState = centerImage,
-                    label = "Fade between images"
-                ) {
+    Box {
+        settings?.let { settings ->
+            Crossfade(settings.image.toImage()) {
+                if (it != null) {
                     Image(
-                        painter = painterResource(
-                            if (it.image == 1) {
-                                R.drawable.image_anahata
-                            } else if (it.image != 0) {
-                                it.image
-                            } else {
-                                R.drawable.image_cancel
-                            }
-                        ),
+                        imageVector = it,
                         contentDescription = null,
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .size(250.dp)
-                            .pointerInput(Unit) {
-                                detectTapGestures(
-                                    onLongPress = {
-                                        imageSheetVisible = true
-                                    }
-                                )
-                            },
-                        alpha = if (it.image == R.drawable.image_cancel || it.image == 0) {
-                            0f
-                        } else {
-                            1f
+                            .fillMaxSize()
+                            .align(Alignment.Center),
+                        alpha = 0.1f
+                    )
+                }
+            }
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onDoubleTap = { offset ->
+                            quote?.let { viewModel.setFavourite(it) }
+                            doubleTapHearts += Heart(
+                                position = offset,
+                                rotation = Random.nextFloat() * 40 - 20,
+                                size = Animatable(0f),
+                                alpha = Animatable(1f)
+                            )
                         }
                     )
                 }
-                ElevatedCard(Modifier.padding(20.dp)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(
-                            5.dp,
-                            Alignment.CenterHorizontally
-                        )
-                    ) {
-                        IconButton(onClick = { viewModel.previousQuote() }) {
-                            Icon(
-                                imageVector = Icons.Rounded.ChevronLeft,
-                                contentDescription = null
-                            )
-                        }
-                        IconButton(
-                            onClick = { quote?.let { context.shareQuote(quote = it) } }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Share,
-                                contentDescription = null
-                            )
-                        }
-                        FavoriteButton(
-                            checked = quote?.isLiked == true,
-                            onClick = {
-                                quote?.let { viewModel.toggleFavourite(it) }
-                            }
-                        )
-                        IconButton(onClick = { quoteSourceSheetVisible = true }) {
-                            Icon(
-                                imageVector = Icons.Rounded.Attribution,
-                                contentDescription = null
-                            )
-                        }
-                        IconButton(
-                            onClick = { viewModel.nextQuote() }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.ChevronRight,
-                                contentDescription = null
-                            )
-                        }
-                    }
+        ) {
+            QuoteCard(
+                quote = quote,
+                onSourceClick = { quoteSourceSheetVisible = true },
+                modifier = Modifier
+                    .padding(15.dp)
+                    .align(Alignment.Center)
+            )
+            QuoteToolbar(
+                modifier = Modifier
+                    .padding(20.dp)
+                    .align(Alignment.BottomCenter),
+                quote = quote,
+                onPrevQuote = viewModel::previousQuote,
+                onToggleFavourite = viewModel::toggleFavourite,
+                onSourceClick = { quoteSourceSheetVisible = true },
+                onNextQuote = viewModel::nextQuote
+            )
+            doubleTapHearts.forEachIndexed { index, heart ->
+                AnimatedHeart(heart) {
+                    doubleTapHearts.removeAt(index)
                 }
             }
         }
-        doubleTapHearts.forEachIndexed { index, heart ->
-            AnimatedHeart(heart) {
-                doubleTapHearts.removeAt(index)
-            }
-        }
-    }
-
-    if (imageSheetVisible) {
-        ImageSelectionSheet(
-            sheetState = imageSheetState,
-            onClose = { imageSheetVisible = false },
-            onImageSelection = imagePrefViewModel::setImage
-        )
     }
 
     val quoteSource = quote?.source
     if (quoteSourceSheetVisible && quoteSource != null) {
         ModalBottomSheet(
             onDismissRequest = { quoteSourceSheetVisible = false },
-            sheetState = imageSheetState
+            sheetState = quoteSourceSheetState
         ) {
             InfoView(
                 useCaseState = rememberUseCaseState(),
@@ -260,3 +183,16 @@ fun QuoteScreen(
         }
     }
 }
+
+fun Context.shareQuote(quote: Quote) = Intent().apply {
+    action = Intent.ACTION_SEND
+    putExtra(
+        Intent.EXTRA_TEXT,
+        """
+            ${quote.text}
+            
+            ${getString(R.string.attribution_buddha)}
+        """.trimIndent()
+    )
+    type = "text/plain"
+}.let { startActivity(Intent.createChooser(it, null)) }

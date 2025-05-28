@@ -53,8 +53,8 @@ fun WavesLoadingIndicator(modifier: Modifier, color: Color, progress: Float) {
         ) {
             value = withContext(Dispatchers.Default) {
                 createWavesShader(
-                    width = with(density) { constraintsWidth.roundToPx() },
-                    height = with(density) { constraintsHeight.roundToPx() },
+                    width = with(density) { constraintsWidth.roundToPx().coerceAtLeast(1) },
+                    height = with(density) { constraintsHeight.roundToPx().coerceAtLeast(1) },
                     color = color
                 )
             }

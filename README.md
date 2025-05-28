@@ -11,7 +11,7 @@ use of modern Android practices and architecture
 
 ## Features
 
-* Material3 UI
+* [Material 3 Expressive](https://m3.material.io/blog/building-with-m3-expressive) UI
 * Over 80 sourced quotes!
 * Add quotes to lists and favourites
 * Free, libre and open source

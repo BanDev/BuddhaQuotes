@@ -22,18 +22,14 @@ class QuoteViewModel @Inject constructor(
     val quotes: StateFlow<List<Quote>> = repository.getAllQuotes()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    val favourites: StateFlow<List<Quote>> = repository.getFavouriteQuotes()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+    val favourites: StateFlow<List<Quote>?> = repository.getFavouriteQuotes()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
-    private val _shuffledIndexes: StateFlow<List<Int>> =
-        quotes.map { it.indices.shuffled() }.stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(), emptyList()
-        )
+    private val _shuffledIndexes = MutableStateFlow<List<Int>>(emptyList())
 
     val dailyQuote: StateFlow<Quote?> = quotes.map { quotes ->
         val dayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-        quotes.getOrNull(dayOfYear % quotes.size)
+        quotes.getOrNull(dayOfYear % quotes.size.coerceAtLeast(1))
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
     private val _currentIndex = MutableStateFlow(0)
@@ -42,6 +38,16 @@ class QuoteViewModel @Inject constructor(
         combine(quotes, _shuffledIndexes, _currentIndex) { list, shuffled, index ->
             list.getOrNull(shuffled.getOrElse(index) { 0 })
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+
+    init {
+        viewModelScope.launch {
+            quotes.collect { quoteList ->
+                if (quoteList.isNotEmpty() && _shuffledIndexes.value.isEmpty()) {
+                    _shuffledIndexes.value = quoteList.indices.shuffled()
+                }
+            }
+        }
+    }
 
     fun nextQuote() {
         val maxIndex = _shuffledIndexes.value.size.coerceAtLeast(1)

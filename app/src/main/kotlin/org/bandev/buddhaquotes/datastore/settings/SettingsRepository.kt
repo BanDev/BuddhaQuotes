@@ -2,10 +2,10 @@ package org.bandev.buddhaquotes.datastore.settings
 
 import android.util.Log
 import androidx.datastore.core.DataStore
-import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import org.bandev.buddhaquotes.settings.Settings
+import java.io.IOException
 import javax.inject.Inject
 
 class SettingsRepository @Inject constructor(private val store: DataStore<Settings>) {
@@ -22,6 +22,18 @@ class SettingsRepository @Inject constructor(private val store: DataStore<Settin
     suspend fun setTheme(theme: Settings.Theme) {
         store.updateData { currentSettings ->
             currentSettings.toBuilder().setTheme(theme).build()
+        }
+    }
+
+    suspend fun setImage(image: Settings.Image) {
+        store.updateData { currentSettings ->
+            currentSettings.toBuilder().setImage(image).build()
+        }
+    }
+
+    suspend fun setDynamicColor(dynamicColor: Boolean) {
+        store.updateData { currentSettings ->
+            currentSettings.toBuilder().setDynamicColor(dynamicColor).build()
         }
     }
 }

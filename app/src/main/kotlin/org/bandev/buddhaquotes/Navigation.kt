@@ -1,21 +1,29 @@
 package org.bandev.buddhaquotes
 
-enum class SceneName { HOME, LISTS, FAVOURITES, DAILYQUOTE, MEDITATE, SETTINGS, ABOUT }
+import kotlinx.serialization.Serializable
 
-sealed class Scene(val id: SceneName, val route: String) {
-    data object Home : Scene(SceneName.HOME, "home")
-    data object Favourites : Scene(SceneName.FAVOURITES, "favourites")
-    data object DailyQuote : Scene(SceneName.DAILYQUOTE, "dailyquote")
-    data object Meditate : Scene(SceneName.MEDITATE, "meditate")
-    data object Settings : Scene(SceneName.SETTINGS, "settings")
-    data object About : Scene(SceneName.ABOUT, "about")
+sealed class Scene {
+    @Serializable
+    data object Home : Scene()
+
+    @Serializable
+    data object Quotes : Scene()
+
+    @Serializable
+    data object Favourites : Scene()
+
+    @Serializable
+    data object Meditate : Scene()
+
+    @Serializable
+    data object DailyQuote : Scene()
+
+    @Serializable
+    data object Settings : Scene()
+
+    @Serializable
+    data object About : Scene()
+
+    @Serializable
+    data object Libraries : Scene()
 }
-
-val scenes = listOf(
-    Scene.Home,
-    Scene.Favourites,
-    Scene.DailyQuote,
-    Scene.Meditate,
-    Scene.Settings,
-    Scene.About
-)
