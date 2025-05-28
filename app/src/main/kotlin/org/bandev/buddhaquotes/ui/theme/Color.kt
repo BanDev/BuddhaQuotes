@@ -4,12 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val OceanBlue = Color(0xFF5173B0)
 
-/**
- * Miscellaneous colours
- */
-
 val heartTint = Color(0xFFFF6347)
-val bandev = Color(0xFF5E17EB)
 
 val favourite = Color(0xFFE80054)
 val blueAccent = Color(0xFF4285F4)

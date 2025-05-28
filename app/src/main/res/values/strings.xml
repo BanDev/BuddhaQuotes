@@ -7,10 +7,12 @@
     <string name="about">About</string>
     <string name="meditate">Meditate</string>
     <string name="libraries">Libraries</string>
+    <string name="favourite">Favourite</string>
     <string name="favourites">Favourites</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="system">System</string>
+    <string name="dynamic_colour">Dynamic colour</string>
     <string name="daily_quote">Daily Quote</string>
     <string name="theme">Theme</string>
     <string name="no_favourites">No favourites yet</string>

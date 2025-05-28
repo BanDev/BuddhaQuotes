@@ -8,35 +8,42 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.ksp)
     alias(libs.plugins.protobuf)
+    alias(libs.plugins.serialization)
 }
 
 android {
     namespace = "org.bandev.buddhaquotes"
-    compileSdk = 35
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "org.bandev.buddhaquotes"
-        minSdk = 21
-        targetSdk = 35
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1015
         versionName = "3.0.0"
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
+
     buildFeatures {
         compose = true
         buildConfig = true
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
     lint {
         abortOnError = false
     }
@@ -52,7 +59,6 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.runtime.livedata)
     implementation(libs.activity.compose)
-    implementation(libs.material.icons.extended)
     implementation(libs.animation)
     implementation(libs.navigation.compose)
     implementation(libs.core.splashscreen)
@@ -85,9 +91,6 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycle.runtime.compose)
-
-    // Lottie Compose - https://github.com/airbnb/lottie
-    implementation(libs.lottie.compose)
 
     // Room - https://developer.android.com/training/data-storage/room
     implementation(libs.room.runtime)
