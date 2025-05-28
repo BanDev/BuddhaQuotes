@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "quotes")
 data class Quote(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val text: String,
-    @Embedded val source: Source,
+    val text: String = "",
+    @Embedded val source: Source = Source(),
     @ColumnInfo(name = "is_liked", defaultValue = "0") val isLiked: Boolean = false
 )
 
 data class Source(
-    val body: String,
+    @ColumnInfo(name = "source") val body: String = "",
     @ColumnInfo(name = "full_quote") val fullQuote: String? = null,
-    val url: String
+    val url: String = ""
 )

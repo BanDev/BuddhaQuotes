@@ -13,11 +13,9 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import org.bandev.buddhaquotes.datastore.imagePref.ImagePrefSerializer
 import org.bandev.buddhaquotes.datastore.settings.SettingsSerializer
 import org.bandev.buddhaquotes.db.BuddhaQuotesDatabase
 import org.bandev.buddhaquotes.db.QuoteDao
-import org.bandev.buddhaquotes.imagepref.ImagePref
 import org.bandev.buddhaquotes.settings.Settings
 import javax.inject.Singleton
 
@@ -26,11 +24,17 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): BuddhaQuotesDatabase =
-        Room.databaseBuilder(context, BuddhaQuotesDatabase::class.java, "quotes-db")
+    fun provideDatabase(@ApplicationContext context: Context): BuddhaQuotesDatabase {
+        /** The asset database user version pragma must match the database schema version.
+         * Otherwise, destructive migration will run every time.
+         * https://stackoverflow.com/a/71283218
+         */
+
+        return Room.databaseBuilder(context, BuddhaQuotesDatabase::class.java, "quotes-db")
             .createFromAsset("quotes.db")
             .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
+    }
 
     @Provides
     fun provideQuoteDao(db: BuddhaQuotesDatabase): QuoteDao = db.quoteDao()
@@ -40,18 +44,7 @@ object AppModule {
     fun provideSettingsDataStore(@ApplicationContext appContext: Context): DataStore<Settings> {
         return DataStoreFactory.create(
             serializer = SettingsSerializer,
-            produceFile = { appContext.dataStoreFile("Settings.pb") },
-            corruptionHandler = null,
-            scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-        )
-    }
-
-    @Singleton
-    @Provides
-    fun provideImagePrefDataStore(@ApplicationContext appContext: Context): DataStore<ImagePref> {
-        return DataStoreFactory.create(
-            serializer = ImagePrefSerializer,
-            produceFile = { appContext.dataStoreFile("ImagePref.pb") },
+            produceFile = { appContext.dataStoreFile("settings.pb") },
             corruptionHandler = null,
             scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
         )

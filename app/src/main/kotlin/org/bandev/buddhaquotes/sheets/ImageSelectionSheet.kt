@@ -97,14 +97,12 @@ fun ImageSelectionSheet(
                     )
                 ),
                 withButtonView = false,
-                onSelectOption = { _, option ->
+                onSelectOption = { index, _ ->
                     scope.launch { sheetState.hide() }.invokeOnCompletion {
                         if (!sheetState.isVisible) {
                             onClose()
+                            onImageSelection(index)
                         }
-                    }
-                    option.icon?.drawableRes?.let {
-                        onImageSelection(it)
                     }
                 }
             ),

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_package = "org.bandev.buddhaquotes.settings";
+option java_multiple_files = true;
+
+message Settings {
+
+  enum Theme {
+    SYSTEM = 0;
+    LIGHT = 1;
+    DARK = 2;
+  }
+
+  Theme theme = 1;
+
+  bool dynamicColor = 2;
+
+  enum Image {
+    ANAHATA = 0;
+    BELL = 1;
+    BUDDHA = 2;
+    DHARMA = 3;
+    ELEPHANT = 4;
+    ENDLESS_KNOT = 5;
+    LAMP = 6;
+    LOTUS = 7;
+    WATER_LOTUS = 8;
+    MANDALA = 9;
+    MONK = 10;
+    RATTLE = 11;
+    SHRINE = 12;
+    STUPA = 13;
+    TEMPLE = 14;
+    NONE = 15;
+  }
+
+  Image image = 3;
+}

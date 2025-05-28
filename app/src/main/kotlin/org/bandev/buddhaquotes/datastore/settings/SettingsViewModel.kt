@@ -9,12 +9,25 @@ import org.bandev.buddhaquotes.settings.Settings
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(private val repository: SettingsRepository) : ViewModel() {
+class SettingsViewModel @Inject constructor(private val repository: SettingsRepository) :
+    ViewModel() {
     val settings = repository.settings.asLiveData()
 
     fun setTheme(theme: Settings.Theme) {
         viewModelScope.launch {
             repository.setTheme(theme)
+        }
+    }
+
+    fun setImage(image: Settings.Image) {
+        viewModelScope.launch {
+            repository.setImage(image)
+        }
+    }
+
+    fun setDynamicColour(dynamicColour: Boolean) {
+        viewModelScope.launch {
+            repository.setDynamicColor(dynamicColour)
         }
     }
 }
